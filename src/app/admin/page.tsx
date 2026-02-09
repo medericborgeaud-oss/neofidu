@@ -64,10 +64,15 @@ import {
 interface TaxRequest {
   id: string;
   reference: string;
+  requestType?: "tax" | "accounting" | "property";
   status: string;
   createdAt: string;
   updatedAt: string;
   paidAt?: string;
+  // Extra fields for accounting/property
+  companyName?: string;
+  propertyAddress?: string;
+  selectedServices?: string[];
   payment: {
     amount: number;
     currency: string;
@@ -995,6 +1000,7 @@ export default function AdminDashboard() {
                 <tr>
                   <th className="text-left p-4 font-medium w-8"></th>
                   <th className="text-left p-4 font-medium">Référence</th>
+                  <th className="text-left p-4 font-medium">Type</th>
                   <th className="text-left p-4 font-medium">Client</th>
                   <th className="text-left p-4 font-medium">Canton</th>
                   <th className="text-left p-4 font-medium">Année</th>
@@ -1009,7 +1015,7 @@ export default function AdminDashboard() {
               <tbody>
                 {filteredRequests.length === 0 ? (
                   <tr>
-                    <td colSpan={11} className="p-8 text-center text-muted-foreground">
+                    <td colSpan={12} className="p-8 text-center text-muted-foreground">
                       Aucune demande trouvée
                     </td>
                   </tr>
@@ -1035,9 +1041,19 @@ export default function AdminDashboard() {
                           </code>
                         </td>
                         <td className="p-4">
+                          {request.requestType === "accounting" ? (
+                            <Badge className="bg-purple-100 text-purple-700">Compta</Badge>
+                          ) : request.requestType === "property" ? (
+                            <Badge className="bg-orange-100 text-orange-700">Immo</Badge>
+                          ) : (
+                            <Badge className="bg-teal-100 text-teal-700">Fiscal</Badge>
+                          )}
+                        </td>
+                        <td className="p-4">
                           <div>
                             <p className="font-medium">
                               {request.customer.firstName} {request.customer.lastName}
+                              {request.companyName && <span className="text-muted-foreground ml-1">({request.companyName})</span>}
                             </p>
                             <p className="text-sm text-muted-foreground">{request.customer.email}</p>
                           </div>
@@ -1168,7 +1184,7 @@ export default function AdminDashboard() {
                       </tr>
                       {expandedRows.has(request.id) && (
                         <tr className="bg-secondary/20">
-                          <td colSpan={11} className="p-4">
+                          <td colSpan={12} className="p-4">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                               <div className="space-y-2">
                                 <h4 className="font-semibold text-sm flex items-center gap-2">

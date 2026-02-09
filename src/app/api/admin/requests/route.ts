@@ -3,12 +3,15 @@ import {
   isSupabaseConfigured,
   getAllTaxRequests as getSupabaseRequests,
   getTaxRequestStats as getSupabaseStats,
+  getCombinedStats,
+  getAllGenericRequests,
   updateTaxRequestStatus,
   addStatusHistory,
   getAllStatusHistory,
   getRequestsPerDay,
   getRequestsPerCanton,
   TaxRequestDB,
+  GenericRequestDB,
   StatusHistoryEntry
 } from "@/lib/supabase";
 import { Resend } from "resend";
@@ -433,19 +436,72 @@ export async function GET(request: NextRequest) {
 
     // Utiliser Supabase si configuré
     if (isSupabaseConfigured()) {
-      const [requests, stats, history, chartDataDaily, chartDataCanton] = await Promise.all([
+      const [taxRequests, genericRequests, stats, history, chartDataDaily, chartDataCanton] = await Promise.all([
         getSupabaseRequests(),
-        getSupabaseStats(),
+        getAllGenericRequests(),
+        getCombinedStats(),
         getAllStatusHistory(50),
         getRequestsPerDay(30),
         getRequestsPerCanton(),
       ]);
 
-      // Transform requests for frontend compatibility (camelCase dates)
-      const transformedRequests = requests.map(transformRequestForFrontend);
+      // Transform tax requests for frontend compatibility (camelCase dates)
+      const transformedTaxRequests = taxRequests.map(req => ({
+        ...transformRequestForFrontend(req),
+        requestType: "tax" as const,
+      }));
+
+      // Transform generic requests (accounting, property) for frontend compatibility
+      const transformedGenericRequests = genericRequests.map(req => ({
+        id: req.id,
+        reference: req.reference,
+        requestType: req.type,
+        status: req.status === "received" ? "paid" : req.status, // Map 'received' to 'paid' for display
+        createdAt: req.created_at,
+        updatedAt: req.updated_at,
+        paidAt: req.created_at, // Use created_at as paidAt for generic requests
+        payment: {
+          amount: req.amount || 0,
+          currency: "CHF",
+          method: "pending",
+        },
+        customer: {
+          firstName: req.customer_name?.split(" ")[0] || "",
+          lastName: req.customer_name?.split(" ").slice(1).join(" ") || "",
+          email: req.customer_email || "",
+          phone: req.customer_phone || "",
+          address: {
+            street: req.data?.street as string || "",
+            npa: req.data?.npa as string || "",
+            city: req.data?.city as string || "",
+          },
+        },
+        fiscal: {
+          canton: req.canton || "",
+          cantonCode: req.canton?.substring(0, 2)?.toUpperCase() || "",
+          taxYear: new Date().getFullYear(),
+          clientType: req.type === "accounting" ? "business" : "property",
+        },
+        situation: {},
+        financial: {},
+        property: {},
+        workplaces: [],
+        options: {
+          comments: req.data?.comments as string || "",
+        },
+        documents: req.documents || [],
+        // Extra data for display
+        companyName: req.data?.companyName as string || "",
+        propertyAddress: req.data?.propertyAddress as string || "",
+        selectedServices: req.data?.selectedServices as string[] || [],
+      }));
+
+      // Combine all requests, sorted by date
+      const allRequests = [...transformedTaxRequests, ...transformedGenericRequests]
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
       return NextResponse.json({
-        requests: transformedRequests,
+        requests: allRequests,
         stats,
         statusHistory: history,
         chartData: {
@@ -459,13 +515,92 @@ export async function GET(request: NextRequest) {
     // Sinon retourner les données de démo
     const demoRequests = getDemoRequests();
     // Transform demo requests for frontend compatibility
-    const transformedDemoRequests = demoRequests.map(transformRequestForFrontend);
+    const transformedDemoRequests = demoRequests.map(req => ({
+      ...transformRequestForFrontend(req),
+      requestType: "tax" as const,
+    }));
+
+    // Add demo accounting and property requests
+    const now = new Date();
+    const demoAccountingRequests = [
+      {
+        id: "acc_demo_001",
+        reference: "NF-CPT-DEMO01",
+        requestType: "accounting" as const,
+        status: "received",
+        createdAt: new Date(now.getTime() - 1000 * 60 * 60 * 5).toISOString(),
+        updatedAt: new Date(now.getTime() - 1000 * 60 * 60 * 5).toISOString(),
+        paidAt: null,
+        payment: { amount: 0, currency: "CHF", method: "pending" },
+        customer: {
+          firstName: "Marc",
+          lastName: "Entreprise",
+          email: "marc@entreprise.ch",
+          phone: "+41 79 333 44 55",
+          address: { street: "Rue du Commerce 15", npa: "1003", city: "Lausanne" },
+        },
+        fiscal: {
+          canton: "Vaud",
+          cantonCode: "VD",
+          taxYear: 2024,
+          clientType: "business",
+        },
+        situation: {},
+        financial: {},
+        property: {},
+        workplaces: [],
+        options: { comments: "Nouvelle entreprise, besoin de mise en place comptabilité" },
+        documents: [
+          { category: "accounting", name: "Extrait RC.pdf", uploadedAt: now.toISOString() },
+          { category: "accounting", name: "Comptabilité existante.xlsx", uploadedAt: now.toISOString() },
+        ],
+        companyName: "TechStartup Sàrl",
+        selectedServices: ["Tenue de comptabilité", "Déclarations TVA", "Bilan annuel"],
+      },
+    ];
+
+    const demoPropertyRequests = [
+      {
+        id: "prop_demo_001",
+        reference: "NF-GI-DEMO01",
+        requestType: "property" as const,
+        status: "received",
+        createdAt: new Date(now.getTime() - 1000 * 60 * 60 * 8).toISOString(),
+        updatedAt: new Date(now.getTime() - 1000 * 60 * 60 * 8).toISOString(),
+        paidAt: null,
+        payment: { amount: 1620, currency: "CHF", method: "pending" },
+        customer: {
+          firstName: "Claire",
+          lastName: "Immobilier",
+          email: "claire.immo@email.ch",
+          phone: "+41 78 111 22 33",
+          address: { street: "Avenue de la Gare 5", npa: "1950", city: "Sion" },
+        },
+        fiscal: {
+          canton: "Valais",
+          cantonCode: "VS",
+          taxYear: 2024,
+          clientType: "property",
+        },
+        situation: {},
+        financial: {},
+        property: {},
+        workplaces: [],
+        options: { comments: "Appartement en location, recherche gérance complète" },
+        documents: [],
+        propertyAddress: "Rue des Alpes 12, 1950 Sion",
+      },
+    ];
+
+    // Combine all demo requests
+    const allDemoRequests = [...transformedDemoRequests, ...demoAccountingRequests, ...demoPropertyRequests]
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     // Générer des données de démo pour les graphiques
-    const now = new Date();
+    const chartNow = new Date();
     const demoChartDaily = [];
     for (let i = 29; i >= 0; i--) {
-      const date = new Date(now);
+      const date = new Date(chartNow);
       date.setDate(date.getDate() - i);
       const dateStr = date.toISOString().split("T")[0];
       const count = Math.floor(Math.random() * 5);
@@ -492,7 +627,7 @@ export async function GET(request: NextRequest) {
         request_reference: "NF-DEMO002B",
         old_status: "paid",
         new_status: "in_progress",
-        changed_at: new Date(now.getTime() - 1000 * 60 * 60).toISOString(),
+        changed_at: new Date(chartNow.getTime() - 1000 * 60 * 60).toISOString(),
         changed_by: "admin",
         notification_sent: true,
       },
@@ -502,7 +637,7 @@ export async function GET(request: NextRequest) {
         request_reference: "NF-DEMO003C",
         old_status: "in_progress",
         new_status: "completed",
-        changed_at: new Date(now.getTime() - 1000 * 60 * 60 * 12).toISOString(),
+        changed_at: new Date(chartNow.getTime() - 1000 * 60 * 60 * 12).toISOString(),
         changed_by: "admin",
         notification_sent: true,
       },
@@ -512,21 +647,26 @@ export async function GET(request: NextRequest) {
         request_reference: "NF-DEMO005E",
         old_status: "completed",
         new_status: "delivered",
-        changed_at: new Date(now.getTime() - 1000 * 60 * 60 * 6).toISOString(),
+        changed_at: new Date(chartNow.getTime() - 1000 * 60 * 60 * 6).toISOString(),
         changed_by: "admin",
         notification_sent: true,
       },
     ];
 
     return NextResponse.json({
-      requests: transformedDemoRequests,
+      requests: allDemoRequests,
       stats: {
-        total: demoRequests.length,
+        total: allDemoRequests.length,
         paid: demoRequests.filter(r => r.status !== "pending").length,
-        pending: demoRequests.filter(r => r.status === "pending").length,
+        pending: demoRequests.filter(r => r.status === "pending").length + 2, // +2 for accounting/property
         inProgress: demoRequests.filter(r => r.status === "in_progress").length,
         completed: demoRequests.filter(r => r.status === "completed" || r.status === "delivered").length,
         totalRevenue: demoRequests.reduce((sum, r) => sum + r.payment.amount, 0),
+        byType: {
+          tax: demoRequests.length,
+          accounting: 1,
+          property: 1,
+        },
       },
       statusHistory: demoHistory,
       chartData: {

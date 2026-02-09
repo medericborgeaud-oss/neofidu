@@ -119,6 +119,27 @@ export interface TaxRequestDB {
   }[];
 }
 
+// Interface pour les demandes génériques (comptabilité, immobilier)
+export interface GenericRequestDB {
+  id: string;
+  reference: string;
+  type: "tax" | "accounting" | "property";
+  customer_name: string;
+  customer_email: string;
+  customer_phone?: string;
+  canton: string;
+  status: string;
+  status_history: { status: string; date: string; note?: string }[];
+  amount: number;
+  payment_status: string;
+  created_at: string;
+  updated_at: string;
+  estimated_completion?: string;
+  documents?: { name: string; uploadedAt: string; url?: string }[];
+  notes?: string;
+  data?: Record<string, unknown>;
+}
+
 // Vérifier si Supabase est configuré
 export function isSupabaseConfigured(): boolean {
   return !!supabase;
@@ -183,6 +204,23 @@ export async function getAllTaxRequests(): Promise<TaxRequestDB[]> {
   }
 
   return data as TaxRequestDB[];
+}
+
+// Récupérer toutes les demandes génériques (comptabilité, immobilier)
+export async function getAllGenericRequests(): Promise<GenericRequestDB[]> {
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("requests")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Erreur récupération demandes génériques Supabase:", error);
+    return [];
+  }
+
+  return data as GenericRequestDB[];
 }
 
 // Trouver une demande par référence
@@ -334,6 +372,63 @@ export async function getTaxRequestStats() {
   };
 }
 
+// Obtenir les statistiques combinées (tax + generic)
+export async function getCombinedStats() {
+  if (!supabase) {
+    return {
+      total: 0,
+      paid: 0,
+      pending: 0,
+      inProgress: 0,
+      completed: 0,
+      totalRevenue: 0,
+      byType: { tax: 0, accounting: 0, property: 0 },
+    };
+  }
+
+  // Get tax requests stats
+  const taxStats = await getTaxRequestStats();
+
+  // Get generic requests
+  const { data: genericData, error: genericError } = await supabase
+    .from("requests")
+    .select("type, status, amount, payment_status");
+
+  if (genericError) {
+    console.error("Erreur stats génériques:", genericError);
+    return {
+      ...taxStats,
+      byType: { tax: taxStats.total, accounting: 0, property: 0 },
+    };
+  }
+
+  const genericRequests = genericData as { type: string; status: string; amount: number; payment_status: string }[];
+
+  const accountingCount = genericRequests.filter(r => r.type === "accounting").length;
+  const propertyCount = genericRequests.filter(r => r.type === "property").length;
+  const genericPaid = genericRequests.filter(r => r.payment_status === "paid").length;
+  const genericPending = genericRequests.filter(r => r.payment_status === "pending").length;
+  const genericInProgress = genericRequests.filter(r => r.status === "in_progress").length;
+  const genericCompleted = genericRequests.filter(r => r.status === "completed" || r.status === "delivered").length;
+  const genericRevenue = genericRequests
+    .filter(r => r.payment_status === "paid")
+    .reduce((sum, r) => sum + (r.amount || 0), 0);
+
+  return {
+    total: taxStats.total + genericRequests.length,
+    paid: taxStats.paid + genericPaid,
+    pending: taxStats.pending + genericPending,
+    inProgress: taxStats.inProgress + genericInProgress,
+    completed: taxStats.completed + genericCompleted,
+    totalRevenue: taxStats.totalRevenue + genericRevenue,
+    byType: {
+      tax: taxStats.total,
+      accounting: accountingCount,
+      property: propertyCount,
+    },
+  };
+}
+
 // Interface pour l'historique des statuts
 export interface StatusHistoryEntry {
   id: string;
@@ -478,6 +573,23 @@ export async function getRequestsPerCanton(): Promise<{ canton: string; count: n
   return Object.entries(groupedByCanton)
     .map(([canton, stats]) => ({ canton, ...stats }))
     .sort((a, b) => b.count - a.count);
+}
+
+// Récupérer toutes les demandes de la table 'requests' (pour le dashboard admin)
+export async function getAllRequests(): Promise<GenericRequestDB[]> {
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("requests")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Erreur récupération demandes (requests) Supabase:", error);
+    return [];
+  }
+
+  return data as GenericRequestDB[];
 }
 
 // SQL pour créer la table (à exécuter dans Supabase Dashboard)
