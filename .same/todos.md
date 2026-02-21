@@ -19,6 +19,15 @@
 - [x] Honeypot fields dans formulaires de contact
 - [x] Form tokens avec validation
 
+### TWINT / Stripe Compliance
+- [x] **Mentions légales complètes dans le footer**
+- [x] Adresse réelle : Crettaz 1, 1854 Leysin
+- [x] Téléphone réel : +41 78 691 39 12
+- [x] Type d'entreprise : Entreprise individuelle
+- [x] Email : contact@neofidu.ch
+- [x] Devise : Prix affichés en CHF
+- [x] Poussé vers GitHub (commit 89a0717)
+
 ### Fonctionnalités
 - [x] Formulaire de demande fiscale complet
 - [x] Formulaire comptabilité PME
@@ -39,9 +48,7 @@
 - [x] Déployé sur Vercel
 - [x] Domaine neofidu.ch configuré
 - [x] SSL/HTTPS automatique
-
-## Tâches en Cours
-- [x] Fix Google Search Console indexing issues (redirect neofidu.ch -> www.neofidu.ch)
+- [x] Déploiement automatique via GitHub
 
 ## Tâches à Venir
 - [ ] Soumettre sitemap mis à jour à Google Search Console
@@ -56,3 +63,4 @@
 - **Canonical**: Toutes les URLs canoniques pointent vers www.neofidu.ch
 - **Sitemap**: Disponible à /sitemap.xml avec toutes les pages
 - **Robots.txt**: Généré dynamiquement via /robots.ts
+- **GitHub**: https://github.com/medericborgeaud-oss/neofidu
