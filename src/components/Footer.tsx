@@ -235,7 +235,7 @@ export function Footer() {
                 {isEnglish ? "Sole proprietorship" : "Entreprise individuelle"}
               </p>
               <p className="text-slate-400 mt-2">
-                Rue Louis Favez 1<br />
+                Crettaz 1<br />
                 1854 Leysin<br />
                 {isEnglish ? "Canton of Vaud, Switzerland" : "Canton de Vaud, Suisse"}
               </p>
@@ -249,8 +249,8 @@ export function Footer() {
               </p>
               <p className="text-slate-400 mb-2">
                 <span className="text-white">{isEnglish ? "Phone:" : "Téléphone :"}</span>{" "}
-                <a href="tel:+41791234567" className="hover:text-primary transition-colors">
-                  +41 79 123 45 67
+                <a href="tel:+41786913912" className="hover:text-primary transition-colors">
+                  +41 78 691 39 12
                 </a>
               </p>
               <p className="text-slate-400">

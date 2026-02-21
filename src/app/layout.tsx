@@ -118,11 +118,11 @@ export default function RootLayout({
       height: 60,
     },
     image: "https://www.neofidu.ch/og-image.svg",
-    telephone: "+41 21 000 00 00",
+    telephone: "+41 78 691 39 12",
     email: "contact@neofidu.ch",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Rue Louis Favez",
+      streetAddress: "Crettaz 1",
       addressLocality: "Leysin",
       postalCode: "1854",
       addressRegion: "Vaud",
@@ -133,7 +133,7 @@ export default function RootLayout({
       latitude: 46.3411,
       longitude: 7.0119,
     },
-    hasMap: "https://maps.google.com/?q=Rue+Louis+Favez,+1854+Leysin,+Switzerland",
+    hasMap: "https://maps.google.com/?q=Crettaz+1,+1854+Leysin,+Switzerland",
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",

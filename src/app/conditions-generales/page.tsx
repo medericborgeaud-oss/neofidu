@@ -188,7 +188,9 @@ const sections = [
       <h4>9.4 Contact</h4>
       <p>Pour toute question relative aux présentes CG, le Client peut contacter NeoFidu à l'adresse suivante :</p>
       <p>
-        <strong>NeoFidu</strong><br />
+        <strong>NeoFidu – Entreprise individuelle</strong><br />
+        Crettaz 1, 1854 Leysin<br />
+        Tél : +41 78 691 39 12<br />
         Email : contact@neofidu.ch
       </p>
 

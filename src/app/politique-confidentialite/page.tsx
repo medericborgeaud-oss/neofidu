@@ -25,8 +25,9 @@ const sections = [
     content: `
       <p>Le responsable du traitement des données personnelles est :</p>
       <p>
-        <strong>NeoFidu</strong><br />
-        Canton de Vaud, Suisse<br />
+        <strong>NeoFidu – Entreprise individuelle</strong><br />
+        Crettaz 1, 1854 Leysin, Suisse<br />
+        Tél : +41 78 691 39 12<br />
         Email : contact@neofidu.ch
       </p>
       <p>Pour toute question relative à la protection de vos données, vous pouvez nous contacter à l'adresse ci-dessus.</p>
