@@ -18,6 +18,31 @@ Le formulaire de demande fiscale adapte maintenant le libellé et l'aide du cham
 ### Fichier modifié
 - `src/components/TaxRequestForm.tsx` : Ajout du mapping `cantonCodeInfo` et mise à jour dynamique du champ
 
+## Déploiement GitHub - 26/02/2026
+
+### ✅ Code poussé sur GitHub
+
+Le code complet du projet NeoFidu a été poussé sur GitHub :
+
+- **Repository**: https://github.com/medericborgeaud-oss/neofidu
+- **Branche**: main
+- **Commit**: ff7c12f - "Complete NeoFidu project with all features"
+- **Fichiers**: 147 fichiers (46,579 insertions)
+
+#### Fonctionnalités incluses :
+- Formulaire de déclaration fiscale multi-étapes
+- Intégration paiement Stripe (TWINT, Visa, Mastercard)
+- Backend Supabase pour la persistance des données
+- Upload de documents Cloudinary
+- Protection anti-spam (honeypot, rate limiting)
+- Optimisation SEO (sitemap, meta tags, OpenGraph)
+- Support multilingue (FR/EN)
+- Design responsive avec Tailwind CSS
+- Dashboard admin pour gestion des demandes
+- Simulateurs fiscaux (3ème pilier, valeur locative)
+
+---
+
 ## Conformité TWINT (Stripe) - Mise à jour 24/02/2026
 
 ### ✅ Éléments ajoutés pour l'approbation TWINT
