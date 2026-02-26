@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bannières publicitaires NeoFidu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f4f5;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1f2937;
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+
+    p.intro {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .banner-section {
+      margin-bottom: 60px;
+    }
+
+    .banner-section h2 {
+      color: #374151;
+      font-size: 18px;
+      margin-bottom: 16px;
+      padding-left: 8px;
+      border-left: 4px solid #14b8a6;
+    }
+
+    .banner-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .size-label {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    /* ============================================
+       BANNER 1: Leaderboard (728x90)
+       ============================================ */
+    .banner-leaderboard {
+      width: 728px;
+      height: 90px;
+      background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #2dd4bf 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .banner-leaderboard::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+
+    .banner-leaderboard .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner-leaderboard .logo-text {
+      font-size: 28px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .banner-leaderboard .logo-text span {
+      color: #1f2937;
+    }
+
+    .banner-leaderboard .logo-suffix {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      margin-left: 2px;
+    }
+
+    .banner-leaderboard .content {
+      flex: 1;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .banner-leaderboard .tagline {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .banner-leaderboard .subtext {
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+    }
+
+    .banner-leaderboard .cta {
+      background: white;
+      color: #0d9488;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .banner-leaderboard .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ============================================
+       BANNER 2: Medium Rectangle (300x250)
+       ============================================ */
+    .banner-rectangle {
+      width: 300px;
+      height: 250px;
+      background: linear-gradient(180deg, #0d9488 0%, #0f766e 100%);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .banner-rectangle::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -30%;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .banner-rectangle::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -20%;
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .banner-rectangle .icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .banner-rectangle .icon svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+
+    .banner-rectangle .logo-text {
+      font-size: 32px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .banner-rectangle .logo-text span {
+      color: #1f2937;
+    }
+
+    .banner-rectangle .tagline {
+      color: rgba(255,255,255,0.95);
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .banner-rectangle .subtext {
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .banner-rectangle .cta {
+      background: white;
+      color: #0d9488;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================
+       BANNER 3: Skyscraper (160x600)
+       ============================================ */
+    .banner-skyscraper {
+      width: 160px;
+      height: 600px;
+      background: linear-gradient(180deg, #0d9488 0%, #0f766e 50%, #115e59 100%);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px;
+      box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .banner-skyscraper::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      right: -50%;
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .banner-skyscraper .logo-text {
+      font-size: 26px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .banner-skyscraper .logo-text span {
+      color: #1f2937;
+    }
+
+    .banner-skyscraper .logo-suffix {
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      margin-bottom: 32px;
+    }
+
+    .banner-skyscraper .divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.3);
+      margin-bottom: 32px;
+    }
+
+    .banner-skyscraper .tagline {
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .banner-skyscraper .features {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .banner-skyscraper .feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.9);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .banner-skyscraper .feature-icon {
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .banner-skyscraper .feature-icon svg {
+      width: 12px;
+      height: 12px;
+      color: white;
+    }
+
+    .banner-skyscraper .cta {
+      background: white;
+      color: #0d9488;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    .banner-skyscraper .subtext {
+      color: rgba(255,255,255,0.6);
+      font-size: 10px;
+      margin-top: 16px;
+    }
+
+    /* ============================================
+       BANNER 4: Wide Banner (468x60)
+       ============================================ */
+    .banner-wide {
+      width: 468px;
+      height: 60px;
+      background: linear-gradient(90deg, #0d9488 0%, #14b8a6 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-shadow: 0 8px 32px rgba(13, 148, 136, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-wide::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      right: 20%;
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+
+    .banner-wide .logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .banner-wide .logo-text span {
+      color: #1f2937;
+    }
+
+    .banner-wide .tagline {
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .banner-wide .cta {
+      background: white;
+      color: #0d9488;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ============================================
+       BANNER 5: Square (250x250) - Swiss themed
+       ============================================ */
+    .banner-square {
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .banner-square::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 24px;
+      background:
+        linear-gradient(to right, red 33%, white 33%, white 66%, red 66%);
+      border-radius: 3px;
+      opacity: 0.9;
+    }
+
+    .banner-square .logo-text {
+      font-size: 36px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+
+    .banner-square .logo-text span {
+      color: #1f2937;
+    }
+
+    .banner-square .logo-suffix {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .banner-square .tagline {
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .banner-square .price {
+      background: rgba(255,255,255,0.15);
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: white;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .banner-square .price strong {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .banner-square .cta {
+      background: white;
+      color: #0d9488;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ============================================
+       BANNER 6: Mobile Banner (320x50)
+       ============================================ */
+    .banner-mobile {
+      width: 320px;
+      height: 50px;
+      background: linear-gradient(90deg, #0d9488 0%, #14b8a6 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.25);
+    }
+
+    .banner-mobile .logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .banner-mobile .logo-text span {
+      color: #1f2937;
+    }
+
+    .banner-mobile .tagline {
+      color: rgba(255,255,255,0.9);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .banner-mobile .cta {
+      background: white;
+      color: #0d9488;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 11px;
+      text-decoration: none;
+    }
+
+    /* ============================================
+       BANNER 7: Large Rectangle (336x280)
+       ============================================ */
+    .banner-large-rect {
+      width: 336px;
+      height: 280px;
+      background: linear-gradient(180deg, #0d9488 0%, #0f766e 100%);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-large-rect::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -15%;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .banner-large-rect .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .banner-large-rect .logo-text {
+      font-size: 28px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .banner-large-rect .logo-text span {
+      color: #1f2937;
+    }
+
+    .banner-large-rect .badge {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .banner-large-rect .tagline {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .banner-large-rect .subtext {
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .banner-large-rect .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .banner-large-rect .features {
+      display: flex;
+      gap: 12px;
+    }
+
+    .banner-large-rect .feature {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: rgba(255,255,255,0.9);
+      font-size: 11px;
+    }
+
+    .banner-large-rect .feature svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .banner-large-rect .cta {
+      background: white;
+      color: #0d9488;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Instructions */
+    .instructions {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 60px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .instructions h3 {
+      color: #1f2937;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .instructions ol {
+      color: #4b5563;
+      padding-left: 24px;
+      line-height: 1.8;
+    }
+
+    .instructions code {
+      background: #f3f4f6;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #0d9488;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bannières publicitaires NeoFidu</h1>
+  <p class="intro">Faites un clic droit sur une bannière et choisissez "Enregistrer l'image" ou utilisez un outil de capture d'écran pour obtenir le format souhaité.</p>
+
+  <!-- Leaderboard 728x90 -->
+  <div class="banner-section">
+    <h2>Leaderboard (728 × 90 px)</h2>
+    <div class="banner-container">
+      <div class="banner-leaderboard">
+        <div class="logo">
+          <span class="logo-text">neo<span>fidu</span></span>
+          <span class="logo-suffix">.ch</span>
+        </div>
+        <div class="content">
+          <div class="tagline">Votre fiduciaire en ligne en Suisse romande</div>
+          <div class="subtext">Déclaration d'impôts • Comptabilité • 100% digital</div>
+        </div>
+        <a href="https://neofidu.ch" class="cta">
+          Démarrer
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <p class="size-label">728 × 90 px — Idéal pour les en-têtes de site</p>
+  </div>
+
+  <!-- Medium Rectangle 300x250 -->
+  <div class="banner-section">
+    <h2>Rectangle moyen (300 × 250 px)</h2>
+    <div class="banner-container">
+      <div class="banner-rectangle">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <div class="logo-text">neo<span>fidu</span></div>
+        <div class="tagline">Déclaration d'impôts en ligne</div>
+        <div class="subtext">Suisse romande • Dès CHF 89.-</div>
+        <a href="https://neofidu.ch" class="cta">
+          Démarrer maintenant
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <p class="size-label">300 × 250 px — Format le plus populaire</p>
+  </div>
+
+  <!-- Wide Banner 468x60 -->
+  <div class="banner-section">
+    <h2>Bannière large (468 × 60 px)</h2>
+    <div class="banner-container">
+      <div class="banner-wide">
+        <span class="logo-text">neo<span>fidu</span></span>
+        <span class="tagline">Votre déclaration d'impôts en ligne • Suisse romande</span>
+        <a href="https://neofidu.ch" class="cta">Démarrer →</a>
+      </div>
+    </div>
+    <p class="size-label">468 × 60 px — Format classique</p>
+  </div>
+
+  <!-- Square 250x250 -->
+  <div class="banner-section">
+    <h2>Carré (250 × 250 px)</h2>
+    <div class="banner-container">
+      <div class="banner-square">
+        <div class="logo-text">neo<span>fidu</span></div>
+        <div class="logo-suffix">Fiduciaire digitale suisse</div>
+        <div class="tagline">Déclaration d'impôts<br>simple et rapide</div>
+        <div class="price">À partir de <strong>CHF 89.-</strong></div>
+        <a href="https://neofidu.ch" class="cta">En savoir plus</a>
+      </div>
+    </div>
+    <p class="size-label">250 × 250 px — Format carré</p>
+  </div>
+
+  <!-- Mobile 320x50 -->
+  <div class="banner-section">
+    <h2>Mobile (320 × 50 px)</h2>
+    <div class="banner-container">
+      <div class="banner-mobile">
+        <div>
+          <span class="logo-text">neo<span>fidu</span></span>
+        </div>
+        <span class="tagline">Impôts en ligne</span>
+        <a href="https://neofidu.ch" class="cta">Démarrer</a>
+      </div>
+    </div>
+    <p class="size-label">320 × 50 px — Idéal pour mobile</p>
+  </div>
+
+  <!-- Large Rectangle 336x280 -->
+  <div class="banner-section">
+    <h2>Grand rectangle (336 × 280 px)</h2>
+    <div class="banner-container">
+      <div class="banner-large-rect">
+        <div class="header">
+          <span class="logo-text">neo<span>fidu</span></span>
+          <span class="badge">🇨🇭 Suisse</span>
+        </div>
+        <div class="tagline">Votre déclaration d'impôts, simplifiée.</div>
+        <div class="subtext">
+          Confiez votre déclaration fiscale à nos experts. Service 100% en ligne pour particuliers, indépendants et entreprises en Suisse romande.
+        </div>
+        <div class="footer">
+          <div class="features">
+            <span class="feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              100% digital
+            </span>
+            <span class="feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Dès CHF 89.-
+            </span>
+          </div>
+          <a href="https://neofidu.ch" class="cta">Démarrer</a>
+        </div>
+      </div>
+    </div>
+    <p class="size-label">336 × 280 px — Grand format avec détails</p>
+  </div>
+
+  <!-- Skyscraper 160x600 -->
+  <div class="banner-section">
+    <h2>Skyscraper (160 × 600 px)</h2>
+    <div class="banner-container">
+      <div class="banner-skyscraper">
+        <div class="logo-text">neo<span>fidu</span></div>
+        <div class="logo-suffix">Fiduciaire digitale</div>
+        <div class="divider"></div>
+        <div class="tagline">Déclaration d'impôts en ligne</div>
+        <div class="features">
+          <div class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            100% digital
+          </div>
+          <div class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            Tarifs affichés
+          </div>
+          <div class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            Experts certifiés
+          </div>
+          <div class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            Suisse romande
+          </div>
+        </div>
+        <a href="https://neofidu.ch" class="cta">Démarrer →</a>
+        <div class="subtext">Dès CHF 89.-</div>
+      </div>
+    </div>
+    <p class="size-label">160 × 600 px — Idéal pour les sidebars</p>
+  </div>
+
+  <!-- Instructions -->
+  <div class="instructions">
+    <h3>📋 Comment utiliser ces bannières</h3>
+    <ol>
+      <li>Faites une <strong>capture d'écran</strong> de la bannière souhaitée (utilisez l'outil de capture de votre système ou une extension comme "GoFullPage")</li>
+      <li>Enregistrez l'image en format <code>PNG</code> ou <code>JPG</code></li>
+      <li>Ajoutez un <strong>lien</strong> vers <code>https://neofidu.ch</code> sur l'image</li>
+      <li>Code HTML exemple:
+        <br><code>&lt;a href="https://neofidu.ch" target="_blank" rel="noopener"&gt;&lt;img src="banner-neofidu.png" alt="NeoFidu - Déclaration d'impôts en ligne" /&gt;&lt;/a&gt;</code>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>

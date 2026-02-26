@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bannière NeoFidu pour Chatimont</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f4f5;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    h1 { text-align: center; color: #1f2937; margin-bottom: 8px; font-size: 24px; }
+    .subtitle { text-align: center; color: #6b7280; margin-bottom: 40px; font-size: 14px; }
+    .section { margin-bottom: 50px; }
+    .section h2 {
+      color: #374151;
+      font-size: 16px;
+      margin-bottom: 12px;
+      padding-left: 12px;
+      border-left: 4px solid #314975;
+    }
+    .banner-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .size { text-align: center; color: #9ca3af; font-size: 12px; }
+
+    /* Bannière 1: Pleine largeur */
+    .banner-full {
+      width: 1000px;
+      height: 90px;
+      background: linear-gradient(135deg, #314975 0%, #1e3a5f 50%, #152a45 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(49, 73, 117, 0.3);
+    }
+    .banner-full::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: 10%;
+      width: 150px;
+      height: 150px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .partner-badge {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-text { font-size: 26px; font-weight: 800; color: white; letter-spacing: -1px; }
+    .logo-text span { color: #14b8a6; }
+    .logo-suffix { color: rgba(255,255,255,0.6); font-size: 14px; }
+    .content { flex: 1; text-align: center; padding: 0 20px; }
+    .tagline { color: white; font-size: 16px; font-weight: 600; }
+    .subtext { color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 2px; }
+    .cta {
+      background: #14b8a6;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(20, 184, 166, 0.4);
+    }
+
+    /* Bannière 2: Compacte */
+    .banner-compact {
+      width: 728px;
+      height: 90px;
+      background: linear-gradient(90deg, #314975 0%, #1e3a5f 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      box-shadow: 0 4px 20px rgba(49, 73, 117, 0.25);
+    }
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      background: rgba(20, 184, 166, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-box svg { width: 24px; height: 24px; color: #14b8a6; }
+    .logo-small { display: flex; align-items: center; gap: 10px; }
+    .logo-small .logo-text { font-size: 22px; }
+    .logo-small .sub { color: rgba(255,255,255,0.6); font-size: 10px; margin-top: 2px; }
+
+    /* Bannière 3: Minimal */
+    .banner-minimal {
+      width: 728px;
+      height: 60px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 24px;
+    }
+    .banner-minimal .logo-text { color: #314975; font-size: 22px; }
+    .banner-minimal .divider { width: 1px; height: 30px; background: #e2e8f0; }
+    .banner-minimal .info { color: #64748b; font-size: 13px; }
+    .banner-minimal .info strong { color: #14b8a6; }
+    .banner-minimal .cta-small {
+      background: #14b8a6;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    /* Bannière 4: Rectangle */
+    .banner-rect {
+      width: 300px;
+      height: 250px;
+      background: linear-gradient(180deg, #314975 0%, #1e3a5f 100%);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(49, 73, 117, 0.3);
+    }
+    .banner-rect::before {
+      content: '';
+      position: absolute;
+      top: -25%;
+      right: -20%;
+      width: 120px;
+      height: 120px;
+      background: rgba(20, 184, 166, 0.15);
+      border-radius: 50%;
+    }
+    .banner-rect .partner-badge { margin-bottom: 16px; }
+    .banner-rect .logo-text { font-size: 32px; margin-bottom: 8px; }
+    .banner-rect .tagline { font-size: 14px; margin-bottom: 4px; }
+    .banner-rect .subtext { font-size: 11px; margin-bottom: 20px; }
+    .banner-rect .cta-full {
+      width: 100%;
+      background: #14b8a6;
+      color: white;
+      padding: 12px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bannières NeoFidu pour Chatimont.ch</h1>
+  <p class="subtitle">Faites un clic droit → "Enregistrer l'image" ou capture d'écran</p>
+
+  <!-- Bannière 1 -->
+  <div class="section">
+    <h2>Option 1 : Leaderboard (1000 × 90 px)</h2>
+    <div class="banner-wrap">
+      <div class="banner-full">
+        <div class="logo">
+          <span class="partner-badge">PARTENAIRE</span>
+          <span class="logo-text">neo<span>fidu</span></span>
+          <span class="logo-suffix">.ch</span>
+        </div>
+        <div class="content">
+          <div class="tagline">Déclaration d'impôts 100% en ligne</div>
+          <div class="subtext">Fiduciaire digitale suisse • Dès CHF 89.- • Vaud, Valais, Genève</div>
+        </div>
+        <a href="#" class="cta">
+          Faire ma déclaration
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="size">1000 × 90 px — Idéal pour footer</p>
+  </div>
+
+  <!-- Bannière 2 -->
+  <div class="section">
+    <h2>Option 2 : Compacte (728 × 90 px)</h2>
+    <div class="banner-wrap">
+      <div class="banner-compact">
+        <div class="logo-small">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="logo-text">neo<span>fidu</span></div>
+            <div class="sub">Partenaire recommandé</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="tagline">Déclaration d'impôts en ligne</div>
+          <div class="subtext">Vaud • Valais • Genève • Fribourg — Dès CHF 89.-</div>
+        </div>
+        <a href="#" class="cta">Démarrer →</a>
+      </div>
+    </div>
+    <p class="size">728 × 90 px — Format standard</p>
+  </div>
+
+  <!-- Bannière 3 -->
+  <div class="section">
+    <h2>Option 3 : Minimal (728 × 60 px)</h2>
+    <div class="banner-wrap">
+      <div class="banner-minimal">
+        <span class="partner-badge" style="background:#314975;color:white;">PARTENAIRE</span>
+        <span class="logo-text">neo<span>fidu</span></span>
+        <div class="divider"></div>
+        <span class="info">Déclaration d'impôts en ligne • <strong>Dès CHF 89.-</strong></span>
+        <a href="#" class="cta-small">Découvrir →</a>
+      </div>
+    </div>
+    <p class="size">728 × 60 px — Style discret</p>
+  </div>
+
+  <!-- Bannière 4 -->
+  <div class="section">
+    <h2>Option 4 : Rectangle (300 × 250 px)</h2>
+    <div class="banner-wrap">
+      <div class="banner-rect">
+        <span class="partner-badge">PARTENAIRE RECOMMANDÉ</span>
+        <div class="logo-text">neo<span>fidu</span></div>
+        <div class="tagline">Déclaration d'impôts en ligne</div>
+        <div class="subtext">Fiduciaire digitale suisse</div>
+        <a href="#" class="cta-full">Dès CHF 89.- →</a>
+      </div>
+    </div>
+    <p class="size">300 × 250 px — Pour sidebar</p>
+  </div>
+
+</body>
+</html>
