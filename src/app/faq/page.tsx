@@ -269,7 +269,7 @@ export default function FAQPage() {
             ))}
           </div>
 
-          {/* FAQ Items */}
+          {/* FAQ Items - Answers always in DOM for SEO, hidden visually when closed */}
           <div className="max-w-3xl mx-auto space-y-4">
             {filteredFAQ.map((item, index) => (
               <Card
@@ -281,6 +281,8 @@ export default function FAQPage() {
                 <button
                   onClick={() => toggleQuestion(index)}
                   className="w-full p-5 text-left flex items-start justify-between gap-4"
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                 >
                   <div className="flex-1">
                     <span className="text-xs font-medium text-primary uppercase tracking-wider mb-1 block">
@@ -298,15 +300,21 @@ export default function FAQPage() {
                     )}
                   </div>
                 </button>
-                {openIndex === index && (
-                  <div className="px-5 pb-5">
-                    <div className="pt-4 border-t border-border">
-                      <p className="text-muted-foreground leading-relaxed">
-                        {item.answer}
-                      </p>
-                    </div>
+                {/* Answer always in DOM for SEO indexing - CSS controls visibility */}
+                <div
+                  id={`faq-answer-${index}`}
+                  className={`px-5 transition-all duration-300 ease-in-out ${
+                    openIndex === index
+                      ? "pb-5 max-h-[500px] opacity-100"
+                      : "max-h-0 opacity-0 overflow-hidden"
+                  }`}
+                >
+                  <div className="pt-4 border-t border-border">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {item.answer}
+                    </p>
                   </div>
-                )}
+                </div>
               </Card>
             ))}
           </div>
