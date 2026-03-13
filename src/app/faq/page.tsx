@@ -381,13 +381,34 @@ export default function FAQPage() {
               <p className="text-muted-foreground mb-6">
                 {t.notFoundDesc}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <Button asChild className="rounded-full">
                   <Link href="/#contact">{t.contactUs}</Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-full">
                   <Link href="/demande">{t.startRequest}</Link>
                 </Button>
+              </div>
+
+              {/* Signature fondateur */}
+              <div className="flex items-center justify-center gap-4 pt-6 border-t border-primary/10">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg overflow-hidden">
+                  <img
+                    src="/mederic-borgeaud.jpg"
+                    alt="Médéric Borgeaud"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.parentElement!.innerHTML = 'MB';
+                    }}
+                  />
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-foreground">Médéric Borgeaud</p>
+                  <p className="text-sm text-muted-foreground">
+                    {isEnglish ? "Founder of NeoFidu" : "Fondateur de NeoFidu"}
+                  </p>
+                </div>
               </div>
             </Card>
           </div>
