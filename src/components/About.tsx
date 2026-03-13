@@ -161,7 +161,7 @@ export function About() {
                 <img
                   src="/mederic-borgeaud.jpg"
                   alt="Mederic Borgeaud"
-                  className="w-[120px] h-[120px] rounded-full object-cover"
+                  className="w-[100px] h-[100px] rounded-full object-cover"
                 />
                 <p className="text-sm font-medium text-foreground">
                   — Mederic Borgeaud, {isEnglish ? "Founder" : "Fondateur"}
