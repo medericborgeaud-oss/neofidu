@@ -158,7 +158,7 @@ export function About() {
                 {founderStory}
               </p>
               <p className="mt-3 text-sm font-medium text-foreground">
-                — {isEnglish ? "The NeoFidu Team" : "L'équipe NeoFidu"}
+                — Mederic Borgeaud, {isEnglish ? "Founder" : "Fondateur"}
               </p>
             </div>
           </div>
