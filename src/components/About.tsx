@@ -157,9 +157,16 @@ export function About() {
               <p className="text-base text-muted-foreground leading-relaxed">
                 {founderStory}
               </p>
-              <p className="mt-3 text-sm font-medium text-foreground">
-                — Mederic Borgeaud, {isEnglish ? "Founder" : "Fondateur"}
-              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <img
+                  src="/mederic-borgeaud.jpg"
+                  alt="Mederic Borgeaud"
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <p className="text-sm font-medium text-foreground">
+                  — Mederic Borgeaud, {isEnglish ? "Founder" : "Fondateur"}
+                </p>
+              </div>
             </div>
           </div>
         </div>
