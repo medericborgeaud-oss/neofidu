@@ -395,7 +395,7 @@ export default function FAQPage() {
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg overflow-hidden">
                   <img
                     src="/mederic-borgeaud.jpg"
-                    alt="Médéric Borgeaud"
+                    alt="Mederic Borgeaud"
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
@@ -404,7 +404,7 @@ export default function FAQPage() {
                   />
                 </div>
                 <div className="text-left">
-                  <p className="font-semibold text-foreground">Médéric Borgeaud</p>
+                  <p className="font-semibold text-foreground">Mederic Borgeaud</p>
                   <p className="text-sm text-muted-foreground">
                     {isEnglish ? "Founder of NeoFidu" : "Fondateur de NeoFidu"}
                   </p>
