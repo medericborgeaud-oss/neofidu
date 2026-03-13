@@ -73,12 +73,12 @@ export function About() {
     ? [
         { value: "10+", label: "Years of experience" },
         { value: "24/7", label: "Online availability" },
-        { value: "98%", label: "Client retention rate" },
+        { value: "6", label: "Cantons served" },
       ]
     : [
         { value: "10+", label: "Ans d'activité" },
         { value: "24/7", label: "Disponibilité en ligne" },
-        { value: "98%", label: "Taux de fidélisation" },
+        { value: "6", label: "Cantons desservis" },
       ];
 
   const strong2 = isEnglish ? "over a decade of practice" : "plus d'une décennie de pratique";
