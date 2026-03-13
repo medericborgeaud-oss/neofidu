@@ -11,7 +11,7 @@ import { Footer } from "@/components/Footer";
 import { ExpatBanner } from "@/components/ExpatBanner";
 
 export const metadata: Metadata = {
-  title: "Swiss Tax Returns for Expats | From CHF 50",
+  title: "Swiss Tax Returns for Expats in Switzerland | From CHF 50",
   description: "Swiss tax returns made easy for expats. English-speaking fiduciary from CHF 50. We help foreigners with B/C permits file taxes in Vaud, Geneva, Valais.",
   keywords: [
     // Expat-specific keywords (high priority)
