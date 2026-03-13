@@ -147,7 +147,7 @@ export default function MentionsLegalesPage() {
                       </div>
                       <div>
                         <p className="font-semibold text-foreground">{t.owner}</p>
-                        <p className="text-primary font-medium">Médéric Borgeaud</p>
+                        <p className="text-primary font-medium">Mederic Borgeaud</p>
                       </div>
                     </div>
 

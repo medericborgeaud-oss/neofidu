@@ -239,7 +239,7 @@ export function Footer() {
               </p>
               <p className="text-slate-400 mt-1">
                 <span className="text-white">{isEnglish ? "Owner:" : "Propriétaire :"}</span>{" "}
-                Médéric Borgeaud
+                Mederic Borgeaud
               </p>
               <p className="text-slate-400 mt-2">
                 Crettaz 1<br />
