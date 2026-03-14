@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,18 +8,40 @@ import { BreadcrumbLight } from "@/components/Breadcrumb";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Calendar, Clock, Newspaper } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, Calendar, Clock, Newspaper, Search, X } from "lucide-react";
 import { blogArticles, blogCategories } from "@/lib/blog-data";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const { isEnglish } = useLanguage();
 
-  const filteredArticles = activeCategory
-    ? blogArticles.filter((article) => article.category === activeCategory)
-    : blogArticles;
+  const filteredArticles = useMemo(() => {
+    let articles = blogArticles;
+
+    // Filter by category
+    if (activeCategory) {
+      articles = articles.filter((article) => article.category === activeCategory);
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      articles = articles.filter((article) => {
+        const titleMatch = article.title.toLowerCase().includes(query);
+        const titleEnMatch = article.titleEn?.toLowerCase().includes(query);
+        const excerptMatch = article.excerpt.toLowerCase().includes(query);
+        const excerptEnMatch = article.excerptEn?.toLowerCase().includes(query);
+        const keywordsMatch = article.keywords?.some((kw) => kw.toLowerCase().includes(query));
+        return titleMatch || titleEnMatch || excerptMatch || excerptEnMatch || keywordsMatch;
+      });
+    }
+
+    return articles;
+  }, [activeCategory, searchQuery]);
 
   const categories = Object.entries(blogCategories);
 
@@ -70,6 +92,55 @@ export default function BlogPage() {
             </p>
           </motion.div>
 
+          {/* Search bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="max-w-xl mx-auto mb-8"
+          >
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder={isEnglish ? "Search articles... (e.g. withholding tax, 3rd pillar, Vaud)" : "Rechercher un article... (ex: impôt source, 3ème pilier, Vaud)"}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 pr-12 py-6 text-base rounded-full border-2 focus:border-primary shadow-sm"
+              />
+              <AnimatePresence>
+                {searchQuery && (
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-muted hover:bg-muted-foreground/20 flex items-center justify-center transition-colors"
+                  >
+                    <X className="w-4 h-4 text-muted-foreground" />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </div>
+            {searchQuery && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center text-sm text-muted-foreground mt-3"
+              >
+                {filteredArticles.length === 0 ? (
+                  isEnglish ? "No articles found" : "Aucun article trouvé"
+                ) : (
+                  <>
+                    {filteredArticles.length} {filteredArticles.length === 1
+                      ? (isEnglish ? "article found" : "article trouvé")
+                      : (isEnglish ? "articles found" : "articles trouvés")}
+                  </>
+                )}
+              </motion.p>
+            )}
+          </motion.div>
+
           {/* Category filters */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -100,6 +171,32 @@ export default function BlogPage() {
 
           {/* Articles grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {filteredArticles.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="col-span-full text-center py-16"
+              >
+                <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto mb-6">
+                  <Search className="w-10 h-10 text-muted-foreground" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  {isEnglish ? "No articles found" : "Aucun article trouvé"}
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  {isEnglish
+                    ? "Try different keywords or remove filters"
+                    : "Essayez d'autres mots-clés ou supprimez les filtres"}
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => { setSearchQuery(""); setActiveCategory(null); }}
+                  className="rounded-full"
+                >
+                  {isEnglish ? "Reset search" : "Réinitialiser la recherche"}
+                </Button>
+              </motion.div>
+            )}
             {filteredArticles.map((article, index) => (
               <motion.div
                 key={article.id}
