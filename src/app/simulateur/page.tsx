@@ -222,45 +222,6 @@ export default function SimulateurPage() {
             </p>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex bg-white rounded-xl p-1.5 shadow-lg border">
-              <button
-                onClick={() => { setActiveTab("impots"); setShowResult(false); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeTab === "impots"
-                    ? "bg-primary text-white shadow-md"
-                    : "text-muted-foreground hover:text-foreground hover:bg-gray-50"
-                }`}
-              >
-                <Calculator className="w-5 h-5" />
-                <span>Impôts</span>
-              </button>
-              <button
-                onClick={() => { setActiveTab("3a"); setShowResult(false); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeTab === "3a"
-                    ? "bg-primary text-white shadow-md"
-                    : "text-muted-foreground hover:text-foreground hover:bg-gray-50"
-                }`}
-              >
-                <PiggyBank className="w-5 h-5" />
-                <span>3ème Pilier</span>
-              </button>
-              <button
-                onClick={() => { setActiveTab("valeur-locative"); setShowResult(false); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeTab === "valeur-locative"
-                    ? "bg-primary text-white shadow-md"
-                    : "text-muted-foreground hover:text-foreground hover:bg-gray-50"
-                }`}
-              >
-                <Home className="w-5 h-5" />
-                <span>Valeur Locative</span>
-              </button>
-            </div>
-          </div>
-
           {/* All Simulators Grid */}
           <div className="max-w-5xl mx-auto mb-12">
             <h2 className="text-lg font-semibold text-center mb-6 text-muted-foreground">
