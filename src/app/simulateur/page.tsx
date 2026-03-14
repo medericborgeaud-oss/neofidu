@@ -261,17 +261,111 @@ export default function SimulateurPage() {
             </div>
           </div>
 
-          {/* Link to Tax Map */}
-          <div className="text-center mb-8">
-            <Link
-              href="/simulateur/carte-impots"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
-            >
-              <MapPin className="w-4 h-4" />
-              <span>Voir la carte des impôts par canton</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          {/* All Simulators Grid */}
+          <div className="max-w-5xl mx-auto mb-12">
+            <h2 className="text-lg font-semibold text-center mb-6 text-muted-foreground">
+              Tous nos simulateurs gratuits
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link href="/simulateur/salaire-net">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-teal-500 flex items-center justify-center mb-3">
+                      <Briefcase className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Simulateur Salaire Net
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Calculez votre salaire net par canton avec cotisations et impôts
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/simulateur/impots">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center mb-3">
+                      <Calculator className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Calculateur d'Impôts
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Estimez vos impôts pour les 26 cantons suisses
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/simulateur/3eme-pilier">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center mb-3">
+                      <PiggyBank className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Simulateur 3ème Pilier
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Calculez vos économies d'impôts avec le pilier 3a
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/simulateur/valeur-locative">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-purple-500 flex items-center justify-center mb-3">
+                      <Home className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Valeur Locative
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Comparaison avant/après réforme de la valeur locative
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/simulateur/gain-immobilier">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-red-500 flex items-center justify-center mb-3">
+                      <TrendingDown className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Gain Immobilier
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Calculez l'impôt sur le gain immobilier lors d'une vente
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/simulateur/carte-impots">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center mb-3">
+                      <MapPin className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Carte des Impôts
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Comparez les taux d'imposition par canton sur la carte
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
           </div>
+
+          <div className="border-t max-w-5xl mx-auto mb-8" />
 
           {/* 3A Simulator Tab */}
           {activeTab === "3a" && <Pillar3aSimulator />}
