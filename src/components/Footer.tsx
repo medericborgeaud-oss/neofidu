@@ -18,8 +18,10 @@ export function Footer() {
       { label: isEnglish ? "Swiss citizens abroad" : "Suisses de l'étranger", href: "/suisses-etranger" },
     ],
     tools: [
+      { label: isEnglish ? "Net salary calculator" : "Simulateur salaire net", href: "/simulateur/salaire-net" },
       { label: isEnglish ? "Tax calculator" : "Simulateur d'impôts", href: "/simulateur/impots" },
       { label: isEnglish ? "3rd pillar calculator" : "Simulateur 3ème pilier", href: "/simulateur/3eme-pilier" },
+      { label: isEnglish ? "Real estate gain tax" : "Gain immobilier", href: "/simulateur/gain-immobilier" },
       { label: isEnglish ? "Property tax simulator" : "Simulateur valeur locative", href: "/simulateur/valeur-locative" },
       { label: isEnglish ? "Swiss tax map" : "Carte des impôts suisses", href: "/simulateur/carte-impots" },
       { label: isEnglish ? "Tax deductions guide" : "Guide des déductions", href: "/guide/deductions-fiscales" },
