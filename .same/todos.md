@@ -2,6 +2,18 @@
 
 ## Terminé ✅
 
+### Article Impôt à la Source - SEO Optimisé (14 mars 2026)
+- [x] Ajout de 35+ mots-clés SEO ciblés
+- [x] Tableau des barèmes par canton (GE, VD, VS, FR, NE)
+- [x] 3 exemples chiffrés détaillés (célibataire, couple, frontalier)
+- [x] Calendrier fiscal 2026 avec dates clés
+- [x] Section FAQ structurée (9 questions)
+- [x] Ajout des cantons manquants (Fribourg, Neuchâtel, Jura)
+- [x] Sommaire cliquable pour navigation
+- [x] Liens internes vers simulateurs et guides
+- [x] CTA optimisés avec boutons
+- [x] Temps de lecture augmenté à 25 min
+
 ### Fiche récapitulative comptabilité (Dashboard Admin)
 - [x] Vérifier que tous les champs du formulaire comptabilité sont repris
 - [x] Champs affichés dans la fiche récapitulative:
