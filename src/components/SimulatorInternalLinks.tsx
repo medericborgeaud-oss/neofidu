@@ -14,17 +14,26 @@ import {
   MapPin,
   BookOpen,
   ArrowRight,
+  Wallet,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
 interface SimulatorInternalLinksProps {
-  currentPage: "impots" | "3eme-pilier" | "valeur-locative" | "carte-impots" | "gain-immobilier";
+  currentPage: "impots" | "3eme-pilier" | "valeur-locative" | "carte-impots" | "gain-immobilier" | "salaire-net";
 }
 
 export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksProps) {
   const { isEnglish } = useLanguage();
 
   const simulators = [
+    {
+      id: "salaire-net",
+      href: "/simulateur/salaire-net",
+      icon: Wallet,
+      title: isEnglish ? "Net Salary Calculator" : "Simulateur Salaire Net",
+      description: isEnglish ? "Calculate your net salary by canton" : "Calculez votre salaire net par canton",
+      color: "bg-teal-500",
+    },
     {
       id: "impots",
       href: "/simulateur/impots",
