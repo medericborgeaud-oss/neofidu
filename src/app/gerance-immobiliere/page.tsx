@@ -25,6 +25,7 @@ import {
   Key,
   Calculator,
   PiggyBank,
+  AlertCircle,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
