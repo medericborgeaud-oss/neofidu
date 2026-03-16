@@ -6,9 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+
 import { BreadcrumbLight } from "@/components/Breadcrumb";
 import {
   Home,
@@ -27,73 +25,12 @@ import {
   Key,
   Calculator,
   PiggyBank,
-  Send,
-  AlertCircle,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 export default function GeranceImmobilierePage() {
   const { isEnglish } = useLanguage();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    canton: "",
-    propertyType: "",
-    propertyAddress: "",
-    currentlyRented: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError("");
-
-    try {
-      const response = await fetch("/api/property-requests", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          requestType: "property",
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitSuccess(true);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          canton: "",
-          propertyType: "",
-          propertyAddress: "",
-          currentlyRented: "",
-          message: "",
-        });
-      } else {
-        setSubmitError(
-          isEnglish
-            ? "An error occurred. Please try again."
-            : "Une erreur est survenue. Veuillez réessayer."
-        );
-      }
-    } catch {
-      setSubmitError(
-        isEnglish
-          ? "An error occurred. Please try again."
-          : "Une erreur est survenue. Veuillez réessayer."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const services = [
     {
@@ -264,7 +201,6 @@ export default function GeranceImmobilierePage() {
 
       <div className="pt-28 pb-20">
         <div className="container mx-auto px-4">
-          {/* Breadcrumb */}
           <BreadcrumbLight
             items={[
               {
@@ -274,7 +210,6 @@ export default function GeranceImmobilierePage() {
             className="mb-8"
           />
 
-          {/* Hero Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -304,7 +239,6 @@ export default function GeranceImmobilierePage() {
                 : "Gestion complète de vos biens locatifs dans le canton de Vaud et du Valais. Tarifs transparents, service digital, sérénité garantie."}
             </p>
 
-            {/* Price highlight */}
             <div className="inline-flex items-center gap-4 bg-white rounded-2xl shadow-lg p-6 mb-8">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
                 <Home className="w-8 h-8 text-white" />
@@ -322,24 +256,19 @@ export default function GeranceImmobilierePage() {
               </div>
             </div>
 
-            {/* CTA button */}
             <div className="flex justify-center">
-              <Button
-                size="lg"
-                className="bg-amber-600 hover:bg-amber-700"
-                onClick={() =>
-                  document
-                    .getElementById("contact-gerance")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                {isEnglish ? "Get a free quote" : "Demander un devis gratuit"}
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              <Link href="/demande">
+                <Button
+                  size="lg"
+                  className="bg-amber-600 hover:bg-amber-700"
+                >
+                  {isEnglish ? "Get a free quote" : "Demander un devis gratuit"}
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
             </div>
           </motion.section>
 
-          {/* Advantages */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -364,7 +293,6 @@ export default function GeranceImmobilierePage() {
             </div>
           </motion.section>
 
-          {/* Services */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -404,7 +332,6 @@ export default function GeranceImmobilierePage() {
             </div>
           </motion.section>
 
-          {/* Process */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -442,7 +369,6 @@ export default function GeranceImmobilierePage() {
             </div>
           </motion.section>
 
-          {/* Pricing Card */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -494,23 +420,19 @@ export default function GeranceImmobilierePage() {
                   </div>
                 </div>
 
-                <Button
-                  size="lg"
-                  className="w-full bg-amber-600 hover:bg-amber-700"
-                  onClick={() =>
-                    document
-                      .getElementById("contact-gerance")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                >
-                  {isEnglish ? "Request a free quote" : "Demander un devis gratuit"}
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                <Link href="/demande" className="w-full">
+                  <Button
+                    size="lg"
+                    className="w-full bg-amber-600 hover:bg-amber-700"
+                  >
+                    {isEnglish ? "Request a free quote" : "Demander un devis gratuit"}
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </motion.section>
 
-          {/* FAQ */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -538,7 +460,7 @@ export default function GeranceImmobilierePage() {
             </div>
           </motion.section>
 
-          {/* Contact Form */}
+          {/* CTA Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -555,232 +477,25 @@ export default function GeranceImmobilierePage() {
                 </CardTitle>
                 <p className="text-white/90 mt-2">
                   {isEnglish
-                    ? "Fill out the form and we will contact you within 1 business day"
-                    : "Remplissez le formulaire et nous vous contactons sous 1 jour ouvré"}
+                    ? "We will contact you within 1 business day"
+                    : "Nous vous contactons sous 1 jour ouvré"}
                 </p>
               </CardHeader>
-              <CardContent className="p-8">
-                {submitSuccess ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle2 className="w-8 h-8 text-green-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      {isEnglish ? "Request sent!" : "Demande envoyée !"}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {isEnglish
-                        ? "We will contact you within 1 business day."
-                        : "Nous vous contactons sous 1 jour ouvré."}
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name">
-                          {isEnglish ? "Full name *" : "Nom complet *"}
-                        </Label>
-                        <Input
-                          id="name"
-                          value={formData.name}
-                          onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
-                          }
-                          required
-                          placeholder={isEnglish ? "John Doe" : "Jean Dupont"}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
-                          required
-                          placeholder="email@exemple.ch"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="phone">
-                          {isEnglish ? "Phone *" : "Téléphone *"}
-                        </Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
-                          }
-                          required
-                          placeholder="+41 79 123 45 67"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="canton">Canton *</Label>
-                        <select
-                          id="canton"
-                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                          value={formData.canton}
-                          onChange={(e) =>
-                            setFormData({ ...formData, canton: e.target.value })
-                          }
-                          required
-                        >
-                          <option value="">
-                            {isEnglish ? "Select canton" : "Sélectionner"}
-                          </option>
-                          <option value="vaud">Vaud</option>
-                          <option value="valais">Valais</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="propertyType">
-                          {isEnglish ? "Property type *" : "Type de bien *"}
-                        </Label>
-                        <select
-                          id="propertyType"
-                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                          value={formData.propertyType}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              propertyType: e.target.value,
-                            })
-                          }
-                          required
-                        >
-                          <option value="">
-                            {isEnglish ? "Select type" : "Sélectionner"}
-                          </option>
-                          <option value="apartment">
-                            {isEnglish ? "Apartment" : "Appartement"}
-                          </option>
-                          <option value="villa">
-                            {isEnglish ? "Villa / House" : "Villa / Maison"}
-                          </option>
-                          <option value="studio">Studio</option>
-                          <option value="chalet">Chalet</option>
-                          <option value="commercial">
-                            {isEnglish ? "Commercial" : "Local commercial"}
-                          </option>
-                          <option value="parking">
-                            {isEnglish ? "Parking" : "Place de parc"}
-                          </option>
-                          <option value="other">
-                            {isEnglish ? "Other" : "Autre"}
-                          </option>
-                        </select>
-                      </div>
-                      <div>
-                        <Label htmlFor="currentlyRented">
-                          {isEnglish ? "Currently rented?" : "Actuellement loué ?"}
-                        </Label>
-                        <select
-                          id="currentlyRented"
-                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                          value={formData.currentlyRented}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              currentlyRented: e.target.value,
-                            })
-                          }
-                        >
-                          <option value="">
-                            {isEnglish ? "Select" : "Sélectionner"}
-                          </option>
-                          <option value="yes">{isEnglish ? "Yes" : "Oui"}</option>
-                          <option value="no">{isEnglish ? "No" : "Non"}</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="propertyAddress">
-                        {isEnglish
-                          ? "Property address (optional)"
-                          : "Adresse du bien (optionnel)"}
-                      </Label>
-                      <Input
-                        id="propertyAddress"
-                        value={formData.propertyAddress}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            propertyAddress: e.target.value,
-                          })
-                        }
-                        placeholder={
-                          isEnglish
-                            ? "Street, City, Postal Code"
-                            : "Rue, Ville, Code postal"
-                        }
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="message">
-                        {isEnglish
-                          ? "Additional information (optional)"
-                          : "Informations complémentaires (optionnel)"}
-                      </Label>
-                      <Textarea
-                        id="message"
-                        value={formData.message}
-                        onChange={(e) =>
-                          setFormData({ ...formData, message: e.target.value })
-                        }
-                        placeholder={
-                          isEnglish
-                            ? "Any details about your property or specific needs..."
-                            : "Détails sur votre bien ou besoins spécifiques..."
-                        }
-                        rows={4}
-                      />
-                    </div>
-
-                    {submitError && (
-                      <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm">
-                        {submitError}
-                      </div>
-                    )}
-
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-amber-600 hover:bg-amber-700"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <span className="animate-spin mr-2">...</span>
-                          {isEnglish ? "Sending..." : "Envoi en cours..."}
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5 mr-2" />
-                          {isEnglish ? "Send request" : "Envoyer la demande"}
-                        </>
-                      )}
-                    </Button>
-
-                    <p className="text-xs text-muted-foreground text-center">
-                      {isEnglish
-                        ? "By submitting this form, you agree to our privacy policy."
-                        : "En soumettant ce formulaire, vous acceptez notre politique de confidentialité."}
-                    </p>
-                  </form>
-                )}
+              <CardContent className="p-8 text-center">
+                <p className="text-muted-foreground mb-6">
+                  {isEnglish
+                    ? "Fill out our quick form to receive a personalized quote for managing your property."
+                    : "Remplissez notre formulaire rapide pour recevoir un devis personnalisé pour la gestion de votre bien."}
+                </p>
+                <Link href="/demande">
+                  <Button
+                    size="lg"
+                    className="bg-amber-600 hover:bg-amber-700"
+                  >
+                    {isEnglish ? "Start my request" : "Démarrer ma demande"}
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </motion.section>
