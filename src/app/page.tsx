@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { Simulators } from "@/components/Simulators";
-import { SwissMapBanner } from "@/components/SwissMapBanner";
-import { Services } from "@/components/Services";
-import { Pricing } from "@/components/Pricing";
-import { About } from "@/components/About";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { ExpatBanner } from "@/components/ExpatBanner";
+
+// Lazy load components below the fold for faster initial page load
+const Simulators = dynamic(() => import("@/components/Simulators").then(mod => ({ default: mod.Simulators })), { ssr: true });
+const SwissMapBanner = dynamic(() => import("@/components/SwissMapBanner").then(mod => ({ default: mod.SwissMapBanner })), { ssr: true });
+const Services = dynamic(() => import("@/components/Services").then(mod => ({ default: mod.Services })), { ssr: true });
+const Pricing = dynamic(() => import("@/components/Pricing").then(mod => ({ default: mod.Pricing })), { ssr: true });
+const About = dynamic(() => import("@/components/About").then(mod => ({ default: mod.About })), { ssr: true });
+const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ default: mod.Contact })), { ssr: true });
+const ExpatBanner = dynamic(() => import("@/components/ExpatBanner").then(mod => ({ default: mod.ExpatBanner })), { ssr: true });
 
 export const metadata: Metadata = {
   title: "NeoFidu | Déclaration d'impôts Suisse en ligne | Swiss Tax Returns | Dès CHF 50",
