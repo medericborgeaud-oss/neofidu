@@ -2607,20 +2607,44 @@ export function TaxRequestForm() {
             </div>
 
             {/* Note quasi-résident / TOU */}
-            <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-xl">
-              <p className="text-sm text-gray-700 flex items-start gap-2">
-                <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-500" />
-                <span>
-                  <strong>{isEnglish ? "Source tax / Quasi-resident?" : "Impôt à la source / Quasi-résident ?"}</strong>{" "}
-                  {isEnglish
-                    ? "If you are subject to withholding tax (Quellensteuer) and wish to request ordinary taxation (TOU) or quasi-resident status, please "
-                    : "Si vous êtes imposé à la source et souhaitez faire une demande de taxation ordinaire (TOU) ou de statut quasi-résident, veuillez "}
-                  <a href="/#contact" className="text-primary hover:underline font-medium">
-                    {isEnglish ? "contact us for a personalized quote" : "nous contacter pour un devis personnalisé"}
-                  </a>.
-                </span>
-              </p>
+            <div className="mt-8 p-5 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-xl">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Info className="w-5 h-5 text-purple-600" />
+                </div>
+                <div>
+                  <p className="font-semibold text-purple-800 mb-1">
+                    {isEnglish ? "Source tax / Quasi-resident?" : "Impôt à la source / Quasi-résident ?"}
+                  </p>
+                  <p className="text-sm text-purple-700">
+                    {isEnglish
+                      ? "If you are subject to withholding tax (Quellensteuer) and wish to request ordinary taxation (TOU) or quasi-resident status, please "
+                      : "Si vous êtes imposé à la source et souhaitez faire une demande de taxation ordinaire (TOU) ou de statut quasi-résident, veuillez "}
+                    <a href="/#contact" className="text-purple-900 hover:underline font-bold">
+                      {isEnglish ? "contact us for a personalized quote" : "nous contacter pour un devis personnalisé"}
+                    </a>.
+                  </p>
+                </div>
+              </div>
             </div>
+
+            {/* Message d'aide si champs manquants */}
+            {!canProceed() && (formData.livesAbroad || !formData.canton) && (
+              <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
+                <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-amber-800">Informations requises</p>
+                  <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
+                    {!formData.canton && (
+                      <li>Sélectionnez le canton de votre déclaration</li>
+                    )}
+                    {formData.livesAbroad && !formData.countryOfResidence && (
+                      <li>Sélectionnez votre pays de résidence actuel</li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
