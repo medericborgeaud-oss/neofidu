@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire Valais — Déclaration d'impôts & comptabilité en ligne | Neofidu",
+  title: "Fiduciaire Valais — Déclaration d'impôts & comptabilité en ligne",
   description:
     "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité. Sion, Martigny, Sierre, Monthey. Dès CHF 50.-",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "fiduciary Valais english speaking",
   ],
   openGraph: {
-    title: "Fiduciaire Valais — Tax Return & Accounting | Neofidu",
+    title: "Fiduciaire Valais — Tax Return & Accounting",
     description:
       "Online fiduciary for Canton Valais. Tax returns, secondary residences, accounting. Sion, Martigny, Zermatt. From CHF 50.-",
     url: "https://www.neofidu.ch/cantons/valais",

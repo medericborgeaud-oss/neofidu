@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tax Return Jura 2026",
+  title: "Déclaration d'impôts Jura 2026",
   description:
     "Tax return service in Jura. JuraTax, agricultural expertise. Delémont, Porrentruy. From CHF 50.",
   keywords: [

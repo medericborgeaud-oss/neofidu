@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tax Return Neuchâtel 2026",
+  title: "Déclaration d'impôts Neuchâtel 2026",
   description:
     "Tax return service in Neuchâtel. NeTax, watch industry. La Chaux-de-Fonds, Le Locle. From CHF 50.",
   keywords: [

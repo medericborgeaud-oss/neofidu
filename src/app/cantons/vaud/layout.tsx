@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire Vaud — Déclaration d'impôts & comptabilité en ligne | Neofidu",
+  title: "Déclaration d'impôts Vaud 2026 — Fiduciaire en ligne",
   description:
-    "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts, comptabilité PME, indépendants. Lausanne, Aigle, Bex, Montreux. Devis gratuit.",
+    "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts dès CHF 50, comptabilité PME. Lausanne, Aigle, Montreux. Devis gratuit.",
   keywords: [
     // French - Vaud
     "fiduciaire Vaud",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "accountant Montreux",
   ],
   openGraph: {
-    title: "Fiduciaire Vaud — Tax Return & Accounting | Neofidu",
+    title: "Fiduciaire Vaud — Tax Return & Accounting",
     description:
       "Online fiduciary for Canton Vaud. Tax returns, SME accounting, freelancers. Lausanne, Aigle, Bex, Montreux. Free quote.",
     url: "https://www.neofidu.ch/cantons/vaud",
