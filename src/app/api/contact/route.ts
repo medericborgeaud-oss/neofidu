@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendContactFormEmail } from "@/lib/email";
+import { performSpamCheck, getClientIP } from "@/lib/spam-protection";
 
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
@@ -8,7 +9,24 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { firstName, lastName, email, phone, canton, service, message } = body;
+    const { firstName, lastName, email, phone, canton, service, message, _honeypot, _formToken } = body;
+
+    // Anti-spam protection
+    const clientIP = getClientIP(request.headers);
+    const spamCheck = performSpamCheck({
+      ip: clientIP,
+      honeypot: _honeypot,
+      formLoadedAt: _formToken,
+    });
+
+    if (spamCheck.isSpam) {
+      console.warn(`🚫 Spam detected from ${clientIP}: ${spamCheck.reason}`);
+      // Retourner un succès factice pour ne pas alerter les bots
+      return NextResponse.json({
+        success: true,
+        message: "Message reçu",
+      });
+    }
 
     // Validation
     if (!firstName || !lastName || !email || !canton || !service) {

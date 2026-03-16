@@ -16,6 +16,9 @@ function getResend(): Resend {
 // Email de l'expéditeur (doit être vérifié sur Resend)
 const FROM_EMAIL = process.env.FROM_EMAIL || "NeoFidu <noreply@neofidu.ch>";
 
+// Language type for bilingual support
+export type EmailLanguage = "fr" | "en";
+
 // Types
 export interface EmailData {
   to: string;
@@ -28,6 +31,7 @@ export interface EmailData {
   description?: string;
   taxYear?: string;
   taxpayerNumber?: string;
+  language?: EmailLanguage;
 }
 
 // Interface étendue pour les données fiscales complètes
@@ -54,6 +58,55 @@ export interface TaxSummaryData {
   // Statut d'emploi
   employmentStatus?: string;
   employmentStatus2?: string; // Pour le conjoint
+  // Activité indépendante - Adulte 1
+  isIndependent?: boolean;
+  businessType?: string;
+  businessStartDate?: string;
+  hasIDE?: boolean;
+  ideNumber?: string;
+  isRegisteredRC?: boolean;
+  hasVAT?: boolean;
+  vatNumber?: string;
+  hasBusinessAccounts?: boolean;
+  businessRevenue?: string;
+  businessExpenses?: string;
+  businessNetIncome?: string;
+  hasAVSIndependent?: boolean;
+  avsIndependentAmount?: string;
+  hasLPPVoluntary?: boolean;
+  lppVoluntaryAmount?: string;
+  hasHomeOffice?: boolean;
+  homeOfficePercent?: string;
+  homeOfficeAmount?: string;
+  hasBusinessVehicle?: boolean;
+  businessVehiclePercent?: string;
+  businessVehicleExpenses?: string;
+  // Activité indépendante - Adulte 2 (Conjoint)
+  isIndependent2?: boolean;
+  businessType2?: string;
+  businessStartDate2?: string;
+  hasIDE2?: boolean;
+  ideNumber2?: string;
+  isRegisteredRC2?: boolean;
+  hasVAT2?: boolean;
+  vatNumber2?: string;
+  hasBusinessAccounts2?: boolean;
+  businessRevenue2?: string;
+  businessExpenses2?: string;
+  businessNetIncome2?: string;
+  hasAVSIndependent2?: boolean;
+  avsIndependentAmount2?: string;
+  hasLPPVoluntary2?: boolean;
+  lppVoluntaryAmount2?: string;
+  hasHomeOffice2?: boolean;
+  homeOfficePercent2?: string;
+  homeOfficeAmount2?: string;
+  hasBusinessVehicle2?: boolean;
+  businessVehiclePercent2?: string;
+  businessVehicleExpenses2?: string;
+  // Noms pour affichage
+  firstName2?: string;
+  lastName2?: string;
   // Situation familiale
   hasMoved?: boolean;
   hasChildren?: boolean;
@@ -64,6 +117,8 @@ export interface TaxSummaryData {
   pillar3aAmount?: string;
   hasStocks?: boolean;
   stocksCount?: number;
+  hasSoldStocks?: boolean;
+  soldStocksDetails?: string;
   hasGuardCosts?: boolean;
   guardCosts?: string;
   hasAlimonyReceived?: boolean;
@@ -77,6 +132,8 @@ export interface TaxSummaryData {
   // Immobilier
   hasProperty?: boolean;
   propertyCount?: number;
+  hasSoldProperty?: boolean;
+  soldPropertyDetails?: string;
   hasMortgage?: boolean;
   mortgageAmount?: string;
   hasRenovations?: boolean;
@@ -109,6 +166,8 @@ export interface TaxSummaryData {
   currency: string;
   paymentMethod?: string;
   paidAt?: string;
+  // Language
+  language?: EmailLanguage;
 }
 
 // Règles de déductions par canton (résumé)
@@ -120,7 +179,7 @@ function getCantonDeductionRules(cantonCode: string): string {
         <li><strong>Frais professionnels:</strong> Déduction forfaitaire de 3% du salaire net (min. CHF 2'000, max. CHF 4'000)</li>
         <li><strong>Frais de transport:</strong> Transports publics: coût effectif / Voiture: CHF 0.70/km (max. CHF 7'000)</li>
         <li><strong>Repas hors domicile:</strong> CHF 3'200/an si distance >10km ou pause <1h</li>
-        <li><strong>3ème pilier A:</strong> Max CHF 7'056 (salarié) ou CHF 35'280 (indépendant, max 20% revenu net)</li>
+        <li><strong>3ème pilier A:</strong> Max CHF 7'258 (salarié) ou CHF 36'288 (indépendant, max 20% revenu net)</li>
         <li><strong>Frais de garde:</strong> Max CHF 7'100 par enfant</li>
         <li><strong>Dons:</strong> Déductibles jusqu'à 20% du revenu net imposable</li>
         <li><strong>Primes maladie:</strong> Déduction forfaitaire selon situation familiale</li>
@@ -132,7 +191,7 @@ function getCantonDeductionRules(cantonCode: string): string {
         <li><strong>Frais professionnels:</strong> Déduction forfaitaire de 3% du salaire net (min. CHF 600, max. CHF 1'600)</li>
         <li><strong>Frais de transport:</strong> Transports publics: abonnement annuel / Voiture: frais effectifs limités</li>
         <li><strong>Repas hors domicile:</strong> CHF 3'200/an si justifié</li>
-        <li><strong>3ème pilier A:</strong> Max CHF 7'056 (salarié) ou CHF 35'280 (indépendant)</li>
+        <li><strong>3ème pilier A:</strong> Max CHF 7'258 (salarié) ou CHF 36'288 (indépendant)</li>
         <li><strong>Frais de garde:</strong> Max CHF 4'000 par enfant (moins généreux que VD)</li>
         <li><strong>Dons:</strong> Déductibles jusqu'à 20% du revenu net imposable</li>
         <li><strong>Bouclier fiscal:</strong> Impôts cantonaux + communaux limités à 60% du revenu</li>
@@ -144,7 +203,7 @@ function getCantonDeductionRules(cantonCode: string): string {
         <li><strong>Frais professionnels:</strong> Déduction forfaitaire de 3% du salaire net (min. CHF 800, max. CHF 2'400)</li>
         <li><strong>Frais de transport:</strong> Transports publics: abonnement / Voiture: CHF 0.70/km</li>
         <li><strong>Repas hors domicile:</strong> CHF 3'200/an si justifié</li>
-        <li><strong>3ème pilier A:</strong> Max CHF 7'056 (salarié) ou CHF 35'280 (indépendant)</li>
+        <li><strong>3ème pilier A:</strong> Max CHF 7'258 (salarié) ou CHF 36'288 (indépendant)</li>
         <li><strong>Frais de garde:</strong> Max CHF 3'000 par enfant jusqu'à 14 ans</li>
         <li><strong>Dons:</strong> Déductibles jusqu'à 20% du revenu net imposable</li>
         <li><strong>Primes maladie:</strong> Déduction forfaitaire + subsides reçus</li>
@@ -155,7 +214,7 @@ function getCantonDeductionRules(cantonCode: string): string {
       <ul style="margin: 0; padding-left: 20px; color: #4b5563;">
         <li><strong>Frais professionnels:</strong> Déduction forfaitaire ou frais effectifs</li>
         <li><strong>Frais de transport:</strong> Transports publics: coût effectif / Voiture: CHF 0.70/km</li>
-        <li><strong>3ème pilier A:</strong> Max CHF 7'056 (salarié) ou CHF 35'280 (indépendant)</li>
+        <li><strong>3ème pilier A:</strong> Max CHF 7'258 (salarié) ou CHF 36'288 (indépendant)</li>
         <li><strong>Frais de garde:</strong> Jusqu'à CHF 4'000 par enfant</li>
         <li><strong>Dons:</strong> Déductibles jusqu'à 20% du revenu net imposable</li>
         <li><strong>Impôt sur la fortune:</strong> Taux progressif, abattement pour résidence principale</li>
@@ -166,7 +225,7 @@ function getCantonDeductionRules(cantonCode: string): string {
       <ul style="margin: 0; padding-left: 20px; color: #4b5563;">
         <li><strong>Frais professionnels:</strong> Déduction forfaitaire de 3% (min. CHF 600, max. CHF 2'400)</li>
         <li><strong>Frais de transport:</strong> Transports publics: abonnement / Voiture: limité</li>
-        <li><strong>3ème pilier A:</strong> Max CHF 7'056 (salarié) ou CHF 35'280 (indépendant)</li>
+        <li><strong>3ème pilier A:</strong> Max CHF 7'258 (salarié) ou CHF 36'288 (indépendant)</li>
         <li><strong>Frais de garde:</strong> Déductibles selon situation</li>
         <li><strong>Dons:</strong> Déductibles jusqu'à 20% du revenu net imposable</li>
         <li><strong>Note:</strong> Canton avec fiscalité avantageuse pour les familles</li>
@@ -177,7 +236,7 @@ function getCantonDeductionRules(cantonCode: string): string {
       <ul style="margin: 0; padding-left: 20px; color: #4b5563;">
         <li><strong>Frais professionnels:</strong> Déduction forfaitaire de 3% du salaire net (max. CHF 4'000)</li>
         <li><strong>Frais de transport:</strong> Transports publics: abonnement / Voiture: CHF 0.70/km (max. CHF 7'000)</li>
-        <li><strong>3ème pilier A:</strong> Max CHF 7'056 (salarié) ou CHF 35'280 (indépendant)</li>
+        <li><strong>3ème pilier A:</strong> Max CHF 7'258 (salarié) ou CHF 36'288 (indépendant)</li>
         <li><strong>Frais de garde:</strong> Max CHF 4'000 par enfant jusqu'à 14 ans</li>
         <li><strong>Dons:</strong> Déductibles jusqu'à 20% du revenu net imposable</li>
         <li><strong>Note:</strong> Taux d'imposition variant selon commune (bilingue FR/DE)</li>
@@ -387,6 +446,101 @@ function getTaxSummaryHtml(data: TaxSummaryData): string {
               </div>
               ` : ''}
 
+              <!-- Activité indépendante -->
+              ${data.isIndependent ? `
+              <div style="background: #ede9fe; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 2px solid #8b5cf6;">
+                <h3 style="margin: 0 0 16px; color: #5b21b6; font-size: 16px;">💼 Activité indépendante</h3>
+                <table style="width: 100%;">
+                  <tr>
+                    <td style="padding: 6px 0; width: 40%; color: #5b21b6;">Type d'activité:</td>
+                    <td style="padding: 6px 0; font-weight: 600;">${data.businessType || 'Non précisé'}</td>
+                  </tr>
+                  ${data.businessStartDate ? `
+                  <tr>
+                    <td style="padding: 6px 0; color: #5b21b6;">Début d'activité:</td>
+                    <td style="padding: 6px 0;">${data.businessStartDate}</td>
+                  </tr>
+                  ` : ''}
+                  ${data.hasIDE ? `
+                  <tr>
+                    <td style="padding: 6px 0; color: #5b21b6;">N° IDE:</td>
+                    <td style="padding: 6px 0; font-family: monospace;">${data.ideNumber || 'Non fourni'}</td>
+                  </tr>
+                  ` : ''}
+                  ${data.isRegisteredRC ? `
+                  <tr>
+                    <td style="padding: 6px 0; color: #5b21b6;">Inscrit au RC:</td>
+                    <td style="padding: 6px 0;">Oui</td>
+                  </tr>
+                  ` : ''}
+                  ${data.hasVAT ? `
+                  <tr>
+                    <td style="padding: 6px 0; color: #5b21b6;">Assujetti TVA:</td>
+                    <td style="padding: 6px 0; font-family: monospace;">${data.vatNumber || 'Oui'}</td>
+                  </tr>
+                  ` : ''}
+                </table>
+
+                <!-- Données financières de l'activité -->
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #c4b5fd;">
+                  <p style="margin: 0 0 12px; color: #5b21b6; font-weight: 600;">Données financières</p>
+                  ${data.hasBusinessAccounts ? `
+                  <p style="margin: 0 0 8px; color: #7c3aed;">✓ Bilan et compte de résultat fournis</p>
+                  ` : `
+                  <table style="width: 100%;">
+                    ${data.businessRevenue ? `
+                    <tr>
+                      <td style="padding: 4px 0; color: #5b21b6;">Chiffre d'affaires:</td>
+                      <td style="padding: 4px 0; font-weight: 600;">CHF ${data.businessRevenue}.-</td>
+                    </tr>
+                    ` : ''}
+                    ${data.businessExpenses ? `
+                    <tr>
+                      <td style="padding: 4px 0; color: #5b21b6;">Charges:</td>
+                      <td style="padding: 4px 0;">CHF ${data.businessExpenses}.-</td>
+                    </tr>
+                    ` : ''}
+                    ${data.businessNetIncome ? `
+                    <tr>
+                      <td style="padding: 4px 0; color: #5b21b6;">Bénéfice net:</td>
+                      <td style="padding: 4px 0; font-weight: 600; color: #166534;">CHF ${data.businessNetIncome}.-</td>
+                    </tr>
+                    ` : ''}
+                  </table>
+                  `}
+                </div>
+
+                <!-- Cotisations sociales indépendant -->
+                ${(data.hasAVSIndependent || data.hasLPPVoluntary) ? `
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #c4b5fd;">
+                  <p style="margin: 0 0 12px; color: #5b21b6; font-weight: 600;">Cotisations sociales (déductibles)</p>
+                  <table style="width: 100%;">
+                    ${data.hasAVSIndependent ? `
+                    <tr>
+                      <td style="padding: 4px 0; color: #166534;">Cotisations AVS/AI/APG:</td>
+                      <td style="padding: 4px 0; font-weight: 600; color: #166534;">CHF ${data.avsIndependentAmount || 0}.- ✓</td>
+                    </tr>
+                    ` : ''}
+                    ${data.hasLPPVoluntary ? `
+                    <tr>
+                      <td style="padding: 4px 0; color: #166534;">LPP facultative:</td>
+                      <td style="padding: 4px 0; font-weight: 600; color: #166534;">CHF ${data.lppVoluntaryAmount || 0}.- ✓</td>
+                    </tr>
+                    ` : ''}
+                  </table>
+                </div>
+                ` : ''}
+
+                <!-- Véhicule professionnel -->
+                ${data.hasBusinessVehicle ? `
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #c4b5fd;">
+                  <p style="margin: 0 0 8px; color: #5b21b6; font-weight: 600;">Véhicule professionnel</p>
+                  <p style="margin: 0; color: #5b21b6;">Utilisation professionnelle: ${data.businessVehiclePercent || '?'}%</p>
+                </div>
+                ` : ''}
+              </div>
+              ` : ''}
+
               <!-- Déductions et montants -->
               <div style="background: #dcfce7; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 16px; color: #166534; font-size: 16px;">💰 Déductions et montants déclarés</h3>
@@ -440,6 +594,19 @@ function getTaxSummaryHtml(data: TaxSummaryData): string {
               </div>
               ` : ''}
 
+              <!-- Vente de titres -->
+              ${data.hasSoldStocks ? `
+              <div style="background: #fef3c7; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 2px solid #f59e0b;">
+                <h3 style="margin: 0 0 16px; color: #92400e; font-size: 16px;">📊 Vente de titres en ${data.taxYear}</h3>
+                <p style="margin: 0; color: #92400e;">
+                  ${data.soldStocksDetails || 'Détails non précisés'}
+                </p>
+                <p style="margin: 10px 0 0; font-size: 12px; color: #78350f;">
+                  ⚠️ Documents requis: relevés de transactions (achats/ventes)
+                </p>
+              </div>
+              ` : ''}
+
               <!-- Immobilier -->
               ${data.hasProperty ? `
               <div style="background: #fae8ff; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
@@ -462,6 +629,19 @@ function getTaxSummaryHtml(data: TaxSummaryData): string {
                   </tr>
                   ` : ''}
                 </table>
+              </div>
+              ` : ''}
+
+              <!-- Vente immobilière -->
+              ${data.hasSoldProperty ? `
+              <div style="background: #fef3c7; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 2px solid #f59e0b;">
+                <h3 style="margin: 0 0 16px; color: #92400e; font-size: 16px;">🏡 Vente immobilière en ${data.taxYear}</h3>
+                <p style="margin: 0; color: #92400e;">
+                  ${data.soldPropertyDetails || 'Détails non précisés'}
+                </p>
+                <p style="margin: 10px 0 0; font-size: 12px; color: #78350f;">
+                  ⚠️ Documents requis: acte de vente, bordereau IGI, acte d'achat original
+                </p>
               </div>
               ` : ''}
 
@@ -520,7 +700,7 @@ function getTaxSummaryHtml(data: TaxSummaryData): string {
                     </p>
                   </td>
                   <td style="text-align: right;">
-                    <a href="https://neofidu.ch/admin" style="color: #10b981; text-decoration: none; font-size: 14px;">
+                    <a href="https://www.neofidu.ch/admin" style="color: #10b981; text-decoration: none; font-size: 14px;">
                       Accéder au dashboard →
                     </a>
                   </td>
@@ -557,15 +737,55 @@ export async function sendTaxSummaryEmail(data: TaxSummaryData) {
   }
 }
 
-// Template HTML pour l'email de confirmation de paiement
+// Template HTML pour l'email de confirmation de paiement (bilingue)
 function getPaymentConfirmationHtml(data: EmailData): string {
+  const lang = data.language || "fr";
+
+  const t = lang === "en" ? {
+    title: "Payment confirmed!",
+    thankYou: "Thank you for your trust",
+    reference: "Reference",
+    service: "Service",
+    canton: "Canton",
+    taxYear: "Tax year",
+    taxpayerNumber: "Taxpayer ID",
+    amountPaid: "Amount paid",
+    nextSteps: "Next steps",
+    step1: "An advisor will review your file within 24 hours",
+    step2: "We will contact you if any documents are missing",
+    step3: "Your tax return will be completed within the agreed timeframe",
+    trackTitle: "Track your request",
+    trackDesc: "You can track the progress of your request at any time on our website using your reference",
+    trackButton: "Track my request",
+    questions: "Questions? Contact us at",
+    copyright: "Digital fiduciary in French-speaking Switzerland",
+  } : {
+    title: "Paiement confirmé !",
+    thankYou: "Merci pour votre confiance",
+    reference: "Référence",
+    service: "Service",
+    canton: "Canton",
+    taxYear: "Année fiscale",
+    taxpayerNumber: "N° contribuable",
+    amountPaid: "Montant payé",
+    nextSteps: "Prochaines étapes",
+    step1: "Un conseiller analysera votre dossier sous 24h",
+    step2: "Nous vous contacterons si des documents sont manquants",
+    step3: "Votre déclaration sera établie dans les délais convenus",
+    trackTitle: "Suivre votre demande",
+    trackDesc: "Vous pouvez suivre l'avancement de votre demande à tout moment sur notre site en utilisant votre référence",
+    trackButton: "Suivre ma demande",
+    questions: "Des questions ? Contactez-nous à",
+    copyright: "Fiduciaire digitale en Suisse romande",
+  };
+
   return `
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="${lang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirmation de paiement - NeoFidu</title>
+  <title>${t.title} - NeoFidu</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f5;">
   <table role="presentation" style="width: 100%; border-collapse: collapse;">
@@ -593,8 +813,8 @@ function getPaymentConfirmationHtml(data: EmailData): string {
               <div style="width: 80px; height: 80px; background-color: #dcfce7; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                 <span style="font-size: 40px;">✓</span>
               </div>
-              <h2 style="margin: 0 0 10px; color: #1f2937; font-size: 24px;">Paiement confirmé !</h2>
-              <p style="margin: 0; color: #6b7280; font-size: 16px;">Merci pour votre confiance, ${data.customerName}</p>
+              <h2 style="margin: 0 0 10px; color: #1f2937; font-size: 24px;">${t.title}</h2>
+              <p style="margin: 0; color: #6b7280; font-size: 16px;">${t.thankYou}, ${data.customerName}</p>
             </td>
           </tr>
 
@@ -604,20 +824,20 @@ function getPaymentConfirmationHtml(data: EmailData): string {
               <table role="presentation" style="width: 100%; background-color: #f9fafb; border-radius: 12px; padding: 24px;">
                 <tr>
                   <td style="padding: 12px 20px; border-bottom: 1px solid #e5e7eb;">
-                    <span style="color: #6b7280; font-size: 14px;">Référence</span>
+                    <span style="color: #6b7280; font-size: 14px;">${t.reference}</span>
                     <div style="color: #1f2937; font-size: 16px; font-weight: 600; font-family: monospace;">${data.reference}</div>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 12px 20px; border-bottom: 1px solid #e5e7eb;">
-                    <span style="color: #6b7280; font-size: 14px;">Service</span>
+                    <span style="color: #6b7280; font-size: 14px;">${t.service}</span>
                     <div style="color: #1f2937; font-size: 16px; font-weight: 500;">${data.service}</div>
                   </td>
                 </tr>
                 ${data.canton ? `
                 <tr>
                   <td style="padding: 12px 20px; border-bottom: 1px solid #e5e7eb;">
-                    <span style="color: #6b7280; font-size: 14px;">Canton</span>
+                    <span style="color: #6b7280; font-size: 14px;">${t.canton}</span>
                     <div style="color: #1f2937; font-size: 16px; font-weight: 500;">${data.canton}</div>
                   </td>
                 </tr>
@@ -625,7 +845,7 @@ function getPaymentConfirmationHtml(data: EmailData): string {
                 ${data.taxYear ? `
                 <tr>
                   <td style="padding: 12px 20px; border-bottom: 1px solid #e5e7eb;">
-                    <span style="color: #6b7280; font-size: 14px;">Année fiscale</span>
+                    <span style="color: #6b7280; font-size: 14px;">${t.taxYear}</span>
                     <div style="color: #1f2937; font-size: 16px; font-weight: 600;">${data.taxYear}</div>
                   </td>
                 </tr>
@@ -633,14 +853,14 @@ function getPaymentConfirmationHtml(data: EmailData): string {
                 ${data.taxpayerNumber ? `
                 <tr>
                   <td style="padding: 12px 20px; border-bottom: 1px solid #e5e7eb;">
-                    <span style="color: #6b7280; font-size: 14px;">N° contribuable</span>
+                    <span style="color: #6b7280; font-size: 14px;">${t.taxpayerNumber}</span>
                     <div style="color: #1f2937; font-size: 16px; font-weight: 500; font-family: monospace;">${data.taxpayerNumber}</div>
                   </td>
                 </tr>
                 ` : ''}
                 <tr>
                   <td style="padding: 12px 20px;">
-                    <span style="color: #6b7280; font-size: 14px;">Montant payé</span>
+                    <span style="color: #6b7280; font-size: 14px;">${t.amountPaid}</span>
                     <div style="color: #0d9488; font-size: 28px; font-weight: bold;">${data.currency} ${data.amount}.-</div>
                   </td>
                 </tr>
@@ -651,36 +871,48 @@ function getPaymentConfirmationHtml(data: EmailData): string {
           <!-- Next Steps -->
           <tr>
             <td style="padding: 0 40px 30px;">
-              <h3 style="margin: 0 0 16px; color: #1f2937; font-size: 18px;">Prochaines étapes</h3>
+              <h3 style="margin: 0 0 16px; color: #1f2937; font-size: 18px;">${t.nextSteps}</h3>
               <table role="presentation" style="width: 100%;">
                 <tr>
                   <td style="padding: 8px 0; vertical-align: top;">
                     <span style="display: inline-block; width: 24px; height: 24px; background-color: #dcfce7; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #16a34a; margin-right: 12px;">1</span>
-                    <span style="color: #4b5563; font-size: 15px;">Un conseiller analysera votre dossier sous 24h</span>
+                    <span style="color: #4b5563; font-size: 15px;">${t.step1}</span>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; vertical-align: top;">
                     <span style="display: inline-block; width: 24px; height: 24px; background-color: #dcfce7; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #16a34a; margin-right: 12px;">2</span>
-                    <span style="color: #4b5563; font-size: 15px;">Nous vous contacterons si des documents sont manquants</span>
+                    <span style="color: #4b5563; font-size: 15px;">${t.step2}</span>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; vertical-align: top;">
                     <span style="display: inline-block; width: 24px; height: 24px; background-color: #dcfce7; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #16a34a; margin-right: 12px;">3</span>
-                    <span style="color: #4b5563; font-size: 15px;">Votre déclaration sera établie dans les délais convenus</span>
+                    <span style="color: #4b5563; font-size: 15px;">${t.step3}</span>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- CTA -->
+          <!-- Tracking Section -->
           <tr>
-            <td style="padding: 0 40px 30px; text-align: center;">
-              <a href="https://neofidu.ch" style="display: inline-block; background-color: #0d9488; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 9999px; font-size: 16px; font-weight: 600;">
-                Visiter notre site
-              </a>
+            <td style="padding: 0 40px 30px;">
+              <table role="presentation" style="width: 100%; background-color: #ecfdf5; border-radius: 12px; border: 1px solid #a7f3d0;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <p style="margin: 0 0 12px; color: #065f46; font-size: 16px; font-weight: 600;">
+                      📍 ${t.trackTitle}
+                    </p>
+                    <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.5;">
+                      ${t.trackDesc} <strong>${data.reference}</strong>.
+                    </p>
+                    <a href="https://www.neofidu.ch/suivi" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                      ${t.trackButton} →
+                    </a>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
@@ -691,10 +923,10 @@ function getPaymentConfirmationHtml(data: EmailData): string {
                 <tr>
                   <td style="text-align: center;">
                     <p style="margin: 0 0 10px; color: #6b7280; font-size: 14px;">
-                      Des questions ? Contactez-nous à <a href="mailto:contact@neofidu.ch" style="color: #0d9488; text-decoration: none;">contact@neofidu.ch</a>
+                      ${t.questions} <a href="mailto:contact@neofidu.ch" style="color: #0d9488; text-decoration: none;">contact@neofidu.ch</a>
                     </p>
                     <p style="margin: 0; color: #9ca3af; font-size: 12px;">
-                      © ${new Date().getFullYear()} NeoFidu SA - Fiduciaire digitale en Suisse romande
+                      © ${new Date().getFullYear()} NeoFidu SA - ${t.copyright}
                     </p>
                   </td>
                 </tr>
@@ -710,15 +942,45 @@ function getPaymentConfirmationHtml(data: EmailData): string {
   `;
 }
 
-// Template pour l'email de confirmation de demande (comptabilité/gérance)
+// Template pour l'email de confirmation de demande (comptabilité/gérance) - bilingue
 function getRequestConfirmationHtml(data: EmailData): string {
+  const lang = data.language || "fr";
+
+  const t = lang === "en" ? {
+    title: "Request received!",
+    thankYou: "Thank you",
+    received: "we have received your request.",
+    reference: "Reference",
+    serviceRequested: "Requested service",
+    advisorContact: "An advisor will contact you within",
+    businessHours: "24 business hours",
+    toDiscuss: "to discuss your needs and provide a personalized quote.",
+    trackTitle: "Track your request",
+    trackDesc: "You can track the progress of your request at any time on our website using your reference number.",
+    trackButton: "Track my request",
+    questions: "Questions?",
+  } : {
+    title: "Demande bien reçue !",
+    thankYou: "Merci",
+    received: "nous avons bien reçu votre demande.",
+    reference: "Référence",
+    serviceRequested: "Service demandé",
+    advisorContact: "Un conseiller vous contactera sous",
+    businessHours: "24 heures ouvrables",
+    toDiscuss: "pour discuter de vos besoins et vous proposer un devis personnalisé.",
+    trackTitle: "Suivre votre demande",
+    trackDesc: "Vous pouvez suivre l'avancement de votre demande à tout moment sur notre site en utilisant votre numéro de référence.",
+    trackButton: "Suivre ma demande",
+    questions: "Questions ?",
+  };
+
   return `
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="${lang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demande reçue - NeoFidu</title>
+  <title>${t.title} - NeoFidu</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f5;">
   <table role="presentation" style="width: 100%; border-collapse: collapse;">
@@ -740,27 +1002,44 @@ function getRequestConfirmationHtml(data: EmailData): string {
               <div style="width: 80px; height: 80px; background-color: #dbeafe; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                 <span style="font-size: 40px;">📨</span>
               </div>
-              <h2 style="margin: 0 0 10px; color: #1f2937; font-size: 24px;">Demande bien reçue !</h2>
-              <p style="margin: 0 0 20px; color: #6b7280; font-size: 16px;">Merci ${data.customerName}, nous avons bien reçu votre demande.</p>
+              <h2 style="margin: 0 0 10px; color: #1f2937; font-size: 24px;">${t.title}</h2>
+              <p style="margin: 0 0 20px; color: #6b7280; font-size: 16px;">${t.thankYou} ${data.customerName}, ${t.received}</p>
 
               <table role="presentation" style="width: 100%; background-color: #f9fafb; border-radius: 12px; margin: 20px 0;">
                 <tr>
                   <td style="padding: 20px;">
-                    <p style="margin: 0 0 8px; color: #6b7280; font-size: 14px;">Référence</p>
+                    <p style="margin: 0 0 8px; color: #6b7280; font-size: 14px;">${t.reference}</p>
                     <p style="margin: 0; color: #1f2937; font-size: 18px; font-weight: 600; font-family: monospace;">${data.reference}</p>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 0 20px 20px;">
-                    <p style="margin: 0 0 8px; color: #6b7280; font-size: 14px;">Service demandé</p>
+                    <p style="margin: 0 0 8px; color: #6b7280; font-size: 14px;">${t.serviceRequested}</p>
                     <p style="margin: 0; color: #1f2937; font-size: 16px; font-weight: 500;">${data.service}</p>
                   </td>
                 </tr>
               </table>
 
               <p style="color: #4b5563; font-size: 15px; line-height: 1.6;">
-                Un conseiller vous contactera sous <strong>24 heures ouvrables</strong> pour discuter de vos besoins et vous proposer un devis personnalisé.
+                ${t.advisorContact} <strong>${t.businessHours}</strong> ${t.toDiscuss}
               </p>
+
+              <!-- Tracking Section -->
+              <table role="presentation" style="width: 100%; background-color: #ecfdf5; border-radius: 12px; margin: 24px 0; border: 1px solid #a7f3d0;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <p style="margin: 0 0 12px; color: #065f46; font-size: 16px; font-weight: 600;">
+                      📍 ${t.trackTitle}
+                    </p>
+                    <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.5;">
+                      ${t.trackDesc}
+                    </p>
+                    <a href="https://www.neofidu.ch/suivi" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                      ${t.trackButton} →
+                    </a>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
@@ -768,7 +1047,7 @@ function getRequestConfirmationHtml(data: EmailData): string {
           <tr>
             <td style="background-color: #f9fafb; padding: 30px 40px; border-top: 1px solid #e5e7eb; text-align: center;">
               <p style="margin: 0 0 10px; color: #6b7280; font-size: 14px;">
-                Questions ? <a href="mailto:contact@neofidu.ch" style="color: #0d9488; text-decoration: none;">contact@neofidu.ch</a>
+                ${t.questions} <a href="mailto:contact@neofidu.ch" style="color: #0d9488; text-decoration: none;">contact@neofidu.ch</a>
               </p>
               <p style="margin: 0; color: #9ca3af; font-size: 12px;">
                 © ${new Date().getFullYear()} NeoFidu SA
@@ -849,7 +1128,7 @@ function getAdminNotificationHtml(data: EmailData): string {
           </tr>
         </table>
         <p style="margin-top: 20px;">
-          <a href="https://neofidu.ch/admin" style="background: #0d9488; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+          <a href="https://www.neofidu.ch/admin" style="background: #0d9488; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
             Voir le tableau de bord
           </a>
         </p>
@@ -863,11 +1142,16 @@ function getAdminNotificationHtml(data: EmailData): string {
 
 // Fonction pour envoyer l'email de confirmation de paiement
 export async function sendPaymentConfirmationEmail(data: EmailData) {
+  const lang = data.language || "fr";
+  const subject = lang === "en"
+    ? `Payment confirmation - ${data.reference}`
+    : `Confirmation de paiement - ${data.reference}`;
+
   try {
     const result = await getResend().emails.send({
       from: FROM_EMAIL,
       to: data.to,
-      subject: `Confirmation de paiement - ${data.reference}`,
+      subject,
       html: getPaymentConfirmationHtml(data),
     });
 
@@ -881,11 +1165,16 @@ export async function sendPaymentConfirmationEmail(data: EmailData) {
 
 // Fonction pour envoyer l'email de confirmation de demande
 export async function sendRequestConfirmationEmail(data: EmailData) {
+  const lang = data.language || "fr";
+  const subject = lang === "en"
+    ? `Request received - ${data.reference}`
+    : `Demande reçue - ${data.reference}`;
+
   try {
     const result = await getResend().emails.send({
       from: FROM_EMAIL,
       to: data.to,
-      subject: `Demande reçue - ${data.reference}`,
+      subject,
       html: getRequestConfirmationHtml(data),
     });
 
@@ -926,6 +1215,7 @@ export interface ContactFormData {
   canton: string;
   service: string;
   message: string;
+  language?: EmailLanguage;
 }
 
 // Template pour le formulaire de contact (notification admin)
@@ -1066,7 +1356,7 @@ function getNewRequestNotificationHtml(data: EmailData & { customerEmail?: strin
           </tr>
         </table>
         <p style="margin-top: 24px; text-align: center;">
-          <a href="https://neofidu.ch/admin" style="background: #1f2937; color: white; padding: 12px 24px; text-decoration: none; border-radius: 9999px; font-weight: 600;">
+          <a href="https://www.neofidu.ch/admin" style="background: #1f2937; color: white; padding: 12px 24px; text-decoration: none; border-radius: 9999px; font-weight: 600;">
             Voir dans le dashboard
           </a>
         </p>
@@ -1099,6 +1389,29 @@ export async function sendContactFormEmail(data: ContactFormData) {
   }
 }
 
+// Generic send email function
+export async function sendEmail(options: {
+  to: string;
+  subject: string;
+  html: string;
+  replyTo?: string;
+}): Promise<{ success: boolean; error?: unknown }> {
+  try {
+    const result = await getResend().emails.send({
+      from: FROM_EMAIL,
+      to: options.to,
+      subject: options.subject,
+      html: options.html,
+      replyTo: options.replyTo,
+    });
+    console.log("Email sent:", result);
+    return { success: true };
+  } catch (error) {
+    console.error("Email send error:", error);
+    return { success: false, error };
+  }
+}
+
 // Fonction pour notifier l'admin d'une nouvelle demande
 export async function sendNewRequestNotificationEmail(data: EmailData & { customerEmail?: string }) {
   const adminEmail = process.env.ADMIN_EMAIL || "contact@neofidu.ch";
@@ -1115,6 +1428,94 @@ export async function sendNewRequestNotificationEmail(data: EmailData & { custom
     return { success: true, data: result };
   } catch (error) {
     console.error("Erreur envoi notification nouvelle demande:", error);
+    return { success: false, error };
+  }
+}
+
+/**
+ * Send critical alert to admin when a service fails
+ */
+export async function sendCriticalAlertEmail(data: {
+  service: string;
+  error: string;
+  details?: string;
+  customerEmail?: string;
+  customerName?: string;
+  reference?: string;
+}): Promise<{ success: boolean; error?: unknown }> {
+  const adminEmail = process.env.ADMIN_EMAIL || "contact@neofidu.ch";
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ALERTE CRITIQUE - NeoFidu</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: Arial, sans-serif; background-color: #fef2f2;">
+  <table style="max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; border: 3px solid #dc2626;">
+    <tr>
+      <td style="background: #dc2626; padding: 20px; color: white;">
+        <h1 style="margin: 0; font-size: 20px;">🚨 ALERTE CRITIQUE</h1>
+        <p style="margin: 8px 0 0; font-size: 14px;">Service ${data.service} indisponible</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 24px;">
+        <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #991b1b; font-weight: bold;">Erreur:</p>
+          <p style="margin: 8px 0 0; color: #7f1d1d;">${data.error}</p>
+        </div>
+
+        ${data.details ? `
+        <div style="background: #f3f4f6; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #374151; font-weight: bold;">Détails:</p>
+          <pre style="margin: 8px 0 0; color: #4b5563; white-space: pre-wrap; font-size: 12px;">${data.details}</pre>
+        </div>
+        ` : ''}
+
+        ${data.customerEmail ? `
+        <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #92400e; font-weight: bold;">Client impacté:</p>
+          <p style="margin: 8px 0 0; color: #78350f;">
+            ${data.customerName || 'N/A'}<br>
+            ${data.customerEmail}<br>
+            Référence: ${data.reference || 'N/A'}
+          </p>
+        </div>
+        ` : ''}
+
+        <div style="background: #dbeafe; border-radius: 8px; padding: 16px;">
+          <p style="margin: 0; color: #1e40af; font-weight: bold;">Actions requises:</p>
+          <ul style="margin: 8px 0 0; color: #1e3a8a; padding-left: 20px;">
+            <li>Vérifier la configuration du service sur l'hébergeur</li>
+            <li>Vérifier les variables d'environnement</li>
+            <li>Contacter le client si nécessaire</li>
+          </ul>
+        </div>
+
+        <p style="margin-top: 20px; text-align: center; color: #6b7280; font-size: 12px;">
+          Alerte générée le ${new Date().toLocaleString('fr-CH')}
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `;
+
+  try {
+    const result = await getResend().emails.send({
+      from: FROM_EMAIL,
+      to: adminEmail,
+      subject: `🚨 ALERTE CRITIQUE: ${data.service} - Action requise immédiatement`,
+      html: html,
+    });
+
+    console.log("Alerte critique envoyée:", result);
+    return { success: true };
+  } catch (error) {
+    console.error("Erreur envoi alerte critique:", error);
     return { success: false, error };
   }
 }

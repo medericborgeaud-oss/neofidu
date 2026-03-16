@@ -2,10 +2,18 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Conditions Générales",
-  description: "Conditions générales d'utilisation des services NeoFidu. Informations sur nos prestations, responsabilités, tarifs, confidentialité et protection des données.",
+  description: "Conditions générales d'utilisation des services NeoFidu. Prestations, responsabilités et tarifs.",
   openGraph: {
-    title: "Conditions Générales | NeoFidu",
-    description: "Consultez les conditions générales d'utilisation des services de fiduciaire NeoFidu.",
+    title: "CGU",
+    description: "Conditions générales d'utilisation des services NeoFidu.",
+    url: "https://www.neofidu.ch/conditions-generales",
+  },
+  alternates: {
+    canonical: "https://www.neofidu.ch/conditions-generales",
+  },
+  robots: {
+    index: true,
+    follow: false,
   },
 };
 

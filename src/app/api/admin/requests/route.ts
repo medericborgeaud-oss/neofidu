@@ -6,6 +6,7 @@ import {
   getCombinedStats,
   getAllGenericRequests,
   updateTaxRequestStatus,
+  updateGenericRequestStatus,
   addStatusHistory,
   getAllStatusHistory,
   getRequestsPerDay,
@@ -20,7 +21,7 @@ import { Resend } from "resend";
 export const dynamic = "force-dynamic";
 
 // Mot de passe admin
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "neofidu-admin-2024";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 // Resend pour les emails
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -136,7 +137,7 @@ function getDemoRequests(): TaxRequestDB[] {
       payment: {
         amount: 108,
         currency: "CHF",
-        method: "twint",
+        method: "card",
         stripePaymentIntentId: "pi_demo_002",
       },
       customer: {
@@ -294,7 +295,7 @@ function getDemoRequests(): TaxRequestDB[] {
       payment: {
         amount: 76,
         currency: "CHF",
-        method: "twint",
+        method: "card",
         stripePaymentIntentId: "pi_demo_004",
       },
       customer: {
@@ -425,6 +426,10 @@ function transformRequestForFrontend(request: TaxRequestDB) {
 // GET - Récupérer toutes les demandes
 export async function GET(request: NextRequest) {
   try {
+    if (!ADMIN_PASSWORD) {
+      return NextResponse.json({ error: "Admin not configured" }, { status: 503 });
+    }
+
     const authHeader = request.headers.get("x-admin-password");
 
     if (authHeader !== ADMIN_PASSWORD) {
@@ -446,6 +451,7 @@ export async function GET(request: NextRequest) {
       ]);
 
       // Transform tax requests for frontend compatibility (camelCase dates)
+      // Show ALL tax requests including pending ones
       const transformedTaxRequests = taxRequests.map(req => ({
         ...transformRequestForFrontend(req),
         requestType: "tax" as const,
@@ -494,6 +500,19 @@ export async function GET(request: NextRequest) {
         companyName: req.data?.companyName as string || "",
         propertyAddress: req.data?.propertyAddress as string || "",
         selectedServices: req.data?.selectedServices as string[] || [],
+        // Accounting-specific fields
+        billingFrequency: req.data?.billingFrequency as string || "",
+        activity: req.data?.activity as string || "",
+        employeesCount: req.data?.employeesCount as number || 0,
+        annualRevenue: req.data?.annualRevenue as string || "",
+        monthlyTransactions: req.data?.monthlyTransactions as string || "",
+        isVatRegistered: req.data?.isVatRegistered as boolean || false,
+        currentAccountingSoftware: req.data?.currentAccountingSoftware as string || "",
+        businessType: req.data?.businessType as string || "",
+        // Creation-specific fields
+        companyType: req.data?.companyType as string || "",
+        companyTypeName: req.data?.companyTypeName as string || "",
+        projectDescription: req.data?.projectDescription as string || "",
       }));
 
       // Combine all requests, sorted by date
@@ -512,10 +531,59 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Sinon, essayer de récupérer les demandes depuis le store en mémoire
+    // Import du store en mémoire
+    const { getAllTaxRequests: getMemoryRequests, getTaxRequestStats: getMemoryStats } = await import("@/lib/tax-requests-store");
+    const memoryRequests = getMemoryRequests();
+    const memoryStats = getMemoryStats();
+
+    // Si des demandes existent en mémoire, les afficher
+    if (memoryRequests.length > 0) {
+      console.log(`[ADMIN] ${memoryRequests.length} demande(s) trouvée(s) en mémoire`);
+
+      const transformedMemoryRequests = memoryRequests.map(req => ({
+        id: req.id,
+        reference: req.reference,
+        requestType: "tax" as const,
+        status: req.status,
+        createdAt: req.createdAt.toISOString(),
+        updatedAt: req.updatedAt.toISOString(),
+        paidAt: req.paidAt?.toISOString(),
+        payment: req.payment,
+        customer: req.customer,
+        fiscal: req.fiscal,
+        situation: req.situation,
+        financial: req.financial,
+        property: req.property,
+        workplaces: req.workplaces,
+        options: req.options,
+        documents: req.documents.map(d => ({
+          ...d,
+          uploadedAt: d.uploadedAt.toISOString(),
+        })),
+      }));
+
+      return NextResponse.json({
+        requests: transformedMemoryRequests,
+        stats: memoryStats,
+        statusHistory: [],
+        chartData: {
+          daily: [],
+          byCanton: [],
+        },
+        demo: false,
+        storage: "memory",
+        warning: "⚠️ Données stockées en mémoire - Configurez Supabase pour la persistance",
+      });
+    }
+
     // Sinon retourner les données de démo
+    console.log("[ADMIN] Aucune demande en mémoire, affichage des données de démo");
     const demoRequests = getDemoRequests();
     // Transform demo requests for frontend compatibility
-    const transformedDemoRequests = demoRequests.map(req => ({
+    // IMPORTANT: Only show PAID tax requests (filter out "pending" status)
+    const paidDemoRequests = demoRequests.filter(req => req.status !== "pending");
+    const transformedDemoRequests = paidDemoRequests.map(req => ({
       ...transformRequestForFrontend(req),
       requestType: "tax" as const,
     }));
@@ -556,6 +624,11 @@ export async function GET(request: NextRequest) {
         ],
         companyName: "TechStartup Sàrl",
         selectedServices: ["Tenue de comptabilité", "Déclarations TVA", "Bilan annuel"],
+        billingFrequency: "annual",
+        activity: "Services informatiques",
+        employeesCount: 3,
+        annualRevenue: "CHF 250'000.-",
+        businessType: "sarl",
       },
     ];
 
@@ -657,15 +730,15 @@ export async function GET(request: NextRequest) {
       requests: allDemoRequests,
       stats: {
         total: allDemoRequests.length,
-        paid: demoRequests.filter(r => r.status !== "pending").length,
-        pending: demoRequests.filter(r => r.status === "pending").length + 2, // +2 for accounting/property
-        inProgress: demoRequests.filter(r => r.status === "in_progress").length,
-        completed: demoRequests.filter(r => r.status === "completed" || r.status === "delivered").length,
-        totalRevenue: demoRequests.reduce((sum, r) => sum + r.payment.amount, 0),
+        paid: paidDemoRequests.length, // Only paid tax requests
+        pending: demoAccountingRequests.length + demoPropertyRequests.length, // Accounting/property requests awaiting processing
+        inProgress: paidDemoRequests.filter(r => r.status === "in_progress").length,
+        completed: paidDemoRequests.filter(r => r.status === "completed" || r.status === "delivered").length,
+        totalRevenue: paidDemoRequests.reduce((sum, r) => sum + r.payment.amount, 0),
         byType: {
-          tax: demoRequests.length,
-          accounting: 1,
-          property: 1,
+          tax: paidDemoRequests.length, // Only paid tax requests
+          accounting: demoAccountingRequests.length,
+          property: demoPropertyRequests.length,
         },
       },
       statusHistory: demoHistory,
@@ -687,6 +760,10 @@ export async function GET(request: NextRequest) {
 // PATCH - Modifier le statut d'une demande
 export async function PATCH(request: NextRequest) {
   try {
+    if (!ADMIN_PASSWORD) {
+      return NextResponse.json({ error: "Admin not configured" }, { status: 503 });
+    }
+
     const authHeader = request.headers.get("x-admin-password");
 
     if (authHeader !== ADMIN_PASSWORD) {
@@ -697,7 +774,7 @@ export async function PATCH(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { id, status, sendNotification, oldStatus } = body;
+    const { id, status, sendNotification, oldStatus, requestType } = body;
 
     if (!id || !status) {
       return NextResponse.json(
@@ -706,10 +783,11 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
-    const validStatuses = ["pending", "paid", "in_progress", "completed", "delivered"];
+    // Valid statuses for both tax and generic requests
+    const validStatuses = ["pending", "paid", "in_progress", "completed", "received", "processing", "done"];
     if (!validStatuses.includes(status)) {
       return NextResponse.json(
-        { error: "Statut invalide" },
+        { error: "Statut invalide. Statuts autorisés: pending, paid, in_progress, completed, received, processing, done" },
         { status: 400 }
       );
     }
@@ -723,21 +801,79 @@ export async function PATCH(request: NextRequest) {
       });
     }
 
-    // Mettre à jour en base de données
-    const updatedRequest = await updateTaxRequestStatus(id, status);
+    // Determine if this is a tax request or a generic request
+    const isTaxRequest = requestType === "tax" || !requestType || id.startsWith("tax_");
+    const isGenericRequest = requestType === "accounting" || requestType === "property" || requestType === "creation" || id.startsWith("acc_") || id.startsWith("prop_") || id.startsWith("cre_");
 
-    if (!updatedRequest) {
+    let updatedRequest: TaxRequestDB | null = null;
+    let updatedGenericRequest: GenericRequestDB | null = null;
+    let customerEmail: string | undefined;
+    let customerFirstName: string | undefined;
+    let requestReference: string | undefined;
+
+    console.log(`[ADMIN API] Mise à jour statut: id=${id}, status=${status}, requestType=${requestType}, isGenericRequest=${isGenericRequest}`);
+
+    if (isGenericRequest) {
+      // Update generic request (accounting/property)
+      console.log(`[ADMIN API] Tentative mise à jour générique: id=${id}, nouveau status=${status}`);
+      updatedGenericRequest = await updateGenericRequestStatus(id, status);
+      console.log(`[ADMIN API] Résultat mise à jour générique:`, updatedGenericRequest
+        ? `OK - ref=${updatedGenericRequest.reference}, status retourné=${updatedGenericRequest.status}`
+        : "ÉCHEC - null retourné");
+      if (updatedGenericRequest) {
+        customerEmail = updatedGenericRequest.customer_email;
+        customerFirstName = updatedGenericRequest.customer_name?.split(" ")[0];
+        requestReference = updatedGenericRequest.reference;
+      }
+    } else {
+      // Update tax request
+      updatedRequest = await updateTaxRequestStatus(id, status);
+      console.log(`[ADMIN API] Résultat mise à jour fiscale:`, updatedRequest ? `OK - ${updatedRequest.reference}, nouveau statut: ${updatedRequest.status}` : "ÉCHEC");
+      if (updatedRequest) {
+        customerEmail = updatedRequest.customer.email;
+        customerFirstName = updatedRequest.customer.firstName;
+        requestReference = updatedRequest.reference;
+      }
+    }
+
+    // If both failed, try the other type
+    if (!updatedRequest && !updatedGenericRequest) {
+      // Try generic if tax failed
+      if (!isGenericRequest) {
+        updatedGenericRequest = await updateGenericRequestStatus(id, status);
+        if (updatedGenericRequest) {
+          customerEmail = updatedGenericRequest.customer_email;
+          customerFirstName = updatedGenericRequest.customer_name?.split(" ")[0];
+          requestReference = updatedGenericRequest.reference;
+        }
+      }
+      // Try tax if generic failed
+      if (!updatedGenericRequest && !isGenericRequest) {
+        updatedRequest = await updateTaxRequestStatus(id, status);
+        if (updatedRequest) {
+          customerEmail = updatedRequest.customer.email;
+          customerFirstName = updatedRequest.customer.firstName;
+          requestReference = updatedRequest.reference;
+        }
+      }
+    }
+
+    if (!updatedRequest && !updatedGenericRequest) {
+      console.error(`[ADMIN API] Demande non trouvée pour id=${id}, requestType=${requestType}`);
       return NextResponse.json(
-        { error: "Erreur lors de la mise à jour" },
-        { status: 500 }
+        {
+          error: "Demande non trouvée dans la base de données. Elle a peut-être été créée avant la configuration de Supabase.",
+          suggestion: "Vérifiez que la demande existe dans Supabase ou recréez-la."
+        },
+        { status: 404 }
       );
     }
 
-    // Ajouter à l'historique des statuts
-    if (oldStatus && oldStatus !== status) {
+    // Ajouter à l'historique des statuts (only for tax requests with proper reference)
+    if (oldStatus && oldStatus !== status && requestReference) {
       await addStatusHistory(
         id,
-        updatedRequest.reference,
+        requestReference,
         oldStatus,
         status,
         "admin",
@@ -746,26 +882,50 @@ export async function PATCH(request: NextRequest) {
     }
 
     // Envoyer une notification email si demandé
-    if (sendNotification && resend && updatedRequest.customer.email) {
+    if (sendNotification && resend && customerEmail) {
+      // Tous les statuts en français
       const statusLabels: Record<string, string> = {
+        // Statuts demandes fiscales
+        pending: "En attente de paiement",
         paid: "Payée",
         in_progress: "En cours de traitement",
         completed: "Terminée",
         delivered: "Livrée",
+        // Statuts demandes comptabilité / gérance immobilière
+        received: "Reçue",
+        processing: "En traitement",
+        done: "Terminée",
       };
 
       const statusMessages: Record<string, string> = {
+        // Messages pour demandes fiscales
+        pending: "Votre demande est en attente de paiement.",
         paid: "Votre paiement a été confirmé. Nous allons commencer le traitement de votre dossier.",
         in_progress: "Notre équipe travaille actuellement sur votre déclaration d'impôts.",
-        completed: "Votre déclaration d'impôts est prête ! Elle sera bientôt envoyée.",
+        completed: "Votre déclaration d'impôts est terminée et prête à être envoyée.",
         delivered: "Votre déclaration d'impôts a été envoyée. Merci de votre confiance !",
+        // Messages pour demandes comptabilité / gérance
+        received: "Votre demande a bien été reçue. Un conseiller vous contactera sous 24 heures.",
+        processing: "Notre équipe travaille actuellement sur votre dossier.",
+        done: "Votre dossier est terminé. Merci de votre confiance !",
       };
 
       try {
+        // Get request details for email
+        const emailDetails = updatedRequest ? {
+          canton: updatedRequest.fiscal.canton,
+          taxYear: updatedRequest.fiscal.taxYear,
+          clientType: updatedRequest.fiscal.clientType,
+        } : updatedGenericRequest ? {
+          canton: updatedGenericRequest.canton || "N/A",
+          taxYear: new Date().getFullYear(),
+          clientType: updatedGenericRequest.type === "accounting" ? "Comptabilité" : "Gérance immobilière",
+        } : null;
+
         await resend.emails.send({
           from: "NeoFidu <noreply@neofidu.ch>",
-          to: updatedRequest.customer.email,
-          subject: `Mise à jour de votre demande ${updatedRequest.reference}`,
+          to: customerEmail,
+          subject: `Mise à jour de votre demande ${requestReference}`,
           html: `
             <!DOCTYPE html>
             <html>
@@ -787,9 +947,9 @@ export async function PATCH(request: NextRequest) {
                   <p style="margin: 10px 0 0 0; opacity: 0.9;">Mise à jour de votre demande</p>
                 </div>
                 <div class="content">
-                  <p>Bonjour ${updatedRequest.customer.firstName},</p>
+                  <p>Bonjour ${customerFirstName || ""},</p>
 
-                  <p>Le statut de votre demande <strong>${updatedRequest.reference}</strong> a été mis à jour :</p>
+                  <p>Le statut de votre demande <strong>${requestReference}</strong> a été mis à jour :</p>
 
                   <p style="text-align: center;">
                     <span class="status-badge">${statusLabels[status] || status}</span>
@@ -797,14 +957,26 @@ export async function PATCH(request: NextRequest) {
 
                   <p>${statusMessages[status] || ""}</p>
 
+                  ${emailDetails ? `
                   <p><strong>Rappel de votre demande :</strong></p>
                   <ul>
-                    <li>Canton : ${updatedRequest.fiscal.canton}</li>
-                    <li>Année fiscale : ${updatedRequest.fiscal.taxYear}</li>
-                    <li>Type : ${updatedRequest.fiscal.clientType === "couple" ? "Couple" : updatedRequest.fiscal.clientType === "independent" ? "Indépendant" : "Particulier"}</li>
+                    <li>Canton : ${emailDetails.canton}</li>
+                    <li>Année : ${emailDetails.taxYear}</li>
+                    <li>Type : ${emailDetails.clientType === "couple" ? "Couple" : emailDetails.clientType === "independent" ? "Indépendant" : emailDetails.clientType === "private" ? "Particulier" : emailDetails.clientType}</li>
                   </ul>
+                  ` : ""}
 
-                  <p>Vous pouvez suivre l'avancement de votre demande sur notre site avec votre référence.</p>
+                  <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 20px; margin: 24px 0;">
+                    <p style="margin: 0 0 12px; color: #065f46; font-size: 16px; font-weight: 600;">
+                      📍 Suivre votre demande
+                    </p>
+                    <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.5;">
+                      Rendez-vous sur notre page de suivi et entrez votre référence <strong>${requestReference}</strong> pour voir l'avancement de votre dossier.
+                    </p>
+                    <a href="https://www.neofidu.ch/suivi" style="display: inline-block; background: #10B981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                      Suivre ma demande →
+                    </a>
+                  </div>
 
                   <p>Cordialement,<br><strong>L'équipe NeoFidu</strong></p>
                 </div>
@@ -824,7 +996,8 @@ export async function PATCH(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      request: updatedRequest,
+      request: updatedRequest || updatedGenericRequest,
+      requestType: updatedRequest ? "tax" : (updatedGenericRequest?.type || "generic"),
       notificationSent: sendNotification && !!resend,
     });
   } catch (error) {

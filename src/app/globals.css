@@ -66,13 +66,34 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-teal-400;
   }
-
   .bg-gradient-primary {
     @apply bg-gradient-to-br from-primary via-teal-500 to-emerald-500;
   }
-
   .bg-gradient-hero {
     background: linear-gradient(135deg, hsl(168, 80%, 45%) 0%, hsl(180, 70%, 40%) 50%, hsl(160, 75%, 35%) 100%);
+  }
+}
+
+/* Performance optimizations */
+@layer utilities {
+  /* Content visibility for below-the-fold sections */
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }
 
@@ -89,12 +110,22 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-delayed {
   animation: float 3s ease-in-out infinite 1.5s;
+  will-change: transform;
 }
 
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

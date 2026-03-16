@@ -26,6 +26,15 @@ import { generateTaxSummaryPDF } from "@/lib/pdf-generator";
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
 
+// GET handler for testing endpoint availability
+export async function GET() {
+  return NextResponse.json({
+    status: "ok",
+    message: "Stripe webhook endpoint is active. Use POST method for webhook events.",
+    timestamp: new Date().toISOString(),
+  });
+}
+
 // Lazy initialization of Stripe to avoid build errors
 let stripe: Stripe | null = null;
 
@@ -102,6 +111,23 @@ export async function POST(request: NextRequest) {
         // Générer la référence
         const reference = paymentIntent.metadata?.taxRequestReference || `NF-${paymentIntent.id.slice(-8).toUpperCase()}`;
 
+        // 🔒 PROTECTION CONTRE LES DOUBLONS
+        // Vérifier si ce paiement a déjà été traité
+        const existingPayment = paymentsStore.find(p => p.paymentIntentId === paymentIntent.id);
+        if (existingPayment && existingPayment.status === "succeeded") {
+          console.log("⚠️ Paiement déjà traité, ignoré:", paymentIntent.id);
+          return NextResponse.json({ received: true, status: "already_processed" });
+        }
+
+        // Vérifier aussi dans Supabase si la demande est déjà marquée comme payée
+        if (isSupabaseConfigured() && paymentIntent.metadata?.taxRequestReference) {
+          const existingRequest = await findSupabaseByRef(paymentIntent.metadata.taxRequestReference);
+          if (existingRequest && existingRequest.status === "paid") {
+            console.log("⚠️ Demande déjà payée dans Supabase, emails non renvoyés:", paymentIntent.metadata.taxRequestReference);
+            return NextResponse.json({ received: true, status: "already_paid" });
+          }
+        }
+
         // Enregistrer le paiement
         const payment: PaymentRecord = {
           id: `pay_${Date.now()}`,
@@ -126,6 +152,7 @@ export async function POST(request: NextRequest) {
         const cantonCode = paymentIntent.metadata?.canton;
         const taxYear = paymentIntent.metadata?.taxYear;
         const taxpayerNumber = paymentIntent.metadata?.taxpayerNumber;
+        const language = (paymentIntent.metadata?.language as "fr" | "en") || "fr";
 
         if (customerEmail) {
           const emailData: EmailData = {
@@ -139,6 +166,7 @@ export async function POST(request: NextRequest) {
             description: paymentIntent.description || undefined,
             taxYear: taxYear || undefined,
             taxpayerNumber: taxpayerNumber || undefined,
+            language: language,
           };
 
           // Envoyer l'email de confirmation au client
@@ -222,6 +250,8 @@ export async function POST(request: NextRequest) {
                   pillar3aAmount: taxRequest.financial?.pillar3aAmount,
                   hasStocks: taxRequest.financial?.hasStocks,
                   stocksCount: taxRequest.financial?.stocksCount,
+                  hasSoldStocks: taxRequest.financial?.hasSoldStocks,
+                  soldStocksDetails: taxRequest.financial?.soldStocksDetails,
                   hasGuardCosts: taxRequest.financial?.hasGuardCosts,
                   guardCosts: taxRequest.financial?.guardCosts,
                   hasAlimonyReceived: taxRequest.financial?.hasAlimonyReceived,
@@ -234,6 +264,8 @@ export async function POST(request: NextRequest) {
                   debtsAmount: taxRequest.financial?.debtsAmount,
                   hasProperty: taxRequest.property?.hasProperty,
                   propertyCount: taxRequest.property?.propertyCount,
+                  hasSoldProperty: taxRequest.property?.hasSoldProperty,
+                  soldPropertyDetails: taxRequest.property?.soldPropertyDetails,
                   hasMortgage: taxRequest.property?.hasMortgage,
                   mortgageAmount: taxRequest.property?.mortgageAmount,
                   hasRenovations: taxRequest.property?.hasRenovations,
@@ -251,13 +283,14 @@ export async function POST(request: NextRequest) {
                   amount: paymentIntent.amount / 100,
                   currency: paymentIntent.currency.toUpperCase(),
                   paymentMethod: paymentIntent.payment_method_types?.[0],
-                  paidAt: new Date().toLocaleDateString('fr-CH', {
+                  paidAt: new Date().toLocaleDateString(language === 'en' ? 'en-GB' : 'fr-CH', {
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric',
                     hour: '2-digit',
                     minute: '2-digit'
                   }),
+                  language: language,
                 };
 
                 // 📁 Générer et sauvegarder la fiche récapitulative PDF dans Cloudinary

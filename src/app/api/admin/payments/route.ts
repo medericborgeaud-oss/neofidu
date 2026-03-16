@@ -15,11 +15,15 @@ function getStripe(): Stripe | null {
 }
 
 // Mot de passe admin simple (en production, utiliser une vraie authentification)
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "neofidu-admin-2024";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 export async function GET(request: NextRequest) {
   try {
-    // Vérification simple du mot de passe via header
+    // Vérification du mot de passe admin
+    if (!ADMIN_PASSWORD) {
+      return NextResponse.json({ error: "Admin not configured" }, { status: 503 });
+    }
+
     const authHeader = request.headers.get("x-admin-password");
 
     if (authHeader !== ADMIN_PASSWORD) {
@@ -128,7 +132,7 @@ function getDemoPayments() {
       customerEmail: "marie.martin@example.com",
       customerName: "Marie Martin",
       description: "Déclaration d'impôt 2025 - Genève",
-      paymentMethod: "twint",
+      paymentMethod: "card",
       createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
       metadata: { canton: "GE", service: "tax" },
     },
@@ -164,7 +168,7 @@ function getDemoPayments() {
       customerEmail: "luc.vert@example.com",
       customerName: "Luc Vert",
       description: "Déclaration d'impôt 2025 - Fribourg",
-      paymentMethod: "twint",
+      paymentMethod: "card",
       createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
       metadata: { canton: "FR", service: "tax" },
     },

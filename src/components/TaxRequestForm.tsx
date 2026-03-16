@@ -21,12 +21,20 @@ import {
   Paperclip,
   ShieldCheck,
   AlertTriangle,
+  AlertCircle,
   Smartphone,
   Plus,
   Trash2,
   Pencil,
   Info,
   HelpCircle,
+  Home,
+  MapPin,
+  Calculator,
+  Loader2,
+  RefreshCw,
+  CheckCircle2,
+  XCircle,
 } from "lucide-react";
 import {
   Tooltip,
@@ -40,7 +48,9 @@ import {
   SuccessIllustration,
   PaymentIllustration,
 } from "@/components/Illustrations";
-import { StripePaymentForm } from "@/components/StripePaymentForm";
+import { PaymentMethodSelector } from "@/components/PaymentMethodSelector";
+import { ChildrenSection, ChildData, createEmptyChild } from "@/components/ChildrenSection";
+import { useLanguage } from "@/lib/language-context";
 
 const cantons = [
   { code: "VD", name: "Vaud" },
@@ -51,10 +61,87 @@ const cantons = [
   { code: "FR", name: "Fribourg" },
 ];
 
+// Liste des pays les plus courants pour les Suisses de l'étranger
+const countriesAbroad = [
+  { code: "FR", name: "France" },
+  { code: "DE", name: "Allemagne" },
+  { code: "IT", name: "Italie" },
+  { code: "AT", name: "Autriche" },
+  { code: "US", name: "États-Unis" },
+  { code: "CA", name: "Canada" },
+  { code: "GB", name: "Royaume-Uni" },
+  { code: "ES", name: "Espagne" },
+  { code: "PT", name: "Portugal" },
+  { code: "BE", name: "Belgique" },
+  { code: "LU", name: "Luxembourg" },
+  { code: "NL", name: "Pays-Bas" },
+  { code: "AE", name: "Émirats Arabes Unis" },
+  { code: "SG", name: "Singapour" },
+  { code: "AU", name: "Australie" },
+  { code: "NZ", name: "Nouvelle-Zélande" },
+  { code: "JP", name: "Japon" },
+  { code: "CN", name: "Chine" },
+  { code: "HK", name: "Hong Kong" },
+  { code: "BR", name: "Brésil" },
+  { code: "MX", name: "Mexique" },
+  { code: "TH", name: "Thaïlande" },
+  { code: "IL", name: "Israël" },
+  { code: "ZA", name: "Afrique du Sud" },
+  { code: "OTHER", name: "Autre pays" },
+];
+
+// Information sur le code de contrôle/déclaration par canton
+const cantonCodeInfo: Record<string, { label: string; placeholder: string; source: string }> = {
+  VD: {
+    label: "Code de contrôle",
+    placeholder: "Ex: 123456",
+    source: "Formulaire de déclaration (A3), en haut à gauche",
+  },
+  VS: {
+    label: "Numéro de contrôle",
+    placeholder: "Ex: 123456789",
+    source: "Reçu avec le courrier fiscal de début d'année",
+  },
+  GE: {
+    label: "Code déclaration",
+    placeholder: "Ex: ABCD1234",
+    source: "Courrier \"Identifiants pour votre déclaration\"",
+  },
+  NE: {
+    label: "Code de contrôle",
+    placeholder: "Ex: 123456",
+    source: "Courrier de déclaration (logiciel Clic & Tax)",
+  },
+  JU: {
+    label: "Code de contrôle",
+    placeholder: "Ex: 123456",
+    source: "Formulaire reçu pour JuraTax",
+  },
+  FR: {
+    label: "Code d'accès + Code de contrôle",
+    placeholder: "Ex: ABC123 / 456789",
+    source: "Page de garde de la déclaration papier",
+  },
+};
+
+// Options pour la situation familiale (étape 2a)
+const familyStatusOptions = [
+  { id: "single", name: "Déclaration individuelle", icon: User, description: "Personne seule (célibataire, divorcé(e), veuf/veuve)" },
+  { id: "couple", name: "Déclaration commune", icon: Users, description: "Couple marié ou partenariat enregistré" },
+];
+
+// Options pour la situation professionnelle (étape 2b)
+// La description de "independent" dépend du familyStatus, elle sera générée dynamiquement
+const professionalStatusOptions = [
+  { id: "employee", name: "Salarié / Retraité", icon: User, description: "Employé, retraité, étudiant, chômeur" },
+  { id: "independent", name: "Indépendant", icon: Briefcase, descriptionSingle: "Travailleur indépendant", descriptionCouple: "Activité indépendante (au moins un conjoint)" },
+];
+
+// Ancien tableau conservé pour compatibilité avec le reste du code
 const clientTypes = [
   { id: "private", name: "Client privé", icon: User, description: "Salarié, retraité, étudiant" },
   { id: "independent", name: "Indépendant", icon: Briefcase, description: "Travailleur indépendant" },
-  { id: "couple", name: "Couple", icon: Users, description: "Couple marié" },
+  { id: "couple", name: "Couple", icon: Users, description: "Couple marié / partenariat enregistré" },
 ];
 
 const transportModes = [
@@ -64,11 +151,21 @@ const transportModes = [
   { id: "none", name: "Pas de trajet", description: "Télétravail complet" },
 ];
 
+const maritalStatuses = [
+  { id: "single", name: "Célibataire", description: "Jamais marié(e)" },
+  { id: "married", name: "Marié(e)", description: "Union légale" },
+  { id: "divorced", name: "Divorcé(e)", description: "Mariage dissous" },
+  { id: "widowed", name: "Veuf/Veuve", description: "Conjoint décédé" },
+  { id: "separated", name: "Séparé(e)", description: "Séparation légale" },
+  { id: "partnership", name: "Partenariat enregistré", description: "Union civile" },
+];
+
 // Les statuts d'emploi pour les clients privés
 const employmentStatuses = [
   { id: "employed", name: "Salarié(e)", description: "Employé à temps plein ou partiel" },
   { id: "retired", name: "Retraité(e)", description: "AVS, AI, ou autre rente" },
   { id: "unemployed", name: "Au chômage", description: "Inscrit au chômage" },
+  { id: "selfemployed", name: "Indépendant(e)", description: "Activité indépendante" },
 ];
 
 // Les catégories de documents avec tooltips explicatifs
@@ -76,9 +173,17 @@ const documentCategories = [
   { id: "salary", name: "Certificat(s) de salaire", description: "De tous les employeurs", tooltip: "Document fourni par votre employeur indiquant votre salaire brut, les cotisations sociales et les impôts prélevés à la source." },
   { id: "pension", name: "Attestation de rente", description: "AVS, AI, LPP, etc.", tooltip: "Attestations de toutes vos rentes : AVS, AI, 2ème pilier (LPP), rentes étrangères, etc." },
   { id: "unemployment", name: "Attestation de chômage", description: "Indemnités chômage reçues", tooltip: "Attestation de l'office régional de placement (ORP) indiquant les indemnités chômage perçues durant l'année." },
-  { id: "business", name: "Comptes résultats et bilan", description: "Pour indépendants", tooltip: "États financiers complets de votre activité indépendante : compte de résultat, bilan, et annexes." },
+  { id: "business", name: "Comptes résultats et bilan", description: "Pour indépendants", tooltip: "États financiers complets de votre activité indépendante : compte de résultat, bilan, et annexes. Document obligatoire pour les indépendants." },
+  { id: "questionnaireIndependantVD", name: "Questionnaire général indépendant", description: "Canton de Vaud uniquement", tooltip: "Formulaire spécifique demandé par le canton de Vaud pour les indépendants. Contient des informations détaillées sur votre activité." },
+  { id: "questionnaireIndependantFR", name: "Questionnaire pour indépendants", description: "Canton de Fribourg", tooltip: "Formulaire complémentaire demandé par le canton de Fribourg pour les personnes exerçant une activité lucrative indépendante." },
+  { id: "questionnaireIndependantVS", name: "Formulaire activité indépendante", description: "Canton du Valais", tooltip: "Formulaire de renseignements complémentaires pour les contribuables exerçant une activité lucrative indépendante dans le canton du Valais." },
+  { id: "questionnaireIndependantNE", name: "Annexe activité indépendante", description: "Canton de Neuchâtel", tooltip: "Formulaire annexe pour les contribuables indépendants utilisant Clic & Tax dans le canton de Neuchâtel." },
+  { id: "avsIndependent", name: "Attestation AVS indépendant", description: "Cotisations personnelles", tooltip: "Attestation de votre caisse de compensation indiquant les cotisations AVS/AI/APG versées en tant qu'indépendant." },
+  { id: "amortization", name: "Tableau des amortissements", description: "Actifs professionnels", tooltip: "Tableau détaillant les amortissements de vos actifs professionnels (véhicule, matériel, mobilier, etc.)." },
+  { id: "businessBank", name: "Relevé compte professionnel", description: "Compte séparé", tooltip: "Relevé de votre compte bancaire professionnel (si séparé du compte privé) au 31 décembre." },
   { id: "bank", name: "Relevés bancaires au 31.12", description: "Tous vos comptes", tooltip: "Relevés de tous vos comptes bancaires et postaux montrant le solde au 31 décembre et les intérêts perçus." },
   { id: "stocks", name: "Relevés de titres au 31.12", description: "Actions, fonds, obligations", tooltip: "Relevé de dépôt de votre banque indiquant la valeur fiscale de vos titres au 31 décembre." },
+  { id: "stocksSale", name: "Justificatifs ventes titres", description: "Relevés de transactions", tooltip: "Relevés de transactions de votre banque/courtier montrant les achats et ventes de titres durant l'année (prix d'achat, prix de vente, dates)." },
   { id: "insurance", name: "Attestation primes maladie", description: "Primes LAMal payées", tooltip: "Attestation de votre caisse maladie indiquant le total des primes d'assurance obligatoire (LAMal) payées." },
   { id: "pillar3a", name: "Attestation pilier 3a", description: "Versements effectués", tooltip: "Attestation de votre banque ou assurance confirmant les versements effectués sur votre compte 3ème pilier A." },
   { id: "guard", name: "Frais de garde d'enfants", description: "Crèche, UAPE, maman de jour, cantine, camps", tooltip: "Factures et attestations des frais de garde : crèche, UAPE, maman de jour, cantine scolaire, camps de vacances." },
@@ -88,8 +193,19 @@ const documentCategories = [
   { id: "mortgage", name: "Attestation hypothécaire", description: "Intérêts, amortissements", tooltip: "Attestation de votre banque indiquant le solde de l'hypothèque, les intérêts payés et les amortissements." },
   { id: "renovations", name: "Factures gros travaux", description: "Rénovations, entretien", tooltip: "Factures des travaux d'entretien et de rénovation de votre bien immobilier (seuls les travaux d'entretien sont déductibles)." },
   { id: "property", name: "Documents immobiliers", description: "Charges, PPE, etc.", tooltip: "Décompte de charges de copropriété, attestations de frais d'entretien, etc." },
+  { id: "propertySale", name: "Documents vente immobilière", description: "Acte de vente, IGI", tooltip: "Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers, acte d'achat original, factures des travaux de plus-value effectués." },
   { id: "donations", name: "Attestations de dons", description: "Organisations d'utilité publique", tooltip: "Attestations de dons à des organisations reconnues d'utilité publique (associations, fondations, églises, partis politiques)." },
   { id: "other", name: "Autres justificatifs", description: "Frais professionnels, etc.", tooltip: "Justificatifs de frais professionnels, cotisations syndicales, formations, etc." },
+];
+
+// Documents spécifiques pour les Suisses de l'étranger
+const abroadDocumentCategories = [
+  { id: "taxResidenceCertificate", name: "Attestation de résidence fiscale", description: "Du pays de résidence", tooltip: "Certificat officiel de votre pays de résidence confirmant que vous y êtes domicilié fiscalement. Nécessaire pour appliquer la convention de double imposition.", required: true },
+  { id: "foreignIncome", name: "Justificatifs revenus étrangers", description: "Salaire, pension, etc.", tooltip: "Documents attestant vos revenus dans votre pays de résidence : fiches de salaire, attestations de pension, etc. Nécessaires pour déterminer le taux d'imposition.", required: true },
+  { id: "foreignTaxReturn", name: "Avis d'imposition étranger", description: "Dernière déclaration", tooltip: "Copie de votre dernière déclaration d'impôts ou avis d'imposition de votre pays de résidence.", required: false },
+  { id: "da1Form", name: "Formulaire DA-1", description: "Récupération impôt anticipé", tooltip: "Formulaire pour demander le remboursement de l'impôt anticipé suisse (35%) sur les dividendes et intérêts de source suisse.", required: false },
+  { id: "swissBankAbroad", name: "Relevés comptes suisses", description: "Banques en Suisse", tooltip: "Relevés de vos comptes bancaires suisses au 31 décembre, montrant le solde et les intérêts perçus.", required: false },
+  { id: "swissProperty", name: "Documents bien immobilier CH", description: "Si propriétaire en Suisse", tooltip: "Documents relatifs à votre bien immobilier en Suisse : estimation fiscale, décompte de charges, attestation hypothécaire.", required: false },
 ];
 
 const steps = [
@@ -111,6 +227,8 @@ interface UploadedFile {
   category: string;
   file: File; // Le fichier réel pour l'upload
   url?: string; // URL après upload vers Cloudinary
+  uploadStatus: "pending" | "uploading" | "success" | "error"; // Statut de l'upload
+  uploadError?: string; // Message d'erreur si échec
 }
 
 interface Workplace {
@@ -123,6 +241,7 @@ interface Workplace {
   employerReimbursement: boolean;
   reimbursementAmount: string;
   reimbursementType: "full" | "partial" | "none";
+  carJustification: string; // Justification pour l'utilisation de la voiture
 }
 
 const createEmptyWorkplace = (): Workplace => ({
@@ -135,7 +254,379 @@ const createEmptyWorkplace = (): Workplace => ({
   employerReimbursement: false,
   reimbursementAmount: "",
   reimbursementType: "none",
+  carJustification: "",
 });
+
+// Types de biens immobiliers
+const propertyTypes = [
+  { id: "apartment", name: "Appartement", description: "PPE ou copropriété" },
+  { id: "house", name: "Maison individuelle", description: "Villa, chalet" },
+  { id: "building", name: "Immeuble de rapport", description: "Plusieurs logements" },
+  { id: "land", name: "Terrain", description: "Non bâti" },
+  { id: "commercial", name: "Local commercial", description: "Bureau, commerce" },
+  { id: "parking", name: "Place de parc", description: "Garage, parking" },
+];
+
+// Usages des biens immobiliers
+const propertyUsages = [
+  { id: "main_residence", name: "Résidence principale", description: "Vous y habitez" },
+  { id: "secondary_residence", name: "Résidence secondaire", description: "Vacances, week-end" },
+  { id: "rented", name: "Bien loué", description: "Location à un tiers" },
+  { id: "rented_furnished", name: "Location meublée", description: "Airbnb, location saisonnière" },
+  { id: "vacant", name: "Vacant", description: "Non occupé, non loué" },
+  { id: "free_use", name: "Usage gratuit", description: "Prêté à un proche" },
+];
+
+// Interface pour un bien immobilier
+interface Property {
+  id: string;
+  // Identification
+  street: string;
+  npa: string;
+  city: string;
+  canton: string;
+  parcelNumber: string; // Numéro de parcelle cadastrale
+  // Caractéristiques
+  propertyType: string;
+  usage: string;
+  ownershipShare: string; // en pourcentage (100, 50, etc.)
+  acquisitionYear: string;
+  constructionYear: string; // Année de construction du bâtiment
+  // Valeurs fiscales
+  fiscalValue: string; // Valeur fiscale/cadastrale
+  rentalValue: string; // Valeur locative (si résidence)
+  // Revenus locatifs (si loué)
+  annualRent: string; // Loyers bruts annuels
+  charges: string; // Charges locatives perçues
+  // Hypothèque
+  hasMortgage: boolean;
+  mortgageBalance: string; // Solde de la dette
+  mortgageInterest: string; // Intérêts annuels
+  // Travaux
+  maintenanceCosts: string; // Frais d'entretien (forfait ou effectifs)
+  maintenanceType: "flat_rate" | "effective"; // Forfait ou frais effectifs
+}
+
+// Calcul du forfait d'entretien applicable selon l'âge du bâtiment
+const getMaintenanceFlatRate = (constructionYear: string): { rate: number; label: string } => {
+  if (!constructionYear) return { rate: 20, label: "20% (par défaut)" };
+  const year = parseInt(constructionYear);
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - year;
+  if (age <= 10) {
+    return { rate: 10, label: "10% (bâtiment de moins de 10 ans)" };
+  }
+  return { rate: 20, label: "20% (bâtiment de plus de 10 ans)" };
+};
+
+const createEmptyProperty = (): Property => ({
+  id: Math.random().toString(36).substr(2, 9),
+  street: "",
+  npa: "",
+  city: "",
+  canton: "",
+  parcelNumber: "",
+  propertyType: "",
+  usage: "",
+  ownershipShare: "100",
+  acquisitionYear: "",
+  constructionYear: "",
+  fiscalValue: "",
+  rentalValue: "",
+  annualRent: "",
+  charges: "",
+  hasMortgage: false,
+  mortgageBalance: "",
+  mortgageInterest: "",
+  maintenanceCosts: "",
+  maintenanceType: "flat_rate",
+});
+
+// Validation d'un bien immobilier - retourne les erreurs
+const validateProperty = (property: Property): string[] => {
+  const errors: string[] = [];
+
+  // Champs obligatoires
+  if (!property.street.trim()) errors.push("Adresse (rue et numéro)");
+  if (!property.npa.trim()) errors.push("NPA");
+  if (!property.city.trim()) errors.push("Localité");
+  if (!property.canton) errors.push("Canton du bien");
+  if (!property.propertyType) errors.push("Type de bien");
+  if (!property.usage) errors.push("Usage du bien");
+  if (!property.fiscalValue.trim()) errors.push("Valeur fiscale");
+
+  // Revenus locatifs obligatoires si bien loué
+  if ((property.usage === "rented" || property.usage === "rented_furnished") && !property.annualRent.trim()) {
+    errors.push("Loyers bruts annuels (obligatoire pour un bien loué)");
+  }
+
+  return errors;
+};
+
+// Vérifier si tous les biens sont valides
+const areAllPropertiesValid = (props: Property[]): boolean => {
+  return props.every(p => validateProperty(p).length === 0);
+};
+
+// === FONCTIONS DE VALIDATION ===
+
+// Valider une date de naissance (doit être dans le passé, âge raisonnable 18-120 ans)
+const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } => {
+  if (!dateStr || dateStr.trim() === "") {
+    return { valid: false, error: "Date de naissance requise" };
+  }
+
+  // Vérifier le format de la date (YYYY-MM-DD)
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateRegex.test(dateStr)) {
+    return { valid: false, error: "Format de date invalide (JJ.MM.AAAA)" };
+  }
+
+  const date = new Date(dateStr);
+  const today = new Date();
+  today.setHours(23, 59, 59, 999); // Fin de la journée pour comparaison
+
+  // Vérifier que la date est valide (pas de 31 février, etc.)
+  if (isNaN(date.getTime())) {
+    return { valid: false, error: "Date invalide" };
+  }
+
+  // Vérifier que les composants de la date correspondent (éviter les débordements de mois)
+  const [year, month, day] = dateStr.split("-").map(Number);
+  if (date.getFullYear() !== year || date.getMonth() + 1 !== month || date.getDate() !== day) {
+    return { valid: false, error: "Date invalide (jour inexistant)" };
+  }
+
+  // IMPORTANT: Pas dans le futur
+  if (date > today) {
+    return { valid: false, error: "La date de naissance ne peut pas être dans le futur" };
+  }
+
+  // Âge minimum 18 ans pour un contribuable
+  const age = Math.floor((today.getTime() - date.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+  if (age < 18) {
+    return { valid: false, error: "Le contribuable doit avoir au moins 18 ans" };
+  }
+
+  // Âge maximum raisonnable (120 ans)
+  if (age > 120) {
+    return { valid: false, error: "Date de naissance invalide (âge supérieur à 120 ans)" };
+  }
+
+  // Année de naissance minimale raisonnable (1900)
+  if (year < 1900) {
+    return { valid: false, error: "Année de naissance invalide (avant 1900)" };
+  }
+
+  return { valid: true };
+};
+
+// Valider un numéro de téléphone suisse
+const validatePhone = (phone: string): { valid: boolean; error?: string } => {
+  if (!phone || phone.trim() === "") {
+    return { valid: true }; // Téléphone optionnel
+  }
+
+  // Nettoyer le numéro (enlever espaces, tirets, parenthèses, points)
+  const cleaned = phone.replace(/[\s\-\(\)\.]/g, "");
+
+  // Vérifier la longueur minimale
+  if (cleaned.length < 10) {
+    return { valid: false, error: "Numéro trop court. Ex: +41 79 123 45 67" };
+  }
+
+  // Formats suisses acceptés:
+  // +41791234567 (international avec +) - 12 caractères
+  // 0041791234567 (international avec 00) - 13 caractères
+  // 0791234567 (national) - 10 caractères
+  const swissRegex = /^(\+41|0041|0)([1-9]\d{8})$/;
+
+  if (!swissRegex.test(cleaned)) {
+    return { valid: false, error: "Format suisse requis: +41 79 123 45 67 ou 079 123 45 67" };
+  }
+
+  // Vérifier que le préfixe est valide (mobile: 07x, fixe: 02x, 03x, 04x, etc.)
+  let nationalPart = "";
+  if (cleaned.startsWith("+41")) {
+    nationalPart = cleaned.substring(3);
+  } else if (cleaned.startsWith("0041")) {
+    nationalPart = cleaned.substring(4);
+  } else if (cleaned.startsWith("0")) {
+    nationalPart = cleaned.substring(1);
+  }
+
+  // Préfixes valides en Suisse
+  const validPrefixes = ["21", "22", "24", "26", "27", "31", "32", "33", "34", "41", "43", "44", "51", "52", "55", "56", "58", "61", "62", "71", "74", "76", "77", "78", "79", "81", "91"];
+  const prefix = nationalPart.substring(0, 2);
+  if (!validPrefixes.includes(prefix)) {
+    return { valid: false, error: `Préfixe téléphonique invalide (${prefix})` };
+  }
+
+  // Vérifier que ce n'est pas un numéro répétitif invalide
+  if (/^(\d)\1{8}$/.test(nationalPart)) {
+    return { valid: false, error: "Numéro de téléphone invalide" };
+  }
+
+  return { valid: true };
+};
+
+// Valider un numéro de contribuable suisse
+// Formats acceptés par canton:
+// VD: 9 chiffres (ex: 123.456.789 ou 123456789)
+// GE: 8-9 chiffres
+// VS: 6-10 chiffres
+// Etc.
+const validateTaxpayerNumber = (number: string, canton: string): { valid: boolean; error?: string } => {
+  if (!number || number.trim() === "") {
+    return { valid: false, error: "Numéro de contribuable requis" };
+  }
+
+  // Extraire uniquement les chiffres
+  const digitsOnly = number.replace(/[^\d]/g, "");
+
+  // Vérifications de base
+  if (digitsOnly.length < 6) {
+    return { valid: false, error: "Numéro trop court (minimum 6 chiffres)" };
+  }
+
+  if (digitsOnly.length > 15) {
+    return { valid: false, error: "Numéro trop long (maximum 15 chiffres)" };
+  }
+
+  // Vérifier que ce n'est pas une suite de chiffres identiques (ex: 111111, 000000)
+  if (/^(\d)\1+$/.test(digitsOnly)) {
+    return { valid: false, error: "Numéro invalide (chiffres tous identiques)" };
+  }
+
+  // Vérifier les patterns répétitifs (ex: 121212, 123123, 112233)
+  const isRepeatingPattern = (str: string): boolean => {
+    // Patterns de 2 chiffres répétés (121212, 131313)
+    if (str.length >= 6) {
+      const pattern2 = str.substring(0, 2);
+      if (str === pattern2.repeat(Math.ceil(str.length / 2)).substring(0, str.length)) {
+        return true;
+      }
+    }
+    // Patterns de 3 chiffres répétés (123123123)
+    if (str.length >= 6) {
+      const pattern3 = str.substring(0, 3);
+      if (str === pattern3.repeat(Math.ceil(str.length / 3)).substring(0, str.length)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  if (isRepeatingPattern(digitsOnly)) {
+    return { valid: false, error: "Numéro invalide (pattern répétitif)" };
+  }
+
+  // Vérifier que ce n'est pas une suite croissante/décroissante (123456789, 987654321)
+  const isSequential = (str: string): boolean => {
+    if (str.length < 5) return false; // Trop court pour être une suite significative
+    const digits = str.split("").map(Number);
+    let ascending = true;
+    let descending = true;
+    for (let i = 1; i < digits.length; i++) {
+      if (digits[i] !== digits[i-1] + 1) ascending = false;
+      if (digits[i] !== digits[i-1] - 1) descending = false;
+    }
+    return ascending || descending;
+  };
+
+  if (isSequential(digitsOnly)) {
+    return { valid: false, error: "Numéro invalide (suite séquentielle comme 123456)" };
+  }
+
+  // Vérifier que ce n'est pas un numéro commençant par trop de zéros
+  if (/^0{3,}/.test(digitsOnly)) {
+    return { valid: false, error: "Numéro invalide (trop de zéros au début)" };
+  }
+
+  // Vérifier les numéros "test" évidents
+  const invalidNumbers = [
+    "123456", "1234567", "12345678", "123456789",
+    "111111", "222222", "333333", "444444", "555555", "666666", "777777", "888888", "999999",
+    "000000", "100000", "100000000",
+    "112233", "112233445566",
+    "101010", "10101010",
+    "121212", "12121212",
+    "987654", "9876543", "98765432", "987654321",
+  ];
+  if (invalidNumbers.includes(digitsOnly)) {
+    return { valid: false, error: "Veuillez entrer votre vrai numéro de contribuable" };
+  }
+
+  // Validation spécifique par canton (longueur attendue)
+  const cantonRules: Record<string, { min: number; max: number }> = {
+    VD: { min: 8, max: 10 },
+    GE: { min: 7, max: 10 },
+    VS: { min: 6, max: 12 },
+    FR: { min: 6, max: 12 },
+    NE: { min: 6, max: 12 },
+    JU: { min: 6, max: 12 },
+  };
+
+  const rules = cantonRules[canton];
+  if (rules) {
+    if (digitsOnly.length < rules.min) {
+      return { valid: false, error: `Numéro trop court pour ${canton} (minimum ${rules.min} chiffres)` };
+    }
+    if (digitsOnly.length > rules.max) {
+      return { valid: false, error: `Numéro trop long pour ${canton} (maximum ${rules.max} chiffres)` };
+    }
+  }
+
+  return { valid: true };
+};
+
+// Valider un email
+const validateEmail = (email: string): { valid: boolean; error?: string } => {
+  if (!email || email.trim() === "") {
+    return { valid: false, error: "Email requis" };
+  }
+
+  // Regex email standard
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    return { valid: false, error: "Format email invalide" };
+  }
+
+  return { valid: true };
+};
+
+// === FIN FONCTIONS DE VALIDATION ===
+
+// Liste des cantons suisses pour les biens immobiliers
+const allCantons = [
+  { code: "AG", name: "Argovie" },
+  { code: "AI", name: "Appenzell Rhodes-Intérieures" },
+  { code: "AR", name: "Appenzell Rhodes-Extérieures" },
+  { code: "BE", name: "Berne" },
+  { code: "BL", name: "Bâle-Campagne" },
+  { code: "BS", name: "Bâle-Ville" },
+  { code: "FR", name: "Fribourg" },
+  { code: "GE", name: "Genève" },
+  { code: "GL", name: "Glaris" },
+  { code: "GR", name: "Grisons" },
+  { code: "JU", name: "Jura" },
+  { code: "LU", name: "Lucerne" },
+  { code: "NE", name: "Neuchâtel" },
+  { code: "NW", name: "Nidwald" },
+  { code: "OW", name: "Obwald" },
+  { code: "SG", name: "Saint-Gall" },
+  { code: "SH", name: "Schaffhouse" },
+  { code: "SO", name: "Soleure" },
+  { code: "SZ", name: "Schwytz" },
+  { code: "TG", name: "Thurgovie" },
+  { code: "TI", name: "Tessin" },
+  { code: "UR", name: "Uri" },
+  { code: "VD", name: "Vaud" },
+  { code: "VS", name: "Valais" },
+  { code: "ZG", name: "Zoug" },
+  { code: "ZH", name: "Zurich" },
+];
 
 // Clé pour localStorage
 const STORAGE_KEY = "neofidu_tax_request_form";
@@ -175,7 +666,10 @@ function clearStorage() {
 }
 
 export function TaxRequestForm() {
+  const { isEnglish } = useLanguage();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasResumedFromStorage, setHasResumedFromStorage] = useState(false);
+  const [lostFilesFromPreviousSession, setLostFilesFromPreviousSession] = useState<{ name: string; category: string }[]>([]);
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -183,25 +677,61 @@ export function TaxRequestForm() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeCategory, setActiveCategory] = useState<string>("bank");
 
+  // Service health check - CRITICAL: blocks submission if Cloudinary is down
+  const [servicesHealthy, setServicesHealthy] = useState<boolean | null>(null);
+  const [healthError, setHealthError] = useState<string>("");
+
+  // Anti-spam protection: form token generated on mount
+  const [formToken, setFormToken] = useState<number>(0);
+
   // Référence de la demande créée dans le backend
   const [taxRequestReference, setTaxRequestReference] = useState<string>("");
   const [isSavingRequest, setIsSavingRequest] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<{ message: string; failedFiles: string[] } | null>(null);
+
+  // Erreurs de validation des champs
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+  // Référence temporaire stable pour éviter les dossiers Cloudinary dupliqués
+  const tempReferenceRef = useRef<string>("");
 
   // Workplaces for adult 1 and adult 2 (spouse)
   const [workplaces1, setWorkplaces1] = useState<Workplace[]>([createEmptyWorkplace()]);
   const [workplaces2, setWorkplaces2] = useState<Workplace[]>([createEmptyWorkplace()]);
 
+  // Properties (biens immobiliers)
+  const [properties, setProperties] = useState<Property[]>([]);
+
+  // Children (enfants à charge) - detailed info
+  const [childrenData, setChildrenData] = useState<ChildData[]>([]);
+
   const [formData, setFormData] = useState({
     canton: "",
+    // Suisses de l'étranger
+    livesAbroad: false,
+    countryOfResidence: "",
+    abroadAddress: "", // Adresse complète à l'étranger
+    // Nouvelles questions séparées (étape 2)
+    familyStatus: "" as "" | "single" | "couple",
+    isIndependent: false,
+    // clientType est calculé automatiquement à partir de familyStatus et isIndependent
     clientType: "",
     // Statut d'emploi (pour clients privés non indépendants)
-    employmentStatus: "" as "" | "employed" | "retired" | "unemployed",
+    employmentStatus: "" as "" | "employed" | "retired" | "unemployed" | "selfemployed",
+    // Taux d'occupation en % (pour les salariés)
+    occupationRate: "" as string,
     // Second adulte pour couple
-    employmentStatus2: "" as "" | "employed" | "retired" | "unemployed",
+    employmentStatus2: "" as "" | "employed" | "retired" | "unemployed" | "selfemployed",
+    // Taux d'occupation en % pour le conjoint
+    occupationRate2: "" as string,
     firstName: "",
     lastName: "",
+    birthDate: "",
+    maritalStatus: "",
     firstName2: "",
     lastName2: "",
+    birthDate2: "",
     email: "",
     phone: "",
     // Numéros fiscaux (de la lettre de l'administration)
@@ -218,12 +748,18 @@ export function TaxRequestForm() {
     // Frais de garde
     hasGuardCosts: false,
     guardCosts: "",
+    // Repas hors domicile (jours de travail)
+    hasMealsOutside: false,
+    mealsOutsideDays: "",
     // Pensions alimentaires
     hasAlimonyReceived: false,
     alimonyReceived: "",
     hasAlimonyPaid: false,
     alimonyPaid: "",
     monthlyRent: "",
+    // Identité du bailleur/gérance (exigence NE, FR, JU)
+    landlordName: "",
+    landlordAddress: "",
     healthInsurance: "",
     // 3ème pilier
     hasPillar3a: false,
@@ -234,9 +770,63 @@ export function TaxRequestForm() {
     // Dettes et prêts
     hasDebts: false,
     debtsAmount: "",
+    // === SECTION INDÉPENDANTS - ADULTE 1 ===
+    // Informations sur l'activité indépendante
+    businessType: "", // Type d'activité (commerce, services, artisanat, etc.)
+    businessStartDate: "", // Date de début d'activité
+    hasIDE: false, // Numéro IDE (Identifiant des Entreprises)
+    ideNumber: "",
+    isRegisteredRC: false, // Inscrit au Registre du Commerce
+    hasVAT: false, // Assujetti à la TVA
+    vatNumber: "",
+    // Chiffres clés de l'activité
+    hasBusinessAccounts: false, // Dispose d'un bilan/compte de résultat préparé
+    businessRevenue: "", // Chiffre d'affaires annuel (si pas de bilan)
+    businessExpenses: "", // Charges annuelles (si pas de bilan)
+    businessNetIncome: "", // Bénéfice net (calculé ou déclaré)
+    // Cotisations sociales indépendant
+    hasAVSIndependent: false, // Cotisations AVS/AI/APG indépendant
+    avsIndependentAmount: "",
+    hasLPPVoluntary: false, // 2ème pilier facultatif
+    lppVoluntaryAmount: "",
+    // Frais professionnels
+    hasHomeOffice: false, // Bureau à domicile
+    homeOfficePercent: "", // % de la surface
+    homeOfficeAmount: "", // Montant du loyer attribué
+    hasBusinessVehicle: false, // Véhicule professionnel
+    businessVehiclePercent: "", // % utilisation professionnelle
+    businessVehicleExpenses: "", // Frais totaux véhicule
+    // === FIN SECTION INDÉPENDANTS ADULTE 1 ===
+    // === SECTION INDÉPENDANTS - ADULTE 2 (CONJOINT) ===
+    isIndependent2: false, // Le conjoint a une activité indépendante
+    businessType2: "",
+    businessStartDate2: "",
+    hasIDE2: false,
+    ideNumber2: "",
+    isRegisteredRC2: false,
+    hasVAT2: false,
+    vatNumber2: "",
+    hasBusinessAccounts2: false,
+    businessRevenue2: "",
+    businessExpenses2: "",
+    businessNetIncome2: "",
+    hasAVSIndependent2: false,
+    avsIndependentAmount2: "",
+    hasLPPVoluntary2: false,
+    lppVoluntaryAmount2: "",
+    hasHomeOffice2: false,
+    homeOfficePercent2: "",
+    homeOfficeAmount2: "",
+    hasBusinessVehicle2: false,
+    businessVehiclePercent2: "",
+    businessVehicleExpenses2: "",
+    // === FIN SECTION INDÉPENDANTS ADULTE 2 ===
     // Removed commute1/2 fields, replaced by workplaces1/2 arrays
     hasProperty: false,
     propertyCount: 1,
+    // Vente immobilière durant l'année
+    hasSoldProperty: false,
+    soldPropertyDetails: "",
     // Hypothèque (lié à la propriété)
     hasMortgage: false,
     mortgageAmount: "",
@@ -245,6 +835,8 @@ export function TaxRequestForm() {
     renovationsAmount: "",
     hasStocks: false,
     stocksCount: 1,
+    hasSoldStocks: false,
+    soldStocksDetails: "",
     deliveryMethod: "email",
     wantsReview: false,
     deadline: "standard",
@@ -254,21 +846,105 @@ export function TaxRequestForm() {
     paymentMethod: "card",
   });
 
+  // Generate form token on mount (for spam protection)
+  useEffect(() => {
+    setFormToken(Date.now());
+  }, []);
+
+  // CRITICAL: Warn user before leaving the page if they have unsaved data
+  // This prevents accidental loss of uploaded files (File objects can't be serialized to localStorage)
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      // Don't warn if form is submitted
+      if (isSubmitted) return;
+
+      // Warn if user is past step 2 (has started filling out the form)
+      const hasStartedForm = currentStep > 2;
+
+      // Warn if user has uploaded files (these will be lost!)
+      const hasUploadedFiles = uploadedFiles.length > 0;
+
+      // Warn if user has files that are still uploading
+      const hasFilesUploading = uploadedFiles.some(f => f.uploadStatus === "uploading");
+
+      // Warn if user has entered significant data
+      const hasFormData = formData.firstName !== "" || formData.lastName !== "" || formData.email !== "";
+
+      // Check if user should be warned
+      const shouldWarn = hasStartedForm || hasUploadedFiles || hasFilesUploading || hasFormData;
+
+      if (shouldWarn) {
+        // Standard way to trigger browser's "leave page?" dialog
+        e.preventDefault();
+        // Chrome requires returnValue to be set
+        e.returnValue = "";
+        return "";
+      }
+    };
+
+    // Add event listener
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [currentStep, uploadedFiles, formData.firstName, formData.lastName, formData.email, isSubmitted]);
+
+  // CRITICAL: Check if services are healthy on mount
+  useEffect(() => {
+    const checkHealth = async () => {
+      try {
+        const response = await fetch("/api/health");
+        const health = await response.json();
+
+        if (!health.services?.cloudinary) {
+          setServicesHealthy(false);
+          setHealthError("Le service de stockage des documents n'est pas disponible. Veuillez réessayer plus tard ou contacter contact@neofidu.ch");
+          console.error("❌ CRITICAL: Cloudinary not configured!", health);
+        } else {
+          setServicesHealthy(true);
+          setHealthError("");
+        }
+      } catch (error) {
+        console.error("Health check failed:", error);
+        // Don't block on health check failure - let upload endpoint handle it
+        setServicesHealthy(true);
+      }
+    };
+
+    checkHealth();
+    // Re-check every 5 minutes in case services come back online
+    const interval = setInterval(checkHealth, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Charger les données sauvegardées au montage du composant
   useEffect(() => {
     const saved = loadFromStorage();
     if (saved) {
+      // Marquer comme "reprise" seulement si des données significatives ont été chargées
+      if (saved.currentStep && saved.currentStep > 1) {
+        setHasResumedFromStorage(true);
+      }
       if (saved.currentStep) setCurrentStep(saved.currentStep);
       if (saved.formData) setFormData(prev => ({ ...prev, ...saved.formData }));
       if (saved.workplaces1) setWorkplaces1(saved.workplaces1);
       if (saved.workplaces2) setWorkplaces2(saved.workplaces2);
+      if (saved.properties) setProperties(saved.properties);
+      if (saved.childrenData) setChildrenData(saved.childrenData);
       if (saved.activeCategory) setActiveCategory(saved.activeCategory);
       if (saved.taxRequestReference) setTaxRequestReference(saved.taxRequestReference);
       // Note: Les fichiers uploadés ne peuvent pas être restaurés depuis localStorage
       // car les objets File ne sont pas sérialisables. Le client devra re-uploader.
-      if (saved.uploadedFilesMetadata) {
-        // On garde juste les métadonnées pour afficher ce qui a été uploadé
-        console.log("Fichiers précédemment uploadés:", saved.uploadedFilesMetadata);
+      if (saved.uploadedFilesMetadata && saved.uploadedFilesMetadata.length > 0) {
+        // Sauvegarder les métadonnées des fichiers perdus pour avertir l'utilisateur
+        const lostFiles = saved.uploadedFilesMetadata.map((f: { name: string; category: string }) => ({
+          name: f.name,
+          category: f.category,
+        }));
+        setLostFilesFromPreviousSession(lostFiles);
+        console.log("⚠️ Fichiers précédemment uploadés (à re-uploader):", lostFiles);
       }
     }
     setIsLoaded(true);
@@ -288,6 +964,8 @@ export function TaxRequestForm() {
       formData,
       workplaces1,
       workplaces2,
+      properties,
+      childrenData,
       activeCategory,
       taxRequestReference,
       // Sauvegarder les métadonnées des fichiers (pas les fichiers eux-mêmes)
@@ -302,12 +980,44 @@ export function TaxRequestForm() {
     };
 
     saveToStorage(dataToSave);
-  }, [currentStep, formData, workplaces1, workplaces2, activeCategory, taxRequestReference, uploadedFiles, isLoaded, isSubmitted]);
+  }, [currentStep, formData, workplaces1, workplaces2, properties, childrenData, activeCategory, taxRequestReference, uploadedFiles, isLoaded, isSubmitted]);
 
   // Scroll to top when step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentStep]);
+
+  // Calculer automatiquement clientType à partir de familyStatus et isIndependent
+  useEffect(() => {
+    let newClientType = "";
+    if (formData.familyStatus === "single") {
+      newClientType = formData.isIndependent ? "independent" : "private";
+    } else if (formData.familyStatus === "couple") {
+      // Pour les couples, on garde toujours "couple" comme clientType
+      // L'info "indépendant" est stockée séparément dans isIndependent
+      newClientType = "couple";
+    }
+    if (newClientType !== formData.clientType) {
+      setFormData((prev) => ({ ...prev, clientType: newClientType }));
+    }
+  }, [formData.familyStatus, formData.isIndependent, formData.clientType]);
+
+  // Réinitialiser l'état civil si l'utilisateur change de situation familiale
+  // et que l'état civil actuel n'est plus valide
+  useEffect(() => {
+    if (formData.familyStatus === "single") {
+      // Pour les déclarations individuelles, "married" et "partnership" ne sont pas valides
+      if (formData.maritalStatus === "married" || formData.maritalStatus === "partnership") {
+        setFormData((prev) => ({ ...prev, maritalStatus: "" }));
+      }
+    }
+    if (formData.familyStatus === "couple") {
+      // Pour les déclarations communes, seuls "married" et "partnership" sont valides
+      if (formData.maritalStatus && formData.maritalStatus !== "married" && formData.maritalStatus !== "partnership") {
+        setFormData((prev) => ({ ...prev, maritalStatus: "" }));
+      }
+    }
+  }, [formData.familyStatus, formData.maritalStatus]);
 
   const updateForm = (field: string, value: string | boolean | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -339,21 +1049,131 @@ export function TaxRequestForm() {
     );
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files) {
-      const newFiles: UploadedFile[] = Array.from(files).map((file) => ({
-        id: Math.random().toString(36).substr(2, 9),
-        name: file.name,
-        size: file.size,
-        category: activeCategory,
-        file: file, // Stocker le fichier pour l'upload ultérieur
-      }));
-      setUploadedFiles((prev) => [...prev, ...newFiles]);
+  // Property management functions
+  const addProperty = () => {
+    setProperties((prev) => [...prev, createEmptyProperty()]);
+  };
+
+  const removeProperty = (propertyId: string) => {
+    setProperties((prev) => prev.filter((p) => p.id !== propertyId));
+  };
+
+  const updateProperty = (propertyId: string, field: keyof Property, value: string | boolean) => {
+    setProperties((prev) =>
+      prev.map((p) =>
+        p.id === propertyId ? { ...p, [field]: value } : p
+      )
+    );
+  };
+
+  // Upload immédiat d'un fichier vers Cloudinary
+  const uploadFileToCloudinary = async (fileToUpload: UploadedFile): Promise<{ success: boolean; url?: string; error?: string }> => {
+    try {
+      // Générer une référence temporaire si nécessaire
+      if (!taxRequestReference && !tempReferenceRef.current) {
+        tempReferenceRef.current = `TEMP-${Date.now()}`;
+      }
+      const refToUse = taxRequestReference || tempReferenceRef.current;
+
+      const formDataUpload = new FormData();
+      formDataUpload.append("reference", refToUse);
+      formDataUpload.append("lastName", formData.lastName || "DRAFT");
+      formDataUpload.append("firstName", formData.firstName || "USER");
+      formDataUpload.append("files", fileToUpload.file);
+      formDataUpload.append("categories", fileToUpload.category);
+
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formDataUpload,
+      });
+
+      const result = await response.json();
+
+      if (result.success && result.documents && result.documents.length > 0) {
+        const uploadedDoc = result.documents[0];
+        if (uploadedDoc.url) {
+          return { success: true, url: uploadedDoc.url };
+        }
+      }
+
+      if (result.configMissing) {
+        return { success: false, error: "Stockage non configuré" };
+      }
+
+      return { success: false, error: result.error || "Échec de l'upload" };
+    } catch (error) {
+      console.error("Erreur upload fichier:", error);
+      return { success: false, error: "Erreur de connexion" };
     }
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    // Créer les nouveaux fichiers avec statut "uploading"
+    const newFiles: UploadedFile[] = Array.from(files).map((file) => ({
+      id: Math.random().toString(36).substr(2, 9),
+      name: file.name,
+      size: file.size,
+      category: activeCategory,
+      file: file,
+      uploadStatus: "uploading" as const,
+    }));
+
+    // Ajouter immédiatement à la liste avec statut "uploading"
+    setUploadedFiles((prev) => [...prev, ...newFiles]);
+
+    // Réinitialiser l'input
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+
+    // Uploader chaque fichier immédiatement
+    for (const newFile of newFiles) {
+      const result = await uploadFileToCloudinary(newFile);
+
+      setUploadedFiles((prev) =>
+        prev.map((f) =>
+          f.id === newFile.id
+            ? {
+                ...f,
+                uploadStatus: result.success ? "success" : "error",
+                url: result.url,
+                uploadError: result.error,
+              }
+            : f
+        )
+      );
+    }
+  };
+
+  // Réessayer l'upload d'un fichier
+  const retryFileUpload = async (fileId: string) => {
+    const fileToRetry = uploadedFiles.find((f) => f.id === fileId);
+    if (!fileToRetry) return;
+
+    // Mettre à jour le statut à "uploading"
+    setUploadedFiles((prev) =>
+      prev.map((f) =>
+        f.id === fileId ? { ...f, uploadStatus: "uploading" as const, uploadError: undefined } : f
+      )
+    );
+
+    const result = await uploadFileToCloudinary(fileToRetry);
+
+    setUploadedFiles((prev) =>
+      prev.map((f) =>
+        f.id === fileId
+          ? {
+              ...f,
+              uploadStatus: result.success ? "success" : "error",
+              url: result.url,
+              uploadError: result.error,
+            }
+          : f
+      )
+    );
   };
 
   const removeFile = (fileId: string) => {
@@ -362,6 +1182,23 @@ export function TaxRequestForm() {
 
   const getFilesByCategory = (category: string) => {
     return uploadedFiles.filter((f) => f.category === category);
+  };
+
+  // Récupère uniquement les fichiers RÉELLEMENT uploadés (avec URL)
+  const getSuccessfullyUploadedFilesByCategory = (category: string) => {
+    return uploadedFiles.filter(
+      (f) => f.category === category && f.uploadStatus === "success" && f.url
+    );
+  };
+
+  // Vérifie s'il y a des fichiers en cours d'upload
+  const hasFilesUploading = () => {
+    return uploadedFiles.some((f) => f.uploadStatus === "uploading");
+  };
+
+  // Vérifie s'il y a des fichiers en erreur
+  const hasFilesWithError = () => {
+    return uploadedFiles.some((f) => f.uploadStatus === "error");
   };
 
   // Génère la liste des documents avec leur statut obligatoire basé sur le profil
@@ -375,17 +1212,97 @@ export function TaxRequestForm() {
     const docs: { id: string; name: string; description: string; required: boolean; reason?: string; tooltip?: string }[] = [];
 
     // === DOCUMENTS LIÉS AU STATUT D'EMPLOI ===
-    if (formData.clientType === "independent") {
+    // Vérifier si quelqu'un est indépendant (personne seule ou l'un des conjoints)
+    const hasIndependentActivity = formData.isIndependent ||
+      formData.employmentStatus === "selfemployed" ||
+      formData.employmentStatus2 === "selfemployed" ||
+      (formData.familyStatus === "couple" && formData.isIndependent2);
+
+    if (hasIndependentActivity) {
       // Indépendants: comptes résultats et bilan obligatoires
       docs.push({
         id: "business",
         name: "Comptes résultats et bilan",
         description: "Pour indépendants",
         required: true,
-        reason: "Obligatoire pour les indépendants",
+        reason: "Obligatoire pour les indépendants - contient vos revenus et charges",
         tooltip: getDocumentTooltip("business")
       });
-    } else {
+
+      // Questionnaires spécifiques par canton pour les indépendants
+      if (formData.canton === "VD") {
+        docs.push({
+          id: "questionnaireIndependantVD",
+          name: "Questionnaire général indépendant",
+          description: "Canton de Vaud uniquement",
+          required: true,
+          reason: "Document obligatoire exigé par le canton de Vaud pour les indépendants",
+          tooltip: getDocumentTooltip("questionnaireIndependantVD")
+        });
+      }
+      if (formData.canton === "FR") {
+        docs.push({
+          id: "questionnaireIndependantFR",
+          name: "Questionnaire pour indépendants",
+          description: "Canton de Fribourg",
+          required: true,
+          reason: "Formulaire requis par le canton de Fribourg pour les activités indépendantes",
+          tooltip: getDocumentTooltip("questionnaireIndependantFR")
+        });
+      }
+      if (formData.canton === "VS") {
+        docs.push({
+          id: "questionnaireIndependantVS",
+          name: "Formulaire activité indépendante",
+          description: "Canton du Valais",
+          required: true,
+          reason: "Formulaire de renseignements exigé par le canton du Valais",
+          tooltip: getDocumentTooltip("questionnaireIndependantVS")
+        });
+      }
+      if (formData.canton === "NE") {
+        docs.push({
+          id: "questionnaireIndependantNE",
+          name: "Annexe activité indépendante",
+          description: "Canton de Neuchâtel",
+          required: true,
+          reason: "Annexe obligatoire pour Clic & Tax (canton de Neuchâtel)",
+          tooltip: getDocumentTooltip("questionnaireIndependantNE")
+        });
+      }
+
+      // Attestation AVS indépendant (recommandé)
+      if (formData.hasAVSIndependent || (formData.familyStatus === "couple" && formData.hasAVSIndependent2)) {
+        docs.push({
+          id: "avsIndependent",
+          name: "Attestation AVS indépendant",
+          description: "Cotisations personnelles",
+          required: true,
+          reason: "Cotisations AVS indépendant déclarées",
+          tooltip: getDocumentTooltip("avsIndependent")
+        });
+      }
+      // Tableau des amortissements (recommandé si actifs)
+      docs.push({
+        id: "amortization",
+        name: "Tableau des amortissements",
+        description: "Actifs professionnels",
+        required: false,
+        reason: "Recommandé si vous avez des actifs professionnels",
+        tooltip: getDocumentTooltip("amortization")
+      });
+      // Relevé compte professionnel (recommandé)
+      docs.push({
+        id: "businessBank",
+        name: "Relevé compte professionnel",
+        description: "Compte séparé",
+        required: false,
+        reason: "Recommandé si vous avez un compte professionnel séparé",
+        tooltip: getDocumentTooltip("businessBank")
+      });
+    }
+
+    if (formData.clientType !== "independent") {
       // Clients privés ou couples - selon leur statut d'emploi
       const hasEmployed = formData.employmentStatus === "employed" ||
         (formData.clientType === "couple" && formData.employmentStatus2 === "employed");
@@ -455,6 +1372,18 @@ export function TaxRequestForm() {
         required: true,
         reason: "Obligatoire car vous avez déclaré des actions/fonds",
         tooltip: getDocumentTooltip("stocks")
+      });
+    }
+
+    // === VENTES DE TITRES ===
+    if (formData.hasSoldStocks) {
+      docs.push({
+        id: "stocksSale",
+        name: "Justificatifs ventes titres",
+        description: "Relevés de transactions",
+        required: true,
+        reason: `Obligatoire car vous avez vendu des titres en ${formData.taxYear}`,
+        tooltip: getDocumentTooltip("stocksSale")
       });
     }
 
@@ -565,6 +1494,58 @@ export function TaxRequestForm() {
       });
     }
 
+    // === VENTE IMMOBILIÈRE ===
+    if (formData.hasSoldProperty) {
+      docs.push({
+        id: "propertySale",
+        name: "Documents vente immobilière",
+        description: "Acte de vente, IGI",
+        required: true,
+        reason: `Obligatoire car vous avez vendu un bien en ${formData.taxYear}`,
+        tooltip: getDocumentTooltip("propertySale")
+      });
+    }
+
+    // === DOCUMENTS SUISSES DE L'ÉTRANGER ===
+    if (formData.livesAbroad) {
+      // Attestation de résidence fiscale (obligatoire)
+      docs.push({
+        id: "taxResidenceCertificate",
+        name: "Attestation de résidence fiscale",
+        description: "Du pays de résidence",
+        required: true,
+        reason: "Obligatoire pour les Suisses de l'étranger (convention de double imposition)",
+        tooltip: abroadDocumentCategories.find(d => d.id === "taxResidenceCertificate")?.tooltip
+      });
+      // Justificatifs revenus étrangers (obligatoire)
+      docs.push({
+        id: "foreignIncome",
+        name: "Justificatifs revenus étrangers",
+        description: "Salaire, pension, etc.",
+        required: true,
+        reason: "Obligatoire pour déterminer le taux d'imposition applicable",
+        tooltip: abroadDocumentCategories.find(d => d.id === "foreignIncome")?.tooltip
+      });
+      // Avis d'imposition étranger (recommandé)
+      docs.push({
+        id: "foreignTaxReturn",
+        name: "Avis d'imposition étranger",
+        description: "Dernière déclaration",
+        required: false,
+        reason: "Recommandé pour justifier les impôts payés à l'étranger",
+        tooltip: abroadDocumentCategories.find(d => d.id === "foreignTaxReturn")?.tooltip
+      });
+      // Formulaire DA-1 (si dividendes/intérêts suisses)
+      docs.push({
+        id: "da1Form",
+        name: "Formulaire DA-1",
+        description: "Récupération impôt anticipé",
+        required: false,
+        reason: "Si vous souhaitez récupérer l'impôt anticipé suisse (35%)",
+        tooltip: abroadDocumentCategories.find(d => d.id === "da1Form")?.tooltip
+      });
+    }
+
     // === AUTRES DOCUMENTS (optionnels) ===
     docs.push({
       id: "other",
@@ -577,16 +1558,17 @@ export function TaxRequestForm() {
     return docs;
   };
 
-  // Vérifie si tous les documents obligatoires ont été téléchargés
+  // Vérifie si tous les documents obligatoires ont été téléchargés ET uploadés avec succès
   const allRequiredDocumentsUploaded = () => {
     const requiredDocs = getDocumentsWithStatus().filter(d => d.required);
-    return requiredDocs.every(doc => getFilesByCategory(doc.id).length > 0);
+    // Vérifier que chaque document obligatoire a au moins un fichier RÉELLEMENT uploadé
+    return requiredDocs.every(doc => getSuccessfullyUploadedFilesByCategory(doc.id).length > 0);
   };
 
-  // Compte les documents obligatoires manquants
+  // Compte les documents obligatoires manquants (pas de fichier OU upload échoué)
   const getMissingRequiredDocuments = () => {
     const requiredDocs = getDocumentsWithStatus().filter(d => d.required);
-    return requiredDocs.filter(doc => getFilesByCategory(doc.id).length === 0);
+    return requiredDocs.filter(doc => getSuccessfullyUploadedFilesByCategory(doc.id).length === 0);
   };
 
   const formatFileSize = (bytes: number) => {
@@ -600,13 +1582,19 @@ export function TaxRequestForm() {
   // Tous les prix sont TTC (chiffres ronds)
   const calculatePrice = () => {
     let price = 50; // Prix de base TTC
-    if (formData.clientType === "couple") price += 20;
-    if (formData.clientType === "independent") price += 40;
+    // Supplément Suisse de l'étranger (complexité accrue : double imposition, etc.)
+    if (formData.livesAbroad) price += 50;
+    // Supplément couple
+    if (formData.familyStatus === "couple") price += 20;
+    // Supplément indépendant adulte 1
+    if (formData.isIndependent) price += 40;
+    // Supplément indépendant adulte 2 (conjoint)
+    if (formData.familyStatus === "couple" && formData.isIndependent2) price += 40;
     if (formData.hasChildren) price += 10 * formData.childrenCount;
-    if (formData.hasProperty) price += 50 * formData.propertyCount;
-    if (formData.hasStocks && formData.stocksCount > 5) price += 20;
+    if (formData.hasProperty && properties.length > 0) price += 50 * properties.length;
+    if (formData.hasStocks && formData.stocksCount > 2) price += 20;
     if (formData.deliveryMethod === "post") price += 20;
-    if (formData.wantsReview) price += 30;
+    // Option téléphone supprimée
     if (formData.deadline === "extended") price += 20;
     if (formData.deadline === "express") price += 120;
     return price;
@@ -622,46 +1610,128 @@ export function TaxRequestForm() {
   };
 
   const canProceed = () => {
-    if (currentStep === 1) return formData.canton !== "";
-    if (currentStep === 2) return formData.clientType !== "";
+    if (currentStep === 1) {
+      // Canton obligatoire
+      if (!formData.canton) return false;
+      // Si réside à l'étranger, le pays doit être sélectionné
+      if (formData.livesAbroad && !formData.countryOfResidence) return false;
+      return true;
+    }
+    // L'étape 2 nécessite que les 2 questions soient répondues
+    if (currentStep === 2) return formData.familyStatus !== "";
     if (currentStep === 3) {
-      const taxpayerNumberValid = /^[\d.\-]{5,20}$/.test(formData.taxpayerNumber);
-      const declarationCodeValid = formData.declarationCode.length >= 4;
-      return (
-        formData.firstName &&
-        formData.lastName &&
-        formData.email &&
-        formData.taxpayerNumber &&
-        taxpayerNumberValid &&
-        formData.declarationCode &&
-        declarationCodeValid &&
-        formData.street &&
-        formData.npa &&
-        formData.city
-      );
+      // Simple validation without setState (validation errors are set via onBlur/onChange handlers)
+      // Validation du numéro de contribuable
+      const taxpayerValidation = validateTaxpayerNumber(formData.taxpayerNumber, formData.canton);
+      if (!taxpayerValidation.valid) return false;
+
+      // Validation du code de déclaration
+      if (!formData.declarationCode || formData.declarationCode.length < 4) return false;
+
+      // Validation de la date de naissance
+      const birthDateValidation = validateBirthDate(formData.birthDate);
+      if (!birthDateValidation.valid) return false;
+
+      // Validation de l'état civil
+      if (!formData.maritalStatus) return false;
+
+      // Validation du conjoint pour les couples
+      if (formData.clientType === "couple") {
+        if (!formData.firstName2) return false;
+        if (!formData.lastName2) return false;
+
+        const birthDate2Validation = validateBirthDate(formData.birthDate2);
+        if (!birthDate2Validation.valid) return false;
+      }
+
+      // Validation de l'email
+      const emailValidation = validateEmail(formData.email);
+      if (!emailValidation.valid) return false;
+
+      // Validation du téléphone (optionnel mais doit être valide si renseigné)
+      if (formData.phone) {
+        const phoneValidation = validatePhone(formData.phone);
+        if (!phoneValidation.valid) return false;
+      }
+
+      // Validation des champs obligatoires
+      if (!formData.firstName) return false;
+      if (!formData.lastName) return false;
+      if (!formData.street) return false;
+      if (!formData.npa) return false;
+      if (!formData.city) return false;
+
+      return true;
     }
     if (currentStep === 4) {
       // Statut d'emploi obligatoire pour les non-indépendants
       if (formData.clientType !== "independent") {
         if (!formData.employmentStatus) return false;
+        // Taux d'occupation obligatoire pour les salariés
+        if (formData.employmentStatus === "employed" && !formData.occupationRate) return false;
         // Pour les couples, le second adulte doit aussi avoir un statut
         if (formData.clientType === "couple" && !formData.employmentStatus2) return false;
+        // Taux d'occupation obligatoire pour le conjoint salarié
+        if (formData.clientType === "couple" && formData.employmentStatus2 === "employed" && !formData.occupationRate2) return false;
       }
+
+      // Validation pour les indépendants adulte 1: ils doivent avoir soit un bilan, soit le CA/charges
+      if (formData.isIndependent) {
+        // Le type d'activité est obligatoire
+        if (!formData.businessType.trim()) return false;
+        // Il faut soit avoir un bilan préparé, soit avoir rempli le CA et les charges
+        const hasBusinessFinancials = formData.hasBusinessAccounts ||
+          (formData.businessRevenue.trim() !== "" && formData.businessExpenses.trim() !== "");
+        if (!hasBusinessFinancials) return false;
+      }
+
+      // Validation pour les indépendants adulte 2 (conjoint)
+      if (formData.familyStatus === "couple" && formData.isIndependent2) {
+        // Le type d'activité est obligatoire
+        if (!formData.businessType2.trim()) return false;
+        // Il faut soit avoir un bilan préparé, soit avoir rempli le CA et les charges
+        const hasBusinessFinancials2 = formData.hasBusinessAccounts2 ||
+          (formData.businessRevenue2.trim() !== "" && formData.businessExpenses2.trim() !== "");
+        if (!hasBusinessFinancials2) return false;
+      }
+
       // At least one workplace for adult 1 must have a transport mode selected
       const adult1HasTransport = workplaces1.some((wp) => wp.transportMode !== "");
+      // For car transport, justification is required
+      const adult1CarJustificationOk = workplaces1.every((wp) =>
+        wp.transportMode !== "car" || (wp.transportMode === "car" && wp.carJustification.trim().length > 0)
+      );
       // For couples, adult 2 must also have at least one transport mode selected
       if (formData.clientType === "couple") {
         const adult2HasTransport = workplaces2.some((wp) => wp.transportMode !== "");
-        return adult1HasTransport && adult2HasTransport;
+        const adult2CarJustificationOk = workplaces2.every((wp) =>
+          wp.transportMode !== "car" || (wp.transportMode === "car" && wp.carJustification.trim().length > 0)
+        );
+        return adult1HasTransport && adult2HasTransport && adult1CarJustificationOk && adult2CarJustificationOk;
       }
-      return adult1HasTransport;
+      return adult1HasTransport && adult1CarJustificationOk;
+    }
+    if (currentStep === 5) {
+      // Si pas de propriété, on peut passer
+      if (!formData.hasProperty) return true;
+      // Si propriété déclarée, au moins un bien doit exister et tous doivent être valides
+      if (properties.length === 0) return false;
+      return areAllPropertiesValid(properties);
     }
     if (currentStep === 7) {
       // Si envoi par courrier postal, pas besoin de documents uploadés
       if (formData.deliveryMethod === "post") {
         return true;
       }
-      // Sinon, tous les documents obligatoires doivent être téléchargés
+      // Bloquer si des fichiers sont en cours d'upload
+      if (hasFilesUploading()) {
+        return false;
+      }
+      // Bloquer si des fichiers ont échoué (l'utilisateur doit réessayer ou les supprimer)
+      if (hasFilesWithError()) {
+        return false;
+      }
+      // Sinon, tous les documents obligatoires doivent être uploadés avec succès
       return allRequiredDocumentsUploaded();
     }
     if (currentStep === 8)
@@ -670,19 +1740,44 @@ export function TaxRequestForm() {
   };
 
   // Sauvegarder la demande dans le backend avant paiement
-  // NOTE: Les documents ne sont PAS uploadés ici - seulement après paiement réussi
+  // NOTE: Les documents sont maintenant uploadés IMMÉDIATEMENT à l'étape 7 (Documents)
+  // pour éviter la perte des objets File si l'utilisateur ferme l'onglet
   const saveTaxRequest = async () => {
-    if (taxRequestReference) return taxRequestReference; // Déjà sauvegardée
-
     setIsSavingRequest(true);
     try {
-      // Préparer la liste des documents (métadonnées seulement, pas d'upload)
-      // L'upload vers Cloudinary se fera APRÈS le paiement réussi
-      const pendingDocuments = uploadedFiles.map(f => ({
+      // Vérifier qu'il n'y a pas de fichiers en cours d'upload ou en erreur
+      const filesUploading = uploadedFiles.filter(f => f.uploadStatus === "uploading");
+      const filesWithError = uploadedFiles.filter(f => f.uploadStatus === "error");
+
+      if (filesUploading.length > 0) {
+        console.error("❌ Des fichiers sont encore en cours d'upload");
+        setSaveError("Veuillez attendre que tous les fichiers soient uploadés.");
+        setIsSavingRequest(false);
+        return null;
+      }
+
+      if (filesWithError.length > 0) {
+        console.error("❌ Des fichiers ont échoué à l'upload:", filesWithError.map(f => f.name));
+        setUploadError({
+          message: `${filesWithError.length} fichier(s) n'ont pas pu être uploadés. Veuillez réessayer ou les supprimer.`,
+          failedFiles: filesWithError.map(f => f.name),
+        });
+        setIsSavingRequest(false);
+        return null;
+      }
+
+      // Récupérer tous les fichiers uploadés avec succès
+      const successfullyUploadedFiles = uploadedFiles.filter(
+        f => f.uploadStatus === "success" && f.url
+      );
+
+      const uploadedDocuments = successfullyUploadedFiles.map(f => ({
         category: f.category,
         name: f.name,
-        // Pas d'URL - sera ajoutée après upload post-paiement
+        url: f.url,
       }));
+
+      console.log(`📎 ${uploadedDocuments.length} documents déjà uploadés inclus dans la demande`);
 
       // Préparer toutes les données du formulaire
       const allWorkplaces = [
@@ -698,8 +1793,11 @@ export function TaxRequestForm() {
         // Client
         firstName: formData.firstName,
         lastName: formData.lastName,
+        birthDate: formData.birthDate,
+        maritalStatus: formData.maritalStatus,
         firstName2: formData.clientType === "couple" ? formData.firstName2 : undefined,
         lastName2: formData.clientType === "couple" ? formData.lastName2 : undefined,
+        birthDate2: formData.clientType === "couple" ? formData.birthDate2 : undefined,
         email: formData.email,
         phone: formData.phone,
         street: formData.street,
@@ -709,24 +1807,53 @@ export function TaxRequestForm() {
         canton: formData.canton,
         cantonName: cantons.find(c => c.code === formData.canton)?.name || formData.canton,
         cantonCode: formData.canton,
+        // Suisse de l'étranger
+        livesAbroad: formData.livesAbroad,
+        countryOfResidence: formData.livesAbroad ? formData.countryOfResidence : undefined,
+        countryOfResidenceName: formData.livesAbroad ? countriesAbroad.find(c => c.code === formData.countryOfResidence)?.name : undefined,
+        abroadAddress: formData.livesAbroad ? formData.abroadAddress : undefined,
         taxYear: formData.taxYear,
         taxpayerNumber: formData.taxpayerNumber,
         declarationCode: formData.declarationCode,
         clientType: formData.clientType,
+        familyStatus: formData.familyStatus,
+        isIndependent: formData.isIndependent,
         employmentStatus: formData.employmentStatus,
+        occupationRate: formData.occupationRate,
         employmentStatus2: formData.clientType === "couple" ? formData.employmentStatus2 : undefined,
+        occupationRate2: formData.clientType === "couple" ? formData.occupationRate2 : undefined,
         // Situation
         hasMoved: formData.hasMoved,
         hasChildren: formData.hasChildren,
         childrenCount: formData.childrenCount,
+        // Detailed children data
+        children: childrenData.map(c => ({
+          firstName: c.firstName,
+          lastName: c.lastName,
+          birthDate: c.birthDate,
+          activity: c.activity,
+          isDependent: c.isDependent,
+          dependentPercentage: c.dependentPercentage,
+          custodyType: c.custodyType,
+          hasGuardCosts: c.hasGuardCosts,
+          guardCostsAmount: c.guardCostsAmount,
+          guardCostsDescription: c.guardCostsDescription,
+        })),
         monthlyRent: formData.monthlyRent,
+        // Identité bailleur (exigence NE, FR, JU)
+        landlordName: formData.landlordName,
+        landlordAddress: formData.landlordAddress,
         // Financial
         hasPillar3a: formData.hasPillar3a,
         pillar3aAmount: formData.pillar3aAmount,
         hasStocks: formData.hasStocks,
         stocksCount: formData.stocksCount,
+        hasSoldStocks: formData.hasSoldStocks,
+        soldStocksDetails: formData.hasSoldStocks ? formData.soldStocksDetails : undefined,
         hasGuardCosts: formData.hasGuardCosts,
         guardCosts: formData.guardCosts,
+        hasMealsOutside: formData.hasMealsOutside,
+        mealsOutsideDays: formData.mealsOutsideDays,
         hasAlimonyReceived: formData.hasAlimonyReceived,
         alimonyReceived: formData.alimonyReceived,
         hasAlimonyPaid: formData.hasAlimonyPaid,
@@ -735,9 +1862,88 @@ export function TaxRequestForm() {
         donationsAmount: formData.donationsAmount,
         hasDebts: formData.hasDebts,
         debtsAmount: formData.debtsAmount,
+        // Independent business info
+        businessType: formData.isIndependent ? formData.businessType : undefined,
+        businessStartDate: formData.isIndependent ? formData.businessStartDate : undefined,
+        hasIDE: formData.isIndependent ? formData.hasIDE : undefined,
+        ideNumber: formData.isIndependent && formData.hasIDE ? formData.ideNumber : undefined,
+        isRegisteredRC: formData.isIndependent ? formData.isRegisteredRC : undefined,
+        hasVAT: formData.isIndependent ? formData.hasVAT : undefined,
+        vatNumber: formData.isIndependent && formData.hasVAT ? formData.vatNumber : undefined,
+        // Business finances
+        hasBusinessAccounts: formData.isIndependent ? formData.hasBusinessAccounts : undefined,
+        businessRevenue: formData.isIndependent && !formData.hasBusinessAccounts ? formData.businessRevenue : undefined,
+        businessExpenses: formData.isIndependent && !formData.hasBusinessAccounts ? formData.businessExpenses : undefined,
+        businessNetIncome: formData.isIndependent && !formData.hasBusinessAccounts && formData.businessRevenue && formData.businessExpenses
+          ? String(Number(formData.businessRevenue) - Number(formData.businessExpenses))
+          : undefined,
+        // Social contributions
+        hasAVSIndependent: formData.isIndependent ? formData.hasAVSIndependent : undefined,
+        avsIndependentAmount: formData.isIndependent && formData.hasAVSIndependent ? formData.avsIndependentAmount : undefined,
+        hasLPPVoluntary: formData.isIndependent ? formData.hasLPPVoluntary : undefined,
+        lppVoluntaryAmount: formData.isIndependent && formData.hasLPPVoluntary ? formData.lppVoluntaryAmount : undefined,
+        hasHomeOffice: formData.isIndependent ? formData.hasHomeOffice : undefined,
+        homeOfficePercent: formData.isIndependent && formData.hasHomeOffice ? formData.homeOfficePercent : undefined,
+        homeOfficeAmount: formData.isIndependent && formData.hasHomeOffice ? formData.homeOfficeAmount : undefined,
+        hasBusinessVehicle: formData.isIndependent ? formData.hasBusinessVehicle : undefined,
+        businessVehiclePercent: formData.isIndependent && formData.hasBusinessVehicle ? formData.businessVehiclePercent : undefined,
+        businessVehicleExpenses: formData.isIndependent && formData.hasBusinessVehicle ? formData.businessVehicleExpenses : undefined,
+        // Independent business info - Spouse (Adult 2)
+        isIndependent2: formData.familyStatus === "couple" ? formData.isIndependent2 : undefined,
+        businessType2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.businessType2 : undefined,
+        businessStartDate2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.businessStartDate2 : undefined,
+        hasIDE2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.hasIDE2 : undefined,
+        ideNumber2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasIDE2 ? formData.ideNumber2 : undefined,
+        isRegisteredRC2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.isRegisteredRC2 : undefined,
+        hasVAT2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.hasVAT2 : undefined,
+        vatNumber2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasVAT2 ? formData.vatNumber2 : undefined,
+        hasBusinessAccounts2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.hasBusinessAccounts2 : undefined,
+        businessRevenue2: formData.familyStatus === "couple" && formData.isIndependent2 && !formData.hasBusinessAccounts2 ? formData.businessRevenue2 : undefined,
+        businessExpenses2: formData.familyStatus === "couple" && formData.isIndependent2 && !formData.hasBusinessAccounts2 ? formData.businessExpenses2 : undefined,
+        businessNetIncome2: formData.familyStatus === "couple" && formData.isIndependent2 && !formData.hasBusinessAccounts2 && formData.businessRevenue2 && formData.businessExpenses2
+          ? String(Number(formData.businessRevenue2) - Number(formData.businessExpenses2))
+          : undefined,
+        hasAVSIndependent2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.hasAVSIndependent2 : undefined,
+        avsIndependentAmount2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasAVSIndependent2 ? formData.avsIndependentAmount2 : undefined,
+        hasLPPVoluntary2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.hasLPPVoluntary2 : undefined,
+        lppVoluntaryAmount2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasLPPVoluntary2 ? formData.lppVoluntaryAmount2 : undefined,
+        hasHomeOffice2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.hasHomeOffice2 : undefined,
+        homeOfficePercent2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasHomeOffice2 ? formData.homeOfficePercent2 : undefined,
+        homeOfficeAmount2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasHomeOffice2 ? formData.homeOfficeAmount2 : undefined,
+        hasBusinessVehicle2: formData.familyStatus === "couple" && formData.isIndependent2 ? formData.hasBusinessVehicle2 : undefined,
+        businessVehiclePercent2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasBusinessVehicle2 ? formData.businessVehiclePercent2 : undefined,
+        businessVehicleExpenses2: formData.familyStatus === "couple" && formData.isIndependent2 && formData.hasBusinessVehicle2 ? formData.businessVehicleExpenses2 : undefined,
         // Property
         hasProperty: formData.hasProperty,
-        propertyCount: formData.propertyCount,
+        propertyCount: properties.length,
+        hasSoldProperty: formData.hasSoldProperty,
+        soldPropertyDetails: formData.hasSoldProperty ? formData.soldPropertyDetails : undefined,
+        properties: properties.map(p => ({
+          street: p.street,
+          npa: p.npa,
+          city: p.city,
+          canton: p.canton,
+          cantonName: allCantons.find(c => c.code === p.canton)?.name,
+          parcelNumber: p.parcelNumber,
+          propertyType: p.propertyType,
+          propertyTypeName: propertyTypes.find(t => t.id === p.propertyType)?.name,
+          usage: p.usage,
+          usageName: propertyUsages.find(u => u.id === p.usage)?.name,
+          ownershipShare: p.ownershipShare,
+          acquisitionYear: p.acquisitionYear,
+          constructionYear: p.constructionYear,
+          maintenanceFlatRate: getMaintenanceFlatRate(p.constructionYear).rate,
+          fiscalValue: p.fiscalValue,
+          rentalValue: p.rentalValue,
+          annualRent: p.annualRent,
+          charges: p.charges,
+          hasMortgage: p.hasMortgage,
+          mortgageBalance: p.mortgageBalance,
+          mortgageInterest: p.mortgageInterest,
+          maintenanceCosts: p.maintenanceCosts,
+          maintenanceType: p.maintenanceType,
+        })),
+        // Legacy fields (kept for backward compatibility)
         hasMortgage: formData.hasMortgage,
         mortgageAmount: formData.mortgageAmount,
         hasRenovations: formData.hasRenovations,
@@ -749,32 +1955,48 @@ export function TaxRequestForm() {
         wantsReview: formData.wantsReview,
         deadline: formData.deadline,
         comments: formData.comments,
-        // Documents (métadonnées seulement - upload après paiement)
-        documents: pendingDocuments,
+        // Documents (déjà uploadés vers Cloudinary avant paiement)
+        documents: uploadedDocuments,
       };
 
       // Sauvegarder la demande (documents seront uploadés après paiement)
+      // Si une référence existe déjà, on met à jour la demande existante
       const response = await fetch("/api/tax-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify({
+          ...requestData,
+          existingReference: taxRequestReference || undefined, // Envoyer la référence existante si elle existe
+          _formToken: formToken, // Anti-spam protection
+        }),
       });
 
       const data = await response.json();
 
       if (data.success && data.reference) {
         setTaxRequestReference(data.reference);
-        console.log("📋 Demande fiscale sauvegardée:", data.reference, "| Storage:", data.storage);
+        if (data.existing) {
+          console.log("📋 Demande existante récupérée:", data.reference, "| Message:", data.message);
+        } else {
+          console.log("📋 Demande fiscale sauvegardée:", data.reference, "| Storage:", data.storage);
+        }
         if (data.warning) {
           console.warn("⚠️", data.warning);
         }
         return data.reference;
       } else {
         console.error("Erreur sauvegarde demande:", data.error);
+        setSaveError(
+          data.error || "Une erreur est survenue lors de l'enregistrement de votre demande. " +
+          "Veuillez réessayer. Si le problème persiste, contactez-nous à contact@neofidu.ch"
+        );
         return null;
       }
     } catch (error) {
       console.error("Exception sauvegarde demande:", error);
+      setSaveError(
+        "Erreur de connexion lors de l'enregistrement. Vérifiez votre connexion internet et réessayez."
+      );
       return null;
     } finally {
       setIsSavingRequest(false);
@@ -782,10 +2004,29 @@ export function TaxRequestForm() {
   };
 
   const nextStep = async () => {
+    // Protection contre les doubles clics
+    if (isSavingRequest) {
+      console.log("⏳ Sauvegarde déjà en cours, ignoré");
+      return;
+    }
+
+    // Réinitialiser les erreurs avant de réessayer
+    setSaveError(null);
+    setUploadError(null);
+
     if (currentStep < steps.length) {
       // Si on passe à l'étape de paiement (step 9), sauvegarder d'abord
       if (currentStep === 8) {
-        await saveTaxRequest();
+        const reference = await saveTaxRequest();
+
+        // CRITIQUE: Si la sauvegarde a échoué, bloquer la navigation vers le paiement
+        // Les erreurs (uploadError ou saveError) sont déjà définies dans saveTaxRequest
+        if (!reference) {
+          console.error("❌ BLOQUÉ: Navigation vers paiement impossible - demande non sauvegardée");
+          return; // Ne pas passer à l'étape suivante
+        }
+
+        console.log("✅ Demande sauvegardée avec succès, passage au paiement");
       }
       setCurrentStep(currentStep + 1);
     }
@@ -799,49 +2040,20 @@ export function TaxRequestForm() {
   const [postPaymentStatus, setPostPaymentStatus] = useState<string>("");
 
   // Fonction appelée APRÈS le paiement réussi
-  // C'est ici que les documents sont uploadés vers Cloudinary
+  // C'est ici que les documents sont uploadés vers Cloudinary ET les emails envoyés
   const handlePaymentSuccess = async (paymentIntentId: string) => {
     console.log("✅ Paiement réussi:", paymentIntentId);
     setIsProcessingPostPayment(true);
     setPostPaymentStatus("Finalisation de votre demande...");
 
     try {
-      // 1. Upload des documents vers Cloudinary (maintenant que le paiement est confirmé)
-      if (uploadedFiles.length > 0 && taxRequestReference) {
-        setPostPaymentStatus(`Upload de ${uploadedFiles.length} document(s)...`);
-        console.log(`📤 Upload de ${uploadedFiles.length} document(s) vers Cloudinary...`);
+      // 1. Les documents sont déjà uploadés AVANT le paiement (dans saveTaxRequest)
+      // Car les objets File ne survivent pas à la redirection Stripe
+      console.log("📄 Documents déjà uploadés avant paiement - pas de nouvel upload nécessaire");
 
-        const formDataUpload = new FormData();
-        formDataUpload.append("reference", taxRequestReference);
-        formDataUpload.append("lastName", formData.lastName);
-        formDataUpload.append("firstName", formData.firstName);
-
-        uploadedFiles.forEach((file) => {
-          formDataUpload.append("files", file.file);
-          formDataUpload.append("categories", file.category);
-        });
-
-        try {
-          const uploadResponse = await fetch("/api/upload", {
-            method: "POST",
-            body: formDataUpload,
-          });
-
-          const uploadResult = await uploadResponse.json();
-
-          if (uploadResult.success) {
-            console.log(`✅ Documents uploadés avec succès`);
-          } else {
-            console.warn("⚠️ Upload partiel ou échoué:", uploadResult);
-          }
-        } catch (uploadError) {
-          console.error("❌ Erreur upload documents:", uploadError);
-          // Continue malgré l'erreur - le paiement est déjà confirmé
-        }
-      }
-
-      // 2. Marquer la demande comme terminée
-      setPostPaymentStatus("Envoi des confirmations...");
+      // 2. Les emails sont envoyés via le webhook Stripe (pas d'envoi direct pour éviter les doublons)
+      setPostPaymentStatus("Finalisation...");
+      console.log("📧 Emails seront envoyés via le webhook Stripe");
 
       // Effacer le localStorage après succès
       clearStorage();
@@ -913,9 +2125,110 @@ export function TaxRequestForm() {
           <p className="mt-4">
             Documents envoyés: {uploadedFiles.length} fichier(s)
           </p>
-          <p className="mt-2">
-            Un conseiller vous contactera dans les 24h ouvrables.
+          <p className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-800">
+            <strong>Important:</strong> Veuillez bien vérifier la quittance que vous avez reçue par email. Cette quittance confirme le bon enregistrement de votre demande.
           </p>
+        </div>
+
+        {/* Prochaines étapes */}
+        <div className="mt-8 text-left max-w-2xl mx-auto">
+          <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
+            Prochaines étapes
+          </h3>
+
+          {/* Notre travail */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <span className="font-semibold text-gray-700">Ce que fait NeoFidu</span>
+            </div>
+            <div className="space-y-3 ml-8">
+              <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">1</div>
+                <div>
+                  <p className="font-medium text-gray-900">Vérification des documents</p>
+                  <p className="text-sm text-gray-600">Sous 24-48h, nous vérifions vos pièces et vous contactons si besoin.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">2</div>
+                <div>
+                  <p className="font-medium text-gray-900">Remplissage de votre déclaration</p>
+                  <p className="text-sm text-gray-600">Nos experts complètent votre déclaration fiscale (délai: 10 jours ouvrables).</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">3</div>
+                <div>
+                  <p className="font-medium text-gray-900">Envoi à l'administration fiscale</p>
+                  <p className="text-sm text-gray-600">Nous transmettons votre déclaration directement aux impôts de votre canton.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">4</div>
+                <div>
+                  <p className="font-medium text-gray-900">Confirmation par email</p>
+                  <p className="text-sm text-gray-600">Vous recevez la quittance de dépôt confirmant que votre déclaration a bien été envoyée.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Ce que font les impôts */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                </svg>
+              </div>
+              <span className="font-semibold text-gray-700">Ce que font les impôts</span>
+            </div>
+            <div className="space-y-3 ml-8">
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">5</div>
+                <div>
+                  <p className="font-medium text-gray-900">Traitement de votre déclaration</p>
+                  <p className="text-sm text-gray-600">L'administration fiscale analyse votre déclaration (délai: 2 à 6 mois selon le canton).</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">6</div>
+                <div>
+                  <p className="font-medium text-gray-900">Décision de taxation</p>
+                  <p className="text-sm text-gray-600">Vous recevez un avis de taxation avec le montant d'impôt définitif à payer (ou à récupérer).</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">7</div>
+                <div>
+                  <p className="font-medium text-gray-900">Paiement ou remboursement</p>
+                  <p className="text-sm text-gray-600">Vous réglez le solde d'impôt ou recevez un remboursement si vous avez trop payé d'acomptes.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Suivi */}
+          <div className="p-4 bg-gray-100 rounded-xl text-center">
+            <p className="text-sm text-gray-700">
+              <span className="font-medium">Suivez votre demande à tout moment :</span>{" "}
+              <a href="/suivi" className="text-primary font-semibold hover:underline">
+                Page de suivi →
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 text-center text-sm text-muted-foreground">
+          Une question ? Contactez-nous à{" "}
+          <a href="mailto:contact@neofidu.ch" className="text-primary font-medium hover:underline">
+            contact@neofidu.ch
+          </a>
         </div>
       </Card>
     );
@@ -940,13 +2253,23 @@ export function TaxRequestForm() {
       setCurrentStep(1);
       setFormData({
         canton: "",
+        livesAbroad: false,
+        countryOfResidence: "",
+        abroadAddress: "",
+        familyStatus: "",
+        isIndependent: false,
         clientType: "",
         employmentStatus: "",
+        occupationRate: "",
         employmentStatus2: "",
+        occupationRate2: "",
         firstName: "",
         lastName: "",
+        birthDate: "",
+        maritalStatus: "",
         firstName2: "",
         lastName2: "",
+        birthDate2: "",
         email: "",
         phone: "",
         taxYear: new Date().getFullYear() - 1,
@@ -961,11 +2284,15 @@ export function TaxRequestForm() {
         childrenInfo: "",
         hasGuardCosts: false,
         guardCosts: "",
+        hasMealsOutside: false,
+        mealsOutsideDays: "",
         hasAlimonyReceived: false,
         alimonyReceived: "",
         hasAlimonyPaid: false,
         alimonyPaid: "",
         monthlyRent: "",
+        landlordName: "",
+        landlordAddress: "",
         healthInsurance: "",
         hasPillar3a: false,
         pillar3aAmount: "",
@@ -973,6 +2300,51 @@ export function TaxRequestForm() {
         donationsAmount: "",
         hasDebts: false,
         debtsAmount: "",
+        // Indépendants
+        businessType: "",
+        businessStartDate: "",
+        hasIDE: false,
+        ideNumber: "",
+        isRegisteredRC: false,
+        hasVAT: false,
+        vatNumber: "",
+        hasBusinessAccounts: false,
+        businessRevenue: "",
+        businessExpenses: "",
+        businessNetIncome: "",
+        hasAVSIndependent: false,
+        avsIndependentAmount: "",
+        hasLPPVoluntary: false,
+        lppVoluntaryAmount: "",
+        hasHomeOffice: false,
+        homeOfficePercent: "",
+        homeOfficeAmount: "",
+        hasBusinessVehicle: false,
+        businessVehiclePercent: "",
+        businessVehicleExpenses: "",
+        // Indépendants - Conjoint (Adulte 2)
+        isIndependent2: false,
+        businessType2: "",
+        businessStartDate2: "",
+        hasIDE2: false,
+        ideNumber2: "",
+        isRegisteredRC2: false,
+        hasVAT2: false,
+        vatNumber2: "",
+        hasBusinessAccounts2: false,
+        businessRevenue2: "",
+        businessExpenses2: "",
+        businessNetIncome2: "",
+        hasAVSIndependent2: false,
+        avsIndependentAmount2: "",
+        hasLPPVoluntary2: false,
+        lppVoluntaryAmount2: "",
+        hasHomeOffice2: false,
+        homeOfficePercent2: "",
+        homeOfficeAmount2: "",
+        hasBusinessVehicle2: false,
+        businessVehiclePercent2: "",
+        businessVehicleExpenses2: "",
         hasProperty: false,
         propertyCount: 1,
         hasMortgage: false,
@@ -981,6 +2353,10 @@ export function TaxRequestForm() {
         renovationsAmount: "",
         hasStocks: false,
         stocksCount: 1,
+        hasSoldProperty: false,
+        soldPropertyDetails: "",
+        hasSoldStocks: false,
+        soldStocksDetails: "",
         deliveryMethod: "email",
         wantsReview: false,
         deadline: "standard",
@@ -991,35 +2367,68 @@ export function TaxRequestForm() {
       });
       setWorkplaces1([createEmptyWorkplace()]);
       setWorkplaces2([createEmptyWorkplace()]);
+      setProperties([]);
       setUploadedFiles([]);
+      setChildrenData([]);
       setTaxRequestReference("");
+      setHasResumedFromStorage(false);
+      setLostFilesFromPreviousSession([]);
     }
   };
 
   return (
     <div>
-      {currentStep > 1 && (
-        <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-              <Check className="w-5 h-5 text-primary" />
+      {hasResumedFromStorage && (
+        <div className="mb-6 space-y-3">
+          <div className="p-4 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                <Check className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-medium text-sm">Reprise de votre demande</p>
+                <p className="text-xs text-muted-foreground">
+                  Vous avez repris là où vous en étiez. Vos données sont sauvegardées automatiquement.
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-medium text-sm">Reprise de votre demande</p>
-              <p className="text-xs text-muted-foreground">
-                Vous avez repris là où vous en étiez. Vos données sont sauvegardées automatiquement.
-              </p>
-            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleResetForm}
+              className="text-muted-foreground hover:text-destructive"
+            >
+              <X className="w-4 h-4 mr-1" />
+              Recommencer
+            </Button>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleResetForm}
-            className="text-muted-foreground hover:text-destructive"
-          >
-            <X className="w-4 h-4 mr-1" />
-            Recommencer
-          </Button>
+
+          {/* Avertissement fichiers perdus */}
+          {lostFilesFromPreviousSession.length > 0 && (
+            <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <AlertCircle className="w-5 h-5 text-amber-600" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-medium text-sm text-amber-800">
+                    Documents à re-uploader
+                  </p>
+                  <p className="text-xs text-amber-700 mt-1">
+                    {lostFilesFromPreviousSession.length} fichier(s) uploadé(s) lors de votre précédente session doivent être re-uploadés à l'étape 7 (Documents) :
+                  </p>
+                  <ul className="mt-2 text-xs text-amber-700 list-disc list-inside">
+                    {lostFilesFromPreviousSession.slice(0, 3).map((f, i) => (
+                      <li key={i}>{f.name}</li>
+                    ))}
+                    {lostFilesFromPreviousSession.length > 3 && (
+                      <li>... et {lostFilesFromPreviousSession.length - 3} autre(s)</li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -1059,9 +2468,22 @@ export function TaxRequestForm() {
       </div>
 
       <div className="flex justify-end mb-4">
-        <Badge variant="secondary" className="text-lg px-4 py-2">
-          CHF {calculatePrice().toFixed(2)} TTC
-        </Badge>
+        <div className="relative group">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-emerald-500/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+          <div className="relative flex items-center gap-3 bg-white dark:bg-gray-900 border border-primary/20 rounded-2xl px-5 py-3 shadow-sm">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-emerald-500 text-white">
+              <Calculator className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Tarif estimé</span>
+              <div className="flex items-baseline gap-1">
+                <span className="text-2xl font-bold text-primary">CHF {calculatePrice().toFixed(0)}</span>
+                <span className="text-sm text-muted-foreground">.-</span>
+                <span className="text-xs text-muted-foreground ml-1">TTC</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Card className="p-6 md:p-8">
@@ -1094,55 +2516,2437 @@ export function TaxRequestForm() {
                 </div>
               ))}
             </div>
-          </div>
-        )}
 
-        {/* Step 2: Client Type */}
-        {currentStep === 2 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-2">
-              Quel type de client êtes-vous ?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Sélectionnez votre situation personnelle.
-            </p>
-            <div className="grid md:grid-cols-3 gap-4">
-              {clientTypes.map((t) => (
+            {/* Section Suisses de l'étranger */}
+            <div className="mt-8 p-5 bg-gradient-to-r from-blue-50 to-teal-50 border border-blue-200 rounded-xl">
+              <div className="flex items-start gap-4">
                 <div
-                  key={t.id}
-                  onClick={() => updateForm("clientType", t.id)}
-                  className={`p-6 rounded-2xl border-2 cursor-pointer transition-all hover:shadow-lg ${
-                    formData.clientType === t.id
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/30"
+                  onClick={() => {
+                    const newValue = !formData.livesAbroad;
+                    updateForm("livesAbroad", newValue);
+                    if (!newValue) {
+                      updateForm("countryOfResidence", "");
+                    }
+                  }}
+                  className={`w-6 h-6 rounded-md border-2 flex items-center justify-center cursor-pointer transition-all flex-shrink-0 mt-0.5 ${
+                    formData.livesAbroad
+                      ? "bg-primary border-primary"
+                      : "border-gray-300 hover:border-primary/50"
                   }`}
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
-                    <t.icon className="w-8 h-8 text-primary" />
+                  {formData.livesAbroad && (
+                    <Check className="w-4 h-4 text-white" />
+                  )}
+                </div>
+                <div className="flex-1">
+                  <div
+                    className="font-semibold text-gray-800 cursor-pointer"
+                    onClick={() => {
+                      const newValue = !formData.livesAbroad;
+                      updateForm("livesAbroad", newValue);
+                      if (!newValue) {
+                        updateForm("countryOfResidence", "");
+                      }
+                    }}
+                  >
+                    Je réside actuellement à l'étranger
                   </div>
-                  <div className="text-center">
-                    <div className="font-semibold mb-1">{t.name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {t.description}
-                    </div>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Suisse de l'étranger avec obligations fiscales en Suisse (propriété immobilière, revenus de source suisse, etc.)
+                  </p>
+                </div>
+              </div>
+
+              {/* Sélecteur de pays si réside à l'étranger */}
+              {formData.livesAbroad && (
+                <div className="mt-4 pt-4 border-t border-blue-200 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Dans quel pays résidez-vous ?
+                    </label>
+                    <select
+                      value={formData.countryOfResidence}
+                      onChange={(e) => updateForm("countryOfResidence", e.target.value)}
+                      className="w-full md:w-1/2 p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
+                    >
+                      <option value="">Sélectionnez votre pays de résidence</option>
+                      {countriesAbroad.map((country) => (
+                        <option key={country.code} value={country.code}>
+                          {country.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Adresse complète à l'étranger */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Votre adresse complète à l'étranger
+                    </label>
+                    <Textarea
+                      value={formData.abroadAddress}
+                      onChange={(e) => updateForm("abroadAddress", e.target.value)}
+                      placeholder="Rue, numéro, code postal, ville, région/état..."
+                      className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Indiquez votre adresse complète de résidence à l'étranger (rue, numéro, code postal, ville).
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                    <p className="text-sm text-amber-800 flex items-start gap-2">
+                      <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                      <span>
+                        Un supplément de <strong>CHF 50.-</strong> s'applique pour les déclarations des Suisses de l'étranger (gestion des conventions de double imposition, complexité accrue).
+                      </span>
+                    </p>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         )}
 
-        {/* Step 3: Contact */}
-        {/* ... unchanged ... */}
+        {/* Step 2: Type de déclaration (2 questions) */}
+        {currentStep === 2 && (
+          <div className="space-y-10">
+            {/* Question 1: Situation familiale */}
+            <div>
+              <h2 className="text-2xl font-bold mb-2">
+                Êtes-vous seul(e) ou en couple ?
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Choisissez selon votre situation fiscale.
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                {familyStatusOptions.map((option) => (
+                  <div
+                    key={option.id}
+                    onClick={() => updateForm("familyStatus", option.id)}
+                    className={`p-6 rounded-2xl border-2 cursor-pointer transition-all hover:shadow-lg ${
+                      formData.familyStatus === option.id
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/30"
+                    }`}
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                      <option.icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <div className="text-center">
+                      <div className="font-semibold mb-1">{option.name}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {option.description}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Question 2: Situation professionnelle (affiché seulement si familyStatus sélectionné) */}
+            {formData.familyStatus && (
+              <div className="pt-6 border-t">
+                <h2 className="text-2xl font-bold mb-2">
+                  Quelle est votre situation professionnelle ?
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  {formData.familyStatus === "couple"
+                    ? "Indiquez si l'un des conjoints exerce une activité indépendante."
+                    : "Indiquez si vous exercez une activité indépendante."}
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {professionalStatusOptions.map((option) => {
+                    const isSelected = option.id === "independent" ? formData.isIndependent : !formData.isIndependent;
+                    return (
+                      <div
+                        key={option.id}
+                        onClick={() => updateForm("isIndependent", option.id === "independent")}
+                        className={`p-6 rounded-2xl border-2 cursor-pointer transition-all hover:shadow-lg ${
+                          isSelected
+                            ? "border-primary bg-primary/5"
+                            : "border-border hover:border-primary/30"
+                        }`}
+                      >
+                        <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                          <option.icon className="w-8 h-8 text-primary" />
+                        </div>
+                        <div className="text-center">
+                          <div className="font-semibold mb-1">{option.name}</div>
+                          <div className="text-sm text-muted-foreground">
+                            {option.id === "independent"
+                              ? (formData.familyStatus === "couple" ? option.descriptionCouple : option.descriptionSingle)
+                              : option.description}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Step 3: Coordonnées */}
+        {currentStep === 3 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-2">
+              Vos coordonnées
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Ces informations sont nécessaires pour établir votre déclaration.
+            </p>
+
+            {/* Année fiscale et numéros fiscaux */}
+            <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+              <h3 className="font-semibold text-amber-800 mb-3 flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                Informations de votre lettre d'impôts
+              </h3>
+              <p className="text-sm text-amber-700 mb-4">
+                Vous trouverez ces informations sur la lettre de l'administration fiscale.
+              </p>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Année fiscale
+                  </label>
+                  <select
+                    value={formData.taxYear}
+                    onChange={(e) => updateForm("taxYear", Number.parseInt(e.target.value))}
+                    className="w-full p-3 rounded-xl border border-amber-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
+                  >
+                    {[...Array(5)].map((_, i) => {
+                      const year = new Date().getFullYear() - 1 - i;
+                      return (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    N° contribuable <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    placeholder="Ex: 123.456.789"
+                    value={formData.taxpayerNumber}
+                    onChange={(e) => {
+                      updateForm("taxpayerNumber", e.target.value);
+                    }}
+                    onBlur={(e) => {
+                      // Valider à la perte de focus
+                      if (e.target.value.trim() !== "") {
+                        const validation = validateTaxpayerNumber(e.target.value, formData.canton);
+                        if (!validation.valid) {
+                          setValidationErrors(prev => ({ ...prev, taxpayerNumber: validation.error || "Numéro invalide" }));
+                        } else {
+                          setValidationErrors(prev => ({ ...prev, taxpayerNumber: "" }));
+                        }
+                      }
+                    }}
+                    className={`rounded-xl ${validationErrors.taxpayerNumber ? "border-red-500 focus:ring-red-500" : "border-amber-300"}`}
+                  />
+                  {validationErrors.taxpayerNumber ? (
+                    <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3" />
+                      {validationErrors.taxpayerNumber}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Trouvez ce numéro sur votre courrier fiscal
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <TooltipProvider>
+                    <label className="text-sm font-medium mb-2 flex items-center gap-1.5">
+                      {formData.canton && cantonCodeInfo[formData.canton]
+                        ? cantonCodeInfo[formData.canton].label
+                        : "Code de contrôle"} <span className="text-red-500">*</span>
+                      {formData.canton && cantonCodeInfo[formData.canton] && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button type="button" className="text-amber-600 hover:text-amber-800">
+                              <HelpCircle className="w-4 h-4" />
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" className="max-w-xs bg-amber-50 border-amber-200 text-amber-800">
+                            <p className="text-sm font-medium">Où trouver ce code ?</p>
+                            <p className="text-xs mt-1">{cantonCodeInfo[formData.canton].source}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      )}
+                    </label>
+                  </TooltipProvider>
+                  <Input
+                    placeholder={formData.canton && cantonCodeInfo[formData.canton]
+                      ? cantonCodeInfo[formData.canton].placeholder
+                      : "Ex: ABCD1234"}
+                    value={formData.declarationCode}
+                    onChange={(e) => updateForm("declarationCode", e.target.value)}
+                    className="rounded-xl border-amber-300"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                    <Info className="w-3 h-3" />
+                    {formData.canton && cantonCodeInfo[formData.canton]
+                      ? cantonCodeInfo[formData.canton].source
+                      : "Code unique de votre déclaration"}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Prénom <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder="Votre prénom"
+                  value={formData.firstName}
+                  onChange={(e) => updateForm("firstName", e.target.value)}
+                  className="rounded-xl"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Nom <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder="Votre nom"
+                  value={formData.lastName}
+                  onChange={(e) => updateForm("lastName", e.target.value)}
+                  className="rounded-xl"
+                />
+              </div>
+
+              {/* Date de naissance */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Date de naissance <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="date"
+                  value={formData.birthDate}
+                  onChange={(e) => {
+                    updateForm("birthDate", e.target.value);
+                    // Valider immédiatement à chaque changement
+                    const validation = validateBirthDate(e.target.value);
+                    if (!validation.valid) {
+                      setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
+                    } else {
+                      setValidationErrors(prev => ({ ...prev, birthDate: "" }));
+                    }
+                  }}
+                  onBlur={(e) => {
+                    // Re-valider à la perte de focus
+                    const validation = validateBirthDate(e.target.value);
+                    if (!validation.valid) {
+                      setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
+                    }
+                  }}
+                  className={`rounded-xl ${validationErrors.birthDate ? "border-red-500 focus:ring-red-500" : ""}`}
+                  max={new Date().toISOString().split('T')[0]}
+                  min="1900-01-01"
+                />
+                {validationErrors.birthDate && (
+                  <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3" />
+                    {validationErrors.birthDate}
+                  </p>
+                )}
+              </div>
+
+              {/* État civil */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  État civil <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={formData.maritalStatus}
+                  onChange={(e) => updateForm("maritalStatus", e.target.value)}
+                  className="w-full p-3 rounded-xl border border-input bg-white focus:ring-2 focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Sélectionnez...</option>
+                  {maritalStatuses
+                    // Filtrer les états civils selon la situation familiale
+                    .filter((status) => {
+                      if (formData.familyStatus === "single") {
+                        // Pour les déclarations individuelles, exclure "Marié(e)" et "Partenariat enregistré"
+                        return status.id !== "married" && status.id !== "partnership";
+                      }
+                      if (formData.familyStatus === "couple") {
+                        // Pour les déclarations communes, seuls "Marié(e)" et "Partenariat enregistré" sont valides
+                        return status.id === "married" || status.id === "partnership";
+                      }
+                      return true;
+                    })
+                    .map((status) => (
+                      <option key={status.id} value={status.id}>
+                        {status.name}
+                      </option>
+                    ))}
+                </select>
+                {formData.familyStatus === "single" && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Si vous êtes marié(e) ou en partenariat enregistré, veuillez sélectionner "Déclaration commune" à l'étape précédente.
+                  </p>
+                )}
+              </div>
+
+              {/* Second adulte pour les couples */}
+              {formData.clientType === "couple" && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Prénom du conjoint <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      placeholder="Prénom du conjoint"
+                      value={formData.firstName2}
+                      onChange={(e) => updateForm("firstName2", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Nom du conjoint <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      placeholder="Nom du conjoint"
+                      value={formData.lastName2}
+                      onChange={(e) => updateForm("lastName2", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Date de naissance du conjoint <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      type="date"
+                      value={formData.birthDate2}
+                      onChange={(e) => {
+                        updateForm("birthDate2", e.target.value);
+                        // Valider immédiatement à chaque changement
+                        const validation = validateBirthDate(e.target.value);
+                        if (!validation.valid) {
+                          setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
+                        } else {
+                          setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
+                        }
+                      }}
+                      onBlur={(e) => {
+                        // Re-valider à la perte de focus
+                        const validation = validateBirthDate(e.target.value);
+                        if (!validation.valid) {
+                          setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
+                        }
+                      }}
+                      className={`rounded-xl ${validationErrors.birthDate2 ? "border-red-500 focus:ring-red-500" : ""}`}
+                      max={new Date().toISOString().split('T')[0]}
+                      min="1900-01-01"
+                    />
+                    {validationErrors.birthDate2 && (
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                        <AlertTriangle className="w-3 h-3" />
+                        {validationErrors.birthDate2}
+                      </p>
+                    )}
+                  </div>
+                </>
+              )}
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="email"
+                  placeholder="votre@email.ch"
+                  value={formData.email}
+                  onChange={(e) => {
+                    updateForm("email", e.target.value);
+                  }}
+                  onBlur={(e) => {
+                    // Valider à la perte de focus
+                    if (e.target.value.trim() !== "") {
+                      const validation = validateEmail(e.target.value);
+                      if (!validation.valid) {
+                        setValidationErrors(prev => ({ ...prev, email: validation.error || "Email invalide" }));
+                      } else {
+                        setValidationErrors(prev => ({ ...prev, email: "" }));
+                      }
+                    }
+                  }}
+                  className={`rounded-xl ${validationErrors.email ? "border-red-500 focus:ring-red-500" : ""}`}
+                />
+                {validationErrors.email && (
+                  <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3" />
+                    {validationErrors.email}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Téléphone
+                </label>
+                <Input
+                  type="tel"
+                  placeholder="+41 79 123 45 67"
+                  value={formData.phone}
+                  onChange={(e) => {
+                    updateForm("phone", e.target.value);
+                    // Ne pas effacer l'erreur pendant la saisie si le champ est non-vide
+                    if (e.target.value.trim() === "") {
+                      setValidationErrors(prev => ({ ...prev, phone: "" }));
+                    }
+                  }}
+                  onBlur={(e) => {
+                    // Valider à la perte de focus si le champ n'est pas vide
+                    if (e.target.value.trim() !== "") {
+                      const validation = validatePhone(e.target.value);
+                      if (!validation.valid) {
+                        setValidationErrors(prev => ({ ...prev, phone: validation.error || "Téléphone invalide" }));
+                      } else {
+                        setValidationErrors(prev => ({ ...prev, phone: "" }));
+                      }
+                    }
+                  }}
+                  className={`rounded-xl ${validationErrors.phone ? "border-red-500 focus:ring-red-500" : ""}`}
+                />
+                {validationErrors.phone ? (
+                  <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3" />
+                    {validationErrors.phone}
+                  </p>
+                ) : (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Format suisse: +41 79 123 45 67 ou 079 123 45 67
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h3 className="font-semibold mb-4">Adresse actuelle</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Rue et numéro <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    placeholder="Rue de l'exemple 123"
+                    value={formData.street}
+                    onChange={(e) => updateForm("street", e.target.value)}
+                    className="rounded-xl"
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      NPA <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      placeholder="1000"
+                      value={formData.npa}
+                      onChange={(e) => updateForm("npa", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium mb-2">
+                      Localité <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      placeholder="Lausanne"
+                      value={formData.city}
+                      onChange={(e) => updateForm("city", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasMoved}
+                  onChange={(e) => updateForm("hasMoved", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>J'ai déménagé durant l'année fiscale {formData.taxYear}</span>
+              </label>
+            </div>
+          </div>
+        )}
 
         {/* Step 4: Situation */}
-        {/* ... unchanged ... */}
+        {currentStep === 4 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-2">
+              Votre situation
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Ces informations nous permettent d'adapter votre déclaration.
+            </p>
 
-        {/* Step 5: Property */}
-        {/* ... unchanged ... */}
+            {/* Statut d'emploi (pour non-indépendants ou couples avec indépendant) */}
+            {formData.clientType !== "independent" && (
+              <div className="mb-8">
+                <h3 className="font-semibold mb-4">
+                  Votre statut d'emploi {formData.firstName && `(${formData.firstName})`}
+                </h3>
+                <div className="grid md:grid-cols-3 gap-3">
+                  {employmentStatuses
+                    .filter((status) => {
+                      // Montrer "Indépendant(e)" seulement pour les couples qui ont coché indépendant
+                      if (status.id === "selfemployed") {
+                        return formData.familyStatus === "couple" && formData.isIndependent;
+                      }
+                      return true;
+                    })
+                    .map((status) => (
+                    <div
+                      key={status.id}
+                      onClick={() => updateForm("employmentStatus", status.id)}
+                      className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                        formData.employmentStatus === status.id
+                          ? "border-primary bg-primary/5"
+                          : "border-border hover:border-primary/30"
+                      }`}
+                    >
+                      <div className="font-medium">{status.name}</div>
+                      <div className="text-sm text-muted-foreground">{status.description}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Taux d'occupation pour les salariés */}
+                {formData.employmentStatus === "employed" && (
+                  <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                    <label className="block text-sm font-medium mb-2 text-blue-800">
+                      Taux d'occupation <span className="text-red-500">*</span>
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <Input
+                        type="number"
+                        min="1"
+                        max="100"
+                        placeholder="Ex: 80"
+                        value={formData.occupationRate}
+                        onChange={(e) => updateForm("occupationRate", e.target.value)}
+                        className="w-32 rounded-xl"
+                      />
+                      <span className="text-blue-800 font-medium">%</span>
+                    </div>
+                    <p className="text-xs text-blue-600 mt-2">
+                      Indiquez votre pourcentage de travail (ex: 100% pour temps plein, 80% pour 4 jours/semaine)
+                    </p>
+                  </div>
+                )}
+
+                {/* Statut du conjoint pour les couples */}
+                {formData.clientType === "couple" && (
+                  <div className="mt-6">
+                    <h3 className="font-semibold mb-4">
+                      Statut de votre conjoint {formData.firstName2 && `(${formData.firstName2})`}
+                    </h3>
+                    <div className="grid md:grid-cols-3 gap-3">
+                      {employmentStatuses
+                        .filter((status) => {
+                          // Montrer "Indépendant(e)" seulement si le conjoint a coché indépendant
+                          if (status.id === "selfemployed") {
+                            return formData.isIndependent2;
+                          }
+                          return true;
+                        })
+                        .map((status) => (
+                        <div
+                          key={status.id}
+                          onClick={() => updateForm("employmentStatus2", status.id)}
+                          className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                            formData.employmentStatus2 === status.id
+                              ? "border-primary bg-primary/5"
+                              : "border-border hover:border-primary/30"
+                          }`}
+                        >
+                          <div className="font-medium">{status.name}</div>
+                          <div className="text-sm text-muted-foreground">{status.description}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Taux d'occupation pour le conjoint salarié */}
+                    {formData.employmentStatus2 === "employed" && (
+                      <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                        <label className="block text-sm font-medium mb-2 text-blue-800">
+                          Taux d'occupation <span className="text-red-500">*</span>
+                        </label>
+                        <div className="flex items-center gap-3">
+                          <Input
+                            type="number"
+                            min="1"
+                            max="100"
+                            placeholder="Ex: 80"
+                            value={formData.occupationRate2}
+                            onChange={(e) => updateForm("occupationRate2", e.target.value)}
+                            className="w-32 rounded-xl"
+                          />
+                          <span className="text-blue-800 font-medium">%</span>
+                        </div>
+                        <p className="text-xs text-blue-600 mt-2">
+                          Indiquez le pourcentage de travail du conjoint
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Section trajets professionnels - Adulte 1 */}
+            <div className="mb-8">
+              <h3 className="font-semibold mb-4">
+                Trajets professionnels {formData.firstName && `(${formData.firstName})`}
+              </h3>
+              {workplaces1.map((workplace, index) => (
+                <div key={workplace.id} className="mb-4 p-4 border rounded-xl bg-gray-50">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-medium text-sm">Lieu de travail {index + 1}</span>
+                    {workplaces1.length > 1 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeWorkplace(1, workplace.id)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    )}
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-3 mb-3">
+                    <Input
+                      placeholder="Nom de l'employeur"
+                      value={workplace.employerName}
+                      onChange={(e) => updateWorkplace(1, workplace.id, "employerName", e.target.value)}
+                      className="rounded-xl"
+                    />
+                    <Input
+                      placeholder="Adresse du lieu de travail"
+                      value={workplace.workplaceAddress}
+                      onChange={(e) => updateWorkplace(1, workplace.id, "workplaceAddress", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
+                    {transportModes.map((mode) => (
+                      <div
+                        key={mode.id}
+                        onClick={() => updateWorkplace(1, workplace.id, "transportMode", mode.id)}
+                        className={`p-2 rounded-lg border text-center cursor-pointer transition-all text-sm ${
+                          workplace.transportMode === mode.id
+                            ? "border-primary bg-primary/5"
+                            : "border-border hover:border-primary/30"
+                        }`}
+                      >
+                        {mode.name}
+                      </div>
+                    ))}
+                  </div>
+                  {(workplace.transportMode === "train" || workplace.transportMode === "car") && (
+                    <div className="grid md:grid-cols-2 gap-3">
+                      <Input
+                        type="number"
+                        placeholder="Jours de travail/an"
+                        value={workplace.daysPerYear}
+                        onChange={(e) => updateWorkplace(1, workplace.id, "daysPerYear", e.target.value)}
+                        className="rounded-xl"
+                      />
+                      <Input
+                        type="number"
+                        placeholder="Distance aller (km)"
+                        value={workplace.distanceKm}
+                        onChange={(e) => updateWorkplace(1, workplace.id, "distanceKm", e.target.value)}
+                        className="rounded-xl"
+                      />
+                    </div>
+                  )}
+                  {workplace.transportMode === "car" && (
+                    <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl">
+                      <label className="block text-sm font-medium text-amber-800 mb-2 flex items-center gap-2">
+                        <Info className="w-4 h-4" />
+                        Justification de l'utilisation du véhicule <span className="text-red-500">*</span>
+                      </label>
+                      <Textarea
+                        placeholder="Ex: Pas de transports publics disponibles, horaires irréguliers, transport de matériel professionnel, handicap physique, lieu de travail non desservi..."
+                        value={workplace.carJustification}
+                        onChange={(e) => updateWorkplace(1, workplace.id, "carJustification", e.target.value)}
+                        className="rounded-xl min-h-[80px] bg-white"
+                      />
+                      <p className="text-xs text-amber-700 mt-2">
+                        L'administration fiscale exige une justification pour la déduction des frais de véhicule. Exemples : absence de transports publics, horaires décalés, transport d'outils, handicap.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => addWorkplace(1)}
+                className="rounded-full"
+              >
+                <Plus className="w-4 h-4 mr-1" />
+                Ajouter un lieu de travail
+              </Button>
+            </div>
+
+            {/* Section trajets professionnels - Adulte 2 (couple) */}
+            {formData.clientType === "couple" && (
+              <div className="mb-8">
+                <h3 className="font-semibold mb-4">
+                  Trajets professionnels {formData.firstName2 ? `(${formData.firstName2})` : "(conjoint)"}
+                </h3>
+                {workplaces2.map((workplace, index) => (
+                  <div key={workplace.id} className="mb-4 p-4 border rounded-xl bg-gray-50">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="font-medium text-sm">Lieu de travail {index + 1}</span>
+                      {workplaces2.length > 1 && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeWorkplace(2, workplace.id)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-3 mb-3">
+                      <Input
+                        placeholder="Nom de l'employeur"
+                        value={workplace.employerName}
+                        onChange={(e) => updateWorkplace(2, workplace.id, "employerName", e.target.value)}
+                        className="rounded-xl"
+                      />
+                      <Input
+                        placeholder="Adresse du lieu de travail"
+                        value={workplace.workplaceAddress}
+                        onChange={(e) => updateWorkplace(2, workplace.id, "workplaceAddress", e.target.value)}
+                        className="rounded-xl"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
+                      {transportModes.map((mode) => (
+                        <div
+                          key={mode.id}
+                          onClick={() => updateWorkplace(2, workplace.id, "transportMode", mode.id)}
+                          className={`p-2 rounded-lg border text-center cursor-pointer transition-all text-sm ${
+                            workplace.transportMode === mode.id
+                              ? "border-primary bg-primary/5"
+                              : "border-border hover:border-primary/30"
+                          }`}
+                        >
+                          {mode.name}
+                        </div>
+                      ))}
+                    </div>
+                    {(workplace.transportMode === "train" || workplace.transportMode === "car") && (
+                      <div className="grid md:grid-cols-2 gap-3">
+                        <Input
+                          type="number"
+                          placeholder="Jours de travail/an"
+                          value={workplace.daysPerYear}
+                          onChange={(e) => updateWorkplace(2, workplace.id, "daysPerYear", e.target.value)}
+                          className="rounded-xl"
+                        />
+                        <Input
+                          type="number"
+                          placeholder="Distance aller (km)"
+                          value={workplace.distanceKm}
+                          onChange={(e) => updateWorkplace(2, workplace.id, "distanceKm", e.target.value)}
+                          className="rounded-xl"
+                        />
+                      </div>
+                    )}
+                    {workplace.transportMode === "car" && (
+                      <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl">
+                        <label className="block text-sm font-medium text-amber-800 mb-2 flex items-center gap-2">
+                          <Info className="w-4 h-4" />
+                          Justification de l'utilisation du véhicule <span className="text-red-500">*</span>
+                        </label>
+                        <Textarea
+                          placeholder="Ex: Pas de transports publics disponibles, horaires irréguliers, transport de matériel professionnel, handicap physique, lieu de travail non desservi..."
+                          value={workplace.carJustification}
+                          onChange={(e) => updateWorkplace(2, workplace.id, "carJustification", e.target.value)}
+                          className="rounded-xl min-h-[80px] bg-white"
+                        />
+                        <p className="text-xs text-amber-700 mt-2">
+                          L'administration fiscale exige une justification pour la déduction des frais de véhicule. Exemples : absence de transports publics, horaires décalés, transport d'outils, handicap.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => addWorkplace(2)}
+                  className="rounded-full"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Ajouter un lieu de travail
+                </Button>
+              </div>
+            )}
+
+            {/* Repas hors domicile */}
+            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasMealsOutside}
+                  onChange={(e) => updateForm("hasMealsOutside", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <div>
+                  <span className="font-medium">Je mange hors du domicile lors de mes jours de travail</span>
+                  <p className="text-sm text-blue-600 mt-1">
+                    Déductible si vous ne pouvez pas rentrer chez vous pendant la pause de midi
+                  </p>
+                </div>
+              </label>
+              {formData.hasMealsOutside && (
+                <div className="mt-4 ml-8">
+                  <label className="block text-sm font-medium mb-2">
+                    Nombre de jours par année où vous mangez à l'extérieur
+                  </label>
+                  <Input
+                    type="number"
+                    min="1"
+                    max="260"
+                    placeholder="Ex: 220"
+                    value={formData.mealsOutsideDays}
+                    onChange={(e) => updateForm("mealsOutsideDays", e.target.value)}
+                    className="w-32 rounded-xl"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Environ 220 jours pour un emploi à 100%
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Enfants à charge */}
+            <div className="mb-8 p-5 bg-gradient-to-r from-blue-50 to-teal-50 border border-blue-200 rounded-xl">
+              <label className="flex items-center gap-3 cursor-pointer mb-4">
+                <input
+                  type="checkbox"
+                  checked={formData.hasChildren}
+                  onChange={(e) => {
+                    const hasKids = e.target.checked;
+                    updateForm("hasChildren", hasKids);
+                    // Initialize with one child if checking and no children exist
+                    if (hasKids && childrenData.length === 0) {
+                      setChildrenData([createEmptyChild()]);
+                    }
+                    // Clear children data if unchecking
+                    if (!hasKids) {
+                      setChildrenData([]);
+                      updateForm("childrenCount", 0);
+                    }
+                  }}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <div>
+                  <span className="font-semibold text-gray-800">J'ai des enfants à charge</span>
+                  <p className="text-sm text-gray-600">Mineurs ou majeurs en formation jusqu'à 25 ans</p>
+                </div>
+              </label>
+
+              {formData.hasChildren && (
+                <div className="mt-4">
+                  <ChildrenSection
+                    children={childrenData}
+                    onChildrenChange={(newChildren) => {
+                      setChildrenData(newChildren);
+                      // Keep childrenCount in sync
+                      updateForm("childrenCount", newChildren.length);
+                    }}
+                    maritalStatus={formData.maritalStatus}
+                    hasGuardCosts={formData.hasGuardCosts}
+                    onHasGuardCostsChange={(value) => updateForm("hasGuardCosts", value)}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* 3ème pilier */}
+            <div className="mb-6">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasPillar3a}
+                  onChange={(e) => updateForm("hasPillar3a", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>J'ai effectué des versements au 3ème pilier A</span>
+              </label>
+            </div>
+
+            {/* Pensions alimentaires */}
+            <div className="mb-6 space-y-3">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasAlimonyReceived}
+                  onChange={(e) => updateForm("hasAlimonyReceived", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>Je reçois des pensions alimentaires</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasAlimonyPaid}
+                  onChange={(e) => updateForm("hasAlimonyPaid", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>Je verse des pensions alimentaires</span>
+              </label>
+            </div>
+
+            {/* Dons */}
+            <div className="mb-6">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasDonations}
+                  onChange={(e) => updateForm("hasDonations", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>J'ai fait des dons à des organisations d'utilité publique</span>
+              </label>
+            </div>
+
+            {/* Dettes */}
+            <div className="mb-6">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasDebts}
+                  onChange={(e) => updateForm("hasDebts", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>J'ai des dettes (prêts personnels, leasing, etc.)</span>
+              </label>
+            </div>
+
+            {/* Actions/titres */}
+            <div className="mb-6">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasStocks}
+                  onChange={(e) => updateForm("hasStocks", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>Je possède des actions, fonds ou obligations</span>
+              </label>
+              {formData.hasStocks && (
+                <div className="mt-4 ml-8">
+                  <label className="block text-sm font-medium mb-2">
+                    Nombre de positions (lignes de titres)
+                  </label>
+                  <Input
+                    type="number"
+                    min="1"
+                    value={formData.stocksCount || ""}
+                    onChange={(e) => updateForm("stocksCount", Number.parseInt(e.target.value) || 1)}
+                    className="w-24 rounded-xl"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Supplément de CHF 20 dès 3 positions
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Vente de titres durant l'année */}
+            <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasSoldStocks}
+                  onChange={(e) => updateForm("hasSoldStocks", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-blue-400 text-blue-600 focus:ring-blue-500"
+                />
+                <div>
+                  <span className="font-medium">J'ai vendu des actions, fonds ou obligations durant l'année {formData.taxYear}</span>
+                  <p className="text-sm text-blue-700 mt-1">
+                    Les gains/pertes doivent être documentés
+                  </p>
+                </div>
+              </label>
+
+              {formData.hasSoldStocks && (
+                <div className="mt-4 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Détails des ventes (titres vendus, montants approximatifs)
+                    </label>
+                    <textarea
+                      value={formData.soldStocksDetails}
+                      onChange={(e) => updateForm("soldStocksDetails", e.target.value)}
+                      placeholder={`Ex: Vente de 50 actions Nestlé en mars ${formData.taxYear}, vente de parts de fonds UBS en octobre...`}
+                      className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
+                    />
+                  </div>
+                  <div className="p-3 bg-white border border-blue-300 rounded-lg">
+                    <p className="text-sm text-blue-800">
+                      <strong>Documents à fournir :</strong> Relevés de transactions de votre banque/courtier (Swissquote, PostFinance, UBS, etc.) montrant les achats et ventes effectués.
+                    </p>
+                    <p className="text-xs text-blue-600 mt-2">
+                      Note : En Suisse, les gains en capital sur titres sont généralement exonérés pour les investisseurs privés, mais doivent quand même être documentés.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* === SECTION ACTIVITÉ INDÉPENDANTE === */}
+            {formData.isIndependent && (
+              <div className="mt-8 p-6 bg-amber-50 border-2 border-amber-300 rounded-2xl">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-amber-800">
+                  <Briefcase className="w-6 h-6" />
+                  Activité indépendante
+                </h3>
+                <p className="text-sm text-amber-700 mb-6">
+                  Ces informations sont essentielles pour établir correctement votre déclaration en tant qu'indépendant.
+                </p>
+
+                {/* Type d'activité */}
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Type d'activité <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      placeholder="Ex: Consultant, artisan, commerçant..."
+                      value={formData.businessType}
+                      onChange={(e) => updateForm("businessType", e.target.value)}
+                      className="rounded-xl bg-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Date de début d'activité
+                    </label>
+                    <Input
+                      type="date"
+                      value={formData.businessStartDate}
+                      onChange={(e) => updateForm("businessStartDate", e.target.value)}
+                      className="rounded-xl bg-white"
+                    />
+                  </div>
+                </div>
+
+                {/* Numéros officiels */}
+                <div className="space-y-4 mb-6">
+                  <div className="p-4 bg-white rounded-xl border">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasIDE}
+                        onChange={(e) => updateForm("hasIDE", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">J'ai un numéro IDE (Identifiant des Entreprises)</span>
+                        <p className="text-xs text-muted-foreground">Format: CHE-123.456.789</p>
+                      </div>
+                    </label>
+                    {formData.hasIDE && (
+                      <div className="mt-3 ml-8">
+                        <Input
+                          placeholder="CHE-123.456.789"
+                          value={formData.ideNumber}
+                          onChange={(e) => updateForm("ideNumber", e.target.value)}
+                          className="rounded-xl w-48"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.isRegisteredRC}
+                        onChange={(e) => updateForm("isRegisteredRC", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">Je suis inscrit au Registre du Commerce</span>
+                        <p className="text-xs text-muted-foreground">Obligatoire dès CHF 100'000 de chiffre d'affaires</p>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasVAT}
+                        onChange={(e) => updateForm("hasVAT", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">Je suis assujetti à la TVA</span>
+                        <p className="text-xs text-muted-foreground">Obligatoire dès CHF 100'000 de chiffre d'affaires annuel</p>
+                      </div>
+                    </label>
+                    {formData.hasVAT && (
+                      <div className="mt-3 ml-8">
+                        <Input
+                          placeholder="Numéro TVA (CHE-...TVA)"
+                          value={formData.vatNumber}
+                          onChange={(e) => updateForm("vatNumber", e.target.value)}
+                          className="rounded-xl w-48"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Cotisations sociales */}
+                <h4 className="font-semibold mb-3 text-amber-800">Cotisations sociales</h4>
+                <div className="space-y-4 mb-6">
+                  <div className="p-4 bg-white rounded-xl border">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasAVSIndependent}
+                        onChange={(e) => updateForm("hasAVSIndependent", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">Cotisations AVS/AI/APG indépendant</span>
+                        <p className="text-xs text-muted-foreground">Cotisations personnelles versées à la caisse de compensation</p>
+                      </div>
+                    </label>
+                    {formData.hasAVSIndependent && (
+                      <div className="mt-3 ml-8 flex items-center gap-2">
+                        <span className="text-sm">CHF</span>
+                        <Input
+                          type="number"
+                          placeholder="Montant annuel"
+                          value={formData.avsIndependentAmount}
+                          onChange={(e) => updateForm("avsIndependentAmount", e.target.value)}
+                          className="rounded-xl w-32"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasLPPVoluntary}
+                        onChange={(e) => updateForm("hasLPPVoluntary", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">2ème pilier facultatif (LPP)</span>
+                        <p className="text-xs text-muted-foreground">Cotisations volontaires au 2ème pilier - déductibles!</p>
+                      </div>
+                    </label>
+                    {formData.hasLPPVoluntary && (
+                      <div className="mt-3 ml-8 flex items-center gap-2">
+                        <span className="text-sm">CHF</span>
+                        <Input
+                          type="number"
+                          placeholder="Montant annuel"
+                          value={formData.lppVoluntaryAmount}
+                          onChange={(e) => updateForm("lppVoluntaryAmount", e.target.value)}
+                          className="rounded-xl w-32"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Chiffres de l'activité - IMPORTANT */}
+                <div className="p-4 bg-red-50 border-2 border-red-200 rounded-xl mb-6">
+                  <h4 className="font-semibold mb-3 text-red-800 flex items-center gap-2">
+                    <AlertTriangle className="w-5 h-5" />
+                    Résultat de votre activité <span className="text-red-500">*</span>
+                  </h4>
+                  <p className="text-sm text-red-700 mb-4">
+                    Pour établir votre déclaration, nous avons besoin de connaître le résultat de votre activité indépendante.
+                    {formData.canton === "VD" && (
+                      <span className="block mt-1 font-medium">
+                        ⚠️ Le canton de Vaud exige également le "Questionnaire général indépendant" à joindre à vos documents.
+                      </span>
+                    )}
+                  </p>
+
+                  <div className="p-4 bg-white rounded-xl border mb-4">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasBusinessAccounts}
+                        onChange={(e) => updateForm("hasBusinessAccounts", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">Je dispose d'un bilan et compte de résultat préparés</span>
+                        <p className="text-xs text-muted-foreground">Document à joindre à l'étape Documents</p>
+                      </div>
+                    </label>
+                  </div>
+
+                  {!formData.hasBusinessAccounts && (
+                    <div className="space-y-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                      <p className="text-sm text-amber-800 font-medium">
+                        Si vous n'avez pas de comptabilité préparée, indiquez au minimum vos chiffres clés :
+                      </p>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Chiffre d'affaires annuel <span className="text-red-500">*</span>
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-medium">CHF</span>
+                            <Input
+                              type="number"
+                              placeholder="Total des recettes"
+                              value={formData.businessRevenue}
+                              onChange={(e) => updateForm("businessRevenue", e.target.value)}
+                              className="rounded-xl bg-white"
+                            />
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1">Total des revenus de votre activité</p>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Total des charges annuelles <span className="text-red-500">*</span>
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-medium">CHF</span>
+                            <Input
+                              type="number"
+                              placeholder="Total des charges"
+                              value={formData.businessExpenses}
+                              onChange={(e) => updateForm("businessExpenses", e.target.value)}
+                              className="rounded-xl bg-white"
+                            />
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1">Loyer, matériel, assurances, etc.</p>
+                        </div>
+                      </div>
+                      {formData.businessRevenue && formData.businessExpenses && (
+                        <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
+                          <p className="text-sm font-medium text-green-800">
+                            Bénéfice net estimé : CHF {(Number(formData.businessRevenue) - Number(formData.businessExpenses)).toLocaleString('fr-CH')}.-
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Frais professionnels */}
+                <h4 className="font-semibold mb-3 text-amber-800">Frais professionnels</h4>
+                <div className="space-y-4">
+                  <div className="p-4 bg-white rounded-xl border">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasHomeOffice}
+                        onChange={(e) => updateForm("hasHomeOffice", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">Bureau à domicile</span>
+                        <p className="text-xs text-muted-foreground">Part du loyer attribuée à l'activité professionnelle</p>
+                      </div>
+                    </label>
+                    {formData.hasHomeOffice && (
+                      <div className="mt-3 ml-8 grid md:grid-cols-2 gap-3">
+                        <div className="flex items-center gap-2">
+                          <Input
+                            type="number"
+                            min="1"
+                            max="50"
+                            placeholder="%"
+                            value={formData.homeOfficePercent}
+                            onChange={(e) => updateForm("homeOfficePercent", e.target.value)}
+                            className="rounded-xl w-20"
+                          />
+                          <span className="text-sm">% de la surface</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">CHF</span>
+                          <Input
+                            type="number"
+                            placeholder="Montant annuel"
+                            value={formData.homeOfficeAmount}
+                            onChange={(e) => updateForm("homeOfficeAmount", e.target.value)}
+                            className="rounded-xl w-32"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasBusinessVehicle}
+                        onChange={(e) => updateForm("hasBusinessVehicle", e.target.checked)}
+                        className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="font-medium">Véhicule professionnel</span>
+                        <p className="text-xs text-muted-foreground">Part des frais de véhicule attribuée à l'activité</p>
+                      </div>
+                    </label>
+                    {formData.hasBusinessVehicle && (
+                      <div className="mt-3 ml-8 grid md:grid-cols-2 gap-3">
+                        <div className="flex items-center gap-2">
+                          <Input
+                            type="number"
+                            min="1"
+                            max="100"
+                            placeholder="%"
+                            value={formData.businessVehiclePercent}
+                            onChange={(e) => updateForm("businessVehiclePercent", e.target.value)}
+                            className="rounded-xl w-20"
+                          />
+                          <span className="text-sm">% utilisation pro</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">CHF</span>
+                          <Input
+                            type="number"
+                            placeholder="Frais totaux véhicule"
+                            value={formData.businessVehicleExpenses}
+                            onChange={(e) => updateForm("businessVehicleExpenses", e.target.value)}
+                            className="rounded-xl w-32"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-6 p-3 bg-amber-100 rounded-xl text-sm text-amber-800">
+                  <strong>Rappel :</strong> N'oubliez pas de télécharger vos comptes annuels (bilan + compte de résultat) à l'étape Documents.
+                </div>
+              </div>
+            )}
+
+            {/* === SECTION ACTIVITÉ INDÉPENDANTE CONJOINT (ADULTE 2) === */}
+            {formData.familyStatus === "couple" && (
+              <div className="mt-8 p-6 bg-blue-50 border-2 border-blue-200 rounded-2xl">
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-blue-800">
+                  <Users className="w-5 h-5" />
+                  Activité indépendante du conjoint
+                </h3>
+                <label className="flex items-center gap-3 cursor-pointer mb-4">
+                  <input
+                    type="checkbox"
+                    checked={formData.isIndependent2}
+                    onChange={(e) => updateForm("isIndependent2", e.target.checked)}
+                    className="w-5 h-5 rounded border-2 border-blue-400 text-blue-600 focus:ring-blue-500"
+                  />
+                  <div>
+                    <span className="font-medium">{formData.firstName2 || "Le conjoint"} a une activité indépendante</span>
+                    <p className="text-sm text-blue-700">Cochez si votre conjoint exerce une activité lucrative indépendante</p>
+                  </div>
+                </label>
+
+                {formData.isIndependent2 && (
+                  <div className="mt-4 p-4 bg-white border border-blue-200 rounded-xl">
+                    <h4 className="font-semibold mb-4 text-blue-800">
+                      Activité indépendante de {formData.firstName2 || "votre conjoint"}
+                    </h4>
+
+                    {/* Type d'activité */}
+                    <div className="grid md:grid-cols-2 gap-4 mb-6">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          Type d'activité <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                          placeholder="Ex: Consultant, artisan, commerçant..."
+                          value={formData.businessType2}
+                          onChange={(e) => updateForm("businessType2", e.target.value)}
+                          className="rounded-xl"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          Date de début d'activité
+                        </label>
+                        <Input
+                          type="date"
+                          value={formData.businessStartDate2}
+                          onChange={(e) => updateForm("businessStartDate2", e.target.value)}
+                          className="rounded-xl"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Numéros officiels */}
+                    <div className="space-y-4 mb-6">
+                      <div className="p-3 bg-gray-50 rounded-lg border">
+                        <label className="flex items-center gap-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={formData.hasIDE2}
+                            onChange={(e) => updateForm("hasIDE2", e.target.checked)}
+                            className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
+                          />
+                          <div>
+                            <span className="font-medium text-sm">Numéro IDE</span>
+                            <span className="text-xs text-muted-foreground ml-2">(CHE-123.456.789)</span>
+                          </div>
+                        </label>
+                        {formData.hasIDE2 && (
+                          <div className="mt-2 ml-7">
+                            <Input
+                              placeholder="CHE-123.456.789"
+                              value={formData.ideNumber2}
+                              onChange={(e) => updateForm("ideNumber2", e.target.value)}
+                              className="rounded-lg w-48 text-sm"
+                            />
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex gap-4">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={formData.isRegisteredRC2}
+                            onChange={(e) => updateForm("isRegisteredRC2", e.target.checked)}
+                            className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
+                          />
+                          <span className="text-sm">Inscrit au RC</span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={formData.hasVAT2}
+                            onChange={(e) => updateForm("hasVAT2", e.target.checked)}
+                            className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
+                          />
+                          <span className="text-sm">Assujetti TVA</span>
+                        </label>
+                      </div>
+                      {formData.hasVAT2 && (
+                        <Input
+                          placeholder="Numéro TVA"
+                          value={formData.vatNumber2}
+                          onChange={(e) => updateForm("vatNumber2", e.target.value)}
+                          className="rounded-lg w-48 text-sm"
+                        />
+                      )}
+                    </div>
+
+                    {/* Chiffres clés */}
+                    <h5 className="font-medium mb-3 text-blue-800">Chiffres clés</h5>
+                    <div className="space-y-4 mb-6">
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={formData.hasBusinessAccounts2}
+                          onChange={(e) => updateForm("hasBusinessAccounts2", e.target.checked)}
+                          className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
+                        />
+                        <span className="text-sm font-medium">Dispose d'un bilan et compte de résultat</span>
+                      </label>
+
+                      {!formData.hasBusinessAccounts2 && (
+                        <div className="grid md:grid-cols-2 gap-4 p-3 bg-gray-50 rounded-lg">
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Chiffre d'affaires annuel *</label>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm">CHF</span>
+                              <Input
+                                type="number"
+                                placeholder="CA annuel"
+                                value={formData.businessRevenue2}
+                                onChange={(e) => updateForm("businessRevenue2", e.target.value)}
+                                className="rounded-lg text-sm"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label className="block text-xs font-medium mb-1">Charges annuelles *</label>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm">CHF</span>
+                              <Input
+                                type="number"
+                                placeholder="Charges"
+                                value={formData.businessExpenses2}
+                                onChange={(e) => updateForm("businessExpenses2", e.target.value)}
+                                className="rounded-lg text-sm"
+                              />
+                            </div>
+                          </div>
+                          {formData.businessRevenue2 && formData.businessExpenses2 && (
+                            <div className="md:col-span-2 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-800">
+                              Bénéfice net estimé : CHF {(Number(formData.businessRevenue2) - Number(formData.businessExpenses2)).toLocaleString('fr-CH')}.-
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Cotisations sociales */}
+                    <h5 className="font-medium mb-3 text-blue-800">Cotisations sociales</h5>
+                    <div className="space-y-3 mb-6">
+                      <div className="flex flex-wrap gap-4">
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            checked={formData.hasAVSIndependent2}
+                            onChange={(e) => updateForm("hasAVSIndependent2", e.target.checked)}
+                            className="w-4 h-4 rounded"
+                          />
+                          <span className="text-sm">AVS indépendant</span>
+                        </label>
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            checked={formData.hasLPPVoluntary2}
+                            onChange={(e) => updateForm("hasLPPVoluntary2", e.target.checked)}
+                            className="w-4 h-4 rounded"
+                          />
+                          <span className="text-sm">2ème pilier facultatif</span>
+                        </label>
+                      </div>
+                      {formData.hasAVSIndependent2 && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">Cotisations AVS : CHF</span>
+                          <Input
+                            type="number"
+                            value={formData.avsIndependentAmount2}
+                            onChange={(e) => updateForm("avsIndependentAmount2", e.target.value)}
+                            className="rounded-lg w-28 text-sm"
+                          />
+                        </div>
+                      )}
+                      {formData.hasLPPVoluntary2 && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">Cotisations LPP : CHF</span>
+                          <Input
+                            type="number"
+                            value={formData.lppVoluntaryAmount2}
+                            onChange={(e) => updateForm("lppVoluntaryAmount2", e.target.value)}
+                            className="rounded-lg w-28 text-sm"
+                          />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Frais professionnels */}
+                    <h5 className="font-medium mb-3 text-blue-800">Frais professionnels</h5>
+                    <div className="space-y-3">
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={formData.hasHomeOffice2}
+                          onChange={(e) => updateForm("hasHomeOffice2", e.target.checked)}
+                          className="w-4 h-4 rounded"
+                        />
+                        <span className="text-sm">Bureau à domicile</span>
+                      </label>
+                      {formData.hasHomeOffice2 && (
+                        <div className="flex items-center gap-3 ml-6">
+                          <Input
+                            type="number"
+                            placeholder="%"
+                            value={formData.homeOfficePercent2}
+                            onChange={(e) => updateForm("homeOfficePercent2", e.target.value)}
+                            className="rounded-lg w-16 text-sm"
+                          />
+                          <span className="text-xs">% surface</span>
+                          <span className="text-sm">CHF</span>
+                          <Input
+                            type="number"
+                            placeholder="Montant"
+                            value={formData.homeOfficeAmount2}
+                            onChange={(e) => updateForm("homeOfficeAmount2", e.target.value)}
+                            className="rounded-lg w-24 text-sm"
+                          />
+                        </div>
+                      )}
+
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={formData.hasBusinessVehicle2}
+                          onChange={(e) => updateForm("hasBusinessVehicle2", e.target.checked)}
+                          className="w-4 h-4 rounded"
+                        />
+                        <span className="text-sm">Véhicule professionnel</span>
+                      </label>
+                      {formData.hasBusinessVehicle2 && (
+                        <div className="flex items-center gap-3 ml-6">
+                          <Input
+                            type="number"
+                            placeholder="%"
+                            value={formData.businessVehiclePercent2}
+                            onChange={(e) => updateForm("businessVehiclePercent2", e.target.value)}
+                            className="rounded-lg w-16 text-sm"
+                          />
+                          <span className="text-xs">% pro</span>
+                          <span className="text-sm">CHF</span>
+                          <Input
+                            type="number"
+                            placeholder="Frais"
+                            value={formData.businessVehicleExpenses2}
+                            onChange={(e) => updateForm("businessVehicleExpenses2", e.target.value)}
+                            className="rounded-lg w-24 text-sm"
+                          />
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mt-4 p-2 bg-blue-100 rounded-lg text-xs text-blue-800">
+                      <strong>Rappel :</strong> Téléchargez les comptes annuels du conjoint à l'étape Documents.
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Step 5: Immobilier */}
+        {currentStep === 5 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-2">
+              Biens immobiliers
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Indiquez si vous êtes propriétaire de biens immobiliers.
+            </p>
+
+            <div className="mb-6">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasProperty}
+                  onChange={(e) => {
+                    updateForm("hasProperty", e.target.checked);
+                    // Si on coche et qu'il n'y a pas de propriété, en ajouter une
+                    if (e.target.checked && properties.length === 0) {
+                      addProperty();
+                    }
+                    // Si on décoche, vider le tableau
+                    if (!e.target.checked) {
+                      setProperties([]);
+                    }
+                  }}
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>Je suis propriétaire d'un ou plusieurs biens immobiliers</span>
+              </label>
+            </div>
+
+            {/* Vente immobilière durant l'année */}
+            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.hasSoldProperty}
+                  onChange={(e) => updateForm("hasSoldProperty", e.target.checked)}
+                  className="w-5 h-5 rounded border-2 border-amber-400 text-amber-600 focus:ring-amber-500"
+                />
+                <div>
+                  <span className="font-medium">J'ai vendu un bien immobilier durant l'année {formData.taxYear}</span>
+                  <p className="text-sm text-amber-700 mt-1">
+                    Important pour l'impôt sur les gains immobiliers (IGI)
+                  </p>
+                </div>
+              </label>
+
+              {formData.hasSoldProperty && (
+                <div className="mt-4 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Détails de la vente (adresse, date, prix approximatif)
+                    </label>
+                    <textarea
+                      value={formData.soldPropertyDetails}
+                      onChange={(e) => updateForm("soldPropertyDetails", e.target.value)}
+                      placeholder={`Ex: Appartement à Lausanne vendu en juin ${formData.taxYear} pour CHF 850'000.-`}
+                      className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
+                    />
+                  </div>
+                  <div className="p-3 bg-white border border-amber-300 rounded-lg">
+                    <p className="text-sm text-amber-800">
+                      <strong>Documents à fournir :</strong> Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers (si reçu), acte d'achat original, factures des travaux de plus-value.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {formData.hasProperty && (
+              <div className="space-y-6">
+                {/* Liste des biens */}
+                {properties.map((property, index) => (
+                  <Card key={property.id} className="p-6 border-2 border-primary/20">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-semibold flex items-center gap-2">
+                        <Home className="w-5 h-5 text-primary" />
+                        Bien n°{index + 1}
+                      </h3>
+                      {properties.length > 1 && (
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeProperty(property.id)}
+                          className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                        >
+                          <Trash2 className="w-4 h-4 mr-1" />
+                          Supprimer
+                        </Button>
+                      )}
+                    </div>
+
+                    <div className="space-y-6">
+                      {/* Affichage des erreurs de validation */}
+                      {validateProperty(property).length > 0 && (
+                        <div className="p-3 bg-red-50 border border-red-200 rounded-xl">
+                          <div className="flex items-start gap-2">
+                            <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                            <div>
+                              <p className="text-sm font-medium text-red-800">Champs obligatoires manquants :</p>
+                              <ul className="text-xs text-red-700 mt-1 list-disc pl-4">
+                                {validateProperty(property).map((error, i) => (
+                                  <li key={i}>{error}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Adresse du bien */}
+                      <div className="p-4 bg-gray-50 rounded-xl">
+                        <h4 className="font-medium mb-3 flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-primary" />
+                          Adresse du bien
+                        </h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="md:col-span-2">
+                            <label className="block text-sm font-medium mb-2">
+                              Rue et numéro <span className="text-red-500">*</span>
+                            </label>
+                            <Input
+                              placeholder="Ex: Rue de la Gare 15"
+                              value={property.street}
+                              onChange={(e) => updateProperty(property.id, "street", e.target.value)}
+                              className="rounded-xl"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-2">
+                              NPA <span className="text-red-500">*</span>
+                            </label>
+                            <Input
+                              placeholder="Ex: 1000"
+                              value={property.npa}
+                              onChange={(e) => updateProperty(property.id, "npa", e.target.value)}
+                              className="rounded-xl"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-2">
+                              Localité <span className="text-red-500">*</span>
+                            </label>
+                            <Input
+                              placeholder="Ex: Lausanne"
+                              value={property.city}
+                              onChange={(e) => updateProperty(property.id, "city", e.target.value)}
+                              className="rounded-xl"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-2">
+                              Canton du bien <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                              value={property.canton}
+                              onChange={(e) => updateProperty(property.id, "canton", e.target.value)}
+                              className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
+                            >
+                              <option value="">Sélectionnez le canton</option>
+                              {allCantons.map((c) => (
+                                <option key={c.code} value={c.code}>
+                                  {c.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                              N° de parcelle cadastrale
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger>
+                                    <HelpCircle className="w-4 h-4 text-muted-foreground" />
+                                  </TooltipTrigger>
+                                  <TooltipContent className="max-w-xs">
+                                    <p>Le numéro de parcelle figure sur l'acte de vente, l'estimation fiscale, ou le registre foncier. Il permet d'identifier précisément votre bien.</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </label>
+                            <Input
+                              placeholder="Ex: 1234 ou RF-VD-12345"
+                              value={property.parcelNumber}
+                              onChange={(e) => updateProperty(property.id, "parcelNumber", e.target.value)}
+                              className="rounded-xl"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Type et usage */}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Type de bien <span className="text-red-500">*</span>
+                          </label>
+                          <select
+                            value={property.propertyType}
+                            onChange={(e) => updateProperty(property.id, "propertyType", e.target.value)}
+                            className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
+                          >
+                            <option value="">Sélectionnez le type</option>
+                            {propertyTypes.map((type) => (
+                              <option key={type.id} value={type.id}>
+                                {type.name} - {type.description}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Usage du bien <span className="text-red-500">*</span>
+                          </label>
+                          <select
+                            value={property.usage}
+                            onChange={(e) => updateProperty(property.id, "usage", e.target.value)}
+                            className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
+                          >
+                            <option value="">Sélectionnez l'usage</option>
+                            {propertyUsages.map((usage) => (
+                              <option key={usage.id} value={usage.id}>
+                                {usage.name} - {usage.description}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Part de propriété et années */}
+                      <div className="grid md:grid-cols-3 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                            Votre quote-part (%)
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <HelpCircle className="w-4 h-4 text-muted-foreground" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs">
+                                  <p><strong>Couple marié :</strong> Indiquez 100% (vous déclarez ensemble).</p>
+                                  <p className="mt-1"><strong>Copropriété avec un tiers :</strong> Indiquez votre part réelle (ex: 50% si vous partagez avec un parent).</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </label>
+                          <Input
+                            type="number"
+                            min="1"
+                            max="100"
+                            placeholder="100"
+                            value={property.ownershipShare}
+                            onChange={(e) => updateProperty(property.id, "ownershipShare", e.target.value)}
+                            className="rounded-xl"
+                          />
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Couple marié = 100% • Copropriété avec tiers = votre part
+                          </p>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Année d'acquisition
+                          </label>
+                          <Input
+                            type="number"
+                            min="1900"
+                            max={new Date().getFullYear()}
+                            placeholder="Ex: 2015"
+                            value={property.acquisitionYear}
+                            onChange={(e) => updateProperty(property.id, "acquisitionYear", e.target.value)}
+                            className="rounded-xl"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                            Année de construction
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <HelpCircle className="w-4 h-4 text-muted-foreground" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs">
+                                  <p>L'année de construction détermine le forfait de frais d'entretien déductible : 10% si moins de 10 ans, 20% si plus de 10 ans.</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </label>
+                          <Input
+                            type="number"
+                            min="1800"
+                            max={new Date().getFullYear()}
+                            placeholder="Ex: 1985"
+                            value={property.constructionYear}
+                            onChange={(e) => updateProperty(property.id, "constructionYear", e.target.value)}
+                            className="rounded-xl"
+                          />
+                          {property.constructionYear && (
+                            <p className="text-xs text-primary font-medium mt-1">
+                              Forfait : {getMaintenanceFlatRate(property.constructionYear).label}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Aide forfait vs frais effectifs */}
+                      {property.constructionYear && (
+                        <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl">
+                          <div className="flex items-start gap-2">
+                            <Info className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                            <div className="text-xs text-amber-800">
+                              <p className="font-medium mb-1">Forfait ou frais effectifs ?</p>
+                              <p className="mb-2">
+                                Pour ce bien ({new Date().getFullYear() - parseInt(property.constructionYear)} ans), vous pouvez déduire :
+                              </p>
+                              <ul className="list-disc pl-4 space-y-1">
+                                <li>
+                                  <strong>Forfait {getMaintenanceFlatRate(property.constructionYear).rate}%</strong> de la valeur locative
+                                  {property.rentalValue && (
+                                    <span className="text-amber-600"> = CHF {Math.round(parseInt(property.rentalValue) * getMaintenanceFlatRate(property.constructionYear).rate / 100)}.-</span>
+                                  )}
+                                </li>
+                                <li><strong>Frais effectifs</strong> : Total de vos factures d'entretien (peinture, réparations, jardin...)</li>
+                              </ul>
+                              <p className="mt-2 font-medium">
+                                Conseil : Choisissez l'option la plus élevée. Si vos factures dépassent le forfait, optez pour les frais effectifs.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Valeurs fiscales */}
+                      <div className="p-4 bg-blue-50 rounded-xl">
+                        <h4 className="font-medium mb-3 flex items-center gap-2">
+                          <Calculator className="w-4 h-4 text-blue-600" />
+                          Valeurs fiscales
+                        </h4>
+
+                        {/* Aide contextuelle détaillée */}
+                        <div className="mb-4 p-3 bg-blue-100/50 rounded-lg border border-blue-200">
+                          <div className="flex items-start gap-2">
+                            <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                            <div className="text-xs text-blue-800">
+                              <p className="font-medium mb-1">Où trouver ces informations ?</p>
+                              <ul className="list-disc pl-4 space-y-0.5">
+                                <li><strong>Estimation fiscale cantonale</strong> : Document officiel reçu lors de l'achat ou lors d'une réévaluation</li>
+                                <li><strong>Avis de taxation</strong> : Votre dernière déclaration d'impôts traitée (annexe immobilière)</li>
+                                <li><strong>Registre foncier</strong> : Extrait du registre foncier de votre commune</li>
+                                {property.canton === "VD" && <li><strong>Canton de Vaud</strong> : Portail cantonal www.vd.ch/impots - rubrique "Mon bien immobilier"</li>}
+                                {property.canton === "GE" && <li><strong>Canton de Genève</strong> : e-démarches.ge.ch - Valeur fiscale de votre bien</li>}
+                                {property.canton === "VS" && <li><strong>Canton du Valais</strong> : Estimation sur l'avis d'impôt foncier communal</li>}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                              Valeur fiscale (CHF) <span className="text-red-500">*</span>
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger>
+                                    <HelpCircle className="w-4 h-4 text-muted-foreground" />
+                                  </TooltipTrigger>
+                                  <TooltipContent className="max-w-xs">
+                                    <p>La valeur fiscale sert à calculer l'impôt sur la fortune. Elle est généralement inférieure à la valeur de marché (60-80% selon les cantons).</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </label>
+                            <Input
+                              type="number"
+                              placeholder="Ex: 500000"
+                              value={property.fiscalValue}
+                              onChange={(e) => updateProperty(property.id, "fiscalValue", e.target.value)}
+                              className="rounded-xl"
+                            />
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Valeur cadastrale / estimation fiscale
+                            </p>
+                          </div>
+                          {(property.usage === "main_residence" || property.usage === "secondary_residence" || property.usage === "free_use") && (
+                            <div>
+                              <label className="block text-sm font-medium mb-2">
+                                Valeur locative annuelle (CHF)
+                              </label>
+                              <Input
+                                type="number"
+                                placeholder="Ex: 18000"
+                                value={property.rentalValue}
+                                onChange={(e) => updateProperty(property.id, "rentalValue", e.target.value)}
+                                className="rounded-xl"
+                              />
+                              <p className="text-xs text-muted-foreground mt-1">
+                                Figure sur l'estimation fiscale
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Revenus locatifs (si loué) */}
+                      {(property.usage === "rented" || property.usage === "rented_furnished") && (
+                        <div className="p-4 bg-green-50 rounded-xl">
+                          <h4 className="font-medium mb-3 flex items-center gap-2">
+                            <Briefcase className="w-4 h-4 text-green-600" />
+                            Revenus locatifs
+                          </h4>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-sm font-medium mb-2">
+                                Loyers bruts annuels (CHF) <span className="text-red-500">*</span>
+                              </label>
+                              <Input
+                                type="number"
+                                placeholder="Ex: 24000"
+                                value={property.annualRent}
+                                onChange={(e) => updateProperty(property.id, "annualRent", e.target.value)}
+                                className="rounded-xl"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-2">
+                                Charges locatives perçues (CHF)
+                              </label>
+                              <Input
+                                type="number"
+                                placeholder="Ex: 2400"
+                                value={property.charges}
+                                onChange={(e) => updateProperty(property.id, "charges", e.target.value)}
+                                className="rounded-xl"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Hypothèque */}
+                      <div className="p-4 bg-amber-50 rounded-xl">
+                        <div className="flex items-center gap-3 mb-3">
+                          <input
+                            type="checkbox"
+                            checked={property.hasMortgage}
+                            onChange={(e) => updateProperty(property.id, "hasMortgage", e.target.checked)}
+                            className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                          />
+                          <h4 className="font-medium">Ce bien est hypothéqué</h4>
+                        </div>
+                        {property.hasMortgage && (
+                          <div className="grid md:grid-cols-2 gap-4 mt-4">
+                            <div>
+                              <label className="block text-sm font-medium mb-2">
+                                Solde de la dette au 31.12 (CHF)
+                              </label>
+                              <Input
+                                type="number"
+                                placeholder="Ex: 350000"
+                                value={property.mortgageBalance}
+                                onChange={(e) => updateProperty(property.id, "mortgageBalance", e.target.value)}
+                                className="rounded-xl"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-2">
+                                Intérêts payés dans l'année (CHF)
+                              </label>
+                              <Input
+                                type="number"
+                                placeholder="Ex: 5250"
+                                value={property.mortgageInterest}
+                                onChange={(e) => updateProperty(property.id, "mortgageInterest", e.target.value)}
+                                className="rounded-xl"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Frais d'entretien */}
+                      <div className="p-4 bg-gray-50 rounded-xl">
+                        <h4 className="font-medium mb-3">Frais d'entretien</h4>
+                        <div className="flex gap-4 mb-4">
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name={`maintenance-${property.id}`}
+                              checked={property.maintenanceType === "flat_rate"}
+                              onChange={() => updateProperty(property.id, "maintenanceType", "flat_rate")}
+                              className="w-4 h-4 text-primary focus:ring-primary"
+                            />
+                            <span className="text-sm">Forfait (10-20% selon canton)</span>
+                          </label>
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name={`maintenance-${property.id}`}
+                              checked={property.maintenanceType === "effective"}
+                              onChange={() => updateProperty(property.id, "maintenanceType", "effective")}
+                              className="w-4 h-4 text-primary focus:ring-primary"
+                            />
+                            <span className="text-sm">Frais effectifs</span>
+                          </label>
+                        </div>
+                        {property.maintenanceType === "effective" && (
+                          <div>
+                            <label className="block text-sm font-medium mb-2">
+                              Montant des frais d'entretien (CHF)
+                            </label>
+                            <Input
+                              type="number"
+                              placeholder="Ex: 5000"
+                              value={property.maintenanceCosts}
+                              onChange={(e) => updateProperty(property.id, "maintenanceCosts", e.target.value)}
+                              className="rounded-xl"
+                            />
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Uniquement les travaux d'entretien, pas les travaux à plus-value
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+
+                {/* Bouton ajouter un bien */}
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={addProperty}
+                  className="w-full rounded-xl border-dashed border-2"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Ajouter un autre bien immobilier
+                </Button>
+
+                {/* Info supplément */}
+                <div className="p-3 bg-primary/5 rounded-xl text-center">
+                  <p className="text-sm text-muted-foreground">
+                    Supplément de <strong>CHF 50.-</strong> par bien immobilier
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {!formData.hasProperty && (
+              <div className="mt-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Loyer mensuel (si locataire)
+                  </label>
+                  <Input
+                    type="number"
+                    placeholder="Ex: 1500"
+                    value={formData.monthlyRent}
+                    onChange={(e) => updateForm("monthlyRent", e.target.value)}
+                    className="w-40 rounded-xl"
+                  />
+                </div>
+
+                {/* Identité du bailleur - Exigence cantonale NE, FR, JU */}
+                {(formData.canton === "NE" || formData.canton === "FR" || formData.canton === "JU") && formData.monthlyRent && (
+                  <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                    <div className="flex items-start gap-2 mb-3">
+                      <Info className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-medium text-amber-800">Exigence cantonale</p>
+                        <p className="text-sm text-amber-700">
+                          Le canton de {formData.canton === "NE" ? "Neuchâtel" : formData.canton === "FR" ? "Fribourg" : "Jura"} exige l'identité du bailleur ou de la gérance immobilière.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          Nom du bailleur / gérance <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                          placeholder="Ex: Régie Dupont SA ou M. Jean Dupont"
+                          value={formData.landlordName}
+                          onChange={(e) => updateForm("landlordName", e.target.value)}
+                          className="rounded-xl"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          Adresse du bailleur / gérance <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                          placeholder="Ex: Rue de la Paix 10, 2000 Neuchâtel"
+                          value={formData.landlordAddress}
+                          onChange={(e) => updateForm("landlordAddress", e.target.value)}
+                          className="rounded-xl"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Step 6: Options */}
-        {/* ... unchanged ... */}
+        {currentStep === 6 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-2">
+              Options de livraison
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Personnalisez votre demande selon vos besoins.
+            </p>
+
+            {/* Méthode de livraison */}
+            <div className="mb-8">
+              <h3 className="font-semibold mb-4">Mode de réception de la déclaration</h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div
+                  onClick={() => updateForm("deliveryMethod", "email")}
+                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    formData.deliveryMethod === "email"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/30"
+                  }`}
+                >
+                  <div className="font-semibold">Par email</div>
+                  <div className="text-sm text-muted-foreground">
+                    Réception par email (inclus)
+                  </div>
+                </div>
+                <div
+                  onClick={() => updateForm("deliveryMethod", "post")}
+                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    formData.deliveryMethod === "post"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/30"
+                  }`}
+                >
+                  <div className="font-semibold">Par courrier postal</div>
+                  <div className="text-sm text-muted-foreground">
+                    Envoi postal (+CHF 20)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Délai de traitement */}
+            <div className="mb-8">
+              <h3 className="font-semibold mb-4">Délai de traitement</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div
+                  onClick={() => updateForm("deadline", "standard")}
+                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    formData.deadline === "standard"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/30"
+                  }`}
+                >
+                  <div className="font-semibold">Standard</div>
+                  <div className="text-sm text-muted-foreground">
+                    Sous 10 jours ouvrables (inclus)
+                  </div>
+                </div>
+                <div
+                  onClick={() => updateForm("deadline", "extended")}
+                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    formData.deadline === "extended"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/30"
+                  }`}
+                >
+                  <div className="font-semibold">Prioritaire</div>
+                  <div className="text-sm text-muted-foreground">
+                    Sous 7 jours (+CHF 20)
+                  </div>
+                </div>
+                <div
+                  onClick={() => updateForm("deadline", "express")}
+                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    formData.deadline === "express"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/30"
+                  }`}
+                >
+                  <div className="font-semibold">Express</div>
+                  <div className="text-sm text-muted-foreground">
+                    Sous 48h (+CHF 120)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Commentaires */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Commentaires ou instructions particulières
+              </label>
+              <Textarea
+                placeholder="Informations complémentaires pour notre équipe..."
+                value={formData.comments}
+                onChange={(e) => updateForm("comments", e.target.value)}
+                className="rounded-xl min-h-[100px]"
+              />
+            </div>
+          </div>
+        )}
 
         {/* Step 7: Documents */}
         {currentStep === 7 && (
@@ -1242,329 +5046,745 @@ export function TaxRequestForm() {
             ) : (
               /* Mode électronique - Upload des documents */
               <div>
-                <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
-                  <div className="w-24 h-24 rounded-3xl bg-primary/10 flex items-center justify-center">
-                    <Upload className="w-12 h-12 text-primary" />
+                {/* CRITICAL: Alert if services are down */}
+                {servicesHealthy === false && (
+                  <div className="mb-4 p-4 bg-red-100 border-2 border-red-400 rounded-xl">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="font-bold text-red-800">Service temporairement indisponible</h3>
+                        <p className="text-sm text-red-700 mt-1">{healthError}</p>
+                        <p className="text-xs text-red-600 mt-2">
+                          Veuillez patienter quelques minutes et rafraichir la page, ou choisir l'envoi postal.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* En-tête compact */}
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Upload className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold mb-2">
+                    <h2 className="text-lg font-bold text-gray-800">
                       Envoi de vos documents
                     </h2>
-                    <p className="text-muted-foreground">
-                      Téléchargez les justificatifs nécessaires. Les documents marqués <span className="text-red-500 font-medium">*</span> sont obligatoires.
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
-                      Vos données sont stockées de manière sécurisée et confidentielle.
+                    <p className="text-xs text-gray-500 flex items-center gap-1">
+                      <ShieldCheck className="w-3 h-3 text-green-500" />
+                      Stockage sécurisé • <span className="text-red-400">*</span> = obligatoire
                     </p>
                   </div>
                 </div>
 
-                {/* Résumé des documents obligatoires manquants */}
-                {getMissingRequiredDocuments().length > 0 && (
-              <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-200 rounded-xl">
-                <div className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-medium text-amber-800 mb-1">
-                      Documents obligatoires manquants ({getMissingRequiredDocuments().length})
-                    </h4>
-                    <ul className="text-sm text-amber-700 space-y-1">
-                      {getMissingRequiredDocuments().map(doc => (
-                        <li key={doc.id} className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full" />
-                          {doc.name}
-                        </li>
-                      ))}
-                    </ul>
+                {/* Avertissement: fichiers de session précédente à re-uploader */}
+                {lostFilesFromPreviousSession.length > 0 && (
+                  <div className="mb-3 px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-xs text-amber-800 font-medium">
+                          Fichiers de votre session précédente à re-uploader :
+                        </p>
+                        <ul className="text-xs text-amber-700 mt-1 list-disc list-inside">
+                          {lostFilesFromPreviousSession.map((f, i) => (
+                            <li key={i}>{f.name}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {/* Avertissement: fichiers en cours d'upload */}
+                {hasFilesUploading() && (
+                  <div className="mb-3 px-3 py-2 bg-blue-50 border border-blue-200 rounded-lg flex items-center gap-2">
+                    <Loader2 className="w-4 h-4 text-blue-500 flex-shrink-0 animate-spin" />
+                    <p className="text-xs text-blue-700">
+                      <span className="font-medium">Upload en cours...</span>
+                      <span className="text-blue-600 ml-1">
+                        Veuillez attendre que tous les fichiers soient uploadés avant de continuer.
+                      </span>
+                    </p>
+                  </div>
+                )}
+
+                {/* Avertissement: fichiers en erreur */}
+                {hasFilesWithError() && (
+                  <div className="mb-3 px-3 py-2 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+                    <XCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <p className="text-xs text-red-700">
+                      <span className="font-medium">
+                        {uploadedFiles.filter(f => f.uploadStatus === "error").length} fichier(s) en erreur
+                      </span>
+                      <span className="text-red-600 ml-1">
+                        - Cliquez sur le bouton de réessai ou supprimez les fichiers concernés.
+                      </span>
+                    </p>
+                  </div>
+                )}
+
+                {getMissingRequiredDocuments().length > 0 && (
+              <div className="mb-3 px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                <p className="text-xs text-amber-700">
+                  <span className="font-medium">{getMissingRequiredDocuments().length} document(s) requis</span>
+                  <span className="text-amber-600 ml-1">
+                    : {getMissingRequiredDocuments().slice(0, 2).map(d => d.name).join(", ")}
+                    {getMissingRequiredDocuments().length > 2 && ` +${getMissingRequiredDocuments().length - 2}`}
+                  </span>
+                </p>
               </div>
             )}
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {/* Document categories */}
-              <div className="md:col-span-1 space-y-2">
-                {/* Documents obligatoires */}
-                <div className="mb-3">
-                  <h4 className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-2 flex items-center gap-1">
-                    <span className="w-2 h-2 bg-red-500 rounded-full" />
-                    Documents obligatoires
-                  </h4>
-                  <TooltipProvider>
-                  {getDocumentsWithStatus().filter(d => d.required).map((doc) => {
-                    const filesCount = getFilesByCategory(doc.id).length;
-                    const isComplete = filesCount > 0;
-                    return (
-                      <div
-                        key={doc.id}
-                        onClick={() => setActiveCategory(doc.id)}
-                        className={`p-4 rounded-xl border-2 cursor-pointer transition-all mb-2 ${
-                          activeCategory === doc.id
-                            ? "border-primary bg-primary/5"
-                            : isComplete
-                            ? "border-green-300 bg-green-50/50"
-                            : "border-red-200 bg-red-50/30 hover:border-red-300"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            {isComplete ? (
-                              <Check className="w-5 h-5 text-green-600" />
-                            ) : (
-                              <FileText className="w-5 h-5 text-red-500" />
-                            )}
-                            <div>
-                              <div className="font-medium text-sm flex items-center gap-1">
-                                {doc.name}
-                                <span className="text-red-500">*</span>
-                                {doc.tooltip && (
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <button
-                                        type="button"
-                                        onClick={(e) => e.stopPropagation()}
-                                        className="ml-1 text-muted-foreground hover:text-primary"
-                                      >
-                                        <HelpCircle className="w-3.5 h-3.5" />
-                                      </button>
-                                    </TooltipTrigger>
-                                    <TooltipContent side="right" className="max-w-xs">
-                                      <p className="text-sm">{doc.tooltip}</p>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                )}
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                {doc.description}
-                              </div>
-                            </div>
-                          </div>
-                          {filesCount > 0 && (
-                            <Badge variant="secondary" className="bg-green-600 text-white">
-                              {filesCount}
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                  </TooltipProvider>
-                </div>
+            {/* === ÉTAPE 1: Sélecteur de catégorie - CARDS COMPACTES === */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">1</div>
+                    <label className="text-sm font-semibold text-gray-700">
+                      Sélectionnez le type de document
+                    </label>
+                  </div>
 
-                {/* Documents optionnels */}
-                {getDocumentsWithStatus().filter(d => !d.required).length > 0 && (
-                  <div>
-                    <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
-                      <span className="w-2 h-2 bg-gray-400 rounded-full" />
-                      Documents optionnels
-                    </h4>
-                    <TooltipProvider>
-                    {getDocumentsWithStatus().filter(d => !d.required).map((doc) => {
+                  {/* Cards cliquables - Documents obligatoires */}
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-2">
+                    {getDocumentsWithStatus().filter(d => d.required).map((doc) => {
                       const filesCount = getFilesByCategory(doc.id).length;
+                      const isActive = activeCategory === doc.id;
+                      const isComplete = filesCount > 0;
                       return (
                         <div
                           key={doc.id}
                           onClick={() => setActiveCategory(doc.id)}
-                          className={`p-4 rounded-xl border-2 cursor-pointer transition-all mb-2 ${
-                            activeCategory === doc.id
-                              ? "border-primary bg-primary/5"
-                              : "border-border hover:border-primary/30"
+                          className={`relative p-2.5 rounded-lg border cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                            isActive
+                              ? "border-primary bg-primary/10 shadow-sm ring-2 ring-primary/30"
+                              : isComplete
+                                ? "border-green-300 bg-green-50/50 hover:border-green-400"
+                                : "border-gray-200 bg-white hover:border-primary/40 hover:bg-gray-50"
                           }`}
                         >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <FileText className="w-5 h-5 text-primary" />
-                              <div>
-                                <div className="font-medium text-sm flex items-center gap-1">
-                                  {doc.name}
-                                  {doc.tooltip && (
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <button
-                                          type="button"
-                                          onClick={(e) => e.stopPropagation()}
-                                          className="ml-1 text-muted-foreground hover:text-primary"
-                                        >
-                                          <HelpCircle className="w-3.5 h-3.5" />
-                                        </button>
-                                      </TooltipTrigger>
-                                      <TooltipContent side="right" className="max-w-xs">
-                                        <p className="text-sm">{doc.tooltip}</p>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  )}
-                                </div>
-                                <div className="text-xs text-muted-foreground">
-                                  {doc.description}
-                                </div>
-                              </div>
+                          <div className="flex items-start gap-2">
+                            <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 ${
+                              isComplete ? "bg-green-500" : isActive ? "bg-primary" : "bg-gray-200"
+                            }`}>
+                              {isComplete ? (
+                                <Check className="w-3 h-3 text-white" />
+                              ) : (
+                                <FileText className={`w-3 h-3 ${isActive ? "text-white" : "text-gray-500"}`} />
+                              )}
                             </div>
-                            {filesCount > 0 && (
-                              <Badge variant="secondary" className="bg-primary text-white">
-                                {filesCount}
-                              </Badge>
-                            )}
+                            <div className="min-w-0 flex-1">
+                              <p className={`text-xs font-medium leading-tight truncate ${
+                                isActive ? "text-primary" : isComplete ? "text-green-700" : "text-gray-700"
+                              }`}>
+                                {doc.name}
+                              </p>
+                            </div>
                           </div>
+                          {filesCount > 0 && (
+                            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                              {filesCount}
+                            </div>
+                          )}
+                          {!isComplete && (
+                            <span className="absolute top-1 right-1 text-red-400 text-[10px]">*</span>
+                          )}
                         </div>
                       );
                     })}
-                    </TooltipProvider>
                   </div>
-                )}
-              </div>
 
-              {/* Upload area */}
-              <div className="md:col-span-2">
-                {/* Info sur le document sélectionné */}
-                {(() => {
-                  const currentDoc = getDocumentsWithStatus().find(d => d.id === activeCategory);
-                  return currentDoc && (
-                    <div className={`mb-4 p-3 rounded-xl ${
-                      currentDoc.required
-                        ? "bg-red-50 border border-red-200"
-                        : "bg-gray-50 border border-gray-200"
-                    }`}>
-                      <div className="flex items-center gap-2">
-                        {currentDoc.required ? (
-                          <AlertTriangle className="w-4 h-4 text-red-500" />
-                        ) : (
-                          <FileText className="w-4 h-4 text-gray-500" />
-                        )}
-                        <span className={`text-sm font-medium ${
-                          currentDoc.required ? "text-red-700" : "text-gray-700"
-                        }`}>
-                          {currentDoc.name}
-                          {currentDoc.required && " (obligatoire)"}
-                        </span>
-                      </div>
-                      {currentDoc.reason && (
-                        <p className="text-xs text-muted-foreground mt-1 ml-6">
-                          {currentDoc.reason}
-                        </p>
-                      )}
-                    </div>
-                  );
-                })()}
-
-                <div className="border-2 border-dashed border-primary/30 rounded-2xl p-8 text-center mb-4 hover:border-primary/50 transition-colors">
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    multiple
-                    onChange={handleFileUpload}
-                    className="hidden"
-                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-                  />
-                  <Upload className="w-12 h-12 text-primary/50 mx-auto mb-4" />
-                  <p className="text-muted-foreground mb-4">
-                    Glissez vos fichiers ici ou
-                  </p>
-                  <Button
-                    onClick={() => fileInputRef.current?.click()}
-                    variant="outline"
-                    className="rounded-full"
-                  >
-                    <Paperclip className="w-4 h-4 mr-2" />
-                    Parcourir les fichiers
-                  </Button>
-                  <p className="text-xs text-muted-foreground mt-4">
-                    Formats acceptés: PDF, JPG, PNG, DOC (max 10 MB par fichier)
-                  </p>
-                </div>
-
-                {/* Uploaded files for active category */}
-                <div className="space-y-2">
-                  <h4 className="font-medium text-sm text-muted-foreground">
-                    Fichiers pour:{" "}
-                    {getDocumentsWithStatus().find((d) => d.id === activeCategory)?.name}
-                  </h4>
-                  {getFilesByCategory(activeCategory).length === 0 ? (
-                    <p className="text-sm text-muted-foreground italic">
-                      Aucun fichier téléchargé
-                    </p>
-                  ) : (
-                    getFilesByCategory(activeCategory).map((file) => (
-                      <div
-                        key={file.id}
-                        className="flex items-center justify-between p-3 bg-secondary/50 rounded-xl"
-                      >
-                        <div className="flex items-center gap-3">
-                          <FileText className="w-5 h-5 text-primary" />
-                          <div>
-                            <div className="font-medium text-sm">
-                              {file.name}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              {formatFileSize(file.size)}
-                            </div>
+                  {/* Cards optionnelles - collapsible */}
+                  {getDocumentsWithStatus().filter(d => !d.required).length > 0 && (
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                      {getDocumentsWithStatus().filter(d => !d.required).map((doc) => {
+                        const filesCount = getFilesByCategory(doc.id).length;
+                        const isActive = activeCategory === doc.id;
+                        return (
+                          <div
+                            key={doc.id}
+                            onClick={() => setActiveCategory(doc.id)}
+                            className={`p-2 rounded-lg border cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
+                              isActive
+                                ? "border-primary bg-primary/10 ring-1 ring-primary/30"
+                                : "border-dashed border-gray-300 bg-gray-50/50 hover:border-gray-400"
+                            }`}
+                          >
+                            <p className={`text-xs truncate ${isActive ? "text-primary font-medium" : "text-gray-500"}`}>
+                              {doc.name}
+                              {filesCount > 0 && <span className="ml-1 text-green-600">({filesCount})</span>}
+                            </p>
                           </div>
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => removeFile(file.id)}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    ))
+                        );
+                      })}
+                    </div>
                   )}
                 </div>
 
-                {/* Total files et progression */}
-                <div className="mt-6 space-y-3">
-                  <div className="p-4 bg-primary/5 rounded-xl">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium">Progression</span>
-                      <Badge className={allRequiredDocumentsUploaded() ? "bg-green-600" : "bg-amber-500"}>
-                        {getDocumentsWithStatus().filter(d => d.required && getFilesByCategory(d.id).length > 0).length} / {getDocumentsWithStatus().filter(d => d.required).length} obligatoires
-                      </Badge>
+                {/* === ÉTAPE 2: Zone d'upload MODERNE === */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">2</div>
+                    <label className="text-sm font-semibold text-gray-700">
+                      Ajoutez votre fichier
+                    </label>
+                  </div>
+
+                  {/* Zone de dépôt moderne */}
+                  <div
+                    className={`group relative border border-dashed rounded-xl p-4 text-center transition-all duration-300 ${
+                      servicesHealthy === false
+                        ? "border-gray-200 bg-gray-100 cursor-not-allowed opacity-60"
+                        : "border-gray-300 bg-gradient-to-b from-gray-50 to-white hover:border-primary hover:from-primary/5 hover:to-white cursor-pointer"
+                    }`}
+                    onClick={() => servicesHealthy !== false && fileInputRef.current?.click()}
+                  >
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      multiple
+                      onChange={handleFileUpload}
+                      className="hidden"
+                      accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,.gif,.bmp,.doc,.docx"
+                      disabled={servicesHealthy === false}
+                    />
+
+                    {/* Icône animée */}
+                    <div className="w-12 h-12 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <Upload className="w-5 h-5 text-primary group-hover:animate-bounce" />
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+
+                    {/* Texte compact */}
+                    <p className="text-sm font-medium text-gray-600 group-hover:text-primary transition-colors">
+                      Cliquez ou glissez votre fichier
+                    </p>
+                    <p className="text-xs text-primary/70 font-medium mt-1 truncate px-2">
+                      {getDocumentsWithStatus().find((d) => d.id === activeCategory)?.name}
+                    </p>
+
+                    {/* Bouton subtil */}
+                    <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-xs font-medium rounded-full group-hover:bg-primary group-hover:text-white transition-all duration-200">
+                      <Paperclip className="w-3 h-3" />
+                      Parcourir
+                    </div>
+
+                    <p className="text-[10px] text-gray-400 mt-2">
+                      PDF, JPG, PNG, DOC • Max 10 MB
+                    </p>
+
+                    {/* Effet de bordure animé au hover */}
+                    <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-primary/20 transition-all duration-300 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* === Fichiers uploadés - COMPACT === */}
+                {getFilesByCategory(activeCategory).length > 0 && (
+                  <div className="mb-3 p-2.5 bg-green-50/80 border border-green-200 rounded-lg">
+                    <div className="space-y-1.5">
+                      {getFilesByCategory(activeCategory).map((file) => (
+                        <div
+                          key={file.id}
+                          className={`flex items-center justify-between p-2 bg-white border rounded-md group transition-colors ${
+                            file.uploadStatus === "error"
+                              ? "border-red-200 bg-red-50/50"
+                              : file.uploadStatus === "uploading"
+                              ? "border-blue-200 bg-blue-50/50"
+                              : "border-green-100 hover:border-green-300"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2 min-w-0">
+                            {/* Icône de statut */}
+                            <div className={`w-7 h-7 rounded flex items-center justify-center flex-shrink-0 ${
+                              file.uploadStatus === "error"
+                                ? "bg-red-100"
+                                : file.uploadStatus === "uploading"
+                                ? "bg-blue-100"
+                                : "bg-green-100"
+                            }`}>
+                              {file.uploadStatus === "uploading" ? (
+                                <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
+                              ) : file.uploadStatus === "error" ? (
+                                <XCircle className="w-3.5 h-3.5 text-red-600" />
+                              ) : file.uploadStatus === "success" ? (
+                                <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                              ) : (
+                                <FileText className="w-3.5 h-3.5 text-gray-400" />
+                              )}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-xs font-medium truncate text-gray-700">
+                                {file.name}
+                              </div>
+                              <div className="text-[10px] text-gray-400 flex items-center gap-1">
+                                {formatFileSize(file.size)}
+                                {file.uploadStatus === "uploading" && (
+                                  <span className="text-blue-500">• Upload en cours...</span>
+                                )}
+                                {file.uploadStatus === "success" && file.url && (
+                                  <span className="text-green-600">• Sauvegardé</span>
+                                )}
+                                {file.uploadStatus === "error" && (
+                                  <span className="text-red-500">• {file.uploadError || "Échec"}</span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            {/* Bouton réessayer si erreur */}
+                            {file.uploadStatus === "error" && (
+                              <button
+                                type="button"
+                                onClick={() => retryFileUpload(file.id)}
+                                className="w-6 h-6 flex items-center justify-center text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
+                                title="Réessayer l'upload"
+                              >
+                                <RefreshCw className="w-3.5 h-3.5" />
+                              </button>
+                            )}
+                            {/* Bouton supprimer */}
+                            <button
+                              type="button"
+                              onClick={() => removeFile(file.id)}
+                              disabled={file.uploadStatus === "uploading"}
+                              className={`w-6 h-6 flex items-center justify-center rounded transition-colors ${
+                                file.uploadStatus === "uploading"
+                                  ? "text-gray-300 cursor-not-allowed"
+                                  : "text-gray-400 hover:text-red-500 hover:bg-red-50 opacity-0 group-hover:opacity-100"
+                              }`}
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* === PROGRESSION COMPACTE === */}
+                <div className="p-3 bg-gray-50/80 rounded-lg border border-gray-200">
+                  {/* Barre de progression fine */}
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex-1 bg-gray-200 rounded-full h-1.5">
                       <div
-                        className={`h-2 rounded-full transition-all ${
-                          allRequiredDocumentsUploaded() ? "bg-green-600" : "bg-amber-500"
+                        className={`h-1.5 rounded-full transition-all duration-500 ${
+                          allRequiredDocumentsUploaded() ? "bg-green-500" : "bg-primary"
                         }`}
                         style={{
-                          width: `${(getDocumentsWithStatus().filter(d => d.required && getFilesByCategory(d.id).length > 0).length / Math.max(1, getDocumentsWithStatus().filter(d => d.required).length)) * 100}%`
+                          width: `${(getDocumentsWithStatus().filter(d => d.required && getSuccessfullyUploadedFilesByCategory(d.id).length > 0).length / Math.max(1, getDocumentsWithStatus().filter(d => d.required).length)) * 100}%`
                         }}
                       />
                     </div>
+                    <span className={`text-xs font-semibold ${allRequiredDocumentsUploaded() ? "text-green-600" : "text-gray-600"}`}>
+                      {getDocumentsWithStatus().filter(d => d.required && getSuccessfullyUploadedFilesByCategory(d.id).length > 0).length}/{getDocumentsWithStatus().filter(d => d.required).length}
+                    </span>
                   </div>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>Total des documents</span>
-                    <span className="font-medium">{uploadedFiles.length} fichier(s)</span>
-                  </div>
+
+                  {/* Message succès compact */}
+                  {allRequiredDocumentsUploaded() && (
+                    <div className="flex items-center gap-1.5 text-green-600 text-xs font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>Tous les documents requis sont uploadés avec succès</span>
+                    </div>
+                  )}
                 </div>
-              </div>
-            </div>
               </div>
             )}
           </div>
         )}
 
         {/* Step 8: Certification */}
-        {/* ... unchanged ... */}
+        {currentStep === 8 && (
+          <div>
+            <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
+              <div className="w-24 h-24 rounded-3xl bg-primary/10 flex items-center justify-center">
+                <ShieldCheck className="w-12 h-12 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-2">
+                  Certification de la demande
+                </h2>
+                <p className="text-muted-foreground">
+                  Veuillez confirmer l'exactitude des informations fournies.
+                </p>
+              </div>
+            </div>
 
-        {/* Step 9: Payment */}
-        {/* ... unchanged ... */}
+            <div className="space-y-6">
+              <div className="p-4 bg-gray-50 rounded-xl border">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.certifyAccuracy}
+                    onChange={(e) => updateForm("certifyAccuracy", e.target.checked)}
+                    className="w-5 h-5 mt-0.5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <div>
+                    <span className="font-medium">Je certifie l'exactitude des informations</span>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Je confirme que toutes les informations fournies sont complètes et exactes au meilleur de ma connaissance.
+                    </p>
+                  </div>
+                </label>
+              </div>
+
+              <div className="p-4 bg-gray-50 rounded-xl border">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.certifyResponsibility}
+                    onChange={(e) => updateForm("certifyResponsibility", e.target.checked)}
+                    className="w-5 h-5 mt-0.5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <div>
+                    <span className="font-medium">Je comprends ma responsabilité</span>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Je comprends que je reste responsable de l'exactitude de ma déclaration d'impôts finale auprès de l'administration fiscale.
+                    </p>
+                  </div>
+                </label>
+              </div>
+
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                <div className="flex items-start gap-3">
+                  <Info className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-amber-800">Important</p>
+                    <p className="text-sm text-amber-700 mt-1">
+                      NeoFidu s'engage à traiter votre déclaration avec le plus grand soin. Cependant, la responsabilité finale envers l'administration fiscale vous incombe. Nous vous recommandons de vérifier la déclaration avant de la signer et de la soumettre.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Résumé du prix */}
+            <div className="mt-8 p-6 bg-primary/5 rounded-2xl border border-primary/20">
+              <h3 className="font-bold text-lg mb-4">Récapitulatif</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span>Déclaration {formData.familyStatus === "couple" ? "commune" : "individuelle"}</span>
+                  <span>CHF 50.-</span>
+                </div>
+                {formData.livesAbroad && (
+                  <div className="flex justify-between">
+                    <span>Supplément Suisse de l'étranger</span>
+                    <span>CHF 50.-</span>
+                  </div>
+                )}
+                {formData.familyStatus === "couple" && (
+                  <div className="flex justify-between">
+                    <span>Supplément couple</span>
+                    <span>CHF 20.-</span>
+                  </div>
+                )}
+                {formData.isIndependent && (
+                  <div className="flex justify-between">
+                    <span>Supplément indépendant{formData.familyStatus === "couple" ? ` (${formData.firstName || "Adulte 1"})` : ""}</span>
+                    <span>CHF 40.-</span>
+                  </div>
+                )}
+                {formData.familyStatus === "couple" && formData.isIndependent2 && (
+                  <div className="flex justify-between">
+                    <span>Supplément indépendant ({formData.firstName2 || "Adulte 2"})</span>
+                    <span>CHF 40.-</span>
+                  </div>
+                )}
+                {formData.hasChildren && formData.childrenCount > 0 && (
+                  <div className="flex justify-between">
+                    <span>{formData.childrenCount} enfant(s)</span>
+                    <span>CHF {10 * formData.childrenCount}.-</span>
+                  </div>
+                )}
+                {formData.hasProperty && properties.length > 0 && (
+                  <div className="flex justify-between">
+                    <span>{properties.length} bien(s) immobilier(s)</span>
+                    <span>CHF {50 * properties.length}.-</span>
+                  </div>
+                )}
+                {formData.hasStocks && formData.stocksCount > 2 && (
+                  <div className="flex justify-between">
+                    <span>Titres ({formData.stocksCount} positions)</span>
+                    <span>CHF 20.-</span>
+                  </div>
+                )}
+                {formData.deliveryMethod === "post" && (
+                  <div className="flex justify-between">
+                    <span>Envoi postal</span>
+                    <span>CHF 20.-</span>
+                  </div>
+                )}
+                {formData.deadline === "extended" && (
+                  <div className="flex justify-between">
+                    <span>Délai prioritaire</span>
+                    <span>CHF 20.-</span>
+                  </div>
+                )}
+                {formData.deadline === "express" && (
+                  <div className="flex justify-between">
+                    <span>Délai express (48h)</span>
+                    <span>CHF 120.-</span>
+                  </div>
+                )}
+                <div className="border-t pt-2 mt-2">
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>Montant HT</span>
+                    <span>CHF {calculatePriceHT().toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>TVA (8.1%)</span>
+                    <span>CHF {calculateTVA().toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between font-bold text-lg mt-2">
+                    <span>Total TTC</span>
+                    <span className="text-primary">CHF {calculatePrice().toFixed(2)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Step 9: Paiement */}
+        {currentStep === 9 && (
+          <div>
+            <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
+              <PaymentIllustration className="w-24 h-24 flex-shrink-0" />
+              <div>
+                <h2 className="text-2xl font-bold mb-2">
+                  Paiement sécurisé
+                </h2>
+                <p className="text-muted-foreground">
+                  Finalisez votre demande en toute sécurité.
+                </p>
+              </div>
+            </div>
+
+            {/* Récapitulatif compact */}
+            <div className="mb-6 p-4 bg-gray-50 rounded-xl border">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-medium">Déclaration d'impôts {formData.taxYear}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {formData.firstName} {formData.lastName}
+                    {formData.clientType === "couple" && formData.firstName2 && ` & ${formData.firstName2} ${formData.lastName2}`}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-primary">CHF {calculatePrice().toFixed(2)}</p>
+                  <p className="text-xs text-muted-foreground">TTC</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Référence de la demande */}
+            {taxRequestReference && (
+              <div className="mb-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
+                <div className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary" />
+                  <span className="font-medium">Demande enregistrée</span>
+                </div>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Référence: <span className="font-mono font-medium">{taxRequestReference}</span>
+                </p>
+              </div>
+            )}
+
+            {/* Sécurité */}
+            <div className="mb-6 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Lock className="w-4 h-4 text-green-600" />
+                <span>Paiement sécurisé SSL</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CreditCard className="w-4 h-4 text-primary" />
+                <span>Stripe PCI-DSS</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-primary" />
+                <span>Données protégées</span>
+              </div>
+            </div>
+
+            {/* Payment via Stripe */}
+            {isSavingRequest ? (
+              <div className="p-8 text-center">
+                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Préparation du paiement...</p>
+              </div>
+            ) : (
+              <PaymentMethodSelector
+                amount={calculatePrice()}
+                onSuccess={handlePaymentSuccess}
+                onError={(error) => console.error("Erreur de paiement:", error)}
+                customerEmail={formData.email}
+                customerName={`${formData.firstName} ${formData.lastName}`}
+                description={`Déclaration fiscale ${formData.taxYear} - ${formData.canton}`}
+                taxRequestReference={taxRequestReference}
+                metadata={{
+                  taxRequestReference: taxRequestReference,
+                  service: "tax",
+                  canton: formData.canton,
+                  taxYear: String(formData.taxYear),
+                  clientType: formData.clientType,
+                  taxpayerNumber: formData.taxpayerNumber || "",
+                  language: isEnglish ? "en" : "fr",
+                }}
+              />
+            )}
+
+            {/* Info: Documents uploadés après paiement */}
+            {uploadedFiles.length > 0 && (
+              <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                <div className="flex items-start gap-3">
+                  <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-blue-800">
+                      {uploadedFiles.length} document(s) prêt(s) à être envoyé(s)
+                    </p>
+                    <p className="text-sm text-blue-700 mt-1">
+                      Vos documents seront transmis automatiquement après la confirmation de votre paiement.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Validation message for step 4 */}
         {currentStep === 4 && !canProceed() && (
           <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-medium text-amber-800">Mode de transport requis</p>
-              <p className="text-sm text-amber-700">
-                Veuillez sélectionner un mode de transport pour chaque adulte de la déclaration avant de continuer.
-              </p>
+              <p className="font-medium text-amber-800">Informations requises</p>
+              <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
+                {/* Statut d'emploi manquant */}
+                {formData.clientType !== "independent" && !formData.employmentStatus && (
+                  <li>Sélectionnez votre statut d'emploi (salarié, retraité, etc.)</li>
+                )}
+                {/* Taux d'occupation manquant pour salarié */}
+                {formData.clientType !== "independent" && formData.employmentStatus === "employed" && !formData.occupationRate && (
+                  <li>Indiquez votre taux d'occupation (%)</li>
+                )}
+                {/* Statut d'emploi manquant pour le conjoint */}
+                {formData.clientType === "couple" && !formData.employmentStatus2 && (
+                  <li>Sélectionnez le statut d'emploi de votre conjoint</li>
+                )}
+                {/* Taux d'occupation manquant pour conjoint salarié */}
+                {formData.clientType === "couple" && formData.employmentStatus2 === "employed" && !formData.occupationRate2 && (
+                  <li>Indiquez le taux d'occupation de votre conjoint (%)</li>
+                )}
+                {/* Mode de transport manquant */}
+                {!workplaces1.some((wp) => wp.transportMode !== "") && (
+                  <li>Sélectionnez un mode de transport pour vos trajets professionnels</li>
+                )}
+                {/* Justification voiture manquante */}
+                {workplaces1.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
+                  <li>Justifiez l'utilisation de la voiture (obligatoire pour l'administration fiscale)</li>
+                )}
+                {/* Mode de transport manquant pour le conjoint */}
+                {formData.clientType === "couple" && !workplaces2.some((wp) => wp.transportMode !== "") && (
+                  <li>Sélectionnez un mode de transport pour le conjoint</li>
+                )}
+                {/* Justification voiture manquante pour le conjoint */}
+                {formData.clientType === "couple" && workplaces2.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
+                  <li>Justifiez l'utilisation de la voiture par le conjoint</li>
+                )}
+                {/* Informations indépendant manquantes */}
+                {formData.isIndependent && !formData.businessType.trim() && (
+                  <li>Indiquez le type d'activité indépendante</li>
+                )}
+                {formData.isIndependent && !formData.hasBusinessAccounts && (!formData.businessRevenue.trim() || !formData.businessExpenses.trim()) && (
+                  <li>Remplissez soit le bilan/compte de résultat, soit le chiffre d'affaires et les charges</li>
+                )}
+                {/* Informations indépendant manquantes pour le conjoint */}
+                {formData.familyStatus === "couple" && formData.isIndependent2 && !formData.businessType2.trim() && (
+                  <li>Indiquez le type d'activité indépendante du conjoint</li>
+                )}
+                {formData.familyStatus === "couple" && formData.isIndependent2 && !formData.hasBusinessAccounts2 && (!formData.businessRevenue2.trim() || !formData.businessExpenses2.trim()) && (
+                  <li>Remplissez les informations financières de l'activité indépendante du conjoint</li>
+                )}
+              </ul>
             </div>
           </div>
         )}
 
         {/* Navigation */}
+        {/* Erreur d'upload de documents - bloque le passage au paiement */}
+        {uploadError && currentStep === 8 && (
+          <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <p className="font-medium text-red-800">Erreur d'upload des documents</p>
+                <p className="text-sm text-red-700 mt-1">
+                  {uploadError.message}
+                </p>
+                {uploadError.failedFiles.length > 0 && (
+                  <div className="mt-2 text-sm text-red-600">
+                    <p className="font-medium">Fichiers concernés :</p>
+                    <ul className="list-disc list-inside mt-1">
+                      {uploadError.failedFiles.map((file, idx) => (
+                        <li key={idx} className="truncate">{file}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <div className="flex gap-2 mt-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setUploadError(null);
+                      nextStep();
+                    }}
+                    className="text-red-700 border-red-300 hover:bg-red-100"
+                  >
+                    Réessayer l'upload
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setCurrentStep(7)}
+                    className="text-red-600 hover:bg-red-100"
+                  >
+                    Modifier les documents
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Erreur de sauvegarde - bloque le passage au paiement */}
+        {saveError && currentStep === 8 && (
+          <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-medium text-red-800">Erreur d'enregistrement</p>
+                <p className="text-sm text-red-700 mt-1">
+                  {saveError}
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setSaveError(null);
+                    nextStep();
+                  }}
+                  className="mt-3 text-red-700 border-red-300 hover:bg-red-100"
+                >
+                  Réessayer
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="flex justify-between mt-8 pt-6 border-t">
           <Button
             variant="outline"
@@ -1579,11 +5799,20 @@ export function TaxRequestForm() {
           {currentStep < steps.length && (
             <Button
               onClick={nextStep}
-              disabled={!canProceed()}
+              disabled={!canProceed() || isSavingRequest}
               className="rounded-full"
             >
-              Suivant
-              <ArrowRight className="w-4 h-4 ml-2" />
+              {isSavingRequest ? (
+                <>
+                  <span className="animate-spin mr-2">⏳</span>
+                  Enregistrement...
+                </>
+              ) : (
+                <>
+                  Suivant
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </>
+              )}
             </Button>
           )}
           {/* On the payment step, show info text instead of a button */}

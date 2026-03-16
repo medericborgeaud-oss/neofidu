@@ -18,7 +18,7 @@ export const getStripe = () => {
 export interface PaymentIntentRequest {
   amount: number; // en centimes (CHF)
   currency?: string;
-  paymentMethod: "card" | "twint";
+  paymentMethod: "card";
   customerEmail: string;
   customerName: string;
   description?: string;

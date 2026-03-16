@@ -36,7 +36,7 @@ export function SpeedHighlight() {
         {
           icon: FileCheck,
           time: "1 min",
-          title: "Pay & relax",
+          title: "Confirm & relax",
           description: "We handle everything, you receive your completed return",
         },
       ]
@@ -56,12 +56,12 @@ export function SpeedHighlight() {
         {
           icon: FileCheck,
           time: "1 min",
-          title: "Payez et relaxez",
+          title: "Confirmez et détendez-vous",
           description: "Nous nous occupons de tout, vous recevez votre déclaration",
         },
       ];
 
-  const ctaText = isEnglish ? "Start now" : "Commencer maintenant";
+  const ctaText = isEnglish ? "Submit a request" : "Déposer une demande";
   const ctaSubtext = isEnglish ? "It only takes 5 minutes!" : "Ça ne prend que 5 minutes!";
 
   return (

@@ -5,8 +5,14 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 
 // Client Supabase côté serveur (avec service role key pour les opérations admin)
+// Les options auth désactivent les fonctionnalités côté client pour une utilisation serveur
 export const supabase = supabaseUrl && supabaseServiceKey
-  ? createClient(supabaseUrl, supabaseServiceKey)
+  ? createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    })
   : null;
 
 // Types pour les demandes fiscales
@@ -49,8 +55,68 @@ export interface TaxRequestDB {
     taxpayerNumber?: string;
     declarationCode?: string;
     clientType: string;
+    familyStatus?: string;
+    isIndependent?: boolean;
+    isIndependent2?: boolean; // Conjoint indépendant
     employmentStatus?: string;
+    occupationRate?: string;
     employmentStatus2?: string;
+    occupationRate2?: string;
+    // Suisses de l'étranger
+    livesAbroad?: boolean;
+    countryOfResidence?: string;
+    countryOfResidenceName?: string;
+    abroadAddress?: string;
+  };
+
+  // Business - Activité indépendante adulte 1 (JSON)
+  business?: {
+    businessType?: string;
+    businessStartDate?: string;
+    hasIDE?: boolean;
+    ideNumber?: string;
+    isRegisteredRC?: boolean;
+    hasVAT?: boolean;
+    vatNumber?: string;
+    hasBusinessAccounts?: boolean;
+    businessRevenue?: string;
+    businessExpenses?: string;
+    businessNetIncome?: string;
+    hasAVSIndependent?: boolean;
+    avsIndependentAmount?: string;
+    hasLPPVoluntary?: boolean;
+    lppVoluntaryAmount?: string;
+    hasHomeOffice?: boolean;
+    homeOfficePercent?: string;
+    homeOfficeAmount?: string;
+    hasBusinessVehicle?: boolean;
+    businessVehiclePercent?: string;
+    businessVehicleExpenses?: string;
+  };
+
+  // Business2 - Activité indépendante adulte 2 / conjoint (JSON)
+  business2?: {
+    businessType?: string;
+    businessStartDate?: string;
+    hasIDE?: boolean;
+    ideNumber?: string;
+    isRegisteredRC?: boolean;
+    hasVAT?: boolean;
+    vatNumber?: string;
+    hasBusinessAccounts?: boolean;
+    businessRevenue?: string;
+    businessExpenses?: string;
+    businessNetIncome?: string;
+    hasAVSIndependent?: boolean;
+    avsIndependentAmount?: string;
+    hasLPPVoluntary?: boolean;
+    lppVoluntaryAmount?: string;
+    hasHomeOffice?: boolean;
+    homeOfficePercent?: string;
+    homeOfficeAmount?: string;
+    hasBusinessVehicle?: boolean;
+    businessVehiclePercent?: string;
+    businessVehicleExpenses?: string;
   };
 
   // Situation (JSON)
@@ -58,7 +124,21 @@ export interface TaxRequestDB {
     hasMoved?: boolean;
     hasChildren?: boolean;
     childrenCount?: number;
+    children?: {
+      firstName: string;
+      lastName: string;
+      birthDate: string;
+      activity: string;
+      isDependent: boolean;
+      dependentPercentage: number;
+      custodyType: string;
+      hasGuardCosts: boolean;
+      guardCostsAmount: string;
+      guardCostsDescription: string;
+    }[];
     monthlyRent?: string;
+    landlordName?: string;
+    landlordAddress?: string;
   };
 
   // Financial (JSON)
@@ -67,8 +147,12 @@ export interface TaxRequestDB {
     pillar3aAmount?: string;
     hasStocks?: boolean;
     stocksCount?: number;
+    hasSoldStocks?: boolean;
+    soldStocksDetails?: string;
     hasGuardCosts?: boolean;
     guardCosts?: string;
+    hasMealsOutside?: boolean;
+    mealsOutsideDays?: string;
     hasAlimonyReceived?: boolean;
     alimonyReceived?: string;
     hasAlimonyPaid?: boolean;
@@ -83,10 +167,38 @@ export interface TaxRequestDB {
   property: {
     hasProperty?: boolean;
     propertyCount?: number;
+    hasSoldProperty?: boolean;
+    soldPropertyDetails?: string;
     hasMortgage?: boolean;
     mortgageAmount?: string;
     hasRenovations?: boolean;
     renovationsAmount?: string;
+    // Liste détaillée des biens
+    properties?: {
+      propertyType?: string;
+      propertyTypeName?: string;
+      usage?: string;
+      usageName?: string;
+      street?: string;
+      npa?: string;
+      city?: string;
+      canton?: string;
+      cantonName?: string;
+      parcelNumber?: string;
+      ownershipShare?: string;
+      acquisitionYear?: string;
+      constructionYear?: string;
+      fiscalValue?: string;
+      rentalValue?: string;
+      annualRent?: string;
+      charges?: string;
+      hasMortgage?: boolean;
+      mortgageBalance?: string;
+      mortgageInterest?: string;
+      maintenanceCosts?: string;
+      maintenanceType?: string;
+      maintenanceFlatRate?: number;
+    }[];
   };
 
   // Workplaces (JSON array)
@@ -97,6 +209,7 @@ export interface TaxRequestDB {
     workplaceAddress: string;
     daysPerYear: string;
     distanceKm: string;
+    carJustification?: string;
     employerReimbursement: boolean;
     reimbursementType: string;
     reimbursementAmount: string;
@@ -155,38 +268,54 @@ export function generateReference(): string {
   return ref;
 }
 
-// Créer une nouvelle demande
+// Créer une nouvelle demande avec gestion des collisions de référence
 export async function createTaxRequest(data: Omit<TaxRequestDB, "id" | "created_at" | "updated_at" | "reference">): Promise<TaxRequestDB | null> {
   if (!supabase) return null;
 
-  const reference = generateReference();
-  const now = new Date().toISOString();
+  const MAX_ATTEMPTS = 3;
+  let attempts = 0;
+  let reference = generateReference();
 
-  const { data: result, error } = await supabase
-    .from("tax_requests")
-    .insert({
-      reference,
-      status: data.status,
-      paid_at: data.paid_at,
-      payment: data.payment,
-      customer: data.customer,
-      fiscal: data.fiscal,
-      situation: data.situation,
-      financial: data.financial,
-      property: data.property,
-      workplaces: data.workplaces,
-      options: data.options,
-      documents: data.documents,
-    })
-    .select()
-    .single();
+  while (attempts < MAX_ATTEMPTS) {
+    const { data: result, error } = await supabase
+      .from("tax_requests")
+      .insert({
+        reference,
+        status: data.status,
+        paid_at: data.paid_at,
+        payment: data.payment,
+        customer: data.customer,
+        fiscal: data.fiscal,
+        business: data.business,      // Activité indépendante adulte 1
+        business2: data.business2,    // Activité indépendante adulte 2 (conjoint)
+        situation: data.situation,
+        financial: data.financial,
+        property: data.property,
+        workplaces: data.workplaces,
+        options: data.options,
+        documents: data.documents,
+      })
+      .select()
+      .single();
 
-  if (error) {
-    console.error("Erreur création demande Supabase:", error);
-    return null;
+    if (!error) {
+      return result as TaxRequestDB;
+    }
+
+    // PostgreSQL unique violation error code
+    if (error.code === "23505") {
+      console.warn(`Collision de référence détectée (${reference}), tentative ${attempts + 1}/${MAX_ATTEMPTS}`);
+      reference = generateReference();
+      attempts++;
+    } else {
+      // Autre erreur, on arrête
+      console.error("Erreur création demande Supabase:", error);
+      return null;
+    }
   }
 
-  return result as TaxRequestDB;
+  console.error(`Échec création demande après ${MAX_ATTEMPTS} tentatives de génération de référence`);
+  return null;
 }
 
 // Récupérer toutes les demandes
@@ -223,25 +352,65 @@ export async function getAllGenericRequests(): Promise<GenericRequestDB[]> {
   return data as GenericRequestDB[];
 }
 
-// Trouver une demande par référence
+// Trouver une demande fiscale par référence
 export async function findTaxRequestByReference(reference: string): Promise<TaxRequestDB | null> {
-  if (!supabase) return null;
+  if (!supabase) {
+    console.log("[SUPABASE] Client non configuré - recherche tax_requests impossible");
+    return null;
+  }
 
   const normalizedRef = reference.toUpperCase().replace(/[^A-Z0-9-]/g, "");
+  console.log(`[SUPABASE] Recherche tax_request avec ref normalisée: ${normalizedRef}`);
 
   const { data, error } = await supabase
     .from("tax_requests")
     .select("*")
-    .ilike("reference", `%${normalizedRef}%`)
-    .limit(1)
+    .eq("reference", normalizedRef)
     .single();
 
   if (error) {
-    console.error("Erreur recherche demande Supabase:", error);
+    console.error("[SUPABASE] Erreur recherche demande fiscale:", error);
     return null;
   }
 
+  console.log(`[SUPABASE] Données brutes retournées: id=${data.id}, ref=${data.reference}, status=${data.status}, updated_at=${data.updated_at}`);
   return data as TaxRequestDB;
+}
+
+// Trouver une demande générique (comptabilité, gérance) par référence
+export async function findGenericRequestByReference(reference: string): Promise<GenericRequestDB | null> {
+  if (!supabase) {
+    console.log("[SUPABASE GENERIC] Client non configuré - recherche impossible");
+    return null;
+  }
+
+  const normalizedRef = reference.toUpperCase().replace(/[^A-Z0-9-]/g, "");
+  console.log(`[SUPABASE GENERIC] Recherche demande générique avec ref normalisée: ${normalizedRef}`);
+
+  const { data, error } = await supabase
+    .from("requests")
+    .select("*")
+    .eq("reference", normalizedRef)
+    .single();
+
+  if (error) {
+    // Don't log "no rows" as error - it's expected when request doesn't exist
+    if (error.code !== 'PGRST116') {
+      console.error("[SUPABASE GENERIC] Erreur recherche demande générique:", error);
+    } else {
+      console.log(`[SUPABASE GENERIC] Aucune demande générique trouvée pour ref: ${normalizedRef}`);
+    }
+    return null;
+  }
+
+  console.log(`[SUPABASE GENERIC] Données brutes retournées depuis Supabase:`);
+  console.log(`[SUPABASE GENERIC]   - id: ${data.id}`);
+  console.log(`[SUPABASE GENERIC]   - reference: ${data.reference}`);
+  console.log(`[SUPABASE GENERIC]   - status: ${data.status}`);
+  console.log(`[SUPABASE GENERIC]   - updated_at: ${data.updated_at}`);
+  console.log(`[SUPABASE GENERIC]   - status_history: ${JSON.stringify(data.status_history)}`);
+
+  return data as GenericRequestDB;
 }
 
 // Trouver une demande par PaymentIntent ID
@@ -269,16 +438,24 @@ export async function updateTaxRequestStatus(
   status: TaxRequestDB["status"],
   paidAt?: string
 ): Promise<TaxRequestDB | null> {
-  if (!supabase) return null;
+  if (!supabase) {
+    console.log("[SUPABASE] Client non configuré - mise à jour impossible");
+    return null;
+  }
 
   const updateData: Record<string, unknown> = {
     status,
     updated_at: new Date().toISOString(),
   };
 
-  if (paidAt) {
+  // Si le statut passe à "paid" et qu'il n'y a pas de paidAt, on le définit
+  if (status === "paid" && !paidAt) {
+    updateData.paid_at = new Date().toISOString();
+  } else if (paidAt) {
     updateData.paid_at = paidAt;
   }
+
+  console.log(`[SUPABASE] Mise à jour demande id=${id} avec:`, updateData);
 
   const { data, error } = await supabase
     .from("tax_requests")
@@ -288,11 +465,82 @@ export async function updateTaxRequestStatus(
     .single();
 
   if (error) {
-    console.error("Erreur mise à jour statut Supabase:", error);
+    console.error("[SUPABASE] Erreur mise à jour statut:", error);
     return null;
   }
 
+  console.log(`[SUPABASE] Mise à jour réussie: ${data.reference} -> ${data.status}`);
   return data as TaxRequestDB;
+}
+
+// Mettre à jour le statut d'une demande générique (comptabilité, immobilier)
+export async function updateGenericRequestStatus(
+  id: string,
+  status: string
+): Promise<GenericRequestDB | null> {
+  if (!supabase) {
+    console.log("[SUPABASE] Client non configuré - mise à jour générique impossible");
+    return null;
+  }
+
+  console.log(`[SUPABASE GENERIC] Mise à jour demande id=${id} vers status=${status}`);
+
+  const now = new Date().toISOString();
+
+  // D'abord récupérer la demande pour avoir l'historique
+  const { data: currentRequest, error: findError } = await supabase
+    .from("requests")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (findError) {
+    console.error(`[SUPABASE GENERIC] Erreur recherche demande id=${id}:`, findError);
+    return null;
+  }
+
+  if (!currentRequest) {
+    console.error(`[SUPABASE GENERIC] Demande non trouvée pour id=${id}`);
+    return null;
+  }
+
+  console.log(`[SUPABASE GENERIC] Demande trouvée: ref=${currentRequest.reference}, status actuel=${currentRequest.status}`);
+
+  const statusHistory = currentRequest?.status_history || [];
+  statusHistory.push({
+    status,
+    date: now,
+  });
+
+  const { data, error, count } = await supabase
+    .from("requests")
+    .update({
+      status,
+      status_history: statusHistory,
+      updated_at: now,
+    })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(`[SUPABASE GENERIC] Erreur mise à jour statut:`, error);
+    return null;
+  }
+
+  // Vérifier si le statut a bien été mis à jour
+  // Si différent, c'est un problème de trigger ou RLS - on échoue explicitement
+  if (data.status !== status) {
+    console.error(`[SUPABASE GENERIC] ❌ ERREUR CRITIQUE: Le statut n'a pas été mis à jour!`);
+    console.error(`[SUPABASE GENERIC]    Attendu: ${status}, Reçu: ${data.status}`);
+    console.error(`[SUPABASE GENERIC]    Cause probable: trigger Supabase ou politique RLS qui réécrit la valeur.`);
+    console.error(`[SUPABASE GENERIC]    Action requise: vérifier les triggers et RLS sur la table 'requests'.`);
+    // Retourner null pour signaler l'échec - ne pas masquer le problème
+    return null;
+  }
+
+  console.log(`[SUPABASE GENERIC] ✅ Mise à jour réussie: ref=${data.reference}, nouveau status=${data.status}`);
+  return data as GenericRequestDB;
 }
 
 // Mettre à jour le PaymentIntent d'une demande
@@ -329,6 +577,81 @@ export async function updateTaxRequestPayment(
   return data as TaxRequestDB;
 }
 
+// Mettre à jour les documents d'une demande fiscale
+export async function updateTaxRequestDocuments(
+  id: string,
+  documents: Array<{ category: string; name: string; url?: string; uploadedAt?: string }>
+): Promise<TaxRequestDB | null> {
+  if (!supabase) {
+    console.log("[SUPABASE] Client non configuré - mise à jour documents impossible");
+    return null;
+  }
+
+  console.log(`[SUPABASE] Mise à jour documents pour demande id=${id}: ${documents.length} documents`);
+
+  const { data, error } = await supabase
+    .from("tax_requests")
+    .update({
+      documents,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("[SUPABASE] Erreur mise à jour documents:", error);
+    return null;
+  }
+
+  console.log(`[SUPABASE] Documents mis à jour avec succès: ${data.reference}`);
+  return data as TaxRequestDB;
+}
+
+// Vérifier si une demande similaire existe déjà (prévention des doublons)
+// Basé sur: email + année fiscale + canton
+export async function findExistingRequest(
+  email: string,
+  taxYear: number,
+  cantonCode: string
+): Promise<TaxRequestDB | null> {
+  if (!supabase) {
+    console.log(`[findExistingRequest] Supabase non configuré`);
+    return null;
+  }
+
+  console.log(`[findExistingRequest] Recherche: email=${email}, taxYear=${taxYear}, canton=${cantonCode}`);
+
+  try {
+    // IMPORTANT: fiscal->>taxYear retourne du texte, donc on doit convertir taxYear en string
+    const { data, error } = await supabase
+      .from("tax_requests")
+      .select("*")
+      .eq("fiscal->>taxYear", String(taxYear))
+      .ilike("fiscal->>cantonCode", cantonCode)
+      .ilike("customer->>email", email)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
+
+    if (error) {
+      // PGRST116 = no rows found, which is expected
+      if (error.code === "PGRST116") {
+        console.log(`[findExistingRequest] Aucune demande existante trouvée`);
+        return null;
+      }
+      console.warn(`[findExistingRequest] Erreur requête:`, error);
+      return null;
+    }
+
+    console.log(`[findExistingRequest] Demande existante trouvée: ${data?.reference}`);
+    return data as TaxRequestDB;
+  } catch (err) {
+    console.warn("Exception recherche demande existante:", err);
+    return null;
+  }
+}
+
 // Obtenir les statistiques
 export async function getTaxRequestStats() {
   if (!supabase) {
@@ -344,7 +667,7 @@ export async function getTaxRequestStats() {
 
   const { data, error } = await supabase
     .from("tax_requests")
-    .select("status, payment");
+    .select("status, payment, paid_at");
 
   if (error) {
     console.error("Erreur stats Supabase:", error);
@@ -358,17 +681,19 @@ export async function getTaxRequestStats() {
     };
   }
 
-  const requests = data as { status: string; payment: { amount: number } }[];
+  const requests = data as { status: string; payment: { amount: number }; paid_at: string | null }[];
+
+  // Une demande est considérée "payée" si paid_at est défini
+  const paidRequests = requests.filter(r => r.paid_at !== null);
 
   return {
     total: requests.length,
-    paid: requests.filter(r => r.status !== "pending").length,
+    paid: paidRequests.length,
     pending: requests.filter(r => r.status === "pending").length,
     inProgress: requests.filter(r => r.status === "in_progress").length,
     completed: requests.filter(r => r.status === "completed" || r.status === "delivered").length,
-    totalRevenue: requests
-      .filter(r => r.status !== "pending")
-      .reduce((sum, r) => sum + (r.payment?.amount || 0), 0),
+    // Revenus: uniquement les demandes réellement payées (paid_at IS NOT NULL)
+    totalRevenue: paidRequests.reduce((sum, r) => sum + (r.payment?.amount || 0), 0),
   };
 }
 
@@ -605,6 +930,8 @@ CREATE TABLE IF NOT EXISTS tax_requests (
   payment JSONB NOT NULL,
   customer JSONB NOT NULL,
   fiscal JSONB NOT NULL,
+  business JSONB,           -- Activité indépendante adulte 1
+  business2 JSONB,          -- Activité indépendante adulte 2 (conjoint)
   situation JSONB,
   financial JSONB,
   property JSONB,
@@ -618,6 +945,11 @@ CREATE INDEX IF NOT EXISTS idx_tax_requests_reference ON tax_requests(reference)
 CREATE INDEX IF NOT EXISTS idx_tax_requests_status ON tax_requests(status);
 CREATE INDEX IF NOT EXISTS idx_tax_requests_created_at ON tax_requests(created_at DESC);
 
+-- Index JSONB pour findExistingRequest (évite full scan)
+CREATE INDEX IF NOT EXISTS idx_tax_requests_fiscal_year ON tax_requests((fiscal->>'taxYear'));
+CREATE INDEX IF NOT EXISTS idx_tax_requests_fiscal_canton ON tax_requests((fiscal->>'cantonCode'));
+CREATE INDEX IF NOT EXISTS idx_tax_requests_customer_email ON tax_requests((customer->>'email'));
+
 -- Row Level Security (RLS)
 ALTER TABLE tax_requests ENABLE ROW LEVEL SECURITY;
 
@@ -627,10 +959,51 @@ CREATE POLICY "Service role can do everything" ON tax_requests
   USING (true)
   WITH CHECK (true);
 
+-- ============================================
+-- Table des demandes génériques (comptabilité, gérance immobilière)
+-- ============================================
+CREATE TABLE IF NOT EXISTS requests (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  reference TEXT UNIQUE NOT NULL,
+  type TEXT NOT NULL DEFAULT 'accounting',
+  customer_name TEXT NOT NULL,
+  customer_email TEXT NOT NULL,
+  customer_phone TEXT,
+  canton TEXT,
+  status TEXT NOT NULL DEFAULT 'received',
+  status_history JSONB DEFAULT '[]'::jsonb,
+  amount DECIMAL(10,2) DEFAULT 0,
+  payment_status TEXT DEFAULT 'pending',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  estimated_completion TIMESTAMPTZ,
+  documents JSONB DEFAULT '[]'::jsonb,
+  notes TEXT,
+  data JSONB
+);
+
+-- Index pour les recherches fréquentes
+CREATE INDEX IF NOT EXISTS idx_requests_reference ON requests(reference);
+CREATE INDEX IF NOT EXISTS idx_requests_type ON requests(type);
+CREATE INDEX IF NOT EXISTS idx_requests_status ON requests(status);
+CREATE INDEX IF NOT EXISTS idx_requests_created_at ON requests(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_requests_customer_email ON requests(customer_email);
+
+-- Row Level Security (RLS)
+ALTER TABLE requests ENABLE ROW LEVEL SECURITY;
+
+-- Politique pour permettre toutes les opérations avec la service role key
+CREATE POLICY "Service role can do everything" ON requests
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
+
+-- ============================================
 -- Table d'historique des changements de statut
+-- ============================================
 CREATE TABLE IF NOT EXISTS status_history (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  request_id UUID REFERENCES tax_requests(id) ON DELETE CASCADE,
+  request_id UUID,
   request_reference TEXT NOT NULL,
   old_status TEXT NOT NULL,
   new_status TEXT NOT NULL,
@@ -642,6 +1015,7 @@ CREATE TABLE IF NOT EXISTS status_history (
 -- Index pour les recherches fréquentes
 CREATE INDEX IF NOT EXISTS idx_status_history_request_id ON status_history(request_id);
 CREATE INDEX IF NOT EXISTS idx_status_history_changed_at ON status_history(changed_at DESC);
+CREATE INDEX IF NOT EXISTS idx_status_history_reference ON status_history(request_reference);
 
 -- Row Level Security (RLS)
 ALTER TABLE status_history ENABLE ROW LEVEL SECURITY;

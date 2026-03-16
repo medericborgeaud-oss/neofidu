@@ -21,42 +21,60 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: "Article non trouvé | NeoFidu",
-      description: "Cet article n'existe pas ou a été supprimé.",
+      title: "Article non trouvé | Article Not Found",
+      description: "Cet article n'existe pas ou a été supprimé. This article doesn't exist or has been removed.",
     };
   }
 
   const categoryInfo = blogCategories[article.category];
 
+  // Build keywords array with article-specific keywords if available
+  const baseKeywords = [
+    categoryInfo.name.toLowerCase(),
+    categoryInfo.nameEn.toLowerCase(),
+    "fiscalité suisse",
+    "Swiss taxation",
+    "comptabilité",
+    "accounting",
+    "impôts suisse",
+    "Swiss taxes",
+    article.category,
+  ];
+
+  const allKeywords = article.keywords
+    ? [...article.keywords, ...baseKeywords]
+    : baseKeywords;
+
+  // Use French title with Neofidu branding for better SEO
+  const seoTitle = `${article.title} | Neofidu`;
+
+  // Use French description for meta (primary audience is French-speaking Switzerland)
+  const seoDescription = article.excerpt;
+
   return {
-    title: `${article.title} | NeoFidu Blog`,
-    description: article.excerpt,
-    keywords: [
-      categoryInfo.name.toLowerCase(),
-      "fiscalité suisse",
-      "comptabilité",
-      "impôts suisse",
-      article.category,
-    ],
+    title: seoTitle,
+    description: seoDescription,
+    keywords: allKeywords,
     authors: [{ name: "NeoFidu" }],
     openGraph: {
       title: article.title,
       description: article.excerpt,
       type: "article",
-      url: `https://neofidu.ch/blog/${article.slug}`,
+      url: `https://www.neofidu.ch/blog/${article.slug}`,
       siteName: "NeoFidu",
       publishedTime: article.date,
       authors: ["NeoFidu"],
       section: categoryInfo.name,
-      tags: [categoryInfo.name, "Fiscalité Suisse", "Comptabilité"],
+      tags: [categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting"],
+      locale: "fr_CH",
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title,
-      description: article.excerpt,
+      title: article.titleEn || article.title,
+      description: article.excerptEn || article.excerpt,
     },
     alternates: {
-      canonical: `https://neofidu.ch/blog/${article.slug}`,
+      canonical: `https://www.neofidu.ch/blog/${article.slug}`,
     },
   };
 }
@@ -65,15 +83,22 @@ export async function generateMetadata({
 function generateArticleJsonLd(article: BlogArticle) {
   const categoryInfo = blogCategories[article.category];
 
+  // Combine article-specific keywords with default keywords
+  const allKeywords = article.keywords
+    ? [...article.keywords, categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting"]
+    : [categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting", "Impôts"];
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
+    alternativeHeadline: article.titleEn || undefined,
     description: article.excerpt,
     author: {
       "@type": "Organization",
       name: "NeoFidu",
       url: "https://neofidu.ch",
+      logo: "https://neofidu.ch/logo.svg",
     },
     publisher: {
       "@type": "Organization",
@@ -90,8 +115,8 @@ function generateArticleJsonLd(article: BlogArticle) {
       "@id": `https://neofidu.ch/blog/${article.slug}`,
     },
     articleSection: categoryInfo.name,
-    keywords: [categoryInfo.name, "Fiscalité Suisse", "Comptabilité", "Impôts"],
-    inLanguage: "fr-CH",
+    keywords: allKeywords,
+    inLanguage: ["fr-CH", "en-CH"],
     isAccessibleForFree: true,
     timeRequired: `PT${article.readTime}M`,
   };
@@ -109,25 +134,25 @@ function generateBreadcrumbJsonLd(article: BlogArticle) {
         "@type": "ListItem",
         position: 1,
         name: "Accueil",
-        item: "https://neofidu.ch",
+        item: "https://www.neofidu.ch",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://neofidu.ch/blog",
+        item: "https://www.neofidu.ch/blog",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: categoryInfo.name,
-        item: `https://neofidu.ch/blog?category=${article.category}`,
+        item: `https://www.neofidu.ch/blog?category=${article.category}`,
       },
       {
         "@type": "ListItem",
         position: 4,
         name: article.title,
-        item: `https://neofidu.ch/blog/${article.slug}`,
+        item: `https://www.neofidu.ch/blog/${article.slug}`,
       },
     ],
   };

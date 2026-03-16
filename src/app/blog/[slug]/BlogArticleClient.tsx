@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { BreadcrumbLight } from "@/components/Breadcrumb";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Calendar, Clock, Share2, ArrowRight, Check, Copy } from "lucide-react";
+import { Calendar, Clock, Share2, ArrowRight, Check, Copy } from "lucide-react";
 import { BlogArticle, blogCategories } from "@/lib/blog-data";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -21,7 +22,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
   const categoryInfo = blogCategories[article.category];
 
   const handleShare = async () => {
-    const url = `https://neofidu.ch/blog/${article.slug}`;
+    const url = `https://www.neofidu.ch/blog/${article.slug}`;
 
     if (navigator.share) {
       try {
@@ -52,25 +53,14 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
       <div className="pt-28 pb-20">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex items-center gap-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/" className="hover:text-primary transition-colors">
-                  Accueil
-                </Link>
-              </li>
-              <li>/</li>
-              <li>
-                <Link href="/blog" className="hover:text-primary transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>/</li>
-              <li className="text-foreground font-medium truncate max-w-[200px]">
-                {article.title}
-              </li>
-            </ol>
-          </nav>
+          <BreadcrumbLight
+            items={[
+              { label: "Blog", href: "/blog" },
+              { label: categoryInfo.name, href: `/blog?category=${article.category}` },
+              { label: article.title.length > 40 ? `${article.title.substring(0, 40)}...` : article.title },
+            ]}
+            className="mb-8"
+          />
 
           <div className="max-w-3xl mx-auto">
             {/* Article header */}
@@ -141,10 +131,10 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50 mb-12">
+              <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50 mb-8">
                 <h3 className="text-xl font-bold mb-2">Besoin d'accompagnement ?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Nos experts sont à votre disposition pour vous aider dans vos démarches fiscales et comptables.
+                  Notre équipe est à votre disposition pour vous accompagner dans vos démarches fiscales et comptables.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild className="rounded-full">
@@ -155,6 +145,63 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                   </Button>
                 </div>
               </Card>
+
+              {/* Quick links - expanded */}
+              <div className="bg-secondary/30 rounded-xl p-6 mb-12">
+                <h4 className="font-semibold mb-4">Liens utiles</h4>
+                <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-muted-foreground font-medium mb-2">Outils gratuits</p>
+                    <ul className="space-y-2">
+                      <li>
+                        <Link href="/simulateur/impots" className="text-primary hover:underline">
+                          → Simulateur d'impôts
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/simulateur/3eme-pilier" className="text-primary hover:underline">
+                          → Calculateur 3ème pilier
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/simulateur/baisse-loyer" className="text-primary hover:underline">
+                          → Calculateur baisse de loyer
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground font-medium mb-2">Services</p>
+                    <ul className="space-y-2">
+                      <li>
+                        <Link href="/tarifs" className="text-primary hover:underline">
+                          → Nos tarifs
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/demande" className="text-primary hover:underline">
+                          → Déposer une demande
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/faq" className="text-primary hover:underline">
+                          → Consulter la FAQ
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-4 pt-4 border-t">
+                  <p className="text-muted-foreground font-medium mb-2">Nos régions</p>
+                  <div className="flex flex-wrap gap-2">
+                    <Link href="/cantons/geneve" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Genève</Link>
+                    <Link href="/cantons/vaud" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Vaud</Link>
+                    <Link href="/cantons/fribourg" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Fribourg</Link>
+                    <Link href="/cantons/valais" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Valais</Link>
+                    <Link href="/cantons/neuchatel" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Neuchâtel</Link>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
             {/* Related articles */}

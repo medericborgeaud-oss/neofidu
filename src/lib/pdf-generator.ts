@@ -233,6 +233,163 @@ export async function generateTaxSummaryPDF(data: TaxSummaryData): Promise<Buffe
     );
   }
 
+  // Section 3bis: Activité indépendante
+  if (data.isIndependent) {
+    content.push(
+      sectionHeader("3bis. ACTIVITÉ INDÉPENDANTE"),
+      dataRow("Type d'activité", data.businessType, true),
+      dataRow("Début d'activité", data.businessStartDate)
+    );
+
+    if (data.hasIDE) {
+      content.push(dataRow("N° IDE", data.ideNumber));
+    }
+    if (data.isRegisteredRC) {
+      content.push(checkboxItem(true, "Inscrit au Registre du Commerce"));
+    }
+    if (data.hasVAT) {
+      content.push(dataRow("N° TVA", data.vatNumber));
+    }
+
+    // Données financières
+    content.push(
+      { text: "", margin: [0, 10, 0, 0] as [number, number, number, number] },
+      {
+        text: "Données financières",
+        style: "subsectionHeader",
+        margin: [0, 5, 0, 8] as [number, number, number, number],
+      }
+    );
+
+    if (data.hasBusinessAccounts) {
+      content.push(
+        checkboxItem(true, "Bilan & compte de résultat", "Documents fournis")
+      );
+    } else {
+      if (data.businessRevenue) {
+        content.push(dataRow("Chiffre d'affaires", `CHF ${data.businessRevenue}.-`));
+      }
+      if (data.businessExpenses) {
+        content.push(dataRow("Charges", `CHF ${data.businessExpenses}.-`));
+      }
+      if (data.businessNetIncome) {
+        content.push(dataRow("Bénéfice net", `CHF ${data.businessNetIncome}.-`, true));
+      }
+    }
+
+    // Cotisations sociales indépendant
+    if (data.hasAVSIndependent || data.hasLPPVoluntary) {
+      content.push(
+        { text: "", margin: [0, 10, 0, 0] as [number, number, number, number] },
+        {
+          text: "Cotisations sociales (déductibles)",
+          style: "subsectionHeader",
+          margin: [0, 5, 0, 8] as [number, number, number, number],
+        }
+      );
+
+      if (data.hasAVSIndependent) {
+        content.push(
+          checkboxItem(true, "AVS/AI/APG indépendant", `CHF ${data.avsIndependentAmount || 0}.- (déductible)`)
+        );
+      }
+      if (data.hasLPPVoluntary) {
+        content.push(
+          checkboxItem(true, "LPP facultative", `CHF ${data.lppVoluntaryAmount || 0}.- (déductible)`)
+        );
+      }
+    }
+
+    // Véhicule professionnel
+    if (data.hasBusinessVehicle) {
+      content.push(
+        checkboxItem(true, "Véhicule professionnel", `${data.businessVehiclePercent || '?'}% usage professionnel`)
+      );
+    }
+  }
+
+  // Section 3ter: Activité indépendante du conjoint (Adulte 2)
+  if (data.clientType === "couple" && data.isIndependent2) {
+    const spouseName = data.firstName2 ? `${data.firstName2} ${data.lastName2 || ''}`.trim() : "Conjoint";
+    content.push(
+      sectionHeader(`3ter. ACTIVITÉ INDÉPENDANTE - ${spouseName.toUpperCase()}`),
+      dataRow("Type d'activité", data.businessType2, true),
+      dataRow("Début d'activité", data.businessStartDate2)
+    );
+
+    if (data.hasIDE2) {
+      content.push(dataRow("N° IDE", data.ideNumber2));
+    }
+    if (data.isRegisteredRC2) {
+      content.push(checkboxItem(true, "Inscrit au Registre du Commerce"));
+    }
+    if (data.hasVAT2) {
+      content.push(dataRow("N° TVA", data.vatNumber2));
+    }
+
+    // Données financières
+    content.push(
+      { text: "", margin: [0, 10, 0, 0] as [number, number, number, number] },
+      {
+        text: "Données financières",
+        style: "subsectionHeader",
+        margin: [0, 5, 0, 8] as [number, number, number, number],
+      }
+    );
+
+    if (data.hasBusinessAccounts2) {
+      content.push(
+        checkboxItem(true, "Bilan & compte de résultat", "Documents fournis")
+      );
+    } else {
+      if (data.businessRevenue2) {
+        content.push(dataRow("Chiffre d'affaires", `CHF ${data.businessRevenue2}.-`));
+      }
+      if (data.businessExpenses2) {
+        content.push(dataRow("Charges", `CHF ${data.businessExpenses2}.-`));
+      }
+      if (data.businessRevenue2 && data.businessExpenses2) {
+        const netIncome = Number(data.businessRevenue2) - Number(data.businessExpenses2);
+        content.push(dataRow("Bénéfice net", `CHF ${netIncome}.-`, true));
+      }
+    }
+
+    // Cotisations sociales indépendant conjoint
+    if (data.hasAVSIndependent2 || data.hasLPPVoluntary2) {
+      content.push(
+        { text: "", margin: [0, 10, 0, 0] as [number, number, number, number] },
+        {
+          text: "Cotisations sociales (déductibles)",
+          style: "subsectionHeader",
+          margin: [0, 5, 0, 8] as [number, number, number, number],
+        }
+      );
+
+      if (data.hasAVSIndependent2) {
+        content.push(
+          checkboxItem(true, "AVS/AI/APG indépendant", `CHF ${data.avsIndependentAmount2 || 0}.- (déductible)`)
+        );
+      }
+      if (data.hasLPPVoluntary2) {
+        content.push(
+          checkboxItem(true, "LPP facultative", `CHF ${data.lppVoluntaryAmount2 || 0}.- (déductible)`)
+        );
+      }
+    }
+
+    // Frais professionnels conjoint
+    if (data.hasHomeOffice2) {
+      content.push(
+        checkboxItem(true, "Bureau à domicile", `${data.homeOfficePercent2 || '?'}% - CHF ${data.homeOfficeAmount2 || 0}.-`)
+      );
+    }
+    if (data.hasBusinessVehicle2) {
+      content.push(
+        checkboxItem(true, "Véhicule professionnel", `${data.businessVehiclePercent2 || '?'}% usage professionnel`)
+      );
+    }
+  }
+
   // Section 4: Logement
   content.push(
     sectionHeader("4. LOGEMENT"),
@@ -282,6 +439,13 @@ export async function generateTaxSummaryPDF(data: TaxSummaryData): Promise<Buffe
         ? `${data.stocksCount || 1} dépôt(s) à déclarer (valeur au 31.12.${data.taxYear})`
         : undefined
     ),
+    checkboxItem(
+      data.hasSoldStocks,
+      "Vente de titres en " + data.taxYear,
+      data.hasSoldStocks && data.soldStocksDetails
+        ? data.soldStocksDetails
+        : data.hasSoldStocks ? "Oui - détails à fournir" : undefined
+    ),
 
     // Section 7: Immobilier
     sectionHeader("7. IMMOBILIER"),
@@ -305,6 +469,17 @@ export async function generateTaxSummaryPDF(data: TaxSummaryData): Promise<Buffe
         data.hasRenovations
           ? `CHF ${data.renovationsAmount || 0}.- (déductible)`
           : undefined
+      )
+    );
+  }
+
+  // Vente immobilière (affichée même si pas propriétaire actuellement)
+  if (data.hasSoldProperty) {
+    content.push(
+      checkboxItem(
+        true,
+        "Vente immobilière en " + data.taxYear,
+        data.soldPropertyDetails || "Oui - détails à fournir"
       )
     );
   }

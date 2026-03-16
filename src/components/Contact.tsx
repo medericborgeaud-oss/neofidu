@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +13,12 @@ export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [formToken, setFormToken] = useState<number>(0);
+
+  // Generate form token on mount (for spam protection)
+  useEffect(() => {
+    setFormToken(Date.now());
+  }, []);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -23,6 +29,7 @@ export function Contact() {
     canton: "",
     service: "",
     message: "",
+    _honeypot: "", // Honeypot field - should stay empty
   });
 
   const updateForm = (field: string, value: string) => {
@@ -39,7 +46,10 @@ export function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _formToken: formToken,
+        }),
       });
 
       const data = await res.json();
@@ -64,8 +74,8 @@ export function Contact() {
     title1: isEnglish ? "Request a" : "Sollicitez un",
     title2: isEnglish ? "free quote" : "devis sans frais",
     description: isEnglish
-      ? "Complete this form and receive a detailed proposal within 24 hours. No obligation on your part."
-      : "Complétez ce formulaire et recevez une proposition chiffrée sous 24 heures. Aucune obligation de votre part.",
+      ? "Complete this form and receive a detailed proposal within 1 business day. No obligation on your part."
+      : "Complétez ce formulaire et recevez une proposition chiffrée sous 1 jour ouvré. Aucune obligation de votre part.",
     email: "Email",
     address: isEnglish ? "Address" : "Adresse",
     hours: isEnglish ? "Hours" : "Horaires",
@@ -91,13 +101,14 @@ export function Contact() {
     thankYou: isEnglish ? "Thank you for your request!" : "Merci pour votre demande !",
     recontact: isEnglish
       ? "We will contact you within 24 business hours."
-      : "Nous vous recontacterons dans les 24 heures ouvrables.",
+      : "Nous vous recontacterons sous 1 jour ouvré.",
     services: isEnglish
       ? {
           tax: "Tax declaration",
           accounting: "Accounting",
           property: "Property management",
           taxAndAccounting: "Tax + Accounting",
+          creation: "Company creation (SA/Sàrl)",
           other: "Other",
         }
       : {
@@ -105,6 +116,7 @@ export function Contact() {
           accounting: "Comptabilité",
           property: "Gérance immobilière",
           taxAndAccounting: "Déclaration + Comptabilité",
+          creation: "Création d'entreprise (SA/Sàrl)",
           other: "Autre",
         },
     cantons: isEnglish
@@ -113,7 +125,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-gradient-hero relative overflow-hidden">
+    <section id="contact" className="py-20 md:py-32 bg-gradient-hero relative overflow-hidden content-auto">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
@@ -142,7 +154,7 @@ export function Contact() {
                   <Mail className="w-6 h-6 text-emerald-300" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">{t.email}</h3>
+                  <p className="font-semibold text-lg">{t.email}</p>
                   <p className="text-white/70">contact@neofidu.ch</p>
                 </div>
               </div>
@@ -152,8 +164,8 @@ export function Contact() {
                   <MapPin className="w-6 h-6 text-emerald-300" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">{t.address}</h3>
-                  <p className="text-white/70">Rue Louis Favez</p>
+                  <p className="font-semibold text-lg">{t.address}</p>
+                  <p className="text-white/70">Crettaz 1</p>
                   <p className="text-white/70">1854 Leysin</p>
                 </div>
               </div>
@@ -163,7 +175,7 @@ export function Contact() {
                   <Clock className="w-6 h-6 text-emerald-300" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">{t.hours}</h3>
+                  <p className="font-semibold text-lg">{t.hours}</p>
                   <p className="text-white/70">{t.hoursValue}</p>
                   <p className="text-white/60 text-sm">{t.hoursNote}</p>
                 </div>
@@ -178,13 +190,27 @@ export function Contact() {
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{t.thankYou}</h3>
+                <p className="text-2xl font-bold mb-2">{t.thankYou}</p>
                 <p className="text-muted-foreground">
                   {t.recontact}
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot field - hidden from users, bots will fill it */}
+                <div className="absolute opacity-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+                  <label htmlFor="website_url">Website URL</label>
+                  <input
+                    type="text"
+                    id="website_url"
+                    name="website_url"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData._honeypot}
+                    onChange={(e) => updateForm("_honeypot", e.target.value)}
+                  />
+                </div>
+
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground mb-2 block">
@@ -274,6 +300,7 @@ export function Contact() {
                     <option value="Comptabilité">{t.services.accounting}</option>
                     <option value="Gérance immobilière">{t.services.property}</option>
                     <option value="Déclaration + Comptabilité">{t.services.taxAndAccounting}</option>
+                    <option value="Création d'entreprise">{t.services.creation}</option>
                     <option value="Autre">{t.services.other}</option>
                   </select>
                 </div>

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendRequestConfirmationEmail } from "@/lib/email";
 import { createRequest } from "@/lib/requests-store";
+import { performSpamCheck, getClientIP } from "@/lib/spam-protection";
 
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
@@ -168,7 +169,24 @@ function getPropertyRequestAdminHtml(data: PropertyRequestData, reference: strin
 
 export async function POST(request: NextRequest) {
   try {
-    const body: PropertyRequestData = await request.json();
+    const jsonBody = await request.json();
+    const body: PropertyRequestData = jsonBody;
+
+    // Anti-spam protection
+    const clientIP = getClientIP(request.headers);
+    const spamCheck = performSpamCheck({
+      ip: clientIP,
+      honeypot: jsonBody._honeypot,
+      formLoadedAt: jsonBody._formToken,
+    });
+
+    if (spamCheck.isSpam) {
+      console.warn(`🚫 Spam detected from ${clientIP}: ${spamCheck.reason}`);
+      return NextResponse.json({
+        success: true,
+        reference: "SPAM-BLOCKED",
+      });
+    }
 
     // Validation
     if (!body.firstName || !body.lastName || !body.email || !body.canton || !body.propertyType) {

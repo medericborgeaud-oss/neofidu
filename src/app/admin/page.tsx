@@ -44,6 +44,9 @@ import {
   History,
   BarChart3,
   ArrowRight,
+  ClipboardCopy,
+  Globe,
+  Building2,
 } from "lucide-react";
 import {
   AreaChart,
@@ -60,11 +63,12 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { generatePDFPreview, downloadPDF, getPDFFileName } from "@/lib/pdf-export";
 
 interface TaxRequest {
   id: string;
   reference: string;
-  requestType?: "tax" | "accounting" | "property";
+  requestType?: "tax" | "accounting" | "property" | "creation";
   status: string;
   createdAt: string;
   updatedAt: string;
@@ -73,6 +77,19 @@ interface TaxRequest {
   companyName?: string;
   propertyAddress?: string;
   selectedServices?: string[];
+  // Accounting-specific fields
+  billingFrequency?: string;
+  activity?: string;
+  employeesCount?: number;
+  annualRevenue?: string;
+  monthlyTransactions?: string;
+  isVatRegistered?: boolean;
+  currentAccountingSoftware?: string;
+  businessType?: string;
+  // Creation-specific fields
+  companyType?: string;
+  companyTypeName?: string;
+  projectDescription?: string;
   payment: {
     amount: number;
     currency: string;
@@ -82,8 +99,11 @@ interface TaxRequest {
   customer: {
     firstName: string;
     lastName: string;
+    birthDate?: string;
+    maritalStatus?: string;
     firstName2?: string;
     lastName2?: string;
+    birthDate2?: string;
     email: string;
     phone?: string;
     address: {
@@ -99,22 +119,50 @@ interface TaxRequest {
     taxpayerNumber?: string;
     declarationCode?: string;
     clientType: string;
+    familyStatus?: string;
+    isIndependent?: boolean;
     employmentStatus?: string;
+    occupationRate?: string;
     employmentStatus2?: string;
+    occupationRate2?: string;
+    // Suisses de l'étranger
+    livesAbroad?: boolean;
+    countryOfResidence?: string;
+    countryOfResidenceName?: string;
+    abroadAddress?: string;
   };
   situation: {
     hasMoved?: boolean;
     hasChildren?: boolean;
     childrenCount?: number;
+    // Detailed children data
+    children?: Array<{
+      firstName: string;
+      lastName: string;
+      birthDate: string;
+      activity: string;
+      isDependent: boolean;
+      dependentPercentage: string;
+      custodyType: string;
+      hasGuardCosts: boolean;
+      guardCostsAmount: string;
+      guardCostsDescription: string;
+    }>;
     monthlyRent?: string;
+    landlordName?: string;
+    landlordAddress?: string;
   };
   financial: {
     hasPillar3a?: boolean;
     pillar3aAmount?: string;
     hasStocks?: boolean;
     stocksCount?: number;
+    hasSoldStocks?: boolean;
+    soldStocksDetails?: string;
     hasGuardCosts?: boolean;
     guardCosts?: string;
+    hasMealsOutside?: boolean;
+    mealsOutsideDays?: string;
     hasAlimonyReceived?: boolean;
     alimonyReceived?: string;
     hasAlimonyPaid?: boolean;
@@ -124,13 +172,64 @@ interface TaxRequest {
     hasDebts?: boolean;
     debtsAmount?: string;
   };
+  business?: {
+    // Adulte 1
+    businessType?: string;
+    businessStartDate?: string;
+    hasIDE?: boolean;
+    ideNumber?: string;
+    isRegisteredRC?: boolean;
+    hasVAT?: boolean;
+    vatNumber?: string;
+    hasBusinessAccounts?: boolean;
+    businessRevenue?: string;
+    businessExpenses?: string;
+    businessNetIncome?: string;
+    hasAVSIndependent?: boolean;
+    avsIndependentAmount?: string;
+    hasLPPVoluntary?: boolean;
+    lppVoluntaryAmount?: string;
+    hasHomeOffice?: boolean;
+    homeOfficePercent?: string;
+    homeOfficeAmount?: string;
+    hasBusinessVehicle?: boolean;
+    businessVehiclePercent?: string;
+    businessVehicleExpenses?: string;
+    // Adulte 2 (Conjoint)
+    isIndependent2?: boolean;
+    businessType2?: string;
+    businessStartDate2?: string;
+    hasIDE2?: boolean;
+    ideNumber2?: string;
+    isRegisteredRC2?: boolean;
+    hasVAT2?: boolean;
+    vatNumber2?: string;
+    hasBusinessAccounts2?: boolean;
+    businessRevenue2?: string;
+    businessExpenses2?: string;
+    businessNetIncome2?: string;
+    hasAVSIndependent2?: boolean;
+    avsIndependentAmount2?: string;
+    hasLPPVoluntary2?: boolean;
+    lppVoluntaryAmount2?: string;
+    hasHomeOffice2?: boolean;
+    homeOfficePercent2?: string;
+    homeOfficeAmount2?: string;
+    hasBusinessVehicle2?: boolean;
+    businessVehiclePercent2?: string;
+    businessVehicleExpenses2?: string;
+  };
   property: {
     hasProperty?: boolean;
     propertyCount?: number;
+    hasSoldProperty?: boolean;
+    soldPropertyDetails?: string;
     hasMortgage?: boolean;
     mortgageAmount?: string;
     hasRenovations?: boolean;
     renovationsAmount?: string;
+    // Détails des biens immobiliers
+    properties?: PropertyDetail[];
   };
   workplaces: {
     adult: number;
@@ -142,6 +241,7 @@ interface TaxRequest {
     employerReimbursement: boolean;
     reimbursementType: string;
     reimbursementAmount: string;
+    carJustification?: string;
   }[];
   options: {
     deliveryMethod?: string;
@@ -155,6 +255,33 @@ interface TaxRequest {
     url?: string;
     uploadedAt: string;
   }[];
+}
+
+// Interface pour les détails d'un bien immobilier
+interface PropertyDetail {
+  street?: string;
+  npa?: string;
+  city?: string;
+  canton?: string;
+  cantonName?: string;
+  parcelNumber?: string;
+  propertyType?: string;
+  propertyTypeName?: string;
+  usage?: string;
+  usageName?: string;
+  ownershipShare?: string;
+  acquisitionYear?: string;
+  constructionYear?: string;
+  maintenanceFlatRate?: number; // 10% ou 20% selon l'âge du bâtiment
+  fiscalValue?: string;
+  rentalValue?: string;
+  annualRent?: string;
+  charges?: string;
+  hasMortgage?: boolean;
+  mortgageBalance?: string;
+  mortgageInterest?: string;
+  maintenanceCosts?: string;
+  maintenanceType?: "flat_rate" | "effective";
 }
 
 interface Stats {
@@ -189,14 +316,38 @@ const CHART_COLORS = ["#10B981", "#3B82F6", "#F59E0B", "#EF4444", "#8B5CF6", "#E
 const isCloudinaryConfigured = !!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const cloudinaryCloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "YOUR_CLOUD_NAME";
 
-// Helper function to generate Cloudinary search URL
-// Uses tag-based search which is more reliable than folder navigation
+// Helper function to generate Cloudinary Media Library URL
+// Navigate directly to the folder containing the documents
 function getCloudinaryFolderUrl(reference: string, createdAt: string, lastName: string, firstName: string): string {
   const cloudName = cloudinaryCloudName;
 
-  // Search by reference tag - this is set when files are uploaded
-  // Format: https://console.cloudinary.com/console/CLOUD_NAME/media_library/search?q=tags:REFERENCE
-  return `https://console.cloudinary.com/console/${cloudName}/media_library/search?q=tags%3A${encodeURIComponent(reference)}`;
+  // Build folder path (same logic as upload)
+  const folderPath = getCloudinaryFolderPath(reference, createdAt, lastName, firstName);
+
+  // New Cloudinary console URL format (2024+)
+  // Goes to Media Library with folder filter
+  // Format: https://console.cloudinary.com/pm/c-CLOUD_NAME/media-explorer/folders/FOLDER_PATH
+  // Or simpler: direct link to search by folder
+  return `https://console.cloudinary.com/pm/${cloudName}/media-explorer?assetId=&q=folder%3A${encodeURIComponent(folderPath)}*`;
+}
+
+// Fix broken Cloudinary URLs (remove fl_attachment which causes ERR_INVALID_RESPONSE)
+function fixCloudinaryUrl(url: string | undefined): string | undefined {
+  if (!url) return url;
+  // Remove fl_attachment from the URL as it causes issues with raw files
+  return url.replace("/upload/fl_attachment/", "/upload/");
+}
+
+// Check if a document URL is a demo/simulated URL (not real)
+function isSimulatedUrl(url: string | undefined): boolean {
+  if (!url) return true; // No URL = simulated
+  return url.includes("demo.cloudinary.com") || url.includes("demo/");
+}
+
+// Check if a request has missing/simulated documents
+function hasMissingDocuments(request: TaxRequest): boolean {
+  if (!request.documents || request.documents.length === 0) return false;
+  return request.documents.some(doc => isSimulatedUrl(doc.url));
 }
 
 // Alternative: Generate the folder path for reference
@@ -235,6 +386,7 @@ export default function AdminDashboard() {
   const [selectedRequest, setSelectedRequest] = useState<TaxRequest | null>(null);
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [typeFilter, setTypeFilter] = useState<string>("all");
 
   // Date filters
   const [dateFrom, setDateFrom] = useState<string>("");
@@ -253,8 +405,223 @@ export default function AdminDashboard() {
   // États pour les graphiques et l'historique
   const [statusHistory, setStatusHistory] = useState<StatusHistoryEntry[]>([]);
   const [chartData, setChartData] = useState<ChartData | null>(null);
+
+  // États pour l'aperçu PDF
+  const [pdfPreviewUrl, setPdfPreviewUrl] = useState<string | null>(null);
+  const [pdfPreviewRequest, setPdfPreviewRequest] = useState<TaxRequest | null>(null);
   const [showCharts, setShowCharts] = useState(true);
   const [showHistory, setShowHistory] = useState(true);
+
+  // État pour le modèle d'email de livraison
+  const [emailTemplateModal, setEmailTemplateModal] = useState<{
+    show: boolean;
+    request: TaxRequest | null;
+    copied: boolean;
+  }>({ show: false, request: null, copied: false });
+
+  // État pour le renvoi d'email de confirmation
+  const [resendingEmailFor, setResendingEmailFor] = useState<string | null>(null);
+  const [resendEmailResult, setResendEmailResult] = useState<{
+    reference: string;
+    success: boolean;
+    message: string;
+  } | null>(null);
+
+  // État pour la newsletter
+  const [newsletterSubscribers, setNewsletterSubscribers] = useState<{
+    id: string;
+    email: string;
+    first_name?: string;
+    status: string;
+    source?: string;
+    subscribed_at: string;
+  }[]>([]);
+  const [newsletterTotal, setNewsletterTotal] = useState(0);
+  const [showNewsletter, setShowNewsletter] = useState(false);
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
+  const [newsletterTableExists, setNewsletterTableExists] = useState(true);
+  const [newsletterMessage, setNewsletterMessage] = useState<string | null>(null);
+
+  // Fonction pour renvoyer l'email de confirmation
+  const resendConfirmationEmail = async (reference: string) => {
+    const savedPassword = sessionStorage.getItem("adminPassword");
+    if (!savedPassword) return;
+
+    setResendingEmailFor(reference);
+    setResendEmailResult(null);
+
+    try {
+      const response = await fetch("/api/admin/resend-confirmation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-password": savedPassword,
+        },
+        body: JSON.stringify({ reference }),
+      });
+
+      const data = await response.json();
+
+      setResendEmailResult({
+        reference,
+        success: data.success,
+        message: data.success
+          ? `✅ Email envoyé à ${data.customerEmail}`
+          : `❌ ${data.error || data.message}`,
+      });
+
+      // Clear result after 5 seconds
+      setTimeout(() => setResendEmailResult(null), 5000);
+    } catch (err) {
+      setResendEmailResult({
+        reference,
+        success: false,
+        message: "❌ Erreur de connexion",
+      });
+    } finally {
+      setResendingEmailFor(null);
+    }
+  };
+
+  // Fonction pour charger les abonnés newsletter
+  const fetchNewsletterSubscribers = async () => {
+    const savedPassword = sessionStorage.getItem("adminPassword");
+    if (!savedPassword) return;
+
+    setNewsletterLoading(true);
+    try {
+      const response = await fetch("/api/admin/newsletter", {
+        headers: {
+          "x-admin-password": savedPassword,
+        },
+      });
+      const data = await response.json();
+      setNewsletterSubscribers(data.subscribers || []);
+      setNewsletterTotal(data.total || 0);
+      setNewsletterTableExists(data.tableExists !== false);
+      setNewsletterMessage(data.message || null);
+    } catch (err) {
+      console.error("Error fetching newsletter subscribers:", err);
+    } finally {
+      setNewsletterLoading(false);
+    }
+  };
+
+  // Fonction pour supprimer un abonné newsletter
+  const deleteNewsletterSubscriber = async (id: string, email: string) => {
+    if (!confirm(`Supprimer l'abonné ${email} ?`)) return;
+
+    const savedPassword = sessionStorage.getItem("adminPassword");
+    if (!savedPassword) return;
+
+    try {
+      const response = await fetch(`/api/admin/newsletter?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "x-admin-password": savedPassword,
+        },
+      });
+      if (response.ok) {
+        setNewsletterSubscribers(prev => prev.filter(s => s.id !== id));
+        setNewsletterTotal(prev => prev - 1);
+      }
+    } catch (err) {
+      console.error("Error deleting subscriber:", err);
+    }
+  };
+
+  // Générer le modèle d'email pour la livraison de la déclaration
+  const generateDeliveryEmailTemplate = (request: TaxRequest): string => {
+    const fullName = request.customer.firstName2
+      ? `${request.customer.firstName} ${request.customer.lastName} et ${request.customer.firstName2} ${request.customer.lastName2}`
+      : `${request.customer.firstName} ${request.customer.lastName}`;
+
+    const greeting = request.customer.firstName2
+      ? `Madame, Monsieur ${request.customer.lastName}`
+      : `${request.fiscal.clientType === 'couple' ? 'Madame, Monsieur' : ''} ${request.customer.lastName}`;
+
+    return `Objet : Votre déclaration d'impôts ${request.fiscal.taxYear} est prête - Réf. ${request.reference}
+
+Bonjour ${greeting},
+
+Nous avons le plaisir de vous informer que votre déclaration d'impôts ${request.fiscal.taxYear} pour le canton de ${request.fiscal.canton} est maintenant terminée.
+
+Vous trouverez ci-joint :
+- La quittance de dépôt de votre déclaration
+- Un récapitulatif des éléments déclarés
+
+Prochaines étapes :
+1. Conservez précieusement la quittance jointe
+2. L'administration fiscale vous enverra votre avis de taxation dans les prochains mois
+3. Si vous avez des questions sur votre avis de taxation, n'hésitez pas à nous contacter
+
+Informations de votre dossier :
+- Référence : ${request.reference}
+- Canton : ${request.fiscal.canton}
+- Année fiscale : ${request.fiscal.taxYear}
+- Type : ${request.fiscal.clientType === 'couple' ? 'Couple' : request.fiscal.clientType === 'independent' ? 'Indépendant' : 'Particulier'}
+
+Nous vous remercions de votre confiance et restons à votre disposition pour toute question.
+
+Cordialement,
+
+L'équipe NeoFidu
+---
+NeoFidu Sàrl
+Fiduciaire digitale en Suisse romande
+www.neofidu.ch
+`;
+  };
+
+  // Copier l'email dans le presse-papier
+  const copyEmailToClipboard = async () => {
+    if (!emailTemplateModal.request) return;
+
+    const emailText = generateDeliveryEmailTemplate(emailTemplateModal.request);
+
+    try {
+      await navigator.clipboard.writeText(emailText);
+      setEmailTemplateModal(prev => ({ ...prev, copied: true }));
+      setTimeout(() => {
+        setEmailTemplateModal(prev => ({ ...prev, copied: false }));
+      }, 2000);
+    } catch (err) {
+      console.error("Erreur copie:", err);
+    }
+  };
+
+  // État pour le diagnostic de configuration
+  const [configDiagnostic, setConfigDiagnostic] = useState<{
+    show: boolean;
+    loading: boolean;
+    data: Record<string, unknown> | null;
+    error: string | null;
+  }>({ show: false, loading: false, data: null, error: null });
+
+  // Fonction pour vérifier la configuration
+  const checkConfiguration = async () => {
+    const savedPassword = sessionStorage.getItem("adminPassword");
+    if (!savedPassword) return;
+
+    setConfigDiagnostic({ show: true, loading: true, data: null, error: null });
+
+    try {
+      const response = await fetch("/api/debug/config", {
+        headers: {
+          "x-admin-password": savedPassword,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setConfigDiagnostic({ show: true, loading: false, data, error: null });
+      } else {
+        setConfigDiagnostic({ show: true, loading: false, data: null, error: "Erreur lors du diagnostic" });
+      }
+    } catch (err) {
+      setConfigDiagnostic({ show: true, loading: false, data: null, error: "Erreur de connexion" });
+    }
+  };
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -324,13 +691,14 @@ export default function AdminDashboard() {
   };
 
   // Modifier le statut d'une demande
-  const updateRequestStatus = async (requestId: string, status: string, oldStatus?: string) => {
+  const updateRequestStatus = async (requestId: string, status: string, oldStatus?: string, requestType?: string) => {
     const savedPassword = sessionStorage.getItem("adminPassword");
     if (!savedPassword) return;
 
-    // Récupérer l'ancien statut si non fourni
+    // Récupérer l'ancien statut et le type si non fournis
     const currentRequest = requests.find(r => r.id === requestId);
     const previousStatus = oldStatus || currentRequest?.status || "";
+    const reqType = requestType || currentRequest?.requestType || "tax";
 
     setIsUpdating(true);
     setUpdateMessage(null);
@@ -347,6 +715,7 @@ export default function AdminDashboard() {
           status,
           oldStatus: previousStatus,
           sendNotification,
+          requestType: reqType,
         }),
       });
 
@@ -371,6 +740,19 @@ export default function AdminDashboard() {
 
         setEditingStatus(null);
         setInlineEditingId(null);
+
+        // Afficher le modèle d'email si le statut devient "completed" ou "done"
+        if (
+          (status === "completed" || status === "done") &&
+          currentRequest &&
+          previousStatus !== status
+        ) {
+          setEmailTemplateModal({
+            show: true,
+            request: { ...currentRequest, status }, // status mis à jour
+            copied: false,
+          });
+        }
 
         // Rafraîchir les stats
         refreshRequests();
@@ -480,9 +862,11 @@ export default function AdminDashboard() {
 
     const matchesStatus = statusFilter === "all" || r.status === statusFilter;
 
+    const matchesType = typeFilter === "all" || r.requestType === typeFilter;
+
     const matchesDate = isWithinDateRange(r.createdAt, dateFrom, dateTo);
 
-    return matchesSearch && matchesStatus && matchesDate;
+    return matchesSearch && matchesStatus && matchesType && matchesDate;
   });
 
   const toggleRow = (id: string) => {
@@ -497,11 +881,10 @@ export default function AdminDashboard() {
 
   const getStatusLabel = (status: string) => {
     const labels: Record<string, string> = {
+      pending: "Nouveau",
       paid: "Payé",
       in_progress: "En cours",
       completed: "Terminé",
-      delivered: "Livré",
-      pending: "En attente",
     };
     return labels[status] || status;
   };
@@ -521,12 +904,58 @@ export default function AdminDashboard() {
       employed: "Salarié",
       retired: "Retraité",
       unemployed: "Chômeur",
+      selfemployed: "Indépendant",
     };
     return labels[status] || status;
   };
 
-  const getStatusBadge = (status: string) => {
+  const getMaritalStatusLabel = (status?: string) => {
+    if (!status) return "Non spécifié";
+    const labels: Record<string, string> = {
+      single: "Célibataire",
+      married: "Marié(e)",
+      divorced: "Divorcé(e)",
+      widowed: "Veuf/Veuve",
+      separated: "Séparé(e)",
+      partnership: "Partenariat enregistré",
+    };
+    return labels[status] || status;
+  };
+
+  const getTransportModeLabel = (mode?: string) => {
+    if (!mode) return "Non spécifié";
+    const labels: Record<string, string> = {
+      train: "Transports publics",
+      car: "Voiture",
+      bike: "Vélo / À pied",
+      none: "Télétravail",
+    };
+    return labels[mode] || mode;
+  };
+
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return "Non spécifié";
+    try {
+      return new Date(dateStr).toLocaleDateString("fr-CH", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
+  const getStatusBadge = (status: string, requestType?: string) => {
     switch (status) {
+      // Statuts fiscaux
+      case "pending":
+        return (
+          <Badge className="bg-gray-100 text-gray-700 hover:bg-gray-200">
+            <Clock className="w-3 h-3 mr-1" />
+            Nouveau
+          </Badge>
+        );
       case "paid":
         return (
           <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200">
@@ -548,23 +977,31 @@ export default function AdminDashboard() {
             Terminé
           </Badge>
         );
-      case "delivered":
+      // Statuts comptabilité / gérance immobilière
+      case "received":
         return (
-          <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-200">
-            <Package className="w-3 h-3 mr-1" />
-            Livré
+          <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-200">
+            <Clock className="w-3 h-3 mr-1" />
+            Reçu
           </Badge>
         );
-      case "pending":
+      case "processing":
         return (
-          <Badge className="bg-gray-100 text-gray-700 hover:bg-gray-200">
-            <Clock className="w-3 h-3 mr-1" />
-            En attente
+          <Badge className="bg-orange-100 text-orange-700 hover:bg-orange-200">
+            <RefreshCw className="w-3 h-3 mr-1" />
+            En traitement
+          </Badge>
+        );
+      case "done":
+        return (
+          <Badge className="bg-teal-100 text-teal-700 hover:bg-teal-200">
+            <FileCheck className="w-3 h-3 mr-1" />
+            Terminé
           </Badge>
         );
       default:
         return (
-          <Badge variant="secondary">
+          <Badge className="bg-gray-100 text-gray-700 hover:bg-gray-200">
             {status}
           </Badge>
         );
@@ -572,9 +1009,7 @@ export default function AdminDashboard() {
   };
 
   const getPaymentMethodIcon = (method?: string) => {
-    if (method === "twint") {
-      return <Smartphone className="w-4 h-4" />;
-    }
+    // Returns icon based on payment method, defaults to credit card
     return <CreditCard className="w-4 h-4" />;
   };
 
@@ -685,7 +1120,7 @@ export default function AdminDashboard() {
               className={`rounded-full ${!isCloudinaryConfigured ? "border-amber-300 text-amber-600" : ""}`}
             >
               <a
-                href={`https://console.cloudinary.com/console/${cloudinaryCloudName}/media_library/search?q=folder%3Aneofidu*`}
+                href={`https://console.cloudinary.com/pm/${cloudinaryCloudName}/media-explorer?q=folder%3Aneofidu*`}
                 target="_blank"
                 rel="noopener noreferrer"
                 title={isCloudinaryConfigured ? "Ouvrir les documents NeoFidu" : "Cloudinary non configuré - Ajoutez NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME"}
@@ -694,6 +1129,16 @@ export default function AdminDashboard() {
                 Cloudinary
                 <ExternalLink className="w-4 h-4 ml-2" />
               </a>
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={checkConfiguration}
+              className="rounded-full border-amber-300 text-amber-600 hover:bg-amber-50"
+              title="Vérifier la configuration (Cloudinary, Resend, Stripe)"
+            >
+              <AlertCircle className="w-4 h-4 mr-2" />
+              Diagnostic
             </Button>
             <Button
               variant="ghost"
@@ -707,6 +1152,173 @@ export default function AdminDashboard() {
           </div>
         </div>
       </header>
+
+      {/* Modal de diagnostic */}
+      {configDiagnostic.show && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <Card className="w-full max-w-2xl max-h-[90vh] overflow-auto p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <AlertCircle className="w-6 h-6 text-amber-500" />
+                Diagnostic de Configuration
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setConfigDiagnostic({ ...configDiagnostic, show: false })}
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+
+            {configDiagnostic.loading ? (
+              <div className="text-center py-8">
+                <RefreshCw className="w-8 h-8 animate-spin mx-auto text-primary" />
+                <p className="mt-4 text-muted-foreground">Vérification en cours...</p>
+              </div>
+            ) : configDiagnostic.error ? (
+              <div className="text-center py-8 text-red-600">
+                <XCircle className="w-8 h-8 mx-auto" />
+                <p className="mt-4">{configDiagnostic.error}</p>
+              </div>
+            ) : configDiagnostic.data ? (
+              <div className="space-y-4">
+                {/* Issues */}
+                {(configDiagnostic.data.issues as string[])?.length > 0 && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                    <h3 className="font-semibold text-red-800 mb-2">⚠️ Problèmes détectés</h3>
+                    <ul className="space-y-1">
+                      {(configDiagnostic.data.issues as string[]).map((issue, i) => (
+                        <li key={i} className="text-red-700 text-sm">{issue}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Cloudinary */}
+                <div className={`p-4 rounded-xl border ${(configDiagnostic.data.cloudinary as any)?.status?.includes("✅") ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+                  <h3 className="font-semibold mb-2">📁 Cloudinary (Documents)</h3>
+                  <p className={`${(configDiagnostic.data.cloudinary as any)?.status?.includes("✅") ? "text-green-700" : "text-red-700"}`}>
+                    {(configDiagnostic.data.cloudinary as any)?.status}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Cloud Name: {(configDiagnostic.data.cloudinary as any)?.cloudNameValue}
+                  </p>
+                </div>
+
+                {/* Email */}
+                <div className={`p-4 rounded-xl border ${(configDiagnostic.data.email as any)?.status?.includes("✅") ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+                  <h3 className="font-semibold mb-2">📧 Resend (Emails)</h3>
+                  <p className={`${(configDiagnostic.data.email as any)?.status?.includes("✅") ? "text-green-700" : "text-red-700"}`}>
+                    {(configDiagnostic.data.email as any)?.status}
+                  </p>
+                </div>
+
+                {/* Stripe */}
+                <div className={`p-4 rounded-xl border ${(configDiagnostic.data.stripe as any)?.status?.includes("✅") ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+                  <h3 className="font-semibold mb-2">💳 Stripe (Paiements)</h3>
+                  <p className={`${(configDiagnostic.data.stripe as any)?.status?.includes("✅") ? "text-green-700" : "text-red-700"}`}>
+                    {(configDiagnostic.data.stripe as any)?.status}
+                  </p>
+                </div>
+
+                {/* Supabase */}
+                <div className={`p-4 rounded-xl border ${(configDiagnostic.data.supabase as any)?.status?.includes("✅") ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"}`}>
+                  <h3 className="font-semibold mb-2">🗄️ Supabase (Base de données)</h3>
+                  <p className={`${(configDiagnostic.data.supabase as any)?.status?.includes("✅") ? "text-green-700" : "text-amber-700"}`}>
+                    {(configDiagnostic.data.supabase as any)?.status}
+                  </p>
+                </div>
+
+                {/* Instructions */}
+                {(configDiagnostic.data.issues as string[])?.length > 0 && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-6">
+                    <h3 className="font-semibold text-blue-800 mb-2">📋 Comment corriger</h3>
+                    <p className="text-sm text-blue-700 mb-2">
+                      Ajoutez les variables d'environnement manquantes dans GitHub :
+                    </p>
+                    <ol className="list-decimal list-inside text-sm text-blue-700 space-y-1">
+                      <li>Allez dans <strong>GitHub &gt; Repository &gt; Settings &gt; Secrets and variables &gt; Actions</strong></li>
+                      <li>Ajoutez les variables manquantes (voir .env.example)</li>
+                      <li>Redéployez le projet via GitHub Actions</li>
+                    </ol>
+                    <p className="text-sm text-blue-700 mt-3">
+                      <strong>Webhook Stripe :</strong> Configurez-le dans Stripe Dashboard &gt; Developers &gt; Webhooks
+                      avec l'URL : <code className="bg-blue-100 px-1 rounded">https://neofidu.ch/api/webhooks/stripe</code>
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : null}
+          </Card>
+        </div>
+      )}
+
+      {/* Modal modèle d'email de livraison */}
+      {emailTemplateModal.show && emailTemplateModal.request && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <Card className="w-full max-w-2xl max-h-[90vh] overflow-auto p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <Mail className="w-6 h-6 text-primary" />
+                Modèle d'email de livraison
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setEmailTemplateModal({ show: false, request: null, copied: false })}
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+            <div className="mb-4">
+              <p className="text-muted-foreground mb-2">
+                Copiez ce modèle d'email pour informer le client que sa déclaration est prête.
+              </p>
+              <textarea
+                className="w-full h-64 p-3 border rounded-lg font-mono text-sm bg-secondary/10"
+                value={generateDeliveryEmailTemplate(emailTemplateModal.request)}
+                readOnly
+                style={{ resize: "vertical" }}
+              />
+            </div>
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={copyEmailToClipboard}
+                className="rounded-xl"
+                variant="default"
+              >
+                {emailTemplateModal.copied ? (
+                  <>
+                    <Check className="w-4 h-4 mr-2" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <ClipboardCopy className="w-4 h-4 mr-2" />
+                    Copier le texte
+                  </>
+                )}
+              </Button>
+              <Button
+                variant="outline"
+                className="rounded-xl"
+                asChild
+                title="Ouvrir le client email"
+              >
+                <a
+                  href={`mailto:${emailTemplateModal.request.customer.email}?subject=Votre déclaration d'impôts ${emailTemplateModal.request.fiscal.taxYear} est prête - Réf. ${emailTemplateModal.request.reference}&body=${encodeURIComponent(generateDeliveryEmailTemplate(emailTemplateModal.request))}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Ouvrir dans l'email
+                </a>
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
 
       <main className="container mx-auto px-4 py-8">
         {/* Stats */}
@@ -933,6 +1545,128 @@ export default function AdminDashboard() {
           </div>
         )}
 
+        {/* Newsletter Subscribers Section */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold flex items-center gap-2">
+              <Mail className="w-5 h-5 text-primary" />
+              Newsletter ({newsletterTotal} abonné{newsletterTotal > 1 ? "s" : ""})
+            </h2>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={fetchNewsletterSubscribers}
+                disabled={newsletterLoading}
+                className="text-muted-foreground"
+              >
+                <RefreshCw className={`w-4 h-4 mr-1 ${newsletterLoading ? "animate-spin" : ""}`} />
+                Actualiser
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setShowNewsletter(!showNewsletter);
+                  if (!showNewsletter && newsletterSubscribers.length === 0) {
+                    fetchNewsletterSubscribers();
+                  }
+                }}
+                className="text-muted-foreground"
+              >
+                {showNewsletter ? "Masquer" : "Afficher"}
+                <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${showNewsletter ? "rotate-180" : ""}`} />
+              </Button>
+            </div>
+          </div>
+
+          {showNewsletter && (
+            <Card className="p-6">
+              {!newsletterTableExists ? (
+                <div className="text-center py-8">
+                  <AlertCircle className="w-12 h-12 text-amber-500 mx-auto mb-4" />
+                  <h3 className="font-semibold mb-2">Table non créée</h3>
+                  <p className="text-muted-foreground mb-4 text-sm">
+                    La table `newsletter_subscribers` n'existe pas dans Supabase.
+                  </p>
+                  <div className="bg-muted p-4 rounded-lg text-left max-w-xl mx-auto">
+                    <p className="text-xs font-mono mb-2">SQL à exécuter dans Supabase :</p>
+                    <pre className="text-xs overflow-x-auto bg-black text-green-400 p-3 rounded">
+{`CREATE TABLE newsletter_subscribers (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email VARCHAR(254) UNIQUE NOT NULL,
+  first_name VARCHAR(100),
+  status VARCHAR(20) DEFAULT 'active',
+  source VARCHAR(50) DEFAULT 'blog',
+  ip_address VARCHAR(50),
+  subscribed_at TIMESTAMPTZ DEFAULT NOW(),
+  resubscribed_at TIMESTAMPTZ
+);
+
+CREATE INDEX idx_newsletter_email ON newsletter_subscribers(email);
+CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
+                    </pre>
+                  </div>
+                </div>
+              ) : newsletterLoading ? (
+                <div className="text-center py-8">
+                  <RefreshCw className="w-8 h-8 animate-spin mx-auto text-muted-foreground" />
+                  <p className="text-muted-foreground mt-2">Chargement...</p>
+                </div>
+              ) : newsletterSubscribers.length === 0 ? (
+                <div className="text-center py-8">
+                  <Mail className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                  <p className="text-muted-foreground">
+                    {newsletterMessage || "Aucun abonné pour le moment"}
+                  </p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-3 px-2 font-medium">Email</th>
+                        <th className="text-left py-3 px-2 font-medium">Prénom</th>
+                        <th className="text-left py-3 px-2 font-medium">Statut</th>
+                        <th className="text-left py-3 px-2 font-medium">Source</th>
+                        <th className="text-left py-3 px-2 font-medium">Inscrit le</th>
+                        <th className="text-right py-3 px-2 font-medium">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {newsletterSubscribers.map((subscriber) => (
+                        <tr key={subscriber.id} className="border-b hover:bg-muted/50">
+                          <td className="py-3 px-2 font-medium">{subscriber.email}</td>
+                          <td className="py-3 px-2">{subscriber.first_name || "-"}</td>
+                          <td className="py-3 px-2">
+                            <Badge className={subscriber.status === "active" ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-600"}>
+                              {subscriber.status === "active" ? "Actif" : subscriber.status}
+                            </Badge>
+                          </td>
+                          <td className="py-3 px-2 text-muted-foreground">{subscriber.source || "-"}</td>
+                          <td className="py-3 px-2 text-muted-foreground">
+                            {new Date(subscriber.subscribed_at).toLocaleDateString("fr-CH")}
+                          </td>
+                          <td className="py-3 px-2 text-right">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => deleteNewsletterSubscriber(subscriber.id, subscriber.email)}
+                              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </Card>
+          )}
+        </div>
+
         {/* Search and filters */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
           <div className="relative flex-1 max-w-md w-full">
@@ -945,16 +1679,26 @@ export default function AdminDashboard() {
             />
           </div>
           <select
+            value={typeFilter}
+            onChange={(e) => setTypeFilter(e.target.value)}
+            className="px-4 py-2 border rounded-xl bg-white text-sm"
+          >
+            <option value="all">Tous les types</option>
+            <option value="tax">Fiscal</option>
+            <option value="accounting">Comptabilité</option>
+            <option value="property">Gérance immo</option>
+            <option value="creation">Création entreprise</option>
+          </select>
+          <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="px-4 py-2 border rounded-xl bg-white text-sm"
           >
             <option value="all">Tous les statuts</option>
+            <option value="pending">Nouveau</option>
             <option value="paid">Payé</option>
             <option value="in_progress">En cours</option>
             <option value="completed">Terminé</option>
-            <option value="delivered">Livré</option>
-            <option value="pending">En attente</option>
           </select>
           <div className="flex gap-2 items-center">
             <span className="text-sm text-muted-foreground">Du</span>
@@ -974,13 +1718,14 @@ export default function AdminDashboard() {
               title="Date de fin"
             />
           </div>
-          {(searchTerm || statusFilter !== "all" || dateFrom || dateTo) && (
+          {(searchTerm || statusFilter !== "all" || typeFilter !== "all" || dateFrom || dateTo) && (
             <Button
               variant="ghost"
               size="sm"
               onClick={() => {
                 setSearchTerm("");
                 setStatusFilter("all");
+                setTypeFilter("all");
                 setDateFrom("");
                 setDateTo("");
               }}
@@ -1045,6 +1790,8 @@ export default function AdminDashboard() {
                             <Badge className="bg-purple-100 text-purple-700">Compta</Badge>
                           ) : request.requestType === "property" ? (
                             <Badge className="bg-orange-100 text-orange-700">Immo</Badge>
+                          ) : request.requestType === "creation" ? (
+                            <Badge className="bg-violet-100 text-violet-700">Création</Badge>
                           ) : (
                             <Badge className="bg-teal-100 text-teal-700">Fiscal</Badge>
                           )}
@@ -1073,10 +1820,17 @@ export default function AdminDashboard() {
                           </div>
                         </td>
                         <td className="p-4">
-                          <Badge variant="secondary" className="bg-gray-100">
-                            <FileText className="w-3 h-3 mr-1" />
-                            {request.documents.length}
-                          </Badge>
+                          {hasMissingDocuments(request) ? (
+                            <Badge className="bg-red-100 text-red-700" title="Documents non uploadés - Cloudinary non configuré lors de l'upload">
+                              <AlertCircle className="w-3 h-3 mr-1" />
+                              {request.documents.length} ⚠️
+                            </Badge>
+                          ) : (
+                            <Badge variant="secondary" className="bg-gray-100">
+                              <FileText className="w-3 h-3 mr-1" />
+                              {request.documents.length}
+                            </Badge>
+                          )}
                         </td>
                         <td className="p-4">
                           {inlineEditingId === request.id ? (
@@ -1087,18 +1841,27 @@ export default function AdminDashboard() {
                                 className="px-2 py-1 border rounded-lg bg-white text-sm"
                                 onClick={e => e.stopPropagation()}
                               >
-                                <option value="paid">Payé</option>
-                                <option value="in_progress">En cours</option>
-                                <option value="completed">Terminé</option>
-                                <option value="delivered">Livré</option>
-                                <option value="pending">En attente</option>
+                                {request.requestType === "accounting" || request.requestType === "property" ? (
+                                  <>
+                                    <option value="received">Reçu</option>
+                                    <option value="processing">En traitement</option>
+                                    <option value="done">Terminé</option>
+                                  </>
+                                ) : (
+                                  <>
+                                    <option value="paid">Payé</option>
+                                    <option value="in_progress">En cours</option>
+                                    <option value="completed">Terminé</option>
+                                  </>
+                                )}
                               </select>
                               <Button
                                 size="sm"
-                                variant="ghost"
+                                variant="default"
+                                className="bg-primary text-white hover:bg-primary/90"
                                 onClick={e => {
                                   e.stopPropagation();
-                                  updateRequestStatus(request.id, newStatus || request.status);
+                                  updateRequestStatus(request.id, newStatus || request.status, request.status, request.requestType);
                                 }}
                                 disabled={isUpdating}
                               >
@@ -1122,7 +1885,7 @@ export default function AdminDashboard() {
                             </div>
                           ) : (
                             <div className="flex items-center gap-2">
-                              {getStatusBadge(request.status)}
+                              {getStatusBadge(request.status, request.requestType)}
                               <Button
                                 size="sm"
                                 variant="ghost"
@@ -1202,7 +1965,7 @@ export default function AdminDashboard() {
                                   <Briefcase className="w-4 h-4" /> Infos fiscales
                                 </h4>
                                 <div className="text-sm space-y-1 pl-6">
-                                  <p>Type: {getClientTypeLabel(request.fiscal.clientType)}</p>
+                                  <p>Type: {getClientTypeLabel(request.fiscal.clientType)}{request.fiscal.isIndependent && request.fiscal.clientType === "couple" ? " + Indépendant" : ""}</p>
                                   {request.fiscal.taxpayerNumber && (
                                     <p>N° contribuable: {request.fiscal.taxpayerNumber}</p>
                                   )}
@@ -1219,7 +1982,7 @@ export default function AdminDashboard() {
                                     <p key={i} className="truncate text-muted-foreground">
                                       {doc.url ? (
                                         <a
-                                          href={doc.url}
+                                          href={fixCloudinaryUrl(doc.url)}
                                           target="_blank"
                                           rel="noopener noreferrer"
                                           className="hover:text-primary hover:underline"
@@ -1239,6 +2002,32 @@ export default function AdminDashboard() {
                                   )}
                                 </div>
                               </div>
+                            </div>
+                            {/* Actions rapides */}
+                            <div className="mt-4 pt-4 border-t flex flex-wrap gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-blue-600 border-blue-300 hover:bg-blue-50"
+                                disabled={resendingEmailFor === request.reference}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  resendConfirmationEmail(request.reference);
+                                }}
+                                title="Renvoyer l'email de confirmation au client"
+                              >
+                                {resendingEmailFor === request.reference ? (
+                                  <RefreshCw className="w-4 h-4 mr-1 animate-spin" />
+                                ) : (
+                                  <Mail className="w-4 h-4 mr-1" />
+                                )}
+                                Renvoyer email confirmation
+                              </Button>
+                              {resendEmailResult?.reference === request.reference && (
+                                <span className={`text-sm px-2 py-1 rounded ${resendEmailResult.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                                  {resendEmailResult.message}
+                                </span>
+                              )}
                             </div>
                           </td>
                         </tr>
@@ -1271,9 +2060,27 @@ export default function AdminDashboard() {
                   Créée le {new Date(selectedRequest.createdAt).toLocaleDateString("fr-CH")}
                 </p>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => setSelectedRequest(null)}>
-                <X className="w-5 h-5" />
-              </Button>
+              <div className="flex items-center gap-2">
+                {/* Bouton Aperçu PDF */}
+                {selectedRequest.requestType !== "accounting" && selectedRequest.requestType !== "property" && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const url = generatePDFPreview(selectedRequest);
+                      setPdfPreviewUrl(url);
+                      setPdfPreviewRequest(selectedRequest);
+                    }}
+                    className="text-primary border-primary hover:bg-primary/10"
+                  >
+                    <Eye className="w-4 h-4 mr-2" />
+                    Aperçu PDF
+                  </Button>
+                )}
+                <Button variant="ghost" size="icon" onClick={() => setSelectedRequest(null)}>
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
             </div>
 
             <div className="p-6 space-y-6">
@@ -1304,15 +2111,24 @@ export default function AdminDashboard() {
                           onChange={(e) => setNewStatus(e.target.value)}
                           className="px-3 py-2 border rounded-lg bg-white text-sm"
                         >
-                          <option value="paid">Payé</option>
-                          <option value="in_progress">En cours</option>
-                          <option value="completed">Terminé</option>
-                          <option value="delivered">Livré</option>
+                          {selectedRequest.requestType === "accounting" || selectedRequest.requestType === "property" ? (
+                            <>
+                              <option value="received">Reçu</option>
+                              <option value="processing">En traitement</option>
+                              <option value="done">Terminé</option>
+                            </>
+                          ) : (
+                            <>
+                              <option value="paid">Payé</option>
+                              <option value="in_progress">En cours</option>
+                              <option value="completed">Terminé</option>
+                            </>
+                          )}
                         </select>
                       </div>
                     ) : (
                       <>
-                        {getStatusBadge(selectedRequest.status)}
+                        {getStatusBadge(selectedRequest.status, selectedRequest.requestType)}
                         <Button
                           variant="ghost"
                           size="sm"
@@ -1357,6 +2173,23 @@ export default function AdminDashboard() {
                       <ExternalLink className="w-4 h-4 ml-2" />
                     </a>
                   </Button>
+                  {/* Bouton modèle d'email pour demandes terminées */}
+                  {(selectedRequest.status === "completed" || selectedRequest.status === "done") && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setEmailTemplateModal({
+                        show: true,
+                        request: selectedRequest,
+                        copied: false,
+                      })}
+                      title="Modèle d'email de livraison"
+                      className="text-primary border-primary/30 hover:bg-primary/10"
+                    >
+                      <Mail className="w-4 h-4 mr-1" />
+                      Email livraison
+                    </Button>
+                  )}
                 </div>
 
                 {/* Options de modification */}
@@ -1385,7 +2218,7 @@ export default function AdminDashboard() {
                       </Button>
                       <Button
                         size="sm"
-                        onClick={() => updateRequestStatus(selectedRequest.id, newStatus || selectedRequest.status)}
+                        onClick={() => updateRequestStatus(selectedRequest.id, newStatus || selectedRequest.status, selectedRequest.status, selectedRequest.requestType)}
                         disabled={isUpdating}
                       >
                         {isUpdating ? (
@@ -1435,8 +2268,182 @@ export default function AdminDashboard() {
                         <p>{selectedRequest.customer.address.npa} {selectedRequest.customer.address.city}</p>
                       </div>
                     </div>
+                    {/* Date de naissance et état civil */}
+                    <div className="border-t pt-2 mt-2 grid grid-cols-2 gap-2 text-sm">
+                      <p className="text-muted-foreground">Date de naissance</p>
+                      <p className="font-medium">{formatDate(selectedRequest.customer.birthDate)}</p>
+                      <p className="text-muted-foreground">État civil</p>
+                      <p className="font-medium">{getMaritalStatusLabel(selectedRequest.customer.maritalStatus)}</p>
+                      {selectedRequest.customer.birthDate2 && (
+                        <>
+                          <p className="text-muted-foreground">Naissance conjoint</p>
+                          <p className="font-medium">{formatDate(selectedRequest.customer.birthDate2)}</p>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
+
+                {/* Section spécifique Comptabilité */}
+                {selectedRequest.requestType === "accounting" && (
+                  <div className="space-y-3 md:col-span-2">
+                    <h3 className="font-semibold flex items-center gap-2 text-purple-600">
+                      <Briefcase className="w-5 h-5" /> Informations Comptabilité
+                    </h3>
+                    <div className="bg-purple-50 border border-purple-200 p-4 rounded-xl space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {/* Colonne 1: Entreprise */}
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-purple-800 text-sm">Entreprise</h4>
+                          <div className="grid grid-cols-2 gap-2 text-sm">
+                            {selectedRequest.companyName && (
+                              <>
+                                <p className="text-purple-700">Raison sociale</p>
+                                <p className="font-medium text-purple-900">{selectedRequest.companyName}</p>
+                              </>
+                            )}
+                            {selectedRequest.businessType && (
+                              <>
+                                <p className="text-purple-700">Forme juridique</p>
+                                <p className="font-medium text-purple-900">
+                                  {selectedRequest.businessType === "sarl" ? "Sàrl" :
+                                   selectedRequest.businessType === "sa" ? "SA" :
+                                   selectedRequest.businessType === "independent" ? "Indépendant" :
+                                   selectedRequest.businessType === "individual" ? "Raison individuelle" :
+                                   selectedRequest.businessType === "other" ? "Autre" :
+                                   selectedRequest.businessType || "Non précisé"}
+                                </p>
+                              </>
+                            )}
+                            {selectedRequest.fiscal.canton && (
+                              <>
+                                <p className="text-purple-700">Canton</p>
+                                <p className="font-medium text-purple-900">{selectedRequest.fiscal.canton}</p>
+                              </>
+                            )}
+                            {selectedRequest.activity && (
+                              <>
+                                <p className="text-purple-700">Activité</p>
+                                <p className="font-medium text-purple-900">{selectedRequest.activity}</p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Colonne 2: Données financières */}
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-purple-800 text-sm">Données financières</h4>
+                          <div className="grid grid-cols-2 gap-2 text-sm">
+                            {selectedRequest.employeesCount !== undefined && (
+                              <>
+                                <p className="text-purple-700">Employés</p>
+                                <p className="font-medium text-purple-900">{selectedRequest.employeesCount}</p>
+                              </>
+                            )}
+                            {selectedRequest.annualRevenue && (
+                              <>
+                                <p className="text-purple-700">CA annuel</p>
+                                <p className="font-medium text-purple-900">{selectedRequest.annualRevenue}</p>
+                              </>
+                            )}
+                            {selectedRequest.monthlyTransactions && (
+                              <>
+                                <p className="text-purple-700">Transactions/mois</p>
+                                <p className="font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded">{selectedRequest.monthlyTransactions}</p>
+                              </>
+                            )}
+                            <p className="text-purple-700">Assujetti TVA</p>
+                            <p className="font-medium text-purple-900">{selectedRequest.isVatRegistered ? "✅ Oui" : "Non"}</p>
+                          </div>
+                        </div>
+
+                        {/* Colonne 3: Services et facturation */}
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-purple-800 text-sm">Services demandés</h4>
+                          {selectedRequest.selectedServices && selectedRequest.selectedServices.length > 0 ? (
+                            <ul className="text-sm space-y-1 text-purple-900">
+                              {selectedRequest.selectedServices.map((service, idx) => (
+                                <li key={idx} className="flex items-center gap-2">
+                                  <CheckCircle2 className="w-4 h-4 text-purple-600" />
+                                  {service}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-purple-700 italic">Aucun service spécifié</p>
+                          )}
+
+                          {selectedRequest.billingFrequency && (
+                            <div className="mt-3 pt-3 border-t border-purple-200">
+                              <p className="text-purple-700 text-sm">Fréquence</p>
+                              <p className="font-medium text-purple-900">
+                                {selectedRequest.billingFrequency === "monthly" ? "Mensuelle" : "Annuelle (-10%)"}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Commentaires spécifiques comptabilité */}
+                      {selectedRequest.options.comments && (
+                        <div className="mt-4 pt-4 border-t border-purple-200">
+                          <h4 className="font-medium text-purple-800 text-sm mb-2">Commentaires / Besoins spécifiques</h4>
+                          <p className="text-sm text-purple-900 bg-white p-3 rounded-lg border border-purple-100">
+                            {selectedRequest.options.comments}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Section spécifique Gérance immobilière */}
+                {selectedRequest.requestType === "property" && selectedRequest.propertyAddress && (
+                  <div className="space-y-3 md:col-span-2">
+                    <h3 className="font-semibold flex items-center gap-2 text-orange-600">
+                      <Home className="w-5 h-5" /> Gérance immobilière
+                    </h3>
+                    <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <p className="text-orange-700">Adresse du bien</p>
+                        <p className="font-medium text-orange-900">{selectedRequest.propertyAddress}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Section spécifique Création d'entreprise */}
+                {selectedRequest.requestType === "creation" && (
+                  <div className="space-y-3 md:col-span-2">
+                    <h3 className="font-semibold flex items-center gap-2 text-violet-600">
+                      <Building2 className="w-5 h-5" /> Création d'entreprise
+                    </h3>
+                    <div className="bg-violet-50 border border-violet-200 p-4 rounded-xl">
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="text-violet-700 mb-1">Type d'entreprise</p>
+                          <p className="font-semibold text-violet-900">
+                            {selectedRequest.companyTypeName || selectedRequest.companyType || "Non spécifié"}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-violet-700 mb-1">Canton</p>
+                          <p className="font-medium text-violet-900">
+                            {selectedRequest.fiscal?.canton || "Non spécifié"}
+                          </p>
+                        </div>
+                      </div>
+                      {selectedRequest.projectDescription && (
+                        <div className="mt-4 pt-4 border-t border-violet-200">
+                          <p className="text-violet-700 mb-2">Description du projet</p>
+                          <p className="text-sm text-violet-900 bg-white p-3 rounded-lg border border-violet-100">
+                            {selectedRequest.projectDescription}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 {/* Fiscal */}
                 <div className="space-y-3">
@@ -1452,7 +2459,7 @@ export default function AdminDashboard() {
                       <p className="font-medium">{selectedRequest.fiscal.taxYear}</p>
 
                       <p className="text-muted-foreground">Type de client</p>
-                      <p className="font-medium">{getClientTypeLabel(selectedRequest.fiscal.clientType)}</p>
+                      <p className="font-medium">{getClientTypeLabel(selectedRequest.fiscal.clientType)}{selectedRequest.fiscal.isIndependent && selectedRequest.fiscal.clientType === "couple" ? " + Indépendant" : ""}</p>
 
                       {selectedRequest.fiscal.taxpayerNumber && (
                         <>
@@ -1468,11 +2475,214 @@ export default function AdminDashboard() {
                         </>
                       )}
 
+                      {/* Suisse de l'étranger */}
+                      {selectedRequest.fiscal.livesAbroad && (
+                        <div className="col-span-2 my-2 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Globe className="w-4 h-4 text-amber-600" />
+                            <span className="font-semibold text-amber-800">Suisse de l'étranger</span>
+                            <Badge className="bg-amber-100 text-amber-700 text-xs">+CHF 50.-</Badge>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 text-sm">
+                            <p className="text-amber-700">Pays de résidence</p>
+                            <p className="font-medium text-amber-900">
+                              {selectedRequest.fiscal.countryOfResidenceName || selectedRequest.fiscal.countryOfResidence || "Non précisé"}
+                            </p>
+                            {selectedRequest.fiscal.abroadAddress && (
+                              <>
+                                <p className="text-amber-700">Adresse à l'étranger</p>
+                                <p className="font-medium text-amber-900 whitespace-pre-line">{selectedRequest.fiscal.abroadAddress}</p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
                       <p className="text-muted-foreground">Statut emploi</p>
-                      <p className="font-medium">{getEmploymentLabel(selectedRequest.fiscal.employmentStatus) || "Non spécifié"}</p>
+                      <p className="font-medium">
+                        {getEmploymentLabel(selectedRequest.fiscal.employmentStatus) || "Non spécifié"}
+                        {selectedRequest.fiscal.occupationRate && ` (${selectedRequest.fiscal.occupationRate}%)`}
+                      </p>
+
+                      {selectedRequest.fiscal.employmentStatus2 && (
+                        <>
+                          <p className="text-muted-foreground">Statut conjoint</p>
+                          <p className="font-medium">
+                            {getEmploymentLabel(selectedRequest.fiscal.employmentStatus2) || "Non spécifié"}
+                            {selectedRequest.fiscal.occupationRate2 && ` (${selectedRequest.fiscal.occupationRate2}%)`}
+                          </p>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
+
+                {/* Activité indépendante - Adulte 1 */}
+                {selectedRequest.fiscal.isIndependent && selectedRequest.business && (
+                  <div className="space-y-3">
+                    <h3 className="font-semibold flex items-center gap-2 text-amber-600">
+                      <Briefcase className="w-5 h-5" />
+                      Activité indépendante
+                      {selectedRequest.fiscal.clientType === "couple" && ` - ${selectedRequest.customer.firstName}`}
+                    </h3>
+                    <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl space-y-2">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <p className="text-amber-700">Type d'activité</p>
+                        <p className="font-medium text-amber-900">{selectedRequest.business.businessType || "Non précisé"}</p>
+
+                        {selectedRequest.business.businessStartDate && (
+                          <>
+                            <p className="text-amber-700">Début activité</p>
+                            <p className="font-medium text-amber-900">{formatDate(selectedRequest.business.businessStartDate)}</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasIDE && (
+                          <>
+                            <p className="text-amber-700">N° IDE</p>
+                            <p className="font-medium text-amber-900 font-mono">{selectedRequest.business.ideNumber}</p>
+                          </>
+                        )}
+
+                        <p className="text-amber-700">Registre du commerce</p>
+                        <p className="font-medium text-amber-900">{selectedRequest.business.isRegisteredRC ? "Oui" : "Non"}</p>
+
+                        {selectedRequest.business.hasVAT && (
+                          <>
+                            <p className="text-amber-700">N° TVA</p>
+                            <p className="font-medium text-amber-900 font-mono">{selectedRequest.business.vatNumber}</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasBusinessAccounts ? (
+                          <>
+                            <p className="text-amber-700">Comptabilité</p>
+                            <p className="font-medium text-amber-900">Bilan & compte de résultat fournis</p>
+                          </>
+                        ) : (
+                          <>
+                            {selectedRequest.business.businessRevenue && (
+                              <>
+                                <p className="text-amber-700">Chiffre d'affaires</p>
+                                <p className="font-medium text-amber-900">CHF {selectedRequest.business.businessRevenue}.-</p>
+                              </>
+                            )}
+                            {selectedRequest.business.businessExpenses && (
+                              <>
+                                <p className="text-amber-700">Charges</p>
+                                <p className="font-medium text-amber-900">CHF {selectedRequest.business.businessExpenses}.-</p>
+                              </>
+                            )}
+                            {selectedRequest.business.businessNetIncome && (
+                              <>
+                                <p className="text-amber-700">Bénéfice net</p>
+                                <p className="font-bold text-amber-900">CHF {selectedRequest.business.businessNetIncome}.-</p>
+                              </>
+                            )}
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasAVSIndependent && (
+                          <>
+                            <p className="text-amber-700">Cotisations AVS</p>
+                            <p className="font-medium text-amber-900">CHF {selectedRequest.business.avsIndependentAmount || 0}.-</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasLPPVoluntary && (
+                          <>
+                            <p className="text-amber-700">LPP facultative</p>
+                            <p className="font-medium text-amber-900">CHF {selectedRequest.business.lppVoluntaryAmount || 0}.-</p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Activité indépendante - Adulte 2 (Conjoint) */}
+                {selectedRequest.fiscal.clientType === "couple" && selectedRequest.business?.isIndependent2 && (
+                  <div className="space-y-3">
+                    <h3 className="font-semibold flex items-center gap-2 text-blue-600">
+                      <Briefcase className="w-5 h-5" />
+                      Activité indépendante - {selectedRequest.customer.firstName2 || "Conjoint"}
+                    </h3>
+                    <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl space-y-2">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <p className="text-blue-700">Type d'activité</p>
+                        <p className="font-medium text-blue-900">{selectedRequest.business.businessType2 || "Non précisé"}</p>
+
+                        {selectedRequest.business.businessStartDate2 && (
+                          <>
+                            <p className="text-blue-700">Début activité</p>
+                            <p className="font-medium text-blue-900">{formatDate(selectedRequest.business.businessStartDate2)}</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasIDE2 && (
+                          <>
+                            <p className="text-blue-700">N° IDE</p>
+                            <p className="font-medium text-blue-900 font-mono">{selectedRequest.business.ideNumber2}</p>
+                          </>
+                        )}
+
+                        <p className="text-blue-700">Registre du commerce</p>
+                        <p className="font-medium text-blue-900">{selectedRequest.business.isRegisteredRC2 ? "Oui" : "Non"}</p>
+
+                        {selectedRequest.business.hasVAT2 && (
+                          <>
+                            <p className="text-blue-700">N° TVA</p>
+                            <p className="font-medium text-blue-900 font-mono">{selectedRequest.business.vatNumber2}</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasBusinessAccounts2 ? (
+                          <>
+                            <p className="text-blue-700">Comptabilité</p>
+                            <p className="font-medium text-blue-900">Bilan & compte de résultat fournis</p>
+                          </>
+                        ) : (
+                          <>
+                            {selectedRequest.business.businessRevenue2 && (
+                              <>
+                                <p className="text-blue-700">Chiffre d'affaires</p>
+                                <p className="font-medium text-blue-900">CHF {selectedRequest.business.businessRevenue2}.-</p>
+                              </>
+                            )}
+                            {selectedRequest.business.businessExpenses2 && (
+                              <>
+                                <p className="text-blue-700">Charges</p>
+                                <p className="font-medium text-blue-900">CHF {selectedRequest.business.businessExpenses2}.-</p>
+                              </>
+                            )}
+                            {(selectedRequest.business.businessRevenue2 && selectedRequest.business.businessExpenses2) && (
+                              <>
+                                <p className="text-blue-700">Bénéfice net</p>
+                                <p className="font-bold text-blue-900">
+                                  CHF {Number(selectedRequest.business.businessRevenue2) - Number(selectedRequest.business.businessExpenses2)}.-
+                                </p>
+                              </>
+                            )}
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasAVSIndependent2 && (
+                          <>
+                            <p className="text-blue-700">Cotisations AVS</p>
+                            <p className="font-medium text-blue-900">CHF {selectedRequest.business.avsIndependentAmount2 || 0}.-</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasLPPVoluntary2 && (
+                          <>
+                            <p className="text-blue-700">LPP facultative</p>
+                            <p className="font-medium text-blue-900">CHF {selectedRequest.business.lppVoluntaryAmount2 || 0}.-</p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Situation */}
                 <div className="space-y-3">
@@ -1484,12 +2694,83 @@ export default function AdminDashboard() {
                       <p className="text-muted-foreground">Déménagement</p>
                       <p className="font-medium">{selectedRequest.situation.hasMoved ? "Oui" : "Non"}</p>
 
-                      <p className="text-muted-foreground">Enfants</p>
+                      <p className="text-muted-foreground">Enfants à charge</p>
                       <p className="font-medium">
                         {selectedRequest.situation.hasChildren
                           ? `Oui (${selectedRequest.situation.childrenCount || 0})`
                           : "Non"}
                       </p>
+                    </div>
+
+                    {/* Détail des enfants */}
+                    {selectedRequest.situation.children && selectedRequest.situation.children.length > 0 && (
+                      <div className="mt-4 space-y-3">
+                        <p className="text-sm font-semibold text-primary">Détail des enfants :</p>
+                        {selectedRequest.situation.children.map((child, idx) => {
+                          // Calculate age
+                          const birthDate = child.birthDate ? new Date(child.birthDate) : null;
+                          const age = birthDate ? Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000)) : null;
+
+                          // Activity labels
+                          const activityLabels: Record<string, string> = {
+                            student_primary: "Écolier/ère",
+                            student_high: "Gymnase/collège",
+                            student_university: "Étudiant/e",
+                            apprentice: "Apprenti/e",
+                            employed: "Employé/e",
+                            unemployed: "Sans activité",
+                            other: "Autre",
+                          };
+
+                          // Custody labels
+                          const custodyLabels: Record<string, string> = {
+                            full: "Garde exclusive",
+                            shared_main: "Garde partagée (principal)",
+                            shared_equal: "Garde alternée 50/50",
+                            shared_secondary: "Garde partagée (secondaire)",
+                          };
+
+                          return (
+                            <div key={idx} className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                              <div className="flex items-center justify-between mb-2">
+                                <p className="font-semibold text-blue-800">
+                                  {child.firstName} {child.lastName}
+                                  {age !== null && <span className="ml-2 text-xs bg-blue-200 px-2 py-0.5 rounded-full">{age} ans</span>}
+                                </p>
+                                {child.isDependent && (
+                                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                                    À charge {child.dependentPercentage}%
+                                  </span>
+                                )}
+                              </div>
+                              <div className="grid grid-cols-2 gap-1 text-xs">
+                                <span className="text-muted-foreground">Né(e) le :</span>
+                                <span>{child.birthDate ? new Date(child.birthDate).toLocaleDateString('fr-CH') : '-'}</span>
+
+                                <span className="text-muted-foreground">Activité :</span>
+                                <span>{activityLabels[child.activity] || child.activity || '-'}</span>
+
+                                {child.custodyType && child.custodyType !== 'full' && (
+                                  <>
+                                    <span className="text-muted-foreground">Garde :</span>
+                                    <span className="text-amber-700">{custodyLabels[child.custodyType] || child.custodyType}</span>
+                                  </>
+                                )}
+
+                                {child.hasGuardCosts && (
+                                  <>
+                                    <span className="text-muted-foreground">Frais de garde :</span>
+                                    <span>CHF {child.guardCostsAmount || '0'}.- ({child.guardCostsDescription || 'non précisé'})</span>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-2 gap-2 text-sm">
 
                       {selectedRequest.situation.monthlyRent && (
                         <>
@@ -1497,9 +2778,147 @@ export default function AdminDashboard() {
                           <p className="font-medium">CHF {selectedRequest.situation.monthlyRent}.-</p>
                         </>
                       )}
+
+                      {/* Identité bailleur (NE, FR, JU) */}
+                      {selectedRequest.situation.landlordName && (
+                        <>
+                          <p className="text-muted-foreground">Bailleur / Gérance</p>
+                          <p className="font-medium">{selectedRequest.situation.landlordName}</p>
+                        </>
+                      )}
+
+                      {selectedRequest.situation.landlordAddress && (
+                        <>
+                          <p className="text-muted-foreground">Adresse bailleur</p>
+                          <p className="font-medium">{selectedRequest.situation.landlordAddress}</p>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
+
+                {/* Activité indépendante */}
+                {selectedRequest.business && (
+                  <div className="space-y-3">
+                    <h3 className="font-semibold flex items-center gap-2 text-amber-600">
+                      <Briefcase className="w-5 h-5" /> Activité indépendante
+                    </h3>
+                    <div className="bg-amber-50 p-4 rounded-xl space-y-2 border border-amber-200">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        {selectedRequest.business.businessType && (
+                          <>
+                            <p className="text-muted-foreground">Type d'activité</p>
+                            <p className="font-medium">{selectedRequest.business.businessType}</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.businessStartDate && (
+                          <>
+                            <p className="text-muted-foreground">Début d'activité</p>
+                            <p className="font-medium">{formatDate(selectedRequest.business.businessStartDate)}</p>
+                          </>
+                        )}
+
+                        {selectedRequest.business.hasIDE && (
+                          <>
+                            <p className="text-muted-foreground">Numéro IDE</p>
+                            <p className="font-medium font-mono">{selectedRequest.business.ideNumber || "Oui"}</p>
+                          </>
+                        )}
+
+                        <p className="text-muted-foreground">Registre du Commerce</p>
+                        <p className="font-medium">{selectedRequest.business.isRegisteredRC ? "Oui" : "Non"}</p>
+
+                        {selectedRequest.business.hasVAT && (
+                          <>
+                            <p className="text-muted-foreground">Assujetti TVA</p>
+                            <p className="font-medium font-mono">{selectedRequest.business.vatNumber || "Oui"}</p>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Données financières de l'activité */}
+                      <div className="mt-3 pt-3 border-t border-amber-200">
+                        <p className="text-xs font-semibold text-amber-700 mb-2">Données financières</p>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          {selectedRequest.business.hasBusinessAccounts ? (
+                            <>
+                              <p className="text-muted-foreground">Comptabilité</p>
+                              <p className="font-medium text-green-600">Bilan & compte de résultat fournis</p>
+                            </>
+                          ) : (
+                            <>
+                              {selectedRequest.business.businessRevenue && (
+                                <>
+                                  <p className="text-muted-foreground">Chiffre d'affaires</p>
+                                  <p className="font-medium">CHF {selectedRequest.business.businessRevenue}.-</p>
+                                </>
+                              )}
+                              {selectedRequest.business.businessExpenses && (
+                                <>
+                                  <p className="text-muted-foreground">Charges</p>
+                                  <p className="font-medium">CHF {selectedRequest.business.businessExpenses}.-</p>
+                                </>
+                              )}
+                              {selectedRequest.business.businessNetIncome && (
+                                <>
+                                  <p className="text-muted-foreground">Bénéfice net</p>
+                                  <p className="font-medium text-green-600">CHF {selectedRequest.business.businessNetIncome}.-</p>
+                                </>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Cotisations sociales */}
+                      {(selectedRequest.business.hasAVSIndependent || selectedRequest.business.hasLPPVoluntary) && (
+                        <div className="mt-3 pt-3 border-t border-amber-200">
+                          <p className="text-xs font-semibold text-amber-700 mb-2">Cotisations sociales</p>
+                          <div className="grid grid-cols-2 gap-2 text-sm">
+                            {selectedRequest.business.hasAVSIndependent && (
+                              <>
+                                <p className="text-muted-foreground">AVS/AI/APG indépendant</p>
+                                <p className="font-medium">CHF {selectedRequest.business.avsIndependentAmount || "—"}.-</p>
+                              </>
+                            )}
+                            {selectedRequest.business.hasLPPVoluntary && (
+                              <>
+                                <p className="text-muted-foreground">2ème pilier facultatif</p>
+                                <p className="font-medium">CHF {selectedRequest.business.lppVoluntaryAmount || "—"}.-</p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Frais professionnels */}
+                      {(selectedRequest.business.hasHomeOffice || selectedRequest.business.hasBusinessVehicle) && (
+                        <div className="mt-3 pt-3 border-t border-amber-200">
+                          <p className="text-xs font-semibold text-amber-700 mb-2">Frais professionnels</p>
+                          <div className="grid grid-cols-2 gap-2 text-sm">
+                            {selectedRequest.business.hasHomeOffice && (
+                              <>
+                                <p className="text-muted-foreground">Bureau à domicile</p>
+                                <p className="font-medium">
+                                  {selectedRequest.business.homeOfficePercent}% - CHF {selectedRequest.business.homeOfficeAmount || "—"}.-
+                                </p>
+                              </>
+                            )}
+                            {selectedRequest.business.hasBusinessVehicle && (
+                              <>
+                                <p className="text-muted-foreground">Véhicule professionnel</p>
+                                <p className="font-medium">
+                                  {selectedRequest.business.businessVehiclePercent}% - CHF {selectedRequest.business.businessVehicleExpenses || "—"}.-
+                                </p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 {/* Finances */}
                 <div className="space-y-3">
@@ -1522,10 +2941,26 @@ export default function AdminDashboard() {
                         </>
                       )}
 
+                      {selectedRequest.financial.hasSoldStocks && (
+                        <>
+                          <p className="text-muted-foreground">Vente de titres</p>
+                          <p className="font-medium text-amber-600">
+                            {selectedRequest.financial.soldStocksDetails || "Oui - détails à fournir"}
+                          </p>
+                        </>
+                      )}
+
                       {selectedRequest.financial.hasGuardCosts && (
                         <>
                           <p className="text-muted-foreground">Frais de garde</p>
                           <p className="font-medium">CHF {selectedRequest.financial.guardCosts}.-</p>
+                        </>
+                      )}
+
+                      {selectedRequest.financial.hasMealsOutside && (
+                        <>
+                          <p className="text-muted-foreground">Repas hors domicile</p>
+                          <p className="font-medium">{selectedRequest.financial.mealsOutsideDays} jours/an</p>
                         </>
                       )}
 
@@ -1560,6 +2995,7 @@ export default function AdminDashboard() {
                       {!selectedRequest.financial.hasPillar3a &&
                        !selectedRequest.financial.hasStocks &&
                        !selectedRequest.financial.hasGuardCosts &&
+                       !selectedRequest.financial.hasMealsOutside &&
                        !selectedRequest.financial.hasAlimonyReceived &&
                        !selectedRequest.financial.hasAlimonyPaid &&
                        !selectedRequest.financial.hasDonations &&
@@ -1569,7 +3005,266 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                 </div>
+
+                {/* Immobilier */}
+                {selectedRequest.property && (
+                  <div className="space-y-3">
+                    <h3 className="font-semibold flex items-center gap-2 text-primary">
+                      <Home className="w-5 h-5" /> Immobilier
+                    </h3>
+                    <div className="bg-secondary/20 p-4 rounded-xl space-y-4">
+                      {/* Résumé général */}
+                      <div className="grid grid-cols-2 gap-2 text-sm border-b pb-3">
+                        <p className="text-muted-foreground">Propriétaire</p>
+                        <p className="font-medium">{selectedRequest.property.hasProperty ? "Oui" : "Non"}</p>
+
+                        {selectedRequest.property.hasProperty && selectedRequest.property.propertyCount && (
+                          <>
+                            <p className="text-muted-foreground">Nombre de biens</p>
+                            <p className="font-medium">{selectedRequest.property.propertyCount}</p>
+                          </>
+                        )}
+
+                        {selectedRequest.property.hasSoldProperty && (
+                          <>
+                            <p className="text-muted-foreground">Vente immobilière</p>
+                            <p className="font-medium text-amber-600">
+                              {selectedRequest.property.soldPropertyDetails || "Oui - détails à fournir"}
+                            </p>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Liste détaillée des biens */}
+                      {selectedRequest.property.properties && selectedRequest.property.properties.length > 0 ? (
+                        <div className="space-y-4">
+                          {selectedRequest.property.properties.map((prop, index) => (
+                            <div key={index} className="p-3 bg-white rounded-lg border">
+                              <div className="flex items-center justify-between mb-3">
+                                <span className="font-semibold text-sm text-primary">
+                                  Bien {index + 1}: {prop.propertyTypeName || prop.propertyType || "Bien immobilier"}
+                                </span>
+                                <Badge variant="outline" className="text-xs">
+                                  {prop.usageName || prop.usage || "Usage non précisé"}
+                                </Badge>
+                              </div>
+                              <div className="grid grid-cols-2 gap-2 text-sm">
+                                {/* Adresse */}
+                                {prop.street && (
+                                  <>
+                                    <p className="text-muted-foreground">Adresse</p>
+                                    <p className="font-medium">
+                                      {prop.street}{prop.npa || prop.city ? `, ${prop.npa} ${prop.city}` : ""}
+                                    </p>
+                                  </>
+                                )}
+                                {/* Canton */}
+                                {(prop.cantonName || prop.canton) && (
+                                  <>
+                                    <p className="text-muted-foreground">Canton</p>
+                                    <p className="font-medium">{prop.cantonName || prop.canton}</p>
+                                  </>
+                                )}
+                                {/* Numéro parcelle */}
+                                {prop.parcelNumber && (
+                                  <>
+                                    <p className="text-muted-foreground">N° parcelle</p>
+                                    <p className="font-medium">{prop.parcelNumber}</p>
+                                  </>
+                                )}
+                                {/* Quotité */}
+                                {prop.ownershipShare && (
+                                  <>
+                                    <p className="text-muted-foreground">Quote-part</p>
+                                    <p className="font-medium">{prop.ownershipShare}%</p>
+                                  </>
+                                )}
+                                {/* Année acquisition */}
+                                {prop.acquisitionYear && (
+                                  <>
+                                    <p className="text-muted-foreground">Année d'acquisition</p>
+                                    <p className="font-medium">{prop.acquisitionYear}</p>
+                                  </>
+                                )}
+                                {/* Année construction + forfait */}
+                                {prop.constructionYear && (
+                                  <>
+                                    <p className="text-muted-foreground">Année de construction</p>
+                                    <p className="font-medium">{prop.constructionYear}</p>
+                                    <p className="text-muted-foreground">Forfait entretien</p>
+                                    <p className="font-medium text-primary">
+                                      {prop.maintenanceFlatRate || (new Date().getFullYear() - parseInt(prop.constructionYear) <= 10 ? 10 : 20)}%
+                                      <span className="text-xs text-muted-foreground ml-1">
+                                        ({new Date().getFullYear() - parseInt(prop.constructionYear)} ans)
+                                      </span>
+                                    </p>
+                                  </>
+                                )}
+                                {/* Valeur fiscale */}
+                                {prop.fiscalValue && (
+                                  <>
+                                    <p className="text-muted-foreground">Valeur fiscale</p>
+                                    <p className="font-medium">CHF {prop.fiscalValue}.-</p>
+                                  </>
+                                )}
+                                {/* Valeur locative */}
+                                {prop.rentalValue && (
+                                  <>
+                                    <p className="text-muted-foreground">Valeur locative</p>
+                                    <p className="font-medium">CHF {prop.rentalValue}.-</p>
+                                  </>
+                                )}
+                                {/* Loyers bruts (si loué) */}
+                                {prop.annualRent && (
+                                  <>
+                                    <p className="text-muted-foreground">Loyers bruts annuels</p>
+                                    <p className="font-medium">CHF {prop.annualRent}.-</p>
+                                  </>
+                                )}
+                                {/* Charges locatives */}
+                                {prop.charges && (
+                                  <>
+                                    <p className="text-muted-foreground">Charges locatives</p>
+                                    <p className="font-medium">CHF {prop.charges}.-</p>
+                                  </>
+                                )}
+                                {/* Hypothèque */}
+                                {prop.hasMortgage && (
+                                  <>
+                                    <p className="text-muted-foreground">Hypothèque</p>
+                                    <p className="font-medium">Oui</p>
+                                    {prop.mortgageBalance && (
+                                      <>
+                                        <p className="text-muted-foreground pl-3">- Solde dette</p>
+                                        <p className="font-medium">CHF {prop.mortgageBalance}.-</p>
+                                      </>
+                                    )}
+                                    {prop.mortgageInterest && (
+                                      <>
+                                        <p className="text-muted-foreground pl-3">- Intérêts annuels</p>
+                                        <p className="font-medium">CHF {prop.mortgageInterest}.-</p>
+                                      </>
+                                    )}
+                                  </>
+                                )}
+                                {/* Frais d'entretien */}
+                                {prop.maintenanceCosts && (
+                                  <>
+                                    <p className="text-muted-foreground">Frais d'entretien</p>
+                                    <p className="font-medium">
+                                      CHF {prop.maintenanceCosts}.-
+                                      {prop.maintenanceType === "flat_rate" ? " (forfait)" : " (effectifs)"}
+                                    </p>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        // Fallback vers l'ancienne structure si pas de détails
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          {selectedRequest.property.hasMortgage && (
+                            <>
+                              <p className="text-muted-foreground">Hypothèque</p>
+                              <p className="font-medium">
+                                {selectedRequest.property.mortgageAmount
+                                  ? `CHF ${selectedRequest.property.mortgageAmount}.-`
+                                  : "Oui"}
+                              </p>
+                            </>
+                          )}
+
+                          {selectedRequest.property.hasRenovations && (
+                            <>
+                              <p className="text-muted-foreground">Travaux/Rénovations</p>
+                              <p className="font-medium">
+                                {selectedRequest.property.renovationsAmount
+                                  ? `CHF ${selectedRequest.property.renovationsAmount}.-`
+                                  : "Oui"}
+                              </p>
+                            </>
+                          )}
+
+                          {!selectedRequest.property.hasProperty &&
+                           !selectedRequest.property.hasMortgage &&
+                           !selectedRequest.property.hasRenovations && (
+                            <p className="col-span-2 text-muted-foreground italic">Pas de bien immobilier</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
+
+              {/* Trajets professionnels */}
+              {selectedRequest.workplaces && selectedRequest.workplaces.length > 0 && (
+                <div className="space-y-3">
+                  <h3 className="font-semibold flex items-center gap-2 text-primary">
+                    <MapPin className="w-5 h-5" /> Trajets professionnels
+                  </h3>
+                  <div className="bg-secondary/20 p-4 rounded-xl">
+                    <div className="space-y-4">
+                      {selectedRequest.workplaces.map((wp, index) => (
+                        <div key={index} className="p-3 bg-white rounded-lg border">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="font-medium text-sm">
+                              {wp.adult === 1
+                                ? `${selectedRequest.customer.firstName} ${selectedRequest.customer.lastName}`
+                                : `${selectedRequest.customer.firstName2 || "Conjoint"} ${selectedRequest.customer.lastName2 || ""}`}
+                            </span>
+                            <Badge variant="outline" className="text-xs">
+                              {getTransportModeLabel(wp.transportMode)}
+                            </Badge>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 text-sm">
+                            {wp.employerName && (
+                              <>
+                                <p className="text-muted-foreground">Employeur</p>
+                                <p className="font-medium">{wp.employerName}</p>
+                              </>
+                            )}
+                            {wp.workplaceAddress && (
+                              <>
+                                <p className="text-muted-foreground">Adresse travail</p>
+                                <p className="font-medium">{wp.workplaceAddress}</p>
+                              </>
+                            )}
+                            {wp.daysPerYear && (
+                              <>
+                                <p className="text-muted-foreground">Jours/an</p>
+                                <p className="font-medium">{wp.daysPerYear}</p>
+                              </>
+                            )}
+                            {wp.distanceKm && (
+                              <>
+                                <p className="text-muted-foreground">Distance aller</p>
+                                <p className="font-medium">{wp.distanceKm} km</p>
+                              </>
+                            )}
+                            {wp.carJustification && (
+                              <>
+                                <p className="text-muted-foreground">Justification voiture</p>
+                                <p className="font-medium text-amber-700">{wp.carJustification}</p>
+                              </>
+                            )}
+                            {wp.employerReimbursement && (
+                              <>
+                                <p className="text-muted-foreground">Remboursement employeur</p>
+                                <p className="font-medium text-blue-600">
+                                  {wp.reimbursementType === "full" ? "Total" : "Partiel"}
+                                  {wp.reimbursementAmount && ` - CHF ${wp.reimbursementAmount}.-`}
+                                </p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Options */}
               <div className="space-y-3">
@@ -1604,41 +3299,160 @@ export default function AdminDashboard() {
               <div className="space-y-3">
                 <h3 className="font-semibold flex items-center gap-2 text-primary">
                   <FileText className="w-5 h-5" /> Documents ({selectedRequest.documents.length})
+                  {hasMissingDocuments(selectedRequest) && (
+                    <Badge className="bg-red-100 text-red-700 ml-2">
+                      <AlertCircle className="w-3 h-3 mr-1" />
+                      Documents manquants
+                    </Badge>
+                  )}
                 </h3>
+
+                {/* Warning for missing documents */}
+                {hasMissingDocuments(selectedRequest) && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                    <div className="flex items-start gap-3">
+                      <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-medium text-red-800">Documents non sauvegardés</p>
+                        <p className="text-sm text-red-700 mt-1">
+                          Les documents ont été uploadés alors que Cloudinary n'était pas configuré.
+                          Les fichiers n'ont pas été sauvegardés et doivent être re-uploadés par le client.
+                        </p>
+                        <div className="flex gap-2 mt-3">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="text-red-700 border-red-300 hover:bg-red-100"
+                            asChild
+                          >
+                            <a
+                              href={`mailto:${selectedRequest.customer.email}?subject=Documents manquants - ${selectedRequest.reference}&body=Bonjour ${selectedRequest.customer.firstName},%0A%0ANous avons bien reçu votre demande de déclaration fiscale (référence: ${selectedRequest.reference}).%0A%0AMalheureusement, vos documents n'ont pas été correctement sauvegardés lors de votre envoi.%0A%0APourriez-vous nous renvoyer vos documents par email ou via notre formulaire ?%0A%0ADocuments manquants:%0A${selectedRequest.documents.map(d => `- ${d.name}`).join('%0A')}%0A%0AMerci de votre compréhension.%0A%0ACordialement,%0ANeoFidu`}
+                            >
+                              <Mail className="w-4 h-4 mr-2" />
+                              Contacter le client
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <div className="bg-secondary/20 p-4 rounded-xl">
                   {selectedRequest.documents.length === 0 ? (
                     <p className="text-muted-foreground italic">Aucun document</p>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {selectedRequest.documents.map((doc, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-2 p-2 bg-white rounded-lg text-sm"
-                        >
-                          <FileText className="w-4 h-4 text-primary flex-shrink-0" />
-                          {doc.url ? (
-                            <a
-                              href={doc.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="truncate hover:text-primary hover:underline"
+                      {selectedRequest.documents.map((doc, i) => {
+                        const isMissing = isSimulatedUrl(doc.url);
+                        const isUploaded = !isMissing && doc.url;
+                        return (
+                          <div
+                            key={i}
+                            className={`flex items-center gap-2 p-2 rounded-lg text-sm ${
+                              isMissing
+                                ? 'bg-red-50 border border-red-200'
+                                : 'bg-green-50 border border-green-200'
+                            }`}
+                          >
+                            <FileText className={`w-4 h-4 flex-shrink-0 ${isMissing ? 'text-red-500' : 'text-green-600'}`} />
+                            {isUploaded ? (
+                              <a
+                                href={fixCloudinaryUrl(doc.url)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="truncate hover:text-green-700 hover:underline text-green-800"
+                              >
+                                {doc.name}
+                              </a>
+                            ) : (
+                              <span className="truncate text-red-700">
+                                {doc.name} (manquant)
+                              </span>
+                            )}
+                            <Badge
+                              variant="outline"
+                              className={`ml-auto text-xs flex-shrink-0 ${
+                                isMissing
+                                  ? 'border-red-300 text-red-600 bg-red-100'
+                                  : 'border-green-400 text-green-700 bg-green-100'
+                              }`}
                             >
-                              {doc.name}
-                            </a>
-                          ) : (
-                            <span className="truncate">{doc.name}</span>
-                          )}
-                          <Badge variant="outline" className="ml-auto text-xs flex-shrink-0">
-                            {doc.category}
-                          </Badge>
-                        </div>
-                      ))}
+                              {doc.category}
+                            </Badge>
+                          </div>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
               </div>
             </div>
           </Card>
+        </div>
+      )}
+
+      {/* Modal Aperçu PDF */}
+      {pdfPreviewUrl && pdfPreviewRequest && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4">
+          <div className="bg-white rounded-xl w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b bg-gray-50 rounded-t-xl">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Aperçu PDF</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {getPDFFileName(pdfPreviewRequest)}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  onClick={() => {
+                    downloadPDF(pdfPreviewRequest);
+                  }}
+                  className="bg-primary hover:bg-primary/90"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Télécharger
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    // Revoke the blob URL to free memory
+                    URL.revokeObjectURL(pdfPreviewUrl);
+                    setPdfPreviewUrl(null);
+                    setPdfPreviewRequest(null);
+                  }}
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
+
+            {/* PDF Preview */}
+            <div className="flex-1 p-4 bg-gray-100">
+              <iframe
+                src={pdfPreviewUrl}
+                className="w-full h-full rounded-lg border shadow-inner bg-white"
+                title="Aperçu PDF"
+              />
+            </div>
+
+            {/* Footer */}
+            <div className="p-3 border-t bg-gray-50 rounded-b-xl flex items-center justify-between text-sm text-muted-foreground">
+              <span>
+                Fiche récapitulative - {pdfPreviewRequest.reference}
+              </span>
+              <span>
+                CHF {pdfPreviewRequest.payment.amount}.- TTC
+              </span>
+            </div>
+          </div>
         </div>
       )}
     </div>

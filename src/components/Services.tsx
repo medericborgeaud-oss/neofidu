@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/language-context";
@@ -13,7 +14,7 @@ import {
   Users,
   BarChart3,
   FileCheck,
-  Receipt,
+  Rocket,
   Home,
   Key,
   Wrench,
@@ -28,7 +29,7 @@ export function Services() {
         {
           icon: FileText,
           title: "Tax Declaration",
-          description: "Complete preparation of your tax form, leveraging every tax advantage applicable to your profile.",
+          description: "Submit directly from your smartphone. Complete preparation of your tax form, leveraging every tax advantage applicable to your profile.",
         },
         {
           icon: RefreshCw,
@@ -50,7 +51,7 @@ export function Services() {
         {
           icon: FileText,
           title: "Déclaration d'impôts",
-          description: "Préparation complète de votre formulaire d'imposition en exploitant chaque avantage fiscal applicable à votre profil.",
+          description: "Envoyez directement depuis votre smartphone. Préparation complète de votre formulaire en exploitant chaque avantage fiscal applicable à votre profil.",
         },
         {
           icon: RefreshCw,
@@ -87,9 +88,10 @@ export function Services() {
           description: "Production of your balance sheet and profit and loss statement according to Swiss legal requirements.",
         },
         {
-          icon: Receipt,
-          title: "VAT Administration",
-          description: "Full handling of your VAT statements and associated formalities.",
+          icon: Rocket,
+          title: "Company Creation",
+          description: "Full support for creating your company: sole proprietorship, LLC or corporation.",
+          link: "/creation-entreprise",
         },
       ]
     : [
@@ -109,9 +111,10 @@ export function Services() {
           description: "Production de votre bilan et compte de profits et pertes selon les exigences légales helvétiques.",
         },
         {
-          icon: Receipt,
-          title: "Administration TVA",
-          description: "Prise en charge intégrale de vos décomptes de taxe sur la valeur ajoutée et formalités associées.",
+          icon: Rocket,
+          title: "Création d'entreprise",
+          description: "Accompagnement complet pour créer votre entreprise : raison individuelle, Sàrl ou SA.",
+          link: "/creation-entreprise",
         },
       ];
 
@@ -178,7 +181,7 @@ export function Services() {
   const propertySubtitle = isEnglish ? "For owners and investors" : "Pour les propriétaires et investisseurs";
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-white">
+    <section id="services" className="py-20 md:py-32 bg-white content-auto">
       <div className="container mx-auto px-4">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -241,24 +244,35 @@ export function Services() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {accountingServices.map((service) => (
-              <Card
-                key={service.title}
-                className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-teal-500/20 bg-gradient-to-br from-white to-teal-50/50"
-              >
-                <CardHeader>
-                  <div className="w-14 h-14 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-4 group-hover:bg-teal-500/20 transition-colors">
-                    <service.icon className="w-7 h-7 text-teal-600" />
-                  </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+            {accountingServices.map((service) => {
+              const cardContent = (
+                <Card
+                  className={`group hover:shadow-xl transition-all duration-300 border-2 hover:border-teal-500/20 bg-gradient-to-br from-white to-teal-50/50 h-full ${service.link ? "cursor-pointer" : ""}`}
+                >
+                  <CardHeader>
+                    <div className="w-14 h-14 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-4 group-hover:bg-teal-500/20 transition-colors">
+                      <service.icon className="w-7 h-7 text-teal-600" />
+                    </div>
+                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              );
+
+              return service.link ? (
+                <Link key={service.title} href={service.link} className="block">
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={service.title}>
+                  {cardContent}
+                </div>
+              );
+            })}
           </div>
         </div>
 

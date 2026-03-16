@@ -5,11 +5,9 @@ import Script from "next/script";
 const GA_TRACKING_ID = "G-JN5C3WSSLK";
 
 export function GoogleAnalytics() {
-  const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
-
   return (
     <>
-      {/* Google Analytics (gtag.js) */}
+      {/* Google Analytics - Load and check consent from localStorage */}
       <Script
         id="gtag-init"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
@@ -22,30 +20,47 @@ export function GoogleAnalytics() {
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+
+            // Check consent from localStorage directly
+            var savedConsent = null;
+            try {
+              var stored = localStorage.getItem('neofidu_cookie_consent');
+              if (stored) {
+                savedConsent = JSON.parse(stored);
+              }
+            } catch(e) {}
+
+            var analyticsGranted = savedConsent && savedConsent.analytics === true;
+
+            // Set consent based on stored preference
+            gtag('consent', 'default', {
+              'analytics_storage': analyticsGranted ? 'granted' : 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied'
+            });
+
             gtag('js', new Date());
             gtag('config', '${GA_TRACKING_ID}', {
               page_path: window.location.pathname,
+              anonymize_ip: true
+            });
+
+            // Listen for consent updates
+            window.addEventListener('cookieConsentChanged', function() {
+              var consent = localStorage.getItem('neofidu_cookie_consent');
+              if (consent) {
+                try {
+                  var parsed = JSON.parse(consent);
+                  gtag('consent', 'update', {
+                    'analytics_storage': parsed.analytics ? 'granted' : 'denied'
+                  });
+                } catch(e) {}
+              }
             });
           `,
         }}
       />
-
-      {/* Google Tag Manager - only if GTM_ID is configured */}
-      {GTM_ID && (
-        <Script
-          id="gtm-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
-            `,
-          }}
-        />
-      )}
     </>
   );
 }

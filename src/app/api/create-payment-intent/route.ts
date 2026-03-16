@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { findTaxRequestByReference, updateTaxRequestPayment } from "@/lib/tax-requests-store";
+import {
+  isSupabaseConfigured,
+  findTaxRequestByReference as findSupabaseByRef,
+  updateTaxRequestPayment as updateSupabasePayment,
+} from "@/lib/supabase";
+import {
+  findTaxRequestByReference as findMemoryByRef,
+  updateTaxRequestPayment as updateMemoryPayment,
+} from "@/lib/tax-requests-store";
 
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
@@ -51,13 +59,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Créer le PaymentIntent avec carte ET TWINT activés
-    // TWINT est disponible uniquement pour CHF en Suisse
+    // Créer le PaymentIntent pour carte bancaire
     const paymentIntent = await stripeInstance.paymentIntents.create({
       amount: Math.round(amount), // Montant en centimes
       currency: currency.toLowerCase(),
-      // Activer carte et TWINT explicitement
-      payment_method_types: ["card", "twint"],
+      payment_method_types: ["card"],
       receipt_email: customerEmail,
       description: description || "Prestation NeoFidu",
       metadata: {
@@ -69,10 +75,30 @@ export async function POST(request: NextRequest) {
 
     // Si c'est une déclaration fiscale, lier le PaymentIntent à la demande
     if (metadata?.taxRequestReference) {
-      const taxRequest = findTaxRequestByReference(metadata.taxRequestReference);
-      if (taxRequest) {
-        updateTaxRequestPayment(taxRequest.reference, paymentIntent.id);
-        console.log("📋 PaymentIntent lié à la demande fiscale:", metadata.taxRequestReference);
+      console.log("📋 Tentative de liaison PaymentIntent à la demande:", metadata.taxRequestReference);
+
+      // Utiliser Supabase si configuré, sinon fallback sur le store en mémoire
+      if (isSupabaseConfigured()) {
+        const taxRequest = await findSupabaseByRef(metadata.taxRequestReference);
+        if (taxRequest) {
+          const updated = await updateSupabasePayment(taxRequest.reference, paymentIntent.id);
+          if (updated) {
+            console.log("✅ PaymentIntent lié à la demande fiscale (Supabase):", metadata.taxRequestReference, "->", paymentIntent.id);
+          } else {
+            console.error("❌ Échec de la mise à jour du PaymentIntent dans Supabase");
+          }
+        } else {
+          console.warn("⚠️ Demande fiscale non trouvée dans Supabase:", metadata.taxRequestReference);
+        }
+      } else {
+        // Fallback: store en mémoire
+        const taxRequest = findMemoryByRef(metadata.taxRequestReference);
+        if (taxRequest) {
+          updateMemoryPayment(taxRequest.reference, paymentIntent.id);
+          console.log("📋 PaymentIntent lié à la demande fiscale (mémoire):", metadata.taxRequestReference);
+        } else {
+          console.warn("⚠️ Demande fiscale non trouvée en mémoire:", metadata.taxRequestReference);
+        }
       }
     }
 

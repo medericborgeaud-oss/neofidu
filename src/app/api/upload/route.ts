@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
+import { sendCriticalAlertEmail } from "@/lib/email";
 
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
@@ -32,44 +33,47 @@ export interface UploadedDocument {
 
 export async function POST(request: NextRequest) {
   try {
-    // Vérifier si Cloudinary est configuré
-    if (!isCloudinaryConfigured()) {
-      console.warn("⚠️ Cloudinary non configuré - upload simulé");
-      // En mode démo, on simule l'upload
-      const formData = await request.formData();
-      const files = formData.getAll("files") as File[];
-      const categories = formData.getAll("categories") as string[];
-      const reference = formData.get("reference") as string;
-
-      const simulatedResults: UploadedDocument[] = [];
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const category = categories[i] || "other";
-        simulatedResults.push({
-          name: file.name,
-          category,
-          url: `https://demo.cloudinary.com/neofidu/${reference}/${file.name}`,
-          publicId: `neofidu/${reference}/${Date.now()}_${file.name}`,
-          size: file.size,
-          uploadedAt: new Date().toISOString(),
-        });
-      }
-
-      return NextResponse.json({
-        success: true,
-        documents: simulatedResults,
-        demo: true,
-        message: "Mode démo - documents non uploadés vers Cloudinary",
-      });
-    }
-
-    // Parse FormData
+    // Parse FormData first to get customer info
     const formData = await request.formData();
     const files = formData.getAll("files") as File[];
     const categories = formData.getAll("categories") as string[];
     const reference = formData.get("reference") as string;
     const lastName = formData.get("lastName") as string || "";
     const firstName = formData.get("firstName") as string || "";
+
+    // Vérifier si Cloudinary est configuré
+    if (!isCloudinaryConfigured()) {
+      console.error("❌ ERREUR CRITIQUE: Cloudinary non configuré - documents perdus!");
+      const missingVars: string[] = [];
+      if (!process.env.CLOUDINARY_CLOUD_NAME) missingVars.push("CLOUDINARY_CLOUD_NAME");
+      if (!process.env.CLOUDINARY_API_KEY) missingVars.push("CLOUDINARY_API_KEY");
+      if (!process.env.CLOUDINARY_API_SECRET) missingVars.push("CLOUDINARY_API_SECRET");
+      console.error("Variables manquantes:", missingVars.join(", "));
+
+      // 🚨 ENVOYER ALERTE CRITIQUE À L'ADMIN
+      try {
+        await sendCriticalAlertEmail({
+          service: "Cloudinary (stockage documents)",
+          error: "Variables d'environnement manquantes",
+          details: `Variables manquantes: ${missingVars.join(", ")}\n\nLe client a tenté d'uploader ${files.length} document(s) mais ils n'ont pas pu être sauvegardés.`,
+          customerName: `${firstName} ${lastName}`.trim() || "Inconnu",
+          reference: reference || "N/A",
+        });
+        console.log("🚨 Alerte critique envoyée à l'admin");
+      } catch (alertError) {
+        console.error("Impossible d'envoyer l'alerte:", alertError);
+      }
+
+      // REJETER l'upload - ne pas simuler pour éviter la perte de documents
+      return NextResponse.json({
+        success: false,
+        error: "Configuration Cloudinary manquante",
+        message: "Les documents ne peuvent pas être sauvegardés. Veuillez contacter le support technique.",
+        configMissing: true,
+      }, { status: 503 });
+    }
+
+    // Files, categories, reference, lastName, firstName already parsed above
 
     if (!files || files.length === 0) {
       return NextResponse.json(
@@ -122,8 +126,10 @@ export async function POST(request: NextRequest) {
         const dataUri = `data:${mimeType};base64,${base64}`;
 
         // Déterminer le type de ressource
+        // PDFs need to be uploaded as "image" type for Cloudinary preview support
         const isImage = mimeType.startsWith("image/");
-        const resourceType = isImage ? "image" : "raw";
+        const isPDF = mimeType === "application/pdf";
+        const resourceType = (isImage || isPDF) ? "image" : "raw";
 
         // Générer un identifiant avec format: reference_date_nom_prenom_fichier
         const fileExtension = file.name.split(".").pop()?.toLowerCase() || "";
@@ -154,11 +160,10 @@ export async function POST(request: NextRequest) {
           tags: ["neofidu", "document", reference, category],
         });
 
-        // Pour les fichiers raw, ajouter fl_attachment pour le téléchargement
-        let secureUrl = result.secure_url;
-        if (resourceType === "raw" && !secureUrl.includes("fl_attachment")) {
-          secureUrl = secureUrl.replace("/upload/", "/upload/fl_attachment/");
-        }
+        // Utiliser l'URL sécurisée directe de Cloudinary
+        // Note: fl_attachment cause des problèmes avec certains fichiers raw
+        // L'URL directe fonctionne pour la visualisation et le téléchargement
+        const secureUrl = result.secure_url;
 
         uploadedDocuments.push({
           name: file.name,

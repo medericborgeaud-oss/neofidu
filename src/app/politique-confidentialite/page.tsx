@@ -6,14 +6,15 @@ import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Lock, Shield, Eye, Database, UserCheck, Mail, Globe } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/language-context";
 
-const sections = [
+const sectionsFr = [
   {
     id: "introduction",
     title: "1. Introduction",
     icon: Shield,
     content: `
-      <p>NeoFidu SA (ci-après "NeoFidu", "nous" ou "notre") s'engage à protéger la vie privée de ses utilisateurs et clients. La présente Politique de Confidentialité explique comment nous collectons, utilisons, stockons et protégeons vos données personnelles.</p>
+      <p>NeoFidu (ci-après "NeoFidu", "nous" ou "notre") s'engage à protéger la vie privée de ses utilisateurs et clients. La présente Politique de Confidentialité explique comment nous collectons, utilisons, stockons et protégeons vos données personnelles.</p>
       <p>Cette politique s'applique à toutes les données collectées via notre site web neofidu.ch et dans le cadre de nos prestations de services fiduciaires.</p>
       <p>En utilisant nos services, vous acceptez les pratiques décrites dans cette politique.</p>
     `,
@@ -25,8 +26,9 @@ const sections = [
     content: `
       <p>Le responsable du traitement des données personnelles est :</p>
       <p>
-        <strong>NeoFidu SA</strong><br />
-        Canton de Vaud, Suisse<br />
+        <strong>NeoFidu – Entreprise individuelle</strong><br />
+        Crettaz 1, 1854 Leysin, Suisse<br />
+        Tél : +41 78 691 39 12<br />
         Email : contact@neofidu.ch
       </p>
       <p>Pour toute question relative à la protection de vos données, vous pouvez nous contacter à l'adresse ci-dessus.</p>
@@ -65,7 +67,7 @@ const sections = [
       </ul>
 
       <h4>3.4 Données de paiement</h4>
-      <p>Les données de paiement (carte bancaire, TWINT) sont traitées de manière sécurisée par nos prestataires de paiement certifiés (Stripe) et ne sont pas stockées sur nos serveurs.</p>
+      <p>Les données de paiement (carte bancaire) sont traitées de manière sécurisée par notre prestataire de paiement certifié (Stripe) et ne sont pas stockées sur nos serveurs.</p>
     `,
   },
   {
@@ -121,10 +123,10 @@ const sections = [
       <p>Vos données peuvent être communiquées aux destinataires suivants :</p>
       <ul>
         <li><strong>Autorités fiscales</strong> : dans le cadre de l'établissement de vos déclarations</li>
-        <li><strong>Prestataires techniques</strong> : hébergement, paiement en ligne, envoi d'emails (tous soumis à des obligations de confidentialité)</li>
+        <li><strong>Prestataires techniques</strong> : hébergement (Vercel), base de données (Supabase), stockage de documents (Cloudinary), paiements (Stripe), envoi d'emails (Resend) – tous soumis à des obligations de confidentialité</li>
         <li><strong>Professionnels du droit</strong> : en cas de litige, avec votre accord préalable</li>
       </ul>
-      <p>Nous ne transférons pas vos données en dehors de la Suisse et de l'Espace économique européen sans garanties appropriées.</p>
+      <p>Certains de nos prestataires sont basés aux États-Unis. Ces transferts sont encadrés par des Clauses Contractuelles Types (CCT) approuvées par la Commission européenne, garantissant un niveau de protection adéquat conformément à la LPD et au RGPD.</p>
     `,
   },
   {
@@ -134,13 +136,13 @@ const sections = [
     content: `
       <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données :</p>
       <ul>
-        <li>Chiffrement des données en transit (SSL/TLS) et au repos</li>
+        <li>Chiffrement des données en transit (SSL/TLS) et au repos (AES-256)</li>
         <li>Authentification sécurisée et gestion des accès</li>
         <li>Sauvegardes régulières et plan de reprise d'activité</li>
         <li>Formation du personnel à la protection des données</li>
         <li>Audits de sécurité réguliers</li>
       </ul>
-      <p>Nos serveurs sont hébergés en Suisse dans des centres de données certifiés.</p>
+      <p>Notre infrastructure est hébergée via des prestataires conformes au RGPD et à la LPD : Vercel (application web), Supabase (base de données en Europe), Cloudinary (documents avec chiffrement AES-256), et Stripe (paiements certifiés PCI DSS Level 1). Des Clauses Contractuelles Types encadrent les transferts internationaux.</p>
     `,
   },
   {
@@ -186,7 +188,204 @@ const sections = [
   },
 ];
 
+const sectionsEn = [
+  {
+    id: "introduction",
+    title: "1. Introduction",
+    icon: Shield,
+    content: `
+      <p>NeoFidu (hereinafter "NeoFidu", "we" or "our") is committed to protecting the privacy of its users and clients. This Privacy Policy explains how we collect, use, store and protect your personal data.</p>
+      <p>This policy applies to all data collected through our neofidu.ch website and as part of our fiduciary services.</p>
+      <p>By using our services, you accept the practices described in this policy.</p>
+    `,
+  },
+  {
+    id: "responsable",
+    title: "2. Data Controller",
+    icon: UserCheck,
+    content: `
+      <p>The data controller for personal data is:</p>
+      <p>
+        <strong>NeoFidu – Sole Proprietorship</strong><br />
+        Crettaz 1, 1854 Leysin, Switzerland<br />
+        Tel: +41 78 691 39 12<br />
+        Email: contact@neofidu.ch
+      </p>
+      <p>For any questions regarding the protection of your data, you can contact us at the above address.</p>
+    `,
+  },
+  {
+    id: "donnees-collectees",
+    title: "3. Data Collected",
+    icon: Database,
+    content: `
+      <h4>3.1 Identification Data</h4>
+      <ul>
+        <li>First and last name</li>
+        <li>Postal address</li>
+        <li>Email address</li>
+        <li>Phone number</li>
+        <li>Date of birth</li>
+        <li>Marital status</li>
+      </ul>
+
+      <h4>3.2 Tax and Financial Data</h4>
+      <ul>
+        <li>Income and assets</li>
+        <li>Bank statements</li>
+        <li>Salary certificates</li>
+        <li>Tax documents</li>
+        <li>Real estate information</li>
+      </ul>
+
+      <h4>3.3 Connection Data</h4>
+      <ul>
+        <li>IP address</li>
+        <li>Browser type</li>
+        <li>Pages visited</li>
+        <li>Date and time of connection</li>
+      </ul>
+
+      <h4>3.4 Payment Data</h4>
+      <p>Payment data (credit card) is processed securely by our certified payment provider (Stripe) and is not stored on our servers.</p>
+    `,
+  },
+  {
+    id: "finalites",
+    title: "4. Processing Purposes",
+    icon: Eye,
+    content: `
+      <p>Your personal data is collected and processed for the following purposes:</p>
+      <ul>
+        <li><strong>Service execution</strong>: preparation of tax returns, accounting, property management</li>
+        <li><strong>Customer relationship management</strong>: communication, request follow-up, billing</li>
+        <li><strong>Legal obligations</strong>: compliance with Swiss tax and accounting requirements</li>
+        <li><strong>Service improvement</strong>: anonymized statistical analysis to optimize our services</li>
+        <li><strong>Security</strong>: fraud prevention and system protection</li>
+      </ul>
+      <p>We never sell your data to third parties and do not use it for advertising purposes without your explicit consent.</p>
+    `,
+  },
+  {
+    id: "base-legale",
+    title: "5. Legal Basis for Processing",
+    icon: Shield,
+    content: `
+      <p>The processing of your data is based on the following legal grounds:</p>
+      <ul>
+        <li><strong>Contract execution</strong>: processing is necessary for the execution of services you have ordered</li>
+        <li><strong>Legal obligation</strong>: certain processing is required by law (retention of accounting documents, tax returns)</li>
+        <li><strong>Legitimate interest</strong>: improvement of our services, IT security</li>
+        <li><strong>Consent</strong>: for marketing communications, when you have expressly consented</li>
+      </ul>
+    `,
+  },
+  {
+    id: "conservation",
+    title: "6. Retention Period",
+    icon: Database,
+    content: `
+      <p>Your data is retained for the following periods:</p>
+      <ul>
+        <li><strong>Tax and accounting documents</strong>: 10 years in accordance with Swiss law</li>
+        <li><strong>Billing data</strong>: 10 years</li>
+        <li><strong>Connection data</strong>: 12 months</li>
+        <li><strong>Client correspondence</strong>: 5 years after the end of the contractual relationship</li>
+      </ul>
+      <p>Upon expiration of these periods, your data is deleted or irreversibly anonymized.</p>
+    `,
+  },
+  {
+    id: "destinataires",
+    title: "7. Data Recipients",
+    icon: Globe,
+    content: `
+      <p>Your data may be shared with the following recipients:</p>
+      <ul>
+        <li><strong>Tax authorities</strong>: as part of preparing your tax returns</li>
+        <li><strong>Technical providers</strong>: hosting (Vercel), database (Supabase), document storage (Cloudinary), payments (Stripe), email sending (Resend) – all subject to confidentiality obligations</li>
+        <li><strong>Legal professionals</strong>: in case of dispute, with your prior consent</li>
+      </ul>
+      <p>Some of our providers are based in the United States. These transfers are governed by Standard Contractual Clauses (SCC) approved by the European Commission, ensuring an adequate level of protection in accordance with the DPA and GDPR.</p>
+    `,
+  },
+  {
+    id: "securite",
+    title: "8. Data Security",
+    icon: Lock,
+    content: `
+      <p>We implement appropriate technical and organizational measures to protect your data:</p>
+      <ul>
+        <li>Data encryption in transit (SSL/TLS) and at rest (AES-256)</li>
+        <li>Secure authentication and access management</li>
+        <li>Regular backups and business continuity plan</li>
+        <li>Staff training on data protection</li>
+        <li>Regular security audits</li>
+      </ul>
+      <p>Our infrastructure is hosted through GDPR and DPA compliant providers: Vercel (web application), Supabase (database in Europe), Cloudinary (documents with AES-256 encryption), and Stripe (PCI DSS Level 1 certified payments). Standard Contractual Clauses govern international transfers.</p>
+    `,
+  },
+  {
+    id: "droits",
+    title: "9. Your Rights",
+    icon: UserCheck,
+    content: `
+      <p>In accordance with applicable legislation, you have the following rights:</p>
+      <ul>
+        <li><strong>Right of access</strong>: obtain a copy of your personal data</li>
+        <li><strong>Right to rectification</strong>: correct inaccurate or incomplete data</li>
+        <li><strong>Right to erasure</strong>: request deletion of your data (subject to legal retention obligations)</li>
+        <li><strong>Right to restriction</strong>: restrict the processing of your data</li>
+        <li><strong>Right to portability</strong>: receive your data in a structured format</li>
+        <li><strong>Right to object</strong>: object to processing for legitimate reasons</li>
+        <li><strong>Right to withdraw consent</strong>: at any time for consent-based processing</li>
+      </ul>
+      <p>To exercise these rights, contact us at contact@neofidu.ch. We will respond within one month.</p>
+    `,
+  },
+  {
+    id: "cookies",
+    title: "10. Cookies",
+    icon: Globe,
+    content: `
+      <p>Our website uses cookies to improve your browsing experience:</p>
+      <ul>
+        <li><strong>Essential cookies</strong>: necessary for site operation (session, security)</li>
+        <li><strong>Analytics cookies</strong>: to understand how you use our site (anonymized)</li>
+      </ul>
+      <p>You can configure your browser to refuse cookies or to be alerted when a cookie is placed.</p>
+    `,
+  },
+  {
+    id: "modifications",
+    title: "11. Policy Modifications",
+    icon: Shield,
+    content: `
+      <p>We may modify this Privacy Policy at any time. Modifications take effect upon publication on our website.</p>
+      <p>In case of substantial modification, we will inform you by email or through a visible notice on our site.</p>
+      <p><em>Last updated: February 2026</em></p>
+    `,
+  },
+];
+
 export default function PolitiqueConfidentialitePage() {
+  const { isEnglish } = useLanguage();
+  const sections = isEnglish ? sectionsEn : sectionsFr;
+
+  const t = {
+    backToHome: isEnglish ? "Back to home" : "Retour à l'accueil",
+    title1: isEnglish ? "Privacy" : "Politique de",
+    title2: isEnglish ? "Policy" : "Confidentialité",
+    subtitle: isEnglish
+      ? "Learn how NeoFidu protects your personal data."
+      : "Découvrez comment NeoFidu protège vos données personnelles.",
+    tableOfContents: isEnglish ? "Table of Contents" : "Table des matières",
+    questionsTitle: isEnglish ? "Questions about your data?" : "Questions sur vos données ?",
+    questionsText: isEnglish
+      ? "You can exercise your rights or ask us questions at any time."
+      : "Vous pouvez exercer vos droits ou nous poser vos questions à tout moment.",
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
       <Header />
@@ -200,7 +399,7 @@ export default function PolitiqueConfidentialitePage() {
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Retour à l'accueil
+              {t.backToHome}
             </Link>
           </div>
 
@@ -215,10 +414,10 @@ export default function PolitiqueConfidentialitePage() {
               <Lock className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Politique de <span className="text-gradient">Confidentialité</span>
+              {t.title1} <span className="text-gradient">{t.title2}</span>
             </h1>
             <p className="text-muted-foreground text-lg">
-              Découvrez comment NeoFidu protège vos données personnelles.
+              {t.subtitle}
             </p>
           </motion.div>
 
@@ -230,7 +429,7 @@ export default function PolitiqueConfidentialitePage() {
             className="max-w-4xl mx-auto mb-12"
           >
             <Card className="p-6">
-              <h2 className="font-semibold mb-4">Table des matières</h2>
+              <h2 className="font-semibold mb-4">{t.tableOfContents}</h2>
               <div className="grid md:grid-cols-2 gap-2">
                 {sections.map((section) => (
                   <a
@@ -284,9 +483,9 @@ export default function PolitiqueConfidentialitePage() {
           >
             <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50">
               <Mail className="w-10 h-10 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Questions sur vos données ?</h3>
+              <h3 className="text-xl font-bold mb-2">{t.questionsTitle}</h3>
               <p className="text-muted-foreground mb-6">
-                Vous pouvez exercer vos droits ou nous poser vos questions à tout moment.
+                {t.questionsText}
               </p>
               <a
                 href="mailto:contact@neofidu.ch"

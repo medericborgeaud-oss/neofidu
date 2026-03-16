@@ -11,7 +11,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Lock, CreditCard, Smartphone, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Lock, Loader2, AlertCircle } from "lucide-react";
 
 // Charger Stripe
 const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -80,13 +80,19 @@ function CheckoutForm({
       <PaymentElement
         options={{
           layout: "tabs",
-          paymentMethodOrder: ["card", "twint"],
           defaultValues: {
             billingDetails: {
               address: {
                 country: "CH",
               },
             },
+          },
+          terms: {
+            card: "never",
+          },
+          wallets: {
+            applePay: "never",
+            googlePay: "never",
           },
         }}
       />
@@ -120,38 +126,32 @@ function CheckoutForm({
         <div className="flex items-center justify-center gap-3 mb-3">
           <span className="text-xs text-muted-foreground">Moyens de paiement acceptés</span>
         </div>
-        <div className="flex items-center justify-center gap-3">
-          {/* TWINT - Logo officiel */}
-          <div className="flex items-center gap-1 px-3 py-1.5 bg-black rounded-lg">
-            <img
-              src="https://www.twint.ch/content/uploads/2021/05/twint-icon-app-white.svg"
-              alt="TWINT"
-              className="h-5"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
-              }}
-            />
-            <span className="text-white text-xs font-bold hidden">TWINT</span>
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          {/* Visa / Mastercard */}
+          <div className="inline-flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-1.5 text-xs">
+            <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            <span className="text-gray-600">Visa / Mastercard</span>
           </div>
-          {/* Visa */}
-          <div className="w-12 h-8 bg-[#1a1f71] rounded-lg flex items-center justify-center text-white text-xs font-bold">
-            VISA
+          {/* PayPal */}
+          <div className="inline-flex items-center gap-1.5 bg-[#003087]/10 rounded-full px-3 py-1.5 text-xs">
+            <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#003087]" fill="currentColor">
+              <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/>
+            </svg>
+            <span className="text-[#003087] font-medium">PayPal</span>
           </div>
-          {/* Mastercard */}
-          <div className="w-12 h-8 bg-gradient-to-r from-[#eb001b] to-[#f79e1b] rounded-lg flex items-center justify-center">
-            <div className="flex -space-x-2">
-              <div className="w-4 h-4 bg-[#eb001b] rounded-full opacity-80"></div>
-              <div className="w-4 h-4 bg-[#f79e1b] rounded-full opacity-80"></div>
-            </div>
+          {/* Klarna */}
+          <div className="inline-flex items-center gap-1.5 bg-[#FFB3C7]/30 rounded-full px-3 py-1.5 text-xs">
+            <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#0A0B09]" fill="currentColor">
+              <path d="M4.592 2h14.816A2.592 2.592 0 0 1 22 4.592v14.816A2.592 2.592 0 0 1 19.408 22H4.592A2.592 2.592 0 0 1 2 19.408V4.592A2.592 2.592 0 0 1 4.592 2z"/>
+            </svg>
+            <span className="text-[#0A0B09] font-medium">Klarna</span>
           </div>
         </div>
         <div className="flex items-center justify-center gap-2 mt-3">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/512px-Stripe_Logo%2C_revised_2016.svg.png"
-            alt="Powered by Stripe"
-            className="h-4 opacity-50"
-          />
+          <span className="text-xs text-muted-foreground opacity-50">Paiement sécurisé par Stripe</span>
         </div>
       </div>
     </form>
@@ -303,106 +303,6 @@ export function StripePaymentForm({
       >
         <CheckoutForm amount={amount} onSuccess={onSuccess} onError={onError} />
       </Elements>
-    </Card>
-  );
-}
-
-// Composant pour le mode démo/mockup (sans Stripe)
-export function MockPaymentForm({
-  amount,
-  onSuccess,
-}: {
-  amount: number;
-  onSuccess: () => void;
-}) {
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "twint">("card");
-  const [isProcessing, setIsProcessing] = useState(false);
-
-  const handleSubmit = () => {
-    setIsProcessing(true);
-    setTimeout(() => {
-      setIsProcessing(false);
-      onSuccess();
-    }, 2000);
-  };
-
-  return (
-    <Card className="p-6">
-      <div className="flex items-center gap-2 mb-6">
-        <Lock className="w-5 h-5 text-primary" />
-        <span className="font-semibold">Paiement sécurisé</span>
-        <Badge variant="secondary" className="ml-auto">
-          CHF {amount}.-
-        </Badge>
-      </div>
-
-      {/* Sélection du mode de paiement */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div
-          onClick={() => setPaymentMethod("card")}
-          className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center gap-3 ${
-            paymentMethod === "card"
-              ? "border-primary bg-primary/5"
-              : "border-border hover:border-primary/30"
-          }`}
-        >
-          <CreditCard className={`w-6 h-6 ${paymentMethod === "card" ? "text-primary" : "text-muted-foreground"}`} />
-          <div>
-            <div className="font-medium text-sm">Carte</div>
-            <div className="text-xs text-muted-foreground">Visa, Mastercard</div>
-          </div>
-        </div>
-        <div
-          onClick={() => setPaymentMethod("twint")}
-          className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center gap-3 ${
-            paymentMethod === "twint"
-              ? "border-black bg-black/5"
-              : "border-border hover:border-black/30"
-          }`}
-        >
-          <Smartphone className={`w-6 h-6 ${paymentMethod === "twint" ? "text-black" : "text-muted-foreground"}`} />
-          <div>
-            <div className="font-medium text-sm">TWINT</div>
-            <div className="text-xs text-muted-foreground">Paiement mobile</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Contenu selon le mode */}
-      {paymentMethod === "card" ? (
-        <div className="space-y-4 mb-6">
-          <div className="p-3 bg-secondary/50 rounded-xl text-center text-sm text-muted-foreground">
-            Mode démonstration - Intégration Stripe requise
-          </div>
-        </div>
-      ) : (
-        <div className="text-center py-6 mb-6">
-          <div className="w-24 h-24 bg-black rounded-2xl mx-auto mb-4 flex items-center justify-center">
-            <span className="text-white font-bold">TWINT</span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Mode démonstration - Intégration Stripe + TWINT requise
-          </p>
-        </div>
-      )}
-
-      <Button
-        onClick={handleSubmit}
-        disabled={isProcessing}
-        className="w-full rounded-full py-6 text-lg"
-      >
-        {isProcessing ? (
-          <>
-            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-            Traitement...
-          </>
-        ) : (
-          <>
-            <Lock className="w-5 h-5 mr-2" />
-            Payer CHF {amount}.-
-          </>
-        )}
-      </Button>
     </Card>
   );
 }

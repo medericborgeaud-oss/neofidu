@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { LanguageProvider } from "@/lib/language-context";
+import { CookieConsent } from "@/components/CookieConsent";
 
 export default function ClientBody({
   children,
@@ -17,6 +18,7 @@ export default function ClientBody({
   return (
     <LanguageProvider>
       <div className="antialiased">{children}</div>
+      <CookieConsent />
     </LanguageProvider>
   );
 }

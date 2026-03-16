@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Award, Clock, Shield, Heart } from "lucide-react";
+import { Award, Clock, Shield, Heart, User } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
 export function About() {
@@ -57,13 +57,13 @@ export function About() {
   const mainTitle1 = isEnglish ? "The fiduciary" : "La fiduciaire";
   const mainTitle2 = isEnglish ? "reinvented" : "réinventée";
 
-  const description1 = isEnglish
-    ? "NeoFidu was founded with the ambition to democratize access to fiduciary services through digital technology and a clear pricing policy."
-    : "NeoFidu a été fondée avec l'ambition de démocratiser l'accès aux prestations fiduciaires grâce au numérique et à une politique tarifaire claire.";
+  const founderStory = isEnglish
+    ? `NeoFidu was founded with a clear vision: to make people's lives easier by offering quality fiduciary services without having to spend a fortune. Tired of seeing families and entrepreneurs struggle with complex tax returns or pay exorbitant fees for basic services, we decided to create an accessible and transparent alternative.`
+    : `NeoFidu a été fondée avec une vision claire : faciliter la vie des gens en offrant des services fiduciaires de qualité sans qu'ils aient à dépenser une fortune. Lassé de voir des familles et des entrepreneurs se débattre avec des déclarations d'impôts complexes ou payer des honoraires exorbitants pour des prestations basiques, nous avons décidé de créer une alternative accessible et transparente.`;
 
-  const description2 = isEnglish
-    ? "With over a decade of practice in the Swiss tax field, our team guides both households and entrepreneurs established in the cantons of Vaud, Valais, Geneva, Neuchâtel, Jura and Fribourg."
-    : "Avec plus d'une décennie de pratique dans le domaine fiscal romand, nos collaborateurs guident aussi bien les ménages que les entrepreneurs implantés dans les cantons de Vaud, Valais, Genève, Neuchâtel, Jura et Fribourg.";
+  const description1 = isEnglish
+    ? "Based in the Chablais Vaudois, NeoFidu was created with the ambition to democratize access to fiduciary services through digital technology and a clear pricing policy."
+    : "Basée dans le Chablais vaudois, NeoFidu a été créée avec l'ambition de démocratiser l'accès aux prestations fiduciaires grâce au numérique et à une politique tarifaire claire.";
 
   const description3 = isEnglish
     ? "Our goal: to free you from administrative hassles while maximizing your tax savings and ensuring impeccable accounting."
@@ -72,20 +72,19 @@ export function About() {
   const stats = isEnglish
     ? [
         { value: "10+", label: "Years of experience" },
-        { value: "2000+", label: "Completed mandates" },
-        { value: "98%", label: "Client retention rate" },
+        { value: "24/7", label: "Online availability" },
+        { value: "6", label: "Cantons served" },
       ]
     : [
         { value: "10+", label: "Ans d'activité" },
-        { value: "2000+", label: "Mandats réalisés" },
-        { value: "98%", label: "Taux de fidélisation" },
+        { value: "24/7", label: "Disponibilité en ligne" },
+        { value: "6", label: "Cantons desservis" },
       ];
 
-  const strong1 = isEnglish ? "NeoFidu" : "NeoFidu";
   const strong2 = isEnglish ? "over a decade of practice" : "plus d'une décennie de pratique";
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-gradient-to-b from-white to-secondary/30">
+    <section id="about" className="py-20 md:py-32 bg-gradient-to-b from-white to-secondary/30 content-auto">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content */}
@@ -100,15 +99,15 @@ export function About() {
 
             <div className="space-y-6 text-muted-foreground">
               <p className="text-lg">
-                <strong className="text-foreground">{strong1}</strong> {description1.replace(`${strong1} `, '')}
+                {description1}
               </p>
 
               <p>
                 {isEnglish ? "With " : "Avec "}
                 <strong className="text-foreground">{strong2}</strong>
                 {isEnglish
-                  ? " in the Swiss tax field, our team guides both households and entrepreneurs established in the cantons of Vaud, Valais, Geneva, Neuchâtel, Jura and Fribourg."
-                  : " dans le domaine fiscal romand, nos collaborateurs guident aussi bien les ménages que les entrepreneurs implantés dans les cantons de Vaud, Valais, Genève, Neuchâtel, Jura et Fribourg."}
+                  ? " in the Swiss tax field, we guide both households and entrepreneurs established in the cantons of Vaud, Valais, Geneva, Neuchâtel, Jura and Fribourg."
+                  : " dans le domaine fiscal romand, nous guidons aussi bien les ménages que les entrepreneurs implantés dans les cantons de Vaud, Valais, Genève, Neuchâtel, Jura et Fribourg."}
               </p>
 
               <p>
@@ -141,10 +140,34 @@ export function About() {
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                   <value.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-bold mb-2">{value.title}</h3>
+                <p className="text-lg font-bold mb-2">{value.title}</p>
                 <p className="text-sm text-muted-foreground">{value.description}</p>
               </Card>
             ))}
+          </div>
+        </div>
+
+        {/* Founder story - at bottom */}
+        <div className="mt-16 bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg max-w-4xl mx-auto">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <User className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                {founderStory}
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <img
+                  src="/mederic-borgeaud.jpg"
+                  alt="Médéric Borgeaud"
+                  className="w-[100px] h-[100px] rounded-full object-cover"
+                />
+                <p className="text-sm font-medium text-foreground">
+                  — Médéric Borgeaud, {isEnglish ? "Founder" : "Fondateur"}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

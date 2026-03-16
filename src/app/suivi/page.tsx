@@ -3,10 +3,12 @@
 import { useState, useRef } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { BreadcrumbLight } from "@/components/Breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Search, FileText, Clock, CheckCircle2, AlertCircle, Loader2, Upload, X, File } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
 
 interface StatusHistoryItem {
   status: string;
@@ -27,21 +29,17 @@ interface RequestData {
   estimatedCompletion?: string;
   statusHistory: StatusHistoryItem[];
   documents?: { name: string; uploadedAt: string }[];
-  notes?: string;
+  // notes supprimé - information confidentielle ne devant pas être affichée publiquement
 }
 
-const statusLabels: Record<string, string> = {
-  received: "Demande reçue",
-  payment_pending: "En attente de paiement",
-  in_review: "En cours d'analyse",
-  documents_needed: "Documents requis",
-  in_progress: "En traitement",
-  completed: "Terminé",
-  delivered: "Livré",
-};
-
 const statusColors: Record<string, string> = {
+  // Statuts génériques (comptabilité, gérance)
   received: "bg-blue-100 text-blue-800",
+  processing: "bg-amber-100 text-amber-800",
+  done: "bg-green-100 text-green-800",
+  // Statuts fiscaux
+  pending: "bg-gray-100 text-gray-800",
+  paid: "bg-blue-100 text-blue-800",
   payment_pending: "bg-yellow-100 text-yellow-800",
   in_review: "bg-purple-100 text-purple-800",
   documents_needed: "bg-orange-100 text-orange-800",
@@ -50,32 +48,54 @@ const statusColors: Record<string, string> = {
   delivered: "bg-emerald-100 text-emerald-800",
 };
 
-const statusOrder = [
-  "received",
-  "payment_pending",
-  "in_review",
-  "documents_needed",
+// Ordre des statuts pour les demandes fiscales
+// Note: "completed" et "delivered" sont tous deux à 100%
+const taxStatusOrder = [
+  "pending",
+  "paid",
   "in_progress",
-  "completed",
-  "delivered",
+  "completed", // 100% - travail terminé
+  "delivered", // 100% - livré au client (alias de completed)
 ];
 
-function getStatusProgress(status: string): number {
-  const index = statusOrder.indexOf(status);
-  if (index === -1) return 0;
-  return Math.round(((index + 1) / statusOrder.length) * 100);
-}
+// Ordre des statuts pour les demandes comptabilité/gérance
+const genericStatusOrder = [
+  "received",
+  "processing",
+  "done",
+];
 
-function formatDate(dateString: string): string {
-  try {
-    return new Date(dateString).toLocaleDateString("fr-CH", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  } catch {
-    return dateString;
+function getStatusProgress(status: string, requestType?: string): number {
+  // Déterminer quel ordre de statuts utiliser
+  if (requestType === "accounting" || requestType === "property") {
+    const index = genericStatusOrder.indexOf(status);
+    if (index === -1) return 0;
+    return Math.round(((index + 1) / genericStatusOrder.length) * 100);
   }
+
+  // Pour les demandes fiscales, "completed" et "delivered" = 100%
+  if (status === "completed" || status === "delivered") {
+    return 100;
+  }
+
+  // Par défaut, utiliser les statuts fiscaux (sans completed/delivered qui sont déjà traités)
+  const progressMap: Record<string, number> = {
+    pending: 25,
+    paid: 50,
+    in_progress: 75,
+  };
+
+  if (progressMap[status] !== undefined) {
+    return progressMap[status];
+  }
+
+  // Fallback: essayer les statuts génériques
+  const genericIndex = genericStatusOrder.indexOf(status);
+  if (genericIndex !== -1) {
+    return Math.round(((genericIndex + 1) / genericStatusOrder.length) * 100);
+  }
+
+  return 0;
 }
 
 function formatFileSize(bytes: number): string {
@@ -85,6 +105,7 @@ function formatFileSize(bytes: number): string {
 }
 
 export default function SuiviPage() {
+  const { isEnglish } = useLanguage();
   const [reference, setReference] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -98,10 +119,116 @@ export default function SuiviPage() {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Translations
+  const statusLabels: Record<string, string> = isEnglish
+    ? {
+        // Generic request statuses (accounting, property)
+        received: "Request received",
+        processing: "In progress",
+        done: "Completed",
+        // Tax request statuses
+        pending: "Awaiting payment",
+        paid: "Paid",
+        payment_pending: "Awaiting payment",
+        in_review: "Under review",
+        documents_needed: "Documents required",
+        in_progress: "In progress",
+        completed: "Completed",
+        delivered: "Delivered",
+      }
+    : {
+        // Statuts demandes génériques (comptabilité, gérance)
+        received: "Demande reçue",
+        processing: "En traitement",
+        done: "Terminé",
+        // Statuts demandes fiscales
+        pending: "En attente de paiement",
+        paid: "Payé",
+        payment_pending: "En attente de paiement",
+        in_review: "En cours d'analyse",
+        documents_needed: "Documents requis",
+        in_progress: "En cours de traitement",
+        completed: "Terminé",
+        delivered: "Livré",
+      };
+
+  const t = {
+    // Page header
+    pageTitle: isEnglish ? "Track your request" : "Suivi de votre demande",
+    pageSubtitle: isEnglish
+      ? "Enter your reference number to track the progress of your file in real time"
+      : "Entrez votre numéro de référence pour suivre l'avancement de votre dossier en temps réel",
+
+    // Search
+    searchPlaceholder: isEnglish ? "Ex: NF-A1B2C3D4" : "Ex: NF-A1B2C3D4",
+    searchButton: isEnglish ? "Search" : "Rechercher",
+    errorEmptyRef: isEnglish ? "Please enter a reference number" : "Veuillez entrer un numéro de référence",
+    errorNotFound: isEnglish ? "Request not found" : "Demande non trouvée",
+    errorConnection: isEnglish ? "Connection error. Please try again." : "Erreur de connexion. Veuillez réessayer.",
+
+    // Results
+    reference: isEnglish ? "Reference" : "Référence",
+    taxDeclaration: isEnglish ? "Tax declaration" : "Déclaration fiscale",
+    accounting: isEnglish ? "Accounting" : "Comptabilité",
+    propertyManagement: isEnglish ? "Property management" : "Gestion immobilière",
+    canton: isEnglish ? "Canton" : "Canton",
+    progress: isEnglish ? "Progress" : "Progression",
+    createdOn: isEnglish ? "Created on:" : "Créé le:",
+    updatedOn: isEnglish ? "Updated on:" : "Mis à jour:",
+    estimatedCompletion: isEnglish ? "Estimated completion:" : "Fin estimée:",
+    note: isEnglish ? "Note:" : "Note:",
+
+    // Document upload
+    addDocuments: isEnglish ? "Add documents" : "Ajouter des documents",
+    uploadDescription: isEnglish
+      ? "Upload additional documents for your file (PDF, images, Word, Excel - max 10 MB)"
+      : "Téléversez des documents supplémentaires pour votre dossier (PDF, images, Word, Excel - max 10 MB)",
+    clickToSelect: isEnglish ? "Click to select" : "Cliquez pour sélectionner",
+    orDragDrop: isEnglish ? "or drag and drop your files" : "ou glissez-déposez vos fichiers",
+    fileTypes: isEnglish ? "PDF, images, Word, Excel (max 10 MB per file)" : "PDF, images, Word, Excel (max 10 MB par fichier)",
+    selectedFiles: isEnglish ? "Selected files" : "Fichiers sélectionnés",
+    uploadButton: isEnglish ? "Upload" : "Téléverser",
+    uploadButtonFile: isEnglish ? "file" : "fichier",
+    uploadButtonFiles: isEnglish ? "files" : "fichiers",
+    uploading: isEnglish ? "Uploading..." : "Téléversement...",
+    uploadSuccess: isEnglish ? "Documents uploaded successfully" : "Documents téléversés avec succès",
+    uploadErrorType: isEnglish ? "File type not allowed:" : "Type de fichier non autorisé:",
+    uploadErrorSize: isEnglish ? "File too large (max 10 MB):" : "Fichier trop volumineux (max 10 MB):",
+    uploadErrorGeneric: isEnglish ? "Error uploading files" : "Erreur lors de l'upload",
+
+    // History
+    history: isEnglish ? "History" : "Historique",
+
+    // Documents
+    documentsProvided: isEnglish ? "Documents provided" : "Documents fournis",
+    addedOn: isEnglish ? "Added on" : "Ajouté le",
+
+    // Help text
+    helpTitle: isEnglish ? "Have you submitted a request?" : "Vous avez déposé une demande ?",
+    helpText: isEnglish
+      ? "Enter your reference number above to see its status."
+      : "Entrez votre numéro de référence ci-dessus pour voir son statut.",
+    helpNote: isEnglish
+      ? "The reference number was sent to you by email when you submitted your request."
+      : "Le numéro de référence vous a été envoyé par email lors de votre demande.",
+  };
+
+  function formatDate(dateString: string): string {
+    try {
+      return new Date(dateString).toLocaleDateString(isEnglish ? "en-GB" : "fr-CH", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+    } catch {
+      return dateString;
+    }
+  }
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!reference.trim()) {
-      setError("Veuillez entrer un numéro de référence");
+      setError(t.errorEmptyRef);
       return;
     }
 
@@ -112,18 +239,27 @@ export default function SuiviPage() {
     setUploadSuccess(null);
 
     try {
-      const res = await fetch(`/api/requests/${encodeURIComponent(reference.trim())}`);
+      // Add cache-busting headers and timestamp to prevent browser caching
+      const timestamp = Date.now();
+      const res = await fetch(`/api/requests/${encodeURIComponent(reference.trim())}?t=${timestamp}`, {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache",
+        },
+      });
       const data = await res.json();
+      console.log("[SUIVI PAGE] Données reçues de l'API:", data);
 
       if (!res.ok) {
-        setError(data.error || "Demande non trouvée");
+        setError(data.error || t.errorNotFound);
         setRequestData(null);
       } else {
         setRequestData(data);
         setError(null);
       }
     } catch {
-      setError("Erreur de connexion. Veuillez réessayer.");
+      setError(t.errorConnection);
       setRequestData(null);
     } finally {
       setLoading(false);
@@ -143,6 +279,10 @@ export default function SuiviPage() {
       "image/jpeg",
       "image/png",
       "image/webp",
+      "image/heic",
+      "image/heif",
+      "image/gif",
+      "image/bmp",
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "application/vnd.ms-excel",
@@ -153,11 +293,11 @@ export default function SuiviPage() {
     const validFiles: File[] = [];
     for (const file of newFiles) {
       if (!allowedTypes.includes(file.type)) {
-        setUploadError(`Type de fichier non autorisé: ${file.name}`);
+        setUploadError(`${t.uploadErrorType} ${file.name}`);
         continue;
       }
       if (file.size > maxSize) {
-        setUploadError(`Fichier trop volumineux (max 10 MB): ${file.name}`);
+        setUploadError(`${t.uploadErrorSize} ${file.name}`);
         continue;
       }
       // Avoid duplicates
@@ -216,9 +356,9 @@ export default function SuiviPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setUploadError(data.error || "Erreur lors de l'upload");
+        setUploadError(data.error || t.uploadErrorGeneric);
       } else {
-        setUploadSuccess(data.message || "Documents téléversés avec succès");
+        setUploadSuccess(data.message || t.uploadSuccess);
         setSelectedFiles([]);
 
         // Refresh the request data to show new documents
@@ -229,10 +369,16 @@ export default function SuiviPage() {
         }
       }
     } catch {
-      setUploadError("Erreur de connexion. Veuillez réessayer.");
+      setUploadError(t.errorConnection);
     } finally {
       setUploading(false);
     }
+  };
+
+  const getTypeLabel = (type: string) => {
+    if (type === "tax") return t.taxDeclaration;
+    if (type === "accounting") return t.accounting;
+    return t.propertyManagement;
   };
 
   return (
@@ -243,12 +389,19 @@ export default function SuiviPage() {
         {/* Hero Section */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 max-w-4xl">
+            {/* Breadcrumb */}
+            <BreadcrumbLight
+              items={[
+                { label: isEnglish ? "Track my request" : "Suivre ma demande" },
+              ]}
+              className="mb-8"
+            />
             <div className="text-center mb-12">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Suivi de votre demande
+                {t.pageTitle}
               </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Entrez votre numéro de référence pour suivre l'avancement de votre dossier en temps réel
+                {t.pageSubtitle}
               </p>
             </div>
 
@@ -259,7 +412,7 @@ export default function SuiviPage() {
                   <div className="flex-1">
                     <Input
                       type="text"
-                      placeholder="Ex: NF-A1B2C3D4"
+                      placeholder={t.searchPlaceholder}
                       value={reference}
                       onChange={(e) => setReference(e.target.value)}
                       className="h-12 text-lg"
@@ -275,7 +428,7 @@ export default function SuiviPage() {
                     ) : (
                       <>
                         <Search className="w-5 h-5 mr-2" />
-                        Rechercher
+                        {t.searchButton}
                       </>
                     )}
                   </Button>
@@ -299,12 +452,11 @@ export default function SuiviPage() {
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div>
                         <CardTitle className="text-xl">
-                          Référence: {requestData.reference}
+                          {t.reference}: {requestData.reference}
                         </CardTitle>
                         <CardDescription>
-                          {requestData.type === "tax" ? "Déclaration fiscale" :
-                           requestData.type === "accounting" ? "Comptabilité" : "Gestion immobilière"}
-                          {" • "} Canton: {requestData.canton}
+                          {getTypeLabel(requestData.type)}
+                          {" • "} {t.canton}: {requestData.canton}
                         </CardDescription>
                       </div>
                       <span className={`inline-flex px-4 py-2 rounded-full text-sm font-medium ${statusColors[requestData.status] || "bg-gray-100 text-gray-800"}`}>
@@ -316,13 +468,13 @@ export default function SuiviPage() {
                     {/* Progress Bar */}
                     <div className="mb-6">
                       <div className="flex justify-between text-sm text-gray-600 mb-2">
-                        <span>Progression</span>
-                        <span>{getStatusProgress(requestData.status)}%</span>
+                        <span>{t.progress}</span>
+                        <span>{getStatusProgress(requestData.status, requestData.type)}%</span>
                       </div>
                       <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
                         <div
                           className="h-full bg-teal-500 rounded-full transition-all duration-500"
-                          style={{ width: `${getStatusProgress(requestData.status)}%` }}
+                          style={{ width: `${getStatusProgress(requestData.status, requestData.type)}%` }}
                         />
                       </div>
                     </div>
@@ -331,18 +483,18 @@ export default function SuiviPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600">Créé le:</span>
+                        <span className="text-gray-600">{t.createdOn}</span>
                         <span className="font-medium">{formatDate(requestData.createdAt)}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <FileText className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600">Mis à jour:</span>
+                        <span className="text-gray-600">{t.updatedOn}</span>
                         <span className="font-medium">{formatDate(requestData.updatedAt)}</span>
                       </div>
                       {requestData.estimatedCompletion && (
                         <div className="flex items-center gap-2 sm:col-span-2">
                           <CheckCircle2 className="w-4 h-4 text-teal-500" />
-                          <span className="text-gray-600">Fin estimée:</span>
+                          <span className="text-gray-600">{t.estimatedCompletion}</span>
                           <span className="font-medium text-teal-600">
                             {formatDate(requestData.estimatedCompletion)}
                           </span>
@@ -350,14 +502,8 @@ export default function SuiviPage() {
                       )}
                     </div>
 
-                    {/* Notes */}
-                    {requestData.notes && (
-                      <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                        <p className="text-amber-800">
-                          <strong>Note:</strong> {requestData.notes}
-                        </p>
-                      </div>
-                    )}
+                    {/* Notes supprimées - Les commentaires du client sont confidentiels
+                    et ne doivent pas être affichés sur la page de suivi publique */}
                   </CardContent>
                 </Card>
 
@@ -366,10 +512,10 @@ export default function SuiviPage() {
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <Upload className="w-5 h-5 text-teal-500" />
-                      Ajouter des documents
+                      {t.addDocuments}
                     </CardTitle>
                     <CardDescription>
-                      Téléversez des documents supplémentaires pour votre dossier (PDF, images, Word, Excel - max 10 MB)
+                      {t.uploadDescription}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -389,16 +535,16 @@ export default function SuiviPage() {
                         ref={fileInputRef}
                         type="file"
                         multiple
-                        accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.xls,.xlsx"
+                        accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,.gif,.bmp,.doc,.docx,.xls,.xlsx"
                         onChange={handleFileSelect}
                         className="hidden"
                       />
                       <Upload className={`w-10 h-10 mx-auto mb-3 ${isDragging ? "text-teal-500" : "text-gray-400"}`} />
                       <p className="text-gray-600 mb-1">
-                        <span className="font-medium text-teal-600">Cliquez pour sélectionner</span> ou glissez-déposez vos fichiers
+                        <span className="font-medium text-teal-600">{t.clickToSelect}</span> {t.orDragDrop}
                       </p>
                       <p className="text-sm text-gray-500">
-                        PDF, images, Word, Excel (max 10 MB par fichier)
+                        {t.fileTypes}
                       </p>
                     </div>
 
@@ -406,7 +552,7 @@ export default function SuiviPage() {
                     {selectedFiles.length > 0 && (
                       <div className="mt-4 space-y-2">
                         <p className="text-sm font-medium text-gray-700">
-                          Fichiers sélectionnés ({selectedFiles.length})
+                          {t.selectedFiles} ({selectedFiles.length})
                         </p>
                         {selectedFiles.map((file, index) => (
                           <div
@@ -438,12 +584,12 @@ export default function SuiviPage() {
                           {uploading ? (
                             <>
                               <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                              Téléversement...
+                              {t.uploading}
                             </>
                           ) : (
                             <>
                               <Upload className="w-5 h-5 mr-2" />
-                              Téléverser {selectedFiles.length} fichier{selectedFiles.length > 1 ? "s" : ""}
+                              {t.uploadButton} {selectedFiles.length} {selectedFiles.length > 1 ? t.uploadButtonFiles : t.uploadButtonFile}
                             </>
                           )}
                         </Button>
@@ -471,7 +617,7 @@ export default function SuiviPage() {
                 {requestData.statusHistory && requestData.statusHistory.length > 0 && (
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-lg">Historique</CardTitle>
+                      <CardTitle className="text-lg">{t.history}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -505,7 +651,7 @@ export default function SuiviPage() {
                 {requestData.documents && requestData.documents.length > 0 && (
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-lg">Documents fournis</CardTitle>
+                      <CardTitle className="text-lg">{t.documentsProvided}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-2">
@@ -515,7 +661,7 @@ export default function SuiviPage() {
                             <div>
                               <p className="font-medium text-gray-900">{doc.name}</p>
                               <p className="text-sm text-gray-500">
-                                Ajouté le {formatDate(doc.uploadedAt)}
+                                {t.addedOn} {formatDate(doc.uploadedAt)}
                               </p>
                             </div>
                           </li>
@@ -531,11 +677,35 @@ export default function SuiviPage() {
             {!requestData && !error && (
               <div className="text-center text-gray-500 py-12">
                 <FileText className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                <p className="text-lg mb-2">Vous avez déposé une demande ?</p>
-                <p>Entrez votre numéro de référence ci-dessus pour voir son statut.</p>
+                <p className="text-lg mb-2">{t.helpTitle}</p>
+                <p>{t.helpText}</p>
                 <p className="text-sm mt-4">
-                  Le numéro de référence vous a été envoyé par email lors de votre demande.
+                  {t.helpNote}
                 </p>
+
+                {/* Internal links */}
+                <div className="mt-8 pt-8 border-t border-gray-200">
+                  <p className="text-sm text-gray-600 mb-4">
+                    {isEnglish ? "Useful links" : "Liens utiles"}
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-4 text-sm">
+                    <a href="/demande" className="text-teal-600 hover:text-teal-700 hover:underline">
+                      {isEnglish ? "Submit a new request" : "Déposer une nouvelle demande"}
+                    </a>
+                    <span className="text-gray-300">|</span>
+                    <a href="/faq" className="text-teal-600 hover:text-teal-700 hover:underline">
+                      {isEnglish ? "FAQ" : "Questions fréquentes"}
+                    </a>
+                    <span className="text-gray-300">|</span>
+                    <a href="/#contact" className="text-teal-600 hover:text-teal-700 hover:underline">
+                      {isEnglish ? "Contact us" : "Nous contacter"}
+                    </a>
+                    <span className="text-gray-300">|</span>
+                    <a href="/blog" className="text-teal-600 hover:text-teal-700 hover:underline">
+                      {isEnglish ? "Fiscal news" : "Actualités fiscales"}
+                    </a>
+                  </div>
+                </div>
               </div>
             )}
           </div>

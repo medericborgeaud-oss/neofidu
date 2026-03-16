@@ -58,22 +58,86 @@ export function AccountingIllustration({ className = "w-48 h-48" }: { className?
   );
 }
 
+// NeoFidu Logo Icon (document with checkmark)
 export function CantonIllustration({ className = "w-32 h-32" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Map of Switzerland */}
-      <path d="M20 50 Q30 30 50 25 Q70 20 80 35 Q90 50 85 65 Q80 80 60 85 Q40 90 25 75 Q15 65 20 50"
-            fill="#e5e7eb" stroke="#10b981" strokeWidth="2"/>
-      {/* Location pins */}
-      <circle cx="40" cy="50" r="6" fill="#10b981"/>
-      <circle cx="60" cy="45" r="6" fill="#ef4444"/>
-      <circle cx="55" cy="65" r="6" fill="#eab308"/>
-      <circle cx="35" cy="40" r="4" fill="#16a34a"/>
-      <circle cx="70" cy="55" r="4" fill="#f43f5e"/>
-      <circle cx="45" cy="70" r="4" fill="#334155"/>
-      {/* Pin drops */}
-      <path d="M40 45 L40 35" stroke="#10b981" strokeWidth="2"/>
-      <circle cx="40" cy="33" r="3" fill="#10b981"/>
+      <defs>
+        <linearGradient id="logoGradientIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#10B981"/>
+          <stop offset="100%" stopColor="#059669"/>
+        </linearGradient>
+      </defs>
+      {/* Background circle */}
+      <circle cx="50" cy="50" r="45" fill="#10b981" opacity="0.08"/>
+      {/* Document icon */}
+      <rect x="28" y="18" width="44" height="64" rx="6" fill="url(#logoGradientIcon)"/>
+      {/* Document lines */}
+      <rect x="36" y="30" width="22" height="4" rx="2" fill="white" opacity="0.9"/>
+      <rect x="36" y="40" width="28" height="4" rx="2" fill="white" opacity="0.7"/>
+      <rect x="36" y="50" width="25" height="4" rx="2" fill="white" opacity="0.5"/>
+      {/* Checkmark */}
+      <path d="M40 62 L48 70 L62 56" stroke="white" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+// Option 1: Croix Suisse (Swiss Cross) - Clean and professional
+export function CantonIllustrationCross({ className = "w-32 h-32" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Background circle */}
+      <circle cx="50" cy="50" r="45" fill="#10b981" opacity="0.1"/>
+      <circle cx="50" cy="50" r="38" fill="white" stroke="#10b981" strokeWidth="2"/>
+      {/* Swiss cross */}
+      <rect x="44" y="28" width="12" height="44" rx="2" fill="#10b981"/>
+      <rect x="28" y="44" width="44" height="12" rx="2" fill="#10b981"/>
+      {/* Small location dot */}
+      <circle cx="75" cy="25" r="8" fill="#0d9488"/>
+      <circle cx="75" cy="25" r="4" fill="white"/>
+    </svg>
+  );
+}
+
+// Option 2: Document fiscal avec pin de localisation
+export function CantonIllustrationDoc({ className = "w-32 h-32" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Document */}
+      <rect x="20" y="15" width="50" height="70" rx="4" fill="white" stroke="#10b981" strokeWidth="2"/>
+      <rect x="28" y="28" width="34" height="4" rx="2" fill="#e5e7eb"/>
+      <rect x="28" y="38" width="28" height="3" rx="1.5" fill="#e5e7eb"/>
+      <rect x="28" y="46" width="30" height="3" rx="1.5" fill="#e5e7eb"/>
+      <rect x="28" y="54" width="24" height="3" rx="1.5" fill="#e5e7eb"/>
+      {/* Location pin */}
+      <g transform="translate(60, 50)">
+        <circle cx="15" cy="15" r="18" fill="#10b981" opacity="0.15"/>
+        <path d="M15 5 C10 5 6 9 6 14 C6 21 15 30 15 30 C15 30 24 21 24 14 C24 9 20 5 15 5Z" fill="#10b981"/>
+        <circle cx="15" cy="14" r="5" fill="white"/>
+      </g>
+    </svg>
+  );
+}
+
+// Option 3: Bâtiment institutionnel
+export function CantonIllustrationBuilding({ className = "w-32 h-32" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Background */}
+      <circle cx="50" cy="50" r="42" fill="#10b981" opacity="0.1"/>
+      {/* Building */}
+      <path d="M50 20 L75 35 L75 75 L25 75 L25 35 Z" fill="white" stroke="#10b981" strokeWidth="2"/>
+      {/* Roof triangle */}
+      <path d="M25 35 L50 20 L75 35" stroke="#10b981" strokeWidth="2" fill="none"/>
+      {/* Columns */}
+      <rect x="32" y="45" width="6" height="25" fill="#10b981" opacity="0.3"/>
+      <rect x="47" y="45" width="6" height="25" fill="#10b981" opacity="0.3"/>
+      <rect x="62" y="45" width="6" height="25" fill="#10b981" opacity="0.3"/>
+      {/* Door */}
+      <rect x="44" y="58" width="12" height="17" rx="6" fill="#10b981"/>
+      {/* Flag */}
+      <line x1="50" y1="20" x2="50" y2="10" stroke="#10b981" strokeWidth="2"/>
+      <rect x="50" y="10" width="12" height="8" fill="#10b981"/>
     </svg>
   );
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { sendRequestConfirmationEmail, sendNewRequestNotificationEmail } from "@/lib/email";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 import { createRequest } from "@/lib/requests-store";
+import { performSpamCheck, getClientIP } from "@/lib/spam-protection";
 
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
@@ -17,6 +18,8 @@ interface AccountingRequestData {
   activity: string;
   employeesCount: number;
   annualRevenue: string;
+  monthlyTransactions: string;
+  isVatRegistered: boolean;
   currentAccountingSoftware: string;
   // Contact info
   firstName: string;
@@ -98,6 +101,10 @@ function getAccountingRequestAdminHtml(data: AccountingRequestData, reference: s
               <td style="padding: 6px 0;">${data.annualRevenue || 'Non spécifié'}</td>
             </tr>
             <tr>
+              <td style="padding: 6px 0; color: #6b7280;">Transactions/mois:</td>
+              <td style="padding: 6px 0; font-weight: 600; color: #0d9488;">${data.monthlyTransactions || 'Non spécifié'}</td>
+            </tr>
+            <tr>
               <td style="padding: 6px 0; color: #6b7280;">Logiciel actuel:</td>
               <td style="padding: 6px 0;">${data.currentAccountingSoftware || 'Aucun'}</td>
             </tr>
@@ -134,7 +141,7 @@ function getAccountingRequestAdminHtml(data: AccountingRequestData, reference: s
             ${servicesHtml || '<li>Aucun service spécifié</li>'}
           </ul>
           <p style="margin: 12px 0 0; color: #1e40af;">
-            <strong>Fréquence de facturation:</strong> ${data.billingFrequency === 'monthly' ? 'Mensuelle' : 'Trimestrielle (-10%)'}
+            <strong>Fréquence de facturation:</strong> ${data.billingFrequency === 'monthly' ? 'Mensuelle' : 'Annuelle (-10%)'}
           </p>
         </div>
 
@@ -182,6 +189,8 @@ export async function POST(request: NextRequest) {
 
     let body: AccountingRequestData;
     let files: File[] = [];
+    let honeypot: string | undefined;
+    let formToken: number | undefined;
 
     if (contentType.includes("multipart/form-data")) {
       const formData = await request.formData();
@@ -190,11 +199,34 @@ export async function POST(request: NextRequest) {
       const jsonData = formData.get("data") as string;
       body = JSON.parse(jsonData);
 
+      // Get spam protection fields
+      honeypot = formData.get("_honeypot") as string;
+      formToken = parseInt(formData.get("_formToken") as string) || undefined;
+
       // Get files
       const fileEntries = formData.getAll("files") as File[];
       files = fileEntries.filter(f => f instanceof File && f.size > 0);
     } else {
-      body = await request.json();
+      const jsonBody = await request.json();
+      body = jsonBody;
+      honeypot = jsonBody._honeypot;
+      formToken = jsonBody._formToken;
+    }
+
+    // Anti-spam protection
+    const clientIP = getClientIP(request.headers);
+    const spamCheck = performSpamCheck({
+      ip: clientIP,
+      honeypot: honeypot,
+      formLoadedAt: formToken,
+    });
+
+    if (spamCheck.isSpam) {
+      console.warn(`🚫 Spam detected from ${clientIP}: ${spamCheck.reason}`);
+      return NextResponse.json({
+        success: true,
+        reference: "SPAM-BLOCKED",
+      });
     }
 
     // Validation
@@ -262,9 +294,15 @@ export async function POST(request: NextRequest) {
           activity: body.activity,
           employeesCount: body.employeesCount,
           annualRevenue: body.annualRevenue,
+          monthlyTransactions: body.monthlyTransactions,
+          isVatRegistered: body.isVatRegistered,
+          currentAccountingSoftware: body.currentAccountingSoftware,
           selectedServices: body.selectedServices,
           billingFrequency: body.billingFrequency,
           comments: body.comments,
+          street: body.street,
+          npa: body.npa,
+          city: body.city,
         },
       });
       console.log(`✅ Request saved to database: ${reference}`);

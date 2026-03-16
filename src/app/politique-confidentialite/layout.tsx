@@ -2,10 +2,18 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Politique de Confidentialité",
-  description: "Politique de confidentialité de NeoFidu. Découvrez comment nous collectons, utilisons et protégeons vos données personnelles conformément au droit suisse.",
+  description: "Protection des données chez NeoFidu. Collecte, utilisation et sécurité selon le droit suisse (LPD).",
   openGraph: {
-    title: "Politique de Confidentialité | NeoFidu",
-    description: "Découvrez comment NeoFidu protège vos données personnelles.",
+    title: "Confidentialité",
+    description: "Protection des données personnelles chez NeoFidu.",
+    url: "https://www.neofidu.ch/politique-confidentialite",
+  },
+  alternates: {
+    canonical: "https://www.neofidu.ch/politique-confidentialite",
+  },
+  robots: {
+    index: true,
+    follow: false,
   },
 };
 

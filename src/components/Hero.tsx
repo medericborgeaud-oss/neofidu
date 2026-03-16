@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText, Calculator, Shield, CheckCircle2, Timer, Zap } from "lucide-react";
+import { ArrowRight, FileText, Calculator, Shield, CheckCircle2, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 
@@ -10,43 +10,35 @@ export function Hero() {
   const { t, isEnglish } = useLanguage();
 
   const features = isEnglish
-    ? ["5 minutes to complete", "Fully digital", "Transparent pricing", "Certified specialists"]
-    : ["5 minutes chrono", "100% digital", "Tarifs affichés", "Spécialistes agréés"];
+    ? ["From your smartphone", "Transparent pricing", "Certified specialists"]
+    : ["Depuis votre smartphone", "Tarifs affichés", "Spécialistes diplômés"];
 
   const tagline = isEnglish
     ? "New generation fiduciary in French-speaking Switzerland"
     : "Fiduciaire nouvelle génération en Romandie";
 
-  const title1 = isEnglish ? "Tax and administrative" : "Fiscalité et";
-  const title2 = isEnglish ? "management" : "gestion administrative";
-  const title3 = isEnglish ? "made simple" : "sans complication";
+  const title1 = isEnglish ? "Your online" : "Votre fiduciaire";
+  const title2 = isEnglish ? "fiduciary" : "en ligne";
+  const title3 = isEnglish ? "in French-speaking Switzerland" : "en Suisse romande";
 
   const subtitle = isEnglish
-    ? "Complete your tax return request in just 5 minutes. We handle everything else. Individuals, freelancers and companies across six Swiss Romand cantons."
-    : "Déposez votre demande de déclaration d'impôts en 5 minutes chrono. Nous nous occupons du reste. Particuliers, indépendants et sociétés en Suisse romande.";
-
-  const trustText = isEnglish
-    ? "They chose us to manage their finances"
-    : "Ils nous ont choisi pour gérer leurs finances";
+    ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
+    : "Envoyez votre déclaration d'impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l'étranger.";
 
   const stats = isEnglish
     ? [
-        { value: "5 min", label: "To submit" },
-        { value: "2000+", label: "Cases handled" },
+        { value: "24/7", label: "Online availability" },
         { value: "6", label: "Cantons served" },
+        { value: "10+", label: "Years of experience" },
       ]
     : [
-        { value: "5 min", label: "Pour déposer" },
-        { value: "2000+", label: "Dossiers traités" },
+        { value: "24/7", label: "Disponibilité en ligne" },
         { value: "6", label: "Cantons desservis" },
+        { value: "10+", label: "Ans d'expérience" },
       ];
 
-  const speedBadge = isEnglish
-    ? "Your tax return in 5 minutes"
-    : "Votre déclaration d'impôts en 5 minutes";
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-32">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-8">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
@@ -68,15 +60,6 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Speed Badge - Prominent selling point */}
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full px-5 py-2.5 mb-4 shadow-lg shadow-orange-500/30 animate-pulse-slow">
-            <Timer className="w-5 h-5 text-white" />
-            <span className="text-white font-bold text-sm md:text-base">
-              {speedBadge}
-            </span>
-            <Zap className="w-4 h-4 text-yellow-200" />
-          </div>
-
           {/* Tagline Badge */}
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
             <span className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse" />
@@ -86,7 +69,7 @@ export function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             {title1}{" "}
             <span className="relative inline-block">
               {title2}
@@ -113,10 +96,10 @@ export function Hero() {
             {features.map((feature, index) => (
               <div
                 key={feature}
-                className={`flex items-center gap-2 ${index === 0 ? "text-amber-300 font-semibold" : "text-white/90"}`}
+                className="flex items-center gap-2 text-white/90"
               >
                 {index === 0 ? (
-                  <Timer className="w-5 h-5 text-amber-300" />
+                  <Smartphone className="w-5 h-5 text-emerald-300" />
                 ) : (
                   <CheckCircle2 className="w-5 h-5 text-emerald-300" />
                 )}
@@ -133,7 +116,7 @@ export function Hero() {
               className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-black/10 group"
             >
               <Link href="/demande">
-                {isEnglish ? "Start now - It's fast!" : "Commencer - C'est rapide!"}
+                {isEnglish ? "Submit a request" : "Déposer une demande"}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -149,17 +132,30 @@ export function Hero() {
             </Button>
           </div>
 
+          {/* Simulator Link */}
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/simulateur"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
+            >
+              <Calculator className="w-5 h-5" />
+              <span className="text-sm md:text-base font-medium">
+                {isEnglish ? "Estimate your taxes with our free simulator" : "Estimez vos impôts avec notre simulateur gratuit"}
+              </span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
           {/* Trust indicators */}
-          <div className="mt-16 pt-8 border-t border-white/10">
-            <p className="text-white/60 text-sm mb-4">{trustText}</p>
-            <div className="flex justify-center gap-8 items-center">
+          <div className="mt-16 pt-8 border-t border-white/10 pb-20">
+            <div className="flex justify-center gap-8 md:gap-12 items-center">
               {stats.map((stat, index) => (
                 <React.Fragment key={stat.label}>
                   <div className="text-center">
-                    <div className={`text-3xl font-bold ${index === 0 ? "text-amber-300" : "text-white"}`}>
+                    <div className="text-3xl md:text-4xl font-bold text-white">
                       {stat.value}
                     </div>
-                    <div className="text-white/60 text-sm">{stat.label}</div>
+                    <div className="text-white/80 text-sm md:text-base mt-1">{stat.label}</div>
                   </div>
                   {index < stats.length - 1 && (
                     <div className="w-px h-12 bg-white/20" />
@@ -172,10 +168,10 @@ export function Hero() {
       </div>
 
       {/* Bottom wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" className="w-full">
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+        <svg viewBox="0 0 1440 80" fill="none" className="w-full">
           <path
-            d="M0 120V60C240 20 480 0 720 0C960 0 1200 20 1440 60V120H0Z"
+            d="M0 80V40C240 13 480 0 720 0C960 0 1200 13 1440 40V80H0Z"
             fill="white"
           />
         </svg>

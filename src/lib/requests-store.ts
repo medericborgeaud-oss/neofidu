@@ -14,7 +14,7 @@ export type RequestStatus =
 export interface ClientRequest {
   id: string;
   reference: string;
-  type: "tax" | "accounting" | "property";
+  type: "tax" | "accounting" | "property" | "creation";
   customerName: string;
   customerEmail: string;
   customerPhone?: string;

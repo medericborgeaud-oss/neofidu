@@ -25,7 +25,7 @@ import {
   SuccessIllustration,
   PaymentIllustration,
 } from "@/components/Illustrations";
-// Drapeaux retirés pour gagner de la place
+import { useLanguage } from "@/lib/language-context";
 
 const cantons = [
   { code: "VD", name: "Vaud" },
@@ -36,85 +36,6 @@ const cantons = [
   { code: "FR", name: "Fribourg" },
 ];
 
-const businessTypes = [
-  {
-    id: "independent",
-    name: "Indépendant",
-    icon: User,
-    description: "Travailleur indépendant, profession libérale",
-  },
-  {
-    id: "sarl",
-    name: "Sàrl",
-    icon: Building2,
-    description: "Société à responsabilité limitée",
-  },
-  {
-    id: "sa",
-    name: "SA",
-    icon: Building2,
-    description: "Société anonyme",
-  },
-  {
-    id: "other",
-    name: "Autre",
-    icon: Building2,
-    description: "Association, fondation, etc.",
-  },
-];
-
-const services = [
-  {
-    id: "bookkeeping",
-    name: "Tenue de comptabilité",
-    price: 150,
-    description: "Saisie des écritures mensuelles",
-  },
-  {
-    id: "annual",
-    name: "Bilan annuel",
-    price: 500,
-    description: "Établissement du bilan et compte de résultat",
-  },
-  {
-    id: "vat",
-    name: "Déclarations TVA",
-    price: 100,
-    description: "Établissement et envoi des déclarations TVA",
-  },
-  {
-    id: "payroll",
-    name: "Gestion des salaires",
-    price: 50,
-    description: "Fiches de salaire et déclarations sociales",
-  },
-  {
-    id: "consulting",
-    name: "Conseil fiscal",
-    price: 150,
-    description: "Optimisation fiscale et conseils",
-  },
-];
-
-const requiredDocuments = [
-  { id: "extract", name: "Extrait RC / IDE", description: "Registre du commerce" },
-  { id: "accounting", name: "Comptabilité existante", description: "Fichiers Excel, PDF, etc." },
-  { id: "bank", name: "Relevés bancaires", description: "Des 12 derniers mois" },
-  { id: "invoices", name: "Factures clients/fournisseurs", description: "À traiter" },
-  { id: "contracts", name: "Contrats", description: "Bail, leasing, employés" },
-  { id: "other", name: "Autres documents", description: "Tout document utile" },
-];
-
-const steps = [
-  "Canton",
-  "Entreprise",
-  "Coordonnées",
-  "Services",
-  "Documents",
-  "Certification",
-  "Récapitulatif",
-];
-
 interface UploadedFile {
   id: string;
   name: string;
@@ -123,12 +44,269 @@ interface UploadedFile {
 }
 
 export function AccountingRequestForm() {
+  const { isEnglish } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeCategory, setActiveCategory] = useState<string>("extract");
+
+  // Business types with translations
+  const businessTypes = isEnglish
+    ? [
+        {
+          id: "independent",
+          name: "Self-employed",
+          icon: User,
+          description: "Freelancer, liberal profession",
+        },
+        {
+          id: "sarl",
+          name: "LLC (Sàrl)",
+          icon: Building2,
+          description: "Limited liability company",
+        },
+        {
+          id: "sa",
+          name: "Corp (SA)",
+          icon: Building2,
+          description: "Joint-stock company",
+        },
+        {
+          id: "other",
+          name: "Other",
+          icon: Building2,
+          description: "Association, foundation, etc.",
+        },
+      ]
+    : [
+        {
+          id: "independent",
+          name: "Indépendant",
+          icon: User,
+          description: "Travailleur indépendant, profession libérale",
+        },
+        {
+          id: "sarl",
+          name: "Sàrl",
+          icon: Building2,
+          description: "Société à responsabilité limitée",
+        },
+        {
+          id: "sa",
+          name: "SA",
+          icon: Building2,
+          description: "Société anonyme",
+        },
+        {
+          id: "other",
+          name: "Autre",
+          icon: Building2,
+          description: "Association, fondation, etc.",
+        },
+      ];
+
+  // Services with translations
+  const services = isEnglish
+    ? [
+        {
+          id: "bookkeeping",
+          name: "Bookkeeping",
+          price: 150,
+          description: "Monthly transaction recording",
+        },
+        {
+          id: "annual",
+          name: "Annual statements",
+          price: 500,
+          description: "Balance sheet and income statement",
+        },
+        {
+          id: "vat",
+          name: "VAT declarations",
+          price: 100,
+          description: "Preparation and submission of VAT returns",
+        },
+        {
+          id: "consulting",
+          name: "Tax consulting",
+          price: 150,
+          description: "Tax optimization and advice",
+        },
+      ]
+    : [
+        {
+          id: "bookkeeping",
+          name: "Tenue de comptabilité",
+          price: 150,
+          description: "Saisie des écritures mensuelles",
+        },
+        {
+          id: "annual",
+          name: "Bilan annuel",
+          price: 500,
+          description: "Établissement du bilan et compte de résultat",
+        },
+        {
+          id: "vat",
+          name: "Déclarations TVA",
+          price: 100,
+          description: "Établissement et envoi des déclarations TVA",
+        },
+        {
+          id: "consulting",
+          name: "Conseil fiscal",
+          price: 150,
+          description: "Optimisation fiscale et conseils",
+        },
+      ];
+
+  // Required documents with translations
+  const requiredDocuments = isEnglish
+    ? [
+        { id: "extract", name: "Company extract / IDE", description: "Commercial register" },
+        { id: "accounting", name: "Existing accounting", description: "Excel, PDF files, etc." },
+        { id: "bank", name: "Bank statements", description: "Last 12 months" },
+        { id: "invoices", name: "Client/supplier invoices", description: "To be processed" },
+        { id: "contracts", name: "Contracts", description: "Lease, leasing, employees" },
+        { id: "other", name: "Other documents", description: "Any useful document" },
+      ]
+    : [
+        { id: "extract", name: "Extrait RC / IDE", description: "Registre du commerce" },
+        { id: "accounting", name: "Comptabilité existante", description: "Fichiers Excel, PDF, etc." },
+        { id: "bank", name: "Relevés bancaires", description: "Des 12 derniers mois" },
+        { id: "invoices", name: "Factures clients/fournisseurs", description: "À traiter" },
+        { id: "contracts", name: "Contrats", description: "Bail, leasing, employés" },
+        { id: "other", name: "Autres documents", description: "Tout document utile" },
+      ];
+
+  // Steps with translations
+  const steps = isEnglish
+    ? ["Canton", "Company", "Contact", "Services", "Documents", "Certification", "Summary"]
+    : ["Canton", "Entreprise", "Coordonnées", "Services", "Documents", "Certification", "Récapitulatif"];
+
+  // All translations
+  const t = {
+    // Step navigation
+    stepLabel: isEnglish ? "Step" : "Étape",
+    back: isEnglish ? "Back" : "Retour",
+    next: isEnglish ? "Next" : "Suivant",
+    submit: isEnglish ? "Submit my request" : "Envoyer ma demande",
+    submitting: isEnglish ? "Sending..." : "Envoi...",
+    freeRequest: isEnglish ? "Free request" : "Demande gratuite",
+
+    // Step 1: Canton
+    step1Title: isEnglish ? "Accounting for your business" : "Comptabilité pour votre entreprise",
+    step1Subtitle: isEnglish ? "In which canton is your company located?" : "Dans quel canton votre entreprise est-elle située ?",
+
+    // Step 2: Business Type
+    step2Title: isEnglish ? "Company type" : "Type d'entreprise",
+    step2Subtitle: isEnglish ? "What is the legal form of your company?" : "Quelle est la forme juridique de votre entreprise ?",
+
+    // Step 3: Contact
+    step3Title: isEnglish ? "Company details" : "Coordonnées de l'entreprise",
+    step3Subtitle: isEnglish ? "Information about your company and contact person." : "Informations sur votre entreprise et personne de contact.",
+    companyName: isEnglish ? "Company name *" : "Nom de l'entreprise *",
+    companyNamePlaceholder: isEnglish ? "My Company LLC" : "Ma Société Sàrl",
+    mainActivity: isEnglish ? "Main activity" : "Activité principale",
+    mainActivityPlaceholder: isEnglish ? "Consulting, commerce, services..." : "Consulting, commerce, services...",
+    contactFirstName: isEnglish ? "Contact first name *" : "Prénom du contact *",
+    contactLastName: isEnglish ? "Contact last name *" : "Nom du contact *",
+    email: isEnglish ? "Email *" : "Email *",
+    emailPlaceholder: isEnglish ? "contact@company.ch" : "contact@entreprise.ch",
+    phone: isEnglish ? "Phone" : "Téléphone",
+    address: isEnglish ? "Address" : "Adresse",
+    addressPlaceholder: isEnglish ? "10 Commerce Street" : "Rue du Commerce 10",
+    postalCode: isEnglish ? "Postal code" : "NPA",
+    city: isEnglish ? "City" : "Ville",
+    employeesCount: isEnglish ? "Number of employees" : "Nombre d'employés",
+    annualRevenue: isEnglish ? "Estimated annual revenue" : "Chiffre d'affaires annuel estimé",
+    annualRevenuePlaceholder: isEnglish ? "CHF 100,000.-" : "CHF 100'000.-",
+    monthlyTransactions: isEnglish ? "Approx. monthly transactions" : "Transactions mensuelles approx.",
+    monthlyTransactionsPlaceholder: isEnglish ? "e.g. 50-100" : "ex. 50-100",
+    monthlyTransactionsHelp: isEnglish ? "Invoices, expenses, receipts per month" : "Factures, dépenses, recettes par mois",
+    vatRegistered: isEnglish ? "Company is VAT registered" : "L'entreprise est assujettie à la TVA",
+
+    // Step 4: Services
+    step4Title: isEnglish ? "Desired services" : "Services souhaités",
+    step4Subtitle: isEnglish ? "Select the services you need." : "Sélectionnez les services dont vous avez besoin.",
+    billingFrequency: isEnglish ? "Billing frequency" : "Fréquence de facturation",
+    monthly: isEnglish ? "Monthly" : "Mensuelle",
+    monthlyDesc: isEnglish ? "Billed each month" : "Facturation chaque mois",
+    annual: isEnglish ? "Annual (-10%)" : "Annuelle (-10%)",
+    annualDesc: isEnglish ? "Billed once a year" : "Facturation une fois par an",
+    comments: isEnglish ? "Comments or specific needs" : "Commentaires ou besoins spécifiques",
+
+    // Step 5: Documents
+    step5Title: isEnglish ? "Upload your documents" : "Envoi de vos documents",
+    step5Subtitle: isEnglish ? "Upload the necessary documents to start our collaboration." : "Téléchargez les documents nécessaires pour démarrer notre collaboration.",
+    dragDrop: isEnglish ? "Drag your files here or" : "Glissez vos fichiers ici ou",
+    browseFiles: isEnglish ? "Browse files" : "Parcourir les fichiers",
+    acceptedFormats: isEnglish ? "Accepted formats: PDF, JPG, PNG, DOC, XLS (max 10 MB per file)" : "Formats acceptés: PDF, JPG, PNG, DOC, XLS (max 10 MB par fichier)",
+    filesFor: isEnglish ? "Files for:" : "Fichiers pour:",
+    noFilesUploaded: isEnglish ? "No files uploaded" : "Aucun fichier téléchargé",
+    totalDocuments: isEnglish ? "Total documents" : "Total des documents",
+    filesLabel: isEnglish ? "file(s)" : "fichier(s)",
+    additionalDocsNote: isEnglish
+      ? "You can send additional documents by email after your request is validated."
+      : "Vous pourrez envoyer des documents supplémentaires par email après validation de votre demande.",
+
+    // Step 6: Certification
+    step6Title: isEnglish ? "Certification and responsibility" : "Certification et responsabilité",
+    step6Subtitle: isEnglish
+      ? "Please read carefully and accept the following conditions before finalizing your request."
+      : "Veuillez lire attentivement et accepter les conditions suivantes avant de finaliser votre demande.",
+    importantInfo: isEnglish ? "Important information" : "Information importante",
+    certificationWarning: isEnglish
+      ? "NeoFidu prepares your accounting based on the information and documents you provide. It is your responsibility to ensure that these elements are complete, accurate and reflect the reality of your business."
+      : "NeoFidu établit votre comptabilité sur la base des informations et documents que vous nous transmettez. Il est de votre responsabilité de vous assurer que ces éléments sont complets, exacts et conformes à la réalité de votre activité.",
+    accuracyTitle: isEnglish ? "Accuracy of information" : "Exactitude des informations",
+    accuracyDesc: isEnglish
+      ? "I certify that all information and documents I have provided to NeoFidu are accurate, complete and faithfully reflect my company's financial situation. I understand that NeoFidu cannot verify the authenticity or completeness of the documents provided."
+      : "Je certifie que toutes les informations et documents que j'ai transmis à NeoFidu sont exacts, complets et reflètent fidèlement la situation financière de mon entreprise. Je comprends que NeoFidu ne peut vérifier l'authenticité ni l'exhaustivité des documents fournis.",
+    responsibilityTitle: isEnglish ? "Liability clause" : "Clause de responsabilité",
+    responsibilityDesc: isEnglish
+      ? "I acknowledge and accept that NeoFidu cannot under any circumstances be held liable for any legal, administrative or criminal consequences resulting from inaccurate, incomplete or fraudulent information I have provided. In case of dispute with tax or judicial authorities arising from such information, I assume full responsibility."
+      : "Je reconnais et accepte que NeoFidu ne pourra en aucun cas être tenu responsable de toute conséquence juridique, administrative ou pénale résultant d'informations inexactes, incomplètes ou frauduleuses que j'aurais transmises. En cas de litige avec les autorités fiscales ou judiciaires découlant de telles informations, j'assume l'entière responsabilité.",
+    commitmentsSummary: isEnglish ? "Summary of your commitments" : "Résumé de vos engagements",
+    commitment1: isEnglish ? "My documents and information are accurate and complete" : "Mes documents et informations sont exacts et complets",
+    commitment2: isEnglish ? "I assume responsibility in case of erroneous information" : "J'assume la responsabilité en cas d'informations erronées",
+    commitment3: isEnglish ? "NeoFidu is released from any legal liability related to my data" : "NeoFidu est dégagé de toute responsabilité juridique liée à mes données",
+
+    // Step 7: Summary
+    step7Title: isEnglish ? "Summary and submission" : "Récapitulatif et envoi",
+    step7Subtitle: isEnglish ? "Review your request before submitting." : "Vérifiez votre demande avant de l'envoyer.",
+    canton: isEnglish ? "Canton" : "Canton",
+    type: isEnglish ? "Type" : "Type",
+    company: isEnglish ? "Company" : "Entreprise",
+    contact: isEnglish ? "Contact" : "Contact",
+    selectedServices: isEnglish ? "Selected services" : "Services sélectionnés",
+    documentsSent: isEnglish ? "Documents sent" : "Documents envoyés",
+    pricing: isEnglish ? "Pricing" : "Tarification",
+    customQuote: isEnglish ? "Custom quote" : "Devis personnalisé",
+    priceAfterAnalysis: isEnglish
+      ? "Price will be communicated by email after analyzing your file"
+      : "Le prix sera communiqué par email après analyse de votre dossier",
+    freeNoCommitment: isEnglish
+      ? "This request is free and without commitment"
+      : "Cette demande est gratuite et sans engagement",
+    quoteNote: isEnglish
+      ? "We will send you a detailed quote within 1 business day. Payment will only be requested after your approval."
+      : "Nous vous enverrons un devis détaillé sous 1 jour ouvré. Le paiement ne sera demandé qu'après validation de votre part.",
+
+    // Success
+    successTitle: isEnglish ? "Request sent successfully!" : "Demande envoyée avec succès !",
+    successMessage: isEnglish
+      ? "Thank you for your interest. An advisor will analyze your file and contact you within 1 business day with a personalized quote."
+      : "Merci pour votre intérêt. Un conseiller analysera votre dossier et vous contactera sous 1 jour ouvré avec un devis personnalisé.",
+    confirmationEmailSent: isEnglish ? "A confirmation email has been sent to you." : "Un email de confirmation vous a été envoyé.",
+    nextStep: isEnglish ? "Next step" : "Prochaine étape",
+    personalizedQuoteByEmail: isEnglish ? "Personalized quote by email" : "Devis personnalisé par email",
+    afterFileAnalysis: isEnglish ? "After analyzing your file" : "Après analyse de votre dossier",
+    reference: isEnglish ? "Reference" : "Référence",
+    documentsReceived: isEnglish ? "Documents received" : "Documents reçus",
+  };
 
   // Scroll to top when step changes
   useEffect(() => {
@@ -149,6 +327,7 @@ export function AccountingRequestForm() {
     activity: "",
     employeesCount: 0,
     annualRevenue: "",
+    monthlyTransactions: "",
     isVatRegistered: false,
     selectedServices: [] as string[],
     frequency: "monthly",
@@ -176,14 +355,6 @@ export function AccountingRequestForm() {
     }
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleFileUploadWithStorage(e);
-  };
-
-  const removeFile = (fileId: string) => {
-    removeFileWithStorage(fileId);
-  };
-
   const getFilesByCategory = (category: string) => {
     return uploadedFiles.filter((f) => f.category === category);
   };
@@ -192,17 +363,6 @@ export function AccountingRequestForm() {
     if (bytes < 1024) return bytes + " B";
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
     return (bytes / (1024 * 1024)).toFixed(1) + " MB";
-  };
-
-  const calculatePrice = () => {
-    let price = 0;
-    formData.selectedServices.forEach((serviceId) => {
-      const service = services.find((s) => s.id === serviceId);
-      if (service) price += service.price;
-    });
-    if (formData.employeesCount > 5) price += 50;
-    if (formData.frequency === "annual") price = Math.round(price * 0.9);
-    return price;
   };
 
   const canProceed = () => {
@@ -232,7 +392,7 @@ export function AccountingRequestForm() {
   // Store actual File objects for upload
   const [actualFiles, setActualFiles] = useState<File[]>([]);
 
-  const handleFileUploadWithStorage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
       const newUploadedFiles: UploadedFile[] = [];
@@ -256,7 +416,7 @@ export function AccountingRequestForm() {
     }
   };
 
-  const removeFileWithStorage = (fileId: string) => {
+  const removeFile = (fileId: string) => {
     const fileIndex = uploadedFiles.findIndex((f) => f.id === fileId);
     if (fileIndex !== -1) {
       setActualFiles((prev) => prev.filter((_, i) => i !== fileIndex));
@@ -290,6 +450,8 @@ export function AccountingRequestForm() {
         activity: formData.activity,
         employeesCount: formData.employeesCount,
         annualRevenue: formData.annualRevenue,
+        monthlyTransactions: formData.monthlyTransactions,
+        isVatRegistered: formData.isVatRegistered,
         currentAccountingSoftware: "",
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -320,11 +482,11 @@ export function AccountingRequestForm() {
         setSubmitReference(data.reference);
         setIsSubmitted(true);
       } else {
-        setSubmitError(data.error || "Une erreur est survenue. Veuillez réessayer.");
+        setSubmitError(data.error || (isEnglish ? "An error occurred. Please try again." : "Une erreur est survenue. Veuillez réessayer."));
       }
     } catch (error) {
       console.error("Submit error:", error);
-      setSubmitError("Une erreur est survenue. Veuillez réessayer.");
+      setSubmitError(isEnglish ? "An error occurred. Please try again." : "Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setIsSubmitting(false);
     }
@@ -335,29 +497,28 @@ export function AccountingRequestForm() {
       <Card className="p-8 md:p-12 text-center">
         <SuccessIllustration className="w-40 h-40 mx-auto mb-6" />
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Demande envoyée avec succès !
+          {t.successTitle}
         </h2>
         <p className="text-muted-foreground text-lg mb-6">
-          Merci pour votre intérêt. Un conseiller analysera votre dossier et vous contactera sous 24h
-          avec un devis personnalisé. <strong>Un email de confirmation vous a été envoyé.</strong>
+          {t.successMessage} <strong>{t.confirmationEmailSent}</strong>
         </p>
         <div className="bg-teal-50 rounded-2xl p-6 max-w-sm mx-auto mb-6">
           <div className="text-sm text-muted-foreground mb-2">
-            Prochaine étape
+            {t.nextStep}
           </div>
           <div className="text-xl font-bold text-teal-600">
-            Devis personnalisé par email
+            {t.personalizedQuoteByEmail}
           </div>
           <div className="text-sm text-muted-foreground mt-2">
-            Après analyse de votre dossier
+            {t.afterFileAnalysis}
           </div>
         </div>
         <div className="text-sm text-muted-foreground">
           <p>
-            Référence: <span className="font-mono font-semibold">{submitReference}</span>
+            {t.reference}: <span className="font-mono font-semibold">{submitReference}</span>
           </p>
           <p className="mt-2">
-            Documents reçus: {uploadedFiles.length} fichier(s)
+            {t.documentsReceived}: {uploadedFiles.length} {t.filesLabel}
           </p>
         </div>
       </Card>
@@ -393,14 +554,14 @@ export function AccountingRequestForm() {
           ))}
         </div>
         <div className="text-center text-sm">
-          <span className="text-muted-foreground">Étape {currentStep}:</span>{" "}
+          <span className="text-muted-foreground">{t.stepLabel} {currentStep}:</span>{" "}
           <span className="font-medium">{steps[currentStep - 1]}</span>
         </div>
       </div>
 
       <div className="flex justify-end mb-4">
         <Badge className="text-lg px-4 py-2 bg-teal-600">
-          Demande gratuite
+          {t.freeRequest}
         </Badge>
       </div>
 
@@ -412,10 +573,10 @@ export function AccountingRequestForm() {
               <AccountingIllustration className="w-32 h-32 flex-shrink-0" />
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  Comptabilité pour votre entreprise
+                  {t.step1Title}
                 </h2>
                 <p className="text-muted-foreground">
-                  Dans quel canton votre entreprise est-elle située ?
+                  {t.step1Subtitle}
                 </p>
               </div>
             </div>
@@ -440,28 +601,28 @@ export function AccountingRequestForm() {
         {/* Step 2: Business Type */}
         {currentStep === 2 && (
           <div>
-            <h2 className="text-2xl font-bold mb-2">Type d'entreprise</h2>
+            <h2 className="text-2xl font-bold mb-2">{t.step2Title}</h2>
             <p className="text-muted-foreground mb-8">
-              Quelle est la forme juridique de votre entreprise ?
+              {t.step2Subtitle}
             </p>
             <div className="grid md:grid-cols-2 gap-4">
-              {businessTypes.map((t) => (
+              {businessTypes.map((type) => (
                 <div
-                  key={t.id}
-                  onClick={() => updateForm("businessType", t.id)}
+                  key={type.id}
+                  onClick={() => updateForm("businessType", type.id)}
                   className={`p-6 rounded-2xl border-2 cursor-pointer transition-all hover:shadow-lg ${
-                    formData.businessType === t.id
+                    formData.businessType === type.id
                       ? "border-teal-600 bg-teal-50"
                       : "border-border hover:border-teal-300"
                   }`}
                 >
                   <div className="w-16 h-16 rounded-2xl bg-teal-100 flex items-center justify-center mb-4 mx-auto">
-                    <t.icon className="w-8 h-8 text-teal-600" />
+                    <type.icon className="w-8 h-8 text-teal-600" />
                   </div>
                   <div className="text-center">
-                    <div className="font-semibold mb-1">{t.name}</div>
+                    <div className="font-semibold mb-1">{type.name}</div>
                     <div className="text-sm text-muted-foreground">
-                      {t.description}
+                      {type.description}
                     </div>
                   </div>
                 </div>
@@ -474,38 +635,38 @@ export function AccountingRequestForm() {
         {currentStep === 3 && (
           <div>
             <h2 className="text-2xl font-bold mb-2">
-              Coordonnées de l'entreprise
+              {t.step3Title}
             </h2>
             <p className="text-muted-foreground mb-8">
-              Informations sur votre entreprise et personne de contact.
+              {t.step3Subtitle}
             </p>
             <div className="space-y-4">
               <div>
                 <label className="text-sm font-medium mb-2 block">
-                  Nom de l'entreprise *
+                  {t.companyName}
                 </label>
                 <Input
                   value={formData.companyName}
                   onChange={(e) => updateForm("companyName", e.target.value)}
-                  placeholder="Ma Société Sàrl"
+                  placeholder={t.companyNamePlaceholder}
                   className="rounded-xl"
                 />
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">
-                  Activité principale
+                  {t.mainActivity}
                 </label>
                 <Input
                   value={formData.activity}
                   onChange={(e) => updateForm("activity", e.target.value)}
-                  placeholder="Consulting, commerce, services..."
+                  placeholder={t.mainActivityPlaceholder}
                   className="rounded-xl"
                 />
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Prénom du contact *
+                    {t.contactFirstName}
                   </label>
                   <Input
                     value={formData.firstName}
@@ -516,7 +677,7 @@ export function AccountingRequestForm() {
                 </div>
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Nom du contact *
+                    {t.contactLastName}
                   </label>
                   <Input
                     value={formData.lastName}
@@ -529,19 +690,19 @@ export function AccountingRequestForm() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Email *
+                    {t.email}
                   </label>
                   <Input
                     type="email"
                     value={formData.email}
                     onChange={(e) => updateForm("email", e.target.value)}
-                    placeholder="contact@entreprise.ch"
+                    placeholder={t.emailPlaceholder}
                     className="rounded-xl"
                   />
                 </div>
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Téléphone
+                    {t.phone}
                   </label>
                   <Input
                     type="tel"
@@ -554,19 +715,19 @@ export function AccountingRequestForm() {
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">
-                  Adresse
+                  {t.address}
                 </label>
                 <Input
                   value={formData.street}
                   onChange={(e) => updateForm("street", e.target.value)}
-                  placeholder="Rue du Commerce 10"
+                  placeholder={t.addressPlaceholder}
                   className="rounded-xl"
                 />
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    NPA
+                    {t.postalCode}
                   </label>
                   <Input
                     value={formData.npa}
@@ -577,7 +738,7 @@ export function AccountingRequestForm() {
                 </div>
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Ville
+                    {t.city}
                   </label>
                   <Input
                     value={formData.city}
@@ -590,7 +751,7 @@ export function AccountingRequestForm() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Nombre d'employés
+                    {t.employeesCount}
                   </label>
                   <Input
                     type="number"
@@ -607,17 +768,33 @@ export function AccountingRequestForm() {
                 </div>
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Chiffre d'affaires annuel estimé
+                    {t.annualRevenue}
                   </label>
                   <Input
                     value={formData.annualRevenue}
                     onChange={(e) =>
                       updateForm("annualRevenue", e.target.value)
                     }
-                    placeholder="CHF 100'000.-"
+                    placeholder={t.annualRevenuePlaceholder}
                     className="rounded-xl"
                   />
                 </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-2 block">
+                  {t.monthlyTransactions}
+                </label>
+                <Input
+                  value={formData.monthlyTransactions}
+                  onChange={(e) =>
+                    updateForm("monthlyTransactions", e.target.value)
+                  }
+                  placeholder={t.monthlyTransactionsPlaceholder}
+                  className="rounded-xl"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  {t.monthlyTransactionsHelp}
+                </p>
               </div>
               <div className="flex items-center gap-3 p-4 bg-secondary/50 rounded-xl">
                 <input
@@ -630,7 +807,7 @@ export function AccountingRequestForm() {
                   className="w-5 h-5"
                 />
                 <label htmlFor="isVatRegistered" className="cursor-pointer">
-                  L'entreprise est assujettie à la TVA
+                  {t.vatRegistered}
                 </label>
               </div>
             </div>
@@ -640,9 +817,9 @@ export function AccountingRequestForm() {
         {/* Step 4: Services */}
         {currentStep === 4 && (
           <div>
-            <h2 className="text-2xl font-bold mb-2">Services souhaités</h2>
+            <h2 className="text-2xl font-bold mb-2">{t.step4Title}</h2>
             <p className="text-muted-foreground mb-8">
-              Sélectionnez les services dont vous avez besoin.
+              {t.step4Subtitle}
             </p>
             <div className="space-y-4 mb-8">
               {services.map((service) => (
@@ -679,7 +856,7 @@ export function AccountingRequestForm() {
             </div>
             <div>
               <h3 className="font-semibold mb-4">
-                Fréquence de facturation
+                {t.billingFrequency}
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div
@@ -690,9 +867,9 @@ export function AccountingRequestForm() {
                       : "border-border"
                   }`}
                 >
-                  <div className="font-medium">Mensuelle</div>
+                  <div className="font-medium">{t.monthly}</div>
                   <div className="text-sm text-muted-foreground">
-                    Facturation chaque mois
+                    {t.monthlyDesc}
                   </div>
                 </div>
                 <div
@@ -703,16 +880,16 @@ export function AccountingRequestForm() {
                       : "border-border"
                   }`}
                 >
-                  <div className="font-medium">Annuelle (-10%)</div>
+                  <div className="font-medium">{t.annual}</div>
                   <div className="text-sm text-muted-foreground">
-                    Facturation une fois par an
+                    {t.annualDesc}
                   </div>
                 </div>
               </div>
             </div>
             <div className="mt-6">
               <label className="text-sm font-medium mb-2 block">
-                Commentaires ou besoins spécifiques
+                {t.comments}
               </label>
               <Textarea
                 value={formData.comments}
@@ -733,11 +910,10 @@ export function AccountingRequestForm() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  Envoi de vos documents
+                  {t.step5Title}
                 </h2>
                 <p className="text-muted-foreground">
-                  Téléchargez les documents nécessaires pour démarrer notre
-                  collaboration.
+                  {t.step5Subtitle}
                 </p>
               </div>
             </div>
@@ -789,11 +965,11 @@ export function AccountingRequestForm() {
                     multiple
                     onChange={handleFileUpload}
                     className="hidden"
-                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"
+                    accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,.gif,.bmp,.doc,.docx,.xls,.xlsx"
                   />
                   <Upload className="w-12 h-12 text-teal-400 mx-auto mb-4" />
                   <p className="text-muted-foreground mb-4">
-                    Glissez vos fichiers ici ou
+                    {t.dragDrop}
                   </p>
                   <Button
                     onClick={() => fileInputRef.current?.click()}
@@ -801,23 +977,21 @@ export function AccountingRequestForm() {
                     className="rounded-full border-teal-600 text-teal-600 hover:bg-teal-50"
                   >
                     <Paperclip className="w-4 h-4 mr-2" />
-                    Parcourir les fichiers
+                    {t.browseFiles}
                   </Button>
                   <p className="text-xs text-muted-foreground mt-4">
-                    Formats acceptés: PDF, JPG, PNG, DOC, XLS (max 10 MB par
-                    fichier)
+                    {t.acceptedFormats}
                   </p>
                 </div>
 
                 {/* Uploaded files for active category */}
                 <div className="space-y-2">
                   <h4 className="font-medium text-sm text-muted-foreground">
-                    Fichiers pour:{" "}
-                    {requiredDocuments.find((d) => d.id === activeCategory)?.name}
+                    {t.filesFor} {requiredDocuments.find((d) => d.id === activeCategory)?.name}
                   </h4>
                   {getFilesByCategory(activeCategory).length === 0 ? (
                     <p className="text-sm text-muted-foreground italic">
-                      Aucun fichier téléchargé
+                      {t.noFilesUploaded}
                     </p>
                   ) : (
                     getFilesByCategory(activeCategory).map((file) => (
@@ -852,16 +1026,15 @@ export function AccountingRequestForm() {
                 {/* Total files */}
                 <div className="mt-6 p-4 bg-teal-50 rounded-xl">
                   <div className="flex items-center justify-between">
-                    <span className="font-medium">Total des documents</span>
+                    <span className="font-medium">{t.totalDocuments}</span>
                     <Badge className="bg-teal-600">
-                      {uploadedFiles.length} fichier(s)
+                      {uploadedFiles.length} {t.filesLabel}
                     </Badge>
                   </div>
                 </div>
 
                 <p className="text-sm text-muted-foreground mt-4 italic">
-                  Vous pourrez envoyer des documents supplémentaires par email
-                  après validation de votre demande.
+                  {t.additionalDocsNote}
                 </p>
               </div>
             </div>
@@ -877,11 +1050,10 @@ export function AccountingRequestForm() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  Certification et responsabilité
+                  {t.step6Title}
                 </h2>
                 <p className="text-muted-foreground">
-                  Veuillez lire attentivement et accepter les conditions
-                  suivantes avant de finaliser votre demande.
+                  {t.step6Subtitle}
                 </p>
               </div>
             </div>
@@ -893,14 +1065,10 @@ export function AccountingRequestForm() {
                   <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-amber-800 mb-2">
-                      Information importante
+                      {t.importantInfo}
                     </h3>
                     <p className="text-sm text-amber-700">
-                      NeoFidu établit votre comptabilité sur la base des
-                      informations et documents que vous nous transmettez.
-                      Il est de votre responsabilité de vous assurer que ces
-                      éléments sont complets, exacts et conformes à la réalité
-                      de votre activité.
+                      {t.certificationWarning}
                     </p>
                   </div>
                 </div>
@@ -926,14 +1094,10 @@ export function AccountingRequestForm() {
                     />
                     <div>
                       <div className="font-semibold mb-2">
-                        Exactitude des informations
+                        {t.accuracyTitle}
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        Je certifie que toutes les informations et documents que
-                        j'ai transmis à NeoFidu sont exacts, complets et
-                        reflètent fidèlement la situation financière de mon
-                        entreprise. Je comprends que NeoFidu ne peut vérifier
-                        l'authenticité ni l'exhaustivité des documents fournis.
+                        {t.accuracyDesc}
                       </p>
                     </div>
                   </label>
@@ -957,16 +1121,10 @@ export function AccountingRequestForm() {
                     />
                     <div>
                       <div className="font-semibold mb-2">
-                        Clause de responsabilité
+                        {t.responsibilityTitle}
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        Je reconnais et accepte que NeoFidu ne pourra en aucun
-                        cas être tenu responsable de toute conséquence juridique,
-                        administrative ou pénale résultant d'informations
-                        inexactes, incomplètes ou frauduleuses que j'aurais
-                        transmises. En cas de litige avec les autorités fiscales
-                        ou judiciaires découlant de telles informations,
-                        j'assume l'entière responsabilité.
+                        {t.responsibilityDesc}
                       </p>
                     </div>
                   </label>
@@ -976,7 +1134,7 @@ export function AccountingRequestForm() {
               {/* Legal summary */}
               <div className="bg-secondary/50 rounded-2xl p-6">
                 <h4 className="font-semibold mb-3">
-                  Résumé de vos engagements
+                  {t.commitmentsSummary}
                 </h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
@@ -988,7 +1146,7 @@ export function AccountingRequestForm() {
                       }`}
                     />
                     <span>
-                      Mes documents et informations sont exacts et complets
+                      {t.commitment1}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -1000,7 +1158,7 @@ export function AccountingRequestForm() {
                       }`}
                     />
                     <span>
-                      J'assume la responsabilité en cas d'informations erronées
+                      {t.commitment2}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -1012,8 +1170,7 @@ export function AccountingRequestForm() {
                       }`}
                     />
                     <span>
-                      NeoFidu est dégagé de toute responsabilité juridique liée à
-                      mes données
+                      {t.commitment3}
                     </span>
                   </li>
                 </ul>
@@ -1029,10 +1186,10 @@ export function AccountingRequestForm() {
               <PaymentIllustration className="w-32 h-32 flex-shrink-0" />
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  Récapitulatif et envoi
+                  {t.step7Title}
                 </h2>
                 <p className="text-muted-foreground">
-                  Vérifiez votre demande avant de l'envoyer.
+                  {t.step7Subtitle}
                 </p>
               </div>
             </div>
@@ -1040,26 +1197,25 @@ export function AccountingRequestForm() {
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="space-y-4">
                 <div className="p-4 bg-secondary/50 rounded-xl">
-                  <div className="text-sm text-muted-foreground">Canton</div>
+                  <div className="text-sm text-muted-foreground">{t.canton}</div>
                   <div className="font-semibold">
                     {cantons.find((c) => c.code === formData.canton)?.name}
                   </div>
                 </div>
                 <div className="p-4 bg-secondary/50 rounded-xl">
-                  <div className="text-sm text-muted-foreground">Type</div>
+                  <div className="text-sm text-muted-foreground">{t.type}</div>
                   <div className="font-semibold">
-                    {businessTypes.find((t) => t.id === formData.businessType)
-                      ?.name}
+                    {businessTypes.find((type) => type.id === formData.businessType)?.name}
                   </div>
                 </div>
                 <div className="p-4 bg-secondary/50 rounded-xl">
                   <div className="text-sm text-muted-foreground">
-                    Entreprise
+                    {t.company}
                   </div>
                   <div className="font-semibold">{formData.companyName}</div>
                 </div>
                 <div className="p-4 bg-secondary/50 rounded-xl">
-                  <div className="text-sm text-muted-foreground">Contact</div>
+                  <div className="text-sm text-muted-foreground">{t.contact}</div>
                   <div className="font-semibold">
                     {formData.firstName} {formData.lastName}
                   </div>
@@ -1069,7 +1225,7 @@ export function AccountingRequestForm() {
               <div>
                 <div className="p-4 bg-secondary/50 rounded-xl mb-4">
                   <div className="text-sm text-muted-foreground mb-2">
-                    Services sélectionnés
+                    {t.selectedServices}
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {formData.selectedServices.map((id) => {
@@ -1084,21 +1240,21 @@ export function AccountingRequestForm() {
                 </div>
                 <div className="p-4 bg-secondary/50 rounded-xl mb-4">
                   <div className="text-sm text-muted-foreground mb-2">
-                    Documents envoyés
+                    {t.documentsSent}
                   </div>
                   <div className="font-semibold">
-                    {uploadedFiles.length} fichier(s)
+                    {uploadedFiles.length} {t.filesLabel}
                   </div>
                 </div>
                 <div className="p-6 bg-teal-50 border-2 border-teal-200 rounded-2xl text-center">
                   <div className="text-sm text-muted-foreground mb-2">
-                    Tarification
+                    {t.pricing}
                   </div>
                   <div className="text-xl font-bold text-teal-600">
-                    Devis personnalisé
+                    {t.customQuote}
                   </div>
                   <div className="text-sm text-muted-foreground mt-2">
-                    Le prix sera communiqué par email après analyse de votre dossier
+                    {t.priceAfterAnalysis}
                   </div>
                 </div>
               </div>
@@ -1108,12 +1264,11 @@ export function AccountingRequestForm() {
               <div className="flex items-center gap-2 mb-4">
                 <Lock className="w-5 h-5 text-teal-600" />
                 <span className="font-semibold">
-                  Cette demande est gratuite et sans engagement
+                  {t.freeNoCommitment}
                 </span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Nous vous enverrons un devis détaillé sous 24h. Le paiement ne
-                sera demandé qu'après validation de votre part.
+                {t.quoteNote}
               </p>
             </div>
           </div>
@@ -1128,7 +1283,7 @@ export function AccountingRequestForm() {
             className="rounded-full"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Retour
+            {t.back}
           </Button>
           {currentStep < steps.length ? (
             <Button
@@ -1136,7 +1291,7 @@ export function AccountingRequestForm() {
               disabled={!canProceed()}
               className="rounded-full bg-teal-600 hover:bg-teal-700"
             >
-              Suivant
+              {t.next}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           ) : (
@@ -1145,7 +1300,7 @@ export function AccountingRequestForm() {
               disabled={isSubmitting}
               className="rounded-full bg-teal-600 hover:bg-teal-700"
             >
-              {isSubmitting ? "Envoi..." : "Envoyer ma demande"}
+              {isSubmitting ? t.submitting : t.submit}
               <Check className="w-4 h-4 ml-2" />
             </Button>
           )}

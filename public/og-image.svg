@@ -10,15 +10,12 @@
       <stop offset="100%" style="stop-color:#f0fdf4"/>
     </linearGradient>
   </defs>
-
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bgGradient)"/>
-
   <!-- Decorative circles -->
   <circle cx="100" cy="100" r="200" fill="white" opacity="0.05"/>
   <circle cx="1100" cy="530" r="250" fill="white" opacity="0.05"/>
   <circle cx="900" cy="100" r="150" fill="white" opacity="0.03"/>
-
   <!-- Icon -->
   <g transform="translate(150, 200)">
     <rect width="120" height="160" rx="16" fill="white" opacity="0.2"/>
@@ -27,15 +24,12 @@
     <rect x="20" y="68" width="70" height="8" rx="4" fill="white" opacity="0.4"/>
     <path d="M35 100 L50 115 L85 80" stroke="white" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-
   <!-- Logo text -->
   <text x="320" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="100" font-weight="800" fill="white">neo</text>
   <text x="520" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="100" font-weight="800" fill="white" opacity="0.9">fidu</text>
   <text x="800" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="50" font-weight="400" fill="white" opacity="0.7">.ch</text>
-
   <!-- Tagline -->
   <text x="320" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="500" fill="white" opacity="0.9">Fiduciaire digitale en Suisse Romande</text>
-
   <!-- Features -->
   <g transform="translate(320, 440)" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="white" opacity="0.8">
     <circle cx="10" cy="-8" r="6" fill="#34D399"/>
@@ -45,10 +39,8 @@
     <circle cx="410" cy="-8" r="6" fill="#34D399"/>
     <text x="430" y="0">Gérance immobilière</text>
   </g>
-
   <!-- Cantons -->
   <text x="320" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="white" opacity="0.6">VD • VS • GE • NE • JU • FR</text>
-
   <!-- Website URL -->
   <text x="320" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" fill="white" opacity="0.9">www.neofidu.ch</text>
 </svg>

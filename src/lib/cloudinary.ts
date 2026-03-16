@@ -18,6 +18,28 @@ export interface UploadResult {
 }
 
 /**
+ * Generate a signed URL for authenticated/private files
+ * @param publicId - The public_id of the file
+ * @param resourceType - 'image' or 'raw'
+ * @param expiresInSeconds - URL expiration time (default: 1 hour)
+ */
+export function generateSignedUrl(
+  publicId: string,
+  resourceType: "image" | "raw" = "raw",
+  expiresInSeconds: number = 3600
+): string {
+  const expiresAt = Math.floor(Date.now() / 1000) + expiresInSeconds;
+
+  return cloudinary.url(publicId, {
+    resource_type: resourceType,
+    type: "authenticated",
+    sign_url: true,
+    secure: true,
+    expires_at: expiresAt,
+  });
+}
+
+/**
  * Generate a folder name with reference, date, and customer name
  * Format: reference_YYYY-MM-DD_lastName_firstName
  */
@@ -53,7 +75,8 @@ function getCustomerFolder(reference: string, lastName?: string, firstName?: str
 }
 
 /**
- * Upload a file to Cloudinary
+ * Upload a file to Cloudinary (PRIVATE/AUTHENTICATED mode)
+ * Files are NOT publicly accessible - requires signed URL for access
  */
 export async function uploadToCloudinary(
   file: File,
@@ -69,8 +92,10 @@ export async function uploadToCloudinary(
   const dataUri = `data:${mimeType};base64,${base64}`;
 
   // Determine resource type based on file type
+  // PDFs need to be uploaded as "image" type for Cloudinary preview support
   const isImage = mimeType.startsWith("image/");
-  const resourceType = isImage ? "image" : "raw";
+  const isPDF = mimeType === "application/pdf";
+  const resourceType = (isImage || isPDF) ? "image" : "raw";
 
   // Get file extension
   const fileExtension = file.name.split(".").pop()?.toLowerCase() || "";
@@ -107,37 +132,40 @@ export async function uploadToCloudinary(
   filePrefix += `_${cleanFileName}`;
 
   // For raw files (PDFs, docs, etc.), keep the extension in the public_id
-  // This ensures the file can be properly downloaded with the correct format
   const publicId = isImage
     ? filePrefix
     : `${filePrefix}.${fileExtension}`;
 
-  // Use customer folder naming: reference_date_lastName_firstName
+  // Use customer folder naming
   const folder = getCustomerFolder(reference, lastName, firstName);
 
-  // Upload to Cloudinary
+  // Upload to Cloudinary with AUTHENTICATED type (PRIVATE)
+  // Files will NOT be publicly accessible without a signed URL
   const result = await cloudinary.uploader.upload(dataUri, {
     folder: folder,
     resource_type: resourceType,
+    type: "authenticated", // 🔒 PRIVATE - requires signed URL to access
     public_id: publicId,
-    tags: ["neofidu", "document", reference],
-    // For raw files, use attachment delivery to force download
+    tags: ["neofidu", "document", reference, "private"],
     ...(resourceType === "raw" && {
       use_filename: true,
       unique_filename: false,
     }),
   });
 
-  // For raw files, append fl_attachment to the URL to ensure proper download
-  let secureUrl = result.secure_url;
-  if (resourceType === "raw" && !secureUrl.includes("fl_attachment")) {
-    // Modify URL to include attachment flag for proper PDF viewing/download
-    secureUrl = secureUrl.replace("/upload/", "/upload/fl_attachment/");
-  }
+  // Generate a signed URL for admin access (valid for 1 hour)
+  // This URL will expire and cannot be shared permanently
+  const signedUrl = generateSignedUrl(
+    result.public_id,
+    resourceType as "image" | "raw",
+    3600 // 1 hour expiration
+  );
+
+  console.log(`🔒 Document uploaded as PRIVATE: ${result.public_id}`);
 
   return {
     public_id: result.public_id,
-    secure_url: secureUrl,
+    secure_url: signedUrl, // Return signed URL instead of public URL
     original_filename: file.name,
     format: result.format || fileExtension,
     bytes: result.bytes,
@@ -150,7 +178,19 @@ export async function uploadToCloudinary(
  */
 export async function deleteFromCloudinary(publicId: string): Promise<boolean> {
   try {
-    const result = await cloudinary.uploader.destroy(publicId);
+    // Try deleting as authenticated first
+    let result = await cloudinary.uploader.destroy(publicId, {
+      type: "authenticated",
+      invalidate: true,
+    });
+
+    // If not found, try as public (for old files)
+    if (result.result !== "ok") {
+      result = await cloudinary.uploader.destroy(publicId, {
+        invalidate: true,
+      });
+    }
+
     return result.result === "ok";
   } catch (error) {
     console.error("Error deleting from Cloudinary:", error);
@@ -159,24 +199,32 @@ export async function deleteFromCloudinary(publicId: string): Promise<boolean> {
 }
 
 /**
- * Get all documents for a reference
+ * Get all documents for a reference with fresh signed URLs
  */
 export async function getDocumentsForReference(reference: string): Promise<UploadResult[]> {
   try {
+    // Search in authenticated resources
     const result = await cloudinary.search
-      .expression(`folder:neofidu/documents/${reference}`)
+      .expression(`folder:neofidu/documents/${reference}* AND type:authenticated`)
       .sort_by("created_at", "desc")
       .max_results(100)
       .execute();
 
-    return result.resources.map((resource: any) => ({
-      public_id: resource.public_id,
-      secure_url: resource.secure_url,
-      original_filename: resource.filename || resource.public_id.split("/").pop(),
-      format: resource.format,
-      bytes: resource.bytes,
-      created_at: resource.created_at,
-    }));
+    return result.resources.map((resource: any) => {
+      // PDFs are uploaded as "image" type for Cloudinary preview support
+      const isPDF = /\.pdf$/i.test(resource.public_id);
+      const resourceType = (resource.resource_type === "image" || isPDF) ? "image" : "raw";
+
+      return {
+        public_id: resource.public_id,
+        // Generate fresh signed URL for each document
+        secure_url: generateSignedUrl(resource.public_id, resourceType, 3600),
+        original_filename: resource.filename || resource.public_id.split("/").pop(),
+        format: resource.format,
+        bytes: resource.bytes,
+        created_at: resource.created_at,
+      };
+    });
   } catch (error) {
     console.error("Error fetching documents from Cloudinary:", error);
     return [];
@@ -184,7 +232,22 @@ export async function getDocumentsForReference(reference: string): Promise<Uploa
 }
 
 /**
- * Upload PDF summary to Cloudinary
+ * Get a fresh signed URL for a specific document (for admin viewing)
+ * @param publicId - The public_id of the document
+ * @param expiresInSeconds - How long the URL should be valid (default: 2 hours)
+ */
+export function getSecureDocumentUrl(publicId: string, expiresInSeconds: number = 7200): string {
+  // Determine resource type from public_id
+  // PDFs are uploaded as "image" type for Cloudinary preview support
+  const isImage = /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(publicId);
+  const isPDF = /\.pdf$/i.test(publicId);
+  const resourceType = (isImage || isPDF) ? "image" : "raw";
+
+  return generateSignedUrl(publicId, resourceType, expiresInSeconds);
+}
+
+/**
+ * Upload PDF summary to Cloudinary (PRIVATE)
  */
 export async function uploadPDFToCloudinary(
   pdfBuffer: Buffer,
@@ -212,29 +275,33 @@ export async function uploadPDFToCloudinary(
     const now = new Date();
     const dateStr = now.toISOString().split('T')[0];
 
-    // Build file name: reference_date_lastName_firstName_Fiche_Recapitulative.pdf
+    // Build file name
     let filePrefix = reference;
     filePrefix += `_${dateStr}`;
     if (lastName) filePrefix += `_${cleanName(lastName)}`;
     if (firstName) filePrefix += `_${cleanName(firstName)}`;
     const publicId = `${filePrefix}_Fiche_Recapitulative.pdf`;
 
-    // Use customer folder naming: reference_date_lastName_firstName
     const folder = getCustomerFolder(reference, lastName, firstName);
 
-    // Upload to Cloudinary
+    // Upload as PRIVATE/AUTHENTICATED
+    // Use "image" resource_type for PDFs to enable Cloudinary preview
     const result = await cloudinary.uploader.upload(dataUri, {
       folder: folder,
-      resource_type: "raw",
+      resource_type: "image",
+      type: "authenticated", // 🔒 PRIVATE
       public_id: publicId,
-      tags: ["neofidu", "summary", "pdf", reference],
+      tags: ["neofidu", "summary", "pdf", reference, "private"],
       use_filename: true,
       unique_filename: false,
     });
 
+    // Generate signed URL
+    const signedUrl = generateSignedUrl(result.public_id, "image", 3600);
+
     return {
       public_id: result.public_id,
-      secure_url: result.secure_url,
+      secure_url: signedUrl,
       original_filename: `${filePrefix}_Fiche_Recapitulative.pdf`,
       format: "pdf",
       bytes: result.bytes,
@@ -247,7 +314,7 @@ export async function uploadPDFToCloudinary(
 }
 
 /**
- * Upload text summary as a .txt file to Cloudinary (legacy)
+ * Upload text summary as a .txt file to Cloudinary (PRIVATE)
  */
 export async function uploadSummaryToCloudinary(
   textContent: string,
@@ -276,29 +343,32 @@ export async function uploadSummaryToCloudinary(
     const now = new Date();
     const dateStr = now.toISOString().split('T')[0];
 
-    // Build file name: reference_date_lastName_firstName_Fiche_Recapitulative.txt
+    // Build file name
     let filePrefix = reference;
     filePrefix += `_${dateStr}`;
     if (lastName) filePrefix += `_${cleanName(lastName)}`;
     if (firstName) filePrefix += `_${cleanName(firstName)}`;
     const publicId = `${filePrefix}_Fiche_Recapitulative.txt`;
 
-    // Use customer folder naming
     const folder = getCustomerFolder(reference, lastName, firstName);
 
-    // Upload to Cloudinary
+    // Upload as PRIVATE/AUTHENTICATED
     const result = await cloudinary.uploader.upload(dataUri, {
       folder: folder,
       resource_type: "raw",
+      type: "authenticated", // 🔒 PRIVATE
       public_id: publicId,
-      tags: ["neofidu", "summary", reference],
+      tags: ["neofidu", "summary", reference, "private"],
       use_filename: true,
       unique_filename: false,
     });
 
+    // Generate signed URL
+    const signedUrl = generateSignedUrl(result.public_id, "raw", 3600);
+
     return {
       public_id: result.public_id,
-      secure_url: result.secure_url,
+      secure_url: signedUrl,
       original_filename: `${filePrefix}_Fiche_Recapitulative.txt`,
       format: "txt",
       bytes: result.bytes,
@@ -316,9 +386,8 @@ export async function uploadSummaryToCloudinary(
 export function getCloudinaryFolderUrl(reference: string, lastName?: string, firstName?: string): string {
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
   const now = new Date();
-  const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+  const dateStr = now.toISOString().split('T')[0];
 
-  // Clean names for folder path
   const cleanName = (name: string | undefined) => {
     if (!name) return '';
     return name
