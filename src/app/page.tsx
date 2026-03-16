@@ -14,8 +14,8 @@ const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ defa
 const ExpatBanner = dynamic(() => import("@/components/ExpatBanner").then(mod => ({ default: mod.ExpatBanner })), { ssr: true });
 
 export const metadata: Metadata = {
-  title: "NeoFidu | Déclaration d'impôts Suisse en ligne | Swiss Tax Returns | Dès CHF 50",
-  description: "Déclaration d'impôts Suisse en ligne dès CHF 50. Fiduciaire digitale pour Vaud, Genève, Valais, Fribourg. Service en français et anglais. Swiss tax returns for expats from CHF 50.",
+  title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 50",
+  description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 50. Vaud, Genève, Valais. Service bilingue FR/EN.",
   keywords: [
     // Expat-specific keywords (high priority)
     "expat tax return switzerland",
@@ -57,8 +57,8 @@ export const metadata: Metadata = {
     "fiduciaire Monthey",
   ],
   openGraph: {
-    title: "NeoFidu | Déclaration d'impôts Suisse | Swiss Tax Returns | Dès CHF 50",
-    description: "Fiduciaire en ligne pour votre déclaration d'impôts. Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura. Service bilingue FR/EN.",
+    title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 50",
+    description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 50. Service bilingue FR/EN.",
     url: "https://www.neofidu.ch",
     type: "website",
     siteName: "NeoFidu",
