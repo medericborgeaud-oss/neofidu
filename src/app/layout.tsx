@@ -18,10 +18,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://neofidu.ch"),
   title: {
-    default: "NeoFidu | Fiduciaire Digitale en Suisse Romande",
-    template: "%s | NeoFidu - Fiduciaire Suisse",
+    default: "NeoFidu | Déclaration d'impôts Suisse dès CHF 50",
+    template: "%s | NeoFidu",
   },
-  description: "Fiduciaire nouvelle génération en Romandie. Gestion fiscale, comptable et immobilière pour particuliers, indépendants et PME. Présents à Vaud, Valais, Genève, Neuchâtel, Jura et Fribourg. Devis gratuit en ligne.",
+  description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 50 pour Vaud, Genève, Valais. Service bilingue FR/EN.",
   manifest: "/site.webmanifest",
   icons: {
     icon: [
