@@ -90,8 +90,8 @@ export default function GeranceImmobilierePage() {
       step: "1",
       title: isEnglish ? "Contact" : "Prise de contact",
       description: isEnglish
-        ? "Fill out the form below. We will discuss your property and your needs."
-        : "Remplissez le formulaire ci-dessous. Nous discutons de votre bien et de vos besoins.",
+        ? "Contact us by phone or email. We will discuss your property and your needs."
+        : "Contactez-nous par téléphone ou email. Nous discutons de votre bien et de vos besoins.",
     },
     {
       step: "2",
@@ -258,15 +258,16 @@ export default function GeranceImmobilierePage() {
             </div>
 
             <div className="flex justify-center">
-              <Link href="/demande">
-                <Button
-                  size="lg"
-                  className="bg-amber-600 hover:bg-amber-700"
-                >
+              <Button
+                asChild
+                size="lg"
+                className="bg-amber-600 hover:bg-amber-700"
+              >
+                <Link href="/#contact">
                   {isEnglish ? "Get a free quote" : "Demander un devis gratuit"}
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </motion.section>
 
@@ -421,15 +422,16 @@ export default function GeranceImmobilierePage() {
                   </div>
                 </div>
 
-                <Link href="/demande" className="w-full">
-                  <Button
-                    size="lg"
-                    className="w-full bg-amber-600 hover:bg-amber-700"
-                  >
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full bg-amber-600 hover:bg-amber-700"
+                >
+                  <Link href="/#contact">
                     {isEnglish ? "Request a free quote" : "Demander un devis gratuit"}
                     <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </CardContent>
             </Card>
           </motion.section>
@@ -461,7 +463,7 @@ export default function GeranceImmobilierePage() {
             </div>
           </motion.section>
 
-          {/* CTA Section */}
+          {/* CTA Section - Simple */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -469,36 +471,26 @@ export default function GeranceImmobilierePage() {
             id="contact-gerance"
             className="scroll-mt-32"
           >
-            <Card className="max-w-2xl mx-auto overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-600 text-white text-center py-8">
-                <CardTitle className="text-2xl">
-                  {isEnglish
-                    ? "Request a Free Quote"
-                    : "Demander un devis gratuit"}
-                </CardTitle>
-                <p className="text-white/90 mt-2">
-                  {isEnglish
-                    ? "We will contact you within 1 business day"
-                    : "Nous vous contactons sous 1 jour ouvré"}
-                </p>
-              </CardHeader>
-              <CardContent className="p-8 text-center">
-                <p className="text-muted-foreground mb-6">
-                  {isEnglish
-                    ? "Fill out our quick form to receive a personalized quote for managing your property."
-                    : "Remplissez notre formulaire rapide pour recevoir un devis personnalisé pour la gestion de votre bien."}
-                </p>
-                <Link href="/demande">
-                  <Button
-                    size="lg"
-                    className="bg-amber-600 hover:bg-amber-700"
-                  >
-                    {isEnglish ? "Start my request" : "Démarrer ma demande"}
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
+            <div className="max-w-2xl mx-auto text-center bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-8 md:p-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                {isEnglish ? "Interested?" : "Intéressé(e) ?"}
+              </h2>
+              <p className="text-white/90 mb-8">
+                {isEnglish
+                  ? "Contact us for a free quote. We will get back to you within 1 business day."
+                  : "Contactez-nous pour un devis gratuit. Nous vous recontactons sous 1 jour ouvré."}
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="bg-white text-amber-600 hover:bg-white/90"
+              >
+                <Link href="/#contact">
+                  {isEnglish ? "Contact us" : "Nous contacter"}
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
-              </CardContent>
-            </Card>
+              </Button>
+            </div>
           </motion.section>
         </div>
       </div>

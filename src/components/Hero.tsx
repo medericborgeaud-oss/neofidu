@@ -146,6 +146,21 @@ export function Hero() {
             </Link>
           </div>
 
+          {/* Quasi-résident / TOU Notice */}
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-5 py-2.5 text-white/90 hover:bg-white/25 transition-colors group"
+            >
+              <Shield className="w-4 h-4 text-yellow-300" />
+              <span className="text-sm font-medium">
+                {isEnglish
+                  ? "Withholding tax / Quasi-resident? Contact us →"
+                  : "Impôt à la source / Quasi-résident ? Contactez-nous →"}
+              </span>
+            </Link>
+          </div>
+
           {/* Trust indicators */}
           <div className="mt-16 pt-8 border-t border-white/10 pb-20">
             <div className="flex justify-center gap-8 md:gap-12 items-center">

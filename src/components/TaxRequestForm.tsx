@@ -2501,24 +2501,27 @@ export function TaxRequestForm() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {cantons.map((c) => (
-                <div
-                  key={c.code}
-                  onClick={() => updateForm("canton", c.code)}
-                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-md ${
-                    formData.canton === c.code
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/30"
-                  }`}
-                >
-                  <div className="text-center font-semibold">{c.name}</div>
-                </div>
-              ))}
-            </div>
+            {/* Afficher les cantons SEULEMENT si pas de résidence à l'étranger */}
+            {!formData.livesAbroad && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {cantons.map((c) => (
+                  <div
+                    key={c.code}
+                    onClick={() => updateForm("canton", c.code)}
+                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-md ${
+                      formData.canton === c.code
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/30"
+                    }`}
+                  >
+                    <div className="text-center font-semibold">{c.name}</div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Section Suisses de l'étranger */}
-            <div className="mt-8 p-5 bg-gradient-to-r from-blue-50 to-teal-50 border border-blue-200 rounded-xl">
+            <div className={`mt-8 p-5 bg-gradient-to-r from-blue-50 to-teal-50 border-2 ${formData.livesAbroad ? 'border-primary' : 'border-blue-200'} rounded-xl`}>
               <div className="flex items-start gap-4">
                 <div
                   onClick={() => {
@@ -2526,6 +2529,9 @@ export function TaxRequestForm() {
                     updateForm("livesAbroad", newValue);
                     if (!newValue) {
                       updateForm("countryOfResidence", "");
+                    } else {
+                      // Effacer le canton quand on sélectionne "résidence à l'étranger"
+                      updateForm("canton", "");
                     }
                   }}
                   className={`w-6 h-6 rounded-md border-2 flex items-center justify-center cursor-pointer transition-all flex-shrink-0 mt-0.5 ${
@@ -2546,6 +2552,8 @@ export function TaxRequestForm() {
                       updateForm("livesAbroad", newValue);
                       if (!newValue) {
                         updateForm("countryOfResidence", "");
+                      } else {
+                        updateForm("canton", "");
                       }
                     }}
                   >
@@ -2557,12 +2565,38 @@ export function TaxRequestForm() {
                 </div>
               </div>
 
-              {/* Sélecteur de pays si réside à l'étranger */}
+              {/* Options si réside à l'étranger */}
               {formData.livesAbroad && (
                 <div className="mt-4 pt-4 border-t border-blue-200 space-y-4">
+                  {/* Canton où se trouve le bien/revenu suisse */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Dans quel pays résidez-vous ?
+                      Dans quel canton se trouve votre bien immobilier ou source de revenu en Suisse ? <span className="text-red-500">*</span>
+                    </label>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                      {cantons.map((c) => (
+                        <div
+                          key={c.code}
+                          onClick={() => updateForm("canton", c.code)}
+                          className={`p-3 rounded-xl border-2 cursor-pointer transition-all hover:shadow-md ${
+                            formData.canton === c.code
+                              ? "border-primary bg-primary/5"
+                              : "border-gray-200 hover:border-primary/30"
+                          }`}
+                        >
+                          <div className="text-center font-semibold text-sm">{c.name}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      La déclaration sera établie dans le canton où se situe votre bien immobilier ou d'où provient votre revenu de source suisse.
+                    </p>
+                  </div>
+
+                  {/* Pays de résidence */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Dans quel pays résidez-vous actuellement ? <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.countryOfResidence}
@@ -2629,14 +2663,17 @@ export function TaxRequestForm() {
             </div>
 
             {/* Message d'aide si champs manquants */}
-            {!canProceed() && (formData.livesAbroad || !formData.canton) && (
+            {!canProceed() && (
               <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-amber-800">Informations requises</p>
                   <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
-                    {!formData.canton && (
+                    {!formData.canton && !formData.livesAbroad && (
                       <li>Sélectionnez le canton de votre déclaration</li>
+                    )}
+                    {!formData.canton && formData.livesAbroad && (
+                      <li>Sélectionnez le canton où se trouve votre bien/revenu en Suisse</li>
                     )}
                     {formData.livesAbroad && !formData.countryOfResidence && (
                       <li>Sélectionnez votre pays de résidence actuel</li>
