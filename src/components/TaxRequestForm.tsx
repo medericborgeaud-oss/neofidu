@@ -2605,6 +2605,22 @@ export function TaxRequestForm() {
                 </div>
               )}
             </div>
+
+            {/* Note quasi-résident / TOU */}
+            <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+              <p className="text-sm text-gray-700 flex items-start gap-2">
+                <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-500" />
+                <span>
+                  <strong>{isEnglish ? "Source tax / Quasi-resident?" : "Impôt à la source / Quasi-résident ?"}</strong>{" "}
+                  {isEnglish
+                    ? "If you are subject to withholding tax (Quellensteuer) and wish to request ordinary taxation (TOU) or quasi-resident status, please "
+                    : "Si vous êtes imposé à la source et souhaitez faire une demande de taxation ordinaire (TOU) ou de statut quasi-résident, veuillez "}
+                  <a href="/#contact" className="text-primary hover:underline font-medium">
+                    {isEnglish ? "contact us for a personalized quote" : "nous contacter pour un devis personnalisé"}
+                  </a>.
+                </span>
+              </p>
+            </div>
           </div>
         )}
 
