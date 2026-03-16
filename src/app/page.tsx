@@ -63,7 +63,6 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "NeoFidu",
     locale: "fr_CH",
-    alternateLocale: ["en_CH", "en_GB"],
   },
   twitter: {
     card: "summary_large_image",
