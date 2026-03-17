@@ -8,7 +8,7 @@ import { Calculator, Clock, Shield, TrendingDown, Star } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Simulateur Salaire Net Suisse 2026 | Calculateur par Canton",
+  title: "Simulateur Salaire Net Suisse 2026",
   description:
     "Calculez votre salaire net en Suisse par canton. Simulateur gratuit avec AVS, LPP, impôts fédéraux et cantonaux. Comparez les 26 cantons suisses.",
   keywords: [

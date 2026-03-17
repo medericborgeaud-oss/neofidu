@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BaiseLoyerCalculator } from "./BaiseLoyerCalculator";
 
 export const metadata: Metadata = {
-  title: "Calculateur baisse de loyer Suisse 2026 | Taux de référence hypothécaire",
+  title: "Calculateur Baisse de Loyer 2026",
   description: "Calculez gratuitement si vous pouvez demander une baisse de loyer en Suisse. Simulateur basé sur le taux de référence hypothécaire actuel (1.75%). Vaud, Genève, Valais, Fribourg.",
   keywords: [
     "baisse de loyer",

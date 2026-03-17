@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { TaxSimulatorPageClient } from "./TaxSimulatorPageClient";
 
 export const metadata: Metadata = {
-  title: "Simulateur d'impôts Suisse 2026 | Neofidu",
+  title: "Simulateur d'impôts Suisse 2026",
   description:
     "Calculez vos impôts en Suisse romande en quelques clics. Outil gratuit, résultat immédiat pour Vaud, Genève, Fribourg, Valais et Neuchâtel. Essayez maintenant.",
   keywords: [

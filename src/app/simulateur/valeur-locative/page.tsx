@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { ValeurLocativePageClient } from "./ValeurLocativePageClient";
 
 export const metadata: Metadata = {
-  title: "Imputed Rental Value Simulator 2026 | Before/After Reform | Simulateur Valeur Locative",
+  title: "Simulateur Valeur Locative 2026",
   description:
     "Calculate the impact of the elimination of imputed rental value on your taxes. Free simulator for homeowners: will you be a winner or loser after the reform? | Calculez l'impact de la suppression de la valeur locative.",
   keywords: [

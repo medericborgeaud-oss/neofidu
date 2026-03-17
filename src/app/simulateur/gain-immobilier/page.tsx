@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GainImmobilierSimulator } from "./GainImmobilierSimulator";
 
 export const metadata: Metadata = {
-  title: "Simulateur Impôt Gain Immobilier 2026 | Calcul IGI par Canton - NeoFidu",
+  title: "Simulateur Gain Immobilier 2026",
   description:
     "Calculez gratuitement l'impôt sur le gain immobilier (IGI) lors de la vente de votre bien en Suisse. Taux par canton (Vaud, Genève, Valais, Fribourg) et durée de détention. Simulation instantanée.",
   keywords:

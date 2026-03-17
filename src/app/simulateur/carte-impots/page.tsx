@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { CarteImpotsPageClient } from "./CarteImpotsPageClient";
 
 export const metadata: Metadata = {
-  title: "Swiss Tax Map 2026 | Compare 26 Cantons | Zug to Geneva | Carte des Impôts",
+  title: "Carte des Impôts Suisses 2026",
   description:
     "Interactive Swiss tax map 2026. Compare tax rates of all 26 Swiss cantons: Zug (5.1%), Schwyz (7.2%), Geneva (14.8%). Find the lowest-taxed canton to optimize your taxes. | Carte interactive des impôts en Suisse.",
   keywords: [
