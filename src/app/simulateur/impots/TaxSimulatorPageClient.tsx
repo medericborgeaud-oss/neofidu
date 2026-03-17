@@ -73,8 +73,7 @@ export function TaxSimulatorPageClient() {
             </div>
 
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
-              {t("simulators.taxSimulatorPage.title")}
-              <br />
+              {t("simulators.taxSimulatorPage.title")}{" "}
               <span className="text-emerald-300">{t("simulators.taxSimulatorPage.titleHighlight")}</span>
             </h1>
 
