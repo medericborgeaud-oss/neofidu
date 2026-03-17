@@ -612,7 +612,7 @@ Meilleures salutations,
 
 <br/>
 
-<h3><strong>Canton de Genève</strong></h3>
+<h3><strong><a href="/cantons/geneve">Canton de Genève</a></strong></h3>
 
 <p>Genève applique un système particulier pour les frontaliers français :</p>
 <ul>
@@ -1471,9 +1471,9 @@ Meilleures salutations,
 
 <br/>
 
-<p>At NeoFidu, we specialize in helping expats navigate the Swiss tax system. Our English-speaking team handles everything for you, ensuring you claim all eligible deductions.</p>
+<p>At NeoFidu, we specialize in helping <a href="/expats">expats</a> navigate the <a href="/simulateur/impots">Swiss tax system</a>. Our English-speaking team handles everything for you, ensuring you claim all eligible deductions.</p>
 
-<p>Chez NeoFidu, nous accompagnons les expatriés dans le système fiscal suisse. Notre équipe anglophone s'occupe de tout pour vous, en s'assurant que vous bénéficiez de toutes les déductions possibles.</p>
+<p>Chez NeoFidu, nous accompagnons les <a href="/expats">expatriés</a> dans le système fiscal suisse. Notre équipe anglophone s'occupe de tout pour vous, en s'assurant que vous bénéficiez de toutes les déductions possibles.</p>
 
 <p style="text-align: center; margin: 30px 0;">
 <a href="/demande" style="display: inline-block; padding: 18px 40px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1em;">Start Your Tax Return / Commencer ma déclaration →</a>
@@ -2393,7 +2393,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     excerptEn: "Bitcoin, Ethereum, staking, NFT... How to declare your cryptocurrencies for Swiss taxes? Complete guide with concrete examples, wealth calculation, and capital gains treatment.",
     keywords: ["cryptomonnaies Suisse", "déclarer Bitcoin", "impôts crypto", "staking fiscalité", "cryptocurrency Switzerland", "Bitcoin tax", "crypto declaration"],
     content: `
-<p>Vous possédez des <strong>cryptomonnaies</strong> et vous vous demandez comment les déclarer aux impôts en Suisse ? Vous n'êtes pas seul ! Avec l'explosion du <strong>Bitcoin</strong>, de l'<strong>Ethereum</strong> et des autres actifs numériques, de plus en plus de contribuables suisses sont concernés.</p>
+<p>Vous possédez des <strong>cryptomonnaies</strong> et vous vous demandez comment les déclarer aux <a href="/simulateur/impots">impôts en Suisse</a> ? Vous n'êtes pas seul ! Avec l'explosion du <strong>Bitcoin</strong>, de l'<strong>Ethereum</strong> et des autres actifs numériques, de plus en plus de contribuables suisses sont concernés.</p>
 
 <p>Bonne nouvelle : la Suisse a une approche plutôt favorable des cryptos. Mais attention, il y a des règles précises à respecter. Ce guide vous explique tout, canton par canton.</p>
 
@@ -2922,7 +2922,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     excerptEn: "Are you eligible for quasi-resident status in Geneva? Discover the conditions, tax benefits, and how to apply. Detailed guide for cross-border workers in Geneva.",
     keywords: ["frontalier Genève", "quasi-résident", "TOU", "statut fiscal frontalier", "cross-border worker Geneva", "quasi-resident tax status"],
     content: `
-<p>Vous êtes <strong>frontalier</strong> et travaillez à <strong>Genève</strong> ? Le <strong>statut de quasi-résident</strong> pourrait vous faire économiser plusieurs milliers de francs d'impôts. Mais attention, ce n'est pas automatique et les conditions sont strictes.</p>
+<p>Vous êtes <strong>frontalier</strong> et travaillez à <strong><a href="/cantons/geneve">Genève</a></strong> ? Le <strong>statut de quasi-résident</strong> pourrait vous faire économiser plusieurs milliers de francs d'<a href="/simulateur/impots">impôts</a>. Mais attention, ce n'est pas automatique et les conditions sont strictes.</p>
 
 <p>Dans ce guide complet, nous vous expliquons tout sur ce statut particulier, les conditions d'éligibilité et comment faire votre demande.</p>
 
@@ -4242,7 +4242,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>La <strong>fiscalité des entreprises</strong> varie considérablement selon les cantons. Voici les taux d'imposition sur le bénéfice pour 2026 :</p>
+<p>La <a href="/simulateur/impots"><strong>fiscalité des entreprises</strong></a> varie considérablement selon les cantons. Voici les taux d'imposition sur le bénéfice pour 2026 :</p>
 
 <ul>
 <li><strong>Vaud</strong> : 14.0% (taux effectif)</li>
@@ -4275,7 +4275,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Chez <strong>NeoFidu</strong>, nous accompagnons les créateurs d'entreprise en Suisse romande depuis plus de 10 ans. Notre forfait création inclut le conseil, la coordination et le suivi administratif.</p>
+<p>Chez <strong>NeoFidu</strong>, nous accompagnons les créateurs d'entreprise en Suisse romande depuis plus de 10 ans. Notre <a href="/creation-entreprise">forfait création</a> inclut le conseil, la coordination et le suivi administratif.</p>
 
 <p><a href="/demande"><strong>Contactez-nous pour un devis personnalisé</strong></a> et lancez votre projet en toute sérénité.</p>
     `,
@@ -4353,7 +4353,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Exemple :</strong> Sophie est architecte indépendante à Lausanne. Elle facture CHF 80'000.- par an (sous le seuil) mais achète pour CHF 15'000.- de logiciels, matériel et fournitures.</p>
+<p><strong>Exemple :</strong> Sophie est architecte <a href="/independants">indépendante</a> à Lausanne. Elle facture CHF 80'000.- par an (sous le seuil) mais achète pour CHF 15'000.- de logiciels, matériel et fournitures.</p>
 
 <ul>
 <li>Sans inscription TVA : elle paie CHF 1'215.- de TVA sur ses achats (non récupérable)</li>
@@ -4511,7 +4511,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Chez <strong>NeoFidu</strong>, nous gérons la TVA de centaines de PME romandes. Notre service inclut la préparation des décomptes, le suivi des paiements et les conseils d'optimisation.</p>
+<p>Chez <strong>NeoFidu</strong>, nous gérons la TVA de centaines de PME romandes. Notre <a href="/tarifs">service</a> inclut la préparation des décomptes, le suivi des paiements et les conseils d'optimisation.</p>
 
 <p><a href="/demande"><strong>Demandez un devis pour la gestion de votre TVA</strong></a></p>
     `,
@@ -4529,7 +4529,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     excerptEn: "What tax deductions for remote work in 2026? Home office, internet costs, furniture: everything you can deduct by canton (Vaud, Geneva, Valais, Fribourg).",
     keywords: ["télétravail déductions", "bureau domicile impôts", "home office Suisse", "remote work deductions", "work from home tax Switzerland"],
     content: `
-<p>Depuis la pandémie, le <strong>télétravail</strong> s'est imposé dans de nombreuses entreprises suisses. Mais savez-vous que vous pouvez <strong>déduire certains frais</strong> liés au travail à domicile dans votre déclaration d'impôts ? Ce guide vous explique tout ce qu'il faut savoir pour <strong>optimiser vos déductions en 2026</strong>.</p>
+<p>Depuis la pandémie, le <strong>télétravail</strong> s'est imposé dans de nombreuses entreprises suisses. Mais savez-vous que vous pouvez <strong>déduire certains frais</strong> liés au travail à domicile dans votre <a href="/simulateur/impots">déclaration d'impôts</a> ? Ce guide vous explique tout ce qu'il faut savoir pour <strong><a href="/guide/deductions-fiscales">optimiser vos déductions en 2026</a></strong>.</p>
 
 <br/>
 
@@ -4825,7 +4825,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>C'est l'erreur la plus courante chez les <strong>indépendants et petites entreprises</strong>. Utiliser sa carte bancaire personnelle pour des achats professionnels (et inversement) crée une confusion totale.</p>
+<p>C'est l'erreur la plus courante chez les <a href="/independants"><strong>indépendants et petites entreprises</strong></a>. Utiliser sa carte bancaire personnelle pour des achats professionnels (et inversement) crée une confusion totale.</p>
 
 <br/>
 
@@ -5126,7 +5126,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Chez <strong>NeoFidu</strong>, nous proposons un <strong>audit comptable gratuit</strong> pour les PME romandes. Nous analysons votre situation et vous proposons des solutions concrètes.</p>
+<p>Chez <strong>NeoFidu</strong>, nous proposons un <a href="/tarifs"><strong>audit comptable gratuit</strong></a> pour les PME romandes. Nous analysons votre situation et vous proposons des solutions concrètes.</p>
 
 <p><a href="/demande"><strong>Demandez votre audit gratuit</strong></a></p>
     `,
