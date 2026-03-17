@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Gérance Immobilière Vaud & Valais | Dès 5% | NeoFidu",
+  title: "Gérance Immobilière Vaud & Valais | Dès 5%",
   description:
     "Service de gérance immobilière en ligne pour Vaud et Valais. Gestion locative complète : recherche locataires, encaissement loyers, états des lieux, travaux. Dès 5% des loyers bruts HT.",
   keywords: [

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Déclaration d'impôts Suisses de l'étranger | NeoFidu",
+  title: "Déclaration d'impôts Suisses à l'étranger 2026",
   description: "Déclaration d'impôts pour les Suisses résidant à l'étranger. Gérez vos impôts suisses depuis n'importe où dans le monde. 100% en ligne. Dès CHF 100.-",
   keywords: [
     // French - primary audience

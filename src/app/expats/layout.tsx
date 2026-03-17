@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tax Returns for Expats in Switzerland — English Speaking Service | Neofidu",
+  title: "Tax Returns for Expats in Switzerland",
   description: "Swiss tax return service for expats & foreigners. We speak English! B/C permit holders, international employees. From CHF 50. Geneva, Lausanne, Zurich. Free quote.",
   keywords: [
     // High-priority expat keywords
