@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire Valais — Déclaration d'impôts & comptabilité en ligne",
+  title: "Déclaration d'impôts Valais 2026",
   description:
     "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité. Sion, Martigny, Sierre, Monthey. Dès CHF 50.-",
   keywords: [

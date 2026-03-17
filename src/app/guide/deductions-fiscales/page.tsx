@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { DeductionsPageClient } from "./DeductionsPageClient";
 
 export const metadata: Metadata = {
-  title: "Déductions fiscales en Suisse 2026 — Guide complet pour payer moins d'impôts | Neofidu",
+  title: "Guide Déductions Fiscales Suisse 2026",
   description:
     "Découvrez toutes les déductions fiscales auxquelles vous avez droit : 3ème pilier, frais professionnels, dons, frais de garde… Guide mis à jour 2026 pour la Suisse romande.",
   keywords: [

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire Fribourg — Déclaration d'impôts & comptabilité en ligne",
+  title: "Déclaration d'impôts Fribourg 2026",
   description:
     "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité. Service 100% digital, tarifs clairs.",
   keywords: [

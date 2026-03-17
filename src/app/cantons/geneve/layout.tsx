@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire Genève — Déclaration d'impôts & comptabilité en ligne",
+  title: "Déclaration d'impôts Genève 2026",
   description:
     "Fiduciaire en ligne pour Genève : déclaration d'impôts, quasi-résidents, travailleurs frontaliers. Service rapide, 100% digital, tarifs transparents.",
   keywords: [

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FAQ - Swiss Tax Questions",
+  title: "Questions fréquentes — Impôts Suisse",
   description: "Answers about Swiss tax returns and accounting. Deadlines, rates, required documents. We speak English! | FAQ déclaration d'impôts suisse.",
   keywords: [
     "swiss tax FAQ",
