@@ -33,10 +33,6 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "anthropic-ai",
         disallow: ["/"],
       },
-      {
-        userAgent: "Google-Extended",
-        disallow: ["/"],
-      },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
   };
