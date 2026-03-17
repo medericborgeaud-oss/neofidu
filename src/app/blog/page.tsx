@@ -87,9 +87,9 @@ export default function BlogPage() {
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               {isEnglish ? (
-                <>Tax <span className="text-gradient">News</span></>
+                <>Swiss Tax <span className="text-gradient">News</span></>
               ) : (
-                <>Actualités <span className="text-gradient">fiscales</span></>
+                <>Actualités fiscales <span className="text-gradient">Suisse</span></>
               )}
             </h1>
             <p className="text-muted-foreground text-lg">
