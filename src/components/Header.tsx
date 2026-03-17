@@ -26,7 +26,7 @@ function LanguageBannerInternal({ isHomepage }: { isHomepage: boolean }) {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 px-4 text-center text-sm">
-      <span className="mr-2">🌍</span>
+      <span className="mr-2">ð</span>
       <span className="font-medium">We speak English!</span>
       <span className="mx-2 opacity-60">|</span>
       <button
@@ -51,6 +51,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [ressourcesOpen, setRessourcesOpen] = useState(false);
   const { t, locale, isEnglish } = useLanguage();
   const pathname = usePathname();
 
@@ -61,33 +62,48 @@ export function Header() {
   const serviceItems = [
     {
       href: "/demande",
-      label: isEnglish ? "Tax Return" : "Déclaration d'impôts",
+      label: isEnglish ? "Tax Return" : "DÃ©claration d'impÃ´ts",
       icon: FileText,
       description: isEnglish ? "For individuals" : "Pour particuliers",
     },
     {
       href: "/independants",
-      label: isEnglish ? "Accounting" : "Comptabilité",
+      label: isEnglish ? "Accounting" : "ComptabilitÃ©",
       icon: Calculator,
-      description: isEnglish ? "Freelancers & SMEs" : "Indépendants & PME",
+      description: isEnglish ? "Freelancers & SMEs" : "IndÃ©pendants & PME",
     },
     {
       href: "/creation-entreprise",
-      label: isEnglish ? "Company Creation" : "Création d'entreprise",
+      label: isEnglish ? "Company Creation" : "CrÃ©ation d'entreprise",
       icon: Rocket,
-      description: isEnglish ? "LLC, AG, Sole prop." : "Sàrl, SA, RI",
+      description: isEnglish ? "LLC, AG, Sole prop." : "SÃ rl, SA, RI",
     },
     {
       href: "/gerance-immobiliere",
-      label: isEnglish ? "Property Management" : "Gérance immobilière",
+      label: isEnglish ? "Property Management" : "GÃ©rance immobiliÃ¨re",
       icon: Home,
       description: isEnglish ? "Vaud & Valais" : "Vaud & Valais",
     },
     {
       href: "/expats",
-      label: isEnglish ? "Expats" : "Expatriés",
+      label: isEnglish ? "Expats" : "ExpatriÃ©s",
       icon: Users,
       description: isEnglish ? "International clients" : "Clients internationaux",
+    },
+  ];
+
+  const ressourcesItems = [
+    {
+      href: "/blog",
+      label: isEnglish ? "Blog" : "Blog",
+      icon: FileText,
+      description: isEnglish ? "Tax tips and Swiss fiscal news" : "Conseils fiscaux et actualités suisses",
+    },
+    {
+      href: "/guide/deductions-fiscales",
+      label: isEnglish ? "Tax Deductions" : "Déductions fiscales",
+      icon: Calculator,
+      description: isEnglish ? "Complete guide to deductions" : "Guide complet des déductions en Suisse",
     },
   ];
 
@@ -174,9 +190,35 @@ export function Header() {
                       href="/#services"
                       className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
                     >
-                      {isEnglish ? "View all services →" : "Voir tous les services →"}
+                      {isEnglish ? "View all services â" : "Voir tous les services â"}
                     </Link>
                   </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                    {isEnglish ? "Resources" : "Ressources"}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-64 p-2">
+                  {ressourcesItems.map((item) => (
+                    <DropdownMenuItem key={item.href} asChild>
+                      <Link
+                        href={item.href}
+                        className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <item.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">{item.label}</p>
+                          <p className="text-xs text-muted-foreground">{item.description}</p>
+                        </div>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
                 </DropdownMenuContent>
               </DropdownMenu>
 
@@ -240,6 +282,35 @@ export function Header() {
                       {servicesOpen && (
                         <div className="mt-2 space-y-1 pl-2">
                           {serviceItems.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center gap-3 py-3 text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              <item.icon className="w-5 h-5" />
+                              <div>
+                                <p className="font-medium text-foreground">{item.label}</p>
+                                <p className="text-xs">{item.description}</p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Mobile Ressources Section */}
+                    <div className="border-b border-border pb-4">
+                      <button
+                        onClick={() => setRessourcesOpen(!ressourcesOpen)}
+                        className="flex items-center justify-between w-full text-lg font-medium text-foreground py-2"
+                      >
+                        {isEnglish ? "Resources" : "Ressources"}
+                        <ChevronDown className={`w-5 h-5 transition-transform ${ressourcesOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {ressourcesOpen && (
+                        <div>
+                          {ressourcesItems.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
