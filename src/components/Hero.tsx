@@ -82,7 +82,7 @@ export function Hero() {
                 />
               </svg>
             </span>
-            <br />
+            {" "}
             {title3}
           </h1>
 
