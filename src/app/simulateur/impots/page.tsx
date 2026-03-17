@@ -125,7 +125,36 @@ export default function SimulateurImpotsPage() {
       />
 
       <div className="min-h-screen flex flex-col">
-        <Header />
+              <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Comment calculer ses impôts en Suisse ?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Notre simulateur d’impôts calcule votre charge fiscale en fonction de votre revenu, votre canton, votre situation familiale et vos déductions. Le résultat est gratuit et immédiat."}
+            },
+            {
+              "@type": "Question",
+              "name": "Le simulateur couvre-t-il tous les cantons suisses ?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Oui, le simulateur NeoFidu couvre les 26 cantons suisses, y compris Genève, Vaud, Fribourg, Valais et Neuchâtel, avec les barèmes fiscaux 2026."}
+            },
+            {
+              "@type": "Question",
+              "name": "Quelles déductions fiscales puis-je déduire en Suisse ?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Les principales déductions sont : les frais professionnels, les intérêts d’emprunts, le 3ème pilier (jusqu’à CHF 7'056), les primes d’assurance-maladie et les frais de garde."}
+            },
+            {
+              "@type": "Question",
+              "name": "Quid des impôts pour les expatriés en Suisse ?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Les titulaires d’un permis B ou C sont imposés différemment selon leur statut. Notre simulateur et nos experts fiduciaires vous guident pour optimiser votre situation fiscale."}
+            }
+          ]
+        }) }}
+      />
+<Header />
         <TaxSimulatorPageClient />
         <Footer />
       </div>
