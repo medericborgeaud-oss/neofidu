@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "double taxation switzerland",
   ],
   openGraph: {
-    title: "Déclaration d'impôts Suisses de l'étranger | NeoFidu",
+    title: "Déclaration d'impôts Suisses à l'étranger 2026",
     description: "Gérez vos impôts suisses depuis l'étranger. Service 100% en ligne pour les expatriés suisses. Dès CHF 100.-",
     type: "website",
     locale: "fr_CH",
