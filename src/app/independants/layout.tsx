@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Comptabilité pour Indépendants & Freelances en Suisse | Neofidu",
+  title: "Comptabilité pour Indépendants & Freelances en Suisse",
   description:
     "Comptabilité simplifiée pour indépendants et freelances en Suisse romande. Déclaration d'impôts, TVA, création d'entreprise. Dès CHF 500.-/an. Devis gratuit.",
   keywords: [
