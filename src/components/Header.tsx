@@ -123,6 +123,12 @@ export function Header() {
       icon: FileText,
       description: isEnglish ? "Guide to Swiss tax deductions" : "Guide des déductions en Suisse",
     },
+    {
+      href: "/blog",
+      label: isEnglish ? "Blog" : "Blog",
+      icon: FileText,
+      description: isEnglish ? "News and tax advice" : "Actualités et conseils fiscaux",
+    },
   ];
 
   const navItems = [
