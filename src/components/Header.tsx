@@ -117,6 +117,12 @@ export function Header() {
       icon: Calculator,
       description: isEnglish ? "See all our free tools" : "Voir tous nos outils gratuits",
     },
+    {
+      href: "/guide/deductions-fiscales",
+      label: isEnglish ? "Tax Deductions" : "Déductions fiscales",
+      icon: FileText,
+      description: isEnglish ? "Guide to Swiss tax deductions" : "Guide des déductions en Suisse",
+    },
   ];
 
   const navItems = [
