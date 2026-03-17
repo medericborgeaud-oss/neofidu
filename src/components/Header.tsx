@@ -26,7 +26,7 @@ function LanguageBannerInternal({ isHomepage }: { isHomepage: boolean }) {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 px-4 text-center text-sm">
-      <span className="mr-2">ð</span>
+      <span className="mr-2">🇨🇭</span>
       <span className="font-medium">We speak English!</span>
       <span className="mx-2 opacity-60">|</span>
       <button
@@ -62,31 +62,31 @@ export function Header() {
   const serviceItems = [
     {
       href: "/demande",
-      label: isEnglish ? "Tax Return" : "DÃ©claration d'impÃ´ts",
+      label: isEnglish ? "Tax Return" : "Déclaration d'impôts",
       icon: FileText,
       description: isEnglish ? "For individuals" : "Pour particuliers",
     },
     {
       href: "/independants",
-      label: isEnglish ? "Accounting" : "ComptabilitÃ©",
+      label: isEnglish ? "Accounting" : "Comptabilité",
       icon: Calculator,
-      description: isEnglish ? "Freelancers & SMEs" : "IndÃ©pendants & PME",
+      description: isEnglish ? "Freelancers & SMEs" : "Indépendants & PME",
     },
     {
       href: "/creation-entreprise",
-      label: isEnglish ? "Company Creation" : "CrÃ©ation d'entreprise",
+      label: isEnglish ? "Company Creation" : "Création d'entreprise",
       icon: Rocket,
-      description: isEnglish ? "LLC, AG, Sole prop." : "SÃ rl, SA, RI",
+      description: isEnglish ? "LLC, AG, Sole prop." : "Sàrl, SA, RI",
     },
     {
       href: "/gerance-immobiliere",
-      label: isEnglish ? "Property Management" : "GÃ©rance immobiliÃ¨re",
+      label: isEnglish ? "Property Management" : "Gérance immobilière",
       icon: Home,
       description: isEnglish ? "Vaud & Valais" : "Vaud & Valais",
     },
     {
       href: "/expats",
-      label: isEnglish ? "Expats" : "ExpatriÃ©s",
+      label: isEnglish ? "Expats" : "Expatriés",
       icon: Users,
       description: isEnglish ? "International clients" : "Clients internationaux",
     },
@@ -202,7 +202,7 @@ export function Header() {
                       href="/#services"
                       className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
                     >
-                      {isEnglish ? "View all services â" : "Voir tous les services â"}
+                      {isEnglish ? "View all services →" : "Voir tous les services →"}
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
