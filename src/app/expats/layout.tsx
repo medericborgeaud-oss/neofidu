@@ -88,6 +88,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://www.neofidu.ch/expats",
+    languages: {
+      "en": "https://www.neofidu.ch/expats",
+      "fr": "https://www.neofidu.ch/expats",
+      "x-default": "https://www.neofidu.ch/expats",
+    },
   },
   robots: {
     index: true,

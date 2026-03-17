@@ -450,9 +450,7 @@ export default function RootLayout({
     <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* Hreflang for FR/EN bilingual content */}
-        <link rel="alternate" hreflang="fr" href="https://www.neofidu.ch/" />
-        <link rel="alternate" hreflang="en" href="https://www.neofidu.ch/" />
-        <link rel="alternate" hreflang="x-default" href="https://www.neofidu.ch/" />
+
         {/* Favicon - ensure proper reference */}
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
