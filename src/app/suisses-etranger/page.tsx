@@ -102,7 +102,32 @@ export default function SuissesEtrangerPage() {
        "Italie", "Espagne", "Pays-Bas", "Autriche", "Portugal"];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Déclaration d'impôts pour Suisses de l'étranger",
+  "description": "Service de déclaration d'impôts en Suisse pour les citoyens suisses vivant à l'étranger. Expertise en fiscalité internationale et obligations fiscales suisses.",
+  "provider": {
+    "@type": "AccountingService",
+    "name": "NeoFidu",
+    "url": "https://www.neofidu.ch"
+  },
+  "serviceType": "Tax Filing Service",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Switzerland"
+  },
+  "url": "https://www.neofidu.ch/suisses-etranger",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.neofidu.ch/tarifs"
+  }
+}) }}
+      />
+      <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
       <Header />
 
       {/* Hero Section */}
@@ -616,5 +641,6 @@ export default function SuissesEtrangerPage() {
 
       <Footer />
     </main>
+    </>
   );
 }
