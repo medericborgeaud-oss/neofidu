@@ -94,22 +94,34 @@ export function Header() {
 
   const ressourcesItems = [
     {
-      href: "/blog",
-      label: isEnglish ? "Blog" : "Blog",
-      icon: FileText,
-      description: isEnglish ? "Tax tips and Swiss fiscal news" : "Conseils fiscaux et actualités suisses",
+      href: "/simulateur/impots",
+      label: isEnglish ? "Tax Calculator" : "Simulateur d'impôts",
+      icon: Calculator,
+      description: isEnglish ? "Estimate your cantonal taxes" : "Estimez vos impôts cantonaux",
     },
     {
-      href: "/guide/deductions-fiscales",
-      label: isEnglish ? "Tax Deductions" : "Déductions fiscales",
+      href: "/simulateur/salaire-net",
+      label: isEnglish ? "Net Salary" : "Salaire net",
       icon: Calculator,
-      description: isEnglish ? "Complete guide to deductions" : "Guide complet des déductions en Suisse",
+      description: isEnglish ? "Calculate your net salary" : "Calculez votre salaire net",
+    },
+    {
+      href: "/simulateur/3eme-pilier",
+      label: isEnglish ? "3rd Pillar" : "3ème pilier",
+      icon: Calculator,
+      description: isEnglish ? "Optimize your retirement savings" : "Optimisez votre épargne retraite",
+    },
+    {
+      href: "/simulateur",
+      label: isEnglish ? "All Simulators" : "Tous les simulateurs",
+      icon: Calculator,
+      description: isEnglish ? "See all our free tools" : "Voir tous nos outils gratuits",
     },
   ];
 
   const navItems = [
     { href: "/tarifs", label: t("header.pricing") },
-    { href: "/blog", label: t("header.blog") },
+    
     { href: "/suivi", label: t("header.tracking") },
     { href: "/#contact", label: t("header.contact") },
   ];
