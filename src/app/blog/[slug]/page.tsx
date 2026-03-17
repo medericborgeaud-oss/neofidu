@@ -95,6 +95,12 @@ function generateArticleJsonLd(article: BlogArticle) {
     headline: article.title,
     alternativeHeadline: article.titleEn || undefined,
     description: article.excerpt,
+    image: {
+      "@type": "ImageObject",
+      url: "https://www.neofidu.ch/og-image.jpg",
+      width: 1200,
+      height: 630,
+    },
     author: {
       "@type": "Organization",
       name: "NeoFidu",
