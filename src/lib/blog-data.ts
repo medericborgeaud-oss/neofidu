@@ -1730,17 +1730,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     content: `
 <p>C'est officiel : le <strong>8 mars 2026</strong>, le peuple suisse a approuvé le passage à l'<strong>imposition individuelle des couples mariés</strong>. Cette réforme historique met fin à des décennies de « <strong>pénalisation du mariage</strong> » et va profondément changer la fiscalité de plus de <strong>2 millions de couples</strong> en Suisse.</p>
 
-<p>Dans cet article, nous vous expliquons concrètement ce qui va changer, qui sera gagnant ou perdant, et comment vous préparer à cette nouvelle ère fiscale.</p>
-
-<br/>
-
-<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 12px; margin: 24px 0; border-left: 4px solid #f59e0b;">
-<p style="margin: 0; font-weight: 600;">📅 Prochaine échéance politique</p>
-
-<p style="margin: 12px 0 0 0;">La prochaine votation fédérale importante aura lieu au mois de <strong>juin 2026</strong>. Les citoyens suisses seront appelés à se prononcer sur l'<strong>initiative populaire « Pas de Suisse à 10 millions »</strong>, qui vise à limiter la population résidente à 10 millions d'habitants.</p>
-
-<p style="margin: 12px 0 0 0;">Bien que cette initiative ne soit pas directement liée à la fiscalité des couples, elle pourrait avoir des répercussions significatives sur la politique migratoire suisse. Indirectement, cela pourrait affecter le marché du travail et les recettes fiscales du pays. Nous vous tiendrons informés des enjeux de ce scrutin dans un prochain article.</p>
-</div>
+<p>Dans cet article, nous vous expliquons concrètement ce qui va changer, qui sera gagnant ou perdant, et comment vous préparer.</p>
 
 <br/>
 
@@ -1750,21 +1740,26 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Le problème de l'imposition conjointe</strong></h3>
 
-<p>Jusqu'à présent, les couples mariés étaient imposés <strong>ensemble</strong>, ce qui signifie que leurs revenus étaient additionnés et soumis à un barème progressif. Ce système créait mécaniquement une <strong>charge fiscale plus élevée</strong> que s'ils avaient été imposés séparément, chacun de leur côté.</p>
+<p>Jusqu'à présent, les couples mariés étaient imposés <strong>ensemble</strong> : leurs revenus étaient additionnés et soumis à un barème progressif. Ce système créait une <strong>charge fiscale plus élevée</strong> que s'ils étaient imposés séparément.</p>
+
+<p>Concrètement, deux personnes gagnant chacune CHF 80'000.- payaient <strong>plus d'impôts une fois mariées</strong> que lorsqu'elles vivaient en concubinage. Cette « pénalisation du mariage » touchait environ <strong>700'000 couples</strong> en Suisse.</p>
 
 <br/>
 
-<p>Concrètement, deux personnes gagnant chacune CHF 80'000 par an payaient <strong>plus d'impôts une fois mariées</strong> que lorsqu'elles vivaient en concubinage. Cette injustice fiscale, connue sous le nom de « pénalisation du mariage », touchait environ <strong>700'000 couples</strong> en Suisse, soit une part considérable de la population active.</p>
+<p><strong>Exemple chiffré (avant la réforme) :</strong></p>
 
-<br/>
-
-<p>Prenons l'exemple de Marc et Julie, tous deux salariés avec un revenu de CHF 100'000 par an chacun. Lorsqu'ils vivaient en concubinage, leur impôt total s'élevait à environ CHF 36'000. Une fois mariés, ce montant grimpait à environ CHF 42'000, soit une <strong>pénalité de mariage d'environ CHF 6'000 par an</strong>. Un montant suffisant pour dissuader certains couples de s'unir officiellement.</p>
+<ul>
+<li>Marc et Julie, tous deux salariés, gagnent chacun <strong>CHF 100'000.-</strong> par an</li>
+<li><strong>En concubinage</strong> : impôt total d'environ CHF 36'000.-</li>
+<li><strong>Mariés</strong> : impôt total d'environ CHF 42'000.-</li>
+<li><strong>Pénalité de mariage</strong> : environ CHF 6'000.- par an !</li>
+</ul>
 
 <br/>
 
 <h3><strong>Une inégalité déclarée inconstitutionnelle</strong></h3>
 
-<p>Le Tribunal fédéral avait déjà jugé cette situation <strong>contraire à la Constitution</strong> en 1984, il y a plus de quarante ans. Après des décennies de discussions politiques, de projets avortés et de compromis impossibles, le peuple suisse a enfin pu trancher cette question fondamentale lors du scrutin du 8 mars 2026.</p>
+<p>Le Tribunal fédéral avait déjà jugé cette situation <strong>contraire à la Constitution</strong> en 1984. Après plus de 40 ans de discussions politiques, le peuple a enfin tranché.</p>
 
 <br/>
 
@@ -1774,11 +1769,13 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Le nouveau principe</strong></h3>
 
-<p>Désormais, chaque époux sera imposé <strong>séparément</strong>, exactement comme deux contribuables indépendants qui ne se connaîtraient pas. Chacun déclarera ses propres revenus, qu'il s'agisse du salaire, d'une activité indépendante ou de rentes. De même, chacun déclarera sa fortune propre et pourra faire valoir ses déductions personnelles, notamment le 3ème pilier et les frais professionnels.</p>
+<p>Désormais, chaque époux sera imposé <strong>séparément</strong>, comme deux contribuables indépendants. Chacun déclarera :</p>
 
-<br/>
-
-<p>Ce changement de paradigme a des implications concrètes sur plusieurs aspects fiscaux. Concernant la <strong>base d'imposition</strong>, on passe de revenus additionnés du couple à des revenus individuels pour chaque époux. Le <strong>barème appliqué</strong> sera désormais celui des personnes seules plutôt que le barème marié. Chaque conjoint remplira sa <strong>propre déclaration</strong> au lieu d'une déclaration commune. Pour le <strong>3ème pilier</strong>, cela signifie deux plafonds distincts de CHF 7'258 chacun au lieu d'un seul plafond commun. Enfin, la <strong>fortune commune</strong> sera répartie selon le régime matrimonial, généralement 50/50, plutôt que d'être cumulée artificiellement.</p>
+<ul>
+<li>Ses <strong>revenus propres</strong> (salaire, activité indépendante, rentes)</li>
+<li>Sa <strong>fortune propre</strong></li>
+<li>Ses <strong>déductions personnelles</strong> (3ème pilier, frais professionnels, etc.)</li>
+</ul>
 
 <br/>
 
@@ -1827,19 +1824,25 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h3><strong>Les grands gagnants : les couples à deux revenus</strong></h3>
+<h3><strong>Les grands gagnants : couples à deux revenus</strong></h3>
 
-<p>Les couples où les <strong>deux conjoints travaillent</strong> avec des revenus similaires seront les principaux bénéficiaires de cette réforme. Plus les revenus sont élevés et équilibrés entre les deux partenaires, plus l'économie sera substantielle.</p>
+<p>Les couples où les <strong>deux conjoints travaillent</strong> avec des revenus similaires seront les principaux bénéficiaires. Plus les revenus sont élevés et équilibrés, plus l'économie sera importante.</p>
 
 <br/>
 
-<p>Prenons le cas d'Anna et Thomas, qui gagnent chacun CHF 120'000 par an. Sous l'ancien système, leur impôt total s'élevait à environ CHF 58'000. Avec le nouveau système d'imposition individuelle, ce montant descend à environ CHF 48'000, soit une <strong>économie annuelle d'environ CHF 10'000</strong>. Sur une vie de couple, cela représente des centaines de milliers de francs économisés.</p>
+<p><strong>Exemple - Couple à double revenu équilibré :</strong></p>
+<ul>
+<li>Anna et Thomas, chacun CHF 120'000.-/an</li>
+<li><strong>Ancien système</strong> : impôt total ~CHF 58'000.-</li>
+<li><strong>Nouveau système</strong> : impôt total ~CHF 48'000.-</li>
+<li><strong>Économie annuelle : environ CHF 10'000.- !</strong></li>
+</ul>
 
 <br/>
 
 <h3><strong>Les retraités à deux rentes</strong></h3>
 
-<p>Les couples de retraités percevant chacun une rente AVS et une rente LPP pourront également bénéficier pleinement de cette réforme. Comme leurs revenus sont souvent relativement équilibrés, l'imposition séparée leur sera généralement favorable.</p>
+<p>Les couples de retraités percevant chacun une rente AVS et LPP pourront également bénéficier de la réforme.</p>
 
 <br/>
 
@@ -1847,19 +1850,33 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h3><strong>Les couples à revenu unique</strong></h3>
+<h3><strong>Couples à revenu unique</strong></h3>
 
-<p>Les couples où <strong>un seul conjoint travaille</strong> pourraient voir leur impôt augmenter avec cette réforme. En effet, l'ancien barème « marié » était spécialement conçu pour être avantageux dans ces configurations familiales traditionnelles.</p>
-
-<br/>
-
-<p>Imaginons Pierre qui gagne CHF 150'000 par an tandis que Marie s'occupe du foyer. Sous l'ancien système, ils payaient environ CHF 32'000 d'impôts grâce au barème marié avantageux. Avec le nouveau système où seul Pierre sera imposé sur son revenu au barème personne seule, l'impôt grimpera à environ CHF 35'000, soit un <strong>surcoût potentiel d'environ CHF 3'000 par an</strong>.</p>
+<p>Les couples où <strong>un seul conjoint travaille</strong> pourraient voir leur impôt augmenter. L'ancien barème « marié » était plus avantageux pour ces configurations.</p>
 
 <br/>
 
-<h3><strong>Les mesures de compensation prévues</strong></h3>
+<p><strong>Exemple - Couple à revenu unique :</strong></p>
+<ul>
+<li>Pierre gagne CHF 150'000.-, Marie est au foyer</li>
+<li><strong>Ancien système</strong> : impôt ~CHF 32'000.- (barème marié avantageux)</li>
+<li><strong>Nouveau système</strong> : impôt ~CHF 35'000.- (barème personne seule)</li>
+<li><strong>Surcoût potentiel : ~CHF 3'000.-</strong></li>
+</ul>
 
-<p>Pour atténuer cet effet indésirable sur certaines familles, le projet de loi prévoit plusieurs <strong>mesures compensatoires</strong>. Une déduction spécifique sera accordée pour le conjoint sans activité lucrative ou à faible revenu. Un système de splitting partiel des revenus sera mis en place pour certaines situations particulières. De plus, un crédit d'impôt viendra soutenir les familles avec enfants. Les détails précis de ces mécanismes seront définis dans les ordonnances d'application au cours des prochains mois.</p>
+<br/>
+
+<h3><strong>Mesures de compensation prévues</strong></h3>
+
+<p>Pour atténuer cet effet, le projet de loi prévoit des <strong>mesures compensatoires</strong> :</p>
+
+<ul>
+<li><strong>Déduction pour conjoint sans activité lucrative</strong> ou à faible revenu</li>
+<li><strong>Splitting partiel</strong> des revenus pour certaines situations</li>
+<li><strong>Crédit d'impôt</strong> pour les familles avec enfants</li>
+</ul>
+
+<p>Les détails seront précisés dans les ordonnances d'application.</p>
 
 <br/>
 
@@ -1869,19 +1886,30 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Les revenus et la fortune</strong></h3>
 
-<p>La répartition des revenus et de la fortune entre époux suivra les règles du <strong>droit civil suisse</strong>, c'est-à-dire votre régime matrimonial. Si vous êtes sous le régime de la participation aux acquêts, qui est le régime par défaut en Suisse, les acquêts seront partagés 50/50 tandis que les biens propres resteront individuels. Si vous avez opté pour la séparation de biens, chacun déclarera simplement ses propres avoirs. Enfin, en cas de communauté de biens, l'ensemble sera réparti à parts égales.</p>
+<p>La répartition suivra les règles du <strong>droit civil suisse</strong> :</p>
+
+<ul>
+<li><strong>Régime de la participation aux acquêts</strong> (défaut) : 50/50 pour les acquêts, biens propres restent individuels</li>
+<li><strong>Séparation de biens</strong> : chacun déclare ses avoirs</li>
+<li><strong>Communauté de biens</strong> : 50/50 sur l'ensemble</li>
+</ul>
 
 <br/>
 
 <h3><strong>Le logement familial</strong></h3>
 
-<p>Si vous êtes propriétaires ensemble de votre logement, la <strong>valeur locative</strong> et les <strong>intérêts hypothécaires</strong> seront répartis selon vos parts de propriété respectives, ce qui correspond généralement à un partage 50/50 pour la plupart des couples.</p>
+<p>Si vous êtes propriétaires ensemble, la <strong>valeur locative</strong> et les <strong>intérêts hypothécaires</strong> seront répartis selon les parts de propriété (généralement 50/50).</p>
 
 <br/>
 
 <h3><strong>Les enfants</strong></h3>
 
-<p>Les <strong>déductions pour enfants</strong> seront attribuées par défaut à hauteur de 50% à chaque parent. Cependant, les parents pourront convenir d'une autre répartition, par exemple 100% à l'un des deux, selon leurs préférences ou en fonction d'une décision judiciaire dans les situations plus complexes.</p>
+<p>Les <strong>déductions pour enfants</strong> seront attribuées :</p>
+
+<ul>
+<li>Par défaut : <strong>50% à chaque parent</strong></li>
+<li>Ou <strong>100% à un parent</strong> selon accord ou attribution judiciaire</li>
+</ul>
 
 <br/>
 
@@ -1889,11 +1917,21 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>La réforme ne sera pas immédiate et son déploiement s'étalera sur plusieurs années. Le vote populaire du <strong>8 mars 2026</strong> a validé le principe de l'imposition individuelle. Durant la période <strong>2026-2027</strong>, l'administration fédérale élaborera les ordonnances d'application détaillées. L'année <strong>2028</strong> sera consacrée à l'adaptation des logiciels fiscaux dans tous les cantons. L'<strong>entrée en vigueur</strong> est prévue pour le <strong>1er janvier 2029</strong>, et c'est en <strong>2030</strong> que les contribuables rempliront leur première déclaration sous le nouveau régime, pour l'année fiscale 2029.</p>
+<p>La réforme ne sera pas immédiate. Voici le calendrier prévu :</p>
 
 <br/>
 
-<p>Ces délais peuvent évoluer en fonction d'éventuels recours ou de la complexité de mise en œuvre dans certains cantons. Nous vous tiendrons informés de toute évolution.</p>
+<ul>
+<li><strong>8 mars 2026</strong> : Vote populaire - ACCEPTÉ</li>
+<li><strong>2026-2027</strong> : Élaboration des ordonnances d'application</li>
+<li><strong>2028</strong> : Adaptation des logiciels fiscaux cantonaux</li>
+<li><strong>1er janvier 2029</strong> : <strong>Entrée en vigueur probable</strong></li>
+<li><strong>2030</strong> : Première déclaration sous le nouveau régime (pour l'année fiscale 2029)</li>
+</ul>
+
+<br/>
+
+<p>Les délais peuvent varier. Nous vous tiendrons informés des évolutions.</p>
 
 <br/>
 
@@ -1901,27 +1939,33 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Même si la réforme n'entrera en vigueur qu'en 2029, il est judicieux de commencer à s'y préparer dès aujourd'hui.</p>
+<h3><strong>1. Évaluez votre situation</strong></h3>
+
+<p>Faites le calcul : comparez ce que vous payez aujourd'hui avec ce que vous paieriez en imposition individuelle. Un fiduciaire peut réaliser cette simulation pour vous.</p>
 
 <br/>
 
-<p><strong>Évaluez votre situation actuelle</strong> en comparant ce que vous payez aujourd'hui avec ce que vous paieriez en imposition individuelle. Un fiduciaire peut réaliser cette simulation pour vous et vous donner une estimation précise de l'impact sur votre fiscalité.</p>
+<h3><strong>2. Optimisez vos 3èmes piliers</strong></h3>
+
+<p>Avec l'imposition individuelle, <strong>chaque conjoint pourra cotiser CHF 7'258.-</strong>. Si votre conjoint ne travaille pas, il/elle ne pourra cependant pas cotiser au 3a (il faut un revenu AVS). Anticipez !</p>
 
 <br/>
 
-<p><strong>Optimisez vos 3èmes piliers</strong> dès maintenant. Avec l'imposition individuelle, chaque conjoint pourra cotiser CHF 7'258 sur son propre compte 3a. Attention toutefois : si votre conjoint ne travaille pas, il ou elle ne pourra pas cotiser au pilier 3a car il faut disposer d'un revenu soumis à l'AVS. Anticipez cette situation.</p>
+<h3><strong>3. Revoyez votre régime matrimonial</strong></h3>
+
+<p>Votre régime matrimonial (participation aux acquêts, séparation de biens, communauté) impactera la répartition des revenus. Consultez un notaire si nécessaire.</p>
 
 <br/>
 
-<p><strong>Revoyez votre régime matrimonial</strong> si nécessaire. Que vous soyez sous le régime de la participation aux acquêts, de la séparation de biens ou de la communauté, votre choix aura un impact direct sur la répartition de vos revenus et de votre fortune pour l'imposition. Consultez un notaire pour évaluer si un changement serait pertinent dans votre situation.</p>
+<h3><strong>4. Documentez vos biens propres</strong></h3>
+
+<p>Les biens acquis avant le mariage ou par héritage/donation restent des biens propres. <strong>Conservez les preuves</strong> de leur origine (actes notariés, relevés bancaires...).</p>
 
 <br/>
 
-<p><strong>Documentez soigneusement vos biens propres</strong>, c'est-à-dire les biens acquis avant le mariage ou reçus par héritage ou donation. Ces éléments resteront des biens propres et devront être attribués individuellement. Conservez les preuves de leur origine comme les actes notariés et les relevés bancaires historiques.</p>
+<h3><strong>5. Anticipez la déclaration séparée</strong></h3>
 
-<br/>
-
-<p><strong>Anticipez la déclaration séparée</strong> en organisant vos documents différemment. Dès 2029, chaque conjoint devra remplir sa propre déclaration avec ses propres justificatifs. Commencez à classer vos documents de manière individuelle pour faciliter cette transition.</p>
+<p>Dès 2029, vous devrez remplir <strong>deux déclarations distinctes</strong>. Commencez à organiser vos documents en conséquence : chaque conjoint devra avoir ses propres justificatifs.</p>
 
 <br/>
 
@@ -1929,11 +1973,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Si vous êtes <strong>frontalier ou quasi-résident</strong>, cette réforme vous concernera également de manière significative. L'imposition à la source sera désormais calculée <strong>individuellement</strong> pour chaque époux. La demande de statut de <strong>quasi-résident</strong> devra être effectuée séparément par chaque conjoint. Le fameux calcul des 90% de revenus suisses, qui détermine l'éligibilité au statut de quasi-résident, s'appliquera <strong>par personne</strong> et non plus au niveau du ménage.</p>
+<p>Si vous êtes <strong>frontalier ou quasi-résident</strong>, la réforme vous concernera également :</p>
+
+<ul>
+<li>L'imposition à la source sera calculée <strong>individuellement</strong></li>
+<li>La demande de <strong>quasi-résident</strong> se fera pour chaque époux séparément</li>
+<li>Le calcul des 90% de revenus suisses s'appliquera <strong>par personne</strong></li>
+</ul>
 
 <br/>
 
-<p>Cette évolution pourrait faciliter l'obtention du statut de quasi-résident pour certains frontaliers dont le conjoint travaille en France. En effet, le conjoint qui travaille exclusivement en Suisse pourra plus facilement atteindre le seuil des 90%, indépendamment de la situation de son partenaire.</p>
+<p>Cela pourrait faciliter l'obtention du statut de quasi-résident pour certains frontaliers dont le conjoint travaille en France.</p>
 
 <br/>
 
@@ -1943,31 +1993,31 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Devra-t-on se marier différemment ?</strong></h3>
 
-<p>Non, le mariage civil reste absolument inchangé dans sa forme et ses modalités. C'est uniquement le <strong>traitement fiscal</strong> des couples mariés qui évolue avec cette réforme.</p>
+<p>Non, le mariage civil reste inchangé. C'est uniquement le <strong>traitement fiscal</strong> qui évolue.</p>
 
 <br/>
 
 <h3><strong>Les partenariats enregistrés sont-ils concernés ?</strong></h3>
 
-<p>Oui, les <strong>partenaires enregistrés</strong> seront soumis exactement aux mêmes règles que les couples mariés. Ils bénéficieront donc également de l'imposition individuelle.</p>
+<p>Oui, les <strong>partenaires enregistrés</strong> seront soumis aux mêmes règles que les couples mariés.</p>
 
 <br/>
 
 <h3><strong>Pourra-t-on revenir à l'ancien système ?</strong></h3>
 
-<p>Non, l'imposition individuelle s'appliquera <strong>obligatoirement</strong> à tous les couples mariés dès son entrée en vigueur. Il ne sera pas possible d'opter pour l'ancien système d'imposition commune.</p>
+<p>Non, l'imposition individuelle s'appliquera <strong>obligatoirement</strong> à tous les couples mariés dès l'entrée en vigueur.</p>
 
 <br/>
 
 <h3><strong>Que faire si nous ne sommes pas d'accord sur la répartition ?</strong></h3>
 
-<p>En cas de désaccord entre les conjoints, les règles légales s'appliqueront automatiquement, c'est-à-dire généralement un partage 50/50 ou selon les dispositions de votre régime matrimonial. Un <strong>conseiller fiscal ou un médiateur</strong> peut vous aider à trouver un accord si la situation devient conflictuelle.</p>
+<p>En cas de désaccord, les règles légales (50/50 ou selon le régime matrimonial) s'appliqueront. Un <strong>conseiller fiscal ou un médiateur</strong> peut vous aider à trouver un accord.</p>
 
 <br/>
 
 <h3><strong>Les concubins sont-ils impactés ?</strong></h3>
 
-<p>Non, les concubins sont déjà imposés individuellement depuis toujours. Cette réforme ne change strictement rien pour eux, si ce n'est qu'elle supprime un avantage fiscal dont ils bénéficiaient par rapport aux couples mariés.</p>
+<p>Non, les concubins sont déjà imposés individuellement. Cette réforme ne change rien pour eux.</p>
 
 <br/>
 
@@ -1975,11 +2025,18 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Chez <strong>NeoFidu</strong>, nous suivons de près cette réforme majeure et ses implications pour nos clients. Nous pouvons vous accompagner pour simuler précisément l'impact de l'imposition individuelle sur votre situation personnelle, optimiser votre fiscalité dès maintenant en anticipation de ces changements, préparer vos déclarations lorsque le nouveau système entrera en vigueur, et analyser votre régime matrimonial ainsi que ses implications fiscales futures.</p>
+<p>Chez <strong>NeoFidu</strong>, nous suivons de près cette réforme majeure. Nous pouvons vous accompagner pour :</p>
+
+<ul>
+<li><strong>Simuler l'impact</strong> de l'imposition individuelle sur votre situation</li>
+<li><strong>Optimiser votre fiscalité</strong> dès maintenant en anticipation</li>
+<li><strong>Préparer vos déclarations</strong> quand le nouveau système entrera en vigueur</li>
+<li><strong>Analyser votre régime matrimonial</strong> et ses implications fiscales</li>
+</ul>
 
 <br/>
 
-<p>N'attendez pas 2029 pour vous préparer. Les bonnes décisions fiscales se prennent <strong>plusieurs années à l'avance</strong>, et les ajustements que vous pouvez faire aujourd'hui auront un impact significatif sur votre situation future.</p>
+<p>N'attendez pas 2029 pour vous préparer. Les bonnes décisions fiscales se prennent <strong>plusieurs années à l'avance</strong>.</p>
 
 <br/>
 
@@ -1987,7 +2044,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Pour estimer vos impôts actuels et comparer avec le nouveau système, utilisez notre <a href="/simulateur/impots"><strong>simulateur gratuit</strong></a>.</p>
+<p>Pour estimer vos impôts actuels, utilisez notre <a href="/simulateur/impots"><strong>simulateur gratuit</strong></a>.</p>
     `,
     category: "actualites",
     date: "2026-03-08",
