@@ -3076,7 +3076,7 @@ export function TaxRequestForm() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Statut de résidence
+                      Statut de résidence du conjoint
                     </label>
                     <select
                       value={formData.residenceStatus2}
