@@ -259,6 +259,13 @@ export default function TarifsPage() {
       "@type": "Country",
       "name": "Switzerland"
     },
+    "offers": {
+      "@type": "Offer",
+      "price": "50",
+      "priceCurrency": "CHF",
+      "priceRange": "CHF 50 - CHF 1490",
+      "url": "https://www.neofidu.ch/tarifs"
+    },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Services fiduciaires",
