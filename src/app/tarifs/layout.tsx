@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tarifs fiduciaire en ligne Suisse — Prix clairs et transparents | Neofidu",
+  title: "Tarifs fiduciaire en ligne Suisse — Prix clairs et transparents",
   description:
     "Découvrez nos tarifs pour la déclaration d'impôts, la comptabilité et les services fiduciaires en Suisse romande. Pas de surprise, devis gratuit en 2 minutes.",
   keywords: [
