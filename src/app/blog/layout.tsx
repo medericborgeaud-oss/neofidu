@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { blogArticles } from "@/lib/blog-data";
 
 export const metadata: Metadata = {
   title: "Blog Fiscalité Suisse - Conseils",
-  description: "Actualités fiscales et conseils comptables pour la Suisse romande. Guides sur les impôts et TVA.",
+  description:
+    "Actualités fiscales et conseils comptables pour la Suisse romande. Guides pratiques sur les impôts, la TVA, la comptabilité et la création d'entreprise.",
   keywords: [
     "blog fiscalité suisse",
     "actualités impôts suisse",
@@ -12,7 +14,8 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Blog Fiscalité",
-    description: "Actualités fiscales et conseils comptables en Suisse romande.",
+    description:
+      "Actualités fiscales et conseils comptables en Suisse romande. Guides pratiques sur les impôts et la TVA.",
     type: "website",
     url: "https://www.neofidu.ch/blog",
     siteName: "NeoFidu",
@@ -32,5 +35,30 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  const publishedArticles = blogArticles.filter(
+    (a) => a.slug !== "premiere-declaration-impots-suisse-guide"
+  );
+
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Blog Neofidu - Fiscalité et comptabilité en Suisse",
+    url: "https://www.neofidu.ch/blog",
+    itemListElement: publishedArticles.map((article, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://www.neofidu.ch/blog/${article.slug}`,
+      name: article.title,
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+      {children}
+    </>
+  );
 }
