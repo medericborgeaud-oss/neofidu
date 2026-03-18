@@ -101,7 +101,7 @@ export default function NeuchatelPage() {
               <>Fiduciary for<br />
               <span className="text-emerald-300">Canton Neuchâtel</span></>
             ) : (
-              <>Fiduciaire pour le<br />
+              <>Fiduciaire pour le{" "}<br />
               <span className="text-emerald-300">Canton de Neuchâtel</span></>
             )}
           </h1>

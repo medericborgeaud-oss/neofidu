@@ -102,7 +102,7 @@ export default function VaudPage() {
               <>Fiduciary for<br />
               <span className="text-emerald-300">Canton Vaud</span></>
             ) : (
-              <>Fiduciaire pour le<br />
+              <>Fiduciaire pour le{" "}<br />
               <span className="text-emerald-300">Canton de Vaud</span></>
             )}
           </h1>

@@ -92,7 +92,7 @@ export default function FribourgPage() {
               <>Fiduciary for<br />
               <span className="text-emerald-300">Canton Fribourg</span></>
             ) : (
-              <>Fiduciaire pour le<br />
+              <>Fiduciaire pour le{" "}<br />
               <span className="text-emerald-300">Canton de Fribourg</span></>
             )}
           </h1>

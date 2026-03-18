@@ -91,7 +91,7 @@ export default function GenevePage() {
               <>Fiduciary for<br />
               <span className="text-emerald-300">Canton Geneva</span></>
             ) : (
-              <>Fiduciaire pour le<br />
+              <>Fiduciaire pour le{" "}<br />
               <span className="text-emerald-300">Canton de Genève</span></>
             )}
           </h1>
