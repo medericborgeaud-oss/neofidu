@@ -751,6 +751,9 @@ export function TaxRequestForm() {
     // Repas hors domicile (jours de travail)
     hasMealsOutside: false,
     mealsOutsideDays: "",
+    // Repas hors domicile - conjoint(e)
+    hasMealsOutside2: false,
+    mealsOutsideDays2: "",
     // Pensions alimentaires
     hasAlimonyReceived: false,
     alimonyReceived: "",
@@ -1854,6 +1857,8 @@ export function TaxRequestForm() {
         guardCosts: formData.guardCosts,
         hasMealsOutside: formData.hasMealsOutside,
         mealsOutsideDays: formData.mealsOutsideDays,
+        hasMealsOutside2: formData.clientType === "couple" ? formData.hasMealsOutside2 : undefined,
+        mealsOutsideDays2: formData.clientType === "couple" ? formData.mealsOutsideDays2 : undefined,
         hasAlimonyReceived: formData.hasAlimonyReceived,
         alimonyReceived: formData.alimonyReceived,
         hasAlimonyPaid: formData.hasAlimonyPaid,
@@ -2286,6 +2291,8 @@ export function TaxRequestForm() {
         guardCosts: "",
         hasMealsOutside: false,
         mealsOutsideDays: "",
+        hasMealsOutside2: false,
+        mealsOutsideDays2: "",
         hasAlimonyReceived: false,
         alimonyReceived: "",
         hasAlimonyPaid: false,
@@ -3487,6 +3494,7 @@ export function TaxRequestForm() {
 
             {/* Repas hors domicile */}
             <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              {/* Contribuable 1 */}
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -3495,7 +3503,11 @@ export function TaxRequestForm() {
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
                 <div>
-                  <span className="font-medium">Je mange hors du domicile lors de mes jours de travail</span>
+                  <span className="font-medium">
+                    {formData.clientType === "couple"
+                      ? `${formData.firstName || "Contribuable 1"} — je mange hors du domicile la majorité de mes jours de travail`
+                      : "Je mange hors du domicile lors de mes jours de travail"}
+                  </span>
                   <p className="text-sm text-blue-600 mt-1">
                     Déductible si vous ne pouvez pas rentrer chez vous pendant la pause de midi
                   </p>
@@ -3504,7 +3516,8 @@ export function TaxRequestForm() {
               {formData.hasMealsOutside && (
                 <div className="mt-4 ml-8">
                   <label className="block text-sm font-medium mb-2">
-                    Nombre de jours par année où vous mangez à l'extérieur
+                    Nombre de jours par année où vous mangez à l’extérieur
+                    {formData.clientType === "couple" && ` (${formData.firstName || "Contribuable 1"})`}
                   </label>
                   <Input
                     type="number"
@@ -3518,6 +3531,46 @@ export function TaxRequestForm() {
                   <p className="text-xs text-muted-foreground mt-1">
                     Environ 220 jours pour un emploi à 100%
                   </p>
+                </div>
+              )}
+              {/* Conjoint(e) — affiché uniquement pour un couple */}
+              {formData.clientType === "couple" && (
+                <div className="border-t border-blue-200 mt-4 pt-4">
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.hasMealsOutside2}
+                      onChange={(e) => updateForm("hasMealsOutside2", e.target.checked)}
+                      className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <div>
+                      <span className="font-medium">
+                        {formData.firstName2 || "Conjoint(e)"} — mange hors du domicile la majorité des jours de travail
+                      </span>
+                      <p className="text-sm text-blue-600 mt-1">
+                        Déductible si le/la conjoint(e) ne peut pas rentrer chez lui/elle pendant la pause de midi
+                      </p>
+                    </div>
+                  </label>
+                  {formData.hasMealsOutside2 && (
+                    <div className="mt-4 ml-8">
+                      <label className="block text-sm font-medium mb-2">
+                        Nombre de jours par année où {formData.firstName2 || "le/la conjoint(e)"} mange à l’extérieur
+                      </label>
+                      <Input
+                        type="number"
+                        min="1"
+                        max="260"
+                        placeholder="Ex: 220"
+                        value={formData.mealsOutsideDays2}
+                        onChange={(e) => updateForm("mealsOutsideDays2", e.target.value)}
+                        className="w-32 rounded-xl"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Environ 220 jours pour un emploi à 100%
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
