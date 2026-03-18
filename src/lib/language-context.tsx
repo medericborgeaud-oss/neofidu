@@ -23,12 +23,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const savedLocale = localStorage.getItem(STORAGE_KEY) as Locale | null;
     if (savedLocale && locales.includes(savedLocale)) {
       setLocaleState(savedLocale);
-    } else {
-      // Detect browser language
-      const browserLang = navigator.language.toLowerCase();
-      if (browserLang.startsWith("en")) {
-        setLocaleState("en");
-      }
     }
     setMounted(true);
   }, []);
