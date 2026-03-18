@@ -54,20 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     }),
 
-    // Extension request
-    createEntry("/demande/prolongation", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    }),
-
-    // Request tracking
-    createEntry("/suivi", {
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    }),
-
     // Swiss abroad page
     createEntry("/suisses-etranger", {
       lastModified: currentDate,
