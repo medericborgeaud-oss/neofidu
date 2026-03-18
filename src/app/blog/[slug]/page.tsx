@@ -97,7 +97,7 @@ function generateArticleJsonLd(article: BlogArticle) {
     description: article.excerpt,
     image: {
       "@type": "ImageObject",
-      url: "https://www.neofidu.ch/og-image.jpg",
+      url: `https://www.neofidu.ch/blog/${article.slug}/opengraph-image`,
       width: 1200,
       height: 630,
     },
