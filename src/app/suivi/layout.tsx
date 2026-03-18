@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.neofidu.ch/suivi",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function SuiviLayout({
