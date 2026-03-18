@@ -5799,96 +5799,114 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     slug: 'suisse-10-millions-habitants-impact-fiscal-immobilier',
     title: 'Suisse à 10 millions d\'habitants : quel impact fiscal et immobilier ?',
     titleEn: 'Switzerland at 10 million inhabitants: fiscal and real estate impact',
-    excerpt: `Le 14 juin 2026, les Suisses votent sur l\'initiative «&nbsp;Pas de Suisse à 10&nbsp;millions&nbsp;!&nbsp;». Découvrez les impacts concrets sur la fiscalité et le marché immobilier helvétique.`,
+    excerpt: `Le 14 juin 2026, les Suisses votent sur l\'initiative « Pas de Suisse à 10 millions ! ». Découvrez les impacts concrets sur la fiscalité et le marché immobilier helvétique.`,
     excerptEn: `On June 14, 2026, Swiss voters decide on the "No Switzerland at 10 million!" initiative. Discover the concrete impacts on taxation and the Swiss real estate market.`,
     keywords: ['10 millions', 'population', 'votation juin 2026', 'immobilier suisse', 'fiscalité', 'initiative UDC', 'bilatérales', 'marché immobilier'],
-    content: `<p>Le <strong>14 juin 2026</strong>, les Suisses sont appelés à se prononcer sur l\'initiative populaire <strong>«&nbsp;Pas de Suisse à 10&nbsp;millions&nbsp;!&nbsp;»</strong>, lancée par l\'UDC. Alors que la population résidante permanente frôle les 9 millions d\'habitants, cette votation soulève des questions majeures pour votre <a href="/blog/fiscalite-impots-suisse">situation fiscale</a> et pour le marché <a href="/blog/immobilier">immobilier</a> helvétique. Voici ce que vous devez savoir.</p>
+    content: `<p>Le <strong>14 juin 2026</strong>, les Suisses sont appelés à se prononcer sur l\'initiative populaire <strong>« Pas de Suisse à 10 millions ! »</strong>, lancée par l\'UDC. Alors que la population résidante permanente frôle les 9 millions d\'habitants, cette votation soulève des questions majeures pour votre <a href="/blog/fiscalite-impots-suisse">situation fiscale</a> et pour le marché <a href="/blog/immobilier">immobilier</a> helvétique. Voici ce que vous devez savoir.</p>
 
-<h2>L\'initiative «&nbsp;Pas de Suisse à 10&nbsp;millions&nbsp;!&nbsp;» : de quoi s\'agit-il&nbsp;?</h2>
+<br/>
 
-<p>Déposée par l\'Union Démocratique du Centre (UDC), cette initiative populaire fédérale vise à inscrire dans la Constitution suisse une limite de <strong>10&nbsp;millions d\'habitants</strong> d\'ici 2050. Concrètement, si la population résidante permanente dépasse 9,5&nbsp;millions avant cette échéance, les autorités seraient contraintes d\'agir – notamment en matière d\'asile et de regroupement familial. En dernier recours, la Suisse devrait dénoncer l\'Accord sur la libre circulation des personnes avec l\'Union européenne.</p>
+<p><strong>L\'initiative « Pas de Suisse à 10 millions ! » : de quoi s\'agit-il ?</strong></p>
 
-<p>C\'est là qu\'intervient la redoutable <strong>clause guillotine</strong> des Bilatérales&nbsp;I : la résiliation de l\'accord sur la libre circulation entraînerait automatiquement la caducité des six autres accords sectoriels (transports terrestres et aériens, marchés publics, obstacles techniques au commerce, agriculture, recherche). Un bouleversement profond des relations économiques entre la Suisse et son principal partenaire commercial.</p>
+<p>Déposée par l\'Union Démocratique du Centre (UDC), cette initiative populaire fédérale vise à inscrire dans la Constitution suisse une limite de <strong>10 millions d\'habitants</strong> d\'ici 2050. Concrètement, si la population résidante permanente dépasse 9,5 millions avant cette échéance, les autorités seraient contraintes d\'agir — notamment en matière d\'asile et de regroupement familial. En dernier recours, la Suisse devrait dénoncer l\'Accord sur la libre circulation des personnes avec l\'Union européenne.</p>
 
-<p>Le Conseil fédéral, le Parlement, la Conférence des gouvernements cantonaux, les syndicats et le patronat rejettent unanimement cette initiative.</p>
+<p>C\'est là qu\'intervient la redoutable <strong>clause guillotine</strong> des Bilatérales I : la résiliation de l\'accord sur la libre circulation entraînerait automatiquement la caducité des six autres accords sectoriels. Un bouleversement profond des relations économiques entre la Suisse et son principal partenaire commercial.</p>
 
-<h2>La croissance démographique suisse : une tendance de fond</h2>
+<p>Le Conseil fédéral, le Parlement, les cantons, les syndicats et le patronat rejettent unanimement cette initiative.</p>
 
-<p>Selon l\'Office fédéral de la statistique (OFS), la Suisse devrait atteindre <strong>10,5&nbsp;millions d\'habitants d\'ici 2050</strong> dans le scénario de référence. Cette croissance repose sur trois piliers :</p>
+<br/>
 
-<ul>
-<li><strong>L\'immigration nette</strong>, alimentée par la libre circulation avec l\'UE/AELE et l\'attractivité économique de la Suisse</li>
-<li><strong>Le solde naturel</strong> (naissances légèrement supérieures aux décès)</li>
-<li><strong>La demande de main-d\'œuvre qualifiée</strong> dans des secteurs en tension comme la santé, l\'informatique et la construction</li>
+<p><strong>La croissance démographique suisse : une tendance de fond</strong></p>
+
+<p>Selon l\'Office fédéral de la statistique (OFS), la Suisse devrait atteindre <strong>10,5 millions d\'habitants d\'ici 2050</strong> dans le scénario de référence. Cette croissance repose sur trois piliers :</p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>L\'immigration nette</strong>, alimentée par la libre circulation avec l\'UE/AELE et l\'attractivité économique de la Suisse</li>
+<li style="margin-bottom: 0.25rem;"><strong>Le solde naturel</strong> (naissances légèrement supérieures aux décès)</li>
+<li style="margin-bottom: 0.25rem;"><strong>La demande de main-d\'œuvre qualifiée</strong> dans des secteurs en tension comme la santé, l\'informatique et la construction</li>
 </ul>
 
 <p>Cette dynamique a des répercussions directes et mesurables sur deux domaines qui vous touchent de près : la fiscalité et le marché immobilier.</p>
 
-<h2>L\'impact sur le marché immobilier suisse</h2>
+<br/>
 
-<p>Depuis l\'an 2000, les prix de l\'immobilier résidentiel ont <strong>plus que doublé en Suisse</strong> (+128&nbsp;%). Cette progression est directement corrélée à la pression démographique : plus de résidents signifie plus de ménages et une demande de logements structurellement supérieure à l\'offre dans les grandes agglomérations.</p>
+<p><strong>L\'impact sur le marché immobilier suisse</strong></p>
+
+<p>Depuis l\'an 2000, les prix de l\'immobilier résidentiel ont <strong>plus que doublé en Suisse (+128 %)</strong>. Cette progression est directement corrélée à la pression démographique : plus de résidents signifie plus de ménages et une demande de logements structurellement supérieure à l\'offre dans les grandes agglomérations.</p>
 
 <p>À Zurich, Genève, Lausanne ou Bâle, la pénurie de logements est chronique. Les projections à horizon 2030 anticipent une poursuite de la hausse des prix, portée par :</p>
 
-<ul>
-<li>Une demande soutenue par la croissance démographique continue</li>
-<li>Des taux d\'intérêt qui pèsent sur la construction neuve</li>
-<li>Des normes environnementales renchérissant les nouveaux projets</li>
-<li>La rareté du foncier dans les cantons urbains</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Une demande soutenue par la croissance démographique continue</li>
+<li style="margin-bottom: 0.25rem;">Des taux d\'intérêt qui pèsent sur la construction neuve</li>
+<li style="margin-bottom: 0.25rem;">Des normes environnementales renchérissant les nouveaux projets</li>
+<li style="margin-bottom: 0.25rem;">La rareté du foncier dans les cantons urbains</li>
 </ul>
 
-<h2>Que se passerait-il si l\'initiative est acceptée&nbsp;?</h2>
+<br/>
 
-<p>En cas de <strong>oui</strong> le 14&nbsp;juin, les effets sur le marché immobilier seraient paradoxaux. À très court terme, un ralentissement de l\'immigration pourrait stabiliser la demande locative dans certaines zones. Mais à moyen et long terme, les conséquences négatives l\'emporteraient :</p>
+<p><strong>Que se passerait-il si l\'initiative est acceptée ?</strong></p>
 
-<ul>
-<li><strong>Pénurie de main-d\'œuvre dans la construction</strong> : le secteur dépend fortement des travailleurs frontaliers et ressortissants européens. Moins de bras disponibles = moins de logements construits, donc des prix maintenus à la hausse.</li>
-<li><strong>Ralentissement économique général</strong> : selon les estimations, la fin des Bilatérales&nbsp;I entraînerait des pertes de plusieurs milliards de francs pour l\'économie suisse, réduisant le pouvoir d\'achat des ménages et la demande immobilière des entreprises.</li>
-<li><strong>Incertitude réglementaire</strong> : les investisseurs institutionnels pourraient adopter une posture attentiste, ce qui freinerait les projets de développement.</li>
+<p>En cas de <strong>oui</strong> le 14 juin, les effets seraient contrastés. Certains aspects pourraient être perçus positivement à court terme :</p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Détente sur le marché locatif</strong> : un ralentissement de l\'immigration réduirait la pression sur la demande de logements, ce qui pourrait stabiliser — voire légèrement faire baisser — les loyers dans certaines régions, rendant l\'accès au logement un peu plus accessible pour les résidents.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Moindre pression sur les infrastructures</strong> : une croissance démographique plus lente signifie moins de besoins urgents d\'expansion des transports, des écoles et des services de santé, ce qui pourrait limiter la hausse des dépenses publiques cantonales à court terme.</li>
 </ul>
 
-<h2>Les conséquences fiscales à anticiper</h2>
+<p>Toutefois, à moyen et long terme, les conséquences négatives l\'emporteraient probablement :</p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Pénurie de main-d\'œuvre dans la construction</strong> : le secteur dépend fortement des travailleurs frontaliers et ressortissants européens. Moins de bras disponibles = moins de logements construits, donc des prix maintenus à la hausse.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Ralentissement économique général</strong> : la fin des Bilatérales I entraînerait des pertes de plusieurs milliards de francs, réduisant le pouvoir d\'achat des ménages et la demande immobilière des entreprises.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Incertitude réglementaire</strong> : les investisseurs institutionnels pourraient adopter une posture attentiste, freinant les projets de développement.</li>
+</ul>
+
+<br/>
+
+<p><strong>Les conséquences fiscales à anticiper</strong></p>
 
 <p>La dimension fiscale est souvent sous-estimée dans ce débat. Elle est pourtant centrale à plusieurs égards.</p>
 
-<p><strong>Financement de l\'AVS et cotisations sociales</strong></p>
-
 <p>La Suisse vieillit. Le départ massif à la retraite des baby-boomers crée un déséquilibre croissant entre cotisants et bénéficiaires du premier pilier. Sans immigration soutenue, plusieurs centaines de milliers de travailleurs manqueraient d\'ici dix ans, avec des conséquences directes pour tous les actifs :</p>
 
-<ul>
-<li>Pression à la hausse sur les <strong>cotisations AVS/AI</strong></li>
-<li>Réduction des recettes fiscales cantonales liées aux travailleurs étrangers</li>
-<li>Risque de hausse de la TVA pour compenser les déficits sociaux</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Pression à la hausse sur les <strong>cotisations AVS/AI</strong></li>
+<li style="margin-bottom: 0.25rem;">Réduction des recettes fiscales cantonales liées aux travailleurs étrangers</li>
+<li style="margin-bottom: 0.25rem;">Risque de hausse de la TVA pour compenser les déficits sociaux</li>
 </ul>
 
-<p><strong>Fiscalité immobilière : les disparités cantonales restent déterminantes</strong></p>
+<br/>
+
+<p><strong>Fiscalité immobilière : les disparités cantonales</strong></p>
 
 <p>Que l\'initiative passe ou non, la <strong>fiscalité immobilière</strong> demeure un enjeu majeur pour tout propriétaire ou investisseur en Suisse. Les écarts entre cantons sont considérables :</p>
 
-<ul>
-<li>À <strong>Genève</strong>, une plus-value de CHF&nbsp;660\'000 réalisée après 30&nbsp;ans de détention génère un impôt sur le gain immobilier d\'environ CHF&nbsp;13\'000 – l\'une des taxations les plus douces de Suisse.</li>
-<li>À <strong>Saint-Gall</strong>, la même plus-value engendre une facture fiscale de CHF&nbsp;170\'000, soit 25,7&nbsp;% du gain.</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">À <strong>Genève</strong>, une plus-value de CHF 660\'000 après 30 ans de détention génère un impôt sur le gain immobilier d\'environ CHF 13\'000.</li>
+<li style="margin-bottom: 0.25rem;">À <strong>Saint-Gall</strong>, la même plus-value engendre une facture fiscale de CHF 170\'000, soit 25,7 % du gain.</li>
 </ul>
 
 <p>Ces écarts illustrent l\'importance d\'une <strong>planification fiscale rigoureuse</strong> avant toute transaction immobilière. Nos experts chez <a href="/contact">Neofidu</a> vous accompagnent dans l\'optimisation de votre situation, canton par canton.</p>
 
-<h2>Ce que cela change pour les entreprises romandes</h2>
+<br/>
+
+<p><strong>Ce que cela change pour les entreprises romandes</strong></p>
 
 <p>Pour les PME de Suisse romande, l\'enjeu est double. D\'un côté, la croissance démographique élargit le bassin de consommateurs et de talents disponibles. De l\'autre, une restriction de l\'immigration compliquerait considérablement le recrutement dans des secteurs déjà en tension : santé, construction, hôtellerie-restauration, technologies.</p>
 
-<p>Sans accès facilité aux travailleurs de l\'UE/AELE, les entreprises devraient recourir aux procédures de contingentement – plus lourdes administrativement, moins flexibles et génératrices de coûts supplémentaires. Une hausse des coûts salariaux qui se traduirait directement dans la charge fiscale globale des sociétés.</p>
+<p>Sans accès facilité aux travailleurs de l\'UE/AELE, les entreprises devraient recourir aux procédures de contingentement — plus lourdes, moins flexibles et génératrices de coûts supplémentaires qui se répercutent directement sur la charge fiscale globale des sociétés.</p>
 
-<p>Pour anticiper ces changements et structurer votre entreprise de manière optimale, consultez nos <a href="/blog/optimisation-fiscale-pme-suisse">conseils en optimisation fiscale pour les PME</a>.</p>
+<br/>
 
-<h2>Notre recommandation : anticiper, quelle que soit l\'issue du vote</h2>
+<p><strong>Notre recommandation : anticiper, quelle que soit l\'issue du vote</strong></p>
 
-<p>Qu\'elle soit acceptée ou rejetée, la votation du <strong>14&nbsp;juin&nbsp;2026</strong> invite chacun à réfléchir à sa situation fiscale et patrimoniale dans un contexte démographique en mutation. Les impacts – sur les prix de l\'immobilier, les cotisations sociales, la fiscalité des personnes physiques et des sociétés – méritent d\'être anticipés dès aujourd\'hui.</p>
+<p>Qu\'elle soit acceptée ou rejetée, la votation du <strong>14 juin 2026</strong> invite chacun à réfléchir à sa situation fiscale et patrimoniale dans un contexte démographique en mutation. Les impacts sur les prix de l\'immobilier, les cotisations sociales et la fiscalité des personnes physiques et des sociétés méritent d\'être anticipés dès aujourd\'hui.</p>
 
-<p>Chez <a href="/contact">Neofidu</a>, notre équipe de fiduciaires digitaux accompagne particuliers, <a href="/blog/expatries-suisse-fiscalite">expatriés</a>, indépendants et dirigeants de PME dans la complexité fiscale suisse. Nous analysons votre situation, identifions les optimisations possibles et vous aidons à prendre les meilleures décisions patrimoniales.</p>
+<p>Chez <a href="/contact">Neofidu</a>, notre équipe de fiduciaires digitaux accompagne particuliers, <a href="/blog/expatries-suisse-fiscalite">expatriés</a>, indépendants et dirigeants de PME dans la complexité fiscale suisse.</p>
 
 <div><a href="/contact">Prendre rendez-vous avec un expert Neofidu →</a></div>`,
     category: 'actualites',
     date: '2026-03-18',
     readTime: 9,
-  },
-];
+  },];
