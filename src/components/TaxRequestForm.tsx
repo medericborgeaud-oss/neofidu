@@ -3322,25 +3322,25 @@ export function TaxRequestForm() {
                           Indiquez le pourcentage de travail du conjoint
                         </p>
                       </div>
-<div>
-                <label className="block text-sm font-medium mb-2">
-                  Statut de résidence
-                </label>
-                <select
-                  value={formData.residenceStatus2}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    handleChange('residenceStatus2', value);
-                  }}
-                  className="w-full p-3 rounded-xl border border-input bg-white focus:ring-2 focus:ring-primary focus:outline-none"
-                >
-                  <option value="">Sélectionner statut de résidence</option>
-                  {residenceStatus2es.map(s => (
-                    <option key={s.id} value={s.id}>{s.name}</option>
-                  ))}
-                </select>
-              </div>
                     )}
+                    <div>
+                      <label className="block text-sm font-medium mb-2">
+                        Statut de résidence
+                      </label>
+                      <select
+                        value={formData.residenceStatus2}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          handleChange('residenceStatus2', value);
+                        }}
+                        className="w-full p-3 rounded-xl border border-input bg-white focus:ring-2 focus:ring-primary focus:outline-none"
+                      >
+                        <option value="">Sélectionner statut de résidence</option>
+                        {residenceStatuses.map(s => (
+                          <option key={s.id} value={s.id}>{s.name}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 )}
               </div>
