@@ -151,6 +151,16 @@ const transportModes = [
   { id: "none", name: "Pas de trajet", description: "Télétravail complet" },
 ];
 
+const residenceStatuses = [
+  { id: "swiss", name: "Suisse (citoyen/ne)" },
+  { id: "permitB", name: "Permis B (séjour)" },
+  { id: "permitC", name: "Permis C (établissement)" },
+  { id: "permitG", name: "Permis G (frontalier)" },
+  { id: "permitL", name: "Permis L (séjour court)" },
+  { id: "permitF", name: "Permis F (admis provisoire)" },
+  { id: "other", name: "Autre" },
+];
+
 const maritalStatuses = [
   { id: "single", name: "Célibataire", description: "Jamais marié(e)" },
   { id: "married", name: "Marié(e)", description: "Union légale" },
@@ -708,6 +718,7 @@ export function TaxRequestForm() {
 
   const [formData, setFormData] = useState({
     canton: "",
+    residenceStatus: "",
     // Suisses de l'étranger
     livesAbroad: false,
     countryOfResidence: "",
@@ -2945,7 +2956,27 @@ export function TaxRequestForm() {
                 )}
               </div>
 
-              {/* État civil */}
+                            {/* Statut de résidence */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Statut de résidence
+                </label>
+                <select
+                  value={formData.residenceStatus}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    handleChange('residenceStatus', value);
+                  }}
+                  className="w-full p-3 rounded-xl border border-input bg-white focus:ring-2 focus:ring-primary focus:outline-none"
+                >
+                  <option value="">Sélectionner statut de résidence</option>
+                  {residenceStatuses.map(s => (
+                    <option key={s.id} value={s.id}>{s.name}</option>
+                  ))}
+                </select>
+              </div>
+
+{/* État civil */}
               <div>
                 <label className="block text-sm font-medium mb-2">
                   État civil <span className="text-red-500">*</span>
