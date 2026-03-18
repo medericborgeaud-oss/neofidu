@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Déclaration d'impôts en ligne Suisse | Devis gratuit | Neofidu",
+  title: "Déclaration d'impôts en ligne Suisse | Devis gratuit",
   description:
     "Remplissez votre déclaration d'impôts suisse en ligne. Service fiduciaire pour particuliers, couples et indépendants. Dès CHF 50.- Vaud, Genève, Valais, Fribourg. Devis gratuit en 2 minutes.",
   keywords: [
