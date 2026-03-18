@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Création d'entreprise en Suisse 2026",
   description:
-    "Créez votre entreprise en Suisse avec Neofidu. Accompagnement complet pour SA, Sàrl ou raison individuelle. Dès CHF 290.- Devis gratuit sous 1 jour ouvré. Inscription RC, statuts, AVS inclus.",
+    "Créez votre entreprise en Suisse avec Neofidu. SA, Sàrl ou raison individuelle dès CHF 290.-. Devis gratuit sous 24h. RC, statuts et AVS inclus.",
   keywords: [
     // Termes principaux
     "création entreprise suisse",
