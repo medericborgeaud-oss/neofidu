@@ -86,45 +86,45 @@ export const blogArticles: BlogArticle[] = [
 <p style="margin: 8px 0 0 0; font-size: 14px; color: #666;">Utilisez notre <a href="/simulateur/baisse-loyer" style="color: #16a34a; font-weight: 500;">calculateur de baisse de loyer</a> pour estimer votre réduction en 30 secondes.</p>
 </div>
 
-<h2><strong>Dans cet article</strong></h2>
-<ul>
-<li><a href="#taux-reference">C'est quoi le taux de référence ?</a></li>
-<li><a href="#qui-peut-demander">Est-ce que j'y ai droit ?</a></li>
-<li><a href="#calcul">Combien je peux économiser ?</a></li>
-<li><a href="#procedure">Comment faire la demande</a></li>
-<li><a href="#modele-lettre">Modèle de lettre prêt à l'emploi</a></li>
-<li><a href="#refus">Si mon bailleur refuse</a></li>
+<p><strong>Dans cet article</strong></p>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><a href="#taux-reference">C'est quoi le taux de référence ?</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#qui-peut-demander">Est-ce que j'y ai droit ?</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#calcul">Combien je peux économiser ?</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#procedure">Comment faire la demande</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#modele-lettre">Modèle de lettre prêt à l'emploi</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#refus">Si mon bailleur refuse</a></li>
 </ul>
 
-<h2 id="taux-reference"><strong>C'est quoi le taux de référence hypothécaire ?</strong></h2>
+<h2 id="taux-reference"><strong>C'est quoi le taux de référence hypothécaire ?</strong></p>
 <p>En gros, c'est la moyenne des taux d'intérêt que les banques suisses appliquent sur les prêts immobiliers. L'Office fédéral du logement le publie chaque trimestre.</p>
 
 <p>Pourquoi c'est important pour vous ?</p>
-<ul>
-<li>Quand ce taux <strong>baisse</strong> → vous pouvez demander une réduction de loyer</li>
-<li>Quand il <strong>monte</strong> → le propriétaire peut augmenter votre loyer</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Quand ce taux <strong>baisse</strong> → vous pouvez demander une réduction de loyer</li>
+<li style="margin-bottom: 0.25rem;">Quand il <strong>monte</strong> → le propriétaire peut augmenter votre loyer</li>
 </ul>
 
 <p>Actuellement, on est à <strong>1.75%</strong> depuis décembre 2023. Pour rappel, il était descendu jusqu'à 1.25% pendant la période Covid.</p>
 
-<h2 id="qui-peut-demander"><strong>Est-ce que j'ai droit à une baisse ?</strong></h2>
+<h2 id="qui-peut-demander"><strong>Est-ce que j'ai droit à une baisse ?</strong></p>
 <p>Oui, si ces deux conditions sont remplies :</p>
 <ol>
-<li>Le taux actuel (1.75%) est <strong>plus bas</strong> que celui qui était en vigueur quand vous avez signé votre bail ou reçu votre dernière modification de loyer</li>
-<li>Votre bail n'a pas de clause d'indexation ou de loyer échelonné (c'est rare, vérifiez quand même)</li>
+<li style="margin-bottom: 0.25rem;">Le taux actuel (1.75%) est <strong>plus bas</strong> que celui qui était en vigueur quand vous avez signé votre bail ou reçu votre dernière modification de loyer</li>
+<li style="margin-bottom: 0.25rem;">Votre bail n'a pas de clause d'indexation ou de loyer échelonné (c'est rare, vérifiez quand même)</li>
 </ol>
 
 <p>Concrètement, la "dernière fixation de loyer" c'est :</p>
-<ul>
-<li>La date où vous avez emménagé</li>
-<li>Ou la dernière fois que votre loyer a changé (hausse ou baisse)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">La date où vous avez emménagé</li>
+<li style="margin-bottom: 0.25rem;">Ou la dernière fois que votre loyer a changé (hausse ou baisse)</li>
 </ul>
 
 <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
 <p style="margin: 0;"><strong>💡 Exemple concret :</strong> Vous avez signé en 2020 quand le taux était à 1.25% ? Pas de chance, le taux a monté depuis. Par contre, si vous êtes là depuis 2012 (taux à 2.25%), jackpot : vous pouvez demander une belle réduction !</p>
 </div>
 
-<h2 id="calcul"><strong>Combien je peux économiser ?</strong></h2>
+<h2 id="calcul"><strong>Combien je peux économiser ?</strong></p>
 <p>Voici la règle simple : chaque baisse de <strong>0.25%</strong> du taux vous donne droit à environ <strong>2.91%</strong> de réduction sur votre loyer.</p>
 
 <h3><strong>Le tableau qui dit tout</strong></h3>
@@ -146,18 +146,18 @@ export const blogArticles: BlogArticle[] = [
 <h3><strong>Un exemple pour y voir clair</strong></h3>
 <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 16px 0;">
 <p><strong>Votre situation :</strong></p>
-<ul>
-<li>Loyer actuel : CHF 1'800/mois</li>
-<li>Taux quand vous avez emménagé (2012) : 2.25%</li>
-<li>Taux actuel : 1.75%</li>
-<li>Différence : 0.50% (2 paliers)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Loyer actuel : CHF 1'800/mois</li>
+<li style="margin-bottom: 0.25rem;">Taux quand vous avez emménagé (2012) : 2.25%</li>
+<li style="margin-bottom: 0.25rem;">Taux actuel : 1.75%</li>
+<li style="margin-bottom: 0.25rem;">Différence : 0.50% (2 paliers)</li>
 </ul>
 <p><strong>Résultat :</strong></p>
-<ul>
-<li>Réduction : 2 × 2.91% = 5.82%</li>
-<li>Vous économisez : <strong>CHF 105/mois</strong></li>
-<li>Nouveau loyer : <strong>CHF 1'695</strong></li>
-<li>Sur l'année : <strong>CHF 1'260 dans votre poche</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Réduction : 2 × 2.91% = 5.82%</li>
+<li style="margin-bottom: 0.25rem;">Vous économisez : <strong>CHF 105/mois</strong></li>
+<li style="margin-bottom: 0.25rem;">Nouveau loyer : <strong>CHF 1'695</strong></li>
+<li style="margin-bottom: 0.25rem;">Sur l'année : <strong>CHF 1'260 dans votre poche</strong></li>
 </ul>
 </div>
 
@@ -165,17 +165,17 @@ export const blogArticles: BlogArticle[] = [
 <a href="/simulateur/baisse-loyer" style="display: inline-block; background: #16a34a; color: white; padding: 12px 24px; border-radius: 9999px; text-decoration: none; font-weight: 600;">Calculer ma baisse de loyer →</a>
 </p>
 
-<h2 id="procedure"><strong>Comment demander une baisse (en 5 étapes)</strong></h2>
+<h2 id="procedure"><strong>Comment demander une baisse (en 5 étapes)</strong></p>
 <p>C'est plus simple que vous ne le pensez :</p>
 <ol>
-<li><strong>Vérifiez si vous y avez droit</strong> — Comparez le taux actuel avec celui de votre entrée</li>
-<li><strong>Calculez votre économie</strong> — Utilisez notre calculateur, c'est instantané</li>
-<li><strong>Écrivez une lettre</strong> — On vous donne un modèle juste en-dessous</li>
-<li><strong>Envoyez en recommandé</strong> — Gardez toujours une preuve</li>
-<li><strong>Respectez le timing</strong> — Minimum 3 mois avant le prochain terme</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vérifiez si vous y avez droit</strong> — Comparez le taux actuel avec celui de votre entrée</li>
+<li style="margin-bottom: 0.25rem;"><strong>Calculez votre économie</strong> — Utilisez notre calculateur, c'est instantané</li>
+<li style="margin-bottom: 0.25rem;"><strong>Écrivez une lettre</strong> — On vous donne un modèle juste en-dessous</li>
+<li style="margin-bottom: 0.25rem;"><strong>Envoyez en recommandé</strong> — Gardez toujours une preuve</li>
+<li style="margin-bottom: 0.25rem;"><strong>Respectez le timing</strong> — Minimum 3 mois avant le prochain terme</li>
 </ol>
 
-<h2 id="modele-lettre"><strong>Modèle de lettre (copier-coller)</strong></h2>
+<h2 id="modele-lettre"><strong>Modèle de lettre (copier-coller)</strong></p>
 <p>Voici une lettre prête à l'emploi. Il suffit de remplacer les crochets par vos infos :</p>
 <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 16px 0; font-family: monospace; font-size: 14px; white-space: pre-line;">
 [Votre nom et adresse]
@@ -206,25 +206,25 @@ Meilleures salutations,
 [Nom]
 </div>
 
-<h2><strong>Les délais importants</strong></h2>
-<ul>
-<li><strong>Quand demander ?</strong> — N'importe quand, mais anticipez</li>
-<li><strong>Effet de la baisse</strong> — Au prochain terme (souvent fin de trimestre)</li>
-<li><strong>Préavis</strong> — Généralement 3 mois avant le terme</li>
-<li><strong>Réponse du bailleur</strong> — Il a 30 jours pour vous répondre</li>
+<p><strong>Les délais importants</strong></p>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Quand demander ?</strong> — N'importe quand, mais anticipez</li>
+<li style="margin-bottom: 0.25rem;"><strong>Effet de la baisse</strong> — Au prochain terme (souvent fin de trimestre)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Préavis</strong> — Généralement 3 mois avant le terme</li>
+<li style="margin-bottom: 0.25rem;"><strong>Réponse du bailleur</strong> — Il a 30 jours pour vous répondre</li>
 </ul>
 
-<h2 id="refus"><strong>Et si mon bailleur refuse ?</strong></h2>
+<h2 id="refus"><strong>Et si mon bailleur refuse ?</strong></p>
 <p>Pas de panique, vous avez des recours :</p>
 <ol>
-<li><strong>L'autorité de conciliation</strong> — C'est gratuit et c'est l'étape obligatoire avant d'aller plus loin</li>
-<li><strong>L'ASLOCA</strong> — L'association des locataires peut vous conseiller</li>
-<li><strong>Le Tribunal des baux</strong> — En dernier recours</li>
+<li style="margin-bottom: 0.25rem;"><strong>L'autorité de conciliation</strong> — C'est gratuit et c'est l'étape obligatoire avant d'aller plus loin</li>
+<li style="margin-bottom: 0.25rem;"><strong>L'ASLOCA</strong> — L'association des locataires peut vous conseiller</li>
+<li style="margin-bottom: 0.25rem;"><strong>Le Tribunal des baux</strong> — En dernier recours</li>
 </ol>
 
 <p>Bon à savoir : le bailleur peut contester s'il prouve que ses coûts ont augmenté (travaux, inflation...). Mais il doit le démontrer précisément, pas juste le dire.</p>
 
-<h2><strong>Historique des taux</strong></h2>
+<p><strong>Historique des taux</strong></p>
 <p>Pour savoir si vous êtes éligible, voici l'évolution du taux :</p>
 <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
 <thead>
@@ -244,7 +244,7 @@ Meilleures salutations,
 </tbody>
 </table>
 
-<h2 id="faq"><strong>Questions fréquentes</strong></h2>
+<h2 id="faq"><strong>Questions fréquentes</strong></p>
 
 <h3><strong>La baisse est automatique ?</strong></h3>
 <p>Non ! C'est le piège. Si vous ne demandez rien, votre loyer reste le même. C'est à vous de faire la démarche — et beaucoup de locataires l'ignorent.</p>
@@ -258,7 +258,7 @@ Meilleures salutations,
 <h3><strong>Ça marche dans tous les cantons ?</strong></h3>
 <p>Oui, le taux de référence est national. Que vous soyez à Vaud, Genève, Valais, Fribourg, Neuchâtel ou ailleurs — c'est le même principe.</p>
 
-<h2><strong>En résumé</strong></h2>
+<p><strong>En résumé</strong></p>
 <p>Demander une baisse de loyer, c'est votre droit. Si vous êtes locataire depuis quelques années et que le taux a baissé, vous pouvez potentiellement économiser plusieurs centaines de francs par an. La procédure est simple, gratuite, et ça prend 10 minutes. Alors pourquoi s'en priver ?</p>
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 24px; border-radius: 12px; margin: 24px 0; text-align: center;">
@@ -326,40 +326,40 @@ Meilleures salutations,
 <p style="margin: 0;">⚡ <strong>Pressé ?</strong> Utilisez notre <a href="/simulateur/salaire-net" style="color: #16a34a;">simulateur de salaire net</a> pour calculer ce qui vous reste après impôts.</p>
 </div>
 
-<h2><strong>Dans cet article</strong></h2>
-<ul>
-<li><a href="#quest-ce-que-limpot-a-la-source">C'est quoi l'impôt à la source ?</a></li>
-<li><a href="#qui-est-soumis">Est-ce que je suis concerné ?</a></li>
-<li><a href="#bareme">Comment ça se calcule ?</a></li>
-<li><a href="#rectification">Comment récupérer de l'argent</a></li>
-<li><a href="#tou">La TOU : passer en taxation normale</a></li>
-<li><a href="#cantons">Les différences par canton</a></li>
-<li><a href="#faq">Questions fréquentes</a></li>
+<p><strong>Dans cet article</strong></p>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><a href="#quest-ce-que-limpot-a-la-source">C'est quoi l'impôt à la source ?</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#qui-est-soumis">Est-ce que je suis concerné ?</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#bareme">Comment ça se calcule ?</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#rectification">Comment récupérer de l'argent</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#tou">La TOU : passer en taxation normale</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#cantons">Les différences par canton</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#faq">Questions fréquentes</a></li>
 </ul>
 
-<h2><strong>C'est quoi l'impôt à la source ?</strong></h2>
+<p><strong>C'est quoi l'impôt à la source ?</strong></p>
 
 <p>En gros, c'est simple : au lieu de payer vos impôts une fois par an (comme les Suisses), votre employeur les prélève <strong>chaque mois directement sur votre salaire</strong>. Vous recevez donc un salaire déjà "net d'impôts".</p>
 
 <p>L'avantage ? Pas de mauvaise surprise en fin d'année. L'inconvénient ? Le barème est souvent défavorable, et vous payez <strong>plus que nécessaire</strong>.</p>
 
 <h3><strong>Le bon côté</strong></h3>
-<ul>
-<li>Pas de grosse facture d'impôts qui tombe en mars</li>
-<li>Paiement étalé sur 12 mois, c'est plus digeste</li>
-<li>Pas de déclaration à remplir (enfin, presque...)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Pas de grosse facture d'impôts qui tombe en mars</li>
+<li style="margin-bottom: 0.25rem;">Paiement étalé sur 12 mois, c'est plus digeste</li>
+<li style="margin-bottom: 0.25rem;">Pas de déclaration à remplir (enfin, presque...)</li>
 </ul>
 
 <h3><strong>Le moins bon</strong></h3>
-<ul>
-<li>Le barème ne prend pas en compte vos déductions perso</li>
-<li>Vous payez souvent trop — parfois plusieurs centaines de francs</li>
-<li>Il faut demander une rectification pour récupérer le trop-perçu</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Le barème ne prend pas en compte vos déductions perso</li>
+<li style="margin-bottom: 0.25rem;">Vous payez souvent trop — parfois plusieurs centaines de francs</li>
+<li style="margin-bottom: 0.25rem;">Il faut demander une rectification pour récupérer le trop-perçu</li>
 </ul>
 
 <br/>
 
-<h2><strong>Qui est soumis à l'impôt à la source ?</strong></h2>
+<p><strong>Qui est soumis à l'impôt à la source ?</strong></p>
 
 <br/>
 
@@ -393,7 +393,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Quand l'impôt à la source NE s'applique PAS</strong></h2>
+<p><strong>Quand l'impôt à la source NE s'applique PAS</strong></p>
 
 <br/>
 
@@ -431,7 +431,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Tableau récapitulatif : Impôt à la source ou déclaration ?</strong></h2>
+<p><strong>Tableau récapitulatif : Impôt à la source ou déclaration ?</strong></p>
 
 <br/>
 
@@ -484,18 +484,18 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Comment fonctionne le barème de l'impôt à la source ?</strong></h2>
+<p><strong>Comment fonctionne le barème de l'impôt à la source ?</strong></p>
 
 <br/>
 
 <p>L'impôt à la source est calculé selon un <strong>barème standardisé</strong> qui prend en compte :</p>
 
-<ul>
-<li>Votre <strong>salaire brut</strong></li>
-<li>Votre <strong>état civil</strong> (célibataire, marié, etc.)</li>
-<li>Votre <strong>nombre d'enfants</strong></li>
-<li>Votre <strong>confession</strong> (impôt ecclésiastique)</li>
-<li>Votre <strong>canton de travail</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Votre <strong>salaire brut</strong></li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>état civil</strong> (célibataire, marié, etc.)</li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>nombre d'enfants</strong></li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>confession</strong> (impôt ecclésiastique)</li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>canton de travail</strong></li>
 </ul>
 
 <br/>
@@ -504,11 +504,11 @@ Meilleures salutations,
 
 <p>Chaque situation correspond à un code à une lettre :</p>
 
-<ul>
-<li><strong>A</strong> : Célibataire sans enfant</li>
-<li><strong>B</strong> : Marié, conjoint sans revenu</li>
-<li><strong>C</strong> : Marié, les deux conjoints travaillent</li>
-<li><strong>H</strong> : Famille monoparentale</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>A</strong> : Célibataire sans enfant</li>
+<li style="margin-bottom: 0.25rem;"><strong>B</strong> : Marié, conjoint sans revenu</li>
+<li style="margin-bottom: 0.25rem;"><strong>C</strong> : Marié, les deux conjoints travaillent</li>
+<li style="margin-bottom: 0.25rem;"><strong>H</strong> : Famille monoparentale</li>
 </ul>
 
 <p>Un chiffre indique le nombre d'enfants (ex: B2 = marié, conjoint sans revenu, 2 enfants).</p>
@@ -519,7 +519,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>La rectification : récupérez votre argent !</strong></h2>
+<p><strong>La rectification : récupérez votre argent !</strong></p>
 
 <br/>
 
@@ -531,14 +531,14 @@ Meilleures salutations,
 
 <p>La rectification (aussi appelée <strong>demande de correction</strong>) permet de :</p>
 
-<ul>
-<li>Déduire votre <strong>3ème pilier (pilier 3a)</strong></li>
-<li>Déduire vos <strong>frais de transport</strong> domicile-travail</li>
-<li>Déduire vos <strong>frais de repas</strong> hors domicile</li>
-<li>Déduire vos <strong>frais de garde</strong> d'enfants</li>
-<li>Déduire vos <strong>rachats de 2ème pilier</strong></li>
-<li>Déduire les <strong>pensions alimentaires</strong> versées</li>
-<li>Déduire vos <strong>frais de formation</strong> continue</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Déduire votre <strong>3ème pilier (pilier 3a)</strong></li>
+<li style="margin-bottom: 0.25rem;">Déduire vos <strong>frais de transport</strong> domicile-travail</li>
+<li style="margin-bottom: 0.25rem;">Déduire vos <strong>frais de repas</strong> hors domicile</li>
+<li style="margin-bottom: 0.25rem;">Déduire vos <strong>frais de garde</strong> d'enfants</li>
+<li style="margin-bottom: 0.25rem;">Déduire vos <strong>rachats de 2ème pilier</strong></li>
+<li style="margin-bottom: 0.25rem;">Déduire les <strong>pensions alimentaires</strong> versées</li>
+<li style="margin-bottom: 0.25rem;">Déduire vos <strong>frais de formation</strong> continue</li>
 </ul>
 
 <br/>
@@ -554,22 +554,22 @@ Meilleures salutations,
 <h3><strong>Exemple chiffré de rectification</strong></h3>
 
 <p><strong>Situation :</strong> Marco, 32 ans, permis B, célibataire, travaille à Lausanne.</p>
-<ul>
-<li>Salaire annuel : CHF 85'000</li>
-<li>Impôt à la source prélevé : CHF 11'200</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Salaire annuel : CHF 85'000</li>
+<li style="margin-bottom: 0.25rem;">Impôt à la source prélevé : CHF 11'200</li>
 </ul>
 
 <p><strong>Ses déductions :</strong></p>
-<ul>
-<li>3ème pilier : CHF 7'258</li>
-<li>Frais de transport (30 km/jour en train) : CHF 3'200</li>
-<li>Frais de repas (pas de cantine) : CHF 3'200</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">3ème pilier : CHF 7'258</li>
+<li style="margin-bottom: 0.25rem;">Frais de transport (30 km/jour en train) : CHF 3'200</li>
+<li style="margin-bottom: 0.25rem;">Frais de repas (pas de cantine) : CHF 3'200</li>
 </ul>
 
 <p><strong>Après rectification :</strong></p>
-<ul>
-<li>Impôt recalculé : CHF 9'100</li>
-<li><strong>Remboursement : CHF 2'100 !</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Impôt recalculé : CHF 9'100</li>
+<li style="margin-bottom: 0.25rem;"><strong>Remboursement : CHF 2'100 !</strong></li>
 </ul>
 
 <br/>
@@ -580,7 +580,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>La Taxation Ordinaire Ultérieure (TOU) : pour les frontaliers quasi-résidents</strong></h2>
+<p><strong>La Taxation Ordinaire Ultérieure (TOU) : pour les frontaliers quasi-résidents</strong></p>
 
 <br/>
 
@@ -592,12 +592,12 @@ Meilleures salutations,
 
 <h3><strong>Avantages de la TOU</strong></h3>
 
-<ul>
-<li>Déduction du 3ème pilier</li>
-<li>Déduction des intérêts hypothécaires</li>
-<li>Déduction des frais de garde</li>
-<li>Déduction des rachats de 2ème pilier</li>
-<li>Toutes les déductions des résidents !</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Déduction du 3ème pilier</li>
+<li style="margin-bottom: 0.25rem;">Déduction des intérêts hypothécaires</li>
+<li style="margin-bottom: 0.25rem;">Déduction des frais de garde</li>
+<li style="margin-bottom: 0.25rem;">Déduction des rachats de 2ème pilier</li>
+<li style="margin-bottom: 0.25rem;">Toutes les déductions des résidents !</li>
 </ul>
 
 <br/>
@@ -608,17 +608,17 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Les spécificités par canton</strong></h2>
+<p><strong>Les spécificités par canton</strong></p>
 
 <br/>
 
 <h3><strong><a href="/cantons/geneve">Canton de Genève</a></strong></h3>
 
 <p>Genève applique un système particulier pour les frontaliers français :</p>
-<ul>
-<li>Les frontaliers sont imposés à la source à Genève</li>
-<li>Le statut de <strong>quasi-résident</strong> est accessible sous conditions</li>
-<li>Délai de rectification : <strong>31 mars</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Les frontaliers sont imposés à la source à Genève</li>
+<li style="margin-bottom: 0.25rem;">Le statut de <strong>quasi-résident</strong> est accessible sous conditions</li>
+<li style="margin-bottom: 0.25rem;">Délai de rectification : <strong>31 mars</strong></li>
 </ul>
 
 <p>En savoir plus : <a href="/cantons/geneve">Guide fiscal du canton de Genève</a></p>
@@ -628,10 +628,10 @@ Meilleures salutations,
 <h3><strong>Canton de Vaud</strong></h3>
 
 <p>Dans le canton de Vaud :</p>
-<ul>
-<li>Les titulaires de permis B sont imposés à la source</li>
-<li>La rectification est possible via <strong>VaudTax</strong></li>
-<li>Seuil des CHF 120'000 strictement appliqué</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Les titulaires de permis B sont imposés à la source</li>
+<li style="margin-bottom: 0.25rem;">La rectification est possible via <strong>VaudTax</strong></li>
+<li style="margin-bottom: 0.25rem;">Seuil des CHF 120'000 strictement appliqué</li>
 </ul>
 
 <p>En savoir plus : <a href="/cantons/vaud">Guide fiscal du canton de Vaud</a></p>
@@ -641,11 +641,11 @@ Meilleures salutations,
 <h3><strong>Canton du Valais</strong></h3>
 
 <p>Le Valais a des conventions spécifiques :</p>
-<ul>
-<li>Certains frontaliers français sont imposés en France (communes frontalières)</li>
-<li>D'autres sont imposés en Valais</li>
-<li>Taux d'imposition parmi les plus bas de Suisse romande</li>
-<li>Vérifiez votre situation spécifique !</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Certains frontaliers français sont imposés en France (communes frontalières)</li>
+<li style="margin-bottom: 0.25rem;">D'autres sont imposés en Valais</li>
+<li style="margin-bottom: 0.25rem;">Taux d'imposition parmi les plus bas de Suisse romande</li>
+<li style="margin-bottom: 0.25rem;">Vérifiez votre situation spécifique !</li>
 </ul>
 
 <p>En savoir plus : <a href="/cantons/valais">Guide fiscal du canton du Valais</a></p>
@@ -655,11 +655,11 @@ Meilleures salutations,
 <h3><strong>Canton de Fribourg</strong></h3>
 
 <p>Particularités du canton de Fribourg :</p>
-<ul>
-<li>Taux d'imposition modérés comparés à Vaud et Neuchâtel</li>
-<li>Frontaliers imposés en France (convention franco-suisse)</li>
-<li>Rectification possible via le formulaire cantonal</li>
-<li>Canton bilingue (français/allemand) : attention aux formulaires</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Taux d'imposition modérés comparés à Vaud et Neuchâtel</li>
+<li style="margin-bottom: 0.25rem;">Frontaliers imposés en France (convention franco-suisse)</li>
+<li style="margin-bottom: 0.25rem;">Rectification possible via le formulaire cantonal</li>
+<li style="margin-bottom: 0.25rem;">Canton bilingue (français/allemand) : attention aux formulaires</li>
 </ul>
 
 <p>En savoir plus : <a href="/cantons/fribourg">Guide fiscal du canton de Fribourg</a></p>
@@ -669,11 +669,11 @@ Meilleures salutations,
 <h3><strong>Canton de Neuchâtel</strong></h3>
 
 <p>Spécificités neuchâteloises :</p>
-<ul>
-<li>Taux d'imposition parmi les plus élevés de Suisse romande</li>
-<li>Frontaliers imposés en France avec rétrocession</li>
-<li>Délai de rectification : <strong>31 mars</strong></li>
-<li>Possibilité de paiement échelonné en cas de régularisation</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Taux d'imposition parmi les plus élevés de Suisse romande</li>
+<li style="margin-bottom: 0.25rem;">Frontaliers imposés en France avec rétrocession</li>
+<li style="margin-bottom: 0.25rem;">Délai de rectification : <strong>31 mars</strong></li>
+<li style="margin-bottom: 0.25rem;">Possibilité de paiement échelonné en cas de régularisation</li>
 </ul>
 
 <p>En savoir plus : <a href="/cantons/neuchatel">Guide fiscal du canton de Neuchâtel</a></p>
@@ -683,18 +683,18 @@ Meilleures salutations,
 <h3><strong>Canton du Jura</strong></h3>
 
 <p>Le Jura, plus jeune canton suisse :</p>
-<ul>
-<li>Taux d'imposition compétitifs pour attirer les contribuables</li>
-<li>Frontaliers imposés en France</li>
-<li>Administration fiscale réactive et accessible</li>
-<li>Délai de rectification : <strong>31 mars</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Taux d'imposition compétitifs pour attirer les contribuables</li>
+<li style="margin-bottom: 0.25rem;">Frontaliers imposés en France</li>
+<li style="margin-bottom: 0.25rem;">Administration fiscale réactive et accessible</li>
+<li style="margin-bottom: 0.25rem;">Délai de rectification : <strong>31 mars</strong></li>
 </ul>
 
 <p>En savoir plus : <a href="/cantons/jura">Guide fiscal du canton du Jura</a></p>
 
 <br/>
 
-<h2><strong>Erreurs fréquentes à éviter</strong></h2>
+<p><strong>Erreurs fréquentes à éviter</strong></p>
 
 <br/>
 
@@ -722,7 +722,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Checklist : optimisez votre impôt à la source</strong></h2>
+<p><strong>Checklist : optimisez votre impôt à la source</strong></p>
 
 <br/>
 
@@ -746,7 +746,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>What Is Withholding Tax?</strong></h2>
+<p><strong>What Is Withholding Tax?</strong></p>
 
 <br/>
 
@@ -758,25 +758,25 @@ Meilleures salutations,
 
 <h3><strong>Advantages of the System</strong></h3>
 
-<ul>
-<li>✅ No large tax bill at year-end</li>
-<li>✅ Payments spread over 12 months</li>
-<li>✅ Simplicity: no return to file (in most cases)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">✅ No large tax bill at year-end</li>
+<li style="margin-bottom: 0.25rem;">✅ Payments spread over 12 months</li>
+<li style="margin-bottom: 0.25rem;">✅ Simplicity: no return to file (in most cases)</li>
 </ul>
 
 <br/>
 
 <h3><strong>Disadvantages</strong></h3>
 
-<ul>
-<li>❌ Flat-rate scale that doesn't account for all your deductions</li>
-<li>❌ You often pay <strong>more than necessary</strong></li>
-<li>❌ Need to request a correction to recover overpayments</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">❌ Flat-rate scale that doesn't account for all your deductions</li>
+<li style="margin-bottom: 0.25rem;">❌ You often pay <strong>more than necessary</strong></li>
+<li style="margin-bottom: 0.25rem;">❌ Need to request a correction to recover overpayments</li>
 </ul>
 
 <br/>
 
-<h2><strong>Who Is Subject to Withholding Tax?</strong></h2>
+<p><strong>Who Is Subject to Withholding Tax?</strong></p>
 
 <br/>
 
@@ -810,7 +810,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>When Withholding Tax Does NOT Apply</strong></h2>
+<p><strong>When Withholding Tax Does NOT Apply</strong></p>
 
 <br/>
 
@@ -848,7 +848,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Summary Table: Withholding Tax or Tax Return?</strong></h2>
+<p><strong>Summary Table: Withholding Tax or Tax Return?</strong></p>
 
 <br/>
 
@@ -901,7 +901,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Tax Correction: Get Your Money Back!</strong></h2>
+<p><strong>Tax Correction: Get Your Money Back!</strong></p>
 
 <br/>
 
@@ -913,14 +913,14 @@ Meilleures salutations,
 
 <p>A correction (also called <strong>rectification</strong>) allows you to:</p>
 
-<ul>
-<li>Deduct your <strong>3rd pillar (pillar 3a)</strong></li>
-<li>Deduct your <strong>commuting costs</strong></li>
-<li>Deduct your <strong>meal expenses</strong> outside home</li>
-<li>Deduct your <strong>childcare costs</strong></li>
-<li>Deduct your <strong>2nd pillar purchases</strong></li>
-<li>Deduct <strong>alimony payments</strong></li>
-<li>Deduct your <strong>continuing education costs</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Deduct your <strong>3rd pillar (pillar 3a)</strong></li>
+<li style="margin-bottom: 0.25rem;">Deduct your <strong>commuting costs</strong></li>
+<li style="margin-bottom: 0.25rem;">Deduct your <strong>meal expenses</strong> outside home</li>
+<li style="margin-bottom: 0.25rem;">Deduct your <strong>childcare costs</strong></li>
+<li style="margin-bottom: 0.25rem;">Deduct your <strong>2nd pillar purchases</strong></li>
+<li style="margin-bottom: 0.25rem;">Deduct <strong>alimony payments</strong></li>
+<li style="margin-bottom: 0.25rem;">Deduct your <strong>continuing education costs</strong></li>
 </ul>
 
 <br/>
@@ -936,27 +936,27 @@ Meilleures salutations,
 <h3><strong>Correction Example with Numbers</strong></h3>
 
 <p><strong>Situation:</strong> Marco, 32, B permit, single, works in Lausanne.</p>
-<ul>
-<li>Annual salary: CHF 85,000</li>
-<li>Withholding tax deducted: CHF 11,200</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Annual salary: CHF 85,000</li>
+<li style="margin-bottom: 0.25rem;">Withholding tax deducted: CHF 11,200</li>
 </ul>
 
 <p><strong>His deductions:</strong></p>
-<ul>
-<li>3rd pillar: CHF 7,258</li>
-<li>Transport costs (30 km/day by train): CHF 3,200</li>
-<li>Meal costs (no canteen): CHF 3,200</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">3rd pillar: CHF 7,258</li>
+<li style="margin-bottom: 0.25rem;">Transport costs (30 km/day by train): CHF 3,200</li>
+<li style="margin-bottom: 0.25rem;">Meal costs (no canteen): CHF 3,200</li>
 </ul>
 
 <p><strong>After correction:</strong></p>
-<ul>
-<li>Recalculated tax: CHF 9,100</li>
-<li><strong>Refund: CHF 2,100!</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Recalculated tax: CHF 9,100</li>
+<li style="margin-bottom: 0.25rem;"><strong>Refund: CHF 2,100!</strong></li>
 </ul>
 
 <br/>
 
-<h2><strong>Common Mistakes to Avoid</strong></h2>
+<p><strong>Common Mistakes to Avoid</strong></p>
 
 <br/>
 
@@ -978,7 +978,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Checklist: Optimize Your Withholding Tax</strong></h2>
+<p><strong>Checklist: Optimize Your Withholding Tax</strong></p>
 
 <br/>
 
@@ -990,7 +990,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Need Help? | Besoin d'aide ?</strong></h2>
+<p><strong>Need Help? | Besoin d'aide ?</strong></p>
 
 <br/>
 
@@ -1010,7 +1010,7 @@ Meilleures salutations,
 
 <hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
 
-<h2><strong>Barèmes de l'impôt à la source 2026 par canton (exemples)</strong></h2>
+<p><strong>Barèmes de l'impôt à la source 2026 par canton (exemples)</strong></p>
 
 <br/>
 
@@ -1077,7 +1077,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>FAQ - Questions fréquentes sur l'impôt à la source</strong></h2>
+<p><strong>FAQ - Questions fréquentes sur l'impôt à la source</strong></p>
 
 <br/>
 
@@ -1108,10 +1108,10 @@ Meilleures salutations,
 
 <h3><strong>Je suis frontalier, suis-je imposé en Suisse ou en France ?</strong></h3>
 <p>Cela dépend du canton et de votre commune de résidence :</p>
-<ul>
-<li><strong>Genève</strong> : Imposé à la source à Genève</li>
-<li><strong>Vaud, Neuchâtel, Jura, Fribourg, Berne</strong> : Imposé en France (avec rétrocession fiscale)</li>
-<li><strong>Valais</strong> : Dépend de la commune de résidence en France</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Genève</strong> : Imposé à la source à Genève</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vaud, Neuchâtel, Jura, Fribourg, Berne</strong> : Imposé en France (avec rétrocession fiscale)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : Dépend de la commune de résidence en France</li>
 </ul>
 
 <br/>
@@ -1121,16 +1121,16 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Ressources utiles</strong></h2>
+<p><strong>Ressources utiles</strong></p>
 
 <br/>
 
-<ul>
-<li><a href="/simulateur/salaire-net">Simulateur de salaire net Suisse</a> - Calculez votre salaire net par canton</li>
-<li><a href="/simulateur/impots">Simulateur d'impôts Suisse</a> - Estimez vos impôts annuels</li>
-<li><a href="/simulateur/3eme-pilier">Simulateur 3ème pilier</a> - Calculez vos économies d'impôts</li>
-<li><a href="/guide/deductions-fiscales">Guide des déductions fiscales</a> - Toutes les déductions possibles</li>
-<li><a href="/faq">FAQ complète NeoFidu</a></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><a href="/simulateur/salaire-net">Simulateur de salaire net Suisse</a> - Calculez votre salaire net par canton</li>
+<li style="margin-bottom: 0.25rem;"><a href="/simulateur/impots">Simulateur d'impôts Suisse</a> - Estimez vos impôts annuels</li>
+<li style="margin-bottom: 0.25rem;"><a href="/simulateur/3eme-pilier">Simulateur 3ème pilier</a> - Calculez vos économies d'impôts</li>
+<li style="margin-bottom: 0.25rem;"><a href="/guide/deductions-fiscales">Guide des déductions fiscales</a> - Toutes les déductions possibles</li>
+<li style="margin-bottom: 0.25rem;"><a href="/faq">FAQ complète NeoFidu</a></li>
 </ul>
 
 <br/>
@@ -1179,7 +1179,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Dois-je remplir une déclaration d'impôts ?</strong></h2>
+<p><strong>Dois-je remplir une déclaration d'impôts ?</strong></p>
 
 <br/>
 
@@ -1193,16 +1193,16 @@ Meilleures salutations,
 
 <h3><strong>Vous devez remplir une déclaration obligatoire si :</strong></h3>
 
-<ul>
-<li>Vous gagnez <strong>plus de CHF 120'000 par an</strong> (brut)</li>
-<li>Vous avez des <strong>revenus supplémentaires</strong> (immobilier, indépendant, etc.)</li>
-<li>Vous possédez une <strong>fortune taxable</strong> supérieure à CHF 80'000 (selon les cantons)</li>
-<li>Vous avez un <strong>permis C</strong> (établissement)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vous gagnez <strong>plus de CHF 120'000 par an</strong> (brut)</li>
+<li style="margin-bottom: 0.25rem;">Vous avez des <strong>revenus supplémentaires</strong> (immobilier, indépendant, etc.)</li>
+<li style="margin-bottom: 0.25rem;">Vous possédez une <strong>fortune taxable</strong> supérieure à CHF 80'000 (selon les cantons)</li>
+<li style="margin-bottom: 0.25rem;">Vous avez un <strong>permis C</strong> (établissement)</li>
 </ul>
 
 <br/>
 
-<h2><strong>Les délais à respecter</strong></h2>
+<p><strong>Les délais à respecter</strong></p>
 
 <br/>
 
@@ -1241,38 +1241,38 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Documents nécessaires</strong></h2>
+<p><strong>Documents nécessaires</strong></p>
 
 <br/>
 
 <p>Rassemblez ces documents <strong>avant de commencer</strong> :</p>
 
 <h3><strong>Revenus</strong></h3>
-<ul>
-<li>Certificat de salaire (<em>Lohnausweis</em>) de votre employeur</li>
-<li>Attestation de chômage (si applicable)</li>
-<li>Revenus de placements (intérêts, dividendes)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Certificat de salaire (<em>Lohnausweis</em>) de votre employeur</li>
+<li style="margin-bottom: 0.25rem;">Attestation de chômage (si applicable)</li>
+<li style="margin-bottom: 0.25rem;">Revenus de placements (intérêts, dividendes)</li>
 </ul>
 
 <h3><strong>Fortune</strong></h3>
-<ul>
-<li>Relevés bancaires au <strong>31 décembre</strong> (tous vos comptes en Suisse ET à l'étranger)</li>
-<li>Valeur de votre voiture</li>
-<li>Portefeuille d'investissements (actions, crypto, etc.)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Relevés bancaires au <strong>31 décembre</strong> (tous vos comptes en Suisse ET à l'étranger)</li>
+<li style="margin-bottom: 0.25rem;">Valeur de votre voiture</li>
+<li style="margin-bottom: 0.25rem;">Portefeuille d'investissements (actions, crypto, etc.)</li>
 </ul>
 
 <h3><strong>Déductions</strong></h3>
-<ul>
-<li>Attestation 3ème pilier (pilier 3a)</li>
-<li>Primes d'assurance maladie</li>
-<li>Frais de transport domicile-travail</li>
-<li>Frais de formation continue</li>
-<li>Frais de garde d'enfants</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Attestation 3ème pilier (pilier 3a)</li>
+<li style="margin-bottom: 0.25rem;">Primes d'assurance maladie</li>
+<li style="margin-bottom: 0.25rem;">Frais de transport domicile-travail</li>
+<li style="margin-bottom: 0.25rem;">Frais de formation continue</li>
+<li style="margin-bottom: 0.25rem;">Frais de garde d'enfants</li>
 </ul>
 
 <br/>
 
-<h2><strong>Les déductions que vous ne devez pas oublier</strong></h2>
+<p><strong>Les déductions que vous ne devez pas oublier</strong></p>
 
 <br/>
 
@@ -1286,10 +1286,10 @@ Meilleures salutations,
 
 <h3><strong>2. Frais professionnels</strong></h3>
 
-<ul>
-<li><strong>Transport :</strong> Abonnement de transports publics OU CHF 0.70/km en voiture (plafonné)</li>
-<li><strong>Repas :</strong> Forfait de CHF 15-30/jour selon le canton si vous mangez à l'extérieur</li>
-<li><strong>Vêtements professionnels :</strong> Si votre employeur ne les fournit pas</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Transport :</strong> Abonnement de transports publics OU CHF 0.70/km en voiture (plafonné)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Repas :</strong> Forfait de CHF 15-30/jour selon le canton si vous mangez à l'extérieur</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vêtements professionnels :</strong> Si votre employeur ne les fournit pas</li>
 </ul>
 
 <h3><strong>3. Frais de formation</strong></h3>
@@ -1302,7 +1302,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Erreurs fréquentes des expatriés</strong></h2>
+<p><strong>Erreurs fréquentes des expatriés</strong></p>
 
 <br/>
 
@@ -1330,7 +1330,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Do I Need to File a Tax Return?</strong></h2>
+<p><strong>Do I Need to File a Tax Return?</strong></p>
 
 <br/>
 
@@ -1344,16 +1344,16 @@ Meilleures salutations,
 
 <h3><strong>You Must File a Tax Return If:</strong></h3>
 
-<ul>
-<li>You earn <strong>more than CHF 120,000 per year</strong> (gross)</li>
-<li>You have <strong>additional income</strong> (real estate, self-employment, etc.)</li>
-<li>You own <strong>taxable assets</strong> exceeding CHF 80,000 (varies by canton)</li>
-<li>You have a <strong>C permit</strong> (permanent residence)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">You earn <strong>more than CHF 120,000 per year</strong> (gross)</li>
+<li style="margin-bottom: 0.25rem;">You have <strong>additional income</strong> (real estate, self-employment, etc.)</li>
+<li style="margin-bottom: 0.25rem;">You own <strong>taxable assets</strong> exceeding CHF 80,000 (varies by canton)</li>
+<li style="margin-bottom: 0.25rem;">You have a <strong>C permit</strong> (permanent residence)</li>
 </ul>
 
 <br/>
 
-<h2><strong>Key Deadlines</strong></h2>
+<p><strong>Key Deadlines</strong></p>
 
 <br/>
 
@@ -1388,38 +1388,38 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Required Documents</strong></h2>
+<p><strong>Required Documents</strong></p>
 
 <br/>
 
 <p>Gather these documents <strong>before you start</strong>:</p>
 
 <h3><strong>Income</strong></h3>
-<ul>
-<li>Salary certificate (<em>Lohnausweis</em>) from your employer</li>
-<li>Unemployment benefits statement (if applicable)</li>
-<li>Investment income (interest, dividends)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Salary certificate (<em>Lohnausweis</em>) from your employer</li>
+<li style="margin-bottom: 0.25rem;">Unemployment benefits statement (if applicable)</li>
+<li style="margin-bottom: 0.25rem;">Investment income (interest, dividends)</li>
 </ul>
 
 <h3><strong>Assets</strong></h3>
-<ul>
-<li>Bank statements as of <strong>December 31</strong> (all accounts in Switzerland AND abroad)</li>
-<li>Value of your car</li>
-<li>Investment portfolio (stocks, crypto, etc.)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Bank statements as of <strong>December 31</strong> (all accounts in Switzerland AND abroad)</li>
+<li style="margin-bottom: 0.25rem;">Value of your car</li>
+<li style="margin-bottom: 0.25rem;">Investment portfolio (stocks, crypto, etc.)</li>
 </ul>
 
 <h3><strong>Deductions</strong></h3>
-<ul>
-<li>Pillar 3a certificate</li>
-<li>Health insurance premiums</li>
-<li>Commuting costs</li>
-<li>Professional development costs</li>
-<li>Childcare expenses</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Pillar 3a certificate</li>
+<li style="margin-bottom: 0.25rem;">Health insurance premiums</li>
+<li style="margin-bottom: 0.25rem;">Commuting costs</li>
+<li style="margin-bottom: 0.25rem;">Professional development costs</li>
+<li style="margin-bottom: 0.25rem;">Childcare expenses</li>
 </ul>
 
 <br/>
 
-<h2><strong>Deductions You Shouldn't Miss</strong></h2>
+<p><strong>Deductions You Shouldn't Miss</strong></p>
 
 <br/>
 
@@ -1433,10 +1433,10 @@ Meilleures salutations,
 
 <h3><strong>2. Professional Expenses</strong></h3>
 
-<ul>
-<li><strong>Transport:</strong> Public transport pass OR CHF 0.70/km by car (capped)</li>
-<li><strong>Meals:</strong> Flat rate of CHF 15-30/day depending on canton if you eat out</li>
-<li><strong>Work clothes:</strong> If your employer doesn't provide them</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Transport:</strong> Public transport pass OR CHF 0.70/km by car (capped)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Meals:</strong> Flat rate of CHF 15-30/day depending on canton if you eat out</li>
+<li style="margin-bottom: 0.25rem;"><strong>Work clothes:</strong> If your employer doesn't provide them</li>
 </ul>
 
 <h3><strong>3. Training Costs</strong></h3>
@@ -1449,7 +1449,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Common Mistakes Expats Make</strong></h2>
+<p><strong>Common Mistakes Expats Make</strong></p>
 
 <br/>
 
@@ -1467,7 +1467,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Ready to File Your Tax Return? | Prêt à remplir votre déclaration ?</strong></h2>
+<p><strong>Ready to File Your Tax Return? | Prêt à remplir votre déclaration ?</strong></p>
 
 <br/>
 
@@ -1499,7 +1499,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Qu'est-ce que l'impôt sur le gain immobilier ?</strong></h2>
+<p><strong>Qu'est-ce que l'impôt sur le gain immobilier ?</strong></p>
 
 <br/>
 
@@ -1507,7 +1507,7 @@ Meilleures salutations,
 
 <br/>
 
-<h2><strong>Comment se calcule le gain immobilier ?</strong></h2>
+<p><strong>Comment se calcule le gain immobilier ?</strong></p>
 
 <br/>
 
@@ -1535,18 +1535,18 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Plusieurs dépenses peuvent être déduites du gain pour réduire l'impôt :</p>
 
-<ul>
-<li>Travaux de plus-value (rénovations, agrandissements, transformations)</li>
-<li>Frais de vente (commission de courtage, publicité)</li>
-<li>Frais de notaire lors de la vente</li>
-<li>Impôt sur les successions ou donations payé sur le bien</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Travaux de plus-value (rénovations, agrandissements, transformations)</li>
+<li style="margin-bottom: 0.25rem;">Frais de vente (commission de courtage, publicité)</li>
+<li style="margin-bottom: 0.25rem;">Frais de notaire lors de la vente</li>
+<li style="margin-bottom: 0.25rem;">Impôt sur les successions ou donations payé sur le bien</li>
 </ul>
 
 <p>Attention : les travaux d'entretien courant (peinture, petites réparations) ne sont généralement pas déductibles. Seuls les travaux qui augmentent la valeur du bien le sont.</p>
 
 <br/>
 
-<h2><strong>Les taux d'imposition par canton</strong></h2>
+<p><strong>Les taux d'imposition par canton</strong></p>
 
 <br/>
 
@@ -1596,7 +1596,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>L'importance de la durée de détention</strong></h2>
+<p><strong>L'importance de la durée de détention</strong></p>
 
 <br/>
 
@@ -1604,17 +1604,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Voici comment cela fonctionne généralement :</p>
 
-<ul>
-<li>Moins de 2 ans : taux maximum, parfois majoré</li>
-<li>2 à 5 ans : premières réductions (10 à 20%)</li>
-<li>5 à 10 ans : réductions plus importantes (20 à 30%)</li>
-<li>10 à 20 ans : réductions significatives (30 à 50%)</li>
-<li>Plus de 25 ans : exonération totale dans certains cantons</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Moins de 2 ans : taux maximum, parfois majoré</li>
+<li style="margin-bottom: 0.25rem;">2 à 5 ans : premières réductions (10 à 20%)</li>
+<li style="margin-bottom: 0.25rem;">5 à 10 ans : réductions plus importantes (20 à 30%)</li>
+<li style="margin-bottom: 0.25rem;">10 à 20 ans : réductions significatives (30 à 50%)</li>
+<li style="margin-bottom: 0.25rem;">Plus de 25 ans : exonération totale dans certains cantons</li>
 </ul>
 
 <br/>
 
-<h2><strong>Calculez votre impôt avec notre simulateur</strong></h2>
+<p><strong>Calculez votre impôt avec notre simulateur</strong></p>
 
 <br/>
 
@@ -1626,7 +1626,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les cas d'exonération</strong></h2>
+<p><strong>Les cas d'exonération</strong></p>
 
 <br/>
 
@@ -1652,7 +1652,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Conseils pour optimiser votre situation</strong></h2>
+<p><strong>Conseils pour optimiser votre situation</strong></p>
 
 <br/>
 
@@ -1684,7 +1684,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Questions fréquentes</strong></h2>
+<p><strong>Questions fréquentes</strong></p>
 
 <br/>
 
@@ -1706,7 +1706,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Besoin d'aide pour votre vente immobilière ?</strong></h2>
+<p><strong>Besoin d'aide pour votre vente immobilière ?</strong></p>
 
 <br/>
 
@@ -1734,7 +1734,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Pourquoi cette réforme était-elle nécessaire ?</strong></h2>
+<p><strong>Pourquoi cette réforme était-elle nécessaire ?</strong></p>
 
 <br/>
 
@@ -1748,11 +1748,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple chiffré (avant la réforme) :</strong></p>
 
-<ul>
-<li>Marc et Julie, tous deux salariés, gagnent chacun <strong>CHF 100'000.-</strong> par an</li>
-<li><strong>En concubinage</strong> : impôt total d'environ CHF 36'000.-</li>
-<li><strong>Mariés</strong> : impôt total d'environ CHF 42'000.-</li>
-<li><strong>Pénalité de mariage</strong> : environ CHF 6'000.- par an !</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Marc et Julie, tous deux salariés, gagnent chacun <strong>CHF 100'000.-</strong> par an</li>
+<li style="margin-bottom: 0.25rem;"><strong>En concubinage</strong> : impôt total d'environ CHF 36'000.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Mariés</strong> : impôt total d'environ CHF 42'000.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Pénalité de mariage</strong> : environ CHF 6'000.- par an !</li>
 </ul>
 
 <br/>
@@ -1763,7 +1763,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Ce qui va changer avec l'imposition individuelle</strong></h2>
+<p><strong>Ce qui va changer avec l'imposition individuelle</strong></p>
 
 <br/>
 
@@ -1771,10 +1771,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Désormais, chaque époux sera imposé <strong>séparément</strong>, comme deux contribuables indépendants. Chacun déclarera :</p>
 
-<ul>
-<li>Ses <strong>revenus propres</strong> (salaire, activité indépendante, rentes)</li>
-<li>Sa <strong>fortune propre</strong></li>
-<li>Ses <strong>déductions personnelles</strong> (3ème pilier, frais professionnels, etc.)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Ses <strong>revenus propres</strong> (salaire, activité indépendante, rentes)</li>
+<li style="margin-bottom: 0.25rem;">Sa <strong>fortune propre</strong></li>
+<li style="margin-bottom: 0.25rem;">Ses <strong>déductions personnelles</strong> (3ème pilier, frais professionnels, etc.)</li>
 </ul>
 
 <br/>
@@ -1820,7 +1820,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Qui sera gagnant avec la réforme ?</strong></h2>
+<p><strong>Qui sera gagnant avec la réforme ?</strong></p>
 
 <br/>
 
@@ -1831,11 +1831,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
 
 <p><strong>Exemple - Couple à double revenu équilibré :</strong></p>
-<ul>
-<li>Anna et Thomas, chacun CHF 120'000.-/an</li>
-<li><strong>Ancien système</strong> : impôt total ~CHF 58'000.-</li>
-<li><strong>Nouveau système</strong> : impôt total ~CHF 48'000.-</li>
-<li><strong>Économie annuelle : environ CHF 10'000.- !</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Anna et Thomas, chacun CHF 120'000.-/an</li>
+<li style="margin-bottom: 0.25rem;"><strong>Ancien système</strong> : impôt total ~CHF 58'000.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Nouveau système</strong> : impôt total ~CHF 48'000.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Économie annuelle : environ CHF 10'000.- !</strong></li>
 </ul>
 
 <br/>
@@ -1846,7 +1846,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Qui pourrait être perdant ?</strong></h2>
+<p><strong>Qui pourrait être perdant ?</strong></p>
 
 <br/>
 
@@ -1857,11 +1857,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
 
 <p><strong>Exemple - Couple à revenu unique :</strong></p>
-<ul>
-<li>Pierre gagne CHF 150'000.-, Marie est au foyer</li>
-<li><strong>Ancien système</strong> : impôt ~CHF 32'000.- (barème marié avantageux)</li>
-<li><strong>Nouveau système</strong> : impôt ~CHF 35'000.- (barème personne seule)</li>
-<li><strong>Surcoût potentiel : ~CHF 3'000.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Pierre gagne CHF 150'000.-, Marie est au foyer</li>
+<li style="margin-bottom: 0.25rem;"><strong>Ancien système</strong> : impôt ~CHF 32'000.- (barème marié avantageux)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Nouveau système</strong> : impôt ~CHF 35'000.- (barème personne seule)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Surcoût potentiel : ~CHF 3'000.-</strong></li>
 </ul>
 
 <br/>
@@ -1870,17 +1870,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Pour atténuer cet effet, le projet de loi prévoit des <strong>mesures compensatoires</strong> :</p>
 
-<ul>
-<li><strong>Déduction pour conjoint sans activité lucrative</strong> ou à faible revenu</li>
-<li><strong>Splitting partiel</strong> des revenus pour certaines situations</li>
-<li><strong>Crédit d'impôt</strong> pour les familles avec enfants</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Déduction pour conjoint sans activité lucrative</strong> ou à faible revenu</li>
+<li style="margin-bottom: 0.25rem;"><strong>Splitting partiel</strong> des revenus pour certaines situations</li>
+<li style="margin-bottom: 0.25rem;"><strong>Crédit d'impôt</strong> pour les familles avec enfants</li>
 </ul>
 
 <p>Les détails seront précisés dans les ordonnances d'application.</p>
 
 <br/>
 
-<h2><strong>Comment seront répartis les éléments communs ?</strong></h2>
+<p><strong>Comment seront répartis les éléments communs ?</strong></p>
 
 <br/>
 
@@ -1888,10 +1888,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>La répartition suivra les règles du <strong>droit civil suisse</strong> :</p>
 
-<ul>
-<li><strong>Régime de la participation aux acquêts</strong> (défaut) : 50/50 pour les acquêts, biens propres restent individuels</li>
-<li><strong>Séparation de biens</strong> : chacun déclare ses avoirs</li>
-<li><strong>Communauté de biens</strong> : 50/50 sur l'ensemble</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Régime de la participation aux acquêts</strong> (défaut) : 50/50 pour les acquêts, biens propres restent individuels</li>
+<li style="margin-bottom: 0.25rem;"><strong>Séparation de biens</strong> : chacun déclare ses avoirs</li>
+<li style="margin-bottom: 0.25rem;"><strong>Communauté de biens</strong> : 50/50 sur l'ensemble</li>
 </ul>
 
 <br/>
@@ -1906,14 +1906,14 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Les <strong>déductions pour enfants</strong> seront attribuées :</p>
 
-<ul>
-<li>Par défaut : <strong>50% à chaque parent</strong></li>
-<li>Ou <strong>100% à un parent</strong> selon accord ou attribution judiciaire</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Par défaut : <strong>50% à chaque parent</strong></li>
+<li style="margin-bottom: 0.25rem;">Ou <strong>100% à un parent</strong> selon accord ou attribution judiciaire</li>
 </ul>
 
 <br/>
 
-<h2><strong>Calendrier de mise en œuvre</strong></h2>
+<p><strong>Calendrier de mise en œuvre</strong></p>
 
 <br/>
 
@@ -1921,12 +1921,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<ul>
-<li><strong>8 mars 2026</strong> : Vote populaire - ACCEPTÉ</li>
-<li><strong>2026-2027</strong> : Élaboration des ordonnances d'application</li>
-<li><strong>2028</strong> : Adaptation des logiciels fiscaux cantonaux</li>
-<li><strong>1er janvier 2029</strong> : <strong>Entrée en vigueur probable</strong></li>
-<li><strong>2030</strong> : Première déclaration sous le nouveau régime (pour l'année fiscale 2029)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>8 mars 2026</strong> : Vote populaire - ACCEPTÉ</li>
+<li style="margin-bottom: 0.25rem;"><strong>2026-2027</strong> : Élaboration des ordonnances d'application</li>
+<li style="margin-bottom: 0.25rem;"><strong>2028</strong> : Adaptation des logiciels fiscaux cantonaux</li>
+<li style="margin-bottom: 0.25rem;"><strong>1er janvier 2029</strong> : <strong>Entrée en vigueur probable</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>2030</strong> : Première déclaration sous le nouveau régime (pour l'année fiscale 2029)</li>
 </ul>
 
 <br/>
@@ -1935,7 +1935,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Nos conseils pour vous préparer dès maintenant</strong></h2>
+<p><strong>Nos conseils pour vous préparer dès maintenant</strong></p>
 
 <br/>
 
@@ -1969,16 +1969,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Impact sur les frontaliers</strong></h2>
+<p><strong>Impact sur les frontaliers</strong></p>
 
 <br/>
 
 <p>Si vous êtes <strong>frontalier ou quasi-résident</strong>, la réforme vous concernera également :</p>
 
-<ul>
-<li>L'imposition à la source sera calculée <strong>individuellement</strong></li>
-<li>La demande de <strong>quasi-résident</strong> se fera pour chaque époux séparément</li>
-<li>Le calcul des 90% de revenus suisses s'appliquera <strong>par personne</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">L'imposition à la source sera calculée <strong>individuellement</strong></li>
+<li style="margin-bottom: 0.25rem;">La demande de <strong>quasi-résident</strong> se fera pour chaque époux séparément</li>
+<li style="margin-bottom: 0.25rem;">Le calcul des 90% de revenus suisses s'appliquera <strong>par personne</strong></li>
 </ul>
 
 <br/>
@@ -1987,7 +1987,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Questions fréquentes</strong></h2>
+<p><strong>Questions fréquentes</strong></p>
 
 <br/>
 
@@ -2021,17 +2021,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Ce que NeoFidu peut faire pour vous</strong></h2>
+<p><strong>Ce que NeoFidu peut faire pour vous</strong></p>
 
 <br/>
 
 <p>Chez <strong>NeoFidu</strong>, nous suivons de près cette réforme majeure. Nous pouvons vous accompagner pour :</p>
 
-<ul>
-<li><strong>Simuler l'impact</strong> de l'imposition individuelle sur votre situation</li>
-<li><strong>Optimiser votre fiscalité</strong> dès maintenant en anticipation</li>
-<li><strong>Préparer vos déclarations</strong> quand le nouveau système entrera en vigueur</li>
-<li><strong>Analyser votre régime matrimonial</strong> et ses implications fiscales</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Simuler l'impact</strong> de l'imposition individuelle sur votre situation</li>
+<li style="margin-bottom: 0.25rem;"><strong>Optimiser votre fiscalité</strong> dès maintenant en anticipation</li>
+<li style="margin-bottom: 0.25rem;"><strong>Préparer vos déclarations</strong> quand le nouveau système entrera en vigueur</li>
+<li style="margin-bottom: 0.25rem;"><strong>Analyser votre régime matrimonial</strong> et ses implications fiscales</li>
 </ul>
 
 <br/>
@@ -2066,7 +2066,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les différents types d'infractions fiscales en Suisse</strong></h2>
+<p><strong>Les différents types d'infractions fiscales en Suisse</strong></p>
 
 <br/>
 
@@ -2079,12 +2079,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>C'est l'infraction la plus courante. Elle consiste à <strong>payer moins d'impôts que ce que vous devriez</strong>, que ce soit par omission, négligence ou intention.</p>
 
 <p>Exemples typiques :</p>
-<ul>
-<li>Oublier de déclarer un compte bancaire à l'étranger</li>
-<li>Ne pas mentionner des revenus locatifs</li>
-<li>Sous-évaluer la valeur de sa voiture ou de ses bijoux</li>
-<li>Omettre de déclarer des gains de cryptomonnaies</li>
-<li>Gonfler artificiellement ses déductions</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Oublier de déclarer un compte bancaire à l'étranger</li>
+<li style="margin-bottom: 0.25rem;">Ne pas mentionner des revenus locatifs</li>
+<li style="margin-bottom: 0.25rem;">Sous-évaluer la valeur de sa voiture ou de ses bijoux</li>
+<li style="margin-bottom: 0.25rem;">Omettre de déclarer des gains de cryptomonnaies</li>
+<li style="margin-bottom: 0.25rem;">Gonfler artificiellement ses déductions</li>
 </ul>
 
 <br/>
@@ -2094,11 +2094,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>C'est le niveau supérieur, bien plus grave. Il s'agit d'utiliser des <strong>faux documents</strong> ou des <strong>manœuvres astucieuses</strong> pour tromper l'administration. On parle ici de fraude caractérisée.</p>
 
 <p>Exemples :</p>
-<ul>
-<li>Falsifier des certificats de salaire</li>
-<li>Créer de fausses factures</li>
-<li>Utiliser des sociétés-écrans pour cacher des revenus</li>
-<li>Manipuler des documents comptables</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Falsifier des certificats de salaire</li>
+<li style="margin-bottom: 0.25rem;">Créer de fausses factures</li>
+<li style="margin-bottom: 0.25rem;">Utiliser des sociétés-écrans pour cacher des revenus</li>
+<li style="margin-bottom: 0.25rem;">Manipuler des documents comptables</li>
 </ul>
 
 <br/>
@@ -2109,7 +2109,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les amendes : ça fait mal au portefeuille</strong></h2>
+<p><strong>Les amendes : ça fait mal au portefeuille</strong></p>
 
 <br/>
 
@@ -2126,11 +2126,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p><strong>Exemple concret :</strong> Jean-Pierre, 52 ans, a "oublié" de déclarer un compte en France contenant 150'000 CHF pendant 5 ans. L'impôt sur la fortune correspondant était d'environ 750 CHF par an, soit 3'750 CHF sur 5 ans.</p>
 
 <p>Résultat après contrôle :</p>
-<ul>
-<li><strong>Rappel d'impôts</strong> : 3'750 CHF</li>
-<li><strong>Intérêts moratoires</strong> (5% par an) : ~940 CHF</li>
-<li><strong>Amende</strong> (1x le montant soustrait, car première infraction) : 3'750 CHF</li>
-<li><strong>Total</strong> : environ <strong>8'440 CHF</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Rappel d'impôts</strong> : 3'750 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Intérêts moratoires</strong> (5% par an) : ~940 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Amende</strong> (1x le montant soustrait, car première infraction) : 3'750 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Total</strong> : environ <strong>8'440 CHF</strong></li>
 </ul>
 
 <p>Et ce n'est qu'un premier "oubli". En cas de récidive, l'amende peut grimper à 2 ou 3 fois le montant.</p>
@@ -2140,10 +2140,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <h3><strong>En cas d'escroquerie fiscale</strong></h3>
 
 <p>Là, on passe dans une autre dimension :</p>
-<ul>
-<li><strong>Amende jusqu'à 30'000 CHF</strong> (ou plus en cas de gains importants)</li>
-<li><strong>Peine privative de liberté</strong> jusqu'à 3 ans</li>
-<li><strong>Casier judiciaire</strong> : oui, c'est une infraction pénale</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Amende jusqu'à 30'000 CHF</strong> (ou plus en cas de gains importants)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Peine privative de liberté</strong> jusqu'à 3 ans</li>
+<li style="margin-bottom: 0.25rem;"><strong>Casier judiciaire</strong> : oui, c'est une infraction pénale</li>
 </ul>
 
 <br/>
@@ -2156,7 +2156,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Retard de déclaration : ne jouez pas avec le feu</strong></h2>
+<p><strong>Retard de déclaration : ne jouez pas avec le feu</strong></p>
 
 <br/>
 
@@ -2168,11 +2168,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Les conséquences varient selon les cantons, mais voici ce qui vous attend généralement :</p>
 
-<ul>
-<li><strong>Premier rappel</strong> : gratuit dans la plupart des cantons</li>
-<li><strong>Deuxième rappel</strong> : émolument de 50 à 100 CHF</li>
-<li><strong>Mise en demeure</strong> : amende de 200 à 1'000 CHF</li>
-<li><strong>Taxation d'office</strong> : l'administration estime vos revenus... et croyez-moi, ils ne sont pas tendres</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Premier rappel</strong> : gratuit dans la plupart des cantons</li>
+<li style="margin-bottom: 0.25rem;"><strong>Deuxième rappel</strong> : émolument de 50 à 100 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Mise en demeure</strong> : amende de 200 à 1'000 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Taxation d'office</strong> : l'administration estime vos revenus... et croyez-moi, ils ne sont pas tendres</li>
 </ul>
 
 <br/>
@@ -2189,7 +2189,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>L'échange automatique d'informations : Big Brother fiscal</strong></h2>
+<p><strong>L'échange automatique d'informations : Big Brother fiscal</strong></p>
 
 <br/>
 
@@ -2201,12 +2201,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Ce qui est échangé</strong></h3>
 
-<ul>
-<li>Nom et adresse du titulaire</li>
-<li>Numéro de compte</li>
-<li>Solde du compte au 31 décembre</li>
-<li>Intérêts, dividendes et autres revenus</li>
-<li>Produits de vente d'actifs financiers</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Nom et adresse du titulaire</li>
+<li style="margin-bottom: 0.25rem;">Numéro de compte</li>
+<li style="margin-bottom: 0.25rem;">Solde du compte au 31 décembre</li>
+<li style="margin-bottom: 0.25rem;">Intérêts, dividendes et autres revenus</li>
+<li style="margin-bottom: 0.25rem;">Produits de vente d'actifs financiers</li>
 </ul>
 
 <br/>
@@ -2223,7 +2223,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les conséquences au-delà de l'argent</strong></h2>
+<p><strong>Les conséquences au-delà de l'argent</strong></p>
 
 <br/>
 
@@ -2235,11 +2235,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>En cas d'escroquerie fiscale (utilisation de faux documents), vous risquez une <strong>condamnation pénale</strong> inscrite au casier judiciaire. Les conséquences :</p>
 
-<ul>
-<li>Difficultés pour obtenir certains <strong>emplois</strong> (banque, fonction publique...)</li>
-<li>Problèmes pour obtenir des <strong>visas</strong> dans certains pays</li>
-<li>Refus de certains <strong>crédits hypothécaires</strong></li>
-<li>Atteinte à votre <strong>réputation</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Difficultés pour obtenir certains <strong>emplois</strong> (banque, fonction publique...)</li>
+<li style="margin-bottom: 0.25rem;">Problèmes pour obtenir des <strong>visas</strong> dans certains pays</li>
+<li style="margin-bottom: 0.25rem;">Refus de certains <strong>crédits hypothécaires</strong></li>
+<li style="margin-bottom: 0.25rem;">Atteinte à votre <strong>réputation</strong></li>
 </ul>
 
 <br/>
@@ -2250,7 +2250,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>La dénonciation spontanée : votre sortie de secours</strong></h2>
+<p><strong>La dénonciation spontanée : votre sortie de secours</strong></p>
 
 <br/>
 
@@ -2262,10 +2262,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>La <strong>dénonciation spontanée non punissable</strong> permet de régulariser sa situation fiscale sans payer d'amende. Les conditions :</p>
 
-<ul>
-<li>L'infraction doit être <strong>inconnue de l'administration</strong></li>
-<li>Vous devez <strong>collaborer pleinement</strong> avec le fisc</li>
-<li>Vous devez être <strong>prêt à payer</strong> les impôts et intérêts dus</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">L'infraction doit être <strong>inconnue de l'administration</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous devez <strong>collaborer pleinement</strong> avec le fisc</li>
+<li style="margin-bottom: 0.25rem;">Vous devez être <strong>prêt à payer</strong> les impôts et intérêts dus</li>
 </ul>
 
 <br/>
@@ -2273,20 +2273,20 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <h3><strong>Ce que vous payez</strong></h3>
 
 <p>En cas de dénonciation spontanée :</p>
-<ul>
-<li><strong>Rappel d'impôts</strong> : oui, sur les 10 dernières années maximum</li>
-<li><strong>Intérêts moratoires</strong> : oui, environ 3-5% par an</li>
-<li><strong>Amende</strong> : NON pour la première dénonciation</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Rappel d'impôts</strong> : oui, sur les 10 dernières années maximum</li>
+<li style="margin-bottom: 0.25rem;"><strong>Intérêts moratoires</strong> : oui, environ 3-5% par an</li>
+<li style="margin-bottom: 0.25rem;"><strong>Amende</strong> : NON pour la première dénonciation</li>
 </ul>
 
 <br/>
 
 <p><strong>Exemple :</strong> Reprenons Jean-Pierre avec son compte français de 150'000 CHF. En se dénonçant spontanément :</p>
-<ul>
-<li>Rappel d'impôts : 3'750 CHF</li>
-<li>Intérêts : ~940 CHF</li>
-<li>Amende : <strong>0 CHF</strong></li>
-<li><strong>Total : 4'690 CHF</strong> (au lieu de 8'440 CHF)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Rappel d'impôts : 3'750 CHF</li>
+<li style="margin-bottom: 0.25rem;">Intérêts : ~940 CHF</li>
+<li style="margin-bottom: 0.25rem;">Amende : <strong>0 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Total : 4'690 CHF</strong> (au lieu de 8'440 CHF)</li>
 </ul>
 
 <p>Il économise près de 4'000 CHF et dort enfin tranquille.</p>
@@ -2299,7 +2299,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Comment éviter les problèmes : nos conseils pratiques</strong></h2>
+<p><strong>Comment éviter les problèmes : nos conseils pratiques</strong></p>
 
 <br/>
 
@@ -2318,13 +2318,13 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <h3><strong>3. Respectez les délais</strong></h3>
 
 <p>Mettez des rappels dans votre agenda. Les délais par canton :</p>
-<ul>
-<li><strong>Vaud</strong> : 15 mars (prolongation jusqu'au 30 juin possible)</li>
-<li><strong>Genève</strong> : 31 mars</li>
-<li><strong>Valais</strong> : 31 mars</li>
-<li><strong>Fribourg</strong> : 31 mars</li>
-<li><strong>Neuchâtel</strong> : 31 mars</li>
-<li><strong>Jura</strong> : 31 mars</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Vaud</strong> : 15 mars (prolongation jusqu'au 30 juin possible)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Genève</strong> : 31 mars</li>
+<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : 31 mars</li>
+<li style="margin-bottom: 0.25rem;"><strong>Fribourg</strong> : 31 mars</li>
+<li style="margin-bottom: 0.25rem;"><strong>Neuchâtel</strong> : 31 mars</li>
+<li style="margin-bottom: 0.25rem;"><strong>Jura</strong> : 31 mars</li>
 </ul>
 
 <br/>
@@ -2341,7 +2341,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Questions fréquentes</strong></h2>
+<p><strong>Questions fréquentes</strong></p>
 
 <br/>
 
@@ -2363,7 +2363,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Besoin d'aide pour votre déclaration ?</strong></h2>
+<p><strong>Besoin d'aide pour votre déclaration ?</strong></p>
 
 <br/>
 
@@ -2399,7 +2399,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les cryptomonnaies sont-elles imposables en Suisse ?</strong></h2>
+<p><strong>Les cryptomonnaies sont-elles imposables en Suisse ?</strong></p>
 
 <br/>
 
@@ -2413,14 +2413,14 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>L'<strong>Administration Fédérale des Contributions (AFC)</strong> publie chaque année un <strong>cours fiscal</strong> pour les principales cryptomonnaies :</p>
 
-<ul>
-<li><strong>Bitcoin (BTC)</strong></li>
-<li><strong>Ethereum (ETH)</strong></li>
-<li><strong>Ripple (XRP)</strong></li>
-<li><strong>Litecoin (LTC)</strong></li>
-<li><strong>Cardano (ADA)</strong></li>
-<li><strong>Solana (SOL)</strong></li>
-<li>Et environ 50 autres cryptos majeures</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Bitcoin (BTC)</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Ethereum (ETH)</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Ripple (XRP)</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Litecoin (LTC)</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Cardano (ADA)</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Solana (SOL)</strong></li>
+<li style="margin-bottom: 0.25rem;">Et environ 50 autres cryptos majeures</li>
 </ul>
 
 <br/>
@@ -2437,12 +2437,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Attention cependant : cette exonération a des limites. L'administration fiscale peut vous requalifier en <strong>trader professionnel</strong> si :</p>
 
-<ul>
-<li>Vous faites du <strong>trading fréquent</strong> (plusieurs transactions par jour)</li>
-<li>Vous utilisez l'<strong>effet de levier</strong> de manière intensive</li>
-<li>Vos gains crypto représentent une <strong>part importante de vos revenus</strong></li>
-<li>Vous avez des <strong>connaissances professionnelles</strong> en finance</li>
-<li>La <strong>durée de détention</strong> est très courte (moins de 6 mois)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vous faites du <strong>trading fréquent</strong> (plusieurs transactions par jour)</li>
+<li style="margin-bottom: 0.25rem;">Vous utilisez l'<strong>effet de levier</strong> de manière intensive</li>
+<li style="margin-bottom: 0.25rem;">Vos gains crypto représentent une <strong>part importante de vos revenus</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous avez des <strong>connaissances professionnelles</strong> en finance</li>
+<li style="margin-bottom: 0.25rem;">La <strong>durée de détention</strong> est très courte (moins de 6 mois)</li>
 </ul>
 
 <br/>
@@ -2451,7 +2451,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Comment calculer la valeur de ses cryptos au 31 décembre ?</strong></h2>
+<p><strong>Comment calculer la valeur de ses cryptos au 31 décembre ?</strong></p>
 
 <br/>
 
@@ -2463,11 +2463,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Faites l'inventaire complet de vos cryptomonnaies sur :</p>
 
-<ul>
-<li>Les <strong>exchanges centralisés</strong> (Binance, Kraken, Coinbase, Swissquote...)</li>
-<li>Vos <strong>wallets personnels</strong> (Ledger, Trezor, MetaMask...)</li>
-<li>Les <strong>plateformes DeFi</strong> (Uniswap, Aave, Curve...)</li>
-<li>Vos <strong>positions en staking</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Les <strong>exchanges centralisés</strong> (Binance, Kraken, Coinbase, Swissquote...)</li>
+<li style="margin-bottom: 0.25rem;">Vos <strong>wallets personnels</strong> (Ledger, Trezor, MetaMask...)</li>
+<li style="margin-bottom: 0.25rem;">Les <strong>plateformes DeFi</strong> (Uniswap, Aave, Curve...)</li>
+<li style="margin-bottom: 0.25rem;">Vos <strong>positions en staking</strong></li>
 </ul>
 
 <br/>
@@ -2484,16 +2484,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple de calcul :</strong></p>
 
-<ul>
-<li>0.5 BTC × 42'000 CHF = <strong>21'000 CHF</strong></li>
-<li>3.2 ETH × 2'300 CHF = <strong>7'360 CHF</strong></li>
-<li>1'500 ADA × 0.45 CHF = <strong>675 CHF</strong></li>
-<li><strong>Total fortune crypto : 29'035 CHF</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">0.5 BTC × 42'000 CHF = <strong>21'000 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;">3.2 ETH × 2'300 CHF = <strong>7'360 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;">1'500 ADA × 0.45 CHF = <strong>675 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Total fortune crypto : 29'035 CHF</strong></li>
 </ul>
 
 <br/>
 
-<h2><strong>Cas particuliers : staking, airdrops, mining et NFT</strong></h2>
+<p><strong>Cas particuliers : staking, airdrops, mining et NFT</strong></p>
 
 <br/>
 
@@ -2515,9 +2515,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le <strong>mining de cryptomonnaies</strong> peut être considéré comme :</p>
 
-<ul>
-<li><strong>Hobby</strong> : si c'est occasionnel et peu rentable, les cryptos minées sont simplement ajoutées à la fortune</li>
-<li><strong>Activité lucrative</strong> : si vous investissez massivement en matériel et que ça génère des revenus réguliers, c'est un revenu imposable</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Hobby</strong> : si c'est occasionnel et peu rentable, les cryptos minées sont simplement ajoutées à la fortune</li>
+<li style="margin-bottom: 0.25rem;"><strong>Activité lucrative</strong> : si vous investissez massivement en matériel et que ça génère des revenus réguliers, c'est un revenu imposable</li>
 </ul>
 
 <br/>
@@ -2530,7 +2530,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Déclaration par canton : spécificités romandes</strong></h2>
+<p><strong>Déclaration par canton : spécificités romandes</strong></p>
 
 <br/>
 
@@ -2560,7 +2560,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les erreurs à éviter absolument</strong></h2>
+<p><strong>Les erreurs à éviter absolument</strong></p>
 
 <br/>
 
@@ -2568,10 +2568,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>C'est la pire erreur. Les autorités fiscales suisses ont accès aux données des exchanges et peuvent <strong>croiser les informations</strong>. La non-déclaration peut entraîner :</p>
 
-<ul>
-<li>Des <strong>rappels d'impôts</strong> sur plusieurs années</li>
-<li>Des <strong>amendes</strong> pouvant aller jusqu'à 3 fois l'impôt éludé</li>
-<li>Des poursuites pour <strong>soustraction fiscale</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Des <strong>rappels d'impôts</strong> sur plusieurs années</li>
+<li style="margin-bottom: 0.25rem;">Des <strong>amendes</strong> pouvant aller jusqu'à 3 fois l'impôt éludé</li>
+<li style="margin-bottom: 0.25rem;">Des poursuites pour <strong>soustraction fiscale</strong></li>
 </ul>
 
 <br/>
@@ -2588,7 +2588,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Nos conseils pour une déclaration sereine</strong></h2>
+<p><strong>Nos conseils pour une déclaration sereine</strong></p>
 
 <br/>
 
@@ -2600,7 +2600,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Besoin d'aide pour déclarer vos cryptos ?</strong></h2>
+<p><strong>Besoin d'aide pour déclarer vos cryptos ?</strong></p>
 
 <br/>
 
@@ -2608,10 +2608,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Chez <strong>NeoFidu</strong>, nous accompagnons de plus en plus de clients dans la <strong>déclaration de leurs actifs numériques</strong>. Nous pouvons :</p>
 
-<ul>
-<li>Calculer la valeur fiscale de votre portefeuille</li>
-<li>Déterminer si vous êtes investisseur privé ou trader professionnel</li>
-<li>Optimiser votre déclaration pour éviter les erreurs</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Calculer la valeur fiscale de votre portefeuille</li>
+<li style="margin-bottom: 0.25rem;">Déterminer si vous êtes investisseur privé ou trader professionnel</li>
+<li style="margin-bottom: 0.25rem;">Optimiser votre déclaration pour éviter les erreurs</li>
 </ul>
 
 <br/>
@@ -2638,7 +2638,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Qu'est-ce que la valeur locative ?</strong></h2>
+<p><strong>Qu'est-ce que la valeur locative ?</strong></p>
 
 <br/>
 
@@ -2662,7 +2662,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Comment est calculée la valeur locative ?</strong></h2>
+<p><strong>Comment est calculée la valeur locative ?</strong></p>
 
 <br/>
 
@@ -2674,13 +2674,13 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>La valeur locative est généralement fixée entre <strong>60% et 70%</strong> du loyer de marché théorique. Les critères pris en compte sont :</p>
 
-<ul>
-<li>La <strong>surface habitable</strong></li>
-<li>Le <strong>nombre de pièces</strong></li>
-<li>La <strong>localisation</strong> (ville, campagne, vue, quartier)</li>
-<li>L'<strong>année de construction</strong></li>
-<li>L'<strong>état général</strong> du bien</li>
-<li>Les <strong>équipements</strong> (garage, jardin, piscine...)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">La <strong>surface habitable</strong></li>
+<li style="margin-bottom: 0.25rem;">Le <strong>nombre de pièces</strong></li>
+<li style="margin-bottom: 0.25rem;">La <strong>localisation</strong> (ville, campagne, vue, quartier)</li>
+<li style="margin-bottom: 0.25rem;">L'<strong>année de construction</strong></li>
+<li style="margin-bottom: 0.25rem;">L'<strong>état général</strong> du bien</li>
+<li style="margin-bottom: 0.25rem;">Les <strong>équipements</strong> (garage, jardin, piscine...)</li>
 </ul>
 
 <br/>
@@ -2719,7 +2719,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les déductions possibles pour les propriétaires</strong></h2>
+<p><strong>Les déductions possibles pour les propriétaires</strong></p>
 
 <br/>
 
@@ -2739,11 +2739,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Vous pouvez déduire les <strong>frais d'entretien et de réparation</strong> de votre logement :</p>
 
-<ul>
-<li>Réparations de toiture, façade, plomberie</li>
-<li>Remplacement de chaudière</li>
-<li>Peinture et rénovations</li>
-<li>Entretien du jardin</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Réparations de toiture, façade, plomberie</li>
+<li style="margin-bottom: 0.25rem;">Remplacement de chaudière</li>
+<li style="margin-bottom: 0.25rem;">Peinture et rénovations</li>
+<li style="margin-bottom: 0.25rem;">Entretien du jardin</li>
 </ul>
 
 <br/>
@@ -2756,16 +2756,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Les travaux visant à <strong>améliorer l'efficacité énergétique</strong> sont déductibles :</p>
 
-<ul>
-<li>Isolation thermique</li>
-<li>Panneaux solaires</li>
-<li>Pompe à chaleur</li>
-<li>Fenêtres à double/triple vitrage</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Isolation thermique</li>
+<li style="margin-bottom: 0.25rem;">Panneaux solaires</li>
+<li style="margin-bottom: 0.25rem;">Pompe à chaleur</li>
+<li style="margin-bottom: 0.25rem;">Fenêtres à double/triple vitrage</li>
 </ul>
 
 <br/>
 
-<h2><strong>La réforme 2026 : vers l'abolition de la valeur locative ?</strong></h2>
+<p><strong>La réforme 2026 : vers l'abolition de la valeur locative ?</strong></p>
 
 <br/>
 
@@ -2777,11 +2777,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le Parlement suisse a adopté un projet de loi prévoyant :</p>
 
-<ul>
-<li>La <strong>suppression de la valeur locative</strong> pour les résidences principales</li>
-<li>Le <strong>maintien partiel</strong> pour les résidences secondaires (à confirmer)</li>
-<li>En contrepartie, la <strong>suppression de la déduction des intérêts hypothécaires</strong></li>
-<li>La <strong>limitation des déductions</strong> pour frais d'entretien</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">La <strong>suppression de la valeur locative</strong> pour les résidences principales</li>
+<li style="margin-bottom: 0.25rem;">Le <strong>maintien partiel</strong> pour les résidences secondaires (à confirmer)</li>
+<li style="margin-bottom: 0.25rem;">En contrepartie, la <strong>suppression de la déduction des intérêts hypothécaires</strong></li>
+<li style="margin-bottom: 0.25rem;">La <strong>limitation des déductions</strong> pour frais d'entretien</li>
 </ul>
 
 <br/>
@@ -2790,10 +2790,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>La réforme favorisera principalement :</p>
 
-<ul>
-<li>Les propriétaires <strong>sans dette hypothécaire</strong> ou avec une dette faible</li>
-<li>Les propriétaires de <strong>biens de grande valeur</strong></li>
-<li>Les <strong>retraités</strong> qui ont remboursé leur hypothèque</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Les propriétaires <strong>sans dette hypothécaire</strong> ou avec une dette faible</li>
+<li style="margin-bottom: 0.25rem;">Les propriétaires de <strong>biens de grande valeur</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>retraités</strong> qui ont remboursé leur hypothèque</li>
 </ul>
 
 <br/>
@@ -2802,10 +2802,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Certains propriétaires pourraient y perdre :</p>
 
-<ul>
-<li>Ceux avec une <strong>dette hypothécaire importante</strong> (déduction des intérêts supprimée)</li>
-<li>Les <strong>primo-accédants</strong> qui viennent d'acheter</li>
-<li>Ceux qui font <strong>beaucoup de travaux</strong> de rénovation</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Ceux avec une <strong>dette hypothécaire importante</strong> (déduction des intérêts supprimée)</li>
+<li style="margin-bottom: 0.25rem;">Les <strong>primo-accédants</strong> qui viennent d'acheter</li>
+<li style="margin-bottom: 0.25rem;">Ceux qui font <strong>beaucoup de travaux</strong> de rénovation</li>
 </ul>
 
 <br/>
@@ -2815,9 +2815,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>Le projet doit encore passer plusieurs étapes :</p>
 
 <ol>
-<li><strong>2026</strong> : Finalisation des détails d'application</li>
-<li><strong>2027</strong> : Possible référendum si 50'000 signatures sont récoltées</li>
-<li><strong>2028-2029</strong> : Entrée en vigueur probable si le peuple approuve</li>
+<li style="margin-bottom: 0.25rem;"><strong>2026</strong> : Finalisation des détails d'application</li>
+<li style="margin-bottom: 0.25rem;"><strong>2027</strong> : Possible référendum si 50'000 signatures sont récoltées</li>
+<li style="margin-bottom: 0.25rem;"><strong>2028-2029</strong> : Entrée en vigueur probable si le peuple approuve</li>
 </ol>
 
 <br/>
@@ -2826,7 +2826,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Comment se préparer à la réforme ?</strong></h2>
+<p><strong>Comment se préparer à la réforme ?</strong></p>
 
 <br/>
 
@@ -2834,10 +2834,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Avant tout, faites le point sur votre situation :</p>
 
-<ul>
-<li>Quelle est votre <strong>valeur locative actuelle</strong> ?</li>
-<li>Combien déduisez-vous en <strong>intérêts hypothécaires</strong> ?</li>
-<li>Combien déduisez-vous en <strong>frais d'entretien</strong> ?</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Quelle est votre <strong>valeur locative actuelle</strong> ?</li>
+<li style="margin-bottom: 0.25rem;">Combien déduisez-vous en <strong>intérêts hypothécaires</strong> ?</li>
+<li style="margin-bottom: 0.25rem;">Combien déduisez-vous en <strong>frais d'entretien</strong> ?</li>
 </ul>
 
 <br/>
@@ -2850,10 +2850,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Si vous avez une <strong>grosse dette hypothécaire</strong>, la suppression de la déduction des intérêts va vous coûter cher. Réfléchissez à :</p>
 
-<ul>
-<li><strong>Amortir davantage</strong> votre hypothèque avant la réforme</li>
-<li>Utiliser votre <strong>pilier 3a</strong> pour rembourser</li>
-<li>Revoir votre <strong>stratégie fiscale globale</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Amortir davantage</strong> votre hypothèque avant la réforme</li>
+<li style="margin-bottom: 0.25rem;">Utiliser votre <strong>pilier 3a</strong> pour rembourser</li>
+<li style="margin-bottom: 0.25rem;">Revoir votre <strong>stratégie fiscale globale</strong></li>
 </ul>
 
 <br/>
@@ -2864,7 +2864,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Questions fréquentes sur la valeur locative</strong></h2>
+<p><strong>Questions fréquentes sur la valeur locative</strong></p>
 
 <br/>
 
@@ -2886,7 +2886,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Optimisez votre déclaration avec NeoFidu</strong></h2>
+<p><strong>Optimisez votre déclaration avec NeoFidu</strong></p>
 
 <br/>
 
@@ -2894,10 +2894,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Chez <strong>NeoFidu</strong>, nous aidons les propriétaires romands à :</p>
 
-<ul>
-<li><strong>Optimiser leurs déductions</strong> (frais effectifs vs forfait)</li>
-<li><strong>Vérifier leur valeur locative</strong> et la contester si nécessaire</li>
-<li><strong>Anticiper la réforme</strong> et adapter leur stratégie</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Optimiser leurs déductions</strong> (frais effectifs vs forfait)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vérifier leur valeur locative</strong> et la contester si nécessaire</li>
+<li style="margin-bottom: 0.25rem;"><strong>Anticiper la réforme</strong> et adapter leur stratégie</li>
 </ul>
 
 <br/>
@@ -2928,7 +2928,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Qu'est-ce que le statut de quasi-résident ?</strong></h2>
+<p><strong>Qu'est-ce que le statut de quasi-résident ?</strong></p>
 
 <br/>
 
@@ -2942,20 +2942,20 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Avec le statut de quasi-résident, vous pouvez demander une <strong>Taxation Ordinaire Ultérieure (TOU)</strong> et déduire :</p>
 
-<ul>
-<li>Les <strong>frais de transport</strong> domicile-travail</li>
-<li>Les <strong>frais de repas</strong> hors domicile</li>
-<li>Les <strong>rachats de 2ème pilier</strong></li>
-<li>Les <strong>versements au 3ème pilier</strong></li>
-<li>Les <strong>frais de garde d'enfants</strong></li>
-<li>Les <strong>pensions alimentaires</strong></li>
-<li>Les <strong>intérêts hypothécaires</strong></li>
-<li>Les <strong>frais de formation</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Les <strong>frais de transport</strong> domicile-travail</li>
+<li style="margin-bottom: 0.25rem;">Les <strong>frais de repas</strong> hors domicile</li>
+<li style="margin-bottom: 0.25rem;">Les <strong>rachats de 2ème pilier</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>versements au 3ème pilier</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>frais de garde d'enfants</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>pensions alimentaires</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>intérêts hypothécaires</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>frais de formation</strong></li>
 </ul>
 
 <br/>
 
-<h2><strong>Conditions pour être quasi-résident en 2026</strong></h2>
+<p><strong>Conditions pour être quasi-résident en 2026</strong></p>
 
 <br/>
 
@@ -2969,12 +2969,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le calcul prend en compte les revenus <strong>du foyer fiscal</strong> (vous et votre conjoint si vous êtes marié) :</p>
 
-<ul>
-<li>Revenus professionnels suisses</li>
-<li>Revenus professionnels français (ou autre pays)</li>
-<li>Revenus immobiliers</li>
-<li>Revenus de capitaux (dividendes, intérêts)</li>
-<li>Pensions et rentes</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Revenus professionnels suisses</li>
+<li style="margin-bottom: 0.25rem;">Revenus professionnels français (ou autre pays)</li>
+<li style="margin-bottom: 0.25rem;">Revenus immobiliers</li>
+<li style="margin-bottom: 0.25rem;">Revenus de capitaux (dividendes, intérêts)</li>
+<li style="margin-bottom: 0.25rem;">Pensions et rentes</li>
 </ul>
 
 <br/>
@@ -2993,15 +2993,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Certaines situations peuvent affecter votre éligibilité :</p>
 
-<ul>
-<li><strong>Revenus locatifs en France</strong> : ils comptent comme revenus non-suisses</li>
-<li><strong>Travail partiel en France</strong> : même quelques jours peuvent faire basculer le ratio</li>
-<li><strong>Conjoint travaillant en France</strong> : souvent le critère bloquant</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Revenus locatifs en France</strong> : ils comptent comme revenus non-suisses</li>
+<li style="margin-bottom: 0.25rem;"><strong>Travail partiel en France</strong> : même quelques jours peuvent faire basculer le ratio</li>
+<li style="margin-bottom: 0.25rem;"><strong>Conjoint travaillant en France</strong> : souvent le critère bloquant</li>
 </ul>
 
 <br/>
 
-<h2><strong>Est-ce vraiment avantageux ?</strong></h2>
+<p><strong>Est-ce vraiment avantageux ?</strong></p>
 
 <br/>
 
@@ -3011,23 +3011,23 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Cas où c'est généralement avantageux</strong></h3>
 
-<ul>
-<li>Vous faites des <strong>rachats de 2ème pilier</strong> importants</li>
-<li>Vous versez le <strong>maximum au 3ème pilier</strong></li>
-<li>Vous avez des <strong>frais de transport élevés</strong> (longue distance domicile-travail)</li>
-<li>Vous payez une <strong>pension alimentaire</strong></li>
-<li>Vous avez des <strong>frais de garde</strong> d'enfants importants</li>
-<li>Vous remboursez un <strong>crédit immobilier</strong> avec des intérêts élevés</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vous faites des <strong>rachats de 2ème pilier</strong> importants</li>
+<li style="margin-bottom: 0.25rem;">Vous versez le <strong>maximum au 3ème pilier</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous avez des <strong>frais de transport élevés</strong> (longue distance domicile-travail)</li>
+<li style="margin-bottom: 0.25rem;">Vous payez une <strong>pension alimentaire</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous avez des <strong>frais de garde</strong> d'enfants importants</li>
+<li style="margin-bottom: 0.25rem;">Vous remboursez un <strong>crédit immobilier</strong> avec des intérêts élevés</li>
 </ul>
 
 <br/>
 
 <h3><strong>Cas où c'est souvent défavorable</strong></h3>
 
-<ul>
-<li>Vous avez <strong>peu de déductions</strong> à faire valoir</li>
-<li>Votre <strong>conjoint</strong> a des revenus en France</li>
-<li>Vous avez des <strong>revenus locatifs</strong> en France</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vous avez <strong>peu de déductions</strong> à faire valoir</li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>conjoint</strong> a des revenus en France</li>
+<li style="margin-bottom: 0.25rem;">Vous avez des <strong>revenus locatifs</strong> en France</li>
 </ul>
 
 <br/>
@@ -3036,7 +3036,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Comment faire sa demande de quasi-résident ?</strong></h2>
+<p><strong>Comment faire sa demande de quasi-résident ?</strong></p>
 
 <br/>
 
@@ -3050,12 +3050,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Vous aurez besoin de :</p>
 
-<ul>
-<li>Certificat de salaire suisse</li>
-<li>Avis d'imposition français (si applicable)</li>
-<li>Justificatifs de tous vos revenus mondiaux</li>
-<li>Attestation de 3ème pilier</li>
-<li>Justificatifs de déductions</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Certificat de salaire suisse</li>
+<li style="margin-bottom: 0.25rem;">Avis d'imposition français (si applicable)</li>
+<li style="margin-bottom: 0.25rem;">Justificatifs de tous vos revenus mondiaux</li>
+<li style="margin-bottom: 0.25rem;">Attestation de 3ème pilier</li>
+<li style="margin-bottom: 0.25rem;">Justificatifs de déductions</li>
 </ul>
 
 <br/>
@@ -3068,14 +3068,14 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Délais importants pour 2026</strong></h3>
 
-<ul>
-<li><strong>31 mars 2026</strong> : Date limite pour demander la TOU pour l'année fiscale 2025</li>
-<li><strong>Traitement</strong> : Comptez 3 à 6 mois pour recevoir votre décision de taxation</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>31 mars 2026</strong> : Date limite pour demander la TOU pour l'année fiscale 2025</li>
+<li style="margin-bottom: 0.25rem;"><strong>Traitement</strong> : Comptez 3 à 6 mois pour recevoir votre décision de taxation</li>
 </ul>
 
 <br/>
 
-<h2><strong>Quasi-résident dans les autres cantons</strong></h2>
+<p><strong>Quasi-résident dans les autres cantons</strong></p>
 
 <br/>
 
@@ -3095,7 +3095,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Simulation : combien pouvez-vous économiser ?</strong></h2>
+<p><strong>Simulation : combien pouvez-vous économiser ?</strong></p>
 
 <br/>
 
@@ -3103,10 +3103,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Situation :</strong> Frontalier célibataire, 120'000 CHF/an, 45 km de trajet</p>
 
-<ul>
-<li>Impôt à la source standard : environ <strong>18'000 CHF</strong></li>
-<li>Avec quasi-résident et déductions optimisées : environ <strong>14'500 CHF</strong></li>
-<li><strong>Économie potentielle : 3'500 CHF</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Impôt à la source standard : environ <strong>18'000 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;">Avec quasi-résident et déductions optimisées : environ <strong>14'500 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Économie potentielle : 3'500 CHF</strong></li>
 </ul>
 
 <br/>
@@ -3115,17 +3115,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>NeoFidu accompagne les frontaliers</strong></h2>
+<p><strong>NeoFidu accompagne les frontaliers</strong></p>
 
 <br/>
 
 <p>La demande de quasi-résident est technique et les erreurs peuvent coûter cher. Chez <strong>NeoFidu</strong>, nous aidons les frontaliers à :</p>
 
-<ul>
-<li><strong>Évaluer l'intérêt</strong> du statut quasi-résident pour leur situation</li>
-<li><strong>Préparer le dossier</strong> de demande de TOU</li>
-<li><strong>Optimiser les déductions</strong> pour maximiser l'avantage fiscal</li>
-<li><strong>Suivre la procédure</strong> jusqu'à la décision finale</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Évaluer l'intérêt</strong> du statut quasi-résident pour leur situation</li>
+<li style="margin-bottom: 0.25rem;"><strong>Préparer le dossier</strong> de demande de TOU</li>
+<li style="margin-bottom: 0.25rem;"><strong>Optimiser les déductions</strong> pour maximiser l'avantage fiscal</li>
+<li style="margin-bottom: 0.25rem;"><strong>Suivre la procédure</strong> jusqu'à la décision finale</li>
 </ul>
 
 <br/>
@@ -3150,22 +3150,22 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>3ème pilier : rappel des avantages fiscaux</strong></h2>
+<p><strong>3ème pilier : rappel des avantages fiscaux</strong></p>
 
 <br/>
 
 <p>Avant de comparer les solutions, rappelons pourquoi le 3ème pilier est si intéressant :</p>
 
-<ul>
-<li><strong>Déduction fiscale</strong> : jusqu'à 7'258 CHF déductibles en 2026 (salariés avec 2ème pilier)</li>
-<li><strong>Économie d'impôt immédiate</strong> : selon votre taux marginal, cela représente 1'500 à 3'000 CHF d'économie</li>
-<li><strong>Capital protégé</strong> : en cas de faillite, le 3ème pilier est insaisissable</li>
-<li><strong>Imposition réduite au retrait</strong> : taux préférentiel, séparé des autres revenus</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Déduction fiscale</strong> : jusqu'à 7'258 CHF déductibles en 2026 (salariés avec 2ème pilier)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Économie d'impôt immédiate</strong> : selon votre taux marginal, cela représente 1'500 à 3'000 CHF d'économie</li>
+<li style="margin-bottom: 0.25rem;"><strong>Capital protégé</strong> : en cas de faillite, le 3ème pilier est insaisissable</li>
+<li style="margin-bottom: 0.25rem;"><strong>Imposition réduite au retrait</strong> : taux préférentiel, séparé des autres revenus</li>
 </ul>
 
 <br/>
 
-<h2><strong>3ème pilier bancaire : flexibilité maximale</strong></h2>
+<p><strong>3ème pilier bancaire : flexibilité maximale</strong></p>
 
 <br/>
 
@@ -3177,22 +3177,22 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Avantages</strong></h3>
 
-<ul>
-<li>✅ <strong>Flexibilité totale</strong> : versez ce que vous voulez, quand vous voulez</li>
-<li>✅ <strong>Pas d'engagement</strong> : vous pouvez arrêter à tout moment</li>
-<li>✅ <strong>Frais réduits</strong> : généralement moins de frais que les assurances</li>
-<li>✅ <strong>Choix d'investissement</strong> : compte épargne ou fonds de placement</li>
-<li>✅ <strong>Transparence</strong> : vous voyez exactement combien vous avez</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">✅ <strong>Flexibilité totale</strong> : versez ce que vous voulez, quand vous voulez</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Pas d'engagement</strong> : vous pouvez arrêter à tout moment</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Frais réduits</strong> : généralement moins de frais que les assurances</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Choix d'investissement</strong> : compte épargne ou fonds de placement</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Transparence</strong> : vous voyez exactement combien vous avez</li>
 </ul>
 
 <br/>
 
 <h3><strong>Inconvénients</strong></h3>
 
-<ul>
-<li>❌ <strong>Pas de couverture décès/invalidité</strong> incluse</li>
-<li>❌ <strong>Rendements variables</strong> si vous choisissez des fonds</li>
-<li>❌ <strong>Discipline personnelle</strong> requise pour verser régulièrement</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">❌ <strong>Pas de couverture décès/invalidité</strong> incluse</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Rendements variables</strong> si vous choisissez des fonds</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Discipline personnelle</strong> requise pour verser régulièrement</li>
 </ul>
 
 <br/>
@@ -3201,11 +3201,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Les taux des comptes 3a ont évolué avec la hausse des taux directeurs :</p>
 
-<ul>
-<li><strong>Banque Migros</strong> : 1.25%</li>
-<li><strong>Raiffeisen</strong> : 1.00%</li>
-<li><strong>PostFinance</strong> : 0.90%</li>
-<li><strong>UBS/Credit Suisse</strong> : 0.75%</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Banque Migros</strong> : 1.25%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Raiffeisen</strong> : 1.00%</li>
+<li style="margin-bottom: 0.25rem;"><strong>PostFinance</strong> : 0.90%</li>
+<li style="margin-bottom: 0.25rem;"><strong>UBS/Credit Suisse</strong> : 0.75%</li>
 </ul>
 
 <br/>
@@ -3214,7 +3214,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>3ème pilier assurance : sécurité et couverture</strong></h2>
+<p><strong>3ème pilier assurance : sécurité et couverture</strong></p>
 
 <br/>
 
@@ -3226,28 +3226,28 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Avantages</strong></h3>
 
-<ul>
-<li>✅ <strong>Couverture décès</strong> : vos proches reçoivent un capital si vous décédez</li>
-<li>✅ <strong>Libération des primes</strong> : si vous devenez invalide, l'assurance continue de payer</li>
-<li>✅ <strong>Discipline forcée</strong> : vous êtes "obligé" de cotiser</li>
-<li>✅ <strong>Capital garanti</strong> : vous savez ce que vous aurez à terme (pour les produits garantis)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">✅ <strong>Couverture décès</strong> : vos proches reçoivent un capital si vous décédez</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Libération des primes</strong> : si vous devenez invalide, l'assurance continue de payer</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Discipline forcée</strong> : vous êtes "obligé" de cotiser</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Capital garanti</strong> : vous savez ce que vous aurez à terme (pour les produits garantis)</li>
 </ul>
 
 <br/>
 
 <h3><strong>Inconvénients</strong></h3>
 
-<ul>
-<li>❌ <strong>Engagement long terme</strong> : difficile (et coûteux) de sortir avant terme</li>
-<li>❌ <strong>Frais plus élevés</strong> : commissions, frais de gestion, frais d'assurance</li>
-<li>❌ <strong>Rendements souvent plus faibles</strong> que les solutions bancaires</li>
-<li>❌ <strong>Manque de transparence</strong> : difficile de savoir combien va réellement à l'épargne</li>
-<li>❌ <strong>Pénalités de rachat</strong> : si vous arrêtez, vous perdez une partie de votre capital</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">❌ <strong>Engagement long terme</strong> : difficile (et coûteux) de sortir avant terme</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Frais plus élevés</strong> : commissions, frais de gestion, frais d'assurance</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Rendements souvent plus faibles</strong> que les solutions bancaires</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Manque de transparence</strong> : difficile de savoir combien va réellement à l'épargne</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Pénalités de rachat</strong> : si vous arrêtez, vous perdez une partie de votre capital</li>
 </ul>
 
 <br/>
 
-<h2><strong>Tableau comparatif 2026</strong></h2>
+<p><strong>Tableau comparatif 2026</strong></p>
 
 <br/>
 
@@ -3263,35 +3263,35 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Quel 3ème pilier choisir selon votre profil ?</strong></h2>
+<p><strong>Quel 3ème pilier choisir selon votre profil ?</strong></p>
 
 <br/>
 
 <h3><strong>Choisissez la banque si :</strong></h3>
 
-<ul>
-<li>Vous êtes <strong>discipliné</strong> et n'avez pas besoin d'être "forcé" à épargner</li>
-<li>Vous avez déjà une <strong>assurance décès</strong> séparée</li>
-<li>Vous voulez <strong>maximiser vos rendements</strong></li>
-<li>Votre situation professionnelle est <strong>incertaine</strong></li>
-<li>Vous êtes <strong>jeune</strong> et pouvez prendre des risques</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vous êtes <strong>discipliné</strong> et n'avez pas besoin d'être "forcé" à épargner</li>
+<li style="margin-bottom: 0.25rem;">Vous avez déjà une <strong>assurance décès</strong> séparée</li>
+<li style="margin-bottom: 0.25rem;">Vous voulez <strong>maximiser vos rendements</strong></li>
+<li style="margin-bottom: 0.25rem;">Votre situation professionnelle est <strong>incertaine</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous êtes <strong>jeune</strong> et pouvez prendre des risques</li>
 </ul>
 
 <br/>
 
 <h3><strong>Choisissez l'assurance si :</strong></h3>
 
-<ul>
-<li>Vous avez besoin d'une <strong>couverture décès/invalidité</strong></li>
-<li>Vous avez <strong>des personnes à charge</strong> (enfants, conjoint sans revenu)</li>
-<li>Vous avez du mal à <strong>épargner régulièrement</strong></li>
-<li>Vous approchez de la <strong>retraite</strong> et voulez sécuriser votre capital</li>
-<li>Vous avez un <strong>crédit hypothécaire</strong> et la banque exige une assurance</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vous avez besoin d'une <strong>couverture décès/invalidité</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous avez <strong>des personnes à charge</strong> (enfants, conjoint sans revenu)</li>
+<li style="margin-bottom: 0.25rem;">Vous avez du mal à <strong>épargner régulièrement</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous approchez de la <strong>retraite</strong> et voulez sécuriser votre capital</li>
+<li style="margin-bottom: 0.25rem;">Vous avez un <strong>crédit hypothécaire</strong> et la banque exige une assurance</li>
 </ul>
 
 <br/>
 
-<h2><strong>Les pièges à éviter</strong></h2>
+<p><strong>Les pièges à éviter</strong></p>
 
 <br/>
 
@@ -3313,22 +3313,22 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Notre recommandation 2026</strong></h2>
+<p><strong>Notre recommandation 2026</strong></p>
 
 <br/>
 
 <p>Pour la majorité des situations, nous recommandons :</p>
 
 <ol>
-<li><strong>Un 3ème pilier bancaire</strong> avec des fonds de placement (type VIAC, Finpension)</li>
-<li><strong>Une assurance décès séparée</strong> si vous avez des personnes à charge</li>
+<li style="margin-bottom: 0.25rem;"><strong>Un 3ème pilier bancaire</strong> avec des fonds de placement (type VIAC, Finpension)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Une assurance décès séparée</strong> si vous avez des personnes à charge</li>
 </ol>
 
 <p>Cette combinaison offre généralement le <strong>meilleur rapport rendement/couverture</strong>.</p>
 
 <br/>
 
-<h2><strong>Calculez votre économie d'impôts</strong></h2>
+<p><strong>Calculez votre économie d'impôts</strong></p>
 
 <br/>
 
@@ -3336,7 +3336,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Besoin d'un conseil personnalisé ?</strong></h2>
+<p><strong>Besoin d'un conseil personnalisé ?</strong></p>
 
 <br/>
 
@@ -3362,7 +3362,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les déductions liées au travail</strong></h2>
+<p><strong>Les déductions liées au travail</strong></p>
 
 <br/>
 
@@ -3370,10 +3370,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Vous pouvez déduire vos frais de déplacement entre votre domicile et votre lieu de travail :</p>
 
-<ul>
-<li><strong>Transports publics</strong> : coût réel de l'abonnement (CFF, TL, TPG, etc.)</li>
-<li><strong>Voiture</strong> : 0.70 CHF/km si les transports publics ne sont pas raisonnables</li>
-<li><strong>Vélo/e-bike</strong> : forfait selon le canton (700-1'000 CHF)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Transports publics</strong> : coût réel de l'abonnement (CFF, TL, TPG, etc.)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Voiture</strong> : 0.70 CHF/km si les transports publics ne sont pas raisonnables</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vélo/e-bike</strong> : forfait selon le canton (700-1'000 CHF)</li>
 </ul>
 
 <br/>
@@ -3386,24 +3386,24 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Si vous ne pouvez pas rentrer manger chez vous à midi :</p>
 
-<ul>
-<li><strong>Sans cantine d'entreprise</strong> : 15 CHF/jour → environ 3'200 CHF/an</li>
-<li><strong>Avec cantine subventionnée</strong> : 7.50 CHF/jour → environ 1'600 CHF/an</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Sans cantine d'entreprise</strong> : 15 CHF/jour → environ 3'200 CHF/an</li>
+<li style="margin-bottom: 0.25rem;"><strong>Avec cantine subventionnée</strong> : 7.50 CHF/jour → environ 1'600 CHF/an</li>
 </ul>
 
 <br/>
 
 <h3><strong>Autres frais professionnels</strong></h3>
 
-<ul>
-<li><strong>Forfait pour outils et vêtements</strong> : 3% du salaire (min. 2'000 CHF)</li>
-<li><strong>Formation continue</strong> : jusqu'à 13'000 CHF (frais, livres, transport)</li>
-<li><strong>Home office</strong> : certains cantons acceptent une déduction si l'employeur n'offre pas de bureau</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Forfait pour outils et vêtements</strong> : 3% du salaire (min. 2'000 CHF)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Formation continue</strong> : jusqu'à 13'000 CHF (frais, livres, transport)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Home office</strong> : certains cantons acceptent une déduction si l'employeur n'offre pas de bureau</li>
 </ul>
 
 <br/>
 
-<h2><strong>Les déductions de prévoyance (2ème et 3ème pilier)</strong></h2>
+<p><strong>Les déductions de prévoyance (2ème et 3ème pilier)</strong></p>
 
 <br/>
 
@@ -3411,9 +3411,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>La déduction la plus populaire et la plus efficace :</p>
 
-<ul>
-<li><strong>Salariés avec 2ème pilier</strong> : maximum 7'258 CHF (2026)</li>
-<li><strong>Indépendants sans 2ème pilier</strong> : maximum 36'288 CHF (20% du revenu net)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Salariés avec 2ème pilier</strong> : maximum 7'258 CHF (2026)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Indépendants sans 2ème pilier</strong> : maximum 36'288 CHF (20% du revenu net)</li>
 </ul>
 
 <br/>
@@ -3424,16 +3424,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les déductions familiales</strong></h2>
+<p><strong>Les déductions familiales</strong></p>
 
 <br/>
 
 <h3><strong>Enfants</strong></h3>
 
-<ul>
-<li><strong>Déduction par enfant</strong> : variable selon les cantons (6'600 CHF en fédéral)</li>
-<li><strong>Frais de garde</strong> : jusqu'à 25'500 CHF par enfant (fédéral)</li>
-<li><strong>Frais de formation</strong> des enfants majeurs : selon les cantons</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Déduction par enfant</strong> : variable selon les cantons (6'600 CHF en fédéral)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Frais de garde</strong> : jusqu'à 25'500 CHF par enfant (fédéral)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Frais de formation</strong> des enfants majeurs : selon les cantons</li>
 </ul>
 
 <br/>
@@ -3450,29 +3450,29 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les déductions immobilières</strong></h2>
+<p><strong>Les déductions immobilières</strong></p>
 
 <br/>
 
 <h3><strong>Propriétaires occupants</strong></h3>
 
-<ul>
-<li><strong>Intérêts hypothécaires</strong> : déductibles intégralement</li>
-<li><strong>Frais d'entretien</strong> : forfait (10-20% de la valeur locative) ou frais effectifs</li>
-<li><strong>Travaux d'économie d'énergie</strong> : panneaux solaires, isolation, pompe à chaleur</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Intérêts hypothécaires</strong> : déductibles intégralement</li>
+<li style="margin-bottom: 0.25rem;"><strong>Frais d'entretien</strong> : forfait (10-20% de la valeur locative) ou frais effectifs</li>
+<li style="margin-bottom: 0.25rem;"><strong>Travaux d'économie d'énergie</strong> : panneaux solaires, isolation, pompe à chaleur</li>
 </ul>
 
 <br/>
 
 <h3><strong>Locataires</strong></h3>
 
-<ul>
-<li><strong>Loyer</strong> : non déductible (sauf pour certains frais accessoires professionnels)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Loyer</strong> : non déductible (sauf pour certains frais accessoires professionnels)</li>
 </ul>
 
 <br/>
 
-<h2><strong>Les déductions de santé</strong></h2>
+<p><strong>Les déductions de santé</strong></p>
 
 <br/>
 
@@ -3488,15 +3488,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les autres déductions</strong></h2>
+<p><strong>Les autres déductions</strong></p>
 
 <br/>
 
 <h3><strong>Dons</strong></h3>
 
-<ul>
-<li><strong>Dons à des œuvres d'utilité publique</strong> : déductibles jusqu'à 20% du revenu</li>
-<li><strong>Dons aux partis politiques</strong> : jusqu'à 10'300 CHF (fédéral)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Dons à des œuvres d'utilité publique</strong> : déductibles jusqu'à 20% du revenu</li>
+<li style="margin-bottom: 0.25rem;"><strong>Dons aux partis politiques</strong> : jusqu'à 10'300 CHF (fédéral)</li>
 </ul>
 
 <br/>
@@ -3513,40 +3513,40 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Déductions spécifiques par canton</strong></h2>
+<p><strong>Déductions spécifiques par canton</strong></p>
 
 <br/>
 
 <h3><strong>Canton de Vaud</strong></h3>
 
-<ul>
-<li>Déduction vélo : 700 CHF</li>
-<li>Déduction supplémentaire pour revenus modestes</li>
-<li>Plafond transport plus élevé qu'au fédéral</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Déduction vélo : 700 CHF</li>
+<li style="margin-bottom: 0.25rem;">Déduction supplémentaire pour revenus modestes</li>
+<li style="margin-bottom: 0.25rem;">Plafond transport plus élevé qu'au fédéral</li>
 </ul>
 
 <br/>
 
 <h3><strong>Canton de Genève</strong></h3>
 
-<ul>
-<li>Frais de transport : pas de plafond cantonal</li>
-<li>Déduction logement pour locataires</li>
-<li>Frais de garde plus généreux</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Frais de transport : pas de plafond cantonal</li>
+<li style="margin-bottom: 0.25rem;">Déduction logement pour locataires</li>
+<li style="margin-bottom: 0.25rem;">Frais de garde plus généreux</li>
 </ul>
 
 <br/>
 
 <h3><strong>Canton du Valais</strong></h3>
 
-<ul>
-<li>Déductions familiales avantageuses</li>
-<li>Forfait professionnel généreux</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Déductions familiales avantageuses</li>
+<li style="margin-bottom: 0.25rem;">Forfait professionnel généreux</li>
 </ul>
 
 <br/>
 
-<h2><strong>Checklist : n'oubliez rien !</strong></h2>
+<p><strong>Checklist : n'oubliez rien !</strong></p>
 
 <br/>
 
@@ -3568,7 +3568,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Estimez vos impôts gratuitement</strong></h2>
+<p><strong>Estimez vos impôts gratuitement</strong></p>
 
 <br/>
 
@@ -3576,7 +3576,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Optimisez vos déductions avec NeoFidu</strong></h2>
+<p><strong>Optimisez vos déductions avec NeoFidu</strong></p>
 
 <br/>
 
@@ -3602,7 +3602,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les délais de déclaration d'impôts 2026 par canton</strong></h2>
+<p><strong>Les délais de déclaration d'impôts 2026 par canton</strong></p>
 
 <br/>
 
@@ -3658,7 +3658,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les déductions fiscales que vous oubliez probablement</strong></h2>
+<p><strong>Les déductions fiscales que vous oubliez probablement</strong></p>
 
 <br/>
 
@@ -3682,11 +3682,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Ne sous-estimez pas cette catégorie ! Vous pouvez déduire :</p>
 
-<ul>
-<li><strong>Les frais de déplacement</strong> : CHF 0.70 par km en voiture (plafonné selon les cantons) ou l'abonnement de transports publics</li>
-<li><strong>Les repas hors domicile</strong> : forfait de CHF 15.- à CHF 30.- par jour selon les cantons</li>
-<li><strong>Les frais de formation continue</strong> : jusqu'à CHF 12'000.- par an pour des formations en lien avec votre activité</li>
-<li><strong>Les cotisations professionnelles</strong> : syndicats, associations professionnelles</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Les frais de déplacement</strong> : CHF 0.70 par km en voiture (plafonné selon les cantons) ou l'abonnement de transports publics</li>
+<li style="margin-bottom: 0.25rem;"><strong>Les repas hors domicile</strong> : forfait de CHF 15.- à CHF 30.- par jour selon les cantons</li>
+<li style="margin-bottom: 0.25rem;"><strong>Les frais de formation continue</strong> : jusqu'à CHF 12'000.- par an pour des formations en lien avec votre activité</li>
+<li style="margin-bottom: 0.25rem;"><strong>Les cotisations professionnelles</strong> : syndicats, associations professionnelles</li>
 </ul>
 
 <br/>
@@ -3699,11 +3699,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Si vous faites garder vos enfants pour pouvoir travailler, ces frais sont déductibles. Le <strong>plafond varie selon les cantons</strong> :</p>
 
-<ul>
-<li><strong>Vaud</strong> : CHF 7'100.- par enfant</li>
-<li><strong>Genève</strong> : CHF 4'000.- par enfant</li>
-<li><strong>Valais</strong> : CHF 3'000.- par enfant</li>
-<li><strong>Fribourg</strong> : CHF 10'000.- par enfant</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Vaud</strong> : CHF 7'100.- par enfant</li>
+<li style="margin-bottom: 0.25rem;"><strong>Genève</strong> : CHF 4'000.- par enfant</li>
+<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : CHF 3'000.- par enfant</li>
+<li style="margin-bottom: 0.25rem;"><strong>Fribourg</strong> : CHF 10'000.- par enfant</li>
 </ul>
 
 <br/>
@@ -3712,9 +3712,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Propriétaires, c'est votre moment ! Vous pouvez déduire tous les <strong>intérêts de votre prêt hypothécaire</strong>, ainsi que les frais d'entretien de votre bien. Deux options s'offrent à vous :</p>
 
-<ul>
-<li><strong>Le forfait</strong> : généralement 10% de la valeur locative pour les immeubles de moins de 10 ans, 20% au-delà</li>
-<li><strong>Les frais effectifs</strong> : si vos travaux dépassent le forfait, gardez toutes les factures !</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Le forfait</strong> : généralement 10% de la valeur locative pour les immeubles de moins de 10 ans, 20% au-delà</li>
+<li style="margin-bottom: 0.25rem;"><strong>Les frais effectifs</strong> : si vos travaux dépassent le forfait, gardez toutes les factures !</li>
 </ul>
 
 <br/>
@@ -3723,7 +3723,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les erreurs fiscales à éviter absolument</strong></h2>
+<p><strong>Les erreurs fiscales à éviter absolument</strong></p>
 
 <br/>
 
@@ -3757,19 +3757,19 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Pourquoi faire appel à un fiduciaire pour votre déclaration d'impôts ?</strong></h2>
+<p><strong>Pourquoi faire appel à un fiduciaire pour votre déclaration d'impôts ?</strong></p>
 
 <br/>
 
 <p>Vous vous demandez peut-être si cela vaut la peine de confier votre déclaration à un professionnel. Voici quelques situations où c'est <strong>clairement avantageux</strong> :</p>
 
-<ul>
-<li>Vous êtes <strong>propriétaire immobilier</strong></li>
-<li>Vous avez des <strong>revenus de plusieurs sources</strong></li>
-<li>Vous êtes <strong>indépendant</strong> ou avez une activité accessoire</li>
-<li>Vous avez <strong>hérité ou reçu une donation</strong></li>
-<li>Votre situation familiale a changé (mariage, divorce, enfants)</li>
-<li>Vous êtes <strong>frontalier</strong> ou avez des revenus à l'étranger</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vous êtes <strong>propriétaire immobilier</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous avez des <strong>revenus de plusieurs sources</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous êtes <strong>indépendant</strong> ou avez une activité accessoire</li>
+<li style="margin-bottom: 0.25rem;">Vous avez <strong>hérité ou reçu une donation</strong></li>
+<li style="margin-bottom: 0.25rem;">Votre situation familiale a changé (mariage, divorce, enfants)</li>
+<li style="margin-bottom: 0.25rem;">Vous êtes <strong>frontalier</strong> ou avez des revenus à l'étranger</li>
 </ul>
 
 <br/>
@@ -3806,15 +3806,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les plafonds du pilier 3a en 2026 : les nouveaux montants</strong></h2>
+<p><strong>Les plafonds du pilier 3a en 2026 : les nouveaux montants</strong></p>
 
 <br/>
 
 <p>Bonne nouvelle pour cette année : les montants maximaux ont été revus à la hausse pour suivre l'inflation. Voici les <strong>chiffres officiels 2026</strong> :</p>
 
-<ul>
-<li><strong>Salariés affiliés à un 2e pilier</strong> : CHF 7'258.- (contre CHF 7'056.- en 2025)</li>
-<li><strong>Indépendants sans 2e pilier</strong> : 20% du revenu net, maximum CHF 36'288.-</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Salariés affiliés à un 2e pilier</strong> : CHF 7'258.- (contre CHF 7'056.- en 2025)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Indépendants sans 2e pilier</strong> : 20% du revenu net, maximum CHF 36'288.-</li>
 </ul>
 
 <br/>
@@ -3823,7 +3823,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>L'économie d'impôts selon votre canton de résidence</strong></h2>
+<p><strong>L'économie d'impôts selon votre canton de résidence</strong></p>
 
 <br/>
 
@@ -3867,7 +3867,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les stratégies d'optimisation du pilier 3a que peu de gens connaissent</strong></h2>
+<p><strong>Les stratégies d'optimisation du pilier 3a que peu de gens connaissent</strong></p>
 
 <br/>
 
@@ -3885,10 +3885,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple chiffré pour un résident vaudois :</strong></p>
 
-<ul>
-<li>Retrait unique de CHF 200'000.- : impôt d'environ <strong>CHF 18'000.-</strong></li>
-<li>5 retraits de CHF 40'000.- sur 5 ans : impôt total d'environ <strong>CHF 10'000.-</strong></li>
-<li><strong>Économie totale : CHF 8'000.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Retrait unique de CHF 200'000.- : impôt d'environ <strong>CHF 18'000.-</strong></li>
+<li style="margin-bottom: 0.25rem;">5 retraits de CHF 40'000.- sur 5 ans : impôt total d'environ <strong>CHF 10'000.-</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Économie totale : CHF 8'000.-</strong></li>
 </ul>
 
 <br/>
@@ -3907,9 +3907,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Il existe deux types de 3a :</p>
 
-<ul>
-<li><strong>Le 3a bancaire</strong> : flexible, vous versez ce que vous voulez, quand vous voulez (dans la limite du plafond)</li>
-<li><strong>Le 3a assurance</strong> : lié à un contrat d'assurance-vie, avec des versements fixes et une couverture décès/invalidité</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Le 3a bancaire</strong> : flexible, vous versez ce que vous voulez, quand vous voulez (dans la limite du plafond)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Le 3a assurance</strong> : lié à un contrat d'assurance-vie, avec des versements fixes et une couverture décès/invalidité</li>
 </ul>
 
 <br/>
@@ -3932,7 +3932,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Cas pratiques : optimisation du 3a selon votre profil</strong></h2>
+<p><strong>Cas pratiques : optimisation du 3a selon votre profil</strong></p>
 
 <br/>
 
@@ -3966,7 +3966,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les pièges du pilier 3a à éviter</strong></h2>
+<p><strong>Les pièges du pilier 3a à éviter</strong></p>
 
 <br/>
 
@@ -3974,11 +3974,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le 3a est bloqué jusqu'à <strong>5 ans avant l'âge légal de la retraite</strong> (soit 60 ans actuellement). Les seuls cas de retrait anticipé autorisés sont :</p>
 
-<ul>
-<li>Achat de votre <strong>résidence principale</strong></li>
-<li><strong>Départ définitif de Suisse</strong></li>
-<li>Passage au <strong>statut d'indépendant</strong></li>
-<li><strong>Invalidité</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Achat de votre <strong>résidence principale</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Départ définitif de Suisse</strong></li>
+<li style="margin-bottom: 0.25rem;">Passage au <strong>statut d'indépendant</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Invalidité</strong></li>
 </ul>
 
 <br/>
@@ -3997,7 +3997,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Conclusion : passez à l'action dès maintenant</strong></h2>
+<p><strong>Conclusion : passez à l'action dès maintenant</strong></p>
 
 <br/>
 
@@ -4033,7 +4033,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le problème ? On ne sait pas toujours par où commencer. Sàrl, SA, indépendant… Combien ça coûte ? Quelles démarches ? Ce guide répond à toutes vos questions, étape par étape.</p>
 
-<h2><strong>Étape 1 : Choisir la bonne forme juridique</strong></h2>
+<p><strong>Étape 1 : Choisir la bonne forme juridique</strong></p>
 
 <p>C'est LA décision qui va tout influencer : votre responsabilité personnelle, vos impôts, et même l'image que vous renvoyez à vos clients. Prenez le temps de bien choisir.</p>
 
@@ -4042,17 +4042,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>Vous voulez tester une idée sans vous compliquer la vie ? La raison individuelle, c'est le choix évident. Pas de capital à bloquer, pas de notaire, et vous pouvez démarrer en quelques jours.</p>
 
 <p><strong>Les plus :</strong></p>
-<ul>
-<li>Coût de création minime (moins de CHF 200.-)</li>
-<li>Comptabilité ultra-simplifiée</li>
-<li>Zéro capital à bloquer</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Coût de création minime (moins de CHF 200.-)</li>
+<li style="margin-bottom: 0.25rem;">Comptabilité ultra-simplifiée</li>
+<li style="margin-bottom: 0.25rem;">Zéro capital à bloquer</li>
 </ul>
 
 <p><strong>Les moins :</strong></p>
-<ul>
-<li>Responsabilité illimitée — si ça tourne mal, vos biens personnels sont en jeu</li>
-<li>Certains clients préfèrent travailler avec des "vraies" sociétés</li>
-<li>Impôts sur le revenu personnel (ça peut vite monter)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Responsabilité illimitée — si ça tourne mal, vos biens personnels sont en jeu</li>
+<li style="margin-bottom: 0.25rem;">Certains clients préfèrent travailler avec des "vraies" sociétés</li>
+<li style="margin-bottom: 0.25rem;">Impôts sur le revenu personnel (ça peut vite monter)</li>
 </ul>
 
 <p><strong>C'est pour qui ?</strong> Les freelances, consultants, artisans qui veulent tester leur activité sans gros risques financiers.</p>
@@ -4066,26 +4066,26 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>C'est la forme préférée des PME suisses, et pour cause : vous protégez vos biens personnels tout en gardant une structure accessible.</p>
 
 <p><strong>Ce qu'il faut savoir :</strong></p>
-<ul>
-<li><strong>Capital minimum</strong> : CHF 20'000.- (à déposer en entier)</li>
-<li><strong>Responsabilité limitée</strong> au capital — vos biens perso sont protégés</li>
-<li>Passage obligatoire chez le notaire</li>
-<li>Inscription au Registre du Commerce</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Capital minimum</strong> : CHF 20'000.- (à déposer en entier)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Responsabilité limitée</strong> au capital — vos biens perso sont protégés</li>
+<li style="margin-bottom: 0.25rem;">Passage obligatoire chez le notaire</li>
+<li style="margin-bottom: 0.25rem;">Inscription au Registre du Commerce</li>
 </ul>
 
 <p><strong>Les plus :</strong></p>
-<ul>
-<li>Vos biens personnels sont à l'abri</li>
-<li>Image pro auprès des clients et des banques</li>
-<li>Possibilité d'optimiser vos impôts (mix salaire + dividendes)</li>
-<li>Vous pouvez vous associer facilement</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vos biens personnels sont à l'abri</li>
+<li style="margin-bottom: 0.25rem;">Image pro auprès des clients et des banques</li>
+<li style="margin-bottom: 0.25rem;">Possibilité d'optimiser vos impôts (mix salaire + dividendes)</li>
+<li style="margin-bottom: 0.25rem;">Vous pouvez vous associer facilement</li>
 </ul>
 
 <p><strong>Les moins :</strong></p>
-<ul>
-<li>CHF 20'000.- à bloquer au départ</li>
-<li>Frais de création : CHF 2'000 à 3'000.-</li>
-<li>Comptabilité obligatoire (mais on peut s'en occuper pour vous)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">CHF 20'000.- à bloquer au départ</li>
+<li style="margin-bottom: 0.25rem;">Frais de création : CHF 2'000 à 3'000.-</li>
+<li style="margin-bottom: 0.25rem;">Comptabilité obligatoire (mais on peut s'en occuper pour vous)</li>
 </ul>
 
 <div style="background: #f0fdf4; padding: 16px; border-radius: 8px; margin: 16px 0;">
@@ -4097,33 +4097,33 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>La SA, c'est la structure des grandes boîtes. Mais si vous avez des ambitions de croissance ou que vous voulez lever des fonds, ça peut valoir le coup dès le départ.</p>
 
 <p><strong>Caractéristiques :</strong></p>
-<ul>
-<li><strong>Capital minimum</strong> : CHF 100'000.- (dont CHF 50'000.- à libérer)</li>
-<li>Actions au porteur ou nominatives</li>
-<li>Conseil d'administration obligatoire</li>
-<li>Organe de révision selon la taille</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Capital minimum</strong> : CHF 100'000.- (dont CHF 50'000.- à libérer)</li>
+<li style="margin-bottom: 0.25rem;">Actions au porteur ou nominatives</li>
+<li style="margin-bottom: 0.25rem;">Conseil d'administration obligatoire</li>
+<li style="margin-bottom: 0.25rem;">Organe de révision selon la taille</li>
 </ul>
 
 <br/>
 
 <p><strong>Avantages :</strong></p>
-<ul>
-<li>Image très professionnelle</li>
-<li>Facilité pour lever des fonds ou accueillir des investisseurs</li>
-<li>Transmission facilitée (vente d'actions)</li>
-<li>Anonymat possible des actionnaires</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Image très professionnelle</li>
+<li style="margin-bottom: 0.25rem;">Facilité pour lever des fonds ou accueillir des investisseurs</li>
+<li style="margin-bottom: 0.25rem;">Transmission facilitée (vente d'actions)</li>
+<li style="margin-bottom: 0.25rem;">Anonymat possible des actionnaires</li>
 </ul>
 
 <p><strong>Inconvénients :</strong></p>
-<ul>
-<li>Capital important à mobiliser</li>
-<li>Frais de création élevés (CHF 3'000.- à 5'000.-)</li>
-<li>Formalités plus lourdes</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Capital important à mobiliser</li>
+<li style="margin-bottom: 0.25rem;">Frais de création élevés (CHF 3'000.- à 5'000.-)</li>
+<li style="margin-bottom: 0.25rem;">Formalités plus lourdes</li>
 </ul>
 
 <br/>
 
-<h2><strong>Les étapes de création d'entreprise en Suisse</strong></h2>
+<p><strong>Les étapes de création d'entreprise en Suisse</strong></p>
 
 <br/>
 
@@ -4171,11 +4171,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Une fois inscrite, vous devez affilier votre entreprise aux <strong>assurances sociales</strong> :</p>
 
-<ul>
-<li><strong>AVS/AI/APG</strong> : caisse de compensation cantonale ou professionnelle</li>
-<li><strong>LPP (2e pilier)</strong> : institution de prévoyance de votre choix</li>
-<li><strong>LAA (assurance accidents)</strong> : obligatoire dès le premier employé</li>
-<li><strong>Assurance perte de gain maladie</strong> : fortement recommandée</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>AVS/AI/APG</strong> : caisse de compensation cantonale ou professionnelle</li>
+<li style="margin-bottom: 0.25rem;"><strong>LPP (2e pilier)</strong> : institution de prévoyance de votre choix</li>
+<li style="margin-bottom: 0.25rem;"><strong>LAA (assurance accidents)</strong> : obligatoire dès le premier employé</li>
+<li style="margin-bottom: 0.25rem;"><strong>Assurance perte de gain maladie</strong> : fortement recommandée</li>
 </ul>
 
 <br/>
@@ -4186,7 +4186,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les coûts réels de création par canton</strong></h2>
+<p><strong>Les coûts réels de création par canton</strong></p>
 
 <br/>
 
@@ -4196,61 +4196,61 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Canton de Vaud</strong></h3>
 
-<ul>
-<li>Frais de notaire : CHF 1'200.- à 1'800.-</li>
-<li>Inscription RC : CHF 600.-</li>
-<li>Publication FOSC : CHF 200.-</li>
-<li><strong>Total : environ CHF 2'000.- à 2'600.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Frais de notaire : CHF 1'200.- à 1'800.-</li>
+<li style="margin-bottom: 0.25rem;">Inscription RC : CHF 600.-</li>
+<li style="margin-bottom: 0.25rem;">Publication FOSC : CHF 200.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Total : environ CHF 2'000.- à 2'600.-</strong></li>
 </ul>
 
 <br/>
 
 <h3><strong>Canton de Genève</strong></h3>
 
-<ul>
-<li>Frais de notaire : CHF 1'500.- à 2'200.-</li>
-<li>Inscription RC : CHF 650.-</li>
-<li>Publication FOSC : CHF 200.-</li>
-<li><strong>Total : environ CHF 2'350.- à 3'050.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Frais de notaire : CHF 1'500.- à 2'200.-</li>
+<li style="margin-bottom: 0.25rem;">Inscription RC : CHF 650.-</li>
+<li style="margin-bottom: 0.25rem;">Publication FOSC : CHF 200.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Total : environ CHF 2'350.- à 3'050.-</strong></li>
 </ul>
 
 <br/>
 
 <h3><strong>Canton du Valais</strong></h3>
 
-<ul>
-<li>Frais de notaire : CHF 1'000.- à 1'500.-</li>
-<li>Inscription RC : CHF 550.-</li>
-<li>Publication FOSC : CHF 200.-</li>
-<li><strong>Total : environ CHF 1'750.- à 2'250.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Frais de notaire : CHF 1'000.- à 1'500.-</li>
+<li style="margin-bottom: 0.25rem;">Inscription RC : CHF 550.-</li>
+<li style="margin-bottom: 0.25rem;">Publication FOSC : CHF 200.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Total : environ CHF 1'750.- à 2'250.-</strong></li>
 </ul>
 
 <br/>
 
 <h3><strong>Canton de Fribourg</strong></h3>
 
-<ul>
-<li>Frais de notaire : CHF 1'100.- à 1'600.-</li>
-<li>Inscription RC : CHF 600.-</li>
-<li>Publication FOSC : CHF 200.-</li>
-<li><strong>Total : environ CHF 1'900.- à 2'400.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Frais de notaire : CHF 1'100.- à 1'600.-</li>
+<li style="margin-bottom: 0.25rem;">Inscription RC : CHF 600.-</li>
+<li style="margin-bottom: 0.25rem;">Publication FOSC : CHF 200.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Total : environ CHF 1'900.- à 2'400.-</strong></li>
 </ul>
 
 <br/>
 
-<h2><strong>Choisir le bon canton pour domicilier votre entreprise</strong></h2>
+<p><strong>Choisir le bon canton pour domicilier votre entreprise</strong></p>
 
 <br/>
 
 <p>La <a href="/simulateur/impots"><strong>fiscalité des entreprises</strong></a> varie considérablement selon les cantons. Voici les taux d'imposition sur le bénéfice pour 2026 :</p>
 
-<ul>
-<li><strong>Vaud</strong> : 14.0% (taux effectif)</li>
-<li><strong>Genève</strong> : 13.99%</li>
-<li><strong>Valais</strong> : 11.9% (l'un des plus bas de Suisse !)</li>
-<li><strong>Fribourg</strong> : 13.7%</li>
-<li><strong>Neuchâtel</strong> : 13.6%</li>
-<li><strong>Jura</strong> : 15.0%</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Vaud</strong> : 14.0% (taux effectif)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Genève</strong> : 13.99%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : 11.9% (l'un des plus bas de Suisse !)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Fribourg</strong> : 13.7%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Neuchâtel</strong> : 13.6%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Jura</strong> : 15.0%</li>
 </ul>
 
 <br/>
@@ -4259,18 +4259,18 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Pourquoi faire appel à un fiduciaire pour créer votre entreprise ?</strong></h2>
+<p><strong>Pourquoi faire appel à un fiduciaire pour créer votre entreprise ?</strong></p>
 
 <br/>
 
 <p>Créer une entreprise implique de nombreuses <strong>décisions stratégiques</strong> : forme juridique, structure du capital, rémunération des fondateurs, etc. Un fiduciaire expérimenté vous aide à :</p>
 
-<ul>
-<li>Choisir la <strong>structure optimale</strong> pour votre situation</li>
-<li>Rédiger des <strong>statuts adaptés</strong></li>
-<li>Coordonner les démarches (notaire, banque, RC)</li>
-<li>Mettre en place votre <strong>comptabilité</strong> dès le départ</li>
-<li>Optimiser votre <strong>fiscalité</strong> dès la création</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Choisir la <strong>structure optimale</strong> pour votre situation</li>
+<li style="margin-bottom: 0.25rem;">Rédiger des <strong>statuts adaptés</strong></li>
+<li style="margin-bottom: 0.25rem;">Coordonner les démarches (notaire, banque, RC)</li>
+<li style="margin-bottom: 0.25rem;">Mettre en place votre <strong>comptabilité</strong> dès le départ</li>
+<li style="margin-bottom: 0.25rem;">Optimiser votre <strong>fiscalité</strong> dès la création</li>
 </ul>
 
 <br/>
@@ -4297,7 +4297,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les taux de TVA applicables en 2026</strong></h2>
+<p><strong>Les taux de TVA applicables en 2026</strong></p>
 
 <br/>
 
@@ -4317,11 +4317,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Ce taux s'applique aux <strong>biens de première nécessité</strong> :</p>
 
-<ul>
-<li><strong>Produits alimentaires</strong> (sauf boissons alcoolisées et repas au restaurant)</li>
-<li><strong>Médicaments</strong></li>
-<li><strong>Livres, journaux, magazines</strong></li>
-<li><strong>Eau courante</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Produits alimentaires</strong> (sauf boissons alcoolisées et repas au restaurant)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Médicaments</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Livres, journaux, magazines</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Eau courante</strong></li>
 </ul>
 
 <br/>
@@ -4334,15 +4334,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Qui doit s'inscrire à la TVA ?</strong></h2>
+<p><strong>Qui doit s'inscrire à la TVA ?</strong></p>
 
 <br/>
 
 <p>L'inscription à la TVA est <strong>obligatoire</strong> si votre entreprise remplit l'une de ces conditions :</p>
 
-<ul>
-<li><strong>Chiffre d'affaires annuel supérieur à CHF 100'000.-</strong> provenant de prestations imposables en Suisse</li>
-<li>Vous êtes <strong>acquéreur de prestations</strong> de l'étranger pour plus de CHF 10'000.- par an</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Chiffre d'affaires annuel supérieur à CHF 100'000.-</strong> provenant de prestations imposables en Suisse</li>
+<li style="margin-bottom: 0.25rem;">Vous êtes <strong>acquéreur de prestations</strong> de l'étranger pour plus de CHF 10'000.- par an</li>
 </ul>
 
 <br/>
@@ -4355,16 +4355,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple :</strong> Sophie est architecte <a href="/independants">indépendante</a> à Lausanne. Elle facture CHF 80'000.- par an (sous le seuil) mais achète pour CHF 15'000.- de logiciels, matériel et fournitures.</p>
 
-<ul>
-<li>Sans inscription TVA : elle paie CHF 1'215.- de TVA sur ses achats (non récupérable)</li>
-<li>Avec inscription TVA : elle facture CHF 6'480.- de TVA à ses clients mais récupère CHF 1'215.-, soit un coût net de CHF 5'265.-</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Sans inscription TVA : elle paie CHF 1'215.- de TVA sur ses achats (non récupérable)</li>
+<li style="margin-bottom: 0.25rem;">Avec inscription TVA : elle facture CHF 6'480.- de TVA à ses clients mais récupère CHF 1'215.-, soit un coût net de CHF 5'265.-</li>
 </ul>
 
 <p>Dans son cas, l'inscription n'est pas avantageuse. Mais pour une entreprise avec beaucoup d'investissements (machines, véhicules, travaux), la récupération peut dépasser la TVA facturée !</p>
 
 <br/>
 
-<h2><strong>Les méthodes de décompte TVA</strong></h2>
+<p><strong>Les méthodes de décompte TVA</strong></p>
 
 <br/>
 
@@ -4376,8 +4376,8 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>C'est la méthode standard. Vous calculez :</p>
 
-<ul>
-<li><strong>TVA collectée</strong> (sur vos ventes) - <strong>TVA déductible</strong> (sur vos achats) = <strong>TVA à payer</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>TVA collectée</strong> (sur vos ventes) - <strong>TVA déductible</strong> (sur vos achats) = <strong>TVA à payer</strong></li>
 </ul>
 
 <p><strong>Avantage :</strong> Vous déduisez la TVA réellement payée sur tous vos achats professionnels.</p>
@@ -4392,12 +4392,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Au lieu de déduire la TVA sur les achats, vous appliquez un <strong>taux forfaitaire</strong> sur votre chiffre d'affaires. Ce taux varie selon votre branche d'activité :</p>
 
-<ul>
-<li><strong>Commerce de détail alimentaire</strong> : 0.6%</li>
-<li><strong>Restaurants</strong> : 5.1%</li>
-<li><strong>Services de conseil</strong> : 6.2%</li>
-<li><strong>Construction</strong> : 5.4%</li>
-<li><strong>Coiffure</strong> : 5.8%</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Commerce de détail alimentaire</strong> : 0.6%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Restaurants</strong> : 5.1%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Services de conseil</strong> : 6.2%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Construction</strong> : 5.4%</li>
+<li style="margin-bottom: 0.25rem;"><strong>Coiffure</strong> : 5.8%</li>
 </ul>
 
 <br/>
@@ -4408,25 +4408,25 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les délais et fréquences de décompte</strong></h2>
+<p><strong>Les délais et fréquences de décompte</strong></p>
 
 <br/>
 
 <p>La fréquence de déclaration TVA dépend de votre chiffre d'affaires :</p>
 
-<ul>
-<li><strong>Décompte trimestriel</strong> : pour la majorité des entreprises (4 déclarations par an)</li>
-<li><strong>Décompte semestriel</strong> : sur demande pour les petites entreprises</li>
-<li><strong>Décompte mensuel</strong> : pour les grandes entreprises ou sur demande</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Décompte trimestriel</strong> : pour la majorité des entreprises (4 déclarations par an)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Décompte semestriel</strong> : sur demande pour les petites entreprises</li>
+<li style="margin-bottom: 0.25rem;"><strong>Décompte mensuel</strong> : pour les grandes entreprises ou sur demande</li>
 </ul>
 
 <br/>
 
 <p><strong>Délais de dépôt :</strong></p>
 
-<ul>
-<li>Décompte trimestriel : <strong>60 jours après la fin du trimestre</strong></li>
-<li>Décompte semestriel : <strong>60 jours après la fin du semestre</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Décompte trimestriel : <strong>60 jours après la fin du trimestre</strong></li>
+<li style="margin-bottom: 0.25rem;">Décompte semestriel : <strong>60 jours après la fin du semestre</strong></li>
 </ul>
 
 <br/>
@@ -4435,7 +4435,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les erreurs TVA les plus courantes</strong></h2>
+<p><strong>Les erreurs TVA les plus courantes</strong></p>
 
 <br/>
 
@@ -4463,7 +4463,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>TVA et activités spéciales</strong></h2>
+<p><strong>TVA et activités spéciales</strong></p>
 
 <br/>
 
@@ -4485,28 +4485,28 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Pourquoi confier sa TVA à un fiduciaire ?</strong></h2>
+<p><strong>Pourquoi confier sa TVA à un fiduciaire ?</strong></p>
 
 <br/>
 
 <p>La gestion de la TVA peut vite devenir complexe, surtout si vous avez :</p>
 
-<ul>
-<li>Des activités avec <strong>différents taux</strong></li>
-<li>Des <strong>clients ou fournisseurs à l'étranger</strong></li>
-<li>Des <strong>investissements importants</strong> à amortir</li>
-<li>Une <strong>croissance rapide</strong> qui vous fait franchir le seuil des CHF 100'000.-</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Des activités avec <strong>différents taux</strong></li>
+<li style="margin-bottom: 0.25rem;">Des <strong>clients ou fournisseurs à l'étranger</strong></li>
+<li style="margin-bottom: 0.25rem;">Des <strong>investissements importants</strong> à amortir</li>
+<li style="margin-bottom: 0.25rem;">Une <strong>croissance rapide</strong> qui vous fait franchir le seuil des CHF 100'000.-</li>
 </ul>
 
 <br/>
 
 <p>Un <strong>fiduciaire spécialisé</strong> peut vous aider à :</p>
 
-<ul>
-<li>Choisir la <strong>meilleure méthode de décompte</strong></li>
-<li>Optimiser vos <strong>déductions TVA</strong></li>
-<li>Préparer vos <strong>déclarations trimestrielles</strong></li>
-<li>Vous représenter en cas de <strong>contrôle fiscal</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Choisir la <strong>meilleure méthode de décompte</strong></li>
+<li style="margin-bottom: 0.25rem;">Optimiser vos <strong>déductions TVA</strong></li>
+<li style="margin-bottom: 0.25rem;">Préparer vos <strong>déclarations trimestrielles</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous représenter en cas de <strong>contrôle fiscal</strong></li>
 </ul>
 
 <br/>
@@ -4533,7 +4533,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Le télétravail et les impôts : ce qui a changé</strong></h2>
+<p><strong>Le télétravail et les impôts : ce qui a changé</strong></p>
 
 <br/>
 
@@ -4545,7 +4545,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les frais déductibles en télétravail</strong></h2>
+<p><strong>Les frais déductibles en télétravail</strong></p>
 
 <br/>
 
@@ -4563,20 +4563,20 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple :</strong> Marie habite un appartement de 80 m² à Lausanne pour CHF 2'400.-/mois. Son bureau fait 10 m².</p>
 
-<ul>
-<li>Quote-part : 10 ÷ 80 = 12.5%</li>
-<li>Loyer annuel : CHF 28'800.-</li>
-<li><strong>Déduction : CHF 3'600.- par an</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Quote-part : 10 ÷ 80 = 12.5%</li>
+<li style="margin-bottom: 0.25rem;">Loyer annuel : CHF 28'800.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Déduction : CHF 3'600.- par an</strong></li>
 </ul>
 
 <br/>
 
 <p><strong>Conditions importantes :</strong></p>
 
-<ul>
-<li>La pièce doit être utilisée <strong>exclusivement</strong> pour le travail (pas une chambre d'amis avec un bureau)</li>
-<li>Votre employeur ne doit <strong>pas mettre de place de travail</strong> à votre disposition</li>
-<li>Le télétravail doit être <strong>régulier</strong> (pas occasionnel)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">La pièce doit être utilisée <strong>exclusivement</strong> pour le travail (pas une chambre d'amis avec un bureau)</li>
+<li style="margin-bottom: 0.25rem;">Votre employeur ne doit <strong>pas mettre de place de travail</strong> à votre disposition</li>
+<li style="margin-bottom: 0.25rem;">Le télétravail doit être <strong>régulier</strong> (pas occasionnel)</li>
 </ul>
 
 <br/>
@@ -4585,10 +4585,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Vous pouvez également déduire une <strong>quote-part des charges</strong> liées à votre bureau :</p>
 
-<ul>
-<li><strong>Électricité</strong> : éclairage, ordinateur, imprimante</li>
-<li><strong>Chauffage</strong> : proportionnel à la surface</li>
-<li><strong>Eau</strong> : si pertinent</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Électricité</strong> : éclairage, ordinateur, imprimante</li>
+<li style="margin-bottom: 0.25rem;"><strong>Chauffage</strong> : proportionnel à la surface</li>
+<li style="margin-bottom: 0.25rem;"><strong>Eau</strong> : si pertinent</li>
 </ul>
 
 <br/>
@@ -4605,8 +4605,8 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple :</strong> Jean paie CHF 80.-/mois pour son abonnement internet. Il estime utiliser 40% pour le travail.</p>
 
-<ul>
-<li>Déduction : CHF 80 × 12 × 40% = <strong>CHF 384.- par an</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Déduction : CHF 80 × 12 × 40% = <strong>CHF 384.- par an</strong></li>
 </ul>
 
 <br/>
@@ -4619,11 +4619,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Les achats de <strong>mobilier professionnel</strong> peuvent être déduits :</p>
 
-<ul>
-<li><strong>Bureau</strong> : déduction immédiate ou amortissement sur 5 ans</li>
-<li><strong>Chaise ergonomique</strong> : fortement recommandée et déductible</li>
-<li><strong>Écran, clavier, souris</strong> : si non fournis par l'employeur</li>
-<li><strong>Lampe de bureau</strong> : déductible</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Bureau</strong> : déduction immédiate ou amortissement sur 5 ans</li>
+<li style="margin-bottom: 0.25rem;"><strong>Chaise ergonomique</strong> : fortement recommandée et déductible</li>
+<li style="margin-bottom: 0.25rem;"><strong>Écran, clavier, souris</strong> : si non fournis par l'employeur</li>
+<li style="margin-bottom: 0.25rem;"><strong>Lampe de bureau</strong> : déductible</li>
 </ul>
 
 <br/>
@@ -4634,9 +4634,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple :</strong> Sophie a acheté un bureau (CHF 450.-), une chaise (CHF 380.-) et un écran (CHF 350.-) pour son home office.</p>
 
-<ul>
-<li>Total : CHF 1'180.-</li>
-<li><strong>Déduction possible : CHF 1'180.-</strong> (chaque article < CHF 500.-)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Total : CHF 1'180.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Déduction possible : CHF 1'180.-</strong> (chaque article < CHF 500.-)</li>
 </ul>
 
 <br/>
@@ -4651,23 +4651,23 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Ce que vous ne pouvez PAS déduire</strong></h2>
+<p><strong>Ce que vous ne pouvez PAS déduire</strong></p>
 
 <br/>
 
 <p>Attention aux erreurs fréquentes ! Voici ce qui n'est <strong>généralement pas déductible</strong> :</p>
 
-<ul>
-<li><strong>Machine à café</strong> ou bouilloire (usage mixte)</li>
-<li><strong>Vêtements</strong> (même si vous les portez pour des visioconférences)</li>
-<li><strong>Décoration</strong> du bureau</li>
-<li><strong>Plantes</strong> vertes</li>
-<li><strong>Ordinateur personnel</strong> si déjà fourni par l'employeur</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Machine à café</strong> ou bouilloire (usage mixte)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vêtements</strong> (même si vous les portez pour des visioconférences)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Décoration</strong> du bureau</li>
+<li style="margin-bottom: 0.25rem;"><strong>Plantes</strong> vertes</li>
+<li style="margin-bottom: 0.25rem;"><strong>Ordinateur personnel</strong> si déjà fourni par l'employeur</li>
 </ul>
 
 <br/>
 
-<h2><strong>Les règles par canton en Suisse romande</strong></h2>
+<p><strong>Les règles par canton en Suisse romande</strong></p>
 
 <br/>
 
@@ -4675,10 +4675,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le canton de Vaud est relativement <strong>généreux</strong> pour les déductions de télétravail. Vous pouvez déduire :</p>
 
-<ul>
-<li>Quote-part du loyer pour le bureau</li>
-<li>Forfait charges de CHF 600.- par an (sans justificatifs)</li>
-<li>Équipement informatique non fourni par l'employeur</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Quote-part du loyer pour le bureau</li>
+<li style="margin-bottom: 0.25rem;">Forfait charges de CHF 600.- par an (sans justificatifs)</li>
+<li style="margin-bottom: 0.25rem;">Équipement informatique non fourni par l'employeur</li>
 </ul>
 
 <p><strong>Condition :</strong> Vous devez prouver que le télétravail est une <strong>obligation professionnelle</strong>, pas un choix personnel.</p>
@@ -4689,10 +4689,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Genève applique des règles <strong>plus strictes</strong>. La déduction du bureau à domicile n'est acceptée que si :</p>
 
-<ul>
-<li>L'employeur <strong>n'offre aucune place de travail</strong></li>
-<li>Vous travaillez à domicile <strong>au moins 40% du temps</strong></li>
-<li>La pièce est <strong>exclusivement professionnelle</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">L'employeur <strong>n'offre aucune place de travail</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous travaillez à domicile <strong>au moins 40% du temps</strong></li>
+<li style="margin-bottom: 0.25rem;">La pièce est <strong>exclusivement professionnelle</strong></li>
 </ul>
 
 <p><strong>Attention :</strong> Si votre employeur vous rembourse déjà des frais de télétravail, vous ne pouvez pas les déduire en plus !</p>
@@ -4703,9 +4703,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le Valais adopte une approche <strong>pragmatique</strong>. Les déductions sont acceptées si :</p>
 
-<ul>
-<li>Le télétravail est <strong>régulier et documenté</strong></li>
-<li>Vous pouvez justifier l'absence de place de travail chez l'employeur</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Le télétravail est <strong>régulier et documenté</strong></li>
+<li style="margin-bottom: 0.25rem;">Vous pouvez justifier l'absence de place de travail chez l'employeur</li>
 </ul>
 
 <p><strong>Particularité :</strong> Pour les propriétaires, la déduction vient réduire la valeur locative imposable.</p>
@@ -4716,15 +4716,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Fribourg accepte les déductions de télétravail selon des <strong>critères similaires</strong> à Vaud :</p>
 
-<ul>
-<li>Pièce dédiée ou espace clairement délimité</li>
-<li>Télétravail imposé par l'employeur</li>
-<li>Justificatifs des frais engagés</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Pièce dédiée ou espace clairement délimité</li>
+<li style="margin-bottom: 0.25rem;">Télétravail imposé par l'employeur</li>
+<li style="margin-bottom: 0.25rem;">Justificatifs des frais engagés</li>
 </ul>
 
 <br/>
 
-<h2><strong>Le piège de la double déduction</strong></h2>
+<p><strong>Le piège de la double déduction</strong></p>
 
 <br/>
 
@@ -4734,32 +4734,32 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Exemple :</strong> Pierre télétravaille 3 jours par semaine. Il ne peut déduire ses frais de transport que pour 2 jours.</p>
 
-<ul>
-<li>Avant : 220 jours × CHF 0.70 × 30 km × 2 = CHF 9'240.-</li>
-<li>Après : 88 jours (40%) × CHF 0.70 × 30 km × 2 = <strong>CHF 3'696.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Avant : 220 jours × CHF 0.70 × 30 km × 2 = CHF 9'240.-</li>
+<li style="margin-bottom: 0.25rem;">Après : 88 jours (40%) × CHF 0.70 × 30 km × 2 = <strong>CHF 3'696.-</strong></li>
 </ul>
 
 <p>Il faut donc <strong>calculer ce qui est le plus avantageux</strong> : déduire le bureau OU déduire tous les trajets.</p>
 
 <br/>
 
-<h2><strong>Comment justifier vos déductions ?</strong></h2>
+<p><strong>Comment justifier vos déductions ?</strong></p>
 
 <br/>
 
 <p>Pour éviter tout problème lors d'un contrôle fiscal, préparez un <strong>dossier solide</strong> :</p>
 
-<ul>
-<li><strong>Attestation de l'employeur</strong> confirmant le télétravail obligatoire</li>
-<li><strong>Plan du logement</strong> montrant l'espace de travail</li>
-<li><strong>Contrat de bail</strong> ou preuve de propriété</li>
-<li><strong>Factures</strong> de tous les équipements achetés</li>
-<li><strong>Relevés</strong> internet et téléphone</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Attestation de l'employeur</strong> confirmant le télétravail obligatoire</li>
+<li style="margin-bottom: 0.25rem;"><strong>Plan du logement</strong> montrant l'espace de travail</li>
+<li style="margin-bottom: 0.25rem;"><strong>Contrat de bail</strong> ou preuve de propriété</li>
+<li style="margin-bottom: 0.25rem;"><strong>Factures</strong> de tous les équipements achetés</li>
+<li style="margin-bottom: 0.25rem;"><strong>Relevés</strong> internet et téléphone</li>
 </ul>
 
 <br/>
 
-<h2><strong>Cas pratique complet</strong></h2>
+<p><strong>Cas pratique complet</strong></p>
 
 <br/>
 
@@ -4769,11 +4769,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Calcul des déductions :</strong></p>
 
-<ul>
-<li>Quote-part loyer : 12/90 × CHF 26'400 = <strong>CHF 3'520.-</strong></li>
-<li>Forfait charges : <strong>CHF 600.-</strong></li>
-<li>Internet (50% pro) : CHF 70 × 12 × 50% = <strong>CHF 420.-</strong></li>
-<li>Équipement acheté : bureau + chaise = <strong>CHF 750.-</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Quote-part loyer : 12/90 × CHF 26'400 = <strong>CHF 3'520.-</strong></li>
+<li style="margin-bottom: 0.25rem;">Forfait charges : <strong>CHF 600.-</strong></li>
+<li style="margin-bottom: 0.25rem;">Internet (50% pro) : CHF 70 × 12 × 50% = <strong>CHF 420.-</strong></li>
+<li style="margin-bottom: 0.25rem;">Équipement acheté : bureau + chaise = <strong>CHF 750.-</strong></li>
 </ul>
 
 <p><strong>Total déductions télétravail : CHF 5'290.-</strong></p>
@@ -4784,17 +4784,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Faire appel à un fiduciaire pour optimiser</strong></h2>
+<p><strong>Faire appel à un fiduciaire pour optimiser</strong></p>
 
 <br/>
 
 <p>Les règles du télétravail sont <strong>complexes et varient selon les cantons</strong>. Un fiduciaire peut vous aider à :</p>
 
-<ul>
-<li>Identifier <strong>toutes les déductions possibles</strong></li>
-<li>Calculer l'option la plus avantageuse (bureau vs trajets)</li>
-<li>Préparer un <strong>dossier justificatif solide</strong></li>
-<li>Éviter les erreurs qui peuvent coûter cher</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Identifier <strong>toutes les déductions possibles</strong></li>
+<li style="margin-bottom: 0.25rem;">Calculer l'option la plus avantageuse (bureau vs trajets)</li>
+<li style="margin-bottom: 0.25rem;">Préparer un <strong>dossier justificatif solide</strong></li>
+<li style="margin-bottom: 0.25rem;">Éviter les erreurs qui peuvent coûter cher</li>
 </ul>
 
 <br/>
@@ -4821,7 +4821,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°1 : Mélanger comptes privés et professionnels</strong></h2>
+<p><strong>Erreur n°1 : Mélanger comptes privés et professionnels</strong></p>
 
 <br/>
 
@@ -4831,11 +4831,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Conséquences :</strong></p>
 
-<ul>
-<li>Impossibilité de connaître la <strong>vraie rentabilité</strong> de l'entreprise</li>
-<li>Risque de <strong>requalification fiscale</strong> (l'administration peut contester des déductions)</li>
-<li>Complications en cas de <strong>contrôle TVA</strong></li>
-<li>Problèmes avec les <strong>assurances sociales</strong> (AVS)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Impossibilité de connaître la <strong>vraie rentabilité</strong> de l'entreprise</li>
+<li style="margin-bottom: 0.25rem;">Risque de <strong>requalification fiscale</strong> (l'administration peut contester des déductions)</li>
+<li style="margin-bottom: 0.25rem;">Complications en cas de <strong>contrôle TVA</strong></li>
+<li style="margin-bottom: 0.25rem;">Problèmes avec les <strong>assurances sociales</strong> (AVS)</li>
 </ul>
 
 <br/>
@@ -4844,7 +4844,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°2 : Négliger la facturation</strong></h2>
+<p><strong>Erreur n°2 : Négliger la facturation</strong></p>
 
 <br/>
 
@@ -4854,26 +4854,26 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Problèmes fréquents :</strong></p>
 
-<ul>
-<li><strong>Trésorerie tendue</strong> : si vous facturez tard, vous êtes payé tard</li>
-<li><strong>Impayés</strong> : plus vous attendez pour relancer, moins vous avez de chances de récupérer l'argent</li>
-<li><strong>Non-conformité TVA</strong> : une facture sans les mentions obligatoires n'est pas valable</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Trésorerie tendue</strong> : si vous facturez tard, vous êtes payé tard</li>
+<li style="margin-bottom: 0.25rem;"><strong>Impayés</strong> : plus vous attendez pour relancer, moins vous avez de chances de récupérer l'argent</li>
+<li style="margin-bottom: 0.25rem;"><strong>Non-conformité TVA</strong> : une facture sans les mentions obligatoires n'est pas valable</li>
 </ul>
 
 <br/>
 
 <p><strong>Bonnes pratiques :</strong></p>
 
-<ul>
-<li>Facturez <strong>immédiatement</strong> après la prestation</li>
-<li>Utilisez un <strong>logiciel de facturation</strong> (Bexio, Abacus, Crésus...)</li>
-<li>Relancez dès <strong>J+7 après l'échéance</strong></li>
-<li>Incluez toutes les <strong>mentions légales obligatoires</strong> (numéro TVA, etc.)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Facturez <strong>immédiatement</strong> après la prestation</li>
+<li style="margin-bottom: 0.25rem;">Utilisez un <strong>logiciel de facturation</strong> (Bexio, Abacus, Crésus...)</li>
+<li style="margin-bottom: 0.25rem;">Relancez dès <strong>J+7 après l'échéance</strong></li>
+<li style="margin-bottom: 0.25rem;">Incluez toutes les <strong>mentions légales obligatoires</strong> (numéro TVA, etc.)</li>
 </ul>
 
 <br/>
 
-<h2><strong>Erreur n°3 : Oublier les petites dépenses</strong></h2>
+<p><strong>Erreur n°3 : Oublier les petites dépenses</strong></p>
 
 <br/>
 
@@ -4889,15 +4889,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Solution :</strong></p>
 
-<ul>
-<li>Prenez une <strong>photo de chaque ticket</strong> avec votre smartphone</li>
-<li>Utilisez une application de <strong>scan de reçus</strong> (Expensify, Spendesk...)</li>
-<li>Créez une <strong>enveloppe "tickets"</strong> dans votre portefeuille</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Prenez une <strong>photo de chaque ticket</strong> avec votre smartphone</li>
+<li style="margin-bottom: 0.25rem;">Utilisez une application de <strong>scan de reçus</strong> (Expensify, Spendesk...)</li>
+<li style="margin-bottom: 0.25rem;">Créez une <strong>enveloppe "tickets"</strong> dans votre portefeuille</li>
 </ul>
 
 <br/>
 
-<h2><strong>Erreur n°4 : Ne pas conserver les justificatifs</strong></h2>
+<p><strong>Erreur n°4 : Ne pas conserver les justificatifs</strong></p>
 
 <br/>
 
@@ -4907,13 +4907,13 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Documents à conserver :</strong></p>
 
-<ul>
-<li>Toutes les <strong>factures émises et reçues</strong></li>
-<li>Les <strong>relevés bancaires</strong></li>
-<li>Les <strong>contrats</strong> (bail, fournisseurs, clients)</li>
-<li>Les <strong>bulletins de salaire</strong></li>
-<li>Les <strong>déclarations fiscales</strong> et TVA</li>
-<li>Les <strong>procès-verbaux</strong> d'assemblées</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Toutes les <strong>factures émises et reçues</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>relevés bancaires</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>contrats</strong> (bail, fournisseurs, clients)</li>
+<li style="margin-bottom: 0.25rem;">Les <strong>bulletins de salaire</strong></li>
+<li style="margin-bottom: 0.25rem;">Les <strong>déclarations fiscales</strong> et TVA</li>
+<li style="margin-bottom: 0.25rem;">Les <strong>procès-verbaux</strong> d'assemblées</li>
 </ul>
 
 <br/>
@@ -4922,7 +4922,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°5 : Ignorer les échéances fiscales</strong></h2>
+<p><strong>Erreur n°5 : Ignorer les échéances fiscales</strong></p>
 
 <br/>
 
@@ -4932,21 +4932,21 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Principales échéances à retenir :</strong></p>
 
-<ul>
-<li><strong>TVA trimestrielle</strong> : 60 jours après la fin du trimestre</li>
-<li><strong>Acomptes impôts</strong> : dates variables selon les cantons (généralement mars, juin, septembre)</li>
-<li><strong>AVS indépendants</strong> : trimestriel ou annuel selon le canton</li>
-<li><strong>Impôt anticipé</strong> : 30 jours après l'assemblée générale pour les dividendes</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>TVA trimestrielle</strong> : 60 jours après la fin du trimestre</li>
+<li style="margin-bottom: 0.25rem;"><strong>Acomptes impôts</strong> : dates variables selon les cantons (généralement mars, juin, septembre)</li>
+<li style="margin-bottom: 0.25rem;"><strong>AVS indépendants</strong> : trimestriel ou annuel selon le canton</li>
+<li style="margin-bottom: 0.25rem;"><strong>Impôt anticipé</strong> : 30 jours après l'assemblée générale pour les dividendes</li>
 </ul>
 
 <br/>
 
 <p><strong>Coût des retards :</strong></p>
 
-<ul>
-<li>TVA : intérêts moratoires de <strong>4% par an</strong></li>
-<li>Impôts : intérêts de <strong>3% à 5%</strong> selon les cantons</li>
-<li>AVS : <strong>5% de majoration</strong> + intérêts</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">TVA : intérêts moratoires de <strong>4% par an</strong></li>
+<li style="margin-bottom: 0.25rem;">Impôts : intérêts de <strong>3% à 5%</strong> selon les cantons</li>
+<li style="margin-bottom: 0.25rem;">AVS : <strong>5% de majoration</strong> + intérêts</li>
 </ul>
 
 <br/>
@@ -4955,7 +4955,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°6 : Sous-estimer les provisions</strong></h2>
+<p><strong>Erreur n°6 : Sous-estimer les provisions</strong></p>
 
 <br/>
 
@@ -4965,12 +4965,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Ce qu'il faut provisionner :</strong></p>
 
-<ul>
-<li><strong>AVS/AI/APG</strong> : environ 10% du revenu pour les indépendants</li>
-<li><strong>Impôts</strong> : estimez 15% à 25% du bénéfice selon votre canton</li>
-<li><strong>TVA</strong> : mettez de côté la TVA collectée chaque mois</li>
-<li><strong>13e salaire</strong> : provisionnez 1/12 chaque mois si applicable</li>
-<li><strong>Vacances</strong> : 8.33% des salaires bruts</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>AVS/AI/APG</strong> : environ 10% du revenu pour les indépendants</li>
+<li style="margin-bottom: 0.25rem;"><strong>Impôts</strong> : estimez 15% à 25% du bénéfice selon votre canton</li>
+<li style="margin-bottom: 0.25rem;"><strong>TVA</strong> : mettez de côté la TVA collectée chaque mois</li>
+<li style="margin-bottom: 0.25rem;"><strong>13e salaire</strong> : provisionnez 1/12 chaque mois si applicable</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vacances</strong> : 8.33% des salaires bruts</li>
 </ul>
 
 <br/>
@@ -4979,7 +4979,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°7 : Ne pas réconcilier les comptes</strong></h2>
+<p><strong>Erreur n°7 : Ne pas réconcilier les comptes</strong></p>
 
 <br/>
 
@@ -4989,11 +4989,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Problèmes courants détectés grâce à la réconciliation :</strong></p>
 
-<ul>
-<li>Paiements <strong>comptabilisés deux fois</strong></li>
-<li>Encaissements <strong>oubliés</strong></li>
-<li>Erreurs de <strong>montants</strong></li>
-<li><strong>Fraudes</strong> ou prélèvements non autorisés</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Paiements <strong>comptabilisés deux fois</strong></li>
+<li style="margin-bottom: 0.25rem;">Encaissements <strong>oubliés</strong></li>
+<li style="margin-bottom: 0.25rem;">Erreurs de <strong>montants</strong></li>
+<li style="margin-bottom: 0.25rem;"><strong>Fraudes</strong> ou prélèvements non autorisés</li>
 </ul>
 
 <br/>
@@ -5002,7 +5002,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°8 : Oublier les amortissements</strong></h2>
+<p><strong>Erreur n°8 : Oublier les amortissements</strong></p>
 
 <br/>
 
@@ -5012,12 +5012,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Durées d'amortissement usuelles :</strong></p>
 
-<ul>
-<li><strong>Matériel informatique</strong> : 3 à 5 ans (20-33% par an)</li>
-<li><strong>Mobilier de bureau</strong> : 8 ans (12.5% par an)</li>
-<li><strong>Véhicules</strong> : 5 à 8 ans (12.5-20% par an)</li>
-<li><strong>Machines</strong> : 5 à 10 ans selon le type</li>
-<li><strong>Bâtiments</strong> : 20 à 50 ans</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Matériel informatique</strong> : 3 à 5 ans (20-33% par an)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Mobilier de bureau</strong> : 8 ans (12.5% par an)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Véhicules</strong> : 5 à 8 ans (12.5-20% par an)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Machines</strong> : 5 à 10 ans selon le type</li>
+<li style="margin-bottom: 0.25rem;"><strong>Bâtiments</strong> : 20 à 50 ans</li>
 </ul>
 
 <br/>
@@ -5026,7 +5026,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°9 : Négliger le budget prévisionnel</strong></h2>
+<p><strong>Erreur n°9 : Négliger le budget prévisionnel</strong></p>
 
 <br/>
 
@@ -5036,11 +5036,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Avantages d'un budget :</strong></p>
 
-<ul>
-<li><strong>Anticiper</strong> les périodes creuses</li>
-<li><strong>Planifier</strong> les investissements</li>
-<li><strong>Négocier</strong> avec les banques (elles adorent les prévisionnels)</li>
-<li><strong>Prendre des décisions</strong> éclairées (embauche, achat...)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Anticiper</strong> les périodes creuses</li>
+<li style="margin-bottom: 0.25rem;"><strong>Planifier</strong> les investissements</li>
+<li style="margin-bottom: 0.25rem;"><strong>Négocier</strong> avec les banques (elles adorent les prévisionnels)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Prendre des décisions</strong> éclairées (embauche, achat...)</li>
 </ul>
 
 <br/>
@@ -5049,7 +5049,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Erreur n°10 : Faire sa comptabilité soi-même sans expertise</strong></h2>
+<p><strong>Erreur n°10 : Faire sa comptabilité soi-même sans expertise</strong></p>
 
 <br/>
 
@@ -5059,11 +5059,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Ce que vous risquez :</strong></p>
 
-<ul>
-<li><strong>Déductions oubliées</strong> : vous payez trop d'impôts</li>
-<li><strong>Erreurs de TVA</strong> : redressement + pénalités</li>
-<li><strong>Problèmes AVS</strong> : cotisations mal calculées</li>
-<li><strong>Mauvaises décisions</strong> : basées sur des chiffres faux</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Déductions oubliées</strong> : vous payez trop d'impôts</li>
+<li style="margin-bottom: 0.25rem;"><strong>Erreurs de TVA</strong> : redressement + pénalités</li>
+<li style="margin-bottom: 0.25rem;"><strong>Problèmes AVS</strong> : cotisations mal calculées</li>
+<li style="margin-bottom: 0.25rem;"><strong>Mauvaises décisions</strong> : basées sur des chiffres faux</li>
 </ul>
 
 <br/>
@@ -5072,7 +5072,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les spécificités par canton</strong></h2>
+<p><strong>Les spécificités par canton</strong></p>
 
 <br/>
 
@@ -5100,16 +5100,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Combien coûte un fiduciaire pour une PME ?</strong></h2>
+<p><strong>Combien coûte un fiduciaire pour une PME ?</strong></p>
 
 <br/>
 
 <p>Les tarifs varient selon la taille de l'entreprise et le volume d'écritures :</p>
 
-<ul>
-<li><strong>Indépendant / TPE</strong> : CHF 150.- à 300.-/mois</li>
-<li><strong>PME (1-10 employés)</strong> : CHF 300.- à 800.-/mois</li>
-<li><strong>PME (10+ employés)</strong> : CHF 800.- à 2'000.-/mois</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Indépendant / TPE</strong> : CHF 150.- à 300.-/mois</li>
+<li style="margin-bottom: 0.25rem;"><strong>PME (1-10 employés)</strong> : CHF 300.- à 800.-/mois</li>
+<li style="margin-bottom: 0.25rem;"><strong>PME (10+ employés)</strong> : CHF 800.- à 2'000.-/mois</li>
 </ul>
 
 <br/>
@@ -5118,7 +5118,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Faites le point avec NeoFidu</strong></h2>
+<p><strong>Faites le point avec NeoFidu</strong></p>
 
 <br/>
 
@@ -5150,15 +5150,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Combien pouvez-vous économiser en 2026 ?</strong></h2>
+<p><strong>Combien pouvez-vous économiser en 2026 ?</strong></p>
 
 <br/>
 
 <p>Les montants maximums déductibles pour 2026 sont :</p>
 
-<ul>
-<li><strong>Salariés avec caisse de pension</strong> : CHF 7'258/an</li>
-<li><strong>Indépendants sans 2ème pilier</strong> : 20% du revenu net, max CHF 36'288/an</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Salariés avec caisse de pension</strong> : CHF 7'258/an</li>
+<li style="margin-bottom: 0.25rem;"><strong>Indépendants sans 2ème pilier</strong> : 20% du revenu net, max CHF 36'288/an</li>
 </ul>
 
 <br/>
@@ -5167,13 +5167,13 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Voici l'économie d'impôts pour une cotisation maximale de CHF 7'258 :</p>
 
-<ul>
-<li><strong>Genève</strong> : CHF 2'470 d'économie (~35%)</li>
-<li><strong>Vaud</strong> : CHF 2'260 d'économie (~32%)</li>
-<li><strong>Neuchâtel</strong> : CHF 2'260 d'économie (~32%)</li>
-<li><strong>Jura</strong> : CHF 2'190 d'économie (~31%)</li>
-<li><strong>Fribourg</strong> : CHF 2'115 d'économie (~30%)</li>
-<li><strong>Valais</strong> : CHF 1'975 d'économie (~28%)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Genève</strong> : CHF 2'470 d'économie (~35%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vaud</strong> : CHF 2'260 d'économie (~32%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Neuchâtel</strong> : CHF 2'260 d'économie (~32%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Jura</strong> : CHF 2'190 d'économie (~31%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Fribourg</strong> : CHF 2'115 d'économie (~30%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : CHF 1'975 d'économie (~28%)</li>
 </ul>
 
 <br/>
@@ -5182,7 +5182,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>3ème pilier 3a ou 3b : lequel choisir ?</strong></h2>
+<p><strong>3ème pilier 3a ou 3b : lequel choisir ?</strong></p>
 
 <br/>
 
@@ -5190,12 +5190,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le <strong>pilier 3a</strong> est la solution la plus avantageuse fiscalement :</p>
 
-<ul>
-<li>✅ <strong>100% déductible</strong> du revenu imposable</li>
-<li>✅ <strong>Pas d'impôt sur la fortune</strong> pendant la durée</li>
-<li>✅ <strong>Pas d'impôt sur les gains</strong></li>
-<li>⚠️ Capital bloqué jusqu'à 5 ans avant la retraite</li>
-<li>⚠️ Imposé au retrait (taux réduit ~5-7%)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">✅ <strong>100% déductible</strong> du revenu imposable</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Pas d'impôt sur la fortune</strong> pendant la durée</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Pas d'impôt sur les gains</strong></li>
+<li style="margin-bottom: 0.25rem;">⚠️ Capital bloqué jusqu'à 5 ans avant la retraite</li>
+<li style="margin-bottom: 0.25rem;">⚠️ Imposé au retrait (taux réduit ~5-7%)</li>
 </ul>
 
 <br/>
@@ -5204,11 +5204,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Le <strong>pilier 3b</strong> offre plus de flexibilité :</p>
 
-<ul>
-<li>✅ <strong>Retrait libre</strong> à tout moment</li>
-<li>✅ Pas de plafond de cotisation</li>
-<li>⚠️ <strong>Non déductible</strong> des impôts</li>
-<li>⚠️ Soumis à l'impôt sur la fortune</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">✅ <strong>Retrait libre</strong> à tout moment</li>
+<li style="margin-bottom: 0.25rem;">✅ Pas de plafond de cotisation</li>
+<li style="margin-bottom: 0.25rem;">⚠️ <strong>Non déductible</strong> des impôts</li>
+<li style="margin-bottom: 0.25rem;">⚠️ Soumis à l'impôt sur la fortune</li>
 </ul>
 
 <br/>
@@ -5217,7 +5217,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>5 stratégies pour optimiser votre 3ème pilier</strong></h2>
+<p><strong>5 stratégies pour optimiser votre 3ème pilier</strong></p>
 
 <br/>
 
@@ -5237,10 +5237,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Les options varient selon votre profil de risque :</p>
 
-<ul>
-<li><strong>Compte épargne 3a</strong> : Sécurité maximale, rendement faible (~1%)</li>
-<li><strong>Fonds 3a actions</strong> : Plus de risque, rendement potentiel 4-6%</li>
-<li><strong>ETF 3a</strong> : Frais bas, diversification mondiale</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Compte épargne 3a</strong> : Sécurité maximale, rendement faible (~1%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Fonds 3a actions</strong> : Plus de risque, rendement potentiel 4-6%</li>
+<li style="margin-bottom: 0.25rem;"><strong>ETF 3a</strong> : Frais bas, diversification mondiale</li>
 </ul>
 
 <br/>
@@ -5257,16 +5257,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Simulez votre économie maintenant</strong></h2>
+<p><strong>Simulez votre économie maintenant</strong></p>
 
 <br/>
 
 <p>Utilisez notre <strong><a href="/simulateur/3eme-pilier">simulateur 3ème pilier</a></strong> pour :</p>
 
-<ul>
-<li>Calculer votre <strong>économie d'impôts annuelle</strong></li>
-<li>Projeter votre <strong>capital à la retraite</strong></li>
-<li>Voir l'effet des <strong>intérêts composés</strong> sur 30 ans</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Calculer votre <strong>économie d'impôts annuelle</strong></li>
+<li style="margin-bottom: 0.25rem;">Projeter votre <strong>capital à la retraite</strong></li>
+<li style="margin-bottom: 0.25rem;">Voir l'effet des <strong>intérêts composés</strong> sur 30 ans</li>
 </ul>
 
 <br/>
@@ -5291,7 +5291,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les 3 niveaux d'imposition en Suisse</strong></h2>
+<p><strong>Les 3 niveaux d'imposition en Suisse</strong></p>
 
 <br/>
 
@@ -5307,12 +5307,12 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Chaque canton fixe ses propres taux. C'est pourquoi il y a de <strong>grandes différences</strong> entre cantons. En Suisse romande :</p>
 
-<ul>
-<li><strong>Valais</strong> : Taux le plus bas (~10%)</li>
-<li><strong>Fribourg</strong> : Taux modéré (~12%)</li>
-<li><strong>Neuchâtel</strong> : Taux moyen (~13%)</li>
-<li><strong>Jura</strong> : Taux moyen (~13.5%)</li>
-<li><strong>Vaud et Genève</strong> : Taux plus élevés (~14%)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : Taux le plus bas (~10%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Fribourg</strong> : Taux modéré (~12%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Neuchâtel</strong> : Taux moyen (~13%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Jura</strong> : Taux moyen (~13.5%)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vaud et Genève</strong> : Taux plus élevés (~14%)</li>
 </ul>
 
 <br/>
@@ -5327,7 +5327,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Comment calculer son revenu imposable ?</strong></h2>
+<p><strong>Comment calculer son revenu imposable ?</strong></p>
 
 <br/>
 
@@ -5337,14 +5337,14 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Les principales déductions</strong></h3>
 
-<ul>
-<li><strong>Frais professionnels</strong> : 3% du salaire (min. 2'000, max. 4'000 CHF)</li>
-<li><strong>Assurance maladie</strong> : Forfait selon la situation familiale</li>
-<li><strong>3ème pilier (3a)</strong> : Jusqu'à 7'258 CHF</li>
-<li><strong>Déduction pour enfants</strong> : 6'600 CHF par enfant (IFD)</li>
-<li><strong>Frais de garde</strong> : Jusqu'à 25'000 CHF (IFD)</li>
-<li><strong>Intérêts hypothécaires</strong> : 100% déductibles</li>
-<li><strong>Frais médicaux</strong> : Ce qui dépasse 5% du revenu</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Frais professionnels</strong> : 3% du salaire (min. 2'000, max. 4'000 CHF)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Assurance maladie</strong> : Forfait selon la situation familiale</li>
+<li style="margin-bottom: 0.25rem;"><strong>3ème pilier (3a)</strong> : Jusqu'à 7'258 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Déduction pour enfants</strong> : 6'600 CHF par enfant (IFD)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Frais de garde</strong> : Jusqu'à 25'000 CHF (IFD)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Intérêts hypothécaires</strong> : 100% déductibles</li>
+<li style="margin-bottom: 0.25rem;"><strong>Frais médicaux</strong> : Ce qui dépasse 5% du revenu</li>
 </ul>
 
 <br/>
@@ -5353,27 +5353,27 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Exemple concret de calcul</strong></h2>
+<p><strong>Exemple concret de calcul</strong></p>
 
 <br/>
 
 <p>Prenons l'exemple de <strong>Sophie, 35 ans, célibataire, domiciliée dans le canton de Vaud</strong> :</p>
 
-<ul>
-<li>Salaire brut annuel : <strong>85'000 CHF</strong></li>
-<li>Versement 3ème pilier : <strong>7'258 CHF</strong></li>
-<li>Pas d'enfant, locataire</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Salaire brut annuel : <strong>85'000 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;">Versement 3ème pilier : <strong>7'258 CHF</strong></li>
+<li style="margin-bottom: 0.25rem;">Pas d'enfant, locataire</li>
 </ul>
 
 <br/>
 
 <h3><strong>Calcul des déductions</strong></h3>
 
-<ul>
-<li>Frais professionnels : 2'550 CHF (3% de 85'000)</li>
-<li>Assurance maladie : 2'520 CHF (forfait VD)</li>
-<li>3ème pilier : 7'258 CHF</li>
-<li><strong>Total déductions</strong> : 12'328 CHF</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Frais professionnels : 2'550 CHF (3% de 85'000)</li>
+<li style="margin-bottom: 0.25rem;">Assurance maladie : 2'520 CHF (forfait VD)</li>
+<li style="margin-bottom: 0.25rem;">3ème pilier : 7'258 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Total déductions</strong> : 12'328 CHF</li>
 </ul>
 
 <br/>
@@ -5386,11 +5386,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Estimation des impôts</strong></h3>
 
-<ul>
-<li>Impôt fédéral : ~2'100 CHF</li>
-<li>Impôt cantonal VD : ~10'200 CHF</li>
-<li>Impôt communal (Lausanne) : ~4'700 CHF</li>
-<li><strong>Total</strong> : ~17'000 CHF</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Impôt fédéral : ~2'100 CHF</li>
+<li style="margin-bottom: 0.25rem;">Impôt cantonal VD : ~10'200 CHF</li>
+<li style="margin-bottom: 0.25rem;">Impôt communal (Lausanne) : ~4'700 CHF</li>
+<li style="margin-bottom: 0.25rem;"><strong>Total</strong> : ~17'000 CHF</li>
 </ul>
 
 <br/>
@@ -5399,17 +5399,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Simulez vos impôts en 2 minutes</strong></h2>
+<p><strong>Simulez vos impôts en 2 minutes</strong></p>
 
 <br/>
 
 <p>Notre <strong><a href="/simulateur/impots">simulateur d'impôts gratuit</a></strong> calcule automatiquement :</p>
 
-<ul>
-<li>Vos <strong>déductions</strong> (frais pro, assurance, 3a, enfants...)</li>
-<li>Votre <strong>revenu imposable</strong></li>
-<li>Votre <strong>impôt fédéral, cantonal et communal</strong></li>
-<li>Votre <strong>taux effectif</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Vos <strong>déductions</strong> (frais pro, assurance, 3a, enfants...)</li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>revenu imposable</strong></li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>impôt fédéral, cantonal et communal</strong></li>
+<li style="margin-bottom: 0.25rem;">Votre <strong>taux effectif</strong></li>
 </ul>
 
 <br/>
@@ -5418,7 +5418,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Besoin d'aide pour votre déclaration ?</strong></h2>
+<p><strong>Besoin d'aide pour votre déclaration ?</strong></p>
 
 <br/>
 
@@ -5429,191 +5429,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     category: "fiscalite",
     date: "2026-02-08",
     readTime: 10,
-  },
-  {
-    id: "8",
-    slug: "reforme-valeur-locative-2026-gagnant-perdant",
-    title: "Réforme valeur locative 2026 : gagnant ou perdant",
-    titleEn: "Imputed Rental Value Reform: Will You Win or Lose? Simulator",
-    excerpt:
-      "Suppression de la valeur locative votée : serez-vous gagnant ou perdant ? Calculez l'impact sur vos impôts avec notre simulateur.",
-    excerptEn: "Parliament voted to abolish imputed rental value. But not all property owners will benefit. Discover the impact on your taxes with our simulator.",
-    keywords: ["réforme valeur locative", "suppression valeur locative", "propriétaires Suisse", "imputed rental value reform", "Eigenmietwert abolition"],
-    content: `
-<p>La <strong>suppression de la valeur locative</strong> est votée ! C'est l'une des réformes fiscales les plus importantes pour les propriétaires suisses. Mais attention, tout le monde ne sera pas gagnant.</p>
-
-<p>Dans cet article, nous vous expliquons ce qui va changer et comment savoir si vous serez <strong>avantagé ou pénalisé</strong> par cette réforme.</p>
-
-<br/>
-
-<h2><strong>Qu'est-ce que la valeur locative ?</strong></h2>
-
-<br/>
-
-<p>La <strong>valeur locative</strong> est un revenu fictif que tout propriétaire doit déclarer. Elle correspond au loyer que vous <strong>pourriez</strong> percevoir si vous louiez votre bien (généralement 60-70% du loyer du marché).</p>
-
-<p>Ce montant est <strong>imposé comme un revenu</strong>, même si vous habitez votre propre logement et ne touchez rien.</p>
-
-<br/>
-
-<h3><strong>En contrepartie, des déductions</strong></h3>
-
-<p>Pour compenser, les propriétaires peuvent actuellement déduire :</p>
-
-<ul>
-<li>Les <strong>intérêts hypothécaires</strong> (100% déductibles)</li>
-<li>Les <strong>frais d'entretien</strong> (forfait 10-20% ou frais réels)</li>
-<li>Les <strong>travaux de rénovation</strong></li>
-</ul>
-
-<br/>
-
-<h2><strong>Ce que prévoit la réforme</strong></h2>
-
-<br/>
-
-<p>Le nouveau système va tout changer :</p>
-
-<table>
-<thead>
-<tr>
-<th>Élément</th>
-<th>Système actuel</th>
-<th>Après réforme</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Valeur locative</td>
-<td>Imposée comme revenu</td>
-<td><strong>Supprimée</strong></td>
-</tr>
-<tr>
-<td>Intérêts hypothécaires</td>
-<td>100% déductibles</td>
-<td><strong>Non déductibles</strong></td>
-</tr>
-<tr>
-<td>Frais d'entretien courants</td>
-<td>Déductibles</td>
-<td><strong>Non déductibles</strong></td>
-</tr>
-<tr>
-<td>Rénovation énergétique</td>
-<td>Déductible</td>
-<td><strong>Partiellement déductible</strong></td>
-</tr>
-</tbody>
-</table>
-
-<br/>
-
-<h2><strong>Qui sera gagnant ?</strong></h2>
-
-<br/>
-
-<p>Vous serez probablement <strong>gagnant</strong> si :</p>
-
-<ul>
-<li>✅ Vous avez <strong>peu ou pas d'hypothèque</strong></li>
-<li>✅ Votre valeur locative est <strong>élevée</strong> (bien de grande valeur)</li>
-<li>✅ Vous êtes <strong>retraité</strong> avec hypothèque remboursée</li>
-<li>✅ Vous faites <strong>peu de travaux</strong></li>
-</ul>
-
-<br/>
-
-<h2><strong>Qui sera perdant ?</strong></h2>
-
-<br/>
-
-<p>Vous serez probablement <strong>perdant</strong> si :</p>
-
-<ul>
-<li>❌ Vous avez une <strong>dette hypothécaire importante</strong></li>
-<li>❌ Vous êtes <strong>primo-accédant</strong> (achat récent, gros emprunt)</li>
-<li>❌ Vous faites <strong>beaucoup de travaux</strong> de rénovation</li>
-<li>❌ Vos intérêts + frais d'entretien dépassent votre valeur locative</li>
-</ul>
-
-<br/>
-
-<h2><strong>Simulez l'impact sur VOS impôts</strong></h2>
-
-<br/>
-
-<p>Pour savoir exactement si vous serez gagnant ou perdant, utilisez notre <strong><a href="/simulateur/valeur-locative">simulateur valeur locative gratuit</a></strong>.</p>
-
-<p>Il compare votre situation :</p>
-
-<ul>
-<li>📊 <strong>Avant réforme</strong> : valeur locative + déductions actuelles</li>
-<li>📊 <strong>Après réforme</strong> : plus de VL, plus de déductions</li>
-<li>💰 <strong>Différence</strong> : économie ou surcoût annuel</li>
-</ul>
-
-<br/>
-
-<p>Le calcul prend <strong>30 secondes</strong> et vous donne une réponse claire.</p>
-
-<br/>
-
-<h2><strong>Comment se préparer ?</strong></h2>
-
-<br/>
-
-<h3><strong>Si vous serez perdant</strong></h3>
-
-<p>Envisagez de :</p>
-
-<ul>
-<li><strong>Amortir votre hypothèque</strong> avant l'entrée en vigueur</li>
-<li>Utiliser votre <strong>3ème pilier</strong> pour rembourser</li>
-<li>Effectuer vos <strong>gros travaux</strong> tant que c'est encore déductible</li>
-</ul>
-
-<br/>
-
-<h3><strong>Si vous serez gagnant</strong></h3>
-
-<p>Vous pouvez :</p>
-
-<ul>
-<li>Attendre sereinement la réforme</li>
-<li>Éventuellement <strong>reporter vos travaux</strong> non urgents</li>
-</ul>
-
-<br/>
-
-<h2><strong>Calendrier de la réforme</strong></h2>
-
-<br/>
-
-<ul>
-<li><strong>2026</strong> : Finalisation des modalités</li>
-<li><strong>2027</strong> : Possible référendum</li>
-<li><strong>2028-2029</strong> : Entrée en vigueur probable</li>
-</ul>
-
-<br/>
-
-<p>⚠️ Un référendum pourrait retarder ou bloquer la réforme. Restez informés !</p>
-
-<br/>
-
-<h2><strong>Besoin de conseils personnalisés ?</strong></h2>
-
-<br/>
-
-<p>Chez <strong>NeoFidu</strong>, nous aidons les propriétaires à optimiser leur fiscalité. Nos experts peuvent analyser votre situation et vous recommander les meilleures stratégies.</p>
-
-<p><a href="/demande"><strong>→ Demander un conseil personnalisé</strong></a></p>
-    `,
-    category: "fiscalite",
-    date: "2026-02-05",
-    readTime: 9,
-  },
-  {
+  },  {
     id: "16",
     slug: "suisses-etranger-declaration-impots-guide-2025",
     title: "Suisses de l'étranger : déclaration d'impôts 2025",
@@ -5627,7 +5443,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Qui doit encore payer des impôts en Suisse depuis l'étranger ?</strong></h2>
+<p><strong>Qui doit encore payer des impôts en Suisse depuis l'étranger ?</strong></p>
 
 <br/>
 
@@ -5638,10 +5454,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <h3><strong>1. Vous possédez un bien immobilier en Suisse</strong></h3>
 
 <p>Si vous êtes propriétaire d'un appartement ou d'une maison en Suisse, vous devez :</p>
-<ul>
-<li>Déclarer les <strong>revenus locatifs</strong> si le bien est loué</li>
-<li>Déclarer la <strong>valeur locative</strong> si vous l'occupez occasionnellement</li>
-<li>Payer l'<strong>impôt foncier</strong> dans le canton concerné</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Déclarer les <strong>revenus locatifs</strong> si le bien est loué</li>
+<li style="margin-bottom: 0.25rem;">Déclarer la <strong>valeur locative</strong> si vous l'occupez occasionnellement</li>
+<li style="margin-bottom: 0.25rem;">Payer l'<strong>impôt foncier</strong> dans le canton concerné</li>
 </ul>
 
 <br/>
@@ -5664,7 +5480,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Comment éviter la double imposition ?</strong></h2>
+<p><strong>Comment éviter la double imposition ?</strong></p>
 
 <br/>
 
@@ -5673,10 +5489,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
 
 <p><strong>Exemples de répartition courante :</strong></p>
-<ul>
-<li><strong>Revenus immobiliers</strong> : imposés dans le pays où se situe le bien (donc en Suisse si votre bien est en Suisse)</li>
-<li><strong>Salaires</strong> : généralement imposés dans le pays où le travail est effectué</li>
-<li><strong>Rentes</strong> : règles variables selon les conventions</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Revenus immobiliers</strong> : imposés dans le pays où se situe le bien (donc en Suisse si votre bien est en Suisse)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Salaires</strong> : généralement imposés dans le pays où le travail est effectué</li>
+<li style="margin-bottom: 0.25rem;"><strong>Rentes</strong> : règles variables selon les conventions</li>
 </ul>
 
 <br/>
@@ -5685,7 +5501,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Les démarches pratiques depuis l'étranger</strong></h2>
+<p><strong>Les démarches pratiques depuis l'étranger</strong></p>
 
 <br/>
 
@@ -5698,10 +5514,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <h3><strong>2. Remplir la déclaration</strong></h3>
 
 <p>Les déclarations peuvent être remplies :</p>
-<ul>
-<li>Sur papier (envoi postal)</li>
-<li>En ligne via les portails cantonaux (VaudTax, GeTax, etc.)</li>
-<li>Via une fiduciaire en ligne comme NeoFidu (recommandé)</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">Sur papier (envoi postal)</li>
+<li style="margin-bottom: 0.25rem;">En ligne via les portails cantonaux (VaudTax, GeTax, etc.)</li>
+<li style="margin-bottom: 0.25rem;">Via une fiduciaire en ligne comme NeoFidu (recommandé)</li>
 </ul>
 
 <br/>
@@ -5709,10 +5525,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <h3><strong>3. Les délais</strong></h3>
 
 <p>Les délais de dépôt sont généralement les mêmes que pour les résidents :</p>
-<ul>
-<li><strong>Vaud</strong> : 15 mars (prolongation possible jusqu'au 30 juin)</li>
-<li><strong>Genève</strong> : 31 mars (prolongation possible)</li>
-<li><strong>Valais</strong> : 31 mars</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Vaud</strong> : 15 mars (prolongation possible jusqu'au 30 juin)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Genève</strong> : 31 mars (prolongation possible)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : 31 mars</li>
 </ul>
 
 <br/>
@@ -5721,48 +5537,48 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Pourquoi faire appel à une fiduciaire en ligne ?</strong></h2>
+<p><strong>Pourquoi faire appel à une fiduciaire en ligne ?</strong></p>
 
 <br/>
 
 <p>Gérer ses impôts suisses depuis l'étranger présente des défis spécifiques :</p>
 
-<ul>
-<li><strong>Décalage horaire</strong> : difficile de joindre l'administration pendant les heures de bureau</li>
-<li><strong>Documents</strong> : impossible d'envoyer facilement des originaux par la poste</li>
-<li><strong>Complexité</strong> : les règles de double imposition sont complexes</li>
-<li><strong>Langue</strong> : les formulaires ne sont souvent disponibles qu'en français ou allemand</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Décalage horaire</strong> : difficile de joindre l'administration pendant les heures de bureau</li>
+<li style="margin-bottom: 0.25rem;"><strong>Documents</strong> : impossible d'envoyer facilement des originaux par la poste</li>
+<li style="margin-bottom: 0.25rem;"><strong>Complexité</strong> : les règles de double imposition sont complexes</li>
+<li style="margin-bottom: 0.25rem;"><strong>Langue</strong> : les formulaires ne sont souvent disponibles qu'en français ou allemand</li>
 </ul>
 
 <br/>
 
 <p><strong>NeoFidu</strong> résout tous ces problèmes :</p>
 
-<ul>
-<li>✅ Service <strong>100% en ligne</strong> accessible 24h/24</li>
-<li>✅ Communication par <strong>email et visioconférence</strong></li>
-<li>✅ Experts en <strong>fiscalité internationale suisse</strong></li>
-<li>✅ Documents envoyés et reçus par <strong>voie électronique</strong></li>
-<li>✅ Service disponible en <strong>français et anglais</strong></li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;">✅ Service <strong>100% en ligne</strong> accessible 24h/24</li>
+<li style="margin-bottom: 0.25rem;">✅ Communication par <strong>email et visioconférence</strong></li>
+<li style="margin-bottom: 0.25rem;">✅ Experts en <strong>fiscalité internationale suisse</strong></li>
+<li style="margin-bottom: 0.25rem;">✅ Documents envoyés et reçus par <strong>voie électronique</strong></li>
+<li style="margin-bottom: 0.25rem;">✅ Service disponible en <strong>français et anglais</strong></li>
 </ul>
 
 <br/>
 
-<h2><strong>Tarifs pour les Suisses de l'étranger</strong></h2>
+<p><strong>Tarifs pour les Suisses de l'étranger</strong></p>
 
 <br/>
 
 <p>Nos tarifs sont les mêmes que pour les résidents suisses :</p>
 
-<ul>
-<li><strong>Déclaration simple</strong> (revenus salariés, sans immobilier) : CHF 150.-</li>
-<li><strong>Déclaration avec immobilier</strong> : CHF 250.-</li>
-<li><strong>Situation complexe</strong> (plusieurs pays, activité indépendante) : sur devis</li>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Déclaration simple</strong> (revenus salariés, sans immobilier) : CHF 150.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Déclaration avec immobilier</strong> : CHF 250.-</li>
+<li style="margin-bottom: 0.25rem;"><strong>Situation complexe</strong> (plusieurs pays, activité indépendante) : sur devis</li>
 </ul>
 
 <br/>
 
-<h2><strong>Questions fréquentes</strong></h2>
+<p><strong>Questions fréquentes</strong></p>
 
 <br/>
 
@@ -5781,7 +5597,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<h2><strong>Prêt à simplifier vos impôts depuis l'étranger ?</strong></h2>
+<p><strong>Prêt à simplifier vos impôts depuis l'étranger ?</strong></p>
 
 <br/>
 
