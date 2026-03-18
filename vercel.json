@@ -42,5 +42,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/guide",
+      "destination": "/guide/deductions-fiscales",
+      "permanent": true
+    }
   ]
 }
