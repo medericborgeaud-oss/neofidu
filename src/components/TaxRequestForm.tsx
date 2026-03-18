@@ -3095,7 +3095,7 @@ export function TaxRequestForm() {
                 </>
               )}
 
-              <div>
+              <div className="md:col-start-1">
                 <label className="block text-sm font-medium mb-2">
                   Email <span className="text-red-500">*</span>
                 </label>
