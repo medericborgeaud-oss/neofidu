@@ -121,6 +121,13 @@ const creationSchema = {
     { "@type": "State", "name": "Neuchâtel" },
     { "@type": "State", "name": "Jura" }
   ],
+  "offers": {
+    "@type": "Offer",
+    "price": "290",
+    "priceCurrency": "CHF",
+    "priceRange": "CHF 290 - CHF 1490",
+    "url": "https://www.neofidu.ch/creation-entreprise"
+  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Services de création d'entreprise",
