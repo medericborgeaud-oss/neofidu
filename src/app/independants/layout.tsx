@@ -56,6 +56,13 @@ const independantsSchema = {
     "@type": "Country",
     "name": "Switzerland"
   },
+  "offers": {
+    "@type": "Offer",
+    "price": "90",
+    "priceCurrency": "CHF",
+    "priceRange": "CHF 90 - CHF 500",
+    "url": "https://www.neofidu.ch/independants"
+  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Services pour indépendants",
