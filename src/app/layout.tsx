@@ -124,7 +124,14 @@ export default function RootLayout({
         telephone: "+41786913912",
         contactType: "customer service",
         availableLanguage: ["French", "English"],
-        areaServed: "CH",
+        areaServed: [
+          "Genève",
+          "Vaud",
+          "Valais",
+          "Fribourg",
+          "Neuchâtel",
+          "Jura",
+        ],
         hoursAvailable: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
