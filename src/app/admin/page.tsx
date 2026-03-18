@@ -101,9 +101,11 @@ interface TaxRequest {
     lastName: string;
     birthDate?: string;
     maritalStatus?: string;
+    residenceStatus?: string;
     firstName2?: string;
     lastName2?: string;
     birthDate2?: string;
+    residenceStatus2?: string;
     email: string;
     phone?: string;
     address: {
@@ -918,6 +920,20 @@ www.neofidu.ch
       widowed: "Veuf/Veuve",
       separated: "Séparé(e)",
       partnership: "Partenariat enregistré",
+    };
+    return labels[status] || status;
+  };
+
+  const getResidenceStatusLabel = (status?: string) => {
+    if (!status) return "Non spécifié";
+    const labels: Record<string, string> = {
+      swiss: "Suisse (citoyen/ne)",
+      permitB: "Permis B (séjour)",
+      permitC: "Permis C (établissement)",
+      permitG: "Permis G (frontalier)",
+      permitL: "Permis L (séjour court)",
+      permitF: "Permis F (admis provisoire)",
+      other: "Autre",
     };
     return labels[status] || status;
   };
@@ -2274,10 +2290,14 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                       <p className="font-medium">{formatDate(selectedRequest.customer.birthDate)}</p>
                       <p className="text-muted-foreground">État civil</p>
                       <p className="font-medium">{getMaritalStatusLabel(selectedRequest.customer.maritalStatus)}</p>
+                      <p className="text-muted-foreground">Statut de résidence</p>
+                      <p className="font-medium">{getResidenceStatusLabel(selectedRequest.customer.residenceStatus)}</p>
                       {selectedRequest.customer.birthDate2 && (
                         <>
                           <p className="text-muted-foreground">Naissance conjoint</p>
                           <p className="font-medium">{formatDate(selectedRequest.customer.birthDate2)}</p>
+                          <p className="text-muted-foreground">Statut de résidence (conjoint)</p>
+                          <p className="font-medium">{getResidenceStatusLabel(selectedRequest.customer.residenceStatus2)}</p>
                         </>
                       )}
                     </div>
