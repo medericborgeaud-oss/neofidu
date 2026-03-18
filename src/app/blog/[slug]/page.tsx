@@ -62,7 +62,7 @@ export async function generateMetadata({
       type: "article",
       url: `https://www.neofidu.ch/blog/${article.slug}`,
       siteName: "NeoFidu",
-      images: [{ url: "https://www.neofidu.ch/og-image.jpg", width: 1200, height: 630, alt: article.title }],
+      images: [{ url: `https://www.neofidu.ch/blog/${article.slug}/opengraph-image`, width: 1200, height: 630, alt: article.title }],
       publishedTime: article.date,
       authors: ["NeoFidu"],
       section: categoryInfo.name,
