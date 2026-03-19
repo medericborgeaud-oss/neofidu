@@ -2914,10 +2914,10 @@ export function TaxRequestForm() {
                               <HelpCircle className="w-4 h-4" />
                             </button>
                           </TooltipTrigger>
-                          <TooltipContent side="top" className="max-w-xs bg-amber-50 border-amber-200 text-amber-800">
-                            <p className="text-sm font-medium">Où trouver ce code ?</p>
-                            <p className="text-xs mt-1">{cantonCodeInfo[formData.canton].source}</p>
-                          </TooltipContent>
+                          <TooltipContent side="top" className="max-w-xs">
+                         <p className="text-sm font-medium">📄 Où trouver ce code ?</p>
+                         <p className="text-xs mt-1">Sur votre courrier fiscal (même fiche que le N° contribuable). Le code varie selon votre canton.</p>
+                       </TooltipContent>
                         </Tooltip>
                       )}
                     </label>
