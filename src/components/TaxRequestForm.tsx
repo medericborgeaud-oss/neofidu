@@ -681,9 +681,6 @@ export function TaxRequestForm() {
   const [hasResumedFromStorage, setHasResumedFromStorage] = useState(false);
   const [lostFilesFromPreviousSession, setLostFilesFromPreviousSession] = useState<{ name: string; category: string }[]>([]);
   const [currentStep, setCurrentStep] = useState(1);
-  const [displayedPrice, setDisplayedPrice] = useState(0);
-  const animFrameRef = useRef<number | null>(null);
-  const prevPriceRef = useRef<number>(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
@@ -1603,7 +1600,7 @@ export function TaxRequestForm() {
     // Supplément Suisse de l'étranger (complexité accrue : double imposition, etc.)
     if (formData.livesAbroad) price += 50;
     // Supplément couple
-    if (formData.familyStatus === "couple") price += 20;
+    if (formData.livesAbroad && formData.familyStatus === "couple") price += 20;
     // Supplément indépendant adulte 1
     if (formData.isIndependent) price += 40;
     // Supplément indépendant adulte 2 (conjoint)
@@ -1628,29 +1625,6 @@ export function TaxRequestForm() {
   };
 
   // Animated price counter
-  useEffect(() => {
-    const target = calculatePrice();
-    if (prevPriceRef.current === 0) {
-      prevPriceRef.current = target;
-      setDisplayedPrice(target);
-      return;
-    }
-    const start = prevPriceRef.current;
-    if (start === target) return;
-    prevPriceRef.current = target;
-    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-    const duration = 500;
-    const startTime = Date.now();
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplayedPrice(Math.round(start + (target - start) * eased));
-      if (progress < 1) { animFrameRef.current = requestAnimationFrame(animate); }
-    };
-    animFrameRef.current = requestAnimationFrame(animate);
-    return () => { if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current); };
-  });
 
   const canProceed = () => {
     if (currentStep === 1) {
@@ -2527,7 +2501,7 @@ export function TaxRequestForm() {
             <div className="flex flex-col">
               <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Tarif estimé</span>
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-bold text-primary">CHF {Math.round(displayedPrice / 10) * 10}</span>
+                <span className="text-2xl font-bold text-primary">CHF {calculatePrice()}</span>
                 <span className="text-sm text-muted-foreground">.-</span>
                 <span className="text-xs text-muted-foreground ml-1">TTC</span>
               </div>
