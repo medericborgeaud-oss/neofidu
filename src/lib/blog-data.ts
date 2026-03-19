@@ -5725,4 +5725,89 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     category: 'actualites',
     date: '2026-03-18',
     readTime: 9,
+  },
+  {
+    id: '24',
+    slug: 'faillite-personnelle-suisse-nouveaute-legislative',
+    title: 'Faillite personnelle en Suisse : le Parlement franchit le pas',
+    titleEn: 'Personal bankruptcy in Switzerland: Parliament takes the step',
+    excerpt: `Le Parlement suisse vient de voter une réforme historique : les particuliers surendettés pourront désormais déclarer faillite. Conditions, effets et ce que ça change concrètement.`,
+    excerptEn: `The Swiss Parliament just voted a historic reform: overindebted individuals will be able to declare personal bankruptcy. Conditions, effects, and what this changes in practice.`,
+    keywords: ['faillite personnelle', 'surendettement', 'dettes suisse', 'LP', 'parlement suisse', 'réforme 2026', 'actes de défaut de biens', 'désendettement'],
+    content: `<p>Pendant des décennies, la Suisse a été l'un des rares pays occidentaux à ne pas autoriser les particuliers à déclarer faillite. Un surendetté pouvait accumuler des <strong>actes de défaut de biens</strong> pendant vingt ans sans jamais trouver d'issue. Cette réalité est sur le point de changer : en décembre 2025 puis en 2026, le Conseil national et le Conseil des États ont tous deux validé un projet de loi permettant la faillite personnelle pour les particuliers surendettés.</p>
+
+<br/>
+
+<p><strong>Pourquoi la Suisse n'avait-elle pas la faillite personnelle ?</strong></p>
+
+<p>Contrairement à la France (surendettement Banque de France), l'Allemagne (Privatinsolvenz) ou les États-Unis (Chapter 7), la Suisse ne disposait d'aucune procédure permettant à un particulier d'effacer ses dettes. Le droit des poursuites (LP) réservait la faillite aux personnes inscrites au registre du commerce — soit les indépendants et dirigeants d'entreprises.</p>
+
+<p>Pour les autres, la seule issue était l'accumulation d'<strong>actes de défaut de biens</strong> : des créances qui survivaient vingt ans, bloquant l'accès à un compte, un logement ou un emploi. Selon l'Office fédéral de la statistique, <strong>3 millions de poursuites</strong> sont ouvertes chaque année en Suisse et environ <strong>15 % des ménages</strong> se trouvent en situation de fragilité financière.</p>
+
+<br/>
+
+<p><strong>Ce que le Parlement vient de voter</strong></p>
+
+<p>Le Conseil des États a accepté le projet par <strong>32 voix contre 7</strong>, après le Conseil national en décembre 2025. L'essentiel du dispositif :</p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Procédure ouverte</strong> aux particuliers surendettés sans aucune perspective de redressement financier</li>
+<li style="margin-bottom: 0.25rem;"><strong>Durée de 3 ans</strong> pendant lesquels le débiteur vit sur le minimum vital et reverse tout excédent à ses créanciers</li>
+<li style="margin-bottom: 0.25rem;"><strong>Effacement des dettes</strong> restantes à l'issue des 3 ans</li>
+<li style="margin-bottom: 0.25rem;"><strong>Procédure utilisable une seule fois dans une vie</strong> — les deux chambres ont écarté la possibilité d'y recourir tous les dix ans</li>
+</ul>
+
+<br/>
+
+<p><strong>Le point de désaccord entre les deux chambres</strong></p>
+
+<p>National et Conseil des États divergent sur un point : le sort des <strong>gains extraordinaires</strong> (héritage, loterie) survenus après l'assainissement. Le National voulait une obligation de remboursement <em>à vie</em>. Le Conseil des États propose de la limiter à <strong>20 ans</strong>. Ce point doit encore être tranché en navette parlementaire.</p>
+
+<br/>
+
+<p><strong>Quelles conditions pour en bénéficier ?</strong></p>
+
+<p>La réforme est conçue comme un filet de sécurité de dernier recours. Pour y accéder, il faudra notamment :</p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Prouver le surendettement</strong> : les dettes dépassent manifestement les capacités de remboursement, sans perspective réaliste d'assainissement</li>
+<li style="margin-bottom: 0.25rem;"><strong>Démontrer l'échec de toute solution amiable</strong> : aucun accord avec les créanciers n'a pu être conclu</li>
+<li style="margin-bottom: 0.25rem;"><strong>Accepter 3 ans de minimum vital strict</strong> : les revenus au-delà du seuil vital sont entièrement reversés à la masse</li>
+<li style="margin-bottom: 0.25rem;"><strong>Transparence totale</strong> sur le patrimoine, les revenus et les dépenses pendant toute la procédure</li>
+</ul>
+
+<br/>
+
+<p><strong>Quel impact concret sur vos finances ?</strong></p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Fin de la spirale perpétuelle</strong> : plus d'actes de défaut de biens qui vous suivent vingt ans. À l'issue des 3 ans, c'est une page blanche.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Accès au crédit fortement limité</strong> pendant la procédure — et quelques années après, selon les fichiers de solvabilité (ZEK, IKO).</li>
+<li style="margin-bottom: 0.25rem;"><strong>Biens protégés</strong> : le minimum vital est garanti — loyer, nourriture, transport nécessaire au travail.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Créanciers partiellement remboursés</strong> seulement : les créanciers chirographaires (cartes de crédit, prêts personnels) seront en pratique les plus lésés.</li>
+</ul>
+
+<br/>
+
+<p><strong>Et avant cette loi ? Les alternatives existantes</strong></p>
+
+<p>En attendant l'entrée en vigueur définitive, des solutions existent déjà :</p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Services cantonaux de désendettement</strong> : conseillers en dette gratuits (Caritas, CSP, Dettes Conseils Suisse)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Moratoire amiable</strong> : négocier un étalement ou une réduction de dette directement avec les créanciers</li>
+<li style="margin-bottom: 0.25rem;"><strong>Sursis concordataire</strong> : procédure judiciaire accessible notamment pour les indépendants</li>
+<li style="margin-bottom: 0.25rem;"><strong>Article 191 LP</strong> : faillite volontaire pour les personnes inscrites au registre du commerce, avec une avance de frais d'environ CHF 4'000</li>
+</ul>
+
+<br/>
+
+<p><strong>Un point fiscal à ne pas négliger</strong></p>
+
+<p>Du point de vue fiscal, l'effacement de dettes peut dans certains cas générer un <strong>revenu imposable théorique</strong>. Si un créancier abandonne formellement sa créance, l'administration fiscale pourrait qualifier cette remise de dette en revenu extraordinaire. Chaque situation devra être analysée individuellement — un accompagnement que Neofidu propose aux particuliers comme aux dirigeants confrontés à des situations patrimoniales complexes.</p>
+
+<div><a href="/contact">Prendre rendez-vous avec un expert Neofidu →</a></div>`,
+    category: 'actualites',
+    date: '2026-03-19',
+    readTime: 8,
   },];
