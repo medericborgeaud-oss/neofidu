@@ -1610,7 +1610,7 @@ export function TaxRequestForm() {
     if (formData.familyStatus === "couple" && formData.isIndependent2) price += 40;
     if (formData.hasChildren) price += 10 * formData.childrenCount;
     if (formData.hasProperty && properties.length > 0) price += 50 * properties.length;
-    if (formData.hasStocks && formData.stocksCount > 2) price += 20;
+    if (formData.hasStocks) price += 20;
     if (formData.deliveryMethod === "post") price += 20;
     // Option téléphone supprimée
     if (formData.deadline === "extended") price += 20;
@@ -2513,7 +2513,7 @@ export function TaxRequestForm() {
           <span className="font-medium">{steps[currentStep - 1]}</span>
         </div>
         <div className="text-center text-xs mt-1.5">
-          {currentStep <= 3 ? <span className="text-emerald-600 font-medium">🚀 Bon début !</span> : currentStep <= 6 ? <span className="text-blue-600 font-medium">💪 Plus de la moitié !</span> : currentStep <= 8 ? <span className="text-amber-600 font-medium">✨ Presque fini !</span> : <span className="text-primary font-medium">🎉 Dernière ligne droite !</span>}
+          {currentStep === 1 ? <span className="text-emerald-600 font-medium">🚀 C'est parti !</span> : currentStep <= 3 ? <span className="text-emerald-600 font-medium">👍 Bon début !</span> : currentStep === 4 ? <span className="text-emerald-600 font-medium">🌗 Presque la moitié !</span> : currentStep <= 6 ? <span className="text-blue-600 font-medium">💪 Plus de la moitié !</span> : currentStep <= 8 ? <span className="text-amber-600 font-medium">✨ Presque fini !</span> : <span className="text-primary font-medium">🎉 Dernière ligne droite !</span>}
         </div>
       </div>
 
@@ -2527,7 +2527,7 @@ export function TaxRequestForm() {
             <div className="flex flex-col">
               <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Tarif estimé</span>
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-bold text-primary">CHF {displayedPrice}</span>
+                <span className="text-2xl font-bold text-primary">CHF {Math.round(displayedPrice / 10) * 10}</span>
                 <span className="text-sm text-muted-foreground">.-</span>
                 <span className="text-xs text-muted-foreground ml-1">TTC</span>
               </div>
