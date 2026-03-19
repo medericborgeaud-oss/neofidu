@@ -5810,4 +5810,79 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     category: 'actualites',
     date: '2026-03-19',
     readTime: 8,
+  },
+  {
+    id: "25",
+    slug: "expatrie-suisse-romande-impot-source-sans-francais",
+    title: "Expatrié en Suisse romande : gérer son impôt à la source sans parler français",
+    titleEn: "Expat in French-speaking Switzerland: Managing Withholding Tax Without Speaking French",
+    excerpt: `Vous êtes expatrié en Suisse romande et l'impôt à la source vous semble obscur ? Ce guide bilingue explique tout : seuil CHF 120'000, rectification, remboursement. Service en anglais disponible.`,
+    excerptEn: `Are you an expat in French-speaking Switzerland and struggling with withholding tax (impôt à la source)? This bilingual guide covers everything: CHF 120,000 threshold, tax correction, refund. English service available.`,
+    keywords: [
+      "impôt à la source expatrié suisse romande",
+      "withholding tax expat switzerland english",
+      "quellensteuer english help geneva lausanne",
+      "impôt source b permit guide english",
+      "tax withholding switzerland non french speaker",
+      "rectification impôt source suisse",
+      "expat tax help romandie",
+      "swiss tax english service romandie",
+      "déclaration impôts sans parler français suisse",
+      "120000 threshold withholding tax switzerland",
+    ],
+    content: `<p>You've just arrived in French-speaking Switzerland — Geneva, Lausanne, Neuchâtel, Fribourg — and every administrative document is in French. Taxes are no exception. If you hold a <strong>B or L permit</strong>, Swiss law automatically withholds income tax at source each month. This system is called <strong>impôt à la source</strong> in French, or <em>quellensteuer</em> in German. It sounds simple, but it hides several important subtleties that could cost you money.</p>
+
+<br/>
+
+<p><strong>What is impôt à la source (withholding tax)?</strong></p>
+
+<p>Instead of filing a tax return, your employer deducts income tax directly from your payslip each month and pays it to the cantonal tax authority on your behalf. The rate applied is based on a pre-defined tax code (code A, B, C, H…) that depends on your civil status, whether your spouse works, and your canton of residence. You receive a certificate at the end of the year (attestation de retenue d'impôt à la source) showing how much was withheld.</p>
+
+<p>This system applies by default to <strong>all foreign nationals with a B or L permit</strong> whose gross income stays below <strong>CHF 120,000/year</strong>. Above this threshold — or in specific situations — you must file a full tax return like any Swiss national.</p>
+
+<br/>
+
+<p><strong>The CHF 120,000 threshold — what changes?</strong></p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Below CHF 120,000/year</strong>: withholding tax applies automatically. You don't need to file a return — unless you want to claim additional deductions.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Above CHF 120,000/year</strong>: you are required to file a full tax return (déclaration d'impôts). Withholding tax already paid is deducted from the final bill.</li>
+<li style="margin-bottom: 0.25rem;"><strong>You can also voluntarily request rectification</strong> (demande de rectification) even below the threshold if you have significant deductions: pillar 3a contributions, professional expenses, alimony, medical costs.</li>
+</ul>
+
+<br/>
+
+<p><strong>Can I get a refund? The rectification process</strong></p>
+
+<p>Yes — and this is where most expats leave money on the table. The withholding tax rate is calculated on a flat basis. It doesn't account for your actual deductions. If you have made <strong>pillar 3a contributions</strong>, paid for <strong>professional training</strong>, commuted long distances, or paid <strong>alimony</strong>, you can file a <em>demande de rectification</em> with the cantonal tax administration after 31 March of the following year. In Geneva and Vaud, this can result in significant refunds — typically CHF 500 to several thousand francs depending on your situation.</p>
+
+<p>The deadline to file for rectification is generally <strong>31 March of the year following the tax year</strong>. Missing this deadline means losing your refund permanently.</p>
+
+<br/>
+
+<p><strong>Key documents you'll receive (in French)</strong></p>
+
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><strong>Attestation de retenue d'impôt à la source</strong> — Annual certificate from your employer showing total withheld tax</li>
+<li style="margin-bottom: 0.25rem;"><strong>Barème / code de retenue</strong> — Your tax code (A0, A1, B0, C0…) shown on your payslip</li>
+<li style="margin-bottom: 0.25rem;"><strong>Demande de rectification</strong> — Form to claim deductions and request a refund or adjustment</li>
+<li style="margin-bottom: 0.25rem;"><strong>Bordereau de taxation ordinaire ultérieure (TOU)</strong> — Applies if your income exceeds CHF 120,000 or you change status</li>
+</ul>
+
+<br/>
+
+<p><strong>How Neofidu helps expats navigate this in English</strong></p>
+
+<p>Neofidu's entire expat service is delivered <strong>in English</strong>. We review your payslips, identify missed deductions, prepare your rectification request, and communicate with the canton on your behalf — all without requiring you to speak French. Our service is 100% online, starting from <strong>CHF 50</strong>.</p>
+
+<p>We work with expats across all French-speaking cantons: Geneva, Vaud, Valais, Fribourg, Neuchâtel, and Jura.</p>
+
+<br/>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to file a tax return in Switzerland with a B permit?","acceptedAnswer":{"@type":"Answer","text":"If your gross income is below CHF 120,000/year, withholding tax (impôt à la source) is deducted automatically and you don't need to file a full return. However, you can voluntarily file a rectification request to claim deductions and get a refund. Above CHF 120,000/year, filing is mandatory."}},{"@type":"Question","name":"What is impôt à la source in Switzerland?","acceptedAnswer":{"@type":"Answer","text":"Impôt à la source (withholding tax or Quellensteuer in German) is a system where your employer deducts income tax directly from your salary each month. It applies automatically to foreign nationals with B or L permits in Switzerland."}},{"@type":"Question","name":"Can I get a refund on Swiss withholding tax?","acceptedAnswer":{"@type":"Answer","text":"Yes. If you have deductions such as pillar 3a contributions, professional expenses, alimony, or training costs, you can file a demande de rectification with the cantonal tax authority. The deadline is typically 31 March of the following year."}},{"@type":"Question","name":"Is there a tax service for expats in Switzerland that works in English?","acceptedAnswer":{"@type":"Answer","text":"Yes. Neofidu offers a fully English-speaking tax service for expats and foreigners in French-speaking Switzerland. Services include withholding tax rectification, first tax returns, and full tax advisory. Available online from CHF 50."}},{"@type":"Question","name":"What happens when my salary exceeds CHF 120,000 in Switzerland?","acceptedAnswer":{"@type":"Answer","text":"When your gross salary exceeds CHF 120,000/year, you must file a full ordinary tax return (taxation ordinaire). The withholding tax already deducted by your employer will be credited against the final tax bill."}}]}</script>
+
+<div><a href="/expats">Get help from an English-speaking tax expert at Neofidu →</a></div>`,
+    category: "impots",
+    date: "2026-03-19",
+    readTime: 7,
   },];
