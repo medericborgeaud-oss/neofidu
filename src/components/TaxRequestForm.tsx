@@ -95,7 +95,7 @@ const cantonCodeInfo: Record<string, { label: string; placeholder: string; sourc
   VD: {
     label: "Code de contrôle",
     placeholder: "Ex: 123456",
-    source: "Formulaire de déclaration (A3), en haut à gauche",
+    source: "Trouvez ce numéro sur votre courrier fiscal",
   },
   VS: {
     label: "Numéro de contrôle",
@@ -1607,7 +1607,7 @@ export function TaxRequestForm() {
     if (formData.familyStatus === "couple" && formData.isIndependent2) price += 40;
     if (formData.hasChildren) price += 10 * formData.childrenCount;
     if (formData.hasProperty && properties.length > 0) price += 50 * properties.length;
-    if (formData.hasStocks) price += 20;
+    if (formData.hasStocks && formData.stocksCount >= 3) price += 20;
     if (formData.deliveryMethod === "post") price += 20;
     // Option téléphone supprimée
     if (formData.deadline === "extended") price += 20;
