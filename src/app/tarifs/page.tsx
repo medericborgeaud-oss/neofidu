@@ -34,19 +34,27 @@ const pricingData = {
       price: "50",
       priceNote: "dès",
       features: [
-        "Personne seule ou en ménage",
+        "Personne seule",
         "Attestation(s) de revenus",
         "Relevé(s) de compte",
         "Abattements usuels",
         "Traitement standard (10 jours ouvrés)",
-      ],
+      
+        "Couple: +CHF 20.-",
+        "Enfant: +CHF 10.-/enfant",
+        "Bien immobilier: +CHF 50.-/bien",
+        "Actions (≥3): +CHF 20.-",],
       featuresen: [
-        "Single person or household",
+        "Single person",
         "Income certificate(s)",
         "Bank statement(s)",
         "Standard deductions",
         "Standard processing (10 business days)",
-      ],
+      
+        "Couple: +CHF 20.-",
+        "Child: +CHF 10.-/child",
+        "Property: +CHF 50.-/property",
+        "Securities (≥3): +CHF 20.-",],
       popular: false,
     },
     {
@@ -63,7 +71,11 @@ const pricingData = {
         "Dépenses professionnelles",
         "Traitement standard (10 jours ouvrés)",
         "Assistance dédiée",
-      ],
+      
+        "Couple: +CHF 20.-",
+        "Enfant: +CHF 10.-/enfant",
+        "Bien immobilier: +CHF 50.-/bien",
+        "Actions (≥3): +CHF 20.-",],
       featuresen: [
         "Includes Basic plan",
         "Dependents",
@@ -71,7 +83,11 @@ const pricingData = {
         "Professional expenses",
         "Standard processing (10 business days)",
         "Dedicated support",
-      ],
+      
+        "Couple: +CHF 20.-",
+        "Child: +CHF 10.-/child",
+        "Property: +CHF 50.-/property",
+        "Securities (≥3): +CHF 20.-",],
       popular: true,
     },
     {
@@ -88,7 +104,11 @@ const pricingData = {
         "Sources de revenus multiples",
         "Traitement standard (10 jours ouvrés)",
         "Accompagnement personnalisé",
-      ],
+      
+        "Couple: +CHF 20.-",
+        "Enfant: +CHF 10.-/enfant",
+        "Bien immobilier: +CHF 50.-/bien",
+        "Actions (≥3): +CHF 20.-",],
       featuresen: [
         "Includes Comfort plan",
         "Extended real estate",
@@ -96,7 +116,11 @@ const pricingData = {
         "Multiple income sources",
         "Standard processing (10 business days)",
         "Personalized guidance",
-      ],
+      
+        "Couple: +CHF 20.-",
+        "Child: +CHF 10.-/child",
+        "Property: +CHF 50.-/property",
+        "Securities (≥3): +CHF 20.-",],
       popular: false,
     },
     {
@@ -112,14 +136,16 @@ const pricingData = {
         "Indépendant: +CHF 40.-",
         "Bien immobilier: +CHF 50.-/bien",
         "Enfant: +CHF 10.-/enfant",
-      ],
+      
+        "Actions (≥3): +CHF 20.-",],
       featuresen: [
         "Complete tax return",
         "Couple: +CHF 20.-",
         "Self-employed: +CHF 40.-",
         "Property: +CHF 50.-/property",
         "Child: +CHF 10.-/child",
-      ],
+      
+        "Securities (≥3): +CHF 20.-",],
       popular: false,
       isSwissAbroad: true,
     },
