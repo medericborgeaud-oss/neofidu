@@ -681,6 +681,9 @@ export function TaxRequestForm() {
   const [hasResumedFromStorage, setHasResumedFromStorage] = useState(false);
   const [lostFilesFromPreviousSession, setLostFilesFromPreviousSession] = useState<{ name: string; category: string }[]>([]);
   const [currentStep, setCurrentStep] = useState(1);
+  const [displayedPrice, setDisplayedPrice] = useState(0);
+  const animFrameRef = useRef<number | null>(null);
+  const prevPriceRef = useRef<number>(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
@@ -1624,6 +1627,31 @@ export function TaxRequestForm() {
     return Math.round((calculatePrice() - calculatePriceHT()) * 100) / 100;
   };
 
+  // Animated price counter
+  useEffect(() => {
+    const target = calculatePrice();
+    if (prevPriceRef.current === 0) {
+      prevPriceRef.current = target;
+      setDisplayedPrice(target);
+      return;
+    }
+    const start = prevPriceRef.current;
+    if (start === target) return;
+    prevPriceRef.current = target;
+    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    const duration = 500;
+    const startTime = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayedPrice(Math.round(start + (target - start) * eased));
+      if (progress < 1) { animFrameRef.current = requestAnimationFrame(animate); }
+    };
+    animFrameRef.current = requestAnimationFrame(animate);
+    return () => { if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current); };
+  });
+
   const canProceed = () => {
     if (currentStep === 1) {
       // Canton obligatoire
@@ -2484,6 +2512,9 @@ export function TaxRequestForm() {
           <span className="text-muted-foreground">Étape {currentStep}:</span>{" "}
           <span className="font-medium">{steps[currentStep - 1]}</span>
         </div>
+        <div className="text-center text-xs mt-1.5">
+          {currentStep <= 3 ? <span className="text-emerald-600 font-medium">🚀 Bon début !</span> : currentStep <= 6 ? <span className="text-blue-600 font-medium">💪 Plus de la moitié !</span> : currentStep <= 8 ? <span className="text-amber-600 font-medium">✨ Presque fini !</span> : <span className="text-primary font-medium">🎉 Dernière ligne droite !</span>}
+        </div>
       </div>
 
       <div className="flex justify-end mb-4">
@@ -2496,7 +2527,7 @@ export function TaxRequestForm() {
             <div className="flex flex-col">
               <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Tarif estimé</span>
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-bold text-primary">CHF {calculatePrice().toFixed(0)}</span>
+                <span className="text-2xl font-bold text-primary">CHF {displayedPrice}</span>
                 <span className="text-sm text-muted-foreground">.-</span>
                 <span className="text-xs text-muted-foreground ml-1">TTC</span>
               </div>
@@ -2824,9 +2855,22 @@ export function TaxRequestForm() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
-                    N° contribuable <span className="text-red-500">*</span>
-                  </label>
+                  <TooltipProvider>
+                   <label className="text-sm font-medium mb-2 flex items-center gap-1.5">
+                     N° contribuable <span className="text-red-500">*</span>
+                     <Tooltip>
+                       <TooltipTrigger asChild>
+                         <button type="button" className="text-muted-foreground hover:text-primary transition-colors">
+                           <HelpCircle className="w-4 h-4" />
+                         </button>
+                       </TooltipTrigger>
+                       <TooltipContent side="top" className="max-w-xs">
+                         <p className="text-sm font-medium">📄 Où trouver ce numéro ?</p>
+                         <p className="text-xs mt-1">Sur votre courrier fiscal, en haut à droite. Format : <strong>123.456.789</strong></p>
+                       </TooltipContent>
+                     </Tooltip>
+                   </label>
+                 </TooltipProvider>
                   <Input
                     placeholder="Ex: 123.456.789"
                     value={formData.taxpayerNumber}
