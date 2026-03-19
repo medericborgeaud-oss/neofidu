@@ -99,7 +99,9 @@ export function Pillar3aSimulatorEnhanced() {
     if (contribution <= 0 || currentAge >= retirementAge) return null;
 
     const yearsToRetirement = retirementAge - currentAge;
-    const marginalRate = canton.marginalRate;
+    const grossIncome = parseFloat(formData.grossIncome) || 85000;
+    const incomeAdj = grossIncome < 40000 ? 0.65 : grossIncome < 60000 ? 0.80 : grossIncome < 80000 ? 0.92 : grossIncome < 120000 ? 1.00 : grossIncome < 160000 ? 1.10 : 1.20;
+    const marginalRate = canton.marginalRate * incomeAdj;
     const taxSavingsYear = contribution * marginalRate;
 
     // Calculate projected capital with compound interest
@@ -266,6 +268,25 @@ export function Pillar3aSimulatorEnhanced() {
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* Revenu annuel brut */}
+            <div>
+              <Label htmlFor="grossIncome">Revenu annuel brut</Label>
+              <div className="relative mt-1">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">CHF</span>
+                <Input
+                  id="grossIncome"
+                  type="number"
+                  min={10000}
+                  max={500000}
+                  step={1000}
+                  value={formData.grossIncome}
+                  onChange={(e) => setFormData({ ...formData, grossIncome: e.target.value })}
+                  className="h-12 text-lg pl-14"
+                />
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">Votre revenu brut pour une estimation personnalisée</p>
             </div>
 
             {/* Contribution */}
