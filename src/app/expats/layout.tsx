@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Tax Returns for Expats in Switzerland",
-  description: "Swiss tax return service for expats & foreigners. We speak English! B/C permit holders, international employees. From CHF 50. Geneva, Lausanne, Zurich. Free quote.",
+  description: "Swiss tax returns for expats & foreigners in Switzerland. English service. Impôt à la source (quellensteuer), B/C permit holders. From CHF 50. Geneva, Lausanne, Zurich.",
   keywords: [
     // High-priority expat keywords
     "expat tax return switzerland",
@@ -72,6 +72,15 @@ export const metadata: Metadata = {
     "bonus tax switzerland foreigners",
     "international income swiss tax",
     "foreign income tax switzerland",
+    // Requêtes françaises — non-francophones en Suisse romande
+    "fiduciaire anglophone genève",
+    "fiduciaire anglophone lausanne",
+    "aide impôts étranger suisse",
+    "déclaration impôts suisse en anglais",
+    "impôt à la source permis b aide",
+    "comptable anglophone romandie",
+    "aide fiscale expatrié suisse romande",
+    "déclaration impôts non francophone suisse",
   ],
   openGraph: {
     title: "Tax Returns for Expats in Switzerland",
@@ -91,6 +100,7 @@ export const metadata: Metadata = {
     languages: {
       "en": "https://www.neofidu.ch/expats",
       "fr": "https://www.neofidu.ch/expats",
+      "fr-CH": "https://www.neofidu.ch/expats",
       "x-default": "https://www.neofidu.ch/expats",
     },
   },
