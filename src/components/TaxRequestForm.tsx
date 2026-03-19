@@ -1600,7 +1600,7 @@ export function TaxRequestForm() {
     // Supplément Suisse de l'étranger (complexité accrue : double imposition, etc.)
     if (formData.livesAbroad) price += 50;
     // Supplément couple
-    if (formData.livesAbroad && formData.familyStatus === "couple") price += 20;
+    if (formData.familyStatus === "couple") price += 20;
     // Supplément indépendant adulte 1
     if (formData.isIndependent) price += 40;
     // Supplément indépendant adulte 2 (conjoint)
