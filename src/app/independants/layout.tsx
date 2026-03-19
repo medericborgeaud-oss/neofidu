@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Comptabilité pour Indépendants & Freelances en Suisse",
+  title: "Comptabilité Indépendants & Freelances | Vaud, Genève, Valais | NeoFidu",
   description:
-    "Comptabilité simplifiée pour indépendants et freelances en Suisse romande. Déclaration d'impôts, TVA, création d'entreprise. Dès CHF 500.-/an. Devis gratuit.",
+    "Fiduciaire digitale pour indépendants et freelances à Vaud, Genève et Valais. Comptabilité, déclaration d'impôts, TVA. Devis gratuit.",
   keywords: [
     "comptabilité indépendant suisse",
     "comptable freelance suisse",
@@ -21,19 +21,27 @@ export const metadata: Metadata = {
     "AVS indépendant",
     "comptable pour freelance vaud",
     "comptable indépendant genève",
-  ],
+  ,
+    "comptable indépendant valais",
+    "comptabilité freelance vaud",
+    "comptabilité freelance genève",
+    "comptabilité freelance valais",
+    "fiduciaire freelance vaud",
+    "fiduciaire indépendant valais",
+    "déclaration impôts freelance vaud",
+    "comptable freelance genève",
+    "indépendant freelance suisse romande"],
   openGraph: {
-    title: "Comptabilité pour Indépendants & Freelances | Neofidu",
-    description:
-      "Comptabilité simplifiée pour indépendants en Suisse romande. Déclaration d'impôts, TVA, accompagnement création d'entreprise. Devis gratuit.",
+    title: "Comptabilité Indépendants & Freelances | Vaud · Genève · Valais | NeoFidu",
+    description: "Comptabilité pour indépendants à Vaud, Genève et Valais. Déclaration d'impôts, TVA, création entreprise. Devis gratuit en ligne.",
     url: "https://www.neofidu.ch/independants",
     type: "website",
     locale: "fr_CH",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Comptabilité Indépendants & Freelances Suisse",
-    description: "Comptabilité dès CHF 500.-/an. TVA, impôts, création entreprise. 100% digital.",
+    title: "Comptabilité Indépendants | Vaud · Genève · Valais | NeoFidu",
+    description: "Comptabilité & impôts pour indépendants et freelancers à Vaud, Genève, Valais. Devis gratuit.",
   },
   alternates: {
     canonical: "https://www.neofidu.ch/independants",
@@ -52,10 +60,12 @@ const independantsSchema = {
     "name": "Neofidu",
     "url": "https://www.neofidu.ch"
   },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Switzerland"
-  },
+  "areaServed": [
+    {"@type": "AdministrativeArea", "name": "Canton de Vaud", "@id": "https://www.wikidata.org/wiki/Q12771"},
+    {"@type": "AdministrativeArea", "name": "Canton de Genève", "@id": "https://www.wikidata.org/wiki/Q11917"},
+    {"@type": "AdministrativeArea", "name": "Canton du Valais", "@id": "https://www.wikidata.org/wiki/Q834"},
+    {"@type": "AdministrativeArea", "name": "Suisse romande"}
+  ],
   "offers": {
     "@type": "Offer",
     "price": "90",
