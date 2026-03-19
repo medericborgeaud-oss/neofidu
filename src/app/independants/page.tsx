@@ -197,6 +197,18 @@ const faqs = [
     answer: "Absolument. On calcule vos cotisations AVS/AI/APG en fonction de votre revenu estimé, on vous rappelle les échéances de paiement, et on ajuste les acomptes si nécessaire. À la fin de l'année, on prépare la déclaration de revenus pour la caisse de compensation.",
     answerEn: "Absolutely. We calculate your AVS/AI/APG contributions based on your estimated income, remind you of payment deadlines, and adjust installments if necessary. At the end of the year, we prepare the income declaration for the compensation fund.",
   },
+  {
+    question: "Vous intervenez dans quel canton ?",
+    questionEn: "Which cantons do you operate in?",
+    answer: "NeoFidu accompagne les indépendants et freelances dans toute la Suisse romande : Vaud (Lausanne, Morges, Nyon, Yverdon), Genève, Valais (Sion, Martigny), Fribourg, Neuchâtel et Jura. Service 100 % en ligne.",
+    answerEn: "NeoFidu serves self-employed and freelancers across French-speaking Switzerland: Vaud (Lausanne, Morges, Nyon), Geneva, Valais (Sion, Martigny), Fribourg, Neuchâtel and Jura. 100% online service.",
+  },
+  {
+    question: "Vous gérez la comptabilité des indépendants en Valais ?",
+    questionEn: "Do you handle accounting for self-employed in Valais?",
+    answer: "Oui, NeoFidu gère la comptabilité des indépendants en Valais. Déclaration d’impôts, TVA, AVS/AI : on s’occupe de tout à distance. Parfait pour les freelances et raisons individuelles à Sion, Martigny ou Monthey.",
+    answerEn: "Yes, NeoFidu handles accounting for self-employed in Valais. Tax returns, VAT, AVS/AI – we handle everything remotely. Perfect for freelancers and sole traders in Sion, Martigny or Monthey.",
+  },
 ];
 
 
@@ -462,7 +474,52 @@ export default function IndependantsPage() {
 
 
 
-          {/* FAQ Section */}
+                    {/* Zones desservies */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mb-20"
+          >
+            <div className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                {isEnglish ? "Serving freelancers across French-speaking Switzerland" : "Indépendants en Suisse romande : on est là"}
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                {isEnglish
+                  ? "NeoFidu supports self-employed and freelancers in Vaud, Geneva and Valais — 100% online."
+                  : "NeoFidu accompagne les indépendants et freelances à Vaud, Genève et en Valais — 100 % en ligne."}
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="p-6 bg-white rounded-2xl shadow-sm border">
+                <h3 className="font-bold text-lg mb-2">{isEnglish ? "Canton of Vaud" : "Canton de Vaud"}</h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? "Accounting and taxes for freelancers in Lausanne, Morges, Nyon, Yverdon and across Vaud."
+                    : "Comptabilité et déclaration d’impôts pour indépendants à Lausanne, Morges, Nyon, Yverdon et dans tout le canton."}
+                </p>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow-sm border">
+                <h3 className="font-bold text-lg mb-2">{isEnglish ? "Canton of Geneva" : "Canton de Genève"}</h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? "Tax returns and bookkeeping for Geneva-based self-employed and freelancers."
+                    : "Déclaration d’impôts et comptabilité pour indépendants et freelances à Genève."}
+                </p>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow-sm border">
+                <h3 className="font-bold text-lg mb-2">{isEnglish ? "Canton of Valais" : "Canton du Valais"}</h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? "Accounting, VAT and taxes for self-employed in Sion, Martigny and across Valais."
+                    : "Comptabilité, TVA et impôts pour indépendants à Sion, Martigny et dans tout le Valais."}
+                </p>
+              </div>
+            </div>
+          </motion.section>
+
+{/* FAQ Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
