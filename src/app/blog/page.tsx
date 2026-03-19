@@ -23,7 +23,7 @@ export default function BlogPage() {
 
   const filteredArticles = useMemo(() => {
     // Start with a fresh copy of all articles
-    let result = [...blogArticles].filter(a => a.slug !== "premiere-declaration-impots-suisse-guide");
+    let result = [...blogArticles].filter(a => a.slug !== "premiere-declaration-impots-suisse-guide").sort((a, b) => b.date.localeCompare(a.date));
 
     // Filter by category
     if (activeCategory && activeCategory.trim() !== "") {
