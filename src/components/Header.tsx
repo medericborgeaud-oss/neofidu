@@ -26,7 +26,7 @@ function LanguageBannerInternal({ isHomepage }: { isHomepage: boolean }) {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 px-4 text-center text-sm">
-      <span className="mr-2">🇬🇧</span>
+      <span className="mr-2"><img src="https://flagcdn.com/16x12/gb.png" alt="GB flag" width={16} height={12} className="inline-block align-middle" /></span>
       <span className="font-medium">We speak English!</span>
       <span className="mx-2 opacity-60">|</span>
       <button
