@@ -23,7 +23,8 @@ import {
   Briefcase,
   ArrowRight,
   MapPin,
-  TrendingUp,
+  TrendingUp
+  Percent,,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -304,6 +305,22 @@ export default function SimulateurPage() {
                     </h3>
                     <p className="text-sm text-muted-foreground">
                       Calculez l'impôt sur le gain immobilier lors d'une vente
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/simulateur/baisse-loyer">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center mb-3">
+                      <Percent className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Baisse de Loyer
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Calculez votre droit à la baisse de loyer selon le taux hypothécaire
                     </p>
                   </CardContent>
                 </Card>
