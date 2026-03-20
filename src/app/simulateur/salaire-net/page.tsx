@@ -169,19 +169,16 @@ export default function SalaireNetPage() {
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
                   <Star className="w-4 h-4 text-yellow-300" />
-                  <span className="text-sm font-medium">Gratuit & Instantané / Free & Instant</span>
+                  <span className="text-sm font-medium">Gratuit & Instantané /span>
                 </div>
 
                 <h1 className="text-3xl md:text-5xl font-bold mb-4">
                   Simulateur <span className="text-emerald-300">Salaire Net</span>
                   <br />
-                  <span className="text-2xl md:text-3xl font-normal opacity-90">Net Salary Calculator</span>
-                </h1>
+                  </h1>
 
                 <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
                   Calculez votre salaire net en Suisse par canton. Cotisations sociales, impôts fédéraux et cantonaux inclus.
-                  <br />
-                  <span className="text-white/70">Calculate your Swiss net salary by canton. Social contributions and taxes included.</span>
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-2">
