@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Pillar3aPageClient } from "./Pillar3aPageClient";
 
 export const metadata: Metadata = {
-  title: "Simulateur 3ème Pilier 2026 | Gratuit""Simulateur 3ème Pilier 2026 | Gratuit",
+  title: "Simulateur 3ème Pilier 2026 | Gratuit",
   description:
     "Calculez vos économies d'impôts avec le 3ème pilier. Simulateur gratuit. Plafond 2026 : CHF 7'258.",
   keywords:
