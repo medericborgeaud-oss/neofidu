@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Comptabilité Indépendants & Freelances | Vaud, Genève, Valais | NeoFidu",
+  title: "Comptabilité Indépendants & Freelances | Vaud, Genève, Valais",
   description:
     "Fiduciaire digitale pour indépendants et freelances à Vaud, Genève et Valais. Comptabilité, déclaration d'impôts, TVA. Devis gratuit.",
   keywords: [
