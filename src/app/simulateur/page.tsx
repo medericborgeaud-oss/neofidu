@@ -23,8 +23,8 @@ import {
   Briefcase,
   ArrowRight,
   MapPin,
-  TrendingUp
-  Percent,,
+  TrendingUp,
+  Percent,
 } from "lucide-react";
 import Link from "next/link";
 
