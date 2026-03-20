@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { SalarySimulatorClient } from "./SalarySimulatorClient";
 import { SimulatorInternalLinks } from "@/components/SimulatorInternalLinks";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calculator, Clock, Shield, TrendingDown, Star } from "lucide-react";
+import { Calculator, Clock, Shield, TrendingDown, Zap } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -167,8 +167,8 @@ export default function SalaireNetPage() {
           <section className="bg-gradient-to-br from-primary via-emerald-600 to-teal-700 text-white pt-24 md:pt-28 pb-12 md:pb-16">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
-                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                  <Star className="w-4 h-4 text-yellow-300" />
+                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
+                  <Zap className="w-4 h-4 text-yellow-300" />
                   <span className="text-sm font-medium">Gratuit & Instantané</span>
                 </div>
 
