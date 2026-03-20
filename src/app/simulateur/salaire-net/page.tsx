@@ -169,7 +169,7 @@ export default function SalaireNetPage() {
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
                   <Star className="w-4 h-4 text-yellow-300" />
-                  <span className="text-sm font-medium">Gratuit & Instantané /span>
+                  <span className="text-sm font-medium">Gratuit & Instantané</span>
                 </div>
 
                 <h1 className="text-3xl md:text-5xl font-bold mb-4">
