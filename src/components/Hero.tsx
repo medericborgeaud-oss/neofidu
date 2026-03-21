@@ -11,11 +11,11 @@ export function Hero() {
 
   const features = isEnglish
     ? ["From your smartphone", "Transparent pricing", "Certified specialists"]
-    : ["Depuis votre smartphone", "Tarifs affichés", "Spécialistes diplômés"];
+    : ["Depuis votre smartphone", "Tarifs affichÃ©s", "SpÃ©cialistes diplÃ´mÃ©s"];
 
   const tagline = isEnglish
     ? "New generation fiduciary in French-speaking Switzerland"
-    : "Fiduciaire nouvelle génération en Romandie";
+    : "Fiduciaire nouvelle gÃ©nÃ©ration en Romandie";
 
   const title1 = isEnglish ? "Your online" : "Votre fiduciaire";
   const title2 = isEnglish ? "fiduciary" : "en ligne";
@@ -23,7 +23,7 @@ export function Hero() {
 
   const subtitle = isEnglish
     ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
-    : "Envoyez votre déclaration d'impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l'étranger.";
+    : "Envoyez votre dÃ©claration d'impÃ´ts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indÃ©pendants, sociÃ©tÃ©s et Suisses de l'Ã©tranger.";
 
   const stats = isEnglish
     ? [
@@ -32,9 +32,9 @@ export function Hero() {
         { value: "10+", label: "Years of experience" },
       ]
     : [
-        { value: "24/7", label: "Disponibilité en ligne" },
+        { value: "24/7", label: "DisponibilitÃ© en ligne" },
         { value: "6", label: "Cantons desservis" },
-        { value: "10+", label: "Ans d'expérience" },
+        { value: "10+", label: "Ans d'expÃ©rience" },
       ];
 
   return (
@@ -47,14 +47,16 @@ export function Hero() {
       </div>
 
       {/* Floating icons */}
-      <div className="absolute top-32 left-10 md:left-20 animate-float opacity-20 pointer-events-none">
-        <FileText className="w-16 h-16 md:w-24 md:h-24 text-white" />
-      </div>
-      <div className="absolute bottom-32 right-10 md:right-20 animate-float-delayed opacity-20 pointer-events-none">
-        <Calculator className="w-16 h-16 md:w-24 md:h-24 text-white" />
-      </div>
-      <div className="absolute top-1/2 right-10 md:right-40 animate-float opacity-15 pointer-events-none">
-        <Shield className="w-12 h-12 md:w-16 md:h-16 text-white" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-32 left-10 md:left-20 animate-float opacity-20">
+          <FileText className="w-16 h-16 md:w-24 md:h-24 text-white" />
+        </div>
+        <div className="absolute bottom-32 right-10 md:right-20 animate-float-delayed opacity-20">
+          <Calculator className="w-16 h-16 md:w-24 md:h-24 text-white" />
+        </div>
+        <div className="absolute top-1/2 right-10 md:right-40 animate-float opacity-15">
+          <Shield className="w-12 h-12 md:w-16 md:h-16 text-white" />
+        </div>
       </div>
 
       {/* Content */}
@@ -116,7 +118,7 @@ export function Hero() {
               className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-black/10 group"
             >
               <Link href="/demande">
-                {isEnglish ? "Submit a request" : "Déposer une demande"}
+                {isEnglish ? "Submit a request" : "DÃ©poser une demande"}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -140,13 +142,13 @@ export function Hero() {
             >
               <Calculator className="w-5 h-5" />
               <span className="text-sm md:text-base font-medium">
-                {isEnglish ? "Estimate your taxes with our free simulator" : "Estimez vos impôts avec notre simulateur gratuit"}
+                {isEnglish ? "Estimate your taxes with our free simulator" : "Estimez vos impÃ´ts avec notre simulateur gratuit"}
               </span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          {/* Quasi-résident / TOU Notice */}
+          {/* Quasi-rÃ©sident / TOU Notice */}
           <div className="mt-6 flex justify-center">
             <Link
               href="/#contact"
@@ -155,8 +157,8 @@ export function Hero() {
               <Shield className="w-4 h-4 text-yellow-300" />
               <span className="text-sm font-medium">
                 {isEnglish
-                  ? "Withholding tax / Quasi-resident? Contact us →"
-                  : "Impôt à la source / Quasi-résident ? Contactez-nous →"}
+                  ? "Withholding tax / Quasi-resident? Contact us â"
+                  : "ImpÃ´t Ã  la source / Quasi-rÃ©sident ? Contactez-nous â"}
               </span>
             </Link>
           </div>
