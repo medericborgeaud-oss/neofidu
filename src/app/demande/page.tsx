@@ -8,8 +8,9 @@ import { PropertyRequestForm } from "@/components/PropertyRequestForm";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Calculator, Home, ArrowLeft } from "lucide-react";
+import { FileText, Calculator, Home } from "lucide-react";
 import Link from "next/link";
+import { BreadcrumbLight } from "@/components/Breadcrumb";
 import { useLanguage } from "@/lib/language-context";
 
 type ServiceType = "tax" | "accounting" | "property" | null;
@@ -49,15 +50,7 @@ export default function DemandePage() {
       <Header />
       <div className="pt-28 pb-20">
         <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              {t.backToHome}
-            </Link>
-          </div>
+          <BreadcrumbLight items={[{ label: "Déposer une demande" }]} className="mb-8" />
 
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
