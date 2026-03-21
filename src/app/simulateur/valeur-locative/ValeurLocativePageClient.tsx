@@ -141,11 +141,11 @@ export function ValeurLocativePageClient() {
                   </h4>
                   <ul className="space-y-2 text-sm text-blue-700">
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">â</span>
+                      <span className="text-green-500 mt-1">✓</span>
                       {t("simulators.valeurLocativePage.afterPoint1")}
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-red-500 mt-1">â</span>
+                      <span className="text-red-500 mt-1">✗</span>
                       {t("simulators.valeurLocativePage.afterPoint2")}
                     </li>
                     <li className="flex items-start gap-2">
