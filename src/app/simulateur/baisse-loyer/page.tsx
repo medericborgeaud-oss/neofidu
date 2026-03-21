@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { BaiseLoyerCalculator } from "./BaiseLoyerCalculator";
 import { Zap } from "lucide-react";
 
@@ -119,6 +120,7 @@ export default function BaiseLoyerPage() {
         <main className="flex-1">
           <section className="bg-gradient-to-br from-primary via-emerald-600 to-teal-700 text-white pt-24 md:pt-32 pb-12 md:pb-16">
             <div className="container mx-auto px-4">
+              <Breadcrumb items={[{ label: "Simulateurs", href: "/simulateur" }, { label: "Baisse de Loyer" }]} className="mb-6" />
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
                   <Zap className="w-4 h-4 text-yellow-300" />
