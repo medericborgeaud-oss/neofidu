@@ -141,7 +141,7 @@ export function Header() {
     { href: "/tarifs", label: t("header.pricing") },
     
     { href: "/suivi", label: t("header.tracking") },
-    { href: "/#contact", label: t("header.contact") },
+    { href: "/contact", label: t("header.contact") },
   ];
 
   useEffect(() => {
