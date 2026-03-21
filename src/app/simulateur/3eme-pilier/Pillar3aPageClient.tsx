@@ -15,6 +15,7 @@ import {
 import { Pillar3aSimulatorEnhanced } from "@/components/Pillar3aSimulatorEnhanced";
 import { SimulatorInternalLinks } from "@/components/SimulatorInternalLinks";
 import { useLanguage } from "@/lib/language-context";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 export function Pillar3aPageClient() {
   const { t } = useLanguage();
@@ -61,6 +62,7 @@ export function Pillar3aPageClient() {
       {/* Hero Section */}
       <section className="pt-28 pb-12 bg-gradient-to-br from-emerald-600 via-teal-600 to-primary text-white">
         <div className="container mx-auto px-4">
+          <Breadcrumb items={[{ label: "Simulateurs", href: "/simulateur" }, { label: "3ème Pilier" }]} className="mb-6" />
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
               <Zap className="w-4 h-4 text-yellow-300" />
