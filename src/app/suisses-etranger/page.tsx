@@ -174,8 +174,8 @@ export default function SuissesEtrangerPage() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 bg-transparent"
+                variant="ghost"
+                className="border border-white text-white hover:bg-white/10 hover:text-white"
               >
                 <Link href="#contact">
                   {t("simulators.swissAbroadPage.cta2")}
