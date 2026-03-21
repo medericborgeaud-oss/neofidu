@@ -11,11 +11,10 @@ const Services = dynamic(() => import("@/components/Services").then(mod => ({ de
 const Pricing = dynamic(() => import("@/components/Pricing").then(mod => ({ default: mod.Pricing })), { ssr: true });
 const About = dynamic(() => import("@/components/About").then(mod => ({ default: mod.About })), { ssr: true });
 const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ default: mod.Contact })), { ssr: true });
-const ExpatBanner = dynamic(() => import("@/components/ExpatBanner").then(mod => ({ default: mod.ExpatBanner })), { ssr: true });
 
 export const metadata: Metadata = {
-  title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 50",
-  description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 50. Vaud, Genève, Valais. Service bilingue FR/EN.",
+  title: "NeoFidu | DÃ©claration d'impÃ´ts Suisse dÃ¨s CHF 50",
+  description: "Fiduciaire digitale en Suisse romande. DÃ©claration d'impÃ´ts dÃ¨s CHF 50. Vaud, GenÃ¨ve, Valais. Service bilingue FR/EN.",
   keywords: [
     // Expat-specific keywords (high priority)
     "expat tax return switzerland",
@@ -46,19 +45,19 @@ export const metadata: Metadata = {
     "fiduciaire suisse",
     "fiduciaire digitale",
     "fiduciaire en ligne",
-    "déclaration impôts suisse",
-    "déclaration impôts étranger",
+    "dÃ©claration impÃ´ts suisse",
+    "dÃ©claration impÃ´ts Ã©tranger",
     "fiduciaire vaud",
-    "fiduciaire genève",
+    "fiduciaire genÃ¨ve",
     "fiduciaire valais",
-    "comptabilité PME",
+    "comptabilitÃ© PME",
     "fiduciaire Leysin",
     "fiduciaire Aigle",
     "fiduciaire Monthey",
   ],
   openGraph: {
-    title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 50",
-    description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 50. Service bilingue FR/EN.",
+    title: "NeoFidu | DÃ©claration d'impÃ´ts Suisse dÃ¨s CHF 50",
+    description: "Fiduciaire digitale en Suisse romande. DÃ©claration d'impÃ´ts dÃ¨s CHF 50. Service bilingue FR/EN.",
     url: "https://www.neofidu.ch",
     type: "website",
     siteName: "NeoFidu",
@@ -66,13 +65,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NeoFidu | Déclaration d'impôts Suisse | Dès CHF 50",
-    description: "Déclaration d'impôts depuis votre smartphone. Vaud, Genève, Valais. We speak English!",
+    title: "NeoFidu | DÃ©claration d'impÃ´ts Suisse | DÃ¨s CHF 50",
+    description: "DÃ©claration d'impÃ´ts depuis votre smartphone. Vaud, GenÃ¨ve, Valais. We speak English!",
   },
   alternates: {
     canonical: "https://www.neofidu.ch",
   },
-  // Vérification Google Search Console - À configurer avec le vrai code
+  // VÃ©rification Google Search Console - Ã configurer avec le vrai code
   // verification: {
   //   google: "VOTRE_CODE_GOOGLE_SEARCH_CONSOLE",
   // },
@@ -90,7 +89,6 @@ export default function Home() {
       <About />
       <Contact />
       <Footer />
-      <ExpatBanner />
     </main>
   );
 }
