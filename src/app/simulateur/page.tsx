@@ -360,7 +360,16 @@ export default function SimulateurPage() {
             </div>
           </div>
 
-          <div className="border-t max-w-5xl mx-auto mb-8" />
+          <div className="border-t max-w-5xl mx-auto mt-8 mb-10" />
+
+          <div className="text-center mb-8 max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              Essayez notre simulateur le plus populaire
+            </h2>
+            <p className="text-gray-500 text-sm">
+              Estimez votre charge fiscale en quelques secondes — gratuit et sans inscription.
+            </p>
+          </div>
 
           {/* 3A Simulator Tab */}
           {activeTab === "3a" && <Pillar3aSimulator />}
