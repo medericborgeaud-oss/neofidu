@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { LanguageProvider } from "@/lib/language-context";
 import { CookieConsent } from "@/components/CookieConsent";
+import { ExpatBanner } from "@/components/ExpatBanner";
 
 export default function ClientBody({
   children,
@@ -19,6 +20,7 @@ export default function ClientBody({
     <LanguageProvider>
       <div className="antialiased">{children}</div>
       <CookieConsent />
+      <ExpatBanner />
     </LanguageProvider>
   );
 }
