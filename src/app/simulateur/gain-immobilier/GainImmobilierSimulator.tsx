@@ -42,7 +42,7 @@ const cantonIGIRates: Record<
     ],
   },
   geneve: {
-    name: "GenÃ¨ve",
+    name: "Genève",
     baseRate: 0.50,
     reductions: [
       { years: 2, reduction: 0.04 },
@@ -76,7 +76,7 @@ const cantonIGIRates: Record<
     ],
   },
   neuchatel: {
-    name: "NeuchÃ¢tel",
+    name: "Neuchâtel",
     baseRate: 0.28,
     reductions: [
       { years: 5, reduction: 0.10 },
@@ -414,9 +414,9 @@ export function GainImmobilierSimulator() {
                             <div className="text-sm text-blue-800">
                               <p className="font-medium mb-1">{t("simulators.gainImmobilier.deductibleCosts")}</p>
                               <ul className="space-y-1 text-blue-700">
-                                <li>â¢ {t("simulators.gainImmobilier.deductibleCost1")}</li>
-                                <li>â¢ {t("simulators.gainImmobilier.deductibleCost2")}</li>
-                                <li>â¢ {t("simulators.gainImmobilier.deductibleCost3")}</li>
+                                <li>• {t("simulators.gainImmobilier.deductibleCost1")}</li>
+                                <li>• {t("simulators.gainImmobilier.deductibleCost2")}</li>
+                                <li>• {t("simulators.gainImmobilier.deductibleCost3")}</li>
                               </ul>
                             </div>
                           </div>
