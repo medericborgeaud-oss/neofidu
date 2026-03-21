@@ -15,6 +15,7 @@ import {
   Home,
   Clock,
   Wallet,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -41,7 +42,7 @@ const cantonIGIRates: Record<
     ],
   },
   geneve: {
-    name: "Genève",
+    name: "GenÃ¨ve",
     baseRate: 0.50,
     reductions: [
       { years: 2, reduction: 0.04 },
@@ -75,7 +76,7 @@ const cantonIGIRates: Record<
     ],
   },
   neuchatel: {
-    name: "Neuchâtel",
+    name: "NeuchÃ¢tel",
     baseRate: 0.28,
     reductions: [
       { years: 5, reduction: 0.10 },
@@ -213,8 +214,8 @@ export function GainImmobilierSimulator() {
         <section className="bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 text-white pt-24 md:pt-28 pb-12 md:pb-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                <Building2 className="w-4 h-4 text-emerald-300" />
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
+                <Zap className="w-4 h-4 text-yellow-300" />
                 <span className="text-sm font-medium">
                   {t("simulators.gainImmobilier.badge")}
                 </span>
@@ -413,9 +414,9 @@ export function GainImmobilierSimulator() {
                             <div className="text-sm text-blue-800">
                               <p className="font-medium mb-1">{t("simulators.gainImmobilier.deductibleCosts")}</p>
                               <ul className="space-y-1 text-blue-700">
-                                <li>• {t("simulators.gainImmobilier.deductibleCost1")}</li>
-                                <li>• {t("simulators.gainImmobilier.deductibleCost2")}</li>
-                                <li>• {t("simulators.gainImmobilier.deductibleCost3")}</li>
+                                <li>â¢ {t("simulators.gainImmobilier.deductibleCost1")}</li>
+                                <li>â¢ {t("simulators.gainImmobilier.deductibleCost2")}</li>
+                                <li>â¢ {t("simulators.gainImmobilier.deductibleCost3")}</li>
                               </ul>
                             </div>
                           </div>
