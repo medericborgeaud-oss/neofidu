@@ -39,22 +39,14 @@ const pricingData = {
         "Relevé(s) de compte",
         "Abattements usuels",
         "Traitement standard (10 jours ouvrés)",
-      
-        "Couple: +CHF 20.-",
-        "Enfant: +CHF 10.-/enfant",
-        "Bien immobilier: +CHF 50.-/bien",
-        "Actions (≥3): +CHF 20.-",],
+      ],
       featuresen: [
         "Single person",
         "Income certificate(s)",
         "Bank statement(s)",
         "Standard deductions",
         "Standard processing (10 business days)",
-      
-        "Couple: +CHF 20.-",
-        "Child: +CHF 10.-/child",
-        "Property: +CHF 50.-/property",
-        "Securities (≥3): +CHF 20.-",],
+      ],
       popular: false,
     },
     {
@@ -71,11 +63,7 @@ const pricingData = {
         "Dépenses professionnelles",
         "Traitement standard (10 jours ouvrés)",
         "Assistance dédiée",
-      
-        "Couple: +CHF 20.-",
-        "Enfant: +CHF 10.-/enfant",
-        "Bien immobilier: +CHF 50.-/bien",
-        "Actions (≥3): +CHF 20.-",],
+      ],
       featuresen: [
         "Includes Basic plan",
         "Dependents",
@@ -83,11 +71,7 @@ const pricingData = {
         "Professional expenses",
         "Standard processing (10 business days)",
         "Dedicated support",
-      
-        "Couple: +CHF 20.-",
-        "Child: +CHF 10.-/child",
-        "Property: +CHF 50.-/property",
-        "Securities (≥3): +CHF 20.-",],
+      ],
       popular: true,
     },
     {
@@ -104,11 +88,7 @@ const pricingData = {
         "Sources de revenus multiples",
         "Traitement standard (10 jours ouvrés)",
         "Accompagnement personnalisé",
-      
-        "Couple: +CHF 20.-",
-        "Enfant: +CHF 10.-/enfant",
-        "Bien immobilier: +CHF 50.-/bien",
-        "Actions (≥3): +CHF 20.-",],
+      ],
       featuresen: [
         "Includes Comfort plan",
         "Extended real estate",
@@ -116,11 +96,7 @@ const pricingData = {
         "Multiple income sources",
         "Standard processing (10 business days)",
         "Personalized guidance",
-      
-        "Couple: +CHF 20.-",
-        "Child: +CHF 10.-/child",
-        "Property: +CHF 50.-/property",
-        "Securities (≥3): +CHF 20.-",],
+      ],
       popular: false,
     },
     {
@@ -574,6 +550,32 @@ export default function TarifsPage() {
                   </div>
                 </Card>
               ))}
+            </div>
+
+            {/* Additional Options Box */}
+            <div className="mt-8 max-w-3xl mx-auto">
+              <Card className="border-2 border-dashed border-primary/20 bg-primary/5">
+                <div className="p-5 flex flex-col sm:flex-row items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Calculator className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-sm mb-2">
+                      {isEnglish ? "Additional options — apply to all plans" : "Options supplémentaires — valables pour toutes les formules"}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {(isEnglish
+                        ? ["Couple: +CHF 20.-", "Child: +CHF 10.-/child", "Property: +CHF 50.-/bien", "Securities (≥3): +CHF 20.-"]
+                        : ["Couple: +CHF 20.-", "Enfant: +CHF 10.-/enfant", "Bien immobilier: +CHF 50.-/bien", "Actions (≥3): +CHF 20.-"]
+                      ).map((item, idx) => (
+                        <span key={idx} className="text-xs bg-white border border-primary/20 rounded-full px-3 py-1 text-primary font-medium">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </div>
 
             {/* Express Options Info Box */}
