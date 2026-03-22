@@ -80,6 +80,8 @@ export const metadata: Metadata = {
     canonical: "https://www.neofidu.ch",
     languages: {
       "fr-CH": "https://www.neofidu.ch",
+      "en": "https://www.neofidu.ch",
+      "en-CH": "https://www.neofidu.ch",
       "x-default": "https://www.neofidu.ch",
     },
   },
