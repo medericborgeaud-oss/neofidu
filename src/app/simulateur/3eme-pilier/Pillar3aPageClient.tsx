@@ -16,6 +16,7 @@ import { Pillar3aSimulatorEnhanced } from "@/components/Pillar3aSimulatorEnhance
 import { SimulatorInternalLinks } from "@/components/SimulatorInternalLinks";
 import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export function Pillar3aPageClient() {
   const { t } = useLanguage();
@@ -141,6 +142,7 @@ export function Pillar3aPageClient() {
       </section>
 
       {/* Internal Links */}
+      <SimulatorCTA />
       <SimulatorInternalLinks currentPage="3eme-pilier" />
     </>
   );
