@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DÃ©claration d'impÃ´ts Vaud 2026 â Fiduciaire en ligne",
+  title: "Déclaration d'impôts Vaud 2026 â Fiduciaire en ligne",
   description:
-    "Fiduciaire digitale pour le canton de Vaud : dÃ©claration d'impÃ´ts dÃ¨s CHF 50, comptabilitÃ© PME. Lausanne, Aigle, Montreux. Devis gratuit.",
+    "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts dès CHF 50, comptabilité PME. Lausanne, Aigle, Montreux. Devis gratuit.",
   keywords: [
     // French - Vaud
     "fiduciaire Vaud",
-    "dÃ©claration impÃ´ts Vaud",
-    "comptabilitÃ© Vaud",
+    "déclaration impôts Vaud",
+    "comptabilité Vaud",
     "fiduciaire Lausanne",
-    "impÃ´ts Lausanne",
+    "impôts Lausanne",
     "VaudTax",
     // French - Chablais
     "fiduciaire Aigle",
-    "dÃ©claration impÃ´ts Aigle",
+    "déclaration impôts Aigle",
     "fiduciaire Bex",
     "comptable Bex",
     "fiduciaire Leysin",
-    "impÃ´ts Chablais vaudois",
+    "impôts Chablais vaudois",
     "fiduciaire Montreux",
     // English
     "tax return Vaud english",
@@ -46,7 +46,7 @@ const vaudSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Neofidu - Fiduciaire Vaud",
-  "description": "Fiduciaire digitale pour le canton de Vaud : dÃ©claration d'impÃ´ts, comptabilitÃ© PME, indÃ©pendants",
+  "description": "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts, comptabilité PME, indépendants",
   "url": "https://www.neofidu.ch/cantons/vaud",
   "logo": "https://www.neofidu.ch/logo.svg",
   "priceRange": "CHF 50 - CHF 500",
@@ -76,12 +76,12 @@ const vaudSchema = {
     "itemListElement": [
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "DÃ©claration d'impÃ´ts Vaud" },
+        "itemOffered": { "@type": "Service", "name": "Déclaration d'impôts Vaud" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "50", "priceCurrency": "CHF" }
       },
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "ComptabilitÃ© PME Vaud" },
+        "itemOffered": { "@type": "Service", "name": "Comptabilité PME Vaud" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "500", "priceCurrency": "CHF", "unitText": "an" }
       }
     ]
