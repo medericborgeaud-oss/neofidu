@@ -38,11 +38,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CH",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Comptabilité Indépendants | Vaud · Genève · Valais | NeoFidu",
-    description: "Comptabilité & impôts pour indépendants et freelancers à Vaud, Genève, Valais. Devis gratuit.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/independants",
   },
