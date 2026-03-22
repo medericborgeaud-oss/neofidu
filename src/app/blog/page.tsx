@@ -221,7 +221,7 @@ export default function BlogPage() {
                           src={article.image}
                           alt={article.title}
                           fill
-                          className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                           sizes="(max-width: 768px) 100vw, 33vw"
                           unoptimized
                         />
