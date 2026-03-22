@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BreadcrumbLight } from "@/components/Breadcrumb";
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Share2, ArrowRight, Check, Copy } from "lucide-react";
 import { BlogArticle, blogCategories } from "@/lib/blog-data";
+import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -19,6 +21,7 @@ interface BlogArticleClientProps {
 
 export default function BlogArticleClient({ article, otherArticles }: BlogArticleClientProps) {
   const [copied, setCopied] = useState(false);
+  const { isEnglish } = useLanguage();
   const categoryInfo = blogCategories[article.category];
 
   const handleShare = async () => {
@@ -63,6 +66,21 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
           />
 
           <div className="max-w-3xl mx-auto">
+            {/* Cover image */}
+            {article.image && (
+              <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-xl mb-8">
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 800px"
+                />
+                <div className={`absolute bottom-0 left-0 right-0 h-1 ${categoryInfo.color}`} />
+              </div>
+            )}
+
             {/* Article header */}
             <motion.header
               initial={{ opacity: 0, y: 20 }}
@@ -74,11 +92,11 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               </Badge>
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                {article.title}
+                {isEnglish && article.titleEn ? article.titleEn : article.title}
               </h1>
 
               <p className="text-xl text-muted-foreground mb-6">
-                {article.excerpt}
+                {isEnglish && article.excerptEn ? article.excerptEn : article.excerpt}
               </p>
 
               <div className="flex items-center gap-6 text-sm text-muted-foreground mb-8 pb-8 border-b">
