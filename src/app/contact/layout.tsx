@@ -18,11 +18,6 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.neofidu.ch/contact",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact NeoFidu",
-    description: "Contactez notre équipe de fiduciaires. Réponse sous 24h.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/contact",
   },
