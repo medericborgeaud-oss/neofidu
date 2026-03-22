@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     description: "Suivez l'avancement de votre dossier fiscal en temps réel.",
     url: "https://www.neofidu.ch/suivi",
   },
+  twitter: {
+    card: "summary",
+    title: "Suivi de demande | NeoFidu",
+    description: "Suivez l'avancement de votre dossier fiscal en temps réel.",
+  },
   alternates: {
     canonical: "https://www.neofidu.ch/suivi",
   },
