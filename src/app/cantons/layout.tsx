@@ -24,12 +24,6 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "https://www.neofidu.ch/og-image.svg", width: 1200, height: 630 }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fiduciaire par canton | NeoFidu",
-    description: "Fiduciaire digitale spécialisée pour Vaud, Genève, Valais, Fribourg, Neuchâtel et Jura.",
-    images: ["https://www.neofidu.ch/og-image.svg"],
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/cantons",
     languages: {
