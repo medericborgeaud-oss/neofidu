@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DÃ©claration d'impÃ´ts Valais 2026",
+  title: "Déclaration d'impôts Valais 2026",
   description:
-    "Fiduciaire en ligne pour le Valais : dÃ©claration d'impÃ´ts, rÃ©sidences secondaires, comptabilitÃ©. Sion, Martigny, Sierre, Monthey. DÃ¨s CHF 50.-",
+    "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité. Sion, Martigny, Sierre, Monthey. Dès CHF 50.-",
   keywords: [
     // French - Valais
     "fiduciaire Valais",
-    "dÃ©claration impÃ´ts Valais",
-    "impÃ´ts Sion",
+    "déclaration impôts Valais",
+    "impôts Sion",
     "VSTax",
     "fiduciaire Martigny",
-    "dÃ©claration impÃ´ts Martigny",
+    "déclaration impôts Martigny",
     "comptable Martigny",
     "fiduciaire Sierre",
     "fiduciaire Monthey",
-    "rÃ©sidence secondaire Valais",
-    "impÃ´ts chalet Valais",
+    "résidence secondaire Valais",
+    "impôts chalet Valais",
     // English
     "tax return Valais english",
     "accountant Valais english",
@@ -45,7 +45,7 @@ const valaisSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Neofidu - Fiduciaire Valais",
-  "description": "Fiduciaire en ligne pour le Valais : dÃ©claration d'impÃ´ts, rÃ©sidences secondaires, comptabilitÃ©",
+  "description": "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité",
   "url": "https://www.neofidu.ch/cantons/valais",
   "logo": "https://www.neofidu.ch/logo.svg",
   "priceRange": "CHF 50 - CHF 500",
@@ -69,12 +69,12 @@ const valaisSchema = {
     "itemListElement": [
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "DÃ©claration d'impÃ´ts Valais" },
+        "itemOffered": { "@type": "Service", "name": "Déclaration d'impôts Valais" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "50", "priceCurrency": "CHF" }
       },
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "ImpÃ´ts rÃ©sidence secondaire Valais" },
+        "itemOffered": { "@type": "Service", "name": "Impôts résidence secondaire Valais" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "90", "priceCurrency": "CHF" }
       }
     ]
