@@ -76,6 +76,11 @@ const nextConfig = {
     ],
   },
   // Security and performance headers
+  async redirects() {
+    return [
+      { source: "/simulateur-retraite", destination: "/simulateur/retraite", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
