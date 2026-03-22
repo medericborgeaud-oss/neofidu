@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import RetirementIncomeSimulator from "@/components/RetirementIncomeSimulator";
 import { Zap } from "lucide-react";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export default function SimulateurRetraitePage() {
   return (
@@ -38,6 +39,7 @@ export default function SimulateurRetraitePage() {
         </div>
       </section>
       <RetirementIncomeSimulator />
+      <SimulatorCTA />
       <Footer />
     </main>
   );
