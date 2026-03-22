@@ -1,7 +1,6 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { usePathname } from "next/navigation";
 import { Locale, defaultLocale, translations, locales } from "./i18n";
 
 interface LanguageContextType {
@@ -14,12 +13,10 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 const STORAGE_KEY = "neofidu_language";
-const EN_SUPPORTED_PAGES = ["/suisses-etranger"];
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
 
   // Load saved language preference
   useEffect(() => {
@@ -30,16 +27,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setMounted(true);
   }, []);
 
-  // Reset to French when navigating away from English-supported pages
-  useEffect(() => {
-    if (!mounted) return;
-    const isEnPage = EN_SUPPORTED_PAGES.some((p) => pathname.startsWith(p));
-    if (!isEnPage && locale === "en") {
-      setLocaleState(defaultLocale);
-      localStorage.removeItem(STORAGE_KEY);
-      document.documentElement.lang = defaultLocale;
-    }
-  }, [pathname, mounted, locale]);
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
