@@ -33,11 +33,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CH",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Calculateur de baisse de loyer Suisse 2026",
-    description: "Simulateur gratuit pour calculer votre droit à une baisse de loyer en Suisse.",
-  },
   alternates: {
     canonical: "https://neofidu.ch/simulateur/baisse-loyer",
   },
