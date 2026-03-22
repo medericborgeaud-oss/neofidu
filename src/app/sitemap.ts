@@ -47,6 +47,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     }),
 
+    // Contact page
+    createEntry("/contact", {
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }),
+
     // Pricing page - high conversion intent
     createEntry("/tarifs", {
       lastModified: currentDate,
