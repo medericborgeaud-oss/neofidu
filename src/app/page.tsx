@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.neofidu.ch",
   },
-  // Vérification Google Search Console - Ã configurer avec le vrai code
+  // Vérification Google Search Console - À configurer avec le vrai code
   // verification: {
   //   google: "VOTRE_CODE_GOOGLE_SEARCH_CONSOLE",
   // },
