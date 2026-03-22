@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Déclaration d'impôts Vaud 2026 — Fiduciaire en ligne",
+  title: "DÃ©claration d'impÃ´ts Vaud 2026 â Fiduciaire en ligne",
   description:
-    "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts dès CHF 50, comptabilité PME. Lausanne, Aigle, Montreux. Devis gratuit.",
+    "Fiduciaire digitale pour le canton de Vaud : dÃ©claration d'impÃ´ts dÃ¨s CHF 50, comptabilitÃ© PME. Lausanne, Aigle, Montreux. Devis gratuit.",
   keywords: [
     // French - Vaud
     "fiduciaire Vaud",
-    "déclaration impôts Vaud",
-    "comptabilité Vaud",
+    "dÃ©claration impÃ´ts Vaud",
+    "comptabilitÃ© Vaud",
     "fiduciaire Lausanne",
-    "impôts Lausanne",
+    "impÃ´ts Lausanne",
     "VaudTax",
     // French - Chablais
     "fiduciaire Aigle",
-    "déclaration impôts Aigle",
+    "dÃ©claration impÃ´ts Aigle",
     "fiduciaire Bex",
     "comptable Bex",
     "fiduciaire Leysin",
-    "impôts Chablais vaudois",
+    "impÃ´ts Chablais vaudois",
     "fiduciaire Montreux",
     // English
     "tax return Vaud english",
@@ -29,17 +29,12 @@ export const metadata: Metadata = {
     "accountant Montreux",
   ],
   openGraph: {
-    title: "Fiduciaire Vaud — Tax Return & Accounting",
+    title: "Fiduciaire Vaud â Tax Return & Accounting",
     description:
       "Online fiduciary for Canton Vaud. Tax returns, SME accounting, freelancers. Lausanne, Aigle, Bex, Montreux. Free quote.",
     url: "https://www.neofidu.ch/cantons/vaud",
     type: "website",
     locale: "fr_CH",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fiduciaire Vaud — Tax Return & Accounting",
-    description: "Tax returns, SME accounting. Lausanne, Aigle, Bex, Montreux. Free quote.",
   },
   alternates: {
     canonical: "https://www.neofidu.ch/cantons/vaud",
@@ -51,7 +46,7 @@ const vaudSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Neofidu - Fiduciaire Vaud",
-  "description": "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts, comptabilité PME, indépendants",
+  "description": "Fiduciaire digitale pour le canton de Vaud : dÃ©claration d'impÃ´ts, comptabilitÃ© PME, indÃ©pendants",
   "url": "https://www.neofidu.ch/cantons/vaud",
   "logo": "https://www.neofidu.ch/logo.svg",
   "priceRange": "CHF 50 - CHF 500",
@@ -81,12 +76,12 @@ const vaudSchema = {
     "itemListElement": [
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Déclaration d'impôts Vaud" },
+        "itemOffered": { "@type": "Service", "name": "DÃ©claration d'impÃ´ts Vaud" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "50", "priceCurrency": "CHF" }
       },
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Comptabilité PME Vaud" },
+        "itemOffered": { "@type": "Service", "name": "ComptabilitÃ© PME Vaud" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "500", "priceCurrency": "CHF", "unitText": "an" }
       }
     ]
