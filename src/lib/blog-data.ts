@@ -10,6 +10,7 @@ export interface BlogArticle {
   date: string;
   readTime: number;
   keywords?: string[];
+  image?: string;
 }
 
 export const blogCategories: Record<string, { name: string; nameEn: string; color: string }> = {
@@ -49,6 +50,7 @@ export const blogArticles: BlogArticle[] = [
   {
     id: "22",
     slug: "baisse-loyer-suisse-2026-taux-reference-hypothecaire",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=60",
     title: "Baisse de loyer 2026 : taux de référence",
     titleEn: "Rent Reduction in Switzerland 2026: How to Request a Decrease Based on Reference Rate",
     excerpt: "Taux de référence à 1.75% : faites baisser votre loyer en Suisse. Calcul de la réduction, modèle de lettre et procédure étape par étape.",
@@ -273,6 +275,7 @@ Meilleures salutations,
   {
     id: "21",
     slug: "impot-source-suisse-guide-complet-2026",
+    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&auto=format&fit=crop&q=60",
     title: "Impôt à la source Suisse 2026 : guide complet",
     titleEn: "Withholding Tax in Switzerland 2026: Complete Guide (Rates, Correction, Cantons)",
     excerpt:
@@ -1148,6 +1151,7 @@ Meilleures salutations,
   {
     id: "20",
     slug: "first-tax-return-switzerland-expat-guide",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop&q=60",
     title: "Première déclaration d'impôts en Suisse 2026",
     titleEn: "Your First Tax Return in Switzerland: Complete Guide for Expats",
     excerpt:
@@ -1488,6 +1492,7 @@ Meilleures salutations,
   {
     id: "19",
     slug: "impot-gain-immobilier-suisse-guide-complet",
+    image: "https://images.unsplash.com/photo-1582407947304-5b0a395dee19?w=800&auto=format&fit=crop&q=60",
     title: "Impôt gain immobilier Suisse 2026 : guide",
     titleEn: "Real Estate Capital Gains Tax in Switzerland: Complete 2026 Guide",
     excerpt:
@@ -1721,6 +1726,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "18",
     slug: "imposition-individuelle-couples-maries-suisse-2026",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop&q=60",
     title: "Imposition individuelle couples mariés 2026",
     titleEn: "Individual Taxation for Married Couples: What Changes After March 8, 2026",
     excerpt:
@@ -2053,6 +2059,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "17",
     slug: "consequences-fraude-fiscale-suisse-amendes-penalites",
+    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=60",
     title: "Fraude fiscale Suisse : risques et sanctions",
     titleEn: "Tax Fraud in Switzerland: Consequences That Can Cost You Dearly",
     excerpt:
@@ -2386,6 +2393,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "5",
     slug: "declarer-cryptomonnaies-suisse-guide-2026",
+    image: "https://images.unsplash.com/photo-1579621970590-9d152b4e1fc4?w=800&auto=format&fit=crop&q=60",
     title: "Déclarer ses cryptomonnaies en Suisse 2026",
     titleEn: "How to Declare Cryptocurrencies in Switzerland 2026: Complete Tax Guide",
     excerpt:
@@ -2625,6 +2633,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "6",
     slug: "valeur-locative-suisse-reforme-2026",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&auto=format&fit=crop&q=60",
     title: "Valeur locative Suisse : réforme et abolition 2026",
     titleEn: "Imputed Rental Value in Switzerland: Understanding the 2026 Reform and Abolition",
     excerpt:
@@ -2915,6 +2924,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "7",
     slug: "frontalier-quasi-resident-geneve-guide-2026",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=60",
     title: "Frontalier quasi-résident Genève 2026",
     titleEn: "Cross-Border Worker and Quasi-Resident Status in Geneva: Complete 2026 Guide",
     excerpt:
@@ -3139,6 +3149,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "8",
     slug: "comparatif-3eme-pilier-2026-meilleurs-taux",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=60",
     title: "3ème pilier 2026 : banque ou assurance ?",
     titleEn: "3rd Pillar Comparison 2026: Bank vs Insurance – Which Is the Best Choice?",
     excerpt:
@@ -3351,6 +3362,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "9",
     slug: "deductions-fiscales-frais-reels-suisse-2026",
+    image: "https://images.unsplash.com/photo-1434682772747-f16d3ea162c3?w=800&auto=format&fit=crop&q=60",
     title: "Déductions fiscales Suisse 2026 : liste complète",
     titleEn: "All Tax Deductions in Switzerland 2026: Complete List of Actual Expenses",
     excerpt:
@@ -3591,6 +3603,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "1",
     slug: "declaration-impots-2025-guide-complet",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format&fit=crop&q=60",
     title: "Déclaration d'impôts 2025 : guide complet Suisse",
     titleEn: "2025 Tax Return: Complete Guide for Individuals in French-Speaking Switzerland",
     excerpt:
@@ -3793,6 +3806,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "2",
     slug: "pilier-3a-2026-plafonds-avantages",
+    image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&auto=format&fit=crop&q=60",
     title: "Pilier 3a 2026 : optimisation fiscale par canton",
     titleEn: "Pillar 3a in 2026: Tax Optimization Strategies for Every Swiss Canton",
     excerpt:
@@ -4022,6 +4036,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "3",
     slug: "creer-entreprise-suisse-2026",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=60",
     title: "Créer une entreprise en Suisse 2026 : guide",
     titleEn: "Start a Business in Switzerland 2026 — Step-by-Step Guide",
     excerpt:
@@ -4286,6 +4301,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "4",
     slug: "tva-suisse-2026-taux-obligations",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=60",
     title: "TVA Suisse 2026 : taux, obligations, démarches",
     titleEn: "VAT in Switzerland 2026: Complete Guide to Rates, Obligations and Procedures",
     excerpt:
@@ -4522,6 +4538,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "5",
     slug: "deductions-fiscales-teletravail-2026",
+    image: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=800&auto=format&fit=crop&q=60",
     title: "Déductions fiscales télétravail Suisse 2026",
     titleEn: "Remote Work Tax Deductions 2026: Complete Guide for French-Speaking Switzerland",
     excerpt:
@@ -4810,6 +4827,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "6",
     slug: "comptabilite-pme-erreurs-eviter",
+    image: "https://images.unsplash.com/photo-1568667793720-8b3c78b3f6e0?w=800&auto=format&fit=crop&q=60",
     title: "Comptabilité PME : 10 erreurs qui coûtent cher",
     titleEn: "SME Accounting: 10 Costly Mistakes (and How to Avoid Them)",
     excerpt:
@@ -5137,6 +5155,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "6",
     slug: "economiser-impots-3eme-pilier-guide-2026",
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&auto=format&fit=crop&q=60",
     title: "3ème pilier : économiser CHF 2'500 d'impôts par an",
     titleEn: "3rd Pillar: How to Save Up to CHF 2,500 in Taxes Per Year",
     excerpt:
@@ -5280,6 +5299,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "7",
     slug: "calculer-impots-suisse-simulateur-guide",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=60",
     title: "Calculer ses impôts Suisse : guide + simulateur",
     titleEn: "How to Calculate Taxes in Switzerland: Practical Guide + Simulator",
     excerpt:
@@ -5432,6 +5452,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   },  {
     id: "16",
     slug: "suisses-etranger-declaration-impots-guide-2025",
+    image: "https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?w=800&auto=format&fit=crop&q=60",
     title: "Suisses de l'étranger : déclaration d'impôts 2025",
     titleEn: "Swiss Abroad: How to File Your Tax Return in 2025?",
     excerpt:
@@ -5814,6 +5835,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "25",
     slug: "expatrie-suisse-romande-impot-source-sans-francais",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=60",
     title: "Expatrié en Suisse romande : gérer son impôt à la source sans parler français",
     titleEn: "Expat in French-speaking Switzerland: Managing Withholding Tax Without Speaking French",
     excerpt: `Vous êtes expatrié en Suisse romande et l'impôt à la source vous semble obscur ? Ce guide bilingue explique tout : seuil CHF 120'000, rectification, remboursement. Service en anglais disponible.`,
