@@ -24,11 +24,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CH",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Tarifs fiduciaire en ligne — Prix transparents | Neofidu",
-    description: "Déclaration d'impôts dès CHF 50.-, comptabilité PME dès CHF 500.-/an. Devis gratuit en 2 minutes.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/tarifs",
   },
