@@ -16,47 +16,14 @@ import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, Clipbo
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
-// Banner component - only shown on homepage
-function LanguageBannerInternal({ isHomepage }: { isHomepage: boolean }) {
-  const { locale, setLocale } = useLanguage();
-  const [dismissed, setDismissed] = useState(false);
-
-  // Don't show banner if not on homepage, already in English, or dismissed
-  if (!isHomepage || locale === "en" || dismissed) return null;
-
-  return (
-    <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 px-4 text-center text-sm">
-      <span className="mr-2"><img src="https://flagcdn.com/16x12/gb.png" alt="GB flag" width={16} height={12} className="inline-block align-middle" /></span>
-      <span className="font-medium">We speak English!</span>
-      <span className="mx-2 opacity-60">|</span>
-      <button
-        onClick={() => setLocale("en")}
-        className="underline hover:no-underline font-medium"
-      >
-        Switch to English
-      </button>
-      <button
-        onClick={() => setDismissed(true)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 opacity-60 hover:opacity-100"
-        aria-label="Dismiss"
-      >
-        <X className="w-4 h-4" />
-      </button>
-    </div>
-  );
-}
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [showBanner, setShowBanner] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [ressourcesOpen, setRessourcesOpen] = useState(false);
   const { t, locale, isEnglish } = useLanguage();
   const pathname = usePathname();
-
-  // Check if we're on the homepage
-  const isHomepage = pathname === "/";
 
   // Services dropdown items
   const serviceItems = [
@@ -152,15 +119,8 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Check if banner should show (only on homepage for French users)
-  useEffect(() => {
-    setShowBanner(isHomepage && locale === "fr");
-  }, [locale, isHomepage]);
-
   return (
     <>
-      {/* Language Banner - shows "We speak English" for French users on homepage only */}
-      <LanguageBannerInternal isHomepage={isHomepage} />
 
       <header
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
@@ -168,7 +128,7 @@ export function Header() {
             ? "bg-white/95 backdrop-blur-md shadow-lg"
             : "bg-white/90 backdrop-blur-sm shadow-sm"
         }`}
-        style={{ top: showBanner ? "36px" : "0px" }}
+        style={{ top: "0px" }}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
