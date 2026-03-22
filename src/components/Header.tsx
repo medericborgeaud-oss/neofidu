@@ -79,7 +79,7 @@ export function Header() {
       description: isEnglish ? "Optimize your retirement savings" : "Optimisez votre épargne retraite",
     },
     {
-      href: "/simulateur-retraite",
+      href: "/simulateur/retraite",
       label: isEnglish ? "Retirement Income" : "Revenus à la retraite",
       icon: Calculator,
       description: isEnglish ? "AVS, LPP & 3rd pillar calculator" : "Calculateur AVS, LPP & 3ème pilier",
