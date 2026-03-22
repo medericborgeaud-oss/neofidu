@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BreadcrumbLight } from "@/components/Breadcrumb";
@@ -213,8 +214,22 @@ export default function BlogPage() {
               >
                 <Link href={`/blog/${article.slug}`}>
                   <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group border-2 hover:border-primary/20">
-                    {/* Category color bar */}
-                    <div className={`h-2 ${blogCategories[article.category].color}`} />
+                    {/* Cover image */}
+                    {article.image && (
+                      <div className="relative h-48 w-full overflow-hidden">
+                        <Image
+                          src={article.image}
+                          alt={article.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                        <div className={`absolute bottom-0 left-0 right-0 h-1 ${blogCategories[article.category].color}`} />
+                      </div>
+                    )}
+                    {!article.image && (
+                      <div className={`h-2 ${blogCategories[article.category].color}`} />
+                    )}
 
                     <div className="p-6">
                       {/* Category badge */}
@@ -229,12 +244,12 @@ export default function BlogPage() {
 
                       {/* Title */}
                       <h2 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                        {article.title}
+                        {isEnglish && article.titleEn ? article.titleEn : article.title}
                       </h2>
 
                       {/* Excerpt */}
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                        {article.excerpt}
+                        {isEnglish && article.excerptEn ? article.excerptEn : article.excerpt}
                       </p>
 
                       {/* Meta */}
