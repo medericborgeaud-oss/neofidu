@@ -60,11 +60,6 @@ export const metadata: Metadata = {
     description:
       "Swiss tax returns online. Tax filing, accounting and property management. Vaud, Valais, Geneva. We speak English!",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "NeoFidu | Swiss Tax & Accounting",
-    description: "Swiss digital fiduciary. Tax returns from CHF 50. We speak English! | Fiduciaire digitale en Suisse.",
-  },
   robots: {
     index: true,
     follow: true,
