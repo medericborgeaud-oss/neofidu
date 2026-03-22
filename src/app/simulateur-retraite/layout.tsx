@@ -29,11 +29,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CH",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Calculateur Retraite Suisse | NeoFidu",
-    description: "Simulateur gratuit AVS + LPP + 3ème pilier. Résultat instantané.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/simulateur-retraite",
   },
