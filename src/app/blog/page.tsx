@@ -223,6 +223,7 @@ export default function BlogPage() {
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                           sizes="(max-width: 768px) 100vw, 33vw"
+                          unoptimized
                         />
                         <div className={`absolute bottom-0 left-0 right-0 h-1 ${blogCategories[article.category].color}`} />
                       </div>
