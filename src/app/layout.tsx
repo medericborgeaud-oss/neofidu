@@ -375,7 +375,7 @@ export default function RootLayout({
         name: "Combien coûte une déclaration d'impôts chez Neofidu ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Chez Neofidu, la déclaration d'impôts commence ÃÂ  CHF 50 pour les cas simples (Basic), CHF 100 pour les situations avec propriété ou personnes ÃÂ  charge (Comfort), et CHF 150 pour les patrimoines diversifiés (Integral). Tous les prix incluent la TVA ÃÂ  8.1%.",
+          text: "Chez Neofidu, la déclaration d'impôts commence à CHF 50 pour les cas simples (Basic), CHF 100 pour les situations avec propriété ou personnes à charge (Comfort), et CHF 150 pour les patrimoines diversifiés (Integral). Tous les prix incluent la TVA à 8.1%.",
         },
       },
       {
@@ -415,7 +415,7 @@ export default function RootLayout({
         name: "Quels sont les horaires de Neofidu ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Nos bureaux sont ouverts du lundi au vendredi de 9h ÃÂ  17h. Notre plateforme en ligne est accessible 24h/24 pour soumettre vos demandes.",
+          text: "Nos bureaux sont ouverts du lundi au vendredi de 9h à 17h. Notre plateforme en ligne est accessible 24h/24 pour soumettre vos demandes.",
         },
       },
       {
@@ -431,7 +431,7 @@ export default function RootLayout({
         name: "Comment contacter Neofidu ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Vous pouvez nous contacter par email ÃÂ  contact@neofidu.ch, par téléphone au +41 78 691 39 12, ou via notre formulaire de contact en ligne. Réponse garantie sous 1 jour ouvré.",
+          text: "Vous pouvez nous contacter par email à contact@neofidu.ch, par téléphone au +41 78 691 39 12, ou via notre formulaire de contact en ligne. Réponse garantie sous 1 jour ouvré.",
         },
       },
     ],
