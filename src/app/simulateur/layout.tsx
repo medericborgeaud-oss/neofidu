@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: {
     template: "%s | Simulateurs Fiscaux",
-    default: "Simulateurs Fiscaux Gratuits 2026 | Vaud, GenÃ¨ve, Valais",
+    default: "Simulateurs Fiscaux Gratuits 2026 | Vaud, Genève, Valais",
   },
   description:
-    "Free Swiss tax calculators. Calculate your taxes, Pillar 3a savings, rental value impact. All cantons. | Simulateurs fiscaux gratuits Suisse romande. Vaud, GenÃ¨ve, Valais.",
+    "Free Swiss tax calculators. Calculate your taxes, Pillar 3a savings, rental value impact. All cantons. | Simulateurs fiscaux gratuits Suisse romande. Vaud, Genève, Valais.",
   keywords: [
     // English
     "swiss tax calculator",
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     "vaud tax calculator",
     "zurich tax calculator",
     // French
-    "simulateur impÃ´ts suisse",
+    "simulateur impôts suisse",
     "calculateur fiscal",
-    "simulateur 3Ã¨me pilier",
-    "calcul impÃ´ts vaud",
-    "simulateur genÃ¨ve",
+    "simulateur 3ème pilier",
+    "calcul impôts vaud",
+    "simulateur genève",
     "valeur locative suisse",
     "outil fiscal gratuit",
   ],
