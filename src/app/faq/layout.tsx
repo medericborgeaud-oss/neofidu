@@ -18,12 +18,6 @@ export const metadata: Metadata = {
     url: "https://www.neofidu.ch/faq",
     images: [{ url: "https://www.neofidu.ch/og-image.svg", width: 1200, height: 630 }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "FAQ — Swiss Tax & Accounting Questions | NeoFidu",
-    description: "Answers about Swiss taxes and accounting. Deadlines, rates, documents. We speak English!",
-    images: ["https://www.neofidu.ch/og-image.svg"],
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/faq",
   },
