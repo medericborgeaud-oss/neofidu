@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { ShieldCheck, Lock, CreditCard, Server, Mail, Loader2, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Lock, CreditCard, Server, Mail, Loader2, CheckCircle2, Linkedin, Instagram } from "lucide-react";
 
 export function Footer() {
   const { t, isEnglish } = useLanguage();
@@ -34,6 +34,7 @@ export function Footer() {
       { label: isEnglish ? "Property tax simulator" : "Simulateur valeur locative", href: "/simulateur/valeur-locative" },
       { label: isEnglish ? "Real estate gain tax" : "Gain immobilier", href: "/simulateur/gain-immobilier" },
       { label: isEnglish ? "Swiss tax map" : "Carte des impôts suisses", href: "/simulateur/carte-impots" },
+      { label: isEnglish ? "Retirement simulator" : "Simulateur retraite", href: "/simulateur-retraite" },
     ],
     guides: [
       { label: isEnglish ? "Tax deductions guide" : "Guide déductions fiscales", href: "/guide/deductions-fiscales" },
@@ -420,6 +421,26 @@ export function Footer() {
           <p className="text-slate-500 text-sm">
             &copy; {new Date().getFullYear()} NeoFidu. {isEnglish ? "All rights reserved." : "Tous droits réservés."}
           </p>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/company/neofidu"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="NeoFidu sur LinkedIn"
+              className="text-slate-500 hover:text-primary transition-colors"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a
+              href="https://www.instagram.com/neofidu"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="NeoFidu sur Instagram"
+              className="text-slate-500 hover:text-primary transition-colors"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 md:gap-6">
             <Link href="/mentions-legales" className="text-slate-500 hover:text-slate-300 text-sm">
               {isEnglish ? "Legal notice" : "Mentions légales"}
