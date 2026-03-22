@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Déclaration d'impôts Valais 2026",
+  title: "DÃ©claration d'impÃ´ts Valais 2026",
   description:
-    "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité. Sion, Martigny, Sierre, Monthey. Dès CHF 50.-",
+    "Fiduciaire en ligne pour le Valais : dÃ©claration d'impÃ´ts, rÃ©sidences secondaires, comptabilitÃ©. Sion, Martigny, Sierre, Monthey. DÃ¨s CHF 50.-",
   keywords: [
     // French - Valais
     "fiduciaire Valais",
-    "déclaration impôts Valais",
-    "impôts Sion",
+    "dÃ©claration impÃ´ts Valais",
+    "impÃ´ts Sion",
     "VSTax",
     "fiduciaire Martigny",
-    "déclaration impôts Martigny",
+    "dÃ©claration impÃ´ts Martigny",
     "comptable Martigny",
     "fiduciaire Sierre",
     "fiduciaire Monthey",
-    "résidence secondaire Valais",
-    "impôts chalet Valais",
+    "rÃ©sidence secondaire Valais",
+    "impÃ´ts chalet Valais",
     // English
     "tax return Valais english",
     "accountant Valais english",
@@ -28,17 +28,12 @@ export const metadata: Metadata = {
     "fiduciary Valais english speaking",
   ],
   openGraph: {
-    title: "Fiduciaire Valais — Tax Return & Accounting",
+    title: "Fiduciaire Valais â Tax Return & Accounting",
     description:
       "Online fiduciary for Canton Valais. Tax returns, secondary residences, accounting. Sion, Martigny, Zermatt. From CHF 50.-",
     url: "https://www.neofidu.ch/cantons/valais",
     type: "website",
     locale: "fr_CH",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fiduciaire Valais — Tax Return & Accounting",
-    description: "Tax returns, secondary residences. Sion, Martigny, Zermatt. From CHF 50.-",
   },
   alternates: {
     canonical: "https://www.neofidu.ch/cantons/valais",
@@ -50,7 +45,7 @@ const valaisSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Neofidu - Fiduciaire Valais",
-  "description": "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité",
+  "description": "Fiduciaire en ligne pour le Valais : dÃ©claration d'impÃ´ts, rÃ©sidences secondaires, comptabilitÃ©",
   "url": "https://www.neofidu.ch/cantons/valais",
   "logo": "https://www.neofidu.ch/logo.svg",
   "priceRange": "CHF 50 - CHF 500",
@@ -74,12 +69,12 @@ const valaisSchema = {
     "itemListElement": [
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Déclaration d'impôts Valais" },
+        "itemOffered": { "@type": "Service", "name": "DÃ©claration d'impÃ´ts Valais" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "50", "priceCurrency": "CHF" }
       },
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Impôts résidence secondaire Valais" },
+        "itemOffered": { "@type": "Service", "name": "ImpÃ´ts rÃ©sidence secondaire Valais" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "90", "priceCurrency": "CHF" }
       }
     ]
