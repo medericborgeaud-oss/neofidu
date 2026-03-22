@@ -276,11 +276,7 @@ export function Header() {
                 </Link>
               ))}
 
-              {/* Language Switcher */}
-              <LanguageSwitcher
-                variant="header"
-                className="!text-foreground !border-border hover:!bg-primary/10"
-              />
+
 
               <Button
                 asChild
