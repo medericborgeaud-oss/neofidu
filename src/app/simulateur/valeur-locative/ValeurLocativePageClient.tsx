@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export function ValeurLocativePageClient() {
   const { t } = useLanguage();
@@ -219,6 +220,7 @@ export function ValeurLocativePageClient() {
       </section>
 
       {/* Internal Links */}
+      <SimulatorCTA />
       <SimulatorInternalLinks currentPage="valeur-locative" />
     </main>
   );
