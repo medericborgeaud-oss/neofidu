@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DÃ©claration d'impÃ´ts Fribourg 2026",
+  title: "Déclaration d'impôts Fribourg 2026",
   description:
-    "Fiduciaire en ligne pour Fribourg : dÃ©claration d'impÃ´ts, calcul du 3Ã¨me pilier, comptabilitÃ©. Service 100% digital, tarifs clairs.",
+    "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité. Service 100% digital, tarifs clairs.",
   keywords: [
     "fiduciaire Fribourg",
-    "dÃ©claration impÃ´ts Fribourg",
-    "comptabilitÃ© Fribourg",
+    "déclaration impôts Fribourg",
+    "comptabilité Fribourg",
     "FriTax",
-    "3Ã¨me pilier Fribourg",
-    "impÃ´ts Fribourg 2026",
+    "3ème pilier Fribourg",
+    "impôts Fribourg 2026",
     "fiduciaire Bulle",
     "fiduciaire en ligne Fribourg",
     "expert fiscal Fribourg",
-    "dÃ©ductions famille Fribourg",
+    "déductions famille Fribourg",
   ],
   openGraph: {
-    title: "Fiduciaire Fribourg â DÃ©claration d'impÃ´ts & comptabilitÃ© en ligne",
+    title: "Fiduciaire Fribourg â Déclaration d'impôts & comptabilité en ligne",
     description:
-      "Fiduciaire en ligne pour Fribourg : dÃ©claration d'impÃ´ts, calcul du 3Ã¨me pilier, comptabilitÃ©. Service 100% digital.",
+      "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité. Service 100% digital.",
     url: "https://www.neofidu.ch/cantons/fribourg",
     type: "website",
     locale: "fr_CH",
@@ -34,7 +34,7 @@ const fribourgSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Neofidu - Fiduciaire Fribourg",
-  "description": "Fiduciaire en ligne pour Fribourg : dÃ©claration d'impÃ´ts, calcul du 3Ã¨me pilier, comptabilitÃ©",
+  "description": "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité",
   "url": "https://www.neofidu.ch/cantons/fribourg",
   "logo": "https://www.neofidu.ch/logo.svg",
   "priceRange": "CHF 50 - CHF 500",
@@ -60,12 +60,12 @@ const fribourgSchema = {
     "itemListElement": [
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "DÃ©claration d'impÃ´ts Fribourg" },
+        "itemOffered": { "@type": "Service", "name": "Déclaration d'impôts Fribourg" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "50", "priceCurrency": "CHF" }
       },
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Optimisation 3Ã¨me pilier Fribourg" },
+        "itemOffered": { "@type": "Service", "name": "Optimisation 3ème pilier Fribourg" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "60", "priceCurrency": "CHF" }
       }
     ]
