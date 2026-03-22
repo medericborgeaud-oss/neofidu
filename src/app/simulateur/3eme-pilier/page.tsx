@@ -16,11 +16,6 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.neofidu.ch/simulateur/3eme-pilier",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Simulateur 3ème Pilier 2026 | Gratuit",
-    description: "Calculez vos économies d'impôts avec le 3ème pilier. Vaud, Genève, Valais.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/simulateur/3eme-pilier",
   },
