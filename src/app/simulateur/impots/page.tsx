@@ -31,11 +31,6 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.neofidu.ch/simulateur/impots",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Simulateur d'impôts Suisse 2026 — Résultat gratuit en 30 secondes",
-    description: "Calculez vos impôts en Suisse romande en quelques clics. Outil gratuit pour Vaud, Genève, Fribourg, Valais.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/simulateur/impots",
   },
