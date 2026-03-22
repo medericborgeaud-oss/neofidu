@@ -14,6 +14,7 @@ import { TaxSimulatorClient } from "./TaxSimulatorClient";
 import { SimulatorInternalLinks } from "@/components/SimulatorInternalLinks";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { useLanguage } from "@/lib/language-context";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export function TaxSimulatorPageClient() {
   const { t, isEnglish } = useLanguage();
@@ -208,6 +209,7 @@ export function TaxSimulatorPageClient() {
       </section>
 
       {/* Internal Links */}
+      <SimulatorCTA />
       <SimulatorInternalLinks currentPage="impots" />
     </main>
   );
