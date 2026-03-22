@@ -78,7 +78,7 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
     },
     {
       id: "simulateur-retraite",
-      href: "/simulateur-retraite",
+      href: "/simulateur/retraite",
       icon: Clock,
       title: isEnglish ? "Retirement Simulator" : "Simulateur Retraite",
       description: isEnglish ? "Plan your Swiss retirement savings" : "Planifiez votre retraite en Suisse",
