@@ -38,11 +38,6 @@ export const metadata: Metadata = {
     siteName: "NeoFidu",
     locale: "fr_CH",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Swiss Tax Map 2026 | Compare 26 Cantons",
-    description: "Compare taxes of 26 Swiss cantons. From Zug (5.1%) to Geneva (14.8%). Find where to pay less taxes.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/simulateur/carte-impots",
     languages: {
