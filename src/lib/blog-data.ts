@@ -5634,6 +5634,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: '23',
     slug: 'suisse-10-millions-habitants-impact-fiscal-immobilier',
+    image: "https://images.unsplash.com/photo-1486325462-7032c7a3ce97?w=800&auto=format&fit=crop&q=60",
     title: 'Suisse à 10 millions d\'habitants : quel impact fiscal et immobilier ?',
     titleEn: 'Switzerland at 10 million inhabitants: fiscal and real estate impact',
     excerpt: `Le 14 juin 2026, les Suisses votent sur l\'initiative « Pas de Suisse à 10 millions ! ». Découvrez les impacts concrets sur la fiscalité et le marché immobilier helvétique.`,
@@ -5750,6 +5751,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: '24',
     slug: 'faillite-personnelle-suisse-nouveaute-legislative',
+    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=60",
     title: 'Faillite personnelle en Suisse : le Parlement franchit le pas',
     titleEn: 'Personal bankruptcy in Switzerland: Parliament takes the step',
     excerpt: `Le Parlement suisse vient de voter une réforme historique : les particuliers surendettés pourront désormais déclarer faillite. Conditions, effets et ce que ça change concrètement.`,
