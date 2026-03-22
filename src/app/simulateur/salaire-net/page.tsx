@@ -34,11 +34,6 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.neofidu.ch/simulateur/salaire-net",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Simulateur Salaire Net Suisse 2026 | Gratuit",
-    description: "Calculez votre salaire net suisse en 2 minutes. Tous les cantons couverts.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/simulateur/salaire-net",
   },
