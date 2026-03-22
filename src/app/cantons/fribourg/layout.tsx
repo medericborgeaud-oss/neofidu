@@ -1,33 +1,28 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Déclaration d'impôts Fribourg 2026",
+  title: "DÃ©claration d'impÃ´ts Fribourg 2026",
   description:
-    "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité. Service 100% digital, tarifs clairs.",
+    "Fiduciaire en ligne pour Fribourg : dÃ©claration d'impÃ´ts, calcul du 3Ã¨me pilier, comptabilitÃ©. Service 100% digital, tarifs clairs.",
   keywords: [
     "fiduciaire Fribourg",
-    "déclaration impôts Fribourg",
-    "comptabilité Fribourg",
+    "dÃ©claration impÃ´ts Fribourg",
+    "comptabilitÃ© Fribourg",
     "FriTax",
-    "3ème pilier Fribourg",
-    "impôts Fribourg 2026",
+    "3Ã¨me pilier Fribourg",
+    "impÃ´ts Fribourg 2026",
     "fiduciaire Bulle",
     "fiduciaire en ligne Fribourg",
     "expert fiscal Fribourg",
-    "déductions famille Fribourg",
+    "dÃ©ductions famille Fribourg",
   ],
   openGraph: {
-    title: "Fiduciaire Fribourg — Déclaration d'impôts & comptabilité en ligne",
+    title: "Fiduciaire Fribourg â DÃ©claration d'impÃ´ts & comptabilitÃ© en ligne",
     description:
-      "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité. Service 100% digital.",
+      "Fiduciaire en ligne pour Fribourg : dÃ©claration d'impÃ´ts, calcul du 3Ã¨me pilier, comptabilitÃ©. Service 100% digital.",
     url: "https://www.neofidu.ch/cantons/fribourg",
     type: "website",
     locale: "fr_CH",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fiduciaire Fribourg — Déclaration d'impôts en ligne",
-    description: "Déclaration d'impôts, 3ème pilier, comptabilité. Service 100% digital, tarifs clairs.",
   },
   alternates: {
     canonical: "https://www.neofidu.ch/cantons/fribourg",
@@ -39,7 +34,7 @@ const fribourgSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Neofidu - Fiduciaire Fribourg",
-  "description": "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité",
+  "description": "Fiduciaire en ligne pour Fribourg : dÃ©claration d'impÃ´ts, calcul du 3Ã¨me pilier, comptabilitÃ©",
   "url": "https://www.neofidu.ch/cantons/fribourg",
   "logo": "https://www.neofidu.ch/logo.svg",
   "priceRange": "CHF 50 - CHF 500",
@@ -65,12 +60,12 @@ const fribourgSchema = {
     "itemListElement": [
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Déclaration d'impôts Fribourg" },
+        "itemOffered": { "@type": "Service", "name": "DÃ©claration d'impÃ´ts Fribourg" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "50", "priceCurrency": "CHF" }
       },
       {
         "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Optimisation 3ème pilier Fribourg" },
+        "itemOffered": { "@type": "Service", "name": "Optimisation 3Ã¨me pilier Fribourg" },
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "60", "priceCurrency": "CHF" }
       }
     ]
