@@ -342,7 +342,7 @@ export default function SimulateurPage() {
                 </Card>
               </Link>
 
-              <Link href="/simulateur-retraite">
+              <Link href="/simulateur/retraite">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
                     <div className="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center mb-3">
