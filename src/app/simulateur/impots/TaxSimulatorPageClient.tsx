@@ -19,7 +19,7 @@ import { SimulatorCTA } from "@/components/SimulatorCTA";
 export function TaxSimulatorPageClient() {
   const { t, isEnglish } = useLanguage();
 
-  const cantonsRomandie = ["Vaud", "GenÃ¨ve", "Valais", "Fribourg", "NeuchÃ¢tel", "Jura"];
+  const cantonsRomandie = ["Vaud", "Genève", "Valais", "Fribourg", "Neuchâtel", "Jura"];
   const cantonsAlemanique = isEnglish
     ? ["Zurich", "Bern", "Zug", "Lucerne", "Aargau", "St. Gallen"]
     : ["Zurich", "Berne", "Zoug", "Lucerne", "Argovie", "Saint-Gall"];
