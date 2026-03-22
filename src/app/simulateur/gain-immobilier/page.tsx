@@ -14,11 +14,6 @@ export const metadata: Metadata = {
     url: "https://www.neofidu.ch/simulateur/gain-immobilier",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Simulateur Impôt Gain Immobilier Suisse",
-    description: "Calculez gratuitement l'IGI sur la vente de votre bien immobilier.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/simulateur/gain-immobilier",
   },
