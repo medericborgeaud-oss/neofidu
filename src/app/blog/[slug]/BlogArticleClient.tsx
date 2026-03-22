@@ -73,7 +73,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                   src={article.image}
                   alt={article.title}
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-[center_30%]"
                   priority
                   sizes="(max-width: 768px) 100vw, 800px"
                   unoptimized
@@ -123,7 +123,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                   {copied ? (
                     <>
                       <Check className="w-4 h-4 text-green-600" />
-                      <span className="text-green-600">Copié!</span>
+                      <span className="text-green-600">CopiÃ©!</span>
                     </>
                   ) : (
                     <>
@@ -153,11 +153,11 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50 mb-8">
                 <h3 className="text-xl font-bold mb-2">Besoin d'accompagnement ?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Notre équipe est à votre disposition pour vous accompagner dans vos démarches fiscales et comptables.
+                  Notre Ã©quipe est Ã  votre disposition pour vous accompagner dans vos dÃ©marches fiscales et comptables.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild className="rounded-full">
-                    <Link href="/demande">Déposer une demande</Link>
+                    <Link href="/demande">DÃ©poser une demande</Link>
                   </Button>
                   <Button asChild variant="outline" className="rounded-full">
                     <Link href="/#contact">Nous contacter</Link>
@@ -174,17 +174,17 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                     <ul className="space-y-2">
                       <li>
                         <Link href="/simulateur/impots" className="text-primary hover:underline">
-                          → Simulateur d'impôts
+                          â Simulateur d'impÃ´ts
                         </Link>
                       </li>
                       <li>
                         <Link href="/simulateur/3eme-pilier" className="text-primary hover:underline">
-                          → Calculateur 3ème pilier
+                          â Calculateur 3Ã¨me pilier
                         </Link>
                       </li>
                       <li>
                         <Link href="/simulateur/baisse-loyer" className="text-primary hover:underline">
-                          → Calculateur baisse de loyer
+                          â Calculateur baisse de loyer
                         </Link>
                       </li>
                     </ul>
@@ -194,30 +194,30 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                     <ul className="space-y-2">
                       <li>
                         <Link href="/tarifs" className="text-primary hover:underline">
-                          → Nos tarifs
+                          â Nos tarifs
                         </Link>
                       </li>
                       <li>
                         <Link href="/demande" className="text-primary hover:underline">
-                          → Déposer une demande
+                          â DÃ©poser une demande
                         </Link>
                       </li>
                       <li>
                         <Link href="/faq" className="text-primary hover:underline">
-                          → Consulter la FAQ
+                          â Consulter la FAQ
                         </Link>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="mt-4 pt-4 border-t">
-                  <p className="text-muted-foreground font-medium mb-2">Nos régions</p>
+                  <p className="text-muted-foreground font-medium mb-2">Nos rÃ©gions</p>
                   <div className="flex flex-wrap gap-2">
-                    <Link href="/cantons/geneve" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Genève</Link>
+                    <Link href="/cantons/geneve" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">GenÃ¨ve</Link>
                     <Link href="/cantons/vaud" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Vaud</Link>
                     <Link href="/cantons/fribourg" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Fribourg</Link>
                     <Link href="/cantons/valais" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Valais</Link>
-                    <Link href="/cantons/neuchatel" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Neuchâtel</Link>
+                    <Link href="/cantons/neuchatel" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">NeuchÃ¢tel</Link>
                   </div>
                 </div>
               </div>
