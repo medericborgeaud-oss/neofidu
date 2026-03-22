@@ -21,28 +21,28 @@ export default function DemandePage() {
 
   const t = {
     backToHome: isEnglish ? "Back to home" : "Retour Ã  l'accueil",
-    title1: isEnglish ? "Submit your" : "DÃ©posez votre",
+    title1: isEnglish ? "Submit your" : "Déposez votre",
     title2: isEnglish ? "request online" : "demande en ligne",
     subtitle: isEnglish
       ? "Fill out the form below and receive a personalized quote immediately."
-      : "Remplissez le formulaire ci-dessous et recevez un devis personnalisÃ© immÃ©diatement.",
-    whichService: isEnglish ? "Which service interests you?" : "Quel service vous intÃ©resse ?",
+      : "Remplissez le formulaire ci-dessous et recevez un devis personnalisé immédiatement.",
+    whichService: isEnglish ? "Which service interests you?" : "Quel service vous intéresse ?",
     changeService: isEnglish ? "Change service" : "Changer de service",
-    taxTitle: isEnglish ? "Tax Declaration" : "DÃ©claration d'impÃ´t",
+    taxTitle: isEnglish ? "Tax Declaration" : "Déclaration d'impôt",
     taxDesc: isEnglish
       ? "For individuals and self-employed. We prepare your declaration with all legal deductions."
-      : "Pour particuliers et indÃ©pendants. Nous Ã©tablissons votre dÃ©claration avec toutes les dÃ©ductions lÃ©gales.",
-    taxPrice: isEnglish ? "From CHF 50.-" : "DÃ¨s CHF 50.-",
-    accountingTitle: isEnglish ? "Accounting" : "ComptabilitÃ©",
+      : "Pour particuliers et indépendants. Nous établissons votre déclaration avec toutes les déductions légales.",
+    taxPrice: isEnglish ? "From CHF 50.-" : "Dès CHF 50.-",
+    accountingTitle: isEnglish ? "Accounting" : "Comptabilité",
     accountingDesc: isEnglish
       ? "For self-employed and companies. Complete accounting management and financial statements."
-      : "Pour indÃ©pendants et entreprises. Gestion comptable complÃ¨te et Ã©tablissement de vos bilans.",
-    accountingPrice: isEnglish ? "From CHF 500.-/year" : "DÃ¨s CHF 500.-/an",
-    propertyTitle: isEnglish ? "Property Management" : "GÃ©rance immobiliÃ¨re",
+      : "Pour indépendants et entreprises. Gestion comptable complète et établissement de vos bilans.",
+    accountingPrice: isEnglish ? "From CHF 500.-/year" : "Dès CHF 500.-/an",
+    propertyTitle: isEnglish ? "Property Management" : "Gérance immobilière",
     propertyDesc: isEnglish
       ? "For landlord owners. Complete management of your rental properties."
-      : "Pour propriÃ©taires bailleurs. Gestion complÃ¨te de vos biens locatifs.",
-    propertyPrice: isEnglish ? "From 5% of rents" : "DÃ¨s 5% des loyers",
+      : "Pour propriétaires bailleurs. Gestion complète de vos biens locatifs.",
+    propertyPrice: isEnglish ? "From 5% of rents" : "Dès 5% des loyers",
   };
 
   return (
