@@ -27,11 +27,6 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.neofidu.ch/simulateur/valeur-locative",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Imputed Rental Value Simulator 2026 | Before/After Reform",
-    description: "Homeowners: will you win or lose after the reform? Free simulator.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/simulateur/valeur-locative",
   },
