@@ -21,8 +21,8 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: "Article non trouvé | Article Not Found",
-      description: "Cet article n'existe pas ou a été supprimé. This article doesn't exist or has been removed.",
+      title: "Article non trouvÃ© | Article Not Found",
+      description: "Cet article n'existe pas ou a Ã©tÃ© supprimÃ©. This article doesn't exist or has been removed.",
     };
   }
 
@@ -32,11 +32,11 @@ export async function generateMetadata({
   const baseKeywords = [
     categoryInfo.name.toLowerCase(),
     categoryInfo.nameEn.toLowerCase(),
-    "fiscalité suisse",
+    "fiscalitÃ© suisse",
     "Swiss taxation",
-    "comptabilité",
+    "comptabilitÃ©",
     "accounting",
-    "impôts suisse",
+    "impÃ´ts suisse",
     "Swiss taxes",
     article.category,
   ];
@@ -66,13 +66,8 @@ export async function generateMetadata({
       publishedTime: article.date,
       authors: ["NeoFidu"],
       section: categoryInfo.name,
-      tags: [categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting"],
+      tags: [categoryInfo.name, categoryInfo.nameEn, "FiscalitÃ© Suisse", "Swiss Taxation", "ComptabilitÃ©", "Accounting"],
       locale: "fr_CH",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: article.titleEn || article.title,
-      description: article.excerptEn || article.excerpt,
     },
     alternates: {
       canonical: `https://www.neofidu.ch/blog/${article.slug}`,
@@ -86,8 +81,8 @@ function generateArticleJsonLd(article: BlogArticle) {
 
   // Combine article-specific keywords with default keywords
   const allKeywords = article.keywords
-    ? [...article.keywords, categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting"]
-    : [categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting", "Impôts"];
+    ? [...article.keywords, categoryInfo.name, categoryInfo.nameEn, "FiscalitÃ© Suisse", "Swiss Taxation", "ComptabilitÃ©", "Accounting"]
+    : [categoryInfo.name, categoryInfo.nameEn, "FiscalitÃ© Suisse", "Swiss Taxation", "ComptabilitÃ©", "Accounting", "ImpÃ´ts"];
 
   return {
     "@context": "https://schema.org",
