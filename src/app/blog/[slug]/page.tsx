@@ -21,8 +21,8 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: "Article non trouvÃ© | Article Not Found",
-      description: "Cet article n'existe pas ou a Ã©tÃ© supprimÃ©. This article doesn't exist or has been removed.",
+      title: "Article non trouvé | Article Not Found",
+      description: "Cet article n'existe pas ou a été supprimé. This article doesn't exist or has been removed.",
     };
   }
 
@@ -32,11 +32,11 @@ export async function generateMetadata({
   const baseKeywords = [
     categoryInfo.name.toLowerCase(),
     categoryInfo.nameEn.toLowerCase(),
-    "fiscalitÃ© suisse",
+    "fiscalité suisse",
     "Swiss taxation",
-    "comptabilitÃ©",
+    "comptabilité",
     "accounting",
-    "impÃ´ts suisse",
+    "impôts suisse",
     "Swiss taxes",
     article.category,
   ];
@@ -66,7 +66,7 @@ export async function generateMetadata({
       publishedTime: article.date,
       authors: ["NeoFidu"],
       section: categoryInfo.name,
-      tags: [categoryInfo.name, categoryInfo.nameEn, "FiscalitÃ© Suisse", "Swiss Taxation", "ComptabilitÃ©", "Accounting"],
+      tags: [categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting"],
       locale: "fr_CH",
     },
     alternates: {
@@ -81,8 +81,8 @@ function generateArticleJsonLd(article: BlogArticle) {
 
   // Combine article-specific keywords with default keywords
   const allKeywords = article.keywords
-    ? [...article.keywords, categoryInfo.name, categoryInfo.nameEn, "FiscalitÃ© Suisse", "Swiss Taxation", "ComptabilitÃ©", "Accounting"]
-    : [categoryInfo.name, categoryInfo.nameEn, "FiscalitÃ© Suisse", "Swiss Taxation", "ComptabilitÃ©", "Accounting", "ImpÃ´ts"];
+    ? [...article.keywords, categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting"]
+    : [categoryInfo.name, categoryInfo.nameEn, "Fiscalité Suisse", "Swiss Taxation", "Comptabilité", "Accounting", "Impôts"];
 
   return {
     "@context": "https://schema.org",
