@@ -23,6 +23,7 @@ import { Footer } from "@/components/Footer";
 import { SimulatorInternalLinks } from "@/components/SimulatorInternalLinks";
 import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 // IGI rates by canton and holding period (in years)
 // Rates decrease with longer holding periods
@@ -691,6 +692,7 @@ export function GainImmobilierSimulator() {
         </section>
 
         {/* Internal Links */}
+        <SimulatorCTA />
         <SimulatorInternalLinks currentPage="gain-immobilier" />
       </main>
 
