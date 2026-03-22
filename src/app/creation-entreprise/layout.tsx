@@ -62,13 +62,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Création d'entreprise en Suisse | Neofidu",
-    description:
-      "Créez votre SA, Sàrl ou raison individuelle en Suisse. Accompagnement complet dès CHF 290.-",
-    images: ["https://www.neofidu.ch/og-creation-entreprise.png"],
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/creation-entreprise",
     languages: {
