@@ -9,6 +9,8 @@ import {
   Home,
   Map,
   TrendingUp,
+  TrendingDown,
+  Clock,
   FileText,
   Globe,
   MapPin,
@@ -19,7 +21,7 @@ import {
 import { useLanguage } from "@/lib/language-context";
 
 interface SimulatorInternalLinksProps {
-  currentPage: "impots" | "3eme-pilier" | "valeur-locative" | "carte-impots" | "gain-immobilier" | "salaire-net";
+  currentPage: "impots" | "3eme-pilier" | "valeur-locative" | "carte-impots" | "gain-immobilier" | "salaire-net" | "simulateur-retraite" | "baisse-loyer";
 }
 
 export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksProps) {
@@ -73,6 +75,22 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
       title: isEnglish ? "Capital Gains Tax" : "Gain Immobilier",
       description: isEnglish ? "Calculate tax on property sale" : "Calculez l'impôt sur la vente",
       color: "bg-red-500",
+    },
+    {
+      id: "simulateur-retraite",
+      href: "/simulateur-retraite",
+      icon: Clock,
+      title: isEnglish ? "Retirement Simulator" : "Simulateur Retraite",
+      description: isEnglish ? "Plan your Swiss retirement savings" : "Planifiez votre retraite en Suisse",
+      color: "bg-violet-500",
+    },
+    {
+      id: "baisse-loyer",
+      href: "/simulateur/baisse-loyer",
+      icon: TrendingDown,
+      title: isEnglish ? "Rent Reduction Calculator" : "Simulateur Baisse de Loyer",
+      description: isEnglish ? "Calculate rent reduction on rate drop" : "Calculez la baisse de loyer sur baisse de taux",
+      color: "bg-sky-500",
     },
   ];
 
