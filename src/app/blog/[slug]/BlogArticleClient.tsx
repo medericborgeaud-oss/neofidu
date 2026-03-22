@@ -68,7 +68,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
           <div className="max-w-3xl mx-auto">
             {/* Cover image */}
             {article.image && (
-              <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-xl mb-8">
+              <div className="relative h-72 md:h-96 w-full overflow-hidden rounded-xl mb-8">
                 <Image
                   src={article.image}
                   alt={article.title}
