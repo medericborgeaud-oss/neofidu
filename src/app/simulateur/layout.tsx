@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Swiss Tax Calculators",
-    default: "Free Swiss Tax Calculators 2026 | Simulateurs Fiscaux",
+    template: "%s | Simulateurs Fiscaux",
+    default: "Simulateurs Fiscaux Gratuits 2026 | Vaud, Genève, Valais",
   },
   description:
     "Free Swiss tax calculators. Calculate your taxes, Pillar 3a savings, rental value impact. All cantons. | Simulateurs fiscaux gratuits Suisse romande. Vaud, Genève, Valais.",
