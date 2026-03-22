@@ -56,12 +56,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Gérance Immobilière Vaud & Valais | NeoFidu",
-    description:
-      "Gestion locative complète dès 5% des loyers bruts. Service digital et transparent.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/gerance-immobiliere",
   },
