@@ -20,11 +20,6 @@ export const metadata: Metadata = {
     url: "https://www.neofidu.ch/blog",
     siteName: "NeoFidu",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog Fiscalité",
-    description: "Actualités fiscales en Suisse romande.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/blog",
   },
