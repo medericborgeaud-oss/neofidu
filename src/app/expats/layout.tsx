@@ -90,11 +90,6 @@ export const metadata: Metadata = {
     siteName: "NeoFidu",
     url: "https://www.neofidu.ch/expats",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Expat Tax Returns Switzerland | English Service",
-    description: "We help expats file Swiss taxes. English service. From CHF 50.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/expats",
     languages: {
