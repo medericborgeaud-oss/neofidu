@@ -73,7 +73,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                   src={article.image}
                   alt={article.title}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-[center_20%]"
                   priority
                   sizes="(max-width: 768px) 100vw, 800px"
                   unoptimized
