@@ -59,11 +59,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Déclaration d'impôts en ligne Suisse | Neofidu",
-    description: "Remplissez votre déclaration en ligne. Dès CHF 50.- Devis gratuit.",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/demande",
     languages: {
