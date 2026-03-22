@@ -76,6 +76,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                   className="object-cover"
                   priority
                   sizes="(max-width: 768px) 100vw, 800px"
+                  unoptimized
                 />
                 <div className={`absolute bottom-0 left-0 right-0 h-1 ${categoryInfo.color}`} />
               </div>
