@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { BaiseLoyerCalculator } from "./BaiseLoyerCalculator";
 import { Zap } from "lucide-react";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export const metadata: Metadata = {
   title: "Calculateur Baisse de Loyer 2026",
@@ -141,6 +142,7 @@ export default function BaiseLoyerPage() {
               <BaiseLoyerCalculator />
             </div>
           </section>
+        <SimulatorCTA />
         </main>
         <Footer />
       </div>
