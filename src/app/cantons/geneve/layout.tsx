@@ -1,33 +1,28 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Déclaration d'impôts Genève 2026",
+  title: "DÃ©claration d'impÃ´ts GenÃ¨ve 2026",
   description:
-    "Fiduciaire en ligne pour Genève : déclaration d'impôts, quasi-résidents, travailleurs frontaliers. Service rapide, 100% digital, tarifs transparents.",
+    "Fiduciaire en ligne pour GenÃ¨ve : dÃ©claration d'impÃ´ts, quasi-rÃ©sidents, travailleurs frontaliers. Service rapide, 100% digital, tarifs transparents.",
   keywords: [
-    "fiduciaire Genève",
-    "déclaration impôts Genève",
-    "comptabilité Genève",
-    "quasi-résident Genève",
-    "frontalier Genève",
+    "fiduciaire GenÃ¨ve",
+    "dÃ©claration impÃ´ts GenÃ¨ve",
+    "comptabilitÃ© GenÃ¨ve",
+    "quasi-rÃ©sident GenÃ¨ve",
+    "frontalier GenÃ¨ve",
     "GeTax",
     "TOU frontalier",
-    "impôts Genève 2026",
-    "fiduciaire en ligne Genève",
-    "expert fiscal Genève",
+    "impÃ´ts GenÃ¨ve 2026",
+    "fiduciaire en ligne GenÃ¨ve",
+    "expert fiscal GenÃ¨ve",
   ],
   openGraph: {
-    title: "Fiduciaire Genève — Déclaration d'impôts & comptabilité en ligne",
+    title: "Fiduciaire GenÃ¨ve â DÃ©claration d'impÃ´ts & comptabilitÃ© en ligne",
     description:
-      "Fiduciaire en ligne pour Genève : déclaration d'impôts, quasi-résidents, travailleurs frontaliers. Service rapide, 100% digital.",
+      "Fiduciaire en ligne pour GenÃ¨ve : dÃ©claration d'impÃ´ts, quasi-rÃ©sidents, travailleurs frontaliers. Service rapide, 100% digital.",
     url: "https://www.neofidu.ch/cantons/geneve",
     type: "website",
     locale: "fr_CH",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fiduciaire Genève — Déclaration d'impôts en ligne",
-    description: "Déclaration d'impôts, quasi-résidents, frontaliers. Service 100% digital, tarifs transparents.",
   },
   alternates: {
     canonical: "https://www.neofidu.ch/cantons/geneve",
@@ -38,15 +33,15 @@ export const metadata: Metadata = {
 const geneveSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Neofidu - Fiduciaire Genève",
-  "description": "Fiduciaire en ligne pour Genève : déclaration d'impôts, quasi-résidents, travailleurs frontaliers",
+  "name": "Neofidu - Fiduciaire GenÃ¨ve",
+  "description": "Fiduciaire en ligne pour GenÃ¨ve : dÃ©claration d'impÃ´ts, quasi-rÃ©sidents, travailleurs frontaliers",
   "url": "https://www.neofidu.ch/cantons/geneve",
   "logo": "https://www.neofidu.ch/logo.svg",
   "image": "https://www.neofidu.ch/og-image.svg",
   "priceRange": "CHF 50 - CHF 500",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Genève",
+    "addressLocality": "GenÃ¨ve",
     "addressRegion": "GE",
     "addressCountry": "CH"
   },
@@ -57,17 +52,17 @@ const geneveSchema = {
   },
   "areaServed": {
     "@type": "City",
-    "name": "Genève"
+    "name": "GenÃ¨ve"
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Services fiduciaires Genève",
+    "name": "Services fiduciaires GenÃ¨ve",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Déclaration d'impôts Genève"
+          "name": "DÃ©claration d'impÃ´ts GenÃ¨ve"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -79,7 +74,7 @@ const geneveSchema = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Quasi-résident / Frontalier Genève"
+          "name": "Quasi-rÃ©sident / Frontalier GenÃ¨ve"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
