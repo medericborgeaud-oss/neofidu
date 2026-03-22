@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
@@ -140,7 +140,7 @@ export function Header() {
   const navItems = [
     { href: "/tarifs", label: t("header.pricing") },
     
-    { href: "/suivi", label: t("header.tracking") },
+    { href: "/suivi", label: t("header.tracking"), isClient: true },
     { href: "/contact", label: t("header.contact") },
   ];
 
@@ -252,12 +252,26 @@ export function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {navItems.map((item) => (
+              {navItems.filter(item => !item.isClient).map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className="px-4 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
                 >
+                  {item.label}
+                </Link>
+              ))}
+
+              {/* Espace client separator */}
+              <span className="w-px h-5 bg-border mx-1" aria-hidden="true" />
+
+              {navItems.filter(item => item.isClient).map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all"
+                >
+                  <ClipboardList className="w-3.5 h-3.5" />
                   {item.label}
                 </Link>
               ))}
@@ -358,7 +372,7 @@ export function Header() {
                       )}
                     </div>
 
-                    {navItems.map((item) => (
+                    {navItems.filter(item => !item.isClient).map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
@@ -368,6 +382,25 @@ export function Header() {
                         {item.label}
                       </Link>
                     ))}
+
+                    {/* Espace client section */}
+                    <div className="pt-3 mt-1 border-t border-border">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                        <ClipboardList className="w-3.5 h-3.5" />
+                        Espace client
+                      </p>
+                      {navItems.filter(item => item.isClient).map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className="text-lg font-medium text-primary hover:text-primary/80 transition-colors py-2 border-b border-border flex items-center gap-2"
+                        >
+                          <ClipboardList className="w-4 h-4" />
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
                     <Button
                       asChild
                       className="w-full rounded-full mt-4"
