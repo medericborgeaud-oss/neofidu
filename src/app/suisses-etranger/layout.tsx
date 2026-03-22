@@ -37,11 +37,6 @@ export const metadata: Metadata = {
     siteName: "NeoFidu",
     url: "https://www.neofidu.ch/suisses-etranger",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Déclaration d'impôts Suisses de l'étranger",
-    description: "Service fiscal 100% en ligne pour les Suisses résidant à l'étranger. Dès CHF 100.-",
-  },
   alternates: {
     canonical: "https://www.neofidu.ch/suisses-etranger",
   },
