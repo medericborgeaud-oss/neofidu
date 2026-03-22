@@ -1492,7 +1492,7 @@ Meilleures salutations,
   {
     id: "19",
     slug: "impot-gain-immobilier-suisse-guide-complet",
-    image: "https://images.unsplash.com/photo-1582407947304-5b0a395dee19?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&auto=format&fit=crop&q=60",
     title: "Impôt gain immobilier Suisse 2026 : guide",
     titleEn: "Real Estate Capital Gains Tax in Switzerland: Complete 2026 Guide",
     excerpt:
@@ -2393,7 +2393,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "5",
     slug: "declarer-cryptomonnaies-suisse-guide-2026",
-    image: "https://images.unsplash.com/photo-1579621970590-9d152b4e1fc4?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&auto=format&fit=crop&q=60",
     title: "Déclarer ses cryptomonnaies en Suisse 2026",
     titleEn: "How to Declare Cryptocurrencies in Switzerland 2026: Complete Tax Guide",
     excerpt:
@@ -4827,7 +4827,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "6",
     slug: "comptabilite-pme-erreurs-eviter",
-    image: "https://images.unsplash.com/photo-1568667793720-8b3c78b3f6e0?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=60",
     title: "Comptabilité PME : 10 erreurs qui coûtent cher",
     titleEn: "SME Accounting: 10 Costly Mistakes (and How to Avoid Them)",
     excerpt:
