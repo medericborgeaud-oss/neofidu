@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calculator, Clock, Shield, TrendingDown, Zap } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export const metadata: Metadata = {
   title: "Simulateur Salaire Net Suisse 2026",
@@ -271,6 +272,7 @@ export default function SalaireNetPage() {
           </section>
 
           {/* Internal Links */}
+          <SimulatorCTA />
           <SimulatorInternalLinks currentPage="salaire-net" />
         </main>
 
