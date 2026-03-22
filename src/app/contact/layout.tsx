@@ -1,0 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact | NeoFidu",
+  description:
+    "Contactez NeoFidu, votre fiduciaire digitale en Suisse. Réponse sous 24h. Déclaration d'impôts, comptabilité, création d'entreprise — we speak English!",
+  keywords: [
+    "contact fiduciaire suisse",
+    "contact neofidu",
+    "fiduciaire en ligne contact",
+    "contact tax advisor switzerland",
+    "contact accountant switzerland",
+  ],
+  openGraph: {
+    title: "Contact NeoFidu | Fiduciaire digitale en Suisse",
+    description:
+      "Contactez notre équipe. Réponse sous 24h. We speak English!",
+    type: "website",
+    url: "https://www.neofidu.ch/contact",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact NeoFidu",
+    description: "Contactez notre équipe de fiduciaires. Réponse sous 24h.",
+  },
+  alternates: {
+    canonical: "https://www.neofidu.ch/contact",
+  },
+};
+
+export default function ContactLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}
