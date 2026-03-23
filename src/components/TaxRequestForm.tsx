@@ -2581,10 +2581,10 @@ export function TaxRequestForm() {
                       }
                     }}
                   >
-                    Je réside actuellement à l'étranger
+                    {isEnglish ? "I currently reside abroad" : "Je réside actuellement à l'étranger"}
                   </div>
                   <p className="text-sm text-gray-600 mt-1">
-                    Suisse de l'étranger avec obligations fiscales en Suisse (propriété immobilière, revenus de source suisse, etc.)
+                    {isEnglish ? "Swiss living abroad with tax obligations in Switzerland (real estate, Swiss-source income, etc.)" : "Suisse de l'étranger avec obligations fiscales en Suisse (propriété immobilière, revenus de source suisse, etc.)"}
                   </p>
                 </div>
               </div>
@@ -2691,16 +2691,16 @@ export function TaxRequestForm() {
               <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium text-amber-800">Informations requises</p>
+                  <p className="font-medium text-amber-800">{isEnglish ? "Required information" : "Informations requises"}</p>
                   <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
                     {!formData.canton && !formData.livesAbroad && (
-                      <li>Sélectionnez le canton de votre déclaration</li>
+                      <li>{isEnglish ? "Please select your canton" : "Sélectionnez le canton de votre déclaration"}</li>
                     )}
                     {!formData.canton && formData.livesAbroad && (
-                      <li>Sélectionnez le canton où se trouve votre bien/revenu en Suisse</li>
+                      <li>{isEnglish ? "Select the canton where your property/income is in Switzerland" : "Sélectionnez le canton où se trouve votre bien/revenu en Suisse"}</li>
                     )}
                     {formData.livesAbroad && !formData.countryOfResidence && (
-                      <li>Sélectionnez votre pays de résidence actuel</li>
+                      <li>{isEnglish ? "Select your current country of residence" : "Sélectionnez votre pays de résidence actuel"}</li>
                     )}
                   </ul>
                 </div>
@@ -5857,7 +5857,7 @@ export function TaxRequestForm() {
           <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-medium text-amber-800">Informations requises</p>
+              <p className="font-medium text-amber-800">{isEnglish ? "Required information" : "Informations requises"}</p>
               <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
                 {/* Statut d'emploi manquant */}
                 {formData.clientType !== "independent" && !formData.employmentStatus && (
@@ -5991,7 +5991,7 @@ export function TaxRequestForm() {
             className="rounded-full"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Retour
+            {isEnglish ? "Back" : "Retour"}
           </Button>
           {/* On step 9 (Payment), the Stripe form handles submission - no Next button */}
           {currentStep < steps.length && (
@@ -6003,11 +6003,11 @@ export function TaxRequestForm() {
               {isSavingRequest ? (
                 <>
                   <span className="animate-spin mr-2">⏳</span>
-                  Enregistrement...
+                  {isEnglish ? "Saving..." : "Enregistrement..."}
                 </>
               ) : (
                 <>
-                  Suivant
+                  {isEnglish ? "Next" : "Suivant"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </>
               )}
