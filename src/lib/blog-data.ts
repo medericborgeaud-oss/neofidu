@@ -52,7 +52,72 @@ export const blogArticles: BlogArticle[] = [
     slug: "delais-declaration-impots-2025-cantons",
     title: "Délais déclaration d’impôts 2025 par canton romand",
     excerpt: "Vaud, Genève, Fribourg, Valais, Neuchâtel, Jura : dates limites, prolongations et conseils pour ne pas rater votre déclaration d’impôts 2025.",
-    content: `<p>Chaque année, la déclaration d’impôts est source de stress : <strong>quand faut-il la remettre ?</strong> En Suisse romande, chaque canton fixe ses propres délais. Voici un récapitulatif clair et pratique pour 2025.</p><h2>Récapitulatif des délais 2025 par canton</h2><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#f3f4f6"><th style="padding:8px 12px;text-align:left;border:1px solid #e5e7eb">Canton</th><th style="padding:8px 12px;text-align:left;border:1px solid #e5e7eb">Date limite</th><th style="padding:8px 12px;text-align:left;border:1px solid #e5e7eb">Prolongation max.</th></tr></thead><tbody><tr><td style="padding:8px 12px;border:1px solid #e5e7eb"><strong>Vaud</strong></td><td style="padding:8px 12px;border:1px solid #e5e7eb">15 mars 2026</td><td style="padding:8px 12px;border:1px solid #e5e7eb">31 mai 2026</td></tr><tr style="background:#f9fafb"><td style="padding:8px 12px;border:1px solid #e5e7eb"><strong>Genève</strong></td><td style="padding:8px 12px;border:1px solid #e5e7eb">31 mars 2026</td><td style="padding:8px 12px;border:1px solid #e5e7eb">30 juin 2026</td></tr><tr><td style="padding:8px 12px;border:1px solid #e5e7eb"><strong>Fribourg</strong></td><td style="padding:8px 12px;border:1px solid #e5e7eb">31 mars 2026</td><td style="padding:8px 12px;border:1px solid #e5e7eb">15 juin 2026</td></tr><tr style="background:#f9fafb"><td style="padding:8px 12px;border:1px solid #e5e7eb"><strong>Valais</strong></td><td style="padding:8px 12px;border:1px solid #e5e7eb">31 mars 2026</td><td style="padding:8px 12px;border:1px solid #e5e7eb">30 juin 2026</td></tr><tr><td style="padding:8px 12px;border:1px solid #e5e7eb"><strong>Neuchâtel</strong></td><td style="padding:8px 12px;border:1px solid #e5e7eb">31 mars 2026</td><td style="padding:8px 12px;border:1px solid #e5e7eb">31 mai 2026</td></tr><tr style="background:#f9fafb"><td style="padding:8px 12px;border:1px solid #e5e7eb"><strong>Jura</strong></td><td style="padding:8px 12px;border:1px solid #e5e7eb">15 mars 2026</td><td style="padding:8px 12px;border:1px solid #e5e7eb">30 avril 2026</td></tr></tbody></table></div><h2>Détails canton par canton</h2><h3>🟢 Vaud &mdash; délai au 15 mars</h3><p>Le canton de <strong>Vaud</strong> impose un délai ordinaire au <strong>15 mars 2026</strong>. Vous pouvez demander une prolongation via le portail <em>VaudTax</em> avant cette date. Une première prolongation jusqu’au 31 mai est généralement accordée sans justification particulière.</p><h3>🟢 Genève &mdash; délai au 31 mars, large prolongation</h3><p><strong>Genève</strong> accorde un délai au <strong>31 mars 2026</strong> avec possibilité de prolongation jusqu’au <strong>30 juin</strong>. Pour les indépendants ou cas complexes, des délais supplémentaires sont possibles sur demande motivée via ge.ch.</p><h3>🟢 Fribourg &mdash; délai au 31 mars</h3><p><strong>Fribourg</strong> fixe son délai au <strong>31 mars 2026</strong>. La prolongation jusqu’au 15 juin est accordable sur simple demande écrite ou via le portail cantonal fr.ch.</p><h3>🟢 Valais &mdash; délai au 31 mars</h3><p>En <strong>Valais</strong>, le délai est également au <strong>31 mars 2026</strong>. Les utilisateurs de <em>TaxMe Online</em> bénéficient d’une procédure simplifiée. Prolongation possible jusqu’au 30 juin sur demande.</p><h3>🟢 Neuchâtel &mdash; délai au 31 mars</h3><p><strong>Neuchâtel</strong> : délai au <strong>31 mars 2026</strong>, prolongation jusqu’au 31 mai possible via ne.ch.</p><h3>🟢 Jura &mdash; délai au 15 mars</h3><p>Le <strong>Jura</strong> a l’un des délais les plus courts : <strong>15 mars 2026</strong>. La prolongation s’arrête au 30 avril. Au-delà, des intérêts moratoires peuvent s’appliquer.</p><h2>Comment demander une prolongation ?</h2><p>La démarche est simple dans tous les cantons :</p><ol><li><strong>Connectez-vous</strong> au portail fiscal cantonal <em>avant</em> la date limite</li><li>Cochez <strong>« demande de prolongation »</strong> ou envoyez un courrier écrit</li><li>Indiquez le nouveau délai souhaité et le motif si demandé</li><li>Conservez la <strong>confirmation écrite</strong> de la prolongation accordée</li></ol><p>En cas de maladie ou d’absence prolongée, une prolongation exceptionnelle est possible avec justificatif.</p><h2>📄 Documents à préparer</h2><p>Pour éviter le stress de dernière minute, rassemblez dès janvier :</p><ul><li><strong>Certificat de salaire</strong> (fourni par l’employeur)</li><li>Attestations de <strong>rentes, pensions et allocations</strong></li><li>Relevés bancaires et de titres au <strong>31 décembre</strong></li><li>Attestations d’assurances : <strong>3ᵉʳᵉ pilier, assurance maladie</strong></li><li>Justificatifs de déductions : <strong>frais professionnels, dons, frais de garde</strong></li><li>Contrats de location ou hypothèque si propriétaire</li></ul><h2>NeoFidu gère votre déclaration</h2><p>Vous n’avez pas le temps ou la déclaration vous semble trop complexe ? <strong>NeoFidu</strong> connaît les délais de chaque canton romand et optimise vos déductions pour minimiser votre charge fiscale. <a href="/contact">Confiez-nous votre déclaration d’impôts</a> — rapide, digital et sécurisé.</p>`,
+    content: `<p>Chaque année, la déclaration d'impôts est source de stress : <strong>quand faut-il la remettre ?</strong> Bonne nouvelle : les délais varient d'un canton à l'autre, et la plupart offrent des prolongations. Voici le guide complet des échéances 2025 pour les six cantons romands.</p>
+<br/>
+<h3><strong>Pourquoi les délais varient-ils selon les cantons ?</strong></h3>
+<br/>
+<p>La Suisse est un État fédéral : chaque canton gère sa propre administration fiscale. Si le droit fiscal fédéral est harmonisé, <strong>les procédures et délais restent cantonaux</strong>. Il est donc essentiel de connaître les règles précises de votre canton de résidence.</p>
+<br/>
+<h3><strong>Vue d'ensemble des délais par canton (2025)</strong></h3>
+<br/>
+<table style="width:100%;border-collapse:collapse;margin-bottom:16px"><thead><tr style="background:#f3f4f6"><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Canton</th><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Délai ordinaire</th><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Prolongation possible</th></tr></thead><tbody>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">Vaud</td><td style="border:1px solid #d1d5db;padding:8px 12px">15 mars 2026</td><td style="border:1px solid #d1d5db;padding:8px 12px">Jusqu'au 30 juin (gratuit)</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">Genève</td><td style="border:1px solid #d1d5db;padding:8px 12px">31 mars 2026</td><td style="border:1px solid #d1d5db;padding:8px 12px">Jusqu'au 30 juin sur demande</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">Fribourg</td><td style="border:1px solid #d1d5db;padding:8px 12px">31 mars 2026</td><td style="border:1px solid #d1d5db;padding:8px 12px">Jusqu'au 15 septembre</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">Valais</td><td style="border:1px solid #d1d5db;padding:8px 12px">31 mars 2026</td><td style="border:1px solid #d1d5db;padding:8px 12px">Jusqu'au 30 juin sur demande</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">Neuchâtel</td><td style="border:1px solid #d1d5db;padding:8px 12px">31 mars 2026</td><td style="border:1px solid #d1d5db;padding:8px 12px">Jusqu'au 30 juin</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">Jura</td><td style="border:1px solid #d1d5db;padding:8px 12px">31 mars 2026</td><td style="border:1px solid #d1d5db;padding:8px 12px">Jusqu'au 30 septembre sur demande</td></tr>
+</tbody></table>
+<br/>
+<h3><strong>Canton de Vaud : délai au 15 mars 2026</strong></h3>
+<br/>
+<p>Si vous êtes vaudois, vous avez jusqu'au <strong>15 mars 2026</strong> pour déposer votre déclaration. C'est l'un des délais les plus courts de Romandie. Cependant, vous pouvez demander une <strong>prolongation gratuite jusqu'au 30 juin</strong> via le portail VaudTax — aucune justification n'est requise.</p>
+<br/>
+<p>Pour les cas complexes (activité indépendante, immobilier, succession), une seconde prolongation jusqu'au <strong>30 septembre</strong> est possible sur demande motivée.</p>
+<br/>
+<h3><strong>Canton de Genève : délai au 31 mars 2026</strong></h3>
+<br/>
+<p>À Genève, la déclaration doit être remise au <strong>31 mars 2026</strong>. La demande de prolongation s'effectue en ligne via le portail <strong>GeTax</strong> avant la date limite. Une première prolongation jusqu'au 30 juin est accordée automatiquement. Une prolongation supplémentaire jusqu'au 30 septembre est possible pour les dossiers complexes.</p>
+<br/>
+<h3><strong>Canton de Fribourg : délai au 31 mars 2026</strong></h3>
+<br/>
+<p>Les contribuables fribourgeois disposent jusqu'au <strong>31 mars 2026</strong>. Fribourg est particulièrement généreux sur les prolongations : une extension jusqu'au <strong>15 septembre 2026</strong> peut être obtenue via le portail FriTax, ce qui laisse amplement le temps de rassembler tous les documents.</p>
+<br/>
+<h3><strong>Canton du Valais : délai au 31 mars 2026</strong></h3>
+<br/>
+<p>En Valais, le délai est fixé au <strong>31 mars 2026</strong>. La prolongation jusqu'au 30 juin s'obtient facilement en ligne. Le Valais met à disposition l'outil <strong>TaxMe Online</strong> pour faciliter la saisie, y compris pour les travailleurs frontaliers et les propriétaires immobiliers.</p>
+<br/>
+<h3><strong>Canton de Neuchâtel : délai au 31 mars 2026</strong></h3>
+<br/>
+<p>À Neuchâtel, la déclaration est attendue pour le <strong>31 mars 2026</strong>. Une prolongation jusqu'au 30 juin peut être demandée via le portail cantonal. Neuchâtel dispose d'un service d'aide téléphonique particulièrement réactif pour accompagner les contribuables dans leurs démarches.</p>
+<br/>
+<h3><strong>Canton du Jura : délai au 31 mars 2026</strong></h3>
+<br/>
+<p>Le Jura aligne son délai au <strong>31 mars 2026</strong>, avec une possibilité de prolongation jusqu'au <strong>30 septembre</strong> sur demande motivée — l'une des extensions les plus longues de Romandie. Le portail jurassien permet également de suivre l'état de traitement de votre dossier en temps réel.</p>
+<br/>
+<h3><strong>Comment demander une prolongation ?</strong></h3>
+<br/>
+<p>Dans tous les cantons romands, la démarche est similaire :</p>
+<br/>
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🖥️ Connectez-vous au portail fiscal en ligne de votre canton</li>
+<li style="margin-bottom:8px">📋 Sélectionnez l'option "Demande de prolongation"</li>
+<li style="margin-bottom:8px">📅 Choisissez la nouvelle date souhaitée</li>
+<li style="margin-bottom:8px">✅ Validez avant la date limite initiale</li>
+</ul>
+<br/>
+<p><strong>Attention :</strong> une prolongation ne reporte pas l'obligation de payer l'impôt estimé. Les acomptes provisionnels restent dus aux dates prévues, sous peine d'intérêts de retard.</p>
+<br/>
+<h3><strong>Conseils pratiques pour ne pas rater le délai</strong></h3>
+<br/>
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">📂 <strong>Préparez vos documents dès janvier</strong> : certificats de salaire, attestations bancaires, justificatifs de déductions</li>
+<li style="margin-bottom:8px">🔔 <strong>Activez les rappels</strong> sur votre smartphone pour les dates limites</li>
+<li style="margin-bottom:8px">💼 <strong>Déléguez à un fiduciaire</strong> si votre situation est complexe — ils ont souvent des délais prolongés d'office</li>
+<li style="margin-bottom:8px">📬 <strong>Vérifiez votre boîte postale</strong> en janvier : la convocation fiscale officielle y arrive généralement</li>
+</ul>
+<br/>
+<p>Besoin d'aide pour votre déclaration cette année ? <strong>Neofidu</strong> vous accompagne de A à Z, quel que soit votre canton romand — délais, déductions, optimisation fiscale.</p>`,
     category: "fiscalite",
     date: "2026-03-23",
     readTime: 9,
@@ -64,7 +129,75 @@ export const blogArticles: BlogArticle[] = [
     slug: "activite-accessoire-suisse-declaration-revenus",
     title: "Activité accessoire en Suisse : comment déclarer ses revenus complémentaires en 2026",
     excerpt: "Freelance le week-end, Airbnb, vente en ligne, cours particuliers : comment déclarer une activité accessoire en Suisse ? Seuils AVS, impôts, risques et conseils pratiques.",
-    content: `<p>Vous travaillez à 100 % et faites des missions de conseil le week-end ? Vous louez votre appartement sur Airbnb ? Vous vendez sur Ricardo ? En Suisse, <strong>toute activité rémunérée doit être déclarée</strong> — même si elle semble anodine.</p><h2>Qu’est-ce qu’une activité accessoire ?</h2><p>Une activité accessoire (<em>Nebenerwerb</em>) est toute activité rémunérée exercée en dehors de votre emploi principal. Exemples courants :</p><ul><li>Conseil, coaching ou formation</li><li>Location courte durée via Airbnb</li><li>Vente en ligne (Ricardo, Tutti, Etsy, Amazon)</li><li>Cours particuliers, langues, sport</li><li>Création de contenu (YouTube, Instagram)</li><li>Traduction, photographie, graphisme</li></ul><h2>💰 Impact fiscal : comment sont imposés ces revenus ?</h2><p>Les revenus accessoires s’ajoutent à votre <strong>revenu imposable principal</strong>. Vous les déclarez dans la rubrique <strong>« Revenus d’activité indépendante »</strong> de votre déclaration cantonale, en indiquant :</p><ol><li>Le total des <strong>recettes brutes</strong></li><li>Le détail des <strong>charges déductibles</strong></li><li>Le <strong>bénéfice net</strong> = base imposable</li></ol><h2>⚠️ Cotisations AVS/AI/APG : le seuil à connaître</h2><p>C’est souvent là que la surprise est la plus grande. Dès que votre <strong>bénéfice net annuel dépasse CHF 2’300</strong>, vous devez cotiser à l’AVS au taux de <strong>10,1 %</strong> sur l’ensemble du bénéfice.</p><ul><li>Bénéfice net <strong>&lt; CHF 2’300</strong> : aucune cotisation AVS</li><li>Bénéfice net <strong>≥ CHF 2’300</strong> : 10,1 % sur la totalité du bénéfice (pas seulement la part au-delà)</li></ul><p>Pour vous annoncer, contactez votre <strong>caisse de compensation AVS cantonale</strong>.</p><h2>Airbnb et location courte durée</h2><p>Les revenus Airbnb sont traités comme des <strong>revenus locatifs</strong>. Déclarez les recettes brutes et déduisez les charges réelles : nettoyage, entretien, commission Airbnb, quote-part du loyer. Certains cantons acceptent un <strong>forfait de 20 %</strong> sur les recettes brutes pour les petites locations.</p><h2>Vente en ligne : quand êtes-vous considéré comme commerçant ?</h2><p>La vente ponctuelle d’objets personnels n’est pas imposée. Mais si vous achetez <em>dans le but de revendre</em> ou si la vente est régulière et organisée, vous exercez une <strong>activité commerciale soumise à l’impôt et à l’AVS</strong>. Les critères retenus : régularité, volume, intention lucrative.</p><h2>📝 Déductions possibles</h2><p>La bonne nouvelle : vous pouvez déduire toutes les dépenses directement liées à votre activité :</p><ul><li><strong>Matériel et équipement</strong> (ordinateur, caméra, outillage)</li><li><strong>Logiciels et abonnements</strong> professionnels</li><li><strong>Frais de déplacement</strong> (kilométrage ou transports publics)</li><li><strong>Quote-part du loyer</strong> si bureau à domicile</li><li><strong>Formation continue</strong> liée à l’activité</li><li><strong>Marketing et publicité</strong></li><li><strong>Cotisations AVS</strong> payées</li></ul><p>Conservez <em>toutes vos pièces justificatives pendant 10 ans</em>.</p><h2>⛔ Risques en cas de non-déclaration</h2><p>Ne pas déclarer une activité accessoire constitue une <strong>soustraction fiscale</strong>. Les conséquences peuvent être lourdes :</p><ul><li>Rappel d’impôts sur les <strong>10 dernières années</strong> avec intérêts moratoires</li><li>Amende jusqu’à <strong>3 fois l’impôt soustrait</strong></li><li>Rappel de <strong>cotisations AVS</strong> avec intérêts</li></ul><p>Les autorités reçoivent automatiquement des données d’Airbnb, des plateformes de vente et des banques. <strong>La transparence reste la meilleure stratégie.</strong></p><h2>NeoFidu vous accompagne</h2><p>Vous avez une activité accessoire et ne savez pas comment la déclarer correctement ? <strong>NeoFidu</strong> analyse votre situation, optimise vos déductions et gère l’intégralité de votre déclaration d’impôts. <a href="/contact">Contactez-nous</a> — simple, digital, sécurisé.</p>`,
+    content: `<p>Vous travaillez à 100 % et faites des missions de conseil le week-end ? Vous louez votre appartement sur Airbnb ? Vous vendez des créations sur Etsy ? En Suisse, ces <strong>revenus complémentaires doivent être déclarés</strong> — et les règles sont plus nuancées qu'on ne le pense.</p>
+<br/>
+<h3><strong>Qu'est-ce qu'une activité accessoire ?</strong></h3>
+<br/>
+<p>Une activité accessoire (ou activité lucrative indépendante secondaire) est tout travail rémunéré exercé <strong>en dehors de votre emploi principal</strong>, de façon régulière ou ponctuelle. Elle se distingue de l'emploi principal par :</p>
+<br/>
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">📊 Un <strong>taux d'occupation inférieur</strong> à l'activité principale</li>
+<li style="margin-bottom:8px">💰 Des <strong>revenus généralement plus modestes</strong></li>
+<li style="margin-bottom:8px">⏰ Un caractère <strong>non-exclusif</strong> — vous restez salarié par ailleurs</li>
+</ul>
+<br/>
+<h3><strong>Quels types de revenus sont concernés ?</strong></h3>
+<br/>
+<p>La quasi-totalité des revenus complémentaires doit figurer dans votre déclaration d'impôts :</p>
+<br/>
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🖥️ <strong>Freelance / conseil</strong> : missions ponctuelles pour des entreprises</li>
+<li style="margin-bottom:8px">🏠 <strong>Location Airbnb</strong> ou sous-location de votre logement</li>
+<li style="margin-bottom:8px">🛒 <strong>Vente en ligne</strong> (Etsy, Ricardo, Digitec Marketplace...)</li>
+<li style="margin-bottom:8px">📸 <strong>Photographie, graphisme</strong>, création de contenu</li>
+<li style="margin-bottom:8px">🚗 <strong>Chauffeur VTC</strong> (Uber, Bolt...)</li>
+<li style="margin-bottom:8px">🎓 <strong>Cours particuliers</strong> et formations</li>
+</ul>
+<br/>
+<p><strong>Exception notable :</strong> les gains de jeux d'argent autorisés (loterie suisse, casinos agréés) sont exonérés jusqu'à un certain seuil.</p>
+<br/>
+<h3><strong>Le seuil de 2 300 CHF : ce qu'il faut savoir</strong></h3>
+<br/>
+<p>Pour l'AVS/AI, les revenus d'activité accessoire inférieurs à <strong>2 300 CHF par employeur et par année</strong> peuvent être exemptés de cotisations sociales, sur demande explicite. Attention : cette franchise ne s'applique pas à l'impôt sur le revenu — <strong>tous les revenus, même minimes, doivent être déclarés fiscalement</strong>.</p>
+<br/>
+<h3><strong>Comment déclarer concrètement ?</strong></h3>
+<br/>
+<p>La déclaration se fait en <strong>4 étapes simples</strong> :</p>
+<br/>
+<ol style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:10px"><strong>Rassemblez vos justificatifs</strong> : factures émises, relevés de plateforme (Airbnb, Etsy...), contrats de prestation</li>
+<li style="margin-bottom:10px"><strong>Calculez votre bénéfice net</strong> : revenus bruts moins les charges déductibles (matériel, téléphone pro, déplacements, formation...)</li>
+<li style="margin-bottom:10px"><strong>Renseignez le formulaire annexe</strong> "Activité lucrative indépendante" de votre déclaration cantonale</li>
+<li style="margin-bottom:10px"><strong>Signalez-vous à la caisse AVS</strong> si vos revenus dépassent 2 300 CHF/an</li>
+</ol>
+<br/>
+<h3><strong>Déductions possibles sur vos revenus accessoires</strong></h3>
+<br/>
+<p>En tant qu'indépendant accessoire, vous pouvez déduire les frais <strong>directement liés à votre activité</strong> :</p>
+<br/>
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">💻 Matériel informatique et logiciels (prorata usage professionnel)</li>
+<li style="margin-bottom:8px">📱 Abonnement téléphonique / internet (part professionnelle)</li>
+<li style="margin-bottom:8px">🚆 Frais de déplacement pour les missions</li>
+<li style="margin-bottom:8px">📚 Formations en lien direct avec l'activité</li>
+<li style="margin-bottom:8px">🏢 Frais de bureau à domicile (sous conditions)</li>
+<li style="margin-bottom:8px">📦 Matières premières et fournitures</li>
+</ul>
+<br/>
+<h3><strong>Cotisations AVS/AI : les points de vigilance</strong></h3>
+<br/>
+<p>Si vos revenus accessoires dépassent <strong>2 300 CHF par an</strong>, vous devez vous affilier à une caisse de compensation AVS en tant qu'indépendant. Les cotisations s'élèvent à environ <strong>10 % du bénéfice net</strong> (part employé + employeur confondues). Ne pas s'affilier expose à des <strong>rappels de cotisations avec intérêts</strong> et peut impacter vos droits à la retraite.</p>
+<br/>
+<h3><strong>Risques en cas de non-déclaration</strong></h3>
+<br/>
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">⚠️ <strong>Reprise fiscale</strong> sur 10 ans avec intérêts de retard</li>
+<li style="margin-bottom:8px">💸 <strong>Amende pour soustraction fiscale</strong> (jusqu'à 3× l'impôt éludé)</li>
+<li style="margin-bottom:8px">📉 <strong>Lacunes dans vos rentes AVS</strong> futures</li>
+<li style="margin-bottom:8px">🔍 Risque accru de <strong>contrôle fiscal approfondi</strong></li>
+</ul>
+<br/>
+<p>Vous avez une activité accessoire et vous souhaitez être en règle ? <strong>Neofidu</strong> vous aide à déclarer vos revenus complémentaires correctement, optimiser vos déductions et éviter les mauvaises surprises au moment du décompte final.</p>`,
     category: "fiscalite",
     date: "2026-03-23",
     readTime: 11,
