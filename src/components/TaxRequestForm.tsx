@@ -3573,7 +3573,7 @@ export function TaxRequestForm() {
                 <div>
                   <span className="font-medium">
                     {formData.clientType === "couple"
-                      ? `${formData.firstName || "Contribuable 1"} — {isEnglish ? `I eat outside home most` : `je mange hors du domicile la majo`}rité de mes jours de travail`
+                      ? `${formData.firstName || "Contribuable 1"} — ${isEnglish ? "I eat outside home most" : "je mange hors du domicile la majorité"}  des jours de travail`
                       : "Je mange hors du domicile lors de mes jours de travail"}
                   </span>
                   <p className="text-sm text-blue-600 mt-1">
@@ -3804,7 +3804,7 @@ export function TaxRequestForm() {
                     <textarea
                       value={formData.soldStocksDetails}
                       onChange={(e) => updateForm("soldStocksDetails", e.target.value)}
-                      placeholder={`{isEnglish ? `E.g.: Sale of 50 Nestlé shares in March` : `Ex: Vente de 50 actions Nestlé en mars`} ${formData.taxYear}, vente de parts de fonds UBS en octobre...`}
+                      placeholder={`${isEnglish ? "E.g.: Sale of 50 Nestlé shares in March" : "Ex: Vente de 50 actions Nestlé en mars"} ${formData.taxYear}, vente de parts de fonds UBS en octobre...`}
                       className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
                     />
                   </div>
@@ -4493,7 +4493,7 @@ export function TaxRequestForm() {
                     <textarea
                       value={formData.soldPropertyDetails}
                       onChange={(e) => updateForm("soldPropertyDetails", e.target.value)}
-                      placeholder={`{isEnglish ? `E.g.: Apartment in Lausanne sold in June` : `Ex: Appartement à Lausanne vendu en juin`} ${formData.taxYear} pour CHF 850'000.-`}
+                      placeholder={`${isEnglish ? "E.g.: Apartment in Lausanne sold in June" : "Ex: Appartement à Lausanne vendu en juin"} ${formData.taxYear} pour CHF 850'000.-`}
                       className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
                     />
                   </div>
@@ -5819,7 +5819,7 @@ export function TaxRequestForm() {
                 onError={(error) => console.error("Erreur de paiement:", error)}
                 customerEmail={formData.email}
                 customerName={`${formData.firstName} ${formData.lastName}`}
-                description={`{isEnglish ? `Tax return ${formData.taxYear}` : `Déclaration fiscale ${formData.taxYear}`} - ${formData.canton}`}
+                description={`${isEnglish ? `Tax return ${formData.taxYear}` : `Déclaration fiscale ${formData.taxYear}`} - ${formData.canton}`}
                 taxRequestReference={taxRequestReference}
                 metadata={{
                   taxRequestReference: taxRequestReference,
