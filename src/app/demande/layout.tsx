@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Déclaration d'impôts en ligne Suisse | Devis gratuit",
-  description:
-    "Remplissez votre déclaration d'impôts suisse en ligne. Service fiduciaire pour particuliers, couples et indépendants. Dès CHF 50.- Vaud, Genève, Valais, Fribourg. Devis gratuit en 2 minutes.",
+  title: "Déclaration d’impôts en Ligne | Devis gratuit",
+  description: "Déposez votre demande de déclaration d’impôts en ligne en Suisse romande. Devis personnalisé immédiat. Dès CHF 50.",
   keywords: [
     // Français - Principal
     "déclaration impôts en ligne suisse",
