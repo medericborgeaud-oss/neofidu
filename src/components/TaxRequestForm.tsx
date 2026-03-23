@@ -1163,7 +1163,7 @@ export function TaxRequestForm() {
     }
   };
 
-  // {isEnglish ? "Retry upload" : "{isEnglish ? "Retry" : "Réessayer"} l'upload"} d'un fichier
+  // {isEnglish ? "Retry upload" : "Réessayer l'upload"} d'un fichier
   const retryFileUpload = async (fileId: string) => {
     const fileToRetry = uploadedFiles.find((f) => f.id === fileId);
     if (!fileToRetry) return;
@@ -1269,7 +1269,7 @@ export function TaxRequestForm() {
         docs.push({
           id: "questionnaireIndependantVS",
           name: isEnglish ? "Self-employed activity form" : "Formulaire activité indépendante",
-          description: "{isEnglish ? "Canton of Valais" : "Canton du Valais"}",
+          description: isEnglish ? "Canton of Valais" : "Canton du Valais",
           required: true,
           reason: isEnglish ? "Information form required by the canton of Valais" : "Formulaire de renseignements exigé par le canton du Valais",
           tooltip: getDocumentTooltip("questionnaireIndependantVS")
@@ -1290,10 +1290,10 @@ export function TaxRequestForm() {
       if (formData.hasAVSIndependent || (formData.familyStatus === "couple" && formData.hasAVSIndependent2)) {
         docs.push({
           id: "avsIndependent",
-          name: isEnglish ? "AVS/AHV self-employed certificate" : "Attestation {isEnglish ? "Self-employed AVS" : "AVS indépendant"}",
+          name: isEnglish ? "AVS/AHV self-employed certificate" : "Attestation AVS indépendant",
           description: "Cotisations personnelles",
           required: true,
-          reason: isEnglish ? "Declared self-employed AVS/AHV contributions" : "Cotisations {isEnglish ? "Self-employed AVS" : "AVS indépendant"} déclarées",
+          reason: isEnglish ? "Declared self-employed AVS/AHV contributions" : "Cotisations AVS indépendant déclarées",
           tooltip: getDocumentTooltip("avsIndependent")
         });
       }
@@ -2123,7 +2123,7 @@ export function TaxRequestForm() {
       <Card className="p-8 md:p-12 text-center">
         <SuccessIllustration className="w-40 h-40 mx-auto mb-6" />
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          {isEnglish ? "Request saved!" : "{isEnglish ? "Request saved" : "Demande enregistrée"} !"}
+          {isEnglish ? "Request saved!" : "Demande enregistrée !"}
         </h2>
         <p className="text-muted-foreground text-lg mb-6">
           Merci pour votre confiance. Vous recevrez un email de confirmation sous peu.
@@ -2694,10 +2694,10 @@ export function TaxRequestForm() {
                   <p className="font-medium text-amber-800">{isEnglish ? "Required information" : "Informations requises"}</p>
                   <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
                     {!formData.canton && !formData.livesAbroad && (
-                      <li>{isEnglish ? "Please select your canton" : "{isEnglish ? "Select the canton" : "Sélectionnez le canton"} de votre déclaration"}</li>
+                      <li>{isEnglish ? "Please select your canton" : "Sélectionnez le canton de votre déclaration"}</li>
                     )}
                     {!formData.canton && formData.livesAbroad && (
-                      <li>{isEnglish ? "Select the canton where your property/income is in Switzerland" : "{isEnglish ? "Select the canton" : "Sélectionnez le canton"} où se trouve votre bien/revenu en Suisse"}</li>
+                      <li>{isEnglish ? "Select the canton where your property/income is in Switzerland" : "Sélectionnez le canton où se trouve votre bien/revenu en Suisse"}</li>
                     )}
                     {formData.livesAbroad && !formData.countryOfResidence && (
                       <li>{isEnglish ? "Select your current country of residence" : "Sélectionnez votre pays de résidence actuel"}</li>
@@ -3164,7 +3164,7 @@ export function TaxRequestForm() {
                     if (e.target.value.trim() !== "") {
                       const validation = validatePhone(e.target.value);
                       if (!validation.valid) {
-                        setValidationErrors(prev => ({ ...prev, phone: validation.error || "{isEnglish ? "Phone" : "Téléphone"} invalide" }));
+                        setValidationErrors(prev => ({ ...prev, phone: validation.error || (isEnglish ? "Phone invalid" : "Téléphone invalide") }));
                       } else {
                         setValidationErrors(prev => ({ ...prev, phone: "" }));
                       }
@@ -3964,7 +3964,7 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">{isEnglish ? "Optional 2nd pillar (BVG)" : "{isEnglish ? "Optional 2nd pillar" : "2ème pilier facultatif"} (LPP)"}</span>
+                        <span className="font-medium">{isEnglish ? "Optional 2nd pillar (BVG)" : "2ème pilier facultatif (LPP)"}</span>
                         <p className="text-xs text-muted-foreground">{isEnglish ? "Voluntary contributions to the 2nd pillar - deductible!" : "Cotisations volontaires au 2ème pilier - déductibles!"}</p>
                       </div>
                     </label>
@@ -5536,7 +5536,7 @@ export function TaxRequestForm() {
                                 type="button"
                                 onClick={() => retryFileUpload(file.id)}
                                 className="w-6 h-6 flex items-center justify-center text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
-                                title=isEnglish ? "Retry upload" : "{isEnglish ? "Retry upload" : "{isEnglish ? "Retry" : "Réessayer"} l'upload"}"
+                                title={isEnglish ? "Retry upload" : "Réessayer l'upload"}
                               >
                                 <RefreshCw className="w-3.5 h-3.5" />
                               </button>
@@ -5794,7 +5794,7 @@ export function TaxRequestForm() {
             <div className="mb-6 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Lock className="w-4 h-4 text-green-600" />
-                <span>{isEnglish ? "Secure SSL payment" : "{isEnglish ? "Secure payment" : "Paiement sécurisé"} SSL"}</span>
+                <span>{isEnglish ? "Secure SSL payment" : "Paiement sécurisé SSL"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CreditCard className="w-4 h-4 text-primary" />
@@ -5941,7 +5941,7 @@ export function TaxRequestForm() {
                     }}
                     className="text-red-700 border-red-300 hover:bg-red-100"
                   >
-                    {isEnglish ? "Retry upload" : "{isEnglish ? "Retry" : "Réessayer"} l'upload"}
+                    {isEnglish ? "Retry upload" : "Réessayer l'upload"}
                   </Button>
                   <Button
                     variant="ghost"
