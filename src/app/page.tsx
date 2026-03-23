@@ -13,8 +13,8 @@ const About = dynamic(() => import("@/components/About").then(mod => ({ default:
 const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ default: mod.Contact })), { ssr: true });
 
 export const metadata: Metadata = {
-  title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 50",
-  description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 50. Vaud, Genève, Valais. Service bilingue FR/EN.",
+  title: "Fiduciaire en Ligne Suisse | Déclaration d’impôts | NeoFidu",
+  description: "Fiduciaire 100% en ligne en Suisse romande. Déclaration d’impôts dès CHF 50, comptabilité, gérance immobilière. Devis gratuit.",
   keywords: [
     // Expat-specific keywords (high priority)
     "expat tax return switzerland",
@@ -72,9 +72,12 @@ export const metadata: Metadata = {
   // },
 };
 
+
+const faqSchema = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien coûte une déclaration d'impôts en Suisse ?","acceptedAnswer":{"@type":"Answer","text":"Chez NeoFidu, la déclaration d'impôts commence à CHF 50. Le prix varie selon la complexité de votre situation (revenus, indépendant, propriété…)."}},{"@type":"Question","name":"Puis-je faire ma déclaration d'impôts en ligne en Suisse ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Avec NeoFidu, vous envoyez vos documents depuis votre smartphone ou ordinateur. Nos spécialistes diplômés s'occupent du reste."}},{"@type":"Question","name":"NeoFidu s'adresse-t-il aux indépendants et freelances ?","acceptedAnswer":{"@type":"Answer","text":"Oui. NeoFidu accompagne les indépendants, freelances et PME pour leur déclaration d'impôts et leur comptabilité dès CHF 500/an."}},{"@type":"Question","name":"Dans quels cantons NeoFidu est-il disponible ?","acceptedAnswer":{"@type":"Answer","text":"NeoFidu couvre toute la Suisse romande : Genève, Vaud, Valais, Fribourg, Neuchâtel et Jura."}},{"@type":"Question","name":"Quels sont les délais pour la déclaration d'impôts ?","acceptedAnswer":{"@type":"Answer","text":"La date limite est généralement le 31 mars, avec prolongation possible selon le canton. NeoFidu vous aide à respecter ces échéances."}}]};
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <main className="min-h-screen">
       <Header />
       <Hero />
       <Simulators />
