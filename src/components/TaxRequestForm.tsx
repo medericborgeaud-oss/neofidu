@@ -95,7 +95,7 @@ const cantonCodeInfo: Record<string, { label: string; placeholder: string; sourc
   VD: {
     label: "Code de contrôle",
     placeholder: "Ex: 123456",
-    source: "Trouvez ce numéro sur votre courrier fiscal",
+    source: "{isEnglish ? "Find this number on your tax letter" : "Trouvez ce numéro sur votre courrier fiscal"}",
   },
   VS: {
     label: "Numéro de contrôle",
@@ -126,20 +126,20 @@ const cantonCodeInfo: Record<string, { label: string; placeholder: string; sourc
 
 // Options pour la situation familiale (étape 2a)
 const familyStatusOptions = [
-  { id: "single", name: "Déclaration individuelle", icon: User, description: "Personne seule (célibataire, divorcé(e), veuf/veuve)" },
-  { id: "couple", name: "Déclaration commune", icon: Users, description: "Couple marié ou partenariat enregistré" },
+  { id: "single", name: isEnglish ? "Individual return" : "Déclaration individuelle", icon: User, description: "Personne seule (célibataire, divorcé(e), veuf/veuve)" },
+  { id: "couple", name: isEnglish ? "Joint return" : "Déclaration commune", icon: Users, description: "Couple marié ou partenariat enregistré" },
 ];
 
 // Options pour la situation professionnelle (étape 2b)
 // La description de "independent" dépend du familyStatus, elle sera générée dynamiquement
 const professionalStatusOptions = [
-  { id: "employee", name: "Salarié / Retraité", icon: User, description: "Employé, retraité, étudiant, chômeur" },
-  { id: "independent", name: "Indépendant", icon: Briefcase, descriptionSingle: "Travailleur indépendant", descriptionCouple: "Activité indépendante (au moins un conjoint)" },
+  { id: "employee", name: isEnglish ? "Employee / Retiree" : "Salarié / Retraité", icon: User, description: "Employé, retraité, étudiant, chômeur" },
+  { id: "independent", name: "Indépendant", icon: Briefcase, descriptionSingle: "Travailleur indépendant", descriptionCouple: "{isEnglish ? "Self-employed activity" : "Activité indépendante"} (au moins un conjoint)" },
 ];
 
 // Ancien tableau conservé pour compatibilité avec le reste du code
 const clientTypes = [
-  { id: "private", name: "Client privé", icon: User, description: "Salarié, retraité, étudiant" },
+  { id: "private", name: isEnglish ? "Private client" : "Client privé", icon: User, description: "Salarié, retraité, étudiant" },
   { id: "independent", name: "Indépendant", icon: Briefcase, description: "Travailleur indépendant" },
   { id: "couple", name: "Couple", icon: Users, description: "Couple marié / partenariat enregistré" },
 ];
@@ -162,12 +162,12 @@ const residenceStatuses = [
 ];
 
 const maritalStatuses = [
-  { id: "single", name: "Célibataire", description: "Jamais marié(e)" },
-  { id: "married", name: "Marié(e)", description: "Union légale" },
-  { id: "divorced", name: "Divorcé(e)", description: "Mariage dissous" },
-  { id: "widowed", name: "Veuf/Veuve", description: "Conjoint décédé" },
-  { id: "separated", name: "Séparé(e)", description: "Séparation légale" },
-  { id: "partnership", name: "Partenariat enregistré", description: "Union civile" },
+  { id: "single", name: isEnglish ? "Single" : "Célibataire", description: "Jamais marié(e)" },
+  { id: "married", name: isEnglish ? "Married" : "Marié(e)", description: "Union légale" },
+  { id: "divorced", name: isEnglish ? "Divorced" : "Divorcé(e)", description: "Mariage dissous" },
+  { id: "widowed", name: isEnglish ? "Widowed" : "Veuf/Veuve", description: "Conjoint décédé" },
+  { id: "separated", name: isEnglish ? "Separated" : "Séparé(e)", description: "Séparation légale" },
+  { id: "partnership", name: isEnglish ? "Registered partnership" : "Partenariat enregistré", description: "Union civile" },
 ];
 
 // Les statuts d'emploi pour les clients privés
@@ -175,45 +175,45 @@ const employmentStatuses = [
   { id: "employed", name: "Salarié(e)", description: "Employé à temps plein ou partiel" },
   { id: "retired", name: "Retraité(e)", description: "AVS, AI, ou autre rente" },
   { id: "unemployed", name: "Au chômage", description: "Inscrit au chômage" },
-  { id: "selfemployed", name: "Indépendant(e)", description: "Activité indépendante" },
+  { id: "selfemployed", name: "Indépendant(e)", description: "{isEnglish ? "Self-employed activity" : "Activité indépendante"}" },
 ];
 
 // Les catégories de documents avec tooltips explicatifs
 const documentCategories = [
   { id: "salary", name: "Certificat(s) de salaire", description: "De tous les employeurs", tooltip: "Document fourni par votre employeur indiquant votre salaire brut, les cotisations sociales et les impôts prélevés à la source." },
   { id: "pension", name: "Attestation de rente", description: "AVS, AI, LPP, etc.", tooltip: "Attestations de toutes vos rentes : AVS, AI, 2ème pilier (LPP), rentes étrangères, etc." },
-  { id: "unemployment", name: "Attestation de chômage", description: "Indemnités chômage reçues", tooltip: "Attestation de l'office régional de placement (ORP) indiquant les indemnités chômage perçues durant l'année." },
-  { id: "business", name: "Comptes résultats et bilan", description: "Pour indépendants", tooltip: "États financiers complets de votre activité indépendante : compte de résultat, bilan, et annexes. Document obligatoire pour les indépendants." },
-  { id: "questionnaireIndependantVD", name: "Questionnaire général indépendant", description: "Canton de Vaud uniquement", tooltip: "Formulaire spécifique demandé par le canton de Vaud pour les indépendants. Contient des informations détaillées sur votre activité." },
-  { id: "questionnaireIndependantFR", name: "Questionnaire pour indépendants", description: "Canton de Fribourg", tooltip: "Formulaire complémentaire demandé par le canton de Fribourg pour les personnes exerçant une activité lucrative indépendante." },
-  { id: "questionnaireIndependantVS", name: "Formulaire activité indépendante", description: "Canton du Valais", tooltip: "Formulaire de renseignements complémentaires pour les contribuables exerçant une activité lucrative indépendante dans le canton du Valais." },
-  { id: "questionnaireIndependantNE", name: "Annexe activité indépendante", description: "Canton de Neuchâtel", tooltip: "Formulaire annexe pour les contribuables indépendants utilisant Clic & Tax dans le canton de Neuchâtel." },
-  { id: "avsIndependent", name: "Attestation AVS indépendant", description: "Cotisations personnelles", tooltip: "Attestation de votre caisse de compensation indiquant les cotisations AVS/AI/APG versées en tant qu'indépendant." },
+  { id: "unemployment", name: isEnglish ? "Unemployment benefit certificate" : "Attestation de chômage", description: isEnglish ? "Unemployment benefits received" : "Indemnités chômage reçues", tooltip: "Attestation de l'office régional de placement (ORP) indiquant les indemnités chômage perçues durant l'année." },
+  { id: "business", name: isEnglish ? "Profit & Loss and Balance Sheet" : "Comptes résultats et bilan", description: isEnglish ? "For self-employed" : "Pour indépendants", tooltip: "États financiers complets de votre activité indépendante : compte de résultat, bilan, et annexes. Document obligatoire pour les indépendants." },
+  { id: "questionnaireIndependantVD", name: isEnglish ? "General self-employed questionnaire" : "Questionnaire général indépendant", description: isEnglish ? "Canton of Vaud only" : "Canton de Vaud uniquement", tooltip: "Formulaire spécifique demandé par le canton de Vaud pour les indépendants. Contient des informations détaillées sur votre activité." },
+  { id: "questionnaireIndependantFR", name: isEnglish ? "Self-employed questionnaire" : "Questionnaire pour indépendants", description: isEnglish ? "Canton of Fribourg" : "Canton de Fribourg", tooltip: "Formulaire complémentaire demandé par le canton de Fribourg pour les personnes exerçant une activité lucrative indépendante." },
+  { id: "questionnaireIndependantVS", name: isEnglish ? "Self-employed activity form" : "Formulaire activité indépendante", description: "{isEnglish ? "Canton of Valais" : "Canton du Valais"}", tooltip: "Formulaire de renseignements complémentaires pour les contribuables exerçant une activité lucrative indépendante dans le canton du Valais." },
+  { id: "questionnaireIndependantNE", name: isEnglish ? "Self-employed activity annex" : "Annexe activité indépendante", description: isEnglish ? "Canton of Neuchâtel" : "Canton de Neuchâtel", tooltip: "Formulaire annexe pour les contribuables indépendants utilisant Clic & Tax dans le canton de Neuchâtel." },
+  { id: "avsIndependent", name: isEnglish ? "AVS/AHV self-employed certificate" : "Attestation {isEnglish ? "Self-employed AVS" : "AVS indépendant"}", description: "Cotisations personnelles", tooltip: "Attestation de votre caisse de compensation indiquant les cotisations AVS/AI/APG versées en tant qu'indépendant." },
   { id: "amortization", name: "Tableau des amortissements", description: "Actifs professionnels", tooltip: "Tableau détaillant les amortissements de vos actifs professionnels (véhicule, matériel, mobilier, etc.)." },
-  { id: "businessBank", name: "Relevé compte professionnel", description: "Compte séparé", tooltip: "Relevé de votre compte bancaire professionnel (si séparé du compte privé) au 31 décembre." },
-  { id: "bank", name: "Relevés bancaires au 31.12", description: "Tous vos comptes", tooltip: "Relevés de tous vos comptes bancaires et postaux montrant le solde au 31 décembre et les intérêts perçus." },
-  { id: "stocks", name: "Relevés de titres au 31.12", description: "Actions, fonds, obligations", tooltip: "Relevé de dépôt de votre banque indiquant la valeur fiscale de vos titres au 31 décembre." },
-  { id: "stocksSale", name: "Justificatifs ventes titres", description: "Relevés de transactions", tooltip: "Relevés de transactions de votre banque/courtier montrant les achats et ventes de titres durant l'année (prix d'achat, prix de vente, dates)." },
-  { id: "insurance", name: "Attestation primes maladie", description: "Primes LAMal payées", tooltip: "Attestation de votre caisse maladie indiquant le total des primes d'assurance obligatoire (LAMal) payées." },
-  { id: "pillar3a", name: "Attestation pilier 3a", description: "Versements effectués", tooltip: "Attestation de votre banque ou assurance confirmant les versements effectués sur votre compte 3ème pilier A." },
-  { id: "guard", name: "Frais de garde d'enfants", description: "Crèche, UAPE, maman de jour, cantine, camps", tooltip: "Factures et attestations des frais de garde : crèche, UAPE, maman de jour, cantine scolaire, camps de vacances." },
-  { id: "alimonyReceived", name: "Pensions alimentaires reçues", description: "Contributions d'entretien", tooltip: "Justificatifs des pensions alimentaires reçues pour vous-même ou vos enfants (extraits bancaires, jugement de divorce)." },
-  { id: "alimonyPaid", name: "Pensions alimentaires versées", description: "Contributions versées", tooltip: "Justificatifs des pensions alimentaires versées à votre ex-conjoint ou pour vos enfants (extraits bancaires, jugement)." },
-  { id: "debts", name: "Attestation de dettes", description: "Prêts personnels, leasing", tooltip: "Attestations de vos créanciers indiquant le solde de vos dettes au 31 décembre et les intérêts payés." },
-  { id: "mortgage", name: "Attestation hypothécaire", description: "Intérêts, amortissements", tooltip: "Attestation de votre banque indiquant le solde de l'hypothèque, les intérêts payés et les amortissements." },
-  { id: "renovations", name: "Factures gros travaux", description: "Rénovations, entretien", tooltip: "Factures des travaux d'entretien et de rénovation de votre bien immobilier (seuls les travaux d'entretien sont déductibles)." },
+  { id: "businessBank", name: isEnglish ? "Professional account statement" : "Relevé compte professionnel", description: isEnglish ? "Separate account" : "Compte séparé", tooltip: "Relevé de votre compte bancaire professionnel (si séparé du compte privé) au 31 décembre." },
+  { id: "bank", name: isEnglish ? "Bank statements as of 31.12" : "Relevés bancaires au 31.12", description: "Tous vos comptes", tooltip: "Relevés de tous vos comptes bancaires et postaux montrant le solde au 31 décembre et les intérêts perçus." },
+  { id: "stocks", name: isEnglish ? "Securities statements as of 31.12" : "Relevés de titres au 31.12", description: "Actions, fonds, obligations", tooltip: "Relevé de dépôt de votre banque indiquant la valeur fiscale de vos titres au 31 décembre." },
+  { id: "stocksSale", name: "Justificatifs ventes titres", description: isEnglish ? "Transaction statements" : "Relevés de transactions", tooltip: "Relevés de transactions de votre banque/courtier montrant les achats et ventes de titres durant l'année (prix d'achat, prix de vente, dates)." },
+  { id: "insurance", name: "Attestation primes maladie", description: isEnglish ? "LAMal premiums paid" : "Primes LAMal payées", tooltip: "Attestation de votre caisse maladie indiquant le total des primes d'assurance obligatoire (LAMal) payées." },
+  { id: "pillar3a", name: "Attestation pilier 3a", description: isEnglish ? "Payments made" : "Versements effectués", tooltip: "Attestation de votre banque ou assurance confirmant les versements effectués sur votre compte 3ème pilier A." },
+  { id: "guard", name: "Frais de garde d'enfants", description: isEnglish ? "Childcare, UAPE, childminder, cafeteria, camps" : "Crèche, UAPE, maman de jour, cantine, camps", tooltip: "Factures et attestations des frais de garde : crèche, UAPE, maman de jour, cantine scolaire, camps de vacances." },
+  { id: "alimonyReceived", name: isEnglish ? "Alimony received" : "Pensions alimentaires reçues", description: "Contributions d'entretien", tooltip: "Justificatifs des pensions alimentaires reçues pour vous-même ou vos enfants (extraits bancaires, jugement de divorce)." },
+  { id: "alimonyPaid", name: isEnglish ? "Alimony paid" : "Pensions alimentaires versées", description: isEnglish ? "Contributions paid" : "Contributions versées", tooltip: "Justificatifs des pensions alimentaires versées à votre ex-conjoint ou pour vos enfants (extraits bancaires, jugement)." },
+  { id: "debts", name: "Attestation de dettes", description: isEnglish ? "Personal loans, leasing" : "Prêts personnels, leasing", tooltip: "Attestations de vos créanciers indiquant le solde de vos dettes au 31 décembre et les intérêts payés." },
+  { id: "mortgage", name: isEnglish ? "Mortgage certificate" : "Attestation hypothécaire", description: isEnglish ? "Interest, amortization" : "Intérêts, amortissements", tooltip: "Attestation de votre banque indiquant le solde de l'hypothèque, les intérêts payés et les amortissements." },
+  { id: "renovations", name: "Factures gros travaux", description: isEnglish ? "Renovations, maintenance" : "Rénovations, entretien", tooltip: "Factures des travaux d'entretien et de rénovation de votre bien immobilier (seuls les travaux d'entretien sont déductibles)." },
   { id: "property", name: "Documents immobiliers", description: "Charges, PPE, etc.", tooltip: "Décompte de charges de copropriété, attestations de frais d'entretien, etc." },
-  { id: "propertySale", name: "Documents vente immobilière", description: "Acte de vente, IGI", tooltip: "Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers, acte d'achat original, factures des travaux de plus-value effectués." },
-  { id: "donations", name: "Attestations de dons", description: "Organisations d'utilité publique", tooltip: "Attestations de dons à des organisations reconnues d'utilité publique (associations, fondations, églises, partis politiques)." },
+  { id: "propertySale", name: isEnglish ? "Real estate sale documents" : "Documents vente immobilière", description: "Acte de vente, IGI", tooltip: "Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers, acte d'achat original, factures des travaux de plus-value effectués." },
+  { id: "donations", name: "Attestations de dons", description: isEnglish ? "Charitable organizations" : "Organisations d'utilité publique", tooltip: "Attestations de dons à des organisations reconnues d'utilité publique (associations, fondations, églises, partis politiques)." },
   { id: "other", name: "Autres justificatifs", description: "Frais professionnels, etc.", tooltip: "Justificatifs de frais professionnels, cotisations syndicales, formations, etc." },
 ];
 
 // Documents spécifiques pour les Suisses de l'étranger
 const abroadDocumentCategories = [
-  { id: "taxResidenceCertificate", name: "Attestation de résidence fiscale", description: "Du pays de résidence", tooltip: "Certificat officiel de votre pays de résidence confirmant que vous y êtes domicilié fiscalement. Nécessaire pour appliquer la convention de double imposition.", required: true },
-  { id: "foreignIncome", name: "Justificatifs revenus étrangers", description: "Salaire, pension, etc.", tooltip: "Documents attestant vos revenus dans votre pays de résidence : fiches de salaire, attestations de pension, etc. Nécessaires pour déterminer le taux d'imposition.", required: true },
-  { id: "foreignTaxReturn", name: "Avis d'imposition étranger", description: "Dernière déclaration", tooltip: "Copie de votre dernière déclaration d'impôts ou avis d'imposition de votre pays de résidence.", required: false },
-  { id: "da1Form", name: "Formulaire DA-1", description: "Récupération impôt anticipé", tooltip: "Formulaire pour demander le remboursement de l'impôt anticipé suisse (35%) sur les dividendes et intérêts de source suisse.", required: false },
+  { id: "taxResidenceCertificate", name: isEnglish ? "Tax residence certificate" : "Attestation de résidence fiscale", description: isEnglish ? "From the country of residence" : "Du pays de résidence", tooltip: "Certificat officiel de votre pays de résidence confirmant que vous y êtes domicilié fiscalement. Nécessaire pour appliquer la convention de double imposition.", required: true },
+  { id: "foreignIncome", name: isEnglish ? "Foreign income documents" : "Justificatifs revenus étrangers", description: "Salaire, pension, etc.", tooltip: "Documents attestant vos revenus dans votre pays de résidence : fiches de salaire, attestations de pension, etc. Nécessaires pour déterminer le taux d'imposition.", required: true },
+  { id: "foreignTaxReturn", name: isEnglish ? "Foreign tax assessment" : "Avis d'imposition étranger", description: isEnglish ? "Last tax return" : "Dernière déclaration", tooltip: "Copie de votre dernière déclaration d'impôts ou avis d'imposition de votre pays de résidence.", required: false },
+  { id: "da1Form", name: "Formulaire DA-1", description: isEnglish ? "Recovery of withholding tax" : "Récupération impôt anticipé", tooltip: "Formulaire pour demander le remboursement de l'impôt anticipé suisse (35%) sur les dividendes et intérêts de source suisse.", required: false },
   { id: "swissBankAbroad", name: "Relevés comptes suisses", description: "Banques en Suisse", tooltip: "Relevés de vos comptes bancaires suisses au 31 décembre, montrant le solde et les intérêts perçus.", required: false },
   { id: "swissProperty", name: "Documents bien immobilier CH", description: "Si propriétaire en Suisse", tooltip: "Documents relatifs à votre bien immobilier en Suisse : estimation fiscale, décompte de charges, attestation hypothécaire.", required: false },
 ];
@@ -301,7 +301,7 @@ interface Property {
   usage: string;
   ownershipShare: string; // en pourcentage (100, 50, etc.)
   acquisitionYear: string;
-  constructionYear: string; // Année de construction du bâtiment
+  constructionYear: string; // {isEnglish ? "Year of construction" : "Année de construction"} du bâtiment
   // Valeurs fiscales
   fiscalValue: string; // Valeur fiscale/cadastrale
   rentalValue: string; // Valeur locative (si résidence)
@@ -383,7 +383,7 @@ const areAllPropertiesValid = (props: Property[]): boolean => {
 // Valider une date de naissance (doit être dans le passé, âge raisonnable 18-120 ans)
 const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } => {
   if (!dateStr || dateStr.trim() === "") {
-    return { valid: false, error: "Date de naissance requise" };
+    return { valid: false, error: "{isEnglish ? "Date of birth" : "Date de naissance"} requise" };
   }
 
   // Vérifier le format de la date (YYYY-MM-DD)
@@ -420,12 +420,12 @@ const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } 
 
   // Âge maximum raisonnable (120 ans)
   if (age > 120) {
-    return { valid: false, error: "Date de naissance invalide (âge supérieur à 120 ans)" };
+    return { valid: false, error: "Invalid date of birth (age over 120 years)" };
   }
 
-  // Année de naissance minimale raisonnable (1900)
+  // {isEnglish ? "Year of birth" : "Année de naissance"} minimale raisonnable (1900)
   if (year < 1900) {
-    return { valid: false, error: "Année de naissance invalide (avant 1900)" };
+    return { valid: false, error: "Invalid birth year (before 1900)" };
   }
 
   return { valid: true };
@@ -434,7 +434,7 @@ const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } 
 // Valider un numéro de téléphone suisse
 const validatePhone = (phone: string): { valid: boolean; error?: string } => {
   if (!phone || phone.trim() === "") {
-    return { valid: true }; // Téléphone optionnel
+    return { valid: true }; // {isEnglish ? "Phone" : "Téléphone"} optionnel
   }
 
   // Nettoyer le numéro (enlever espaces, tirets, parenthèses, points)
@@ -442,7 +442,7 @@ const validatePhone = (phone: string): { valid: boolean; error?: string } => {
 
   // Vérifier la longueur minimale
   if (cleaned.length < 10) {
-    return { valid: false, error: "Numéro trop court. Ex: +41 79 123 45 67" };
+    return { valid: false, error: "Number too short. E.g.: +41 79 123 45 67" };
   }
 
   // Formats suisses acceptés:
@@ -730,11 +730,11 @@ export function TaxRequestForm() {
     clientType: "",
     // Statut d'emploi (pour clients privés non indépendants)
     employmentStatus: "" as "" | "employed" | "retired" | "unemployed" | "selfemployed",
-    // Taux d'occupation en % (pour les salariés)
+    // {isEnglish ? "Employment rate" : "Taux d'occupation"} en % (pour les salariés)
     occupationRate: "" as string,
     // Second adulte pour couple
     employmentStatus2: "" as "" | "employed" | "retired" | "unemployed" | "selfemployed",
-    // Taux d'occupation en % pour le conjoint
+    // {isEnglish ? "Employment rate" : "Taux d'occupation"} en % pour le conjoint
     occupationRate2: "" as string,
     residenceStatus2: "",
     firstName: "",
@@ -747,7 +747,7 @@ export function TaxRequestForm() {
     email: "",
     phone: "",
     // Numéros fiscaux (de la lettre de l'administration)
-    taxYear: new Date().getFullYear() - 1, // Année fiscale (année précédente par défaut)
+    taxYear: new Date().getFullYear() - 1, // {isEnglish ? "Tax year" : "Année fiscale"} (année précédente par défaut)
     taxpayerNumber: "",
     declarationCode: "",
     street: "",
@@ -788,27 +788,27 @@ export function TaxRequestForm() {
     // === SECTION INDÉPENDANTS - ADULTE 1 ===
     // Informations sur l'activité indépendante
     businessType: "", // Type d'activité (commerce, services, artisanat, etc.)
-    businessStartDate: "", // Date de début d'activité
-    hasIDE: false, // Numéro IDE (Identifiant des Entreprises)
+    businessStartDate: "", // {isEnglish ? "Activity start date" : "Date de début d'activité"}
+    hasIDE: false, // {isEnglish ? "UID number" : "Numéro IDE"} (Identifiant des Entreprises)
     ideNumber: "",
     isRegisteredRC: false, // Inscrit au Registre du Commerce
     hasVAT: false, // Assujetti à la TVA
     vatNumber: "",
-    // Chiffres clés de l'activité
+    // {isEnglish ? "Key figures" : "Chiffres clés"} de l'activité
     hasBusinessAccounts: false, // Dispose d'un bilan/compte de résultat préparé
     businessRevenue: "", // Chiffre d'affaires annuel (si pas de bilan)
     businessExpenses: "", // Charges annuelles (si pas de bilan)
     businessNetIncome: "", // Bénéfice net (calculé ou déclaré)
     // Cotisations sociales indépendant
-    hasAVSIndependent: false, // Cotisations AVS/AI/APG indépendant
+    hasAVSIndependent: false, // {isEnglish ? "Self-employed AVS/AHV contributions" : "Cotisations AVS/AI/APG indépendant"}
     avsIndependentAmount: "",
-    hasLPPVoluntary: false, // 2ème pilier facultatif
+    hasLPPVoluntary: false, // {isEnglish ? "Optional 2nd pillar" : "2ème pilier facultatif"}
     lppVoluntaryAmount: "",
     // Frais professionnels
-    hasHomeOffice: false, // Bureau à domicile
+    hasHomeOffice: false, // {isEnglish ? "Home office" : "Bureau à domicile"}
     homeOfficePercent: "", // % de la surface
     homeOfficeAmount: "", // Montant du loyer attribué
-    hasBusinessVehicle: false, // Véhicule professionnel
+    hasBusinessVehicle: false, // {isEnglish ? "Business vehicle" : "Véhicule professionnel"}
     businessVehiclePercent: "", // % utilisation professionnelle
     businessVehicleExpenses: "", // Frais totaux véhicule
     // === FIN SECTION INDÉPENDANTS ADULTE 1 ===
@@ -915,7 +915,7 @@ export function TaxRequestForm() {
 
         if (!health.services?.cloudinary) {
           setServicesHealthy(false);
-          setHealthError("Le service de stockage des documents n'est pas disponible. Veuillez réessayer plus tard ou contacter contact@neofidu.ch");
+          setHealthError("The document storage service is unavailable. Please try again later or contacter contact@neofidu.ch");
           console.error("❌ CRITICAL: Cloudinary not configured!", health);
         } else {
           setServicesHealthy(true);
@@ -1112,10 +1112,10 @@ export function TaxRequestForm() {
       }
 
       if (result.configMissing) {
-        return { success: false, error: "Stockage non configuré" };
+        return { success: false, error: "Storage not configured" };
       }
 
-      return { success: false, error: result.error || "Échec de l'upload" };
+      return { success: false, error: result.error || (isEnglish ? "Upload failed" : "Échec de l'upload") };
     } catch (error) {
       console.error("Erreur upload fichier:", error);
       return { success: false, error: "Erreur de connexion" };
@@ -1163,7 +1163,7 @@ export function TaxRequestForm() {
     }
   };
 
-  // Réessayer l'upload d'un fichier
+  // {isEnglish ? "Retry upload" : "{isEnglish ? "Retry" : "Réessayer"} l'upload"} d'un fichier
   const retryFileUpload = async (fileId: string) => {
     const fileToRetry = uploadedFiles.find((f) => f.id === fileId);
     if (!fileToRetry) return;
@@ -1237,10 +1237,10 @@ export function TaxRequestForm() {
       // Indépendants: comptes résultats et bilan obligatoires
       docs.push({
         id: "business",
-        name: "Comptes résultats et bilan",
-        description: "Pour indépendants",
+        name: isEnglish ? "Profit & Loss and Balance Sheet" : "Comptes résultats et bilan",
+        description: isEnglish ? "For self-employed" : "Pour indépendants",
         required: true,
-        reason: "Obligatoire pour les indépendants - contient vos revenus et charges",
+        reason: isEnglish ? "Required for self-employed - contains your income and expenses" : "Obligatoire pour les indépendants - contient vos revenus et charges",
         tooltip: getDocumentTooltip("business")
       });
 
@@ -1248,52 +1248,52 @@ export function TaxRequestForm() {
       if (formData.canton === "VD") {
         docs.push({
           id: "questionnaireIndependantVD",
-          name: "Questionnaire général indépendant",
-          description: "Canton de Vaud uniquement",
+          name: isEnglish ? "General self-employed questionnaire" : "Questionnaire général indépendant",
+          description: isEnglish ? "Canton of Vaud only" : "Canton de Vaud uniquement",
           required: true,
-          reason: "Document obligatoire exigé par le canton de Vaud pour les indépendants",
+          reason: isEnglish ? "Document required by the canton of Vaud for self-employed" : "Document obligatoire exigé par le canton de Vaud pour les indépendants",
           tooltip: getDocumentTooltip("questionnaireIndependantVD")
         });
       }
       if (formData.canton === "FR") {
         docs.push({
           id: "questionnaireIndependantFR",
-          name: "Questionnaire pour indépendants",
-          description: "Canton de Fribourg",
+          name: isEnglish ? "Self-employed questionnaire" : "Questionnaire pour indépendants",
+          description: isEnglish ? "Canton of Fribourg" : "Canton de Fribourg",
           required: true,
-          reason: "Formulaire requis par le canton de Fribourg pour les activités indépendantes",
+          reason: isEnglish ? "Form required by the canton of Fribourg for self-employed activities" : "Formulaire requis par le canton de Fribourg pour les activités indépendantes",
           tooltip: getDocumentTooltip("questionnaireIndependantFR")
         });
       }
       if (formData.canton === "VS") {
         docs.push({
           id: "questionnaireIndependantVS",
-          name: "Formulaire activité indépendante",
-          description: "Canton du Valais",
+          name: isEnglish ? "Self-employed activity form" : "Formulaire activité indépendante",
+          description: "{isEnglish ? "Canton of Valais" : "Canton du Valais"}",
           required: true,
-          reason: "Formulaire de renseignements exigé par le canton du Valais",
+          reason: isEnglish ? "Information form required by the canton of Valais" : "Formulaire de renseignements exigé par le canton du Valais",
           tooltip: getDocumentTooltip("questionnaireIndependantVS")
         });
       }
       if (formData.canton === "NE") {
         docs.push({
           id: "questionnaireIndependantNE",
-          name: "Annexe activité indépendante",
-          description: "Canton de Neuchâtel",
+          name: isEnglish ? "Self-employed activity annex" : "Annexe activité indépendante",
+          description: isEnglish ? "Canton of Neuchâtel" : "Canton de Neuchâtel",
           required: true,
-          reason: "Annexe obligatoire pour Clic & Tax (canton de Neuchâtel)",
+          reason: isEnglish ? "Required annex for Clic & Tax (canton of Neuchâtel)" : "Annexe obligatoire pour Clic & Tax (canton de Neuchâtel)",
           tooltip: getDocumentTooltip("questionnaireIndependantNE")
         });
       }
 
-      // Attestation AVS indépendant (recommandé)
+      // Attestation {isEnglish ? "Self-employed AVS" : "AVS indépendant"} (recommandé)
       if (formData.hasAVSIndependent || (formData.familyStatus === "couple" && formData.hasAVSIndependent2)) {
         docs.push({
           id: "avsIndependent",
-          name: "Attestation AVS indépendant",
+          name: isEnglish ? "AVS/AHV self-employed certificate" : "Attestation {isEnglish ? "Self-employed AVS" : "AVS indépendant"}",
           description: "Cotisations personnelles",
           required: true,
-          reason: "Cotisations AVS indépendant déclarées",
+          reason: isEnglish ? "Declared self-employed AVS/AHV contributions" : "Cotisations {isEnglish ? "Self-employed AVS" : "AVS indépendant"} déclarées",
           tooltip: getDocumentTooltip("avsIndependent")
         });
       }
@@ -1303,16 +1303,16 @@ export function TaxRequestForm() {
         name: "Tableau des amortissements",
         description: "Actifs professionnels",
         required: false,
-        reason: "Recommandé si vous avez des actifs professionnels",
+        reason: isEnglish ? "Recommended if you have business assets" : "Recommandé si vous avez des actifs professionnels",
         tooltip: getDocumentTooltip("amortization")
       });
       // Relevé compte professionnel (recommandé)
       docs.push({
         id: "businessBank",
-        name: "Relevé compte professionnel",
-        description: "Compte séparé",
+        name: isEnglish ? "Professional account statement" : "Relevé compte professionnel",
+        description: isEnglish ? "Separate account" : "Compte séparé",
         required: false,
-        reason: "Recommandé si vous avez un compte professionnel séparé",
+        reason: isEnglish ? "Recommended if you have a separate business account" : "Recommandé si vous avez un compte professionnel séparé",
         tooltip: getDocumentTooltip("businessBank")
       });
     }
@@ -1332,7 +1332,7 @@ export function TaxRequestForm() {
           name: "Certificat(s) de salaire",
           description: "De tous les employeurs",
           required: true,
-          reason: "Obligatoire pour les salariés",
+          reason: isEnglish ? "Required for employees" : "Obligatoire pour les salariés",
           tooltip: getDocumentTooltip("salary")
         });
       }
@@ -1342,17 +1342,17 @@ export function TaxRequestForm() {
           name: "Attestation de rente",
           description: "AVS, AI, LPP, etc.",
           required: true,
-          reason: "Obligatoire pour les retraités",
+          reason: isEnglish ? "Required for retirees" : "Obligatoire pour les retraités",
           tooltip: getDocumentTooltip("pension")
         });
       }
       if (hasUnemployed) {
         docs.push({
           id: "unemployment",
-          name: "Attestation de chômage",
-          description: "Indemnités chômage reçues",
+          name: isEnglish ? "Unemployment benefit certificate" : "Attestation de chômage",
+          description: isEnglish ? "Unemployment benefits received" : "Indemnités chômage reçues",
           required: true,
-          reason: "Obligatoire pour les chômeurs",
+          reason: isEnglish ? "Required for unemployed individuals" : "Obligatoire pour les chômeurs",
           tooltip: getDocumentTooltip("unemployment")
         });
       }
@@ -1361,7 +1361,7 @@ export function TaxRequestForm() {
     // === DOCUMENTS BANCAIRES (toujours obligatoires) ===
     docs.push({
       id: "bank",
-      name: "Relevés bancaires au 31.12",
+      name: isEnglish ? "Bank statements as of 31.12" : "Relevés bancaires au 31.12",
       description: "Tous vos comptes",
       required: true,
       reason: "Obligatoire pour tous",
@@ -1372,7 +1372,7 @@ export function TaxRequestForm() {
     docs.push({
       id: "insurance",
       name: "Attestation primes maladie",
-      description: "Primes LAMal payées",
+      description: isEnglish ? "LAMal premiums paid" : "Primes LAMal payées",
       required: true,
       reason: "Obligatoire pour tous",
       tooltip: getDocumentTooltip("insurance")
@@ -1382,10 +1382,10 @@ export function TaxRequestForm() {
     if (formData.hasStocks) {
       docs.push({
         id: "stocks",
-        name: "Relevés de titres au 31.12",
+        name: isEnglish ? "Securities statements as of 31.12" : "Relevés de titres au 31.12",
         description: "Actions, fonds, obligations",
         required: true,
-        reason: "Obligatoire car vous avez déclaré des actions/fonds",
+        reason: isEnglish ? "Required because you declared shares/funds" : "Obligatoire car vous avez déclaré des actions/fonds",
         tooltip: getDocumentTooltip("stocks")
       });
     }
@@ -1395,7 +1395,7 @@ export function TaxRequestForm() {
       docs.push({
         id: "stocksSale",
         name: "Justificatifs ventes titres",
-        description: "Relevés de transactions",
+        description: isEnglish ? "Transaction statements" : "Relevés de transactions",
         required: true,
         reason: `Obligatoire car vous avez vendu des titres en ${formData.taxYear}`,
         tooltip: getDocumentTooltip("stocksSale")
@@ -1407,9 +1407,9 @@ export function TaxRequestForm() {
       docs.push({
         id: "pillar3a",
         name: "Attestation pilier 3a",
-        description: "Versements effectués",
+        description: isEnglish ? "Payments made" : "Versements effectués",
         required: true,
-        reason: "Obligatoire car vous avez déclaré des versements",
+        reason: isEnglish ? "Required because you declared payments" : "Obligatoire car vous avez déclaré des versements",
         tooltip: getDocumentTooltip("pillar3a")
       });
     }
@@ -1419,9 +1419,9 @@ export function TaxRequestForm() {
       docs.push({
         id: "guard",
         name: "Frais de garde d'enfants",
-        description: "Crèche, UAPE, maman de jour, cantine, camps",
+        description: isEnglish ? "Childcare, UAPE, childminder, cafeteria, camps" : "Crèche, UAPE, maman de jour, cantine, camps",
         required: true,
-        reason: "Obligatoire car vous avez déclaré des frais de garde",
+        reason: isEnglish ? "Required because you declared childcare costs" : "Obligatoire car vous avez déclaré des frais de garde",
         tooltip: getDocumentTooltip("guard")
       });
     }
@@ -1430,10 +1430,10 @@ export function TaxRequestForm() {
     if (formData.hasAlimonyReceived) {
       docs.push({
         id: "alimonyReceived",
-        name: "Pensions alimentaires reçues",
+        name: isEnglish ? "Alimony received" : "Pensions alimentaires reçues",
         description: "Contributions d'entretien",
         required: true,
-        reason: "Obligatoire car vous avez déclaré recevoir des pensions",
+        reason: isEnglish ? "Required because you declared receiving alimony" : "Obligatoire car vous avez déclaré recevoir des pensions",
         tooltip: getDocumentTooltip("alimonyReceived")
       });
     }
@@ -1442,10 +1442,10 @@ export function TaxRequestForm() {
     if (formData.hasAlimonyPaid) {
       docs.push({
         id: "alimonyPaid",
-        name: "Pensions alimentaires versées",
-        description: "Contributions versées",
+        name: isEnglish ? "Alimony paid" : "Pensions alimentaires versées",
+        description: isEnglish ? "Contributions paid" : "Contributions versées",
         required: true,
-        reason: "Obligatoire car vous avez déclaré verser des pensions",
+        reason: isEnglish ? "Required because you declared paying alimony" : "Obligatoire car vous avez déclaré verser des pensions",
         tooltip: getDocumentTooltip("alimonyPaid")
       });
     }
@@ -1455,9 +1455,9 @@ export function TaxRequestForm() {
       docs.push({
         id: "donations",
         name: "Attestations de dons",
-        description: "Organisations d'utilité publique",
+        description: isEnglish ? "Charitable organizations" : "Organisations d'utilité publique",
         required: true,
-        reason: "Obligatoire car vous avez déclaré des dons",
+        reason: isEnglish ? "Required because you declared donations" : "Obligatoire car vous avez déclaré des dons",
         tooltip: getDocumentTooltip("donations")
       });
     }
@@ -1467,9 +1467,9 @@ export function TaxRequestForm() {
       docs.push({
         id: "debts",
         name: "Attestation de dettes",
-        description: "Prêts personnels, leasing",
+        description: isEnglish ? "Personal loans, leasing" : "Prêts personnels, leasing",
         required: true,
-        reason: "Obligatoire car vous avez déclaré des dettes",
+        reason: isEnglish ? "Required because you declared debts" : "Obligatoire car vous avez déclaré des dettes",
         tooltip: getDocumentTooltip("debts")
       });
     }
@@ -1480,10 +1480,10 @@ export function TaxRequestForm() {
       if (formData.hasMortgage) {
         docs.push({
           id: "mortgage",
-          name: "Attestation hypothécaire",
-          description: "Intérêts, amortissements",
+          name: isEnglish ? "Mortgage certificate" : "Attestation hypothécaire",
+          description: isEnglish ? "Interest, amortization" : "Intérêts, amortissements",
           required: true,
-          reason: "Obligatoire car vous avez déclaré une hypothèque",
+          reason: isEnglish ? "Required because you declared a mortgage" : "Obligatoire car vous avez déclaré une hypothèque",
           tooltip: getDocumentTooltip("mortgage")
         });
       }
@@ -1492,9 +1492,9 @@ export function TaxRequestForm() {
         docs.push({
           id: "renovations",
           name: "Factures gros travaux",
-          description: "Rénovations, entretien",
+          description: isEnglish ? "Renovations, maintenance" : "Rénovations, entretien",
           required: true,
-          reason: "Obligatoire car vous avez déclaré des travaux",
+          reason: isEnglish ? "Required because you declared renovation work" : "Obligatoire car vous avez déclaré des travaux",
           tooltip: getDocumentTooltip("renovations")
         });
       }
@@ -1504,7 +1504,7 @@ export function TaxRequestForm() {
         name: "Documents immobiliers",
         description: "Charges, PPE, etc.",
         required: false,
-        reason: "Recommandé pour les propriétaires",
+        reason: isEnglish ? "Recommended for property owners" : "Recommandé pour les propriétaires",
         tooltip: getDocumentTooltip("property")
       });
     }
@@ -1513,7 +1513,7 @@ export function TaxRequestForm() {
     if (formData.hasSoldProperty) {
       docs.push({
         id: "propertySale",
-        name: "Documents vente immobilière",
+        name: isEnglish ? "Real estate sale documents" : "Documents vente immobilière",
         description: "Acte de vente, IGI",
         required: true,
         reason: `Obligatoire car vous avez vendu un bien en ${formData.taxYear}`,
@@ -1526,37 +1526,37 @@ export function TaxRequestForm() {
       // Attestation de résidence fiscale (obligatoire)
       docs.push({
         id: "taxResidenceCertificate",
-        name: "Attestation de résidence fiscale",
-        description: "Du pays de résidence",
+        name: isEnglish ? "Tax residence certificate" : "Attestation de résidence fiscale",
+        description: isEnglish ? "From the country of residence" : "Du pays de résidence",
         required: true,
-        reason: "Obligatoire pour les Suisses de l'étranger (convention de double imposition)",
+        reason: isEnglish ? "Required for Swiss abroad (double taxation agreement)" : "Obligatoire pour les Suisses de l'étranger (convention de double imposition)",
         tooltip: abroadDocumentCategories.find(d => d.id === "taxResidenceCertificate")?.tooltip
       });
       // Justificatifs revenus étrangers (obligatoire)
       docs.push({
         id: "foreignIncome",
-        name: "Justificatifs revenus étrangers",
+        name: isEnglish ? "Foreign income documents" : "Justificatifs revenus étrangers",
         description: "Salaire, pension, etc.",
         required: true,
-        reason: "Obligatoire pour déterminer le taux d'imposition applicable",
+        reason: isEnglish ? "Required to determine the applicable tax rate" : "Obligatoire pour déterminer le taux d'imposition applicable",
         tooltip: abroadDocumentCategories.find(d => d.id === "foreignIncome")?.tooltip
       });
       // Avis d'imposition étranger (recommandé)
       docs.push({
         id: "foreignTaxReturn",
-        name: "Avis d'imposition étranger",
-        description: "Dernière déclaration",
+        name: isEnglish ? "Foreign tax assessment" : "Avis d'imposition étranger",
+        description: isEnglish ? "Last tax return" : "Dernière déclaration",
         required: false,
-        reason: "Recommandé pour justifier les impôts payés à l'étranger",
+        reason: isEnglish ? "Recommended to justify taxes paid abroad" : "Recommandé pour justifier les impôts payés à l'étranger",
         tooltip: abroadDocumentCategories.find(d => d.id === "foreignTaxReturn")?.tooltip
       });
       // Formulaire DA-1 (si dividendes/intérêts suisses)
       docs.push({
         id: "da1Form",
         name: "Formulaire DA-1",
-        description: "Récupération impôt anticipé",
+        description: isEnglish ? "Recovery of withholding tax" : "Récupération impôt anticipé",
         required: false,
-        reason: "Si vous souhaitez récupérer l'impôt anticipé suisse (35%)",
+        reason: isEnglish ? "If you want to recover Swiss withholding tax (35%)" : "Si vous souhaitez récupérer l'impôt anticipé suisse (35%)",
         tooltip: abroadDocumentCategories.find(d => d.id === "da1Form")?.tooltip
       });
     }
@@ -1597,9 +1597,9 @@ export function TaxRequestForm() {
   // Tous les prix sont TTC (chiffres ronds)
   const calculatePrice = () => {
     let price = 50; // Prix de base TTC
-    // Supplément Suisse de l'étranger (complexité accrue : double imposition, etc.)
+    // {isEnglish ? "Swiss abroad supplement" : "Supplément Suisse de l'étranger"} (complexité accrue : double imposition, etc.)
     if (formData.livesAbroad) price += 50;
-    // Supplément couple
+    // {isEnglish ? "Couple supplement" : "Supplément couple"}
     if (formData.familyStatus === "couple") price += 20;
     // Supplément indépendant adulte 1
     if (formData.isIndependent) price += 40;
@@ -1684,11 +1684,11 @@ export function TaxRequestForm() {
       // Statut d'emploi obligatoire pour les non-indépendants
       if (formData.clientType !== "independent") {
         if (!formData.employmentStatus) return false;
-        // Taux d'occupation obligatoire pour les salariés
+        // {isEnglish ? "Employment rate" : "Taux d'occupation"} obligatoire pour les salariés
         if (formData.employmentStatus === "employed" && !formData.occupationRate) return false;
         // Pour les couples, le second adulte doit aussi avoir un statut
         if (formData.clientType === "couple" && !formData.employmentStatus2) return false;
-        // Taux d'occupation obligatoire pour le conjoint salarié
+        // {isEnglish ? "Employment rate" : "Taux d'occupation"} obligatoire pour le conjoint salarié
         if (formData.clientType === "couple" && formData.employmentStatus2 === "employed" && !formData.occupationRate2) return false;
       }
 
@@ -1768,7 +1768,7 @@ export function TaxRequestForm() {
 
       if (filesUploading.length > 0) {
         console.error("❌ Des fichiers sont encore en cours d'upload");
-        setSaveError("Veuillez attendre que tous les fichiers soient uploadés.");
+        setSaveError("Please wait for all files to be uploaded.");
         setIsSavingRequest(false);
         return null;
       }
@@ -2007,14 +2007,14 @@ export function TaxRequestForm() {
         console.error("Erreur sauvegarde demande:", data.error);
         setSaveError(
           data.error || "Une erreur est survenue lors de l'enregistrement de votre demande. " +
-          "Veuillez réessayer. Si le problème persiste, contactez-nous à contact@neofidu.ch"
+          "Please try again. If the problem persists, contact us at contact@neofidu.ch"
         );
         return null;
       }
     } catch (error) {
       console.error("Exception sauvegarde demande:", error);
       setSaveError(
-        "Erreur de connexion lors de l'enregistrement. Vérifiez votre connexion internet et réessayez."
+        "Connection error while saving. Check your internet connection and try again."
       );
       return null;
     } finally {
@@ -2106,7 +2106,7 @@ export function TaxRequestForm() {
           <div className="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
         <h2 className="text-xl md:text-2xl font-bold mb-4">
-          Paiement confirmé !
+          {isEnglish ? "Payment confirmed!" : "Paiement confirmé !"}
         </h2>
         <p className="text-muted-foreground mb-4">
           {postPaymentStatus}
@@ -2123,13 +2123,13 @@ export function TaxRequestForm() {
       <Card className="p-8 md:p-12 text-center">
         <SuccessIllustration className="w-40 h-40 mx-auto mb-6" />
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Demande enregistrée !
+          {isEnglish ? "Request saved!" : "{isEnglish ? "Request saved" : "Demande enregistrée"} !"}
         </h2>
         <p className="text-muted-foreground text-lg mb-6">
           Merci pour votre confiance. Vous recevrez un email de confirmation sous peu.
         </p>
         <div className="bg-primary/5 rounded-2xl p-6 max-w-sm mx-auto mb-6">
-          <div className="text-sm text-muted-foreground mb-2">Montant payé (TTC)</div>
+          <div className="text-sm text-muted-foreground mb-2">{isEnglish ? "Amount paid (incl. tax)" : "Montant payé (TTC)"}</div>
           <div className="text-4xl font-bold text-primary">
             CHF {calculatePrice()}.
           </div>
@@ -2139,20 +2139,20 @@ export function TaxRequestForm() {
         </div>
         <div className="text-sm text-muted-foreground">
           <p className="font-mono text-lg text-primary font-bold">
-            Référence: {taxRequestReference || "NF-XXXXXXXX"}
+            {isEnglish ? "Reference:" : "Référence:"} {taxRequestReference || "NF-XXXXXXXX"}
           </p>
           <p className="mt-4">
-            Documents envoyés: {uploadedFiles.length} fichier(s)
+            {isEnglish ? "Documents sent:" : "Documents envoyés:"} {uploadedFiles.length} {isEnglish ? "file(s)" : "fichier(s)"}
           </p>
           <p className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-800">
-            <strong>Important:</strong> Veuillez bien vérifier la quittance que vous avez reçue par email. Cette quittance confirme le bon enregistrement de votre demande.
+            <strong>{isEnglish ? "Important:</strong> Please verify the receipt you received by email. This receipt confirms the" : "Important:</strong> Veuillez bien vérifier la quittance que vous avez reçue par email. Cette quittance confirme le"} bon enregistrement de votre demande.
           </p>
         </div>
 
-        {/* Prochaines étapes */}
+        {/* {isEnglish ? "Next steps" : "Prochaines étapes"} */}
         <div className="mt-8 text-left max-w-2xl mx-auto">
           <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
-            Prochaines étapes
+            {isEnglish ? "Next steps" : "Prochaines étapes"}
           </h3>
 
           {/* Notre travail */}
@@ -2169,35 +2169,35 @@ export function TaxRequestForm() {
               <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
                 <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">1</div>
                 <div>
-                  <p className="font-medium text-gray-900">Vérification des documents</p>
-                  <p className="text-sm text-gray-600">Sous 24-48h, nous vérifions vos pièces et vous contactons si besoin.</p>
+                  <p className="font-medium text-gray-900">{isEnglish ? "Document verification" : "Vérification des documents"}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "Within 24-48h, we verify your documents and contact you if needed." : "Sous 24-48h, nous vérifions vos pièces et vous contactons si besoin."}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
                 <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">2</div>
                 <div>
-                  <p className="font-medium text-gray-900">Remplissage de votre déclaration</p>
-                  <p className="text-sm text-gray-600">Nos experts complètent votre déclaration fiscale (délai: 10 jours ouvrables).</p>
+                  <p className="font-medium text-gray-900">{isEnglish ? "Completing your tax return" : "Remplissage de votre déclaration"}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "Our experts complete your tax return (turnaround: 10 business days)." : "Nos experts complètent votre déclaration fiscale (délai: 10 jours ouvrables)."}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
                 <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">3</div>
                 <div>
-                  <p className="font-medium text-gray-900">Envoi à l'administration fiscale</p>
-                  <p className="text-sm text-gray-600">Nous transmettons votre déclaration directement aux impôts de votre canton.</p>
+                  <p className="font-medium text-gray-900">{isEnglish ? "Submission to the tax authority" : "Envoi à l'administration fiscale"}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "We submit your tax return directly to your canton's tax authority." : "Nous transmettons votre déclaration directement aux impôts de votre canton."}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
                 <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">4</div>
                 <div>
                   <p className="font-medium text-gray-900">Confirmation par email</p>
-                  <p className="text-sm text-gray-600">Vous recevez la quittance de dépôt confirmant que votre déclaration a bien été envoyée.</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "You receive the filing receipt confirming your return was successfully" : "Vous recevez la quittance de dépôt confirmant que votre déclaration a bien ét"}é envoyée.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Ce que font les impôts */}
+          {/* {isEnglish ? "What the tax authority does" : "Ce que font les impôts"} */}
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
@@ -2205,28 +2205,28 @@ export function TaxRequestForm() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                 </svg>
               </div>
-              <span className="font-semibold text-gray-700">Ce que font les impôts</span>
+              <span className="font-semibold text-gray-700">{isEnglish ? "What the tax authority does" : "Ce que font les impôts"}</span>
             </div>
             <div className="space-y-3 ml-8">
               <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
                 <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">5</div>
                 <div>
-                  <p className="font-medium text-gray-900">Traitement de votre déclaration</p>
-                  <p className="text-sm text-gray-600">L'administration fiscale analyse votre déclaration (délai: 2 à 6 mois selon le canton).</p>
+                  <p className="font-medium text-gray-900">{isEnglish ? "Processing your tax return" : "Traitement de votre déclaration"}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "The tax authority reviews your return (turnaround: 2 to 6 months depending on the" : "L'administration fiscale analyse votre déclaration (délai: 2 à 6 mois selon le ca"}nton).</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
                 <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">6</div>
                 <div>
-                  <p className="font-medium text-gray-900">Décision de taxation</p>
-                  <p className="text-sm text-gray-600">Vous recevez un avis de taxation avec le montant d'impôt définitif à payer (ou à récupérer).</p>
+                  <p className="font-medium text-gray-900">{isEnglish ? "Tax assessment decision" : "Décision de taxation"}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "You receive a tax assessment notice with the final tax amount to pay (or" : "Vous recevez un avis de taxation avec le montant d'impôt définitif à payer (ou à"} récupérer).</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
                 <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">7</div>
                 <div>
                   <p className="font-medium text-gray-900">Paiement ou remboursement</p>
-                  <p className="text-sm text-gray-600">Vous réglez le solde d'impôt ou recevez un remboursement si vous avez trop payé d'acomptes.</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "You pay the remaining tax balance or receive a refund if you overpaid" : "Vous réglez le solde d'impôt ou recevez un remboursement si vous avez trop payé d"}'acomptes.</p>
                 </div>
               </div>
             </div>
@@ -2235,16 +2235,16 @@ export function TaxRequestForm() {
           {/* Suivi */}
           <div className="p-4 bg-gray-100 rounded-xl text-center">
             <p className="text-sm text-gray-700">
-              <span className="font-medium">Suivez votre demande à tout moment :</span>{" "}
+              <span className="font-medium">{isEnglish ? "Track your request at any time:" : "Suivez votre demande à tout moment :"}</span>{" "}
               <a href="/suivi" className="text-primary font-semibold hover:underline">
-                Page de suivi →
+                {isEnglish ? "Tracking page →" : "Page de suivi →"}
               </a>
             </p>
           </div>
         </div>
 
         <div className="mt-6 text-center text-sm text-muted-foreground">
-          Une question ? Contactez-nous à{" "}
+          {isEnglish ? "A question? Contact us at" : "Une question ? Contactez-nous à"}{" "}
           <a href="mailto:contact@neofidu.ch" className="text-primary font-medium hover:underline">
             contact@neofidu.ch
           </a>
@@ -2267,7 +2267,7 @@ export function TaxRequestForm() {
 
   // Fonction pour recommencer le formulaire
   const handleResetForm = () => {
-    if (confirm("Êtes-vous sûr de vouloir recommencer ? Toutes vos données seront effacées.")) {
+    if (confirm(isEnglish ? "Are you sure you want to start over? All your data will be deleted." : "Êtes-vous sûr de vouloir recommencer ? Toutes vos données seront effacées.")) {
       clearStorage();
       setCurrentStep(1);
       setFormData({
@@ -2409,7 +2409,7 @@ export function TaxRequestForm() {
               <div>
                 <p className="font-medium text-sm">Reprise de votre demande</p>
                 <p className="text-xs text-muted-foreground">
-                  Vous avez repris là où vous en étiez. Vos données sont sauvegardées automatiquement.
+                  {isEnglish ? "You resumed where you left off. Your data is saved automatically." : "Vous avez repris là où vous en étiez. Vos données sont sauvegardées automatiquement."}
                 </p>
               </div>
             </div>
@@ -2433,10 +2433,10 @@ export function TaxRequestForm() {
                 </div>
                 <div className="flex-1">
                   <p className="font-medium text-sm text-amber-800">
-                    Documents à re-uploader
+                    {isEnglish ? "Documents to re-upload" : "Documents à re-uploader"}
                   </p>
                   <p className="text-xs text-amber-700 mt-1">
-                    {lostFilesFromPreviousSession.length} fichier(s) uploadé(s) lors de votre précédente session doivent être re-uploadés à l'étape 7 (Documents) :
+                    {isEnglish ? `${lostFilesFromPreviousSession.length} file(s) uploaded in your previous session must be re-uploa` : `${lostFilesFromPreviousSession.length} fichier(s) uploadé(s) lors de votre précédente session doivent être re-uploa`}dés à l'étape 7 (Documents) :
                   </p>
                   <ul className="mt-2 text-xs text-amber-700 list-disc list-inside">
                     {lostFilesFromPreviousSession.slice(0, 3).map((f, i) => (
@@ -2483,11 +2483,11 @@ export function TaxRequestForm() {
           ))}
         </div>
         <div className="text-center text-sm">
-          <span className="text-muted-foreground">Étape {currentStep}:</span>{" "}
+          <span className="text-muted-foreground">{isEnglish ? "Step" : "Étape"} {currentStep}:</span>{" "}
           <span className="font-medium">{steps[currentStep - 1]}</span>
         </div>
         <div className="text-center text-xs mt-1.5">
-          {currentStep === 1 ? <span className="text-emerald-600 font-medium">🚀 C'est parti !</span> : currentStep <= 3 ? <span className="text-emerald-600 font-medium">👍 Bon début !</span> : currentStep === 4 ? <span className="text-emerald-600 font-medium">🌗 Presque la moitié !</span> : currentStep <= 6 ? <span className="text-blue-600 font-medium">💪 Plus de la moitié !</span> : currentStep <= 8 ? <span className="text-amber-600 font-medium">✨ Presque fini !</span> : <span className="text-primary font-medium">🎉 Dernière ligne droite !</span>}
+          {currentStep === 1 ? <span className="text-emerald-600 font-medium">🚀 {isEnglish ? "Let's go!" : "C'est parti !"}</span> : currentStep <= 3 ? <span className="text-emerald-600 font-medium">👍 {isEnglish ? "Good start!" : "Bon début !"}</span> : currentStep === 4 ? <span className="text-emerald-600 font-medium">🌗 Presque la moitié !</span> : currentStep <= 6 ? <span className="text-blue-600 font-medium">💪 Plus de la moitié !</span> : currentStep <= 8 ? <span className="text-amber-600 font-medium">✨ {isEnglish ? "Almost done!" : "Presque fini !"}</span> : <span className="text-primary font-medium">🎉 Dernière ligne droite !</span>}
         </div>
       </div>
 
@@ -2499,7 +2499,7 @@ export function TaxRequestForm() {
               <Calculator className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Tarif estimé</span>
+              <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">{isEnglish ? "Estimated fee" : isEnglish ? "Estimated fee" : "Tarif estimé"}</span>
               <div className="flex items-baseline gap-1">
                 <span className="text-2xl font-bold text-primary">CHF {calculatePrice()}</span>
                 <span className="text-sm text-muted-foreground">.-</span>
@@ -2518,10 +2518,10 @@ export function TaxRequestForm() {
               <CantonIllustration className="w-24 h-24 flex-shrink-0" />
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  Établissement de votre déclaration d'impôt
+                  isEnglish ? "Tax Return Preparation" : "Établissement de votre déclaration d'impôt"
                 </h2>
                 <p className="text-muted-foreground">
-                  Dans quel canton la déclaration doit-elle être établie ?
+                  isEnglish ? "In which canton should the tax return be filed?" : "Dans quel canton la déclaration doit-elle être établie ?"
                 </p>
               </div>
             </div>
@@ -2613,21 +2613,21 @@ export function TaxRequestForm() {
                       ))}
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
-                      La déclaration sera établie dans le canton où se situe votre bien immobilier ou d'où provient votre revenu de source suisse.
+                      {isEnglish ? "The return will be filed in the canton where your property is located or from which your income" : "La déclaration sera établie dans le canton où se situe votre bien immobilier ou d'où provi"}ent votre revenu de source suisse.
                     </p>
                   </div>
 
                   {/* Pays de résidence */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Dans quel pays résidez-vous actuellement ? <span className="text-red-500">*</span>
+                      {isEnglish ? "In which country do you currently reside?" : "Dans quel pays résidez-vous actuellement ?"} <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.countryOfResidence}
                       onChange={(e) => updateForm("countryOfResidence", e.target.value)}
                       className="w-full md:w-1/2 p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
                     >
-                      <option value="">Sélectionnez votre pays de résidence</option>
+                      <option value="">{isEnglish ? "Select your country of residence" : "Sélectionnez votre pays de résidence"}</option>
                       {countriesAbroad.map((country) => (
                         <option key={country.code} value={country.code}>
                           {country.name}
@@ -2639,16 +2639,16 @@ export function TaxRequestForm() {
                   {/* Adresse complète à l'étranger */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Votre adresse complète à l'étranger
+                      {isEnglish ? "Your full address abroad" : "Votre adresse complète à l'étranger"}
                     </label>
                     <Textarea
                       value={formData.abroadAddress}
                       onChange={(e) => updateForm("abroadAddress", e.target.value)}
-                      placeholder="Rue, numéro, code postal, ville, région/état..."
+                      placeholder={isEnglish ? "Street, number, postal code, city, region/state..." : "Rue, numéro, code postal, ville, région/état..."}
                       className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
                     />
                     <p className="text-xs text-muted-foreground mt-1">
-                      Indiquez votre adresse complète de résidence à l'étranger (rue, numéro, code postal, ville).
+                      {isEnglish ? "Enter your full residence address abroad (street, number, postal code, city" : "Indiquez votre adresse complète de résidence à l'étranger (rue, numéro, code postal, ville"}).
                     </p>
                   </div>
 
@@ -2656,7 +2656,7 @@ export function TaxRequestForm() {
                     <p className="text-sm text-amber-800 flex items-start gap-2">
                       <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
                       <span>
-                        Un supplément de <strong>CHF 50.-</strong> s'applique pour les déclarations des Suisses de l'étranger (gestion des conventions de double imposition, complexité accrue).
+                        {isEnglish ? "A supplement of <strong>CHF 50.-</strong> applies to returns for Swiss abroad (management of con" : "Un supplément de <strong>CHF 50.-</strong> s'applique pour les déclarations des Suisses de l'étranger (gestion des con"}ventions de double imposition, complexité accrue).
                       </span>
                     </p>
                   </div>
@@ -2677,7 +2677,7 @@ export function TaxRequestForm() {
                   <p className="text-sm text-purple-700">
                     {isEnglish
                       ? "If you are subject to withholding tax (Quellensteuer) and wish to request ordinary taxation (TOU) or quasi-resident status, please "
-                      : "Si vous êtes imposé à la source et souhaitez faire une demande de taxation ordinaire (TOU) ou de statut quasi-résident, veuillez "}
+                      {isEnglish ? "If you are taxed at source and want to apply for ordinary taxation (OTA" : "Si vous êtes imposé à la source et souhaitez faire une demande de taxation ordinaire (T"}OU) ou de statut quasi-résident, veuillez "}
                     <a href="/#contact" className="text-purple-900 hover:underline font-bold">
                       {isEnglish ? "contact us for a personalized quote" : "nous contacter pour un devis personnalisé"}
                     </a>.
@@ -2694,10 +2694,10 @@ export function TaxRequestForm() {
                   <p className="font-medium text-amber-800">{isEnglish ? "Required information" : "Informations requises"}</p>
                   <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
                     {!formData.canton && !formData.livesAbroad && (
-                      <li>{isEnglish ? "Please select your canton" : "Sélectionnez le canton de votre déclaration"}</li>
+                      <li>{isEnglish ? "Please select your canton" : "{isEnglish ? "Select the canton" : "Sélectionnez le canton"} de votre déclaration"}</li>
                     )}
                     {!formData.canton && formData.livesAbroad && (
-                      <li>{isEnglish ? "Select the canton where your property/income is in Switzerland" : "Sélectionnez le canton où se trouve votre bien/revenu en Suisse"}</li>
+                      <li>{isEnglish ? "Select the canton where your property/income is in Switzerland" : "{isEnglish ? "Select the canton" : "Sélectionnez le canton"} où se trouve votre bien/revenu en Suisse"}</li>
                     )}
                     {formData.livesAbroad && !formData.countryOfResidence && (
                       <li>{isEnglish ? "Select your current country of residence" : "Sélectionnez votre pays de résidence actuel"}</li>
@@ -2715,7 +2715,7 @@ export function TaxRequestForm() {
             {/* Question 1: Situation familiale */}
             <div>
               <h2 className="text-2xl font-bold mb-2">
-                Êtes-vous seul(e) ou en couple ?
+                {isEnglish ? "Are you single or in a couple?" : "Êtes-vous seul(e) ou en couple ?"}
               </h2>
               <p className="text-muted-foreground mb-6">
                 Choisissez selon votre situation fiscale.
@@ -2753,8 +2753,8 @@ export function TaxRequestForm() {
                 </h2>
                 <p className="text-muted-foreground mb-6">
                   {formData.familyStatus === "couple"
-                    ? "Indiquez si l'un des conjoints exerce une activité indépendante."
-                    : "Indiquez si vous exercez une activité indépendante."}
+                    ? isEnglish ? "Indicate if one of the spouses is self-employed." : "Indiquez si l'un des conjoints exerce une activité indépendante."
+                    : isEnglish ? "Indicate if you are self-employed." : "Indiquez si vous exercez une activité indépendante."}
                 </p>
                 <div className="grid md:grid-cols-2 gap-4">
                   {professionalStatusOptions.map((option) => {
@@ -2793,17 +2793,17 @@ export function TaxRequestForm() {
         {currentStep === 3 && (
           <div>
             <h2 className="text-2xl font-bold mb-2">
-              Vos coordonnées
+              {isEnglish ? "Your contact details" : "Vos coordonnées"}
             </h2>
             <p className="text-muted-foreground mb-8">
-              Ces informations sont nécessaires pour établir votre déclaration.
+              {isEnglish ? "This information is required to prepare your tax return." : "Ces informations sont nécessaires pour établir votre déclaration."}
             </p>
 
-            {/* Année fiscale et numéros fiscaux */}
+            {/* {isEnglish ? "Tax year" : "Année fiscale"} et numéros fiscaux */}
             <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-xl">
               <h3 className="font-semibold text-amber-800 mb-3 flex items-center gap-2">
                 <FileText className="w-5 h-5" />
-                Informations de votre lettre d'impôts
+                {isEnglish ? "Information from your tax letter" : "Informations de votre lettre d'impôts"}
               </h3>
               <p className="text-sm text-amber-700 mb-4">
                 Vous trouverez ces informations sur la lettre de l'administration fiscale.
@@ -2811,7 +2811,7 @@ export function TaxRequestForm() {
               <div className="grid md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">
-                    Année fiscale
+                    {isEnglish ? "Tax year" : "Année fiscale"}
                   </label>
                   <select
                     value={formData.taxYear}
@@ -2831,7 +2831,7 @@ export function TaxRequestForm() {
                 <div>
                   <TooltipProvider>
                    <label className="text-sm font-medium mb-2 flex items-center gap-1.5">
-                     N° contribuable <span className="text-red-500">*</span>
+                     {isEnglish ? "Taxpayer No. " : "Nº contribuable "}<span className="text-red-500">*</span>
                      <Tooltip>
                        <TooltipTrigger asChild>
                          <button type="button" className="text-muted-foreground hover:text-primary transition-colors">
@@ -2839,8 +2839,8 @@ export function TaxRequestForm() {
                          </button>
                        </TooltipTrigger>
                        <TooltipContent side="top" className="max-w-xs">
-                         <p className="text-sm font-medium">📄 Où trouver ce numéro ?</p>
-                         <p className="text-xs mt-1">Sur votre courrier fiscal, en haut à droite. Format : <strong>123.456.789</strong></p>
+                         <p className="text-sm font-medium">{isEnglish ? "📄 Where to find this number ?" : "📄 Où trouver ce numéro ?"}</p>
+                         <p className="text-xs mt-1">{isEnglish ? "On your tax letter, top right. Format: <strong>12" : "Sur votre courrier fiscal, en haut à droite. Format : <strong>12"}3.456.789</strong></p>
                        </TooltipContent>
                      </Tooltip>
                    </label>
@@ -2856,7 +2856,7 @@ export function TaxRequestForm() {
                       if (e.target.value.trim() !== "") {
                         const validation = validateTaxpayerNumber(e.target.value, formData.canton);
                         if (!validation.valid) {
-                          setValidationErrors(prev => ({ ...prev, taxpayerNumber: validation.error || "Numéro invalide" }));
+                          setValidationErrors(prev => ({ ...prev, taxpayerNumber: validation.error || isEnglish ? "Invalid number" : "Numéro invalide" }));
                         } else {
                           setValidationErrors(prev => ({ ...prev, taxpayerNumber: "" }));
                         }
@@ -2871,7 +2871,7 @@ export function TaxRequestForm() {
                     </p>
                   ) : (
                     <p className="text-xs text-muted-foreground mt-1">
-                      Trouvez ce numéro sur votre courrier fiscal
+                      {isEnglish ? "Find this number on your tax letter" : "Trouvez ce numéro sur votre courrier fiscal"}
                     </p>
                   )}
                 </div>
@@ -2880,7 +2880,7 @@ export function TaxRequestForm() {
                     <label className="text-sm font-medium mb-2 flex items-center gap-1.5">
                       {formData.canton && cantonCodeInfo[formData.canton]
                         ? cantonCodeInfo[formData.canton].label
-                        : "Code de contrôle"} <span className="text-red-500">*</span>
+                        : (isEnglish ? "Control code" : "Code de contrôle")} <span className="text-red-500">*</span>
                       {formData.canton && cantonCodeInfo[formData.canton] && (
                         <Tooltip>
                           <TooltipTrigger asChild>
@@ -2889,8 +2889,8 @@ export function TaxRequestForm() {
                             </button>
                           </TooltipTrigger>
                           <TooltipContent side="top" className="max-w-xs">
-                         <p className="text-sm font-medium">📄 Où trouver ce code ?</p>
-                         <p className="text-xs mt-1">Sur votre courrier fiscal (même fiche que le N° contribuable). Le code varie selon votre canton.</p>
+                         <p className="text-sm font-medium">{isEnglish ? "📄 Where to find this code ?" : "📄 Où trouver ce code ?"}</p>
+                         <p className="text-xs mt-1">{isEnglish ? "On your tax letter (same document as the taxpayer number). The code var" : "Sur votre courrier fiscal (même fiche que le N° contribuable). Le code var"}ie selon votre canton.</p>
                        </TooltipContent>
                         </Tooltip>
                       )}
@@ -2908,7 +2908,7 @@ export function TaxRequestForm() {
                     <Info className="w-3 h-3" />
                     {formData.canton && cantonCodeInfo[formData.canton]
                       ? cantonCodeInfo[formData.canton].source
-                      : "Code unique de votre déclaration"}
+                      : isEnglish ? "Unique code for your tax return" : "Code unique de votre déclaration"}
                   </p>
                 </div>
               </div>
@@ -2917,10 +2917,10 @@ export function TaxRequestForm() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  Prénom <span className="text-red-500">*</span>
+                  {isEnglish ? "First name" : "Prénom"} <span className="text-red-500">*</span>
                 </label>
                 <Input
-                  placeholder="Votre prénom"
+                  placeholder={isEnglish ? "Your first name" : "Votre prénom"}
                   value={formData.firstName}
                   onChange={(e) => updateForm("firstName", e.target.value)}
                   className="rounded-xl"
@@ -2928,7 +2928,7 @@ export function TaxRequestForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  Nom <span className="text-red-500">*</span>
+                  {isEnglish ? "Last name" : "Nom"} <span className="text-red-500">*</span>
                 </label>
                 <Input
                   placeholder="Votre nom"
@@ -2938,10 +2938,10 @@ export function TaxRequestForm() {
                 />
               </div>
 
-              {/* Date de naissance */}
+              {/* {isEnglish ? "Date of birth" : "Date de naissance"} */}
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  Date de naissance <span className="text-red-500">*</span>
+                  {isEnglish ? "Date of birth" : "Date de naissance"} <span className="text-red-500">*</span>
                 </label>
                 <Input
                   type="date"
@@ -2975,10 +2975,10 @@ export function TaxRequestForm() {
                 )}
               </div>
 
-                            {/* Statut de résidence */}
+                            {/* {isEnglish ? "Residence status" : "Statut de résidence"} */}
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  Statut de résidence
+                  {isEnglish ? "Residence status" : "Statut de résidence"}
                 </label>
                 <select
                   value={formData.residenceStatus}
@@ -2988,7 +2988,7 @@ export function TaxRequestForm() {
                   }}
                   className="w-full p-3 rounded-xl border border-input bg-white focus:ring-2 focus:ring-primary focus:outline-none"
                 >
-                  <option value="">Sélectionner statut de résidence</option>
+                  <option value="">{isEnglish ? "Select residence status" : "Sélectionner statut de résidence"}</option>
                   {residenceStatuses.map(s => (
                     <option key={s.id} value={s.id}>{s.name}</option>
                   ))}
@@ -2998,23 +2998,23 @@ export function TaxRequestForm() {
 {/* État civil */}
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  État civil <span className="text-red-500">*</span>
+                  {isEnglish ? "Marital status" : "État civil"} <span className="text-red-500">*</span>
                 </label>
                 <select
                   value={formData.maritalStatus}
                   onChange={(e) => updateForm("maritalStatus", e.target.value)}
                   className="w-full p-3 rounded-xl border border-input bg-white focus:ring-2 focus:ring-primary focus:border-primary"
                 >
-                  <option value="">Sélectionnez...</option>
+                  <option value="">{isEnglish ? "Select..." : "Sélectionnez..."}</option>
                   {maritalStatuses
                     // Filtrer les états civils selon la situation familiale
                     .filter((status) => {
                       if (formData.familyStatus === "single") {
-                        // Pour les déclarations individuelles, exclure "Marié(e)" et "Partenariat enregistré"
+                        // Pour les déclarations individuelles, exclure isEnglish ? "Married" : "Marié(e)" et isEnglish ? "Registered partnership" : "Partenariat enregistré"
                         return status.id !== "married" && status.id !== "partnership";
                       }
                       if (formData.familyStatus === "couple") {
-                        // Pour les déclarations communes, seuls "Marié(e)" et "Partenariat enregistré" sont valides
+                        // Pour les déclarations communes, seuls isEnglish ? "Married" : "Marié(e)" et isEnglish ? "Registered partnership" : "Partenariat enregistré" sont valides
                         return status.id === "married" || status.id === "partnership";
                       }
                       return true;
@@ -3027,7 +3027,7 @@ export function TaxRequestForm() {
                 </select>
                 {formData.familyStatus === "single" && (
                   <p className="text-xs text-muted-foreground mt-1">
-                    Si vous êtes marié(e) ou en partenariat enregistré, veuillez sélectionner "Déclaration commune" à l'étape précédente.
+                    Si vous êtes marié(e) ou en partenariat enregistré, veuillez sélectionner isEnglish ? "Joint return" : "Déclaration commune" à l'étape précédente.
                   </p>
                 )}
               </div>
@@ -3037,10 +3037,10 @@ export function TaxRequestForm() {
                 <>
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Prénom du conjoint <span className="text-red-500">*</span>
+                      {isEnglish ? "Partner's first name" : "Prénom du conjoint"} <span className="text-red-500">*</span>
                     </label>
                     <Input
-                      placeholder="Prénom du conjoint"
+                      placeholder={isEnglish ? "Partner's first name" : "Prénom du conjoint"}
                       value={formData.firstName2}
                       onChange={(e) => updateForm("firstName2", e.target.value)}
                       className="rounded-xl"
@@ -3059,7 +3059,7 @@ export function TaxRequestForm() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Date de naissance du conjoint <span className="text-red-500">*</span>
+                      {isEnglish ? "Date of birth" : "Date de naissance"} du conjoint <span className="text-red-500">*</span>
                     </label>
                     <Input
                       type="date"
@@ -3094,7 +3094,7 @@ export function TaxRequestForm() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Statut de résidence du conjoint
+                      {isEnglish ? "Residence status" : "Statut de résidence"} du conjoint
                     </label>
                     <select
                       value={formData.residenceStatus2}
@@ -3104,7 +3104,7 @@ export function TaxRequestForm() {
                       }}
                       className="w-full p-3 rounded-xl border border-input bg-white focus:ring-2 focus:ring-primary focus:outline-none"
                     >
-                      <option value="">Sélectionner statut de résidence</option>
+                      <option value="">{isEnglish ? "Select residence status" : "Sélectionner statut de résidence"}</option>
                       {residenceStatuses.map(s => (
                         <option key={s.id} value={s.id}>{s.name}</option>
                       ))}
@@ -3146,7 +3146,7 @@ export function TaxRequestForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  Téléphone
+                  {isEnglish ? "Phone" : "Téléphone"}
                 </label>
                 <Input
                   type="tel"
@@ -3164,7 +3164,7 @@ export function TaxRequestForm() {
                     if (e.target.value.trim() !== "") {
                       const validation = validatePhone(e.target.value);
                       if (!validation.valid) {
-                        setValidationErrors(prev => ({ ...prev, phone: validation.error || "Téléphone invalide" }));
+                        setValidationErrors(prev => ({ ...prev, phone: validation.error || "{isEnglish ? "Phone" : "Téléphone"} invalide" }));
                       } else {
                         setValidationErrors(prev => ({ ...prev, phone: "" }));
                       }
@@ -3190,7 +3190,7 @@ export function TaxRequestForm() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">
-                    Rue et numéro <span className="text-red-500">*</span>
+                    {isEnglish ? "Street and number" : "Rue et numéro"} <span className="text-red-500">*</span>
                   </label>
                   <Input
                     placeholder="Rue de l'exemple 123"
@@ -3213,7 +3213,7 @@ export function TaxRequestForm() {
                   </div>
                   <div className="col-span-2">
                     <label className="block text-sm font-medium mb-2">
-                      Localité <span className="text-red-500">*</span>
+                      {isEnglish ? "City" : "Localité"} <span className="text-red-500">*</span>
                     </label>
                     <Input
                       placeholder="Lausanne"
@@ -3234,7 +3234,7 @@ export function TaxRequestForm() {
                   onChange={(e) => updateForm("hasMoved", e.target.checked)}
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
-                <span>J'ai déménagé durant l'année fiscale {formData.taxYear}</span>
+                <span>{isEnglish ? `I moved during tax year ${formData.taxYear}` : `J'ai déménagé durant l'année fiscale ${formData.taxYear}`}</span>
               </label>
             </div>
           </div>
@@ -3247,7 +3247,7 @@ export function TaxRequestForm() {
               Votre situation
             </h2>
             <p className="text-muted-foreground mb-8">
-              Ces informations nous permettent d'adapter votre déclaration.
+              {isEnglish ? "This information allows us to tailor your tax return." : "Ces informations nous permettent d'adapter votre déclaration."}
             </p>
 
             {/* Statut d'emploi (pour non-indépendants ou couples avec indépendant) */}
@@ -3281,11 +3281,11 @@ export function TaxRequestForm() {
                   ))}
                 </div>
 
-                {/* Taux d'occupation pour les salariés */}
+                {/* {isEnglish ? "Employment rate" : "Taux d'occupation"} pour les salariés */}
                 {formData.employmentStatus === "employed" && (
                   <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
                     <label className="block text-sm font-medium mb-2 text-blue-800">
-                      Taux d'occupation <span className="text-red-500">*</span>
+                      {isEnglish ? "Employment rate" : "Taux d'occupation"} <span className="text-red-500">*</span>
                     </label>
                     <div className="flex items-center gap-3">
                       <Input
@@ -3336,11 +3336,11 @@ export function TaxRequestForm() {
                       ))}
                     </div>
 
-                    {/* Taux d'occupation pour le conjoint salarié */}
+                    {/* {isEnglish ? "Employment rate" : "Taux d'occupation"} pour le conjoint salarié */}
                     {formData.employmentStatus2 === "employed" && (
                       <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
                         <label className="block text-sm font-medium mb-2 text-blue-800">
-                          Taux d'occupation <span className="text-red-500">*</span>
+                          {isEnglish ? "Employment rate" : "Taux d'occupation"} <span className="text-red-500">*</span>
                         </label>
                         <div className="flex items-center gap-3">
                           <Input
@@ -3435,16 +3435,16 @@ export function TaxRequestForm() {
                     <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl">
                       <label className="block text-sm font-medium text-amber-800 mb-2 flex items-center gap-2">
                         <Info className="w-4 h-4" />
-                        Justification de l'utilisation du véhicule <span className="text-red-500">*</span>
+                        {isEnglish ? "Vehicle use justification" : "Justification de l'utilisation du véhicule"} <span className="text-red-500">*</span>
                       </label>
                       <Textarea
-                        placeholder="Ex: Pas de transports publics disponibles, horaires irréguliers, transport de matériel professionnel, handicap physique, lieu de travail non desservi..."
+                        placeholder={isEnglish ? "E.g.: No public transport available, irregular hours, professional equipment transport, physical disability, unserved workplace..." : "Ex: Pas de transports publics disponibles, horaires irréguliers, transport de matériel professionnel, handicap physique, lieu de travail non desservi..."}
                         value={workplace.carJustification}
                         onChange={(e) => updateWorkplace(1, workplace.id, "carJustification", e.target.value)}
                         className="rounded-xl min-h-[80px] bg-white"
                       />
                       <p className="text-xs text-amber-700 mt-2">
-                        L'administration fiscale exige une justification pour la déduction des frais de véhicule. Exemples : absence de transports publics, horaires décalés, transport d'outils, handicap.
+                        {isEnglish ? "The tax authority requires justification for vehicle cost deductions. Examples: no public transport, irregular hours, tool transport, disability." : "L'administration fiscale exige une justification pour la déduction des frais de véhicule. Exemples : absence de transports publics, horaires décalés, transport d'outils, handicap."}
                       </p>
                     </div>
                   )}
@@ -3533,16 +3533,16 @@ export function TaxRequestForm() {
                       <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl">
                         <label className="block text-sm font-medium text-amber-800 mb-2 flex items-center gap-2">
                           <Info className="w-4 h-4" />
-                          Justification de l'utilisation du véhicule <span className="text-red-500">*</span>
+                          {isEnglish ? "Vehicle use justification" : "Justification de l'utilisation du véhicule"} <span className="text-red-500">*</span>
                         </label>
                         <Textarea
-                          placeholder="Ex: Pas de transports publics disponibles, horaires irréguliers, transport de matériel professionnel, handicap physique, lieu de travail non desservi..."
+                          placeholder={isEnglish ? "E.g.: No public transport available, irregular hours, professional equipment transport, physical disability, unserved workplace..." : "Ex: Pas de transports publics disponibles, horaires irréguliers, transport de matériel professionnel, handicap physique, lieu de travail non desservi..."}
                           value={workplace.carJustification}
                           onChange={(e) => updateWorkplace(2, workplace.id, "carJustification", e.target.value)}
                           className="rounded-xl min-h-[80px] bg-white"
                         />
                         <p className="text-xs text-amber-700 mt-2">
-                          L'administration fiscale exige une justification pour la déduction des frais de véhicule. Exemples : absence de transports publics, horaires décalés, transport d'outils, handicap.
+                          {isEnglish ? "The tax authority requires justification for vehicle cost deductions. Examples: no public transport, irregular hours, tool transport, disability." : "L'administration fiscale exige une justification pour la déduction des frais de véhicule. Exemples : absence de transports publics, horaires décalés, transport d'outils, handicap."}
                         </p>
                       </div>
                     )}
@@ -3573,18 +3573,18 @@ export function TaxRequestForm() {
                 <div>
                   <span className="font-medium">
                     {formData.clientType === "couple"
-                      ? `${formData.firstName || "Contribuable 1"} — je mange hors du domicile la majorité de mes jours de travail`
+                      ? `${formData.firstName || "Contribuable 1"} — {isEnglish ? `I eat outside home most` : `je mange hors du domicile la majo`}rité de mes jours de travail`
                       : "Je mange hors du domicile lors de mes jours de travail"}
                   </span>
                   <p className="text-sm text-blue-600 mt-1">
-                    Déductible si vous ne pouvez pas rentrer chez vous pendant la pause de midi
+                    {isEnglish ? "Deductible if you cannot go home during the lunch break" : "Déductible si vous ne pouvez pas rentrer chez vous pendant la pause de midi"}
                   </p>
                 </div>
               </label>
               {formData.hasMealsOutside && (
                 <div className="mt-4 ml-8">
                   <label className="block text-sm font-medium mb-2">
-                    Nombre de jours par année où vous mangez à l’extérieur
+                    {isEnglish ? "Number of days per year eating outside" : "Nombre de jours par année où vous mangez à l’extérieur"}
                     {formData.clientType === "couple" && ` (${formData.firstName || "Contribuable 1"})`}
                   </label>
                   <Input
@@ -3597,7 +3597,7 @@ export function TaxRequestForm() {
                     className="w-32 rounded-xl"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
-                    Environ 220 jours pour un emploi à 100%
+                    {isEnglish ? "About 220 days for full-time employment" : "Environ 220 jours pour un emploi à 100%"}
                   </p>
                 </div>
               )}
@@ -3613,17 +3613,17 @@ export function TaxRequestForm() {
                     />
                     <div>
                       <span className="font-medium">
-                        {formData.firstName2 || "Conjoint(e)"} — mange hors du domicile la majorité des jours de travail
+                        {formData.firstName2 || "Conjoint(e)"} — {isEnglish ? "eats outside home most" : "mange hors du domicile la majorité des"} jours de travail
                       </span>
                       <p className="text-sm text-blue-600 mt-1">
-                        Déductible si le/la conjoint(e) ne peut pas rentrer chez lui/elle pendant la pause de midi
+                        {isEnglish ? "Deductible if the partner cannot go home during the lunch break" : "Déductible si le/la conjoint(e) ne peut pas rentrer chez lui/elle pendant la pau"}se de midi
                       </p>
                     </div>
                   </label>
                   {formData.hasMealsOutside2 && (
                     <div className="mt-4 ml-8">
                       <label className="block text-sm font-medium mb-2">
-                        Nombre de jours par année où {formData.firstName2 || "le/la conjoint(e)"} mange à l’extérieur
+                        {isEnglish ? `Number of days per year ${formData.firstName2 || "the partner"} eats` : `Nombre de jours par année où ${formData.firstName2 || "le/la conjoint(e)"} mange`} à l’extérieur
                       </label>
                       <Input
                         type="number"
@@ -3635,7 +3635,7 @@ export function TaxRequestForm() {
                         className="w-32 rounded-xl"
                       />
                       <p className="text-xs text-muted-foreground mt-1">
-                        Environ 220 jours pour un emploi à 100%
+                        {isEnglish ? "About 220 days for full-time employment" : "Environ 220 jours pour un emploi à 100%"}
                       </p>
                     </div>
                   )}
@@ -3665,8 +3665,8 @@ export function TaxRequestForm() {
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
                 <div>
-                  <span className="font-semibold text-gray-800">J'ai des enfants à charge</span>
-                  <p className="text-sm text-gray-600">Mineurs ou majeurs en formation jusqu'à 25 ans</p>
+                  <span className="font-semibold text-gray-800">{isEnglish ? "I have dependent children" : "J'ai des enfants à charge"}</span>
+                  <p className="text-sm text-gray-600">{isEnglish ? "Minors or adults in education up to age 25" : "Mineurs ou majeurs en formation jusqu'à 25"} ans</p>
                 </div>
               </label>
 
@@ -3696,7 +3696,7 @@ export function TaxRequestForm() {
                   onChange={(e) => updateForm("hasPillar3a", e.target.checked)}
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
-                <span>J'ai effectué des versements au 3ème pilier A</span>
+                <span>{isEnglish ? "I made contributions to pillar 3a" : "J'ai effectué des versements au 3ème pilier A"}</span>
               </label>
             </div>
 
@@ -3709,7 +3709,7 @@ export function TaxRequestForm() {
                   onChange={(e) => updateForm("hasAlimonyReceived", e.target.checked)}
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
-                <span>Je reçois des pensions alimentaires</span>
+                <span>{isEnglish ? "I receive alimony payments" : "Je reçois des pensions alimentaires"}</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -3731,7 +3731,7 @@ export function TaxRequestForm() {
                   onChange={(e) => updateForm("hasDonations", e.target.checked)}
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
-                <span>J'ai fait des dons à des organisations d'utilité publique</span>
+                <span>{isEnglish ? "I made donations to charitable organizations" : "J'ai fait des dons à des organisations d'utilité publique"}</span>
               </label>
             </div>
 
@@ -3744,7 +3744,7 @@ export function TaxRequestForm() {
                   onChange={(e) => updateForm("hasDebts", e.target.checked)}
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
-                <span>J'ai des dettes (prêts personnels, leasing, etc.)</span>
+                <span>{isEnglish ? "I have debts (personal loans, leasing, etc.)" : "J'ai des dettes (prêts personnels, leasing, etc.)"}</span>
               </label>
             </div>
 
@@ -3757,7 +3757,7 @@ export function TaxRequestForm() {
                   onChange={(e) => updateForm("hasStocks", e.target.checked)}
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
-                <span>Je possède des actions, fonds ou obligations</span>
+                <span>{isEnglish ? "I own shares, funds or bonds" : "Je possède des actions, fonds ou obligations"}</span>
               </label>
               {formData.hasStocks && (
                 <div className="mt-4 ml-8">
@@ -3772,7 +3772,7 @@ export function TaxRequestForm() {
                     className="w-24 rounded-xl"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
-                    Supplément de CHF 20 dès 3 positions
+                    {isEnglish ? "CHF 20 supplement from 3 positions" : "Supplément de CHF 20 dès 3 positions"}
                   </p>
                 </div>
               )}
@@ -3788,9 +3788,9 @@ export function TaxRequestForm() {
                   className="w-5 h-5 rounded border-2 border-blue-400 text-blue-600 focus:ring-blue-500"
                 />
                 <div>
-                  <span className="font-medium">J'ai vendu des actions, fonds ou obligations durant l'année {formData.taxYear}</span>
+                  <span className="font-medium">{isEnglish ? "I sold shares, funds or bonds during the year" : "J'ai vendu des actions, fonds ou obligations durant l'année"} {formData.taxYear}</span>
                   <p className="text-sm text-blue-700 mt-1">
-                    Les gains/pertes doivent être documentés
+                    {isEnglish ? "Gains/losses must be documented" : "Les gains/pertes doivent être documentés"}
                   </p>
                 </div>
               </label>
@@ -3799,21 +3799,21 @@ export function TaxRequestForm() {
                 <div className="mt-4 space-y-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Détails des ventes (titres vendus, montants approximatifs)
+                      {isEnglish ? "Sale details (securities sold, approximate amounts)" : "Détails des ventes (titres vendus, montants approximatifs)"}
                     </label>
                     <textarea
                       value={formData.soldStocksDetails}
                       onChange={(e) => updateForm("soldStocksDetails", e.target.value)}
-                      placeholder={`Ex: Vente de 50 actions Nestlé en mars ${formData.taxYear}, vente de parts de fonds UBS en octobre...`}
+                      placeholder={`{isEnglish ? `E.g.: Sale of 50 Nestlé shares in March` : `Ex: Vente de 50 actions Nestlé en mars`} ${formData.taxYear}, vente de parts de fonds UBS en octobre...`}
                       className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
                     />
                   </div>
                   <div className="p-3 bg-white border border-blue-300 rounded-lg">
                     <p className="text-sm text-blue-800">
-                      <strong>Documents à fournir :</strong> Relevés de transactions de votre banque/courtier (Swissquote, PostFinance, UBS, etc.) montrant les achats et ventes effectués.
+                      <strong>{isEnglish ? "Documents required:</strong> Transaction statements from your bank/broker" : "Documents à fournir :</strong> Relevés de transactions de votre banque/courti"}er (Swissquote, PostFinance, UBS, etc.) montrant les achats et ventes effectués.
                     </p>
                     <p className="text-xs text-blue-600 mt-2">
-                      Note : En Suisse, les gains en capital sur titres sont généralement exonérés pour les investisseurs privés, mais doivent quand même être documentés.
+                      {isEnglish ? "Note: In Switzerland, capital gains on securities are generally tax-exempt for" : "Note : En Suisse, les gains en capital sur titres sont généralement exonérés pour les"} investisseurs privés, mais doivent quand même être documentés.
                     </p>
                   </div>
                 </div>
@@ -3825,20 +3825,20 @@ export function TaxRequestForm() {
               <div className="mt-8 p-6 bg-amber-50 border-2 border-amber-300 rounded-2xl">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-amber-800">
                   <Briefcase className="w-6 h-6" />
-                  Activité indépendante
+                  {isEnglish ? "Self-employed activity" : "Activité indépendante"}
                 </h3>
                 <p className="text-sm text-amber-700 mb-6">
-                  Ces informations sont essentielles pour établir correctement votre déclaration en tant qu'indépendant.
+                  {isEnglish ? "This information is essential for correctly preparing your tax return as" : "Ces informations sont essentielles pour établir correctement votre déclaration en tan"}t qu'indépendant.
                 </p>
 
                 {/* Type d'activité */}
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Type d'activité <span className="text-red-500">*</span>
+                      {isEnglish ? "Type of activity" : "Type d'activité"} <span className="text-red-500">*</span>
                     </label>
                     <Input
-                      placeholder="Ex: Consultant, artisan, commerçant..."
+                      placeholder={isEnglish ? "E.g.: Consultant, craftsman, trader..." : "Ex: Consultant, artisan, commerçant..."}
                       value={formData.businessType}
                       onChange={(e) => updateForm("businessType", e.target.value)}
                       className="rounded-xl bg-white"
@@ -3846,7 +3846,7 @@ export function TaxRequestForm() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Date de début d'activité
+                      {isEnglish ? "Activity start date" : "Date de début d'activité"}
                     </label>
                     <Input
                       type="date"
@@ -3868,7 +3868,7 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">J'ai un numéro IDE (Identifiant des Entreprises)</span>
+                        <span className="font-medium">{isEnglish ? "I have a UID number (Company Identification)" : "J'ai un numéro IDE (Identifiant des Entreprises)"}</span>
                         <p className="text-xs text-muted-foreground">Format: CHE-123.456.789</p>
                       </div>
                     </label>
@@ -3894,7 +3894,7 @@ export function TaxRequestForm() {
                       />
                       <div>
                         <span className="font-medium">Je suis inscrit au Registre du Commerce</span>
-                        <p className="text-xs text-muted-foreground">Obligatoire dès CHF 100'000 de chiffre d'affaires</p>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Required from CHF 100'000 in turnover" : "Obligatoire dès CHF 100'000 de chiffre d'affaires"}</p>
                       </div>
                     </label>
                   </div>
@@ -3908,14 +3908,14 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">Je suis assujetti à la TVA</span>
-                        <p className="text-xs text-muted-foreground">Obligatoire dès CHF 100'000 de chiffre d'affaires annuel</p>
+                        <span className="font-medium">{isEnglish ? "I am subject to VAT" : "Je suis assujetti à la TVA"}</span>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Required from CHF 100'000 in annual turnover" : "Obligatoire dès CHF 100'000 de chiffre d'affaires annuel"}</p>
                       </div>
                     </label>
                     {formData.hasVAT && (
                       <div className="mt-3 ml-8">
                         <Input
-                          placeholder="Numéro TVA (CHE-...TVA)"
+                          placeholder={isEnglish ? "VAT number (CHE-...VAT)" : "Numéro TVA (CHE-...TVA)"}
                           value={formData.vatNumber}
                           onChange={(e) => updateForm("vatNumber", e.target.value)}
                           className="rounded-xl w-48"
@@ -3937,8 +3937,8 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">Cotisations AVS/AI/APG indépendant</span>
-                        <p className="text-xs text-muted-foreground">Cotisations personnelles versées à la caisse de compensation</p>
+                        <span className="font-medium">{isEnglish ? "Self-employed AVS/AHV contributions" : "Cotisations AVS/AI/APG indépendant"}</span>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Personal contributions paid to the compensation fund" : "Cotisations personnelles versées à la caisse de compensation"}</p>
                       </div>
                     </label>
                     {formData.hasAVSIndependent && (
@@ -3964,8 +3964,8 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">2ème pilier facultatif (LPP)</span>
-                        <p className="text-xs text-muted-foreground">Cotisations volontaires au 2ème pilier - déductibles!</p>
+                        <span className="font-medium">{isEnglish ? "Optional 2nd pillar (BVG)" : "{isEnglish ? "Optional 2nd pillar" : "2ème pilier facultatif"} (LPP)"}</span>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Voluntary contributions to the 2nd pillar - deductible!" : "Cotisations volontaires au 2ème pilier - déductibles!"}</p>
                       </div>
                     </label>
                     {formData.hasLPPVoluntary && (
@@ -3987,13 +3987,13 @@ export function TaxRequestForm() {
                 <div className="p-4 bg-red-50 border-2 border-red-200 rounded-xl mb-6">
                   <h4 className="font-semibold mb-3 text-red-800 flex items-center gap-2">
                     <AlertTriangle className="w-5 h-5" />
-                    Résultat de votre activité <span className="text-red-500">*</span>
+                    {isEnglish ? "Your business result" : "Résultat de votre activité"} <span className="text-red-500">*</span>
                   </h4>
                   <p className="text-sm text-red-700 mb-4">
-                    Pour établir votre déclaration, nous avons besoin de connaître le résultat de votre activité indépendante.
+                    {isEnglish ? "To prepare your tax return, we need to know your business result (profit or" : "Pour établir votre déclaration, nous avons besoin de connaître le résultat de votre activi"}té indépendante.
                     {formData.canton === "VD" && (
                       <span className="block mt-1 font-medium">
-                        ⚠️ Le canton de Vaud exige également le "Questionnaire général indépendant" à joindre à vos documents.
+                        ⚠️ Le canton de Vaud exige également le isEnglish ? "General self-employed questionnaire" : "Questionnaire général indépendant" à joindre à vos documents.
                       </span>
                     )}
                   </p>
@@ -4007,8 +4007,8 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">Je dispose d'un bilan et compte de résultat préparés</span>
-                        <p className="text-xs text-muted-foreground">Document à joindre à l'étape Documents</p>
+                        <span className="font-medium">{isEnglish ? "I have prepared accounts and profit/loss statement" : "Je dispose d'un bilan et compte de résultat préparés"}</span>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Document to attach in the Documents step" : "Document à joindre à l'étape Documents"}</p>
                       </div>
                     </label>
                   </div>
@@ -4016,7 +4016,7 @@ export function TaxRequestForm() {
                   {!formData.hasBusinessAccounts && (
                     <div className="space-y-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
                       <p className="text-sm text-amber-800 font-medium">
-                        Si vous n'avez pas de comptabilité préparée, indiquez au minimum vos chiffres clés :
+                        {isEnglish ? "If you don't have prepared accounts, enter at minimum your key figures:" : "Si vous n'avez pas de comptabilité préparée, indiquez au minimum vos chiffres clés :"}
                       </p>
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
@@ -4033,7 +4033,7 @@ export function TaxRequestForm() {
                               className="rounded-xl bg-white"
                             />
                           </div>
-                          <p className="text-xs text-muted-foreground mt-1">Total des revenus de votre activité</p>
+                          <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Total revenue from your activity" : "Total des revenus de votre activité"}</p>
                         </div>
                         <div>
                           <label className="block text-sm font-medium mb-2">
@@ -4049,13 +4049,13 @@ export function TaxRequestForm() {
                               className="rounded-xl bg-white"
                             />
                           </div>
-                          <p className="text-xs text-muted-foreground mt-1">Loyer, matériel, assurances, etc.</p>
+                          <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Rent, equipment, insurance, etc." : "Loyer, matériel, assurances, etc."}</p>
                         </div>
                       </div>
                       {formData.businessRevenue && formData.businessExpenses && (
                         <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                           <p className="text-sm font-medium text-green-800">
-                            Bénéfice net estimé : CHF {(Number(formData.businessRevenue) - Number(formData.businessExpenses)).toLocaleString('fr-CH')}.-
+                            {isEnglish ? `Estimated net profit: CHF ${(Number(formData.businessRevenue) - Number(formData.businessExp` : `Bénéfice net estimé : CHF ${(Number(formData.businessRevenue) - Number(formData.businessExp`}enses)).toLocaleString('fr-CH')}.-
                           </p>
                         </div>
                       )}
@@ -4075,8 +4075,8 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">Bureau à domicile</span>
-                        <p className="text-xs text-muted-foreground">Part du loyer attribuée à l'activité professionnelle</p>
+                        <span className="font-medium">{isEnglish ? "Home office" : "Bureau à domicile"}</span>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Share of rent allocated to professional activity" : "Part du loyer attribuée à l'activité professi"}onnelle</p>
                       </div>
                     </label>
                     {formData.hasHomeOffice && (
@@ -4116,8 +4116,8 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">Véhicule professionnel</span>
-                        <p className="text-xs text-muted-foreground">Part des frais de véhicule attribuée à l'activité</p>
+                        <span className="font-medium">{isEnglish ? "Business vehicle" : "Véhicule professionnel"}</span>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Share of vehicle costs allocated to professional activity" : "Part des frais de véhicule attribuée à l'acti"}vité</p>
                       </div>
                     </label>
                     {formData.hasBusinessVehicle && (
@@ -4138,7 +4138,7 @@ export function TaxRequestForm() {
                           <span className="text-sm">CHF</span>
                           <Input
                             type="number"
-                            placeholder="Frais totaux véhicule"
+                            placeholder={isEnglish ? "Total vehicle costs" : "Frais totaux véhicule"}
                             value={formData.businessVehicleExpenses}
                             onChange={(e) => updateForm("businessVehicleExpenses", e.target.value)}
                             className="rounded-xl w-32"
@@ -4150,7 +4150,7 @@ export function TaxRequestForm() {
                 </div>
 
                 <div className="mt-6 p-3 bg-amber-100 rounded-xl text-sm text-amber-800">
-                  <strong>Rappel :</strong> N'oubliez pas de télécharger vos comptes annuels (bilan + compte de résultat) à l'étape Documents.
+                  <strong>{isEnglish ? "Reminder: Don't forget to upload your annual accounts (balance sheet + profit" : "Rappel :</strong> N'oubliez pas de télécharger vos comptes annuels (bilan + compte"} de résultat) à l'étape Documents.
                 </div>
               </div>
             )}
@@ -4160,7 +4160,7 @@ export function TaxRequestForm() {
               <div className="mt-8 p-6 bg-blue-50 border-2 border-blue-200 rounded-2xl">
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-blue-800">
                   <Users className="w-5 h-5" />
-                  Activité indépendante du conjoint
+                  {isEnglish ? "Self-employed activity" : "Activité indépendante"} du conjoint
                 </h3>
                 <label className="flex items-center gap-3 cursor-pointer mb-4">
                   <input
@@ -4170,25 +4170,25 @@ export function TaxRequestForm() {
                     className="w-5 h-5 rounded border-2 border-blue-400 text-blue-600 focus:ring-blue-500"
                   />
                   <div>
-                    <span className="font-medium">{formData.firstName2 || "Le conjoint"} a une activité indépendante</span>
-                    <p className="text-sm text-blue-700">Cochez si votre conjoint exerce une activité lucrative indépendante</p>
+                    <span className="font-medium">{isEnglish ? `${formData.firstName2 || "The partner"} has a self-employed activit` : `${formData.firstName2 || "Le conjoint"} a une activité i`}ndépendante</span>
+                    <p className="text-sm text-blue-700">{isEnglish ? "Check if your partner is self-employed" : "Cochez si votre conjoint exerce une activité luc"}rative indépendante</p>
                   </div>
                 </label>
 
                 {formData.isIndependent2 && (
                   <div className="mt-4 p-4 bg-white border border-blue-200 rounded-xl">
                     <h4 className="font-semibold mb-4 text-blue-800">
-                      Activité indépendante de {formData.firstName2 || "votre conjoint"}
+                      {isEnglish ? "Self-employed activity" : "Activité indépendante"} de {formData.firstName2 || "votre conjoint"}
                     </h4>
 
                     {/* Type d'activité */}
                     <div className="grid md:grid-cols-2 gap-4 mb-6">
                       <div>
                         <label className="block text-sm font-medium mb-2">
-                          Type d'activité <span className="text-red-500">*</span>
+                          {isEnglish ? "Type of activity" : "Type d'activité"} <span className="text-red-500">*</span>
                         </label>
                         <Input
-                          placeholder="Ex: Consultant, artisan, commerçant..."
+                          placeholder={isEnglish ? "E.g.: Consultant, craftsman, trader..." : "Ex: Consultant, artisan, commerçant..."}
                           value={formData.businessType2}
                           onChange={(e) => updateForm("businessType2", e.target.value)}
                           className="rounded-xl"
@@ -4196,7 +4196,7 @@ export function TaxRequestForm() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-2">
-                          Date de début d'activité
+                          {isEnglish ? "Activity start date" : "Date de début d'activité"}
                         </label>
                         <Input
                           type="date"
@@ -4218,7 +4218,7 @@ export function TaxRequestForm() {
                             className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
                           />
                           <div>
-                            <span className="font-medium text-sm">Numéro IDE</span>
+                            <span className="font-medium text-sm">{isEnglish ? "UID number" : "Numéro IDE"}</span>
                             <span className="text-xs text-muted-foreground ml-2">(CHE-123.456.789)</span>
                           </div>
                         </label>
@@ -4256,7 +4256,7 @@ export function TaxRequestForm() {
                       </div>
                       {formData.hasVAT2 && (
                         <Input
-                          placeholder="Numéro TVA"
+                          placeholder={isEnglish ? "VAT number" : "Numéro TVA"}
                           value={formData.vatNumber2}
                           onChange={(e) => updateForm("vatNumber2", e.target.value)}
                           className="rounded-lg w-48 text-sm"
@@ -4264,8 +4264,8 @@ export function TaxRequestForm() {
                       )}
                     </div>
 
-                    {/* Chiffres clés */}
-                    <h5 className="font-medium mb-3 text-blue-800">Chiffres clés</h5>
+                    {/* {isEnglish ? "Key figures" : "Chiffres clés"} */}
+                    <h5 className="font-medium mb-3 text-blue-800">{isEnglish ? "Key figures" : "Chiffres clés"}</h5>
                     <div className="space-y-4 mb-6">
                       <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -4274,7 +4274,7 @@ export function TaxRequestForm() {
                           onChange={(e) => updateForm("hasBusinessAccounts2", e.target.checked)}
                           className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
                         />
-                        <span className="text-sm font-medium">Dispose d'un bilan et compte de résultat</span>
+                        <span className="text-sm font-medium">{isEnglish ? "Has prepared accounts and profit/loss statement" : "Dispose d'un bilan et compte de résultat"}</span>
                       </label>
 
                       {!formData.hasBusinessAccounts2 && (
@@ -4307,7 +4307,7 @@ export function TaxRequestForm() {
                           </div>
                           {formData.businessRevenue2 && formData.businessExpenses2 && (
                             <div className="md:col-span-2 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-800">
-                              Bénéfice net estimé : CHF {(Number(formData.businessRevenue2) - Number(formData.businessExpenses2)).toLocaleString('fr-CH')}.-
+                              {isEnglish ? `Estimated net profit: CHF ${(Number(formData.businessRevenue2) - Number(formData.busin` : `Bénéfice net estimé : CHF ${(Number(formData.businessRevenue2) - Number(formData.busin`}essExpenses2)).toLocaleString('fr-CH')}.-
                             </div>
                           )}
                         </div>
@@ -4325,7 +4325,7 @@ export function TaxRequestForm() {
                             onChange={(e) => updateForm("hasAVSIndependent2", e.target.checked)}
                             className="w-4 h-4 rounded"
                           />
-                          <span className="text-sm">AVS indépendant</span>
+                          <span className="text-sm">{isEnglish ? "Self-employed AVS" : "AVS indépendant"}</span>
                         </label>
                         <label className="flex items-center gap-2">
                           <input
@@ -4334,7 +4334,7 @@ export function TaxRequestForm() {
                             onChange={(e) => updateForm("hasLPPVoluntary2", e.target.checked)}
                             className="w-4 h-4 rounded"
                           />
-                          <span className="text-sm">2ème pilier facultatif</span>
+                          <span className="text-sm">{isEnglish ? "Optional 2nd pillar" : "2ème pilier facultatif"}</span>
                         </label>
                       </div>
                       {formData.hasAVSIndependent2 && (
@@ -4371,7 +4371,7 @@ export function TaxRequestForm() {
                           onChange={(e) => updateForm("hasHomeOffice2", e.target.checked)}
                           className="w-4 h-4 rounded"
                         />
-                        <span className="text-sm">Bureau à domicile</span>
+                        <span className="text-sm">{isEnglish ? "Home office" : "Bureau à domicile"}</span>
                       </label>
                       {formData.hasHomeOffice2 && (
                         <div className="flex items-center gap-3 ml-6">
@@ -4401,7 +4401,7 @@ export function TaxRequestForm() {
                           onChange={(e) => updateForm("hasBusinessVehicle2", e.target.checked)}
                           className="w-4 h-4 rounded"
                         />
-                        <span className="text-sm">Véhicule professionnel</span>
+                        <span className="text-sm">{isEnglish ? "Business vehicle" : "Véhicule professionnel"}</span>
                       </label>
                       {formData.hasBusinessVehicle2 && (
                         <div className="flex items-center gap-3 ml-6">
@@ -4426,7 +4426,7 @@ export function TaxRequestForm() {
                     </div>
 
                     <div className="mt-4 p-2 bg-blue-100 rounded-lg text-xs text-blue-800">
-                      <strong>Rappel :</strong> Téléchargez les comptes annuels du conjoint à l'étape Documents.
+                      <strong>{isEnglish ? "Reminder: Upload your partner's annual accounts in the Documents step." : "Rappel :</strong> Téléchargez les comptes annuels du conjoint à l'étape Documents."}
                     </div>
                   </div>
                 )}
@@ -4442,7 +4442,7 @@ export function TaxRequestForm() {
               Biens immobiliers
             </h2>
             <p className="text-muted-foreground mb-8">
-              Indiquez si vous êtes propriétaire de biens immobiliers.
+              {isEnglish ? "Indicate if you own real estate properties." : "Indiquez si vous êtes propriétaire de biens immobiliers."}
             </p>
 
             <div className="mb-6">
@@ -4463,7 +4463,7 @@ export function TaxRequestForm() {
                   }}
                   className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                 />
-                <span>Je suis propriétaire d'un ou plusieurs biens immobiliers</span>
+                <span>{isEnglish ? "I own one or more real estate properties" : "Je suis propriétaire d'un ou plusieurs biens immobiliers"}</span>
               </label>
             </div>
 
@@ -4477,9 +4477,9 @@ export function TaxRequestForm() {
                   className="w-5 h-5 rounded border-2 border-amber-400 text-amber-600 focus:ring-amber-500"
                 />
                 <div>
-                  <span className="font-medium">J'ai vendu un bien immobilier durant l'année {formData.taxYear}</span>
+                  <span className="font-medium">{isEnglish ? `I sold a real estate property during the year ${formData.taxYe` : `J'ai vendu un bien immobilier durant l'année ${formData.taxYe`}ar}</span>
                   <p className="text-sm text-amber-700 mt-1">
-                    Important pour l'impôt sur les gains immobiliers (IGI)
+                    {isEnglish ? "Important for the real estate gains tax (IGT)" : "Important pour l'impôt sur les gains immobiliers (IGI)"}
                   </p>
                 </div>
               </label>
@@ -4488,18 +4488,18 @@ export function TaxRequestForm() {
                 <div className="mt-4 space-y-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Détails de la vente (adresse, date, prix approximatif)
+                      {isEnglish ? "Sale details (address, date, approximate price)" : "Détails de la vente (adresse, date, prix approximatif)"}
                     </label>
                     <textarea
                       value={formData.soldPropertyDetails}
                       onChange={(e) => updateForm("soldPropertyDetails", e.target.value)}
-                      placeholder={`Ex: Appartement à Lausanne vendu en juin ${formData.taxYear} pour CHF 850'000.-`}
+                      placeholder={`{isEnglish ? `E.g.: Apartment in Lausanne sold in June` : `Ex: Appartement à Lausanne vendu en juin`} ${formData.taxYear} pour CHF 850'000.-`}
                       className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary min-h-[80px]"
                     />
                   </div>
                   <div className="p-3 bg-white border border-amber-300 rounded-lg">
                     <p className="text-sm text-amber-800">
-                      <strong>Documents à fournir :</strong> Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers (si reçu), acte d'achat original, factures des travaux de plus-value.
+                      <strong>{isEnglish ? "Documents required:</strong> Notarized deed of sale, real estate tax" : "Documents à fournir :</strong> Acte de vente notarié, bordereau de l'impôt su"}r les gains immobiliers (si reçu), acte d'achat original, factures des travaux de plus-value.
                     </p>
                   </div>
                 </div>
@@ -4514,7 +4514,7 @@ export function TaxRequestForm() {
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-semibold flex items-center gap-2">
                         <Home className="w-5 h-5 text-primary" />
-                        Bien n°{index + 1}
+                        {isEnglish ? "Property No." : "Bien n°"}{index + 1}
                       </h3>
                       {properties.length > 1 && (
                         <Button
@@ -4557,7 +4557,7 @@ export function TaxRequestForm() {
                         <div className="grid md:grid-cols-2 gap-4">
                           <div className="md:col-span-2">
                             <label className="block text-sm font-medium mb-2">
-                              Rue et numéro <span className="text-red-500">*</span>
+                              {isEnglish ? "Street and number" : "Rue et numéro"} <span className="text-red-500">*</span>
                             </label>
                             <Input
                               placeholder="Ex: Rue de la Gare 15"
@@ -4579,7 +4579,7 @@ export function TaxRequestForm() {
                           </div>
                           <div>
                             <label className="block text-sm font-medium mb-2">
-                              Localité <span className="text-red-500">*</span>
+                              {isEnglish ? "City" : "Localité"} <span className="text-red-500">*</span>
                             </label>
                             <Input
                               placeholder="Ex: Lausanne"
@@ -4597,7 +4597,7 @@ export function TaxRequestForm() {
                               onChange={(e) => updateProperty(property.id, "canton", e.target.value)}
                               className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
                             >
-                              <option value="">Sélectionnez le canton</option>
+                              <option value="">{isEnglish ? "Select the canton" : "Sélectionnez le canton"}</option>
                               {allCantons.map((c) => (
                                 <option key={c.code} value={c.code}>
                                   {c.name}
@@ -4607,14 +4607,14 @@ export function TaxRequestForm() {
                           </div>
                           <div>
                             <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                              N° de parcelle cadastrale
+                              {isEnglish ? "Cadastral parcel number" : "N° de parcelle cadastrale"}
                               <TooltipProvider>
                                 <Tooltip>
                                   <TooltipTrigger>
                                     <HelpCircle className="w-4 h-4 text-muted-foreground" />
                                   </TooltipTrigger>
                                   <TooltipContent className="max-w-xs">
-                                    <p>Le numéro de parcelle figure sur l'acte de vente, l'estimation fiscale, ou le registre foncier. Il permet d'identifier précisément votre bien.</p>
+                                    <p>{isEnglish ? "The parcel number can be found on the deed of sale, tax estimate, or land" : "Le numéro de parcelle figure sur l'acte de vente, l'estimation fiscale, ou le regi"}stre foncier. Il permet d'identifier précisément votre bien.</p>
                                   </TooltipContent>
                                 </Tooltip>
                               </TooltipProvider>
@@ -4640,7 +4640,7 @@ export function TaxRequestForm() {
                             onChange={(e) => updateProperty(property.id, "propertyType", e.target.value)}
                             className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
                           >
-                            <option value="">Sélectionnez le type</option>
+                            <option value="">{isEnglish ? "Select the type" : "Sélectionnez le type"}</option>
                             {propertyTypes.map((type) => (
                               <option key={type.id} value={type.id}>
                                 {type.name} - {type.description}
@@ -4657,7 +4657,7 @@ export function TaxRequestForm() {
                             onChange={(e) => updateProperty(property.id, "usage", e.target.value)}
                             className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
                           >
-                            <option value="">Sélectionnez l'usage</option>
+                            <option value="">{isEnglish ? "Select the usage" : "Sélectionnez l'usage"}</option>
                             {propertyUsages.map((usage) => (
                               <option key={usage.id} value={usage.id}>
                                 {usage.name} - {usage.description}
@@ -4678,8 +4678,8 @@ export function TaxRequestForm() {
                                   <HelpCircle className="w-4 h-4 text-muted-foreground" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs">
-                                  <p><strong>Couple marié :</strong> Indiquez 100% (vous déclarez ensemble).</p>
-                                  <p className="mt-1"><strong>Copropriété avec un tiers :</strong> Indiquez votre part réelle (ex: 50% si vous partagez avec un parent).</p>
+                                  <p><strong>{isEnglish ? "Married couple:</strong> Enter 100% (you file jointly)." : "Couple marié :</strong> Indiquez 100% (vous déclarez ensemble)."}</p>
+                                  <p className="mt-1"><strong>{isEnglish ? "Co-ownership with a third party:</strong> Enter your" : "Copropriété avec un tiers :</strong> Indiquez votre"} part réelle (ex: 50% si vous partagez avec un parent).</p>
                                 </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
@@ -4694,12 +4694,12 @@ export function TaxRequestForm() {
                             className="rounded-xl"
                           />
                           <p className="text-xs text-muted-foreground mt-1">
-                            Couple marié = 100% • Copropriété avec tiers = votre part
+                            {isEnglish ? "Married couple = 100% • Co-ownership with third party = your share" : "Couple marié = 100% • Copropriété avec tiers = votre part"}
                           </p>
                         </div>
                         <div>
                           <label className="block text-sm font-medium mb-2">
-                            Année d'acquisition
+                            {isEnglish ? "Year of acquisition" : "Année d'acquisition"}
                           </label>
                           <Input
                             type="number"
@@ -4713,14 +4713,14 @@ export function TaxRequestForm() {
                         </div>
                         <div>
                           <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                            Année de construction
+                            {isEnglish ? "Year of construction" : "Année de construction"}
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger>
                                   <HelpCircle className="w-4 h-4 text-muted-foreground" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs">
-                                  <p>L'année de construction détermine le forfait de frais d'entretien déductible : 10% si moins de 10 ans, 20% si plus de 10 ans.</p>
+                                  <p>{isEnglish ? "The year of construction determines the flat-rate deductible maintenance costs" : "L'année de construction détermine le forfait de frais d'entretien déductible"} : 10% si moins de 10 ans, 20% si plus de 10 ans.</p>
                                 </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
@@ -4750,7 +4750,7 @@ export function TaxRequestForm() {
                             <div className="text-xs text-amber-800">
                               <p className="font-medium mb-1">Forfait ou frais effectifs ?</p>
                               <p className="mb-2">
-                                Pour ce bien ({new Date().getFullYear() - parseInt(property.constructionYear)} ans), vous pouvez déduire :
+                                {isEnglish ? `For this property (${new Date().getFullYear() - parseInt(property.constructionYear)} y` : `Pour ce bien (${new Date().getFullYear() - parseInt(property.constructionYear)} a`}ns), vous pouvez déduire :
                               </p>
                               <ul className="list-disc pl-4 space-y-1">
                                 <li>
@@ -4759,10 +4759,10 @@ export function TaxRequestForm() {
                                     <span className="text-amber-600"> = CHF {Math.round(parseInt(property.rentalValue) * getMaintenanceFlatRate(property.constructionYear).rate / 100)}.-</span>
                                   )}
                                 </li>
-                                <li><strong>Frais effectifs</strong> : Total de vos factures d'entretien (peinture, réparations, jardin...)</li>
+                                <li><strong>{isEnglish ? "Actual costs</strong>: Total maintenance invoices (paint, r" : "Frais effectifs</strong> : Total de vos factures d'entretien (peinture, r"}éparations, jardin...)</li>
                               </ul>
                               <p className="mt-2 font-medium">
-                                Conseil : Choisissez l'option la plus élevée. Si vos factures dépassent le forfait, optez pour les frais effectifs.
+                                {isEnglish ? "Tip: Choose the higher option. If your invoices exceed the flat-rate" : "Conseil : Choisissez l'option la plus élevée. Si vos factures dépassent le forfa"}it, optez pour les frais effectifs.
                               </p>
                             </div>
                           </div>
@@ -4781,14 +4781,14 @@ export function TaxRequestForm() {
                           <div className="flex items-start gap-2">
                             <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
                             <div className="text-xs text-blue-800">
-                              <p className="font-medium mb-1">Où trouver ces informations ?</p>
+                              <p className="font-medium mb-1">{isEnglish ? "Where to find this information?" : "Où trouver ces informations ?"}</p>
                               <ul className="list-disc pl-4 space-y-0.5">
-                                <li><strong>Estimation fiscale cantonale</strong> : Document officiel reçu lors de l'achat ou lors d'une réévaluation</li>
-                                <li><strong>Avis de taxation</strong> : Votre dernière déclaration d'impôts traitée (annexe immobilière)</li>
+                                <li><strong>{isEnglish ? "Cantonal tax estimate</strong>: Official document received" : "Estimation fiscale cantonale</strong> : Document officiel reçu lors"} de l'achat ou lors d'une réévaluation</li>
+                                <li><strong>{isEnglish ? "Tax assessment notice" : "Avis de taxation"}</strong> : {isEnglish ? "Your last processed tax return (real estate annex)" : "Votre dernière déclaration d'impôts traitée (annexe immobilière)"}</li>
                                 <li><strong>Registre foncier</strong> : Extrait du registre foncier de votre commune</li>
                                 {property.canton === "VD" && <li><strong>Canton de Vaud</strong> : Portail cantonal www.vd.ch/impots - rubrique "Mon bien immobilier"</li>}
-                                {property.canton === "GE" && <li><strong>Canton de Genève</strong> : e-démarches.ge.ch - Valeur fiscale de votre bien</li>}
-                                {property.canton === "VS" && <li><strong>Canton du Valais</strong> : Estimation sur l'avis d'impôt foncier communal</li>}
+                                {property.canton === "GE" && <li><strong>{isEnglish ? "Canton of Geneva" : "Canton de Genève"}</strong> : e-démarches.ge.ch - {isEnglish ? "Fiscal value of your property" : "Valeur fiscale de votre bien"}</li>}
+                                {property.canton === "VS" && <li><strong>{isEnglish ? "Canton of Valais" : "Canton du Valais"}</strong> : {isEnglish ? "Estimate on the municipal property tax assessment" : "Estimation sur l'avis d'impôt foncier communal"}</li>}
                               </ul>
                             </div>
                           </div>
@@ -4804,7 +4804,7 @@ export function TaxRequestForm() {
                                     <HelpCircle className="w-4 h-4 text-muted-foreground" />
                                   </TooltipTrigger>
                                   <TooltipContent className="max-w-xs">
-                                    <p>La valeur fiscale sert à calculer l'impôt sur la fortune. Elle est généralement inférieure à la valeur de marché (60-80% selon les cantons).</p>
+                                    <p>{isEnglish ? "The tax value is used to calculate wealth tax. It is generally" : "La valeur fiscale sert à calculer l'impôt sur la fortune. Elle est généralement in"}férieure à la valeur de marché (60-80% selon les cantons).</p>
                                   </TooltipContent>
                                 </Tooltip>
                               </TooltipProvider>
@@ -4862,7 +4862,7 @@ export function TaxRequestForm() {
                             </div>
                             <div>
                               <label className="block text-sm font-medium mb-2">
-                                Charges locatives perçues (CHF)
+                                {isEnglish ? "Rental charges received (CHF)" : "Charges locatives perçues (CHF)"}
                               </label>
                               <Input
                                 type="number"
@@ -4885,7 +4885,7 @@ export function TaxRequestForm() {
                             onChange={(e) => updateProperty(property.id, "hasMortgage", e.target.checked)}
                             className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                           />
-                          <h4 className="font-medium">Ce bien est hypothéqué</h4>
+                          <h4 className="font-medium">{isEnglish ? "This property has a mortgage" : "Ce bien est hypothéqué"}</h4>
                         </div>
                         {property.hasMortgage && (
                           <div className="grid md:grid-cols-2 gap-4 mt-4">
@@ -4903,7 +4903,7 @@ export function TaxRequestForm() {
                             </div>
                             <div>
                               <label className="block text-sm font-medium mb-2">
-                                Intérêts payés dans l'année (CHF)
+                                {isEnglish ? "Interest paid during the year (CHF)" : "Intérêts payés dans l'année (CHF)"}
                               </label>
                               <Input
                                 type="number"
@@ -4955,7 +4955,7 @@ export function TaxRequestForm() {
                               className="rounded-xl"
                             />
                             <p className="text-xs text-muted-foreground mt-1">
-                              Uniquement les travaux d'entretien, pas les travaux à plus-value
+                              {isEnglish ? "Maintenance work only, not value-adding improvements" : "Uniquement les travaux d'entretien, pas les travaux à plus-value"}
                             </p>
                           </div>
                         )}
@@ -4978,7 +4978,7 @@ export function TaxRequestForm() {
                 {/* Info supplément */}
                 <div className="p-3 bg-primary/5 rounded-xl text-center">
                   <p className="text-sm text-muted-foreground">
-                    Supplément de <strong>CHF 50.-</strong> par bien immobilier
+                    {isEnglish ? "Supplement of <strong>CHF 50.-</strong> per property" : "Supplément de <strong>CHF 50.-</strong> par bien immobilier"}
                   </p>
                 </div>
               </div>
@@ -5007,17 +5007,17 @@ export function TaxRequestForm() {
                       <div>
                         <p className="font-medium text-amber-800">Exigence cantonale</p>
                         <p className="text-sm text-amber-700">
-                          Le canton de {formData.canton === "NE" ? "Neuchâtel" : formData.canton === "FR" ? "Fribourg" : "Jura"} exige l'identité du bailleur ou de la gérance immobilière.
+                          {isEnglish ? "The canton of " : "Le canton de "}{formData.canton === "NE" ? "Neuchâtel" : formData.canton === "FR" ? "Fribourg" : "Jura"} {isEnglish ? "requires the identity of the landlord or property management company." : "exige l'identité du bailleur ou de la gérance immobilière."}
                         </p>
                       </div>
                     </div>
                     <div className="space-y-3">
                       <div>
                         <label className="block text-sm font-medium mb-2">
-                          Nom du bailleur / gérance <span className="text-red-500">*</span>
+                          {isEnglish ? "Landlord / property manager name" : "Nom du bailleur / gérance"} <span className="text-red-500">*</span>
                         </label>
                         <Input
-                          placeholder="Ex: Régie Dupont SA ou M. Jean Dupont"
+                          placeholder={isEnglish ? "E.g.: Dupont Real Estate SA or Mr. Jean Dupont" : "Ex: Régie Dupont SA ou M. Jean Dupont"}
                           value={formData.landlordName}
                           onChange={(e) => updateForm("landlordName", e.target.value)}
                           className="rounded-xl"
@@ -5025,10 +5025,10 @@ export function TaxRequestForm() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-2">
-                          Adresse du bailleur / gérance <span className="text-red-500">*</span>
+                          {isEnglish ? "Landlord / property manager address" : "Adresse du bailleur / gérance"} <span className="text-red-500">*</span>
                         </label>
                         <Input
-                          placeholder="Ex: Rue de la Paix 10, 2000 Neuchâtel"
+                          placeholder={isEnglish ? "E.g.: Rue de la Paix 10, 2000 Neuchâtel" : "Ex: Rue de la Paix 10, 2000 Neuchâtel"}
                           value={formData.landlordAddress}
                           onChange={(e) => updateForm("landlordAddress", e.target.value)}
                           className="rounded-xl"
@@ -5054,7 +5054,7 @@ export function TaxRequestForm() {
 
             {/* Méthode de livraison */}
             <div className="mb-8">
-              <h3 className="font-semibold mb-4">Mode de réception de la déclaration</h3>
+              <h3 className="font-semibold mb-4">{isEnglish ? "Tax return delivery method" : "Mode de réception de la déclaration"}</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div
                   onClick={() => updateForm("deliveryMethod", "email")}
@@ -5066,7 +5066,7 @@ export function TaxRequestForm() {
                 >
                   <div className="font-semibold">Par email</div>
                   <div className="text-sm text-muted-foreground">
-                    Réception par email (inclus)
+                    {isEnglish ? "Email delivery (included)" : "Réception par email (inclus)"}
                   </div>
                 </div>
                 <div
@@ -5085,9 +5085,9 @@ export function TaxRequestForm() {
               </div>
             </div>
 
-            {/* Délai de traitement */}
+            {/* {isEnglish ? "Processing time" : "Délai de traitement"} */}
             <div className="mb-8">
-              <h3 className="font-semibold mb-4">Délai de traitement</h3>
+              <h3 className="font-semibold mb-4">{isEnglish ? "Processing time" : "Délai de traitement"}</h3>
               <div className="grid md:grid-cols-3 gap-4">
                 <div
                   onClick={() => updateForm("deadline", "standard")}
@@ -5134,10 +5134,10 @@ export function TaxRequestForm() {
             {/* Commentaires */}
             <div>
               <label className="block text-sm font-medium mb-2">
-                Commentaires ou instructions particulières
+                {isEnglish ? "Comments or special instructions" : "Commentaires ou instructions particulières"}
               </label>
               <Textarea
-                placeholder="Informations complémentaires pour notre équipe..."
+                placeholder={isEnglish ? "Additional information for our team..." : "Informations complémentaires pour notre équipe..."}
                 value={formData.comments}
                 onChange={(e) => updateForm("comments", e.target.value)}
                 className="rounded-xl min-h-[100px]"
@@ -5161,7 +5161,7 @@ export function TaxRequestForm() {
                       Envoi de vos documents par courrier
                     </h2>
                     <p className="text-muted-foreground">
-                      Vous avez choisi l'envoi postal. Veuillez envoyer vos documents à l'adresse ci-dessous.
+                      {isEnglish ? "You chose postal delivery. Please send your documents to the address be" : "Vous avez choisi l'envoi postal. Veuillez envoyer vos documents à l'adresse ci-d"}essous.
                     </p>
                   </div>
                 </div>
@@ -5185,7 +5185,7 @@ export function TaxRequestForm() {
                   <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 mb-6">
                     <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
                       <span className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm">2</span>
-                      Documents à inclure
+                      {isEnglish ? "Documents to include" : "Documents à inclure"}
                     </h3>
                     <div className="space-y-3">
                       {getDocumentsWithStatus().filter(d => d.required).map((doc) => (
@@ -5223,7 +5223,7 @@ export function TaxRequestForm() {
                     <ul className="space-y-2 text-blue-700">
                       <li className="flex items-start gap-2">
                         <Check className="w-4 h-4 mt-1 flex-shrink-0" />
-                        <span>Indiquez votre <strong>référence de demande</strong> sur l'enveloppe (elle vous sera communiquée après le paiement)</span>
+                        <span>{isEnglish ? "Include your <strong>request reference</strong> on the envelope (it" : "Indiquez votre <strong>référence de demande</strong> sur l'enveloppe (elle"} vous sera communiquée après le paiement)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <Check className="w-4 h-4 mt-1 flex-shrink-0" />
@@ -5235,7 +5235,7 @@ export function TaxRequestForm() {
                       </li>
                       <li className="flex items-start gap-2">
                         <Check className="w-4 h-4 mt-1 flex-shrink-0" />
-                        <span>Le traitement commence dès réception de vos documents</span>
+                        <span>{isEnglish ? "Processing begins upon receipt of your documents" : "Le traitement commence dès réception de vos documents"}</span>
                       </li>
                     </ul>
                   </div>
@@ -5271,7 +5271,7 @@ export function TaxRequestForm() {
                     </h2>
                     <p className="text-xs text-gray-500 flex items-center gap-1">
                       <ShieldCheck className="w-3 h-3 text-green-500" />
-                      Stockage sécurisé • <span className="text-red-400">*</span> = obligatoire
+                      {isEnglish ? "Secure storage" : "Stockage sécurisé"} • <span className="text-red-400">*</span> = obligatoire
                     </p>
                   </div>
                 </div>
@@ -5283,7 +5283,7 @@ export function TaxRequestForm() {
                       <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                       <div>
                         <p className="text-xs text-amber-800 font-medium">
-                          Fichiers de votre session précédente à re-uploader :
+                          {isEnglish ? "Files from your previous session to re-upload:" : "Fichiers de votre session précédente à re-uploader :"}
                         </p>
                         <ul className="text-xs text-amber-700 mt-1 list-disc list-inside">
                           {lostFilesFromPreviousSession.map((f, i) => (
@@ -5302,7 +5302,7 @@ export function TaxRequestForm() {
                     <p className="text-xs text-blue-700">
                       <span className="font-medium">Upload en cours...</span>
                       <span className="text-blue-600 ml-1">
-                        Veuillez attendre que tous les fichiers soient uploadés avant de continuer.
+                        {isEnglish ? "Please wait for all files to be uploaded before continuing." : "Veuillez attendre que tous les fichiers soient uploadés avant de continuer."}
                       </span>
                     </p>
                   </div>
@@ -5317,7 +5317,7 @@ export function TaxRequestForm() {
                         {uploadedFiles.filter(f => f.uploadStatus === "error").length} fichier(s) en erreur
                       </span>
                       <span className="text-red-600 ml-1">
-                        - Cliquez sur le bouton de réessai ou supprimez les fichiers concernés.
+                        - {isEnglish ? "Click the retry button or remove the affected files." : "Cliquez sur le bouton de réessai ou supprimez les fichiers concernés."}
                       </span>
                     </p>
                   </div>
@@ -5341,7 +5341,7 @@ export function TaxRequestForm() {
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">1</div>
                     <label className="text-sm font-semibold text-gray-700">
-                      Sélectionnez le type de document
+                      {isEnglish ? "Select the type" : "Sélectionnez le type"} de document
                     </label>
                   </div>
 
@@ -5518,13 +5518,13 @@ export function TaxRequestForm() {
                               <div className="text-[10px] text-gray-400 flex items-center gap-1">
                                 {formatFileSize(file.size)}
                                 {file.uploadStatus === "uploading" && (
-                                  <span className="text-blue-500">• Upload en cours...</span>
+                                  <span className="text-blue-500">{isEnglish ? "• Uploading..." : "• Upload en cours..."}</span>
                                 )}
                                 {file.uploadStatus === "success" && file.url && (
-                                  <span className="text-green-600">• Sauvegardé</span>
+                                  <span className="text-green-600">• {isEnglish ? "Saved" : "Sauvegardé"}</span>
                                 )}
                                 {file.uploadStatus === "error" && (
-                                  <span className="text-red-500">• {file.uploadError || "Échec"}</span>
+                                  <span className="text-red-500">• {file.uploadError || (isEnglish ? "Failed" : "Échec")}</span>
                                 )}
                               </div>
                             </div>
@@ -5536,7 +5536,7 @@ export function TaxRequestForm() {
                                 type="button"
                                 onClick={() => retryFileUpload(file.id)}
                                 className="w-6 h-6 flex items-center justify-center text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
-                                title="Réessayer l'upload"
+                                title=isEnglish ? "Retry upload" : "{isEnglish ? "Retry upload" : "{isEnglish ? "Retry" : "Réessayer"} l'upload"}"
                               >
                                 <RefreshCw className="w-3.5 h-3.5" />
                               </button>
@@ -5584,7 +5584,7 @@ export function TaxRequestForm() {
                   {allRequiredDocumentsUploaded() && (
                     <div className="flex items-center gap-1.5 text-green-600 text-xs font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Tous les documents requis sont uploadés avec succès</span>
+                      <span>{isEnglish ? "All required documents have been successfully uploaded" : "Tous les documents requis sont uploadés avec succès"}</span>
                     </div>
                   )}
                 </div>
@@ -5622,7 +5622,7 @@ export function TaxRequestForm() {
                   <div>
                     <span className="font-medium">Je certifie l'exactitude des informations</span>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Je confirme que toutes les informations fournies sont complètes et exactes au meilleur de ma connaissance.
+                      {isEnglish ? "I confirm that all information provided is complete and accurate to the be" : "Je confirme que toutes les informations fournies sont complètes et exactes au me"}illeur de ma connaissance.
                     </p>
                   </div>
                 </label>
@@ -5637,9 +5637,9 @@ export function TaxRequestForm() {
                     className="w-5 h-5 mt-0.5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                   />
                   <div>
-                    <span className="font-medium">Je comprends ma responsabilité</span>
+                    <span className="font-medium">{isEnglish ? "I understand my responsibility" : "Je comprends ma responsabilité"}</span>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Je comprends que je reste responsable de l'exactitude de ma déclaration d'impôts finale auprès de l'administration fiscale.
+                      {isEnglish ? "I understand that I remain responsible for the accuracy of my tax return" : "Je comprends que je reste responsable de l'exactitude de ma déclaration d'impôts"} finale auprès de l'administration fiscale.
                     </p>
                   </div>
                 </label>
@@ -5651,7 +5651,7 @@ export function TaxRequestForm() {
                   <div>
                     <p className="font-medium text-amber-800">Important</p>
                     <p className="text-sm text-amber-700 mt-1">
-                      NeoFidu s'engage à traiter votre déclaration avec le plus grand soin. Cependant, la responsabilité finale envers l'administration fiscale vous incombe. Nous vous recommandons de vérifier la déclaration avant de la signer et de la soumettre.
+                      {isEnglish ? "NeoFidu is committed to processing your tax return with the utmost care. However," : "NeoFidu s'engage à traiter votre déclaration avec le plus grand soin. Cependant,"} la responsabilité finale envers l'administration fiscale vous incombe. Nous vous recommandons de vérifier la déclaration avant de la signer et de la soumettre.
                     </p>
                   </div>
                 </div>
@@ -5660,33 +5660,33 @@ export function TaxRequestForm() {
 
             {/* Résumé du prix */}
             <div className="mt-8 p-6 bg-primary/5 rounded-2xl border border-primary/20">
-              <h3 className="font-bold text-lg mb-4">Récapitulatif</h3>
+              <h3 className="font-bold text-lg mb-4">{isEnglish ? "Summary" : "Récapitulatif"}</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>Déclaration {formData.familyStatus === "couple" ? "commune" : "individuelle"}</span>
+                  <span>{isEnglish ? "Declaration" : "Déclaration"} {formData.familyStatus === "couple" ? (isEnglish ? "joint" : "commune") : (isEnglish ? "individual" : "individuelle")}</span>
                   <span>CHF 50.-</span>
                 </div>
                 {formData.livesAbroad && (
                   <div className="flex justify-between">
-                    <span>Supplément Suisse de l'étranger</span>
+                    <span>{isEnglish ? "Swiss abroad supplement" : "Supplément Suisse de l'étranger"}</span>
                     <span>CHF 50.-</span>
                   </div>
                 )}
                 {formData.familyStatus === "couple" && (
                   <div className="flex justify-between">
-                    <span>Supplément couple</span>
+                    <span>{isEnglish ? "Couple supplement" : "Supplément couple"}</span>
                     <span>CHF 20.-</span>
                   </div>
                 )}
                 {formData.isIndependent && (
                   <div className="flex justify-between">
-                    <span>Supplément indépendant{formData.familyStatus === "couple" ? ` (${formData.firstName || "Adulte 1"})` : ""}</span>
+                    <span>{isEnglish ? `Self-employed supplement${formData.familyStatus` : `Supplément indépendant${formData.familyStatus`} === "couple" ? ` (${formData.firstName || "Adulte 1"})` : ""}</span>
                     <span>CHF 40.-</span>
                   </div>
                 )}
                 {formData.familyStatus === "couple" && formData.isIndependent2 && (
                   <div className="flex justify-between">
-                    <span>Supplément indépendant ({formData.firstName2 || "Adulte 2"})</span>
+                    <span>{isEnglish ? "Self-employed supplement" : "Supplément indépendant"} ({formData.firstName2 || (isEnglish ? "Adult 2" : "Adulte 2")})</span>
                     <span>CHF 40.-</span>
                   </div>
                 )}
@@ -5716,13 +5716,13 @@ export function TaxRequestForm() {
                 )}
                 {formData.deadline === "extended" && (
                   <div className="flex justify-between">
-                    <span>Délai prioritaire</span>
+                    <span>{isEnglish ? "Priority processing" : "Délai prioritaire"}</span>
                     <span>CHF 20.-</span>
                   </div>
                 )}
                 {formData.deadline === "express" && (
                   <div className="flex justify-between">
-                    <span>Délai express (48h)</span>
+                    <span>{isEnglish ? "Express processing (48h)" : "Délai express (48h)"}</span>
                     <span>CHF 120.-</span>
                   </div>
                 )}
@@ -5752,19 +5752,19 @@ export function TaxRequestForm() {
               <PaymentIllustration className="w-24 h-24 flex-shrink-0" />
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  Paiement sécurisé
+                  {isEnglish ? "Secure payment" : "Paiement sécurisé"}
                 </h2>
                 <p className="text-muted-foreground">
-                  Finalisez votre demande en toute sécurité.
+                  {isEnglish ? "Finalize your request securely." : "Finalisez votre demande en toute sécurité."}
                 </p>
               </div>
             </div>
 
-            {/* Récapitulatif compact */}
+            {/* {isEnglish ? "Summary" : "Récapitulatif"} compact */}
             <div className="mb-6 p-4 bg-gray-50 rounded-xl border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Déclaration d'impôts {formData.taxYear}</p>
+                  <p className="font-medium">{isEnglish ? `Tax return ${formData.taxYear}` : `Déclaration d'impôts ${formData.taxYear}`}</p>
                   <p className="text-sm text-muted-foreground">
                     {formData.firstName} {formData.lastName}
                     {formData.clientType === "couple" && formData.firstName2 && ` & ${formData.firstName2} ${formData.lastName2}`}
@@ -5782,10 +5782,10 @@ export function TaxRequestForm() {
               <div className="mb-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
                 <div className="flex items-center gap-2">
                   <Check className="w-5 h-5 text-primary" />
-                  <span className="font-medium">Demande enregistrée</span>
+                  <span className="font-medium">{isEnglish ? "Request saved" : "Demande enregistrée"}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Référence: <span className="font-mono font-medium">{taxRequestReference}</span>
+                  {isEnglish ? "Reference:" : "Référence:"} <span className="font-mono font-medium">{taxRequestReference}</span>
                 </p>
               </div>
             )}
@@ -5794,7 +5794,7 @@ export function TaxRequestForm() {
             <div className="mb-6 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Lock className="w-4 h-4 text-green-600" />
-                <span>Paiement sécurisé SSL</span>
+                <span>{isEnglish ? "Secure SSL payment" : "{isEnglish ? "Secure payment" : "Paiement sécurisé"} SSL"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CreditCard className="w-4 h-4 text-primary" />
@@ -5802,7 +5802,7 @@ export function TaxRequestForm() {
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-primary" />
-                <span>Données protégées</span>
+                <span>{isEnglish ? "Protected data" : "Données protégées"}</span>
               </div>
             </div>
 
@@ -5810,7 +5810,7 @@ export function TaxRequestForm() {
             {isSavingRequest ? (
               <div className="p-8 text-center">
                 <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-muted-foreground">Préparation du paiement...</p>
+                <p className="text-muted-foreground">{isEnglish ? "Preparing payment..." : "Préparation du paiement..."}</p>
               </div>
             ) : (
               <PaymentMethodSelector
@@ -5819,7 +5819,7 @@ export function TaxRequestForm() {
                 onError={(error) => console.error("Erreur de paiement:", error)}
                 customerEmail={formData.email}
                 customerName={`${formData.firstName} ${formData.lastName}`}
-                description={`Déclaration fiscale ${formData.taxYear} - ${formData.canton}`}
+                description={`{isEnglish ? `Tax return ${formData.taxYear}` : `Déclaration fiscale ${formData.taxYear}`} - ${formData.canton}`}
                 taxRequestReference={taxRequestReference}
                 metadata={{
                   taxRequestReference: taxRequestReference,
@@ -5840,10 +5840,10 @@ export function TaxRequestForm() {
                   <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-medium text-blue-800">
-                      {uploadedFiles.length} document(s) prêt(s) à être envoyé(s)
+                      {isEnglish ? `${uploadedFiles.length} document(s) ready to be sent` : `${uploadedFiles.length} document(s) prêt(s) à être envoyé(s)`}
                     </p>
                     <p className="text-sm text-blue-700 mt-1">
-                      Vos documents seront transmis automatiquement après la confirmation de votre paiement.
+                      {isEnglish ? "Your documents will be sent automatically after payment confirmation" : "Vos documents seront transmis automatiquement après la confirmation de votre paiement"}.
                     </p>
                   </div>
                 </div>
@@ -5861,23 +5861,23 @@ export function TaxRequestForm() {
               <ul className="text-sm text-amber-700 mt-2 space-y-1 list-disc list-inside">
                 {/* Statut d'emploi manquant */}
                 {formData.clientType !== "independent" && !formData.employmentStatus && (
-                  <li>Sélectionnez votre statut d'emploi (salarié, retraité, etc.)</li>
+                  <li>{isEnglish ? "Select your employment status (employee, retiree, etc.)" : "Sélectionnez votre statut d'emploi (salarié, retraité, etc.)"}</li>
                 )}
-                {/* Taux d'occupation manquant pour salarié */}
+                {/* {isEnglish ? "Employment rate" : "Taux d'occupation"} manquant pour salarié */}
                 {formData.clientType !== "independent" && formData.employmentStatus === "employed" && !formData.occupationRate && (
                   <li>Indiquez votre taux d'occupation (%)</li>
                 )}
                 {/* Statut d'emploi manquant pour le conjoint */}
                 {formData.clientType === "couple" && !formData.employmentStatus2 && (
-                  <li>Sélectionnez le statut d'emploi de votre conjoint</li>
+                  <li>{isEnglish ? "Select your partner's employment status" : "Sélectionnez le statut d'emploi de votre conjoint"}</li>
                 )}
-                {/* Taux d'occupation manquant pour conjoint salarié */}
+                {/* {isEnglish ? "Employment rate" : "Taux d'occupation"} manquant pour conjoint salarié */}
                 {formData.clientType === "couple" && formData.employmentStatus2 === "employed" && !formData.occupationRate2 && (
                   <li>Indiquez le taux d'occupation de votre conjoint (%)</li>
                 )}
                 {/* Mode de transport manquant */}
                 {!workplaces1.some((wp) => wp.transportMode !== "") && (
-                  <li>Sélectionnez un mode de transport pour vos trajets professionnels</li>
+                  <li>{isEnglish ? "Select a transport mode for your professional commute" : "Sélectionnez un mode de transport pour vos trajets professionnels"}</li>
                 )}
                 {/* Justification voiture manquante */}
                 {workplaces1.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
@@ -5885,7 +5885,7 @@ export function TaxRequestForm() {
                 )}
                 {/* Mode de transport manquant pour le conjoint */}
                 {formData.clientType === "couple" && !workplaces2.some((wp) => wp.transportMode !== "") && (
-                  <li>Sélectionnez un mode de transport pour le conjoint</li>
+                  <li>{isEnglish ? "Select a transport mode for your partner" : "Sélectionnez un mode de transport pour le conjoint"}</li>
                 )}
                 {/* Justification voiture manquante pour le conjoint */}
                 {formData.clientType === "couple" && workplaces2.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
@@ -5893,17 +5893,17 @@ export function TaxRequestForm() {
                 )}
                 {/* Informations indépendant manquantes */}
                 {formData.isIndependent && !formData.businessType.trim() && (
-                  <li>Indiquez le type d'activité indépendante</li>
+                  <li>{isEnglish ? "Indicate the type of self-employed activity" : "Indiquez le type d'activité indépendante"}</li>
                 )}
                 {formData.isIndependent && !formData.hasBusinessAccounts && (!formData.businessRevenue.trim() || !formData.businessExpenses.trim()) && (
-                  <li>Remplissez soit le bilan/compte de résultat, soit le chiffre d'affaires et les charges</li>
+                  <li>{isEnglish ? "Fill in either the balance sheet/P&L, or the revenue and exp" : "Remplissez soit le bilan/compte de résultat, soit le chiffre d'affaires et les ch"}arges</li>
                 )}
                 {/* Informations indépendant manquantes pour le conjoint */}
                 {formData.familyStatus === "couple" && formData.isIndependent2 && !formData.businessType2.trim() && (
-                  <li>Indiquez le type d'activité indépendante du conjoint</li>
+                  <li>{isEnglish ? "Indicate the type of self-employed activity" : "Indiquez le type d'activité indépendante"} du conjoint</li>
                 )}
                 {formData.familyStatus === "couple" && formData.isIndependent2 && !formData.hasBusinessAccounts2 && (!formData.businessRevenue2.trim() || !formData.businessExpenses2.trim()) && (
-                  <li>Remplissez les informations financières de l'activité indépendante du conjoint</li>
+                  <li>{isEnglish ? "Fill in the financial information for your partner's self-employed activity" : "Remplissez les informations financières de l'activité indépendante du conjoint"}</li>
                 )}
               </ul>
             </div>
@@ -5923,7 +5923,7 @@ export function TaxRequestForm() {
                 </p>
                 {uploadError.failedFiles.length > 0 && (
                   <div className="mt-2 text-sm text-red-600">
-                    <p className="font-medium">Fichiers concernés :</p>
+                    <p className="font-medium">{isEnglish ? "Affected files:" : "Fichiers concernés :"}</p>
                     <ul className="list-disc list-inside mt-1">
                       {uploadError.failedFiles.map((file, idx) => (
                         <li key={idx} className="truncate">{file}</li>
@@ -5941,7 +5941,7 @@ export function TaxRequestForm() {
                     }}
                     className="text-red-700 border-red-300 hover:bg-red-100"
                   >
-                    Réessayer l'upload
+                    {isEnglish ? "Retry upload" : "{isEnglish ? "Retry" : "Réessayer"} l'upload"}
                   </Button>
                   <Button
                     variant="ghost"
@@ -5976,7 +5976,7 @@ export function TaxRequestForm() {
                   }}
                   className="mt-3 text-red-700 border-red-300 hover:bg-red-100"
                 >
-                  Réessayer
+                  {isEnglish ? "Retry" : "Réessayer"}
                 </Button>
               </div>
             </div>
