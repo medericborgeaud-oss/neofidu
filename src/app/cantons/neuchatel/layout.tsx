@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Neuchâtel 2026",
-  description:
-    "Tax return service in Neuchâtel. NeTax, watch industry. La Chaux-de-Fonds, Le Locle. From CHF 50.",
+  description: "Fiduciaire en ligne pour le canton de Neuchâtel. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes. Dès CHF 50.",
   keywords: [
     "déclaration impôts Neuchâtel",
     "impôts La Chaux-de-Fonds",
