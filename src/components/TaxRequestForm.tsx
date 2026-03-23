@@ -95,7 +95,7 @@ const cantonCodeInfo: Record<string, { label: string; placeholder: string; sourc
   VD: {
     label: "Code de contrôle",
     placeholder: "Ex: 123456",
-    source: "{isEnglish ? "Find this number on your tax letter" : "Trouvez ce numéro sur votre courrier fiscal"}",
+    source: "Trouvez ce numéro sur votre courrier fiscal",
   },
   VS: {
     label: "Numéro de contrôle",
@@ -126,20 +126,20 @@ const cantonCodeInfo: Record<string, { label: string; placeholder: string; sourc
 
 // Options pour la situation familiale (étape 2a)
 const familyStatusOptions = [
-  { id: "single", name: isEnglish ? "Individual return" : "Déclaration individuelle", icon: User, description: "Personne seule (célibataire, divorcé(e), veuf/veuve)" },
-  { id: "couple", name: isEnglish ? "Joint return" : "Déclaration commune", icon: Users, description: "Couple marié ou partenariat enregistré" },
+  { id: "single", name: "Déclaration individuelle", icon: User, description: "Personne seule (célibataire, divorcé(e), veuf/veuve)" },
+  { id: "couple", name: "Déclaration commune", icon: Users, description: "Couple marié ou partenariat enregistré" },
 ];
 
 // Options pour la situation professionnelle (étape 2b)
 // La description de "independent" dépend du familyStatus, elle sera générée dynamiquement
 const professionalStatusOptions = [
-  { id: "employee", name: isEnglish ? "Employee / Retiree" : "Salarié / Retraité", icon: User, description: "Employé, retraité, étudiant, chômeur" },
-  { id: "independent", name: "Indépendant", icon: Briefcase, descriptionSingle: "Travailleur indépendant", descriptionCouple: "{isEnglish ? "Self-employed activity" : "Activité indépendante"} (au moins un conjoint)" },
+  { id: "employee", name: "Salarié / Retraité", icon: User, description: "Employé, retraité, étudiant, chômeur" },
+  { id: "independent", name: "Indépendant", icon: Briefcase, descriptionSingle: "Travailleur indépendant", descriptionCouple: "Activité indépendante (au moins un conjoint)" },
 ];
 
 // Ancien tableau conservé pour compatibilité avec le reste du code
 const clientTypes = [
-  { id: "private", name: isEnglish ? "Private client" : "Client privé", icon: User, description: "Salarié, retraité, étudiant" },
+  { id: "private", name: "Client privé", icon: User, description: "Salarié, retraité, étudiant" },
   { id: "independent", name: "Indépendant", icon: Briefcase, description: "Travailleur indépendant" },
   { id: "couple", name: "Couple", icon: Users, description: "Couple marié / partenariat enregistré" },
 ];
@@ -162,12 +162,12 @@ const residenceStatuses = [
 ];
 
 const maritalStatuses = [
-  { id: "single", name: isEnglish ? "Single" : "Célibataire", description: "Jamais marié(e)" },
-  { id: "married", name: isEnglish ? "Married" : "Marié(e)", description: "Union légale" },
-  { id: "divorced", name: isEnglish ? "Divorced" : "Divorcé(e)", description: "Mariage dissous" },
-  { id: "widowed", name: isEnglish ? "Widowed" : "Veuf/Veuve", description: "Conjoint décédé" },
-  { id: "separated", name: isEnglish ? "Separated" : "Séparé(e)", description: "Séparation légale" },
-  { id: "partnership", name: isEnglish ? "Registered partnership" : "Partenariat enregistré", description: "Union civile" },
+  { id: "single", name: "Célibataire", description: "Jamais marié(e)" },
+  { id: "married", name: "Marié(e)", description: "Union légale" },
+  { id: "divorced", name: "Divorcé(e)", description: "Mariage dissous" },
+  { id: "widowed", name: "Veuf/Veuve", description: "Conjoint décédé" },
+  { id: "separated", name: "Séparé(e)", description: "Séparation légale" },
+  { id: "partnership", name: "Partenariat enregistré", description: "Union civile" },
 ];
 
 // Les statuts d'emploi pour les clients privés
@@ -175,45 +175,45 @@ const employmentStatuses = [
   { id: "employed", name: "Salarié(e)", description: "Employé à temps plein ou partiel" },
   { id: "retired", name: "Retraité(e)", description: "AVS, AI, ou autre rente" },
   { id: "unemployed", name: "Au chômage", description: "Inscrit au chômage" },
-  { id: "selfemployed", name: "Indépendant(e)", description: "{isEnglish ? "Self-employed activity" : "Activité indépendante"}" },
+  { id: "selfemployed", name: "Indépendant(e)", description: "Activité indépendante" },
 ];
 
 // Les catégories de documents avec tooltips explicatifs
 const documentCategories = [
   { id: "salary", name: "Certificat(s) de salaire", description: "De tous les employeurs", tooltip: "Document fourni par votre employeur indiquant votre salaire brut, les cotisations sociales et les impôts prélevés à la source." },
   { id: "pension", name: "Attestation de rente", description: "AVS, AI, LPP, etc.", tooltip: "Attestations de toutes vos rentes : AVS, AI, 2ème pilier (LPP), rentes étrangères, etc." },
-  { id: "unemployment", name: isEnglish ? "Unemployment benefit certificate" : "Attestation de chômage", description: isEnglish ? "Unemployment benefits received" : "Indemnités chômage reçues", tooltip: "Attestation de l'office régional de placement (ORP) indiquant les indemnités chômage perçues durant l'année." },
-  { id: "business", name: isEnglish ? "Profit & Loss and Balance Sheet" : "Comptes résultats et bilan", description: isEnglish ? "For self-employed" : "Pour indépendants", tooltip: "États financiers complets de votre activité indépendante : compte de résultat, bilan, et annexes. Document obligatoire pour les indépendants." },
-  { id: "questionnaireIndependantVD", name: isEnglish ? "General self-employed questionnaire" : "Questionnaire général indépendant", description: isEnglish ? "Canton of Vaud only" : "Canton de Vaud uniquement", tooltip: "Formulaire spécifique demandé par le canton de Vaud pour les indépendants. Contient des informations détaillées sur votre activité." },
-  { id: "questionnaireIndependantFR", name: isEnglish ? "Self-employed questionnaire" : "Questionnaire pour indépendants", description: isEnglish ? "Canton of Fribourg" : "Canton de Fribourg", tooltip: "Formulaire complémentaire demandé par le canton de Fribourg pour les personnes exerçant une activité lucrative indépendante." },
-  { id: "questionnaireIndependantVS", name: isEnglish ? "Self-employed activity form" : "Formulaire activité indépendante", description: "{isEnglish ? "Canton of Valais" : "Canton du Valais"}", tooltip: "Formulaire de renseignements complémentaires pour les contribuables exerçant une activité lucrative indépendante dans le canton du Valais." },
-  { id: "questionnaireIndependantNE", name: isEnglish ? "Self-employed activity annex" : "Annexe activité indépendante", description: isEnglish ? "Canton of Neuchâtel" : "Canton de Neuchâtel", tooltip: "Formulaire annexe pour les contribuables indépendants utilisant Clic & Tax dans le canton de Neuchâtel." },
-  { id: "avsIndependent", name: isEnglish ? "AVS/AHV self-employed certificate" : "Attestation {isEnglish ? "Self-employed AVS" : "AVS indépendant"}", description: "Cotisations personnelles", tooltip: "Attestation de votre caisse de compensation indiquant les cotisations AVS/AI/APG versées en tant qu'indépendant." },
+  { id: "unemployment", name: "Attestation de chômage", description: "Indemnités chômage reçues", tooltip: "Attestation de l'office régional de placement (ORP) indiquant les indemnités chômage perçues durant l'année." },
+  { id: "business", name: "Comptes résultats et bilan", description: "Pour indépendants", tooltip: "États financiers complets de votre activité indépendante : compte de résultat, bilan, et annexes. Document obligatoire pour les indépendants." },
+  { id: "questionnaireIndependantVD", name: "Questionnaire général indépendant", description: "Canton de Vaud uniquement", tooltip: "Formulaire spécifique demandé par le canton de Vaud pour les indépendants. Contient des informations détaillées sur votre activité." },
+  { id: "questionnaireIndependantFR", name: "Questionnaire pour indépendants", description: "Canton de Fribourg", tooltip: "Formulaire complémentaire demandé par le canton de Fribourg pour les personnes exerçant une activité lucrative indépendante." },
+  { id: "questionnaireIndependantVS", name: "Formulaire activité indépendante", description: "Canton du Valais", tooltip: "Formulaire de renseignements complémentaires pour les contribuables exerçant une activité lucrative indépendante dans le canton du Valais." },
+  { id: "questionnaireIndependantNE", name: "Annexe activité indépendante", description: "Canton de Neuchâtel", tooltip: "Formulaire annexe pour les contribuables indépendants utilisant Clic & Tax dans le canton de Neuchâtel." },
+  { id: "avsIndependent", name: "Attestation AVS indépendant", description: "Cotisations personnelles", tooltip: "Attestation de votre caisse de compensation indiquant les cotisations AVS/AI/APG versées en tant qu'indépendant." },
   { id: "amortization", name: "Tableau des amortissements", description: "Actifs professionnels", tooltip: "Tableau détaillant les amortissements de vos actifs professionnels (véhicule, matériel, mobilier, etc.)." },
-  { id: "businessBank", name: isEnglish ? "Professional account statement" : "Relevé compte professionnel", description: isEnglish ? "Separate account" : "Compte séparé", tooltip: "Relevé de votre compte bancaire professionnel (si séparé du compte privé) au 31 décembre." },
-  { id: "bank", name: isEnglish ? "Bank statements as of 31.12" : "Relevés bancaires au 31.12", description: "Tous vos comptes", tooltip: "Relevés de tous vos comptes bancaires et postaux montrant le solde au 31 décembre et les intérêts perçus." },
-  { id: "stocks", name: isEnglish ? "Securities statements as of 31.12" : "Relevés de titres au 31.12", description: "Actions, fonds, obligations", tooltip: "Relevé de dépôt de votre banque indiquant la valeur fiscale de vos titres au 31 décembre." },
-  { id: "stocksSale", name: "Justificatifs ventes titres", description: isEnglish ? "Transaction statements" : "Relevés de transactions", tooltip: "Relevés de transactions de votre banque/courtier montrant les achats et ventes de titres durant l'année (prix d'achat, prix de vente, dates)." },
-  { id: "insurance", name: "Attestation primes maladie", description: isEnglish ? "LAMal premiums paid" : "Primes LAMal payées", tooltip: "Attestation de votre caisse maladie indiquant le total des primes d'assurance obligatoire (LAMal) payées." },
-  { id: "pillar3a", name: "Attestation pilier 3a", description: isEnglish ? "Payments made" : "Versements effectués", tooltip: "Attestation de votre banque ou assurance confirmant les versements effectués sur votre compte 3ème pilier A." },
-  { id: "guard", name: "Frais de garde d'enfants", description: isEnglish ? "Childcare, UAPE, childminder, cafeteria, camps" : "Crèche, UAPE, maman de jour, cantine, camps", tooltip: "Factures et attestations des frais de garde : crèche, UAPE, maman de jour, cantine scolaire, camps de vacances." },
-  { id: "alimonyReceived", name: isEnglish ? "Alimony received" : "Pensions alimentaires reçues", description: "Contributions d'entretien", tooltip: "Justificatifs des pensions alimentaires reçues pour vous-même ou vos enfants (extraits bancaires, jugement de divorce)." },
-  { id: "alimonyPaid", name: isEnglish ? "Alimony paid" : "Pensions alimentaires versées", description: isEnglish ? "Contributions paid" : "Contributions versées", tooltip: "Justificatifs des pensions alimentaires versées à votre ex-conjoint ou pour vos enfants (extraits bancaires, jugement)." },
-  { id: "debts", name: "Attestation de dettes", description: isEnglish ? "Personal loans, leasing" : "Prêts personnels, leasing", tooltip: "Attestations de vos créanciers indiquant le solde de vos dettes au 31 décembre et les intérêts payés." },
-  { id: "mortgage", name: isEnglish ? "Mortgage certificate" : "Attestation hypothécaire", description: isEnglish ? "Interest, amortization" : "Intérêts, amortissements", tooltip: "Attestation de votre banque indiquant le solde de l'hypothèque, les intérêts payés et les amortissements." },
-  { id: "renovations", name: "Factures gros travaux", description: isEnglish ? "Renovations, maintenance" : "Rénovations, entretien", tooltip: "Factures des travaux d'entretien et de rénovation de votre bien immobilier (seuls les travaux d'entretien sont déductibles)." },
+  { id: "businessBank", name: "Relevé compte professionnel", description: "Compte séparé", tooltip: "Relevé de votre compte bancaire professionnel (si séparé du compte privé) au 31 décembre." },
+  { id: "bank", name: "Relevés bancaires au 31.12", description: "Tous vos comptes", tooltip: "Relevés de tous vos comptes bancaires et postaux montrant le solde au 31 décembre et les intérêts perçus." },
+  { id: "stocks", name: "Relevés de titres au 31.12", description: "Actions, fonds, obligations", tooltip: "Relevé de dépôt de votre banque indiquant la valeur fiscale de vos titres au 31 décembre." },
+  { id: "stocksSale", name: "Justificatifs ventes titres", description: "Relevés de transactions", tooltip: "Relevés de transactions de votre banque/courtier montrant les achats et ventes de titres durant l'année (prix d'achat, prix de vente, dates)." },
+  { id: "insurance", name: "Attestation primes maladie", description: "Primes LAMal payées", tooltip: "Attestation de votre caisse maladie indiquant le total des primes d'assurance obligatoire (LAMal) payées." },
+  { id: "pillar3a", name: "Attestation pilier 3a", description: "Versements effectués", tooltip: "Attestation de votre banque ou assurance confirmant les versements effectués sur votre compte 3ème pilier A." },
+  { id: "guard", name: "Frais de garde d'enfants", description: "Crèche, UAPE, maman de jour, cantine, camps", tooltip: "Factures et attestations des frais de garde : crèche, UAPE, maman de jour, cantine scolaire, camps de vacances." },
+  { id: "alimonyReceived", name: "Pensions alimentaires reçues", description: "Contributions d'entretien", tooltip: "Justificatifs des pensions alimentaires reçues pour vous-même ou vos enfants (extraits bancaires, jugement de divorce)." },
+  { id: "alimonyPaid", name: "Pensions alimentaires versées", description: "Contributions versées", tooltip: "Justificatifs des pensions alimentaires versées à votre ex-conjoint ou pour vos enfants (extraits bancaires, jugement)." },
+  { id: "debts", name: "Attestation de dettes", description: "Prêts personnels, leasing", tooltip: "Attestations de vos créanciers indiquant le solde de vos dettes au 31 décembre et les intérêts payés." },
+  { id: "mortgage", name: "Attestation hypothécaire", description: "Intérêts, amortissements", tooltip: "Attestation de votre banque indiquant le solde de l'hypothèque, les intérêts payés et les amortissements." },
+  { id: "renovations", name: "Factures gros travaux", description: "Rénovations, entretien", tooltip: "Factures des travaux d'entretien et de rénovation de votre bien immobilier (seuls les travaux d'entretien sont déductibles)." },
   { id: "property", name: "Documents immobiliers", description: "Charges, PPE, etc.", tooltip: "Décompte de charges de copropriété, attestations de frais d'entretien, etc." },
-  { id: "propertySale", name: isEnglish ? "Real estate sale documents" : "Documents vente immobilière", description: "Acte de vente, IGI", tooltip: "Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers, acte d'achat original, factures des travaux de plus-value effectués." },
-  { id: "donations", name: "Attestations de dons", description: isEnglish ? "Charitable organizations" : "Organisations d'utilité publique", tooltip: "Attestations de dons à des organisations reconnues d'utilité publique (associations, fondations, églises, partis politiques)." },
+  { id: "propertySale", name: "Documents vente immobilière", description: "Acte de vente, IGI", tooltip: "Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers, acte d'achat original, factures des travaux de plus-value effectués." },
+  { id: "donations", name: "Attestations de dons", description: "Organisations d'utilité publique", tooltip: "Attestations de dons à des organisations reconnues d'utilité publique (associations, fondations, églises, partis politiques)." },
   { id: "other", name: "Autres justificatifs", description: "Frais professionnels, etc.", tooltip: "Justificatifs de frais professionnels, cotisations syndicales, formations, etc." },
 ];
 
 // Documents spécifiques pour les Suisses de l'étranger
 const abroadDocumentCategories = [
-  { id: "taxResidenceCertificate", name: isEnglish ? "Tax residence certificate" : "Attestation de résidence fiscale", description: isEnglish ? "From the country of residence" : "Du pays de résidence", tooltip: "Certificat officiel de votre pays de résidence confirmant que vous y êtes domicilié fiscalement. Nécessaire pour appliquer la convention de double imposition.", required: true },
-  { id: "foreignIncome", name: isEnglish ? "Foreign income documents" : "Justificatifs revenus étrangers", description: "Salaire, pension, etc.", tooltip: "Documents attestant vos revenus dans votre pays de résidence : fiches de salaire, attestations de pension, etc. Nécessaires pour déterminer le taux d'imposition.", required: true },
-  { id: "foreignTaxReturn", name: isEnglish ? "Foreign tax assessment" : "Avis d'imposition étranger", description: isEnglish ? "Last tax return" : "Dernière déclaration", tooltip: "Copie de votre dernière déclaration d'impôts ou avis d'imposition de votre pays de résidence.", required: false },
-  { id: "da1Form", name: "Formulaire DA-1", description: isEnglish ? "Recovery of withholding tax" : "Récupération impôt anticipé", tooltip: "Formulaire pour demander le remboursement de l'impôt anticipé suisse (35%) sur les dividendes et intérêts de source suisse.", required: false },
+  { id: "taxResidenceCertificate", name: "Attestation de résidence fiscale", description: "Du pays de résidence", tooltip: "Certificat officiel de votre pays de résidence confirmant que vous y êtes domicilié fiscalement. Nécessaire pour appliquer la convention de double imposition.", required: true },
+  { id: "foreignIncome", name: "Justificatifs revenus étrangers", description: "Salaire, pension, etc.", tooltip: "Documents attestant vos revenus dans votre pays de résidence : fiches de salaire, attestations de pension, etc. Nécessaires pour déterminer le taux d'imposition.", required: true },
+  { id: "foreignTaxReturn", name: "Avis d'imposition étranger", description: "Dernière déclaration", tooltip: "Copie de votre dernière déclaration d'impôts ou avis d'imposition de votre pays de résidence.", required: false },
+  { id: "da1Form", name: "Formulaire DA-1", description: "Récupération impôt anticipé", tooltip: "Formulaire pour demander le remboursement de l'impôt anticipé suisse (35%) sur les dividendes et intérêts de source suisse.", required: false },
   { id: "swissBankAbroad", name: "Relevés comptes suisses", description: "Banques en Suisse", tooltip: "Relevés de vos comptes bancaires suisses au 31 décembre, montrant le solde et les intérêts perçus.", required: false },
   { id: "swissProperty", name: "Documents bien immobilier CH", description: "Si propriétaire en Suisse", tooltip: "Documents relatifs à votre bien immobilier en Suisse : estimation fiscale, décompte de charges, attestation hypothécaire.", required: false },
 ];
@@ -301,7 +301,7 @@ interface Property {
   usage: string;
   ownershipShare: string; // en pourcentage (100, 50, etc.)
   acquisitionYear: string;
-  constructionYear: string; // {isEnglish ? "Year of construction" : "Année de construction"} du bâtiment
+  constructionYear: string; // Année de construction du bâtiment
   // Valeurs fiscales
   fiscalValue: string; // Valeur fiscale/cadastrale
   rentalValue: string; // Valeur locative (si résidence)
@@ -383,7 +383,7 @@ const areAllPropertiesValid = (props: Property[]): boolean => {
 // Valider une date de naissance (doit être dans le passé, âge raisonnable 18-120 ans)
 const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } => {
   if (!dateStr || dateStr.trim() === "") {
-    return { valid: false, error: "{isEnglish ? "Date of birth" : "Date de naissance"} requise" };
+    return { valid: false, error: "Date de naissance requise" };
   }
 
   // Vérifier le format de la date (YYYY-MM-DD)
@@ -423,7 +423,7 @@ const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } 
     return { valid: false, error: "Invalid date of birth (age over 120 years)" };
   }
 
-  // {isEnglish ? "Year of birth" : "Année de naissance"} minimale raisonnable (1900)
+  // Année de naissance minimale raisonnable (1900)
   if (year < 1900) {
     return { valid: false, error: "Invalid birth year (before 1900)" };
   }
@@ -434,7 +434,7 @@ const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } 
 // Valider un numéro de téléphone suisse
 const validatePhone = (phone: string): { valid: boolean; error?: string } => {
   if (!phone || phone.trim() === "") {
-    return { valid: true }; // {isEnglish ? "Phone" : "Téléphone"} optionnel
+    return { valid: true }; // Téléphone optionnel
   }
 
   // Nettoyer le numéro (enlever espaces, tirets, parenthèses, points)
