@@ -369,12 +369,6 @@ export function Footer() {
                   contact@neofidu.ch
                 </a>
               </p>
-              <p className="text-slate-400 mb-2">
-                <span className="text-white">{isEnglish ? "Phone:" : "Téléphone :"}</span>{" "}
-                <a href="tel:+41786913912" className="hover:text-primary transition-colors">
-                  +41 78 691 39 12
-                </a>
-              </p>
               <p className="text-slate-400">
                 <span className="text-white">{isEnglish ? "Prices:" : "Prix :"}</span>{" "}
                 {isEnglish ? "All prices displayed in CHF (Swiss Francs)" : "Tous les prix sont affichés en CHF (Francs suisses)"}
