@@ -2145,7 +2145,7 @@ export function TaxRequestForm() {
             {isEnglish ? "Documents sent:" : "Documents envoyés:"} {uploadedFiles.length} {isEnglish ? "file(s)" : "fichier(s)"}
           </p>
           <p className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-800">
-            <strong>{isEnglish ? "Important:</strong> Please verify the receipt you received by email. This receipt confirms the" : "Important:</strong> Veuillez bien vérifier la quittance que vous avez reçue par email. Cette quittance confirme le"} bon enregistrement de votre demande.
+            <strong>Important:</strong> {isEnglish ? "Please verify the receipt you received by email. This receipt confirms the" : "Veuillez bien vérifier la quittance que vous avez reçue par email. Cette quittance confirme le"} bon enregistrement de votre demande.
           </p>
         </div>
 
@@ -2518,10 +2518,10 @@ export function TaxRequestForm() {
               <CantonIllustration className="w-24 h-24 flex-shrink-0" />
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  isEnglish ? "Tax Return Preparation" : "Établissement de votre déclaration d'impôt"
+                  {isEnglish ? "Tax Return Preparation" : "Établissement de votre déclaration d'impôt"}
                 </h2>
                 <p className="text-muted-foreground">
-                  isEnglish ? "In which canton should the tax return be filed?" : "Dans quel canton la déclaration doit-elle être établie ?"
+                  {isEnglish ? "In which canton should the tax return be filed?" : "Dans quel canton la déclaration doit-elle être établie ?"}
                 </p>
               </div>
             </div>
@@ -2677,7 +2677,7 @@ export function TaxRequestForm() {
                   <p className="text-sm text-purple-700">
                     {isEnglish
                       ? "If you are subject to withholding tax (Quellensteuer) and wish to request ordinary taxation (TOU) or quasi-resident status, please "
-                      {isEnglish ? "If you are taxed at source and want to apply for ordinary taxation (OTA" : "Si vous êtes imposé à la source et souhaitez faire une demande de taxation ordinaire (T"}OU) ou de statut quasi-résident, veuillez "}
+                      : "Si vous êtes imposé à la source et souhaitez faire une demande de taxation ordinaire (TOU) ou de statut quasi-résident, veuillez "}
                     <a href="/#contact" className="text-purple-900 hover:underline font-bold">
                       {isEnglish ? "contact us for a personalized quote" : "nous contacter pour un devis personnalisé"}
                     </a>.
@@ -2840,7 +2840,7 @@ export function TaxRequestForm() {
                        </TooltipTrigger>
                        <TooltipContent side="top" className="max-w-xs">
                          <p className="text-sm font-medium">{isEnglish ? "📄 Where to find this number ?" : "📄 Où trouver ce numéro ?"}</p>
-                         <p className="text-xs mt-1">{isEnglish ? "On your tax letter, top right. Format: <strong>12" : "Sur votre courrier fiscal, en haut à droite. Format : <strong>12"}3.456.789</strong></p>
+                         <p className="text-xs mt-1">{isEnglish ? "On your tax letter, top right. Format: " : "Sur votre courrier fiscal, en haut à droite. Format : "}<strong>123.456.789</strong></p>
                        </TooltipContent>
                      </Tooltip>
                    </label>
@@ -3810,7 +3810,7 @@ export function TaxRequestForm() {
                   </div>
                   <div className="p-3 bg-white border border-blue-300 rounded-lg">
                     <p className="text-sm text-blue-800">
-                      <strong>{isEnglish ? "Documents required:</strong> Transaction statements from your bank/broker" : "Documents à fournir :</strong> Relevés de transactions de votre banque/courti"}er (Swissquote, PostFinance, UBS, etc.) montrant les achats et ventes effectués.
+                      <strong>{isEnglish ? "Documents required:" : "Documents à fournir :"}</strong> {isEnglish ? "Transaction statements from your bank/broker" : "Relevés de transactions de votre banque/courtier"} (Swissquote, PostFinance, UBS, etc.) montrant les achats et ventes effectués.
                     </p>
                     <p className="text-xs text-blue-600 mt-2">
                       {isEnglish ? "Note: In Switzerland, capital gains on securities are generally tax-exempt for" : "Note : En Suisse, les gains en capital sur titres sont généralement exonérés pour les"} investisseurs privés, mais doivent quand même être documentés.
@@ -4055,7 +4055,7 @@ export function TaxRequestForm() {
                       {formData.businessRevenue && formData.businessExpenses && (
                         <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                           <p className="text-sm font-medium text-green-800">
-                            {isEnglish ? `Estimated net profit: CHF ${(Number(formData.businessRevenue) - Number(formData.businessExp` : `Bénéfice net estimé : CHF ${(Number(formData.businessRevenue) - Number(formData.businessExp`}enses)).toLocaleString('fr-CH')}.-
+                            {`${isEnglish ? "Estimated net profit" : "Bénéfice net estimé"} : CHF ${(Number(formData.businessRevenue) - Number(formData.businessExpenses)).toLocaleString('fr-CH')}.-`}
                           </p>
                         </div>
                       )}
@@ -4150,7 +4150,7 @@ export function TaxRequestForm() {
                 </div>
 
                 <div className="mt-6 p-3 bg-amber-100 rounded-xl text-sm text-amber-800">
-                  <strong>{isEnglish ? "Reminder: Don't forget to upload your annual accounts (balance sheet + profit" : "Rappel :</strong> N'oubliez pas de télécharger vos comptes annuels (bilan + compte"} de résultat) à l'étape Documents.
+                  <strong>{isEnglish ? "Reminder:" : "Rappel :"}</strong> {isEnglish ? "Don't forget to upload your annual accounts (balance sheet + profit" : "N'oubliez pas de télécharger vos comptes annuels (bilan + compte"} de résultat) à l'étape Documents.
                 </div>
               </div>
             )}
@@ -4170,8 +4170,8 @@ export function TaxRequestForm() {
                     className="w-5 h-5 rounded border-2 border-blue-400 text-blue-600 focus:ring-blue-500"
                   />
                   <div>
-                    <span className="font-medium">{isEnglish ? `${formData.firstName2 || "The partner"} has a self-employed activit` : `${formData.firstName2 || "Le conjoint"} a une activité i`}ndépendante</span>
-                    <p className="text-sm text-blue-700">{isEnglish ? "Check if your partner is self-employed" : "Cochez si votre conjoint exerce une activité luc"}rative indépendante</p>
+                    <span className="font-medium">{isEnglish ? `${formData.firstName2 || "The partner"} has a self-employed activity` : `${formData.firstName2 || "Le conjoint"} a une activité indépendante`}</span>
+                    <p className="text-sm text-blue-700">{isEnglish ? "Check if your partner is self-employed" : "Cochez si votre conjoint exerce une activité lucrative indépendante"}</p>
                   </div>
                 </label>
 
@@ -4307,7 +4307,7 @@ export function TaxRequestForm() {
                           </div>
                           {formData.businessRevenue2 && formData.businessExpenses2 && (
                             <div className="md:col-span-2 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-800">
-                              {isEnglish ? `Estimated net profit: CHF ${(Number(formData.businessRevenue2) - Number(formData.busin` : `Bénéfice net estimé : CHF ${(Number(formData.businessRevenue2) - Number(formData.busin`}essExpenses2)).toLocaleString('fr-CH')}.-
+                              {`${isEnglish ? "Estimated net profit" : "Bénéfice net estimé"} : CHF ${(Number(formData.businessRevenue2) - Number(formData.businessExpenses2)).toLocaleString('fr-CH')}.-`}
                             </div>
                           )}
                         </div>
@@ -4426,7 +4426,7 @@ export function TaxRequestForm() {
                     </div>
 
                     <div className="mt-4 p-2 bg-blue-100 rounded-lg text-xs text-blue-800">
-                      <strong>{isEnglish ? "Reminder: Upload your partner's annual accounts in the Documents step." : "Rappel :</strong> Téléchargez les comptes annuels du conjoint à l'étape Documents."}
+                      <strong>{isEnglish ? "Reminder:" : "Rappel :"}</strong> {isEnglish ? "Upload your partner's annual accounts in the Documents step." : "Téléchargez les comptes annuels du conjoint à l'étape Documents."}
                     </div>
                   </div>
                 )}
@@ -4477,7 +4477,7 @@ export function TaxRequestForm() {
                   className="w-5 h-5 rounded border-2 border-amber-400 text-amber-600 focus:ring-amber-500"
                 />
                 <div>
-                  <span className="font-medium">{isEnglish ? `I sold a real estate property during the year ${formData.taxYe` : `J'ai vendu un bien immobilier durant l'année ${formData.taxYe`}ar}</span>
+                  <span className="font-medium">{isEnglish ? `I sold a real estate property during the year ${formData.taxYear}` : `J'ai vendu un bien immobilier durant l'année ${formData.taxYear}`}</span>
                   <p className="text-sm text-amber-700 mt-1">
                     {isEnglish ? "Important for the real estate gains tax (IGT)" : "Important pour l'impôt sur les gains immobiliers (IGI)"}
                   </p>
@@ -4499,7 +4499,7 @@ export function TaxRequestForm() {
                   </div>
                   <div className="p-3 bg-white border border-amber-300 rounded-lg">
                     <p className="text-sm text-amber-800">
-                      <strong>{isEnglish ? "Documents required:</strong> Notarized deed of sale, real estate tax" : "Documents à fournir :</strong> Acte de vente notarié, bordereau de l'impôt su"}r les gains immobiliers (si reçu), acte d'achat original, factures des travaux de plus-value.
+                      <strong>{isEnglish ? "Documents required:" : "Documents à fournir :"}</strong> {isEnglish ? "Notarized deed of sale, real estate tax on capital gains (if received), original deed of purchase, invoices for value-added work." : "Acte de vente notarié, bordereau de l'impôt sur les gains immobiliers (si reçu), acte d'achat original, factures des travaux de plus-value."}
                     </p>
                   </div>
                 </div>
@@ -4678,8 +4678,8 @@ export function TaxRequestForm() {
                                   <HelpCircle className="w-4 h-4 text-muted-foreground" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs">
-                                  <p><strong>{isEnglish ? "Married couple:</strong> Enter 100% (you file jointly)." : "Couple marié :</strong> Indiquez 100% (vous déclarez ensemble)."}</p>
-                                  <p className="mt-1"><strong>{isEnglish ? "Co-ownership with a third party:</strong> Enter your" : "Copropriété avec un tiers :</strong> Indiquez votre"} part réelle (ex: 50% si vous partagez avec un parent).</p>
+                                  <p><strong>{isEnglish ? "Married couple:" : "Couple marié :"}</strong> {isEnglish ? "Enter 100% (you file jointly)." : "Indiquez 100% (vous déclarez ensemble)."}</p>
+                                  <p className="mt-1"><strong>{isEnglish ? "Co-ownership with a third party:" : "Copropriété avec un tiers :"}</strong> {isEnglish ? "Enter your" : "Indiquez votre"} part réelle (ex: 50% si vous partagez avec un parent).</p>
                                 </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
@@ -4759,7 +4759,7 @@ export function TaxRequestForm() {
                                     <span className="text-amber-600"> = CHF {Math.round(parseInt(property.rentalValue) * getMaintenanceFlatRate(property.constructionYear).rate / 100)}.-</span>
                                   )}
                                 </li>
-                                <li><strong>{isEnglish ? "Actual costs</strong>: Total maintenance invoices (paint, r" : "Frais effectifs</strong> : Total de vos factures d'entretien (peinture, r"}éparations, jardin...)</li>
+                                <li><strong>{isEnglish ? "Actual costs" : "Frais effectifs"}</strong>: {isEnglish ? "Total maintenance invoices (paint, repairs, garden...)" : "Total de vos factures d'entretien (peinture, réparations, jardin...)"}</li>
                               </ul>
                               <p className="mt-2 font-medium">
                                 {isEnglish ? "Tip: Choose the higher option. If your invoices exceed the flat-rate" : "Conseil : Choisissez l'option la plus élevée. Si vos factures dépassent le forfa"}it, optez pour les frais effectifs.
@@ -4783,7 +4783,7 @@ export function TaxRequestForm() {
                             <div className="text-xs text-blue-800">
                               <p className="font-medium mb-1">{isEnglish ? "Where to find this information?" : "Où trouver ces informations ?"}</p>
                               <ul className="list-disc pl-4 space-y-0.5">
-                                <li><strong>{isEnglish ? "Cantonal tax estimate</strong>: Official document received" : "Estimation fiscale cantonale</strong> : Document officiel reçu lors"} de l'achat ou lors d'une réévaluation</li>
+                                <li><strong>{isEnglish ? "Cantonal tax estimate" : "Estimation fiscale cantonale"}</strong>: {isEnglish ? "Official document received" : "Document officiel reçu lors"} de l'achat ou lors d'une réévaluation</li>
                                 <li><strong>{isEnglish ? "Tax assessment notice" : "Avis de taxation"}</strong> : {isEnglish ? "Your last processed tax return (real estate annex)" : "Votre dernière déclaration d'impôts traitée (annexe immobilière)"}</li>
                                 <li><strong>Registre foncier</strong> : Extrait du registre foncier de votre commune</li>
                                 {property.canton === "VD" && <li><strong>Canton de Vaud</strong> : Portail cantonal www.vd.ch/impots - rubrique "Mon bien immobilier"</li>}
@@ -5680,7 +5680,7 @@ export function TaxRequestForm() {
                 )}
                 {formData.isIndependent && (
                   <div className="flex justify-between">
-                    <span>{isEnglish ? `Self-employed supplement${formData.familyStatus` : `Supplément indépendant${formData.familyStatus`} === "couple" ? ` (${formData.firstName || "Adulte 1"})` : ""}</span>
+                    <span>{(isEnglish ? "Self-employed supplement" : "Supplément indépendant") + (formData.familyStatus === "couple" ? ` (${formData.firstName || "Adulte 1"})` : "")}</span>
                     <span>CHF 40.-</span>
                   </div>
                 )}
