@@ -128,7 +128,7 @@ export function Hero() {
               variant="outline"
               className="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 rounded-full px-8 py-6 text-lg font-semibold"
             >
-              <Link href="#tarifs">
+              <Link href="/tarifs">
                 {isEnglish ? "View our prices" : "Consulter nos prix"}
               </Link>
             </Button>
