@@ -5,8 +5,7 @@ import { DeductionsPageClient } from "./DeductionsPageClient";
 
 export const metadata: Metadata = {
   title: "Guide Déductions Fiscales Suisse 2026",
-  description:
-    "Découvrez toutes les déductions fiscales auxquelles vous avez droit : 3ème pilier, frais professionnels, dons, frais de gardeâ¦ Guide mis Ã  jour 2026 pour la Suisse romande.",
+  description: "Guide complet des déductions fiscales en Suisse : frais professionnels, 3ème pilier, intérêts hypothécaires, dons. Optimisez vos impôts.",
   keywords: [
     "déductions fiscales suisse",
     "déductions fiscales 2026",
