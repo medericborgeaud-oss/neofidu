@@ -153,7 +153,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50 mb-8">
                 <h3 className="text-xl font-bold mb-2">Besoin d'accompagnement ?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Notre équipe est Ã  votre disposition pour vous accompagner dans vos démarches fiscales et comptables.
+                  Notre équipe est à votre disposition pour vous accompagner dans vos démarches fiscales et comptables.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild className="rounded-full">
@@ -174,17 +174,17 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                     <ul className="space-y-2">
                       <li>
                         <Link href="/simulateur/impots" className="text-primary hover:underline">
-                          â Simulateur d'impôts
+                          → Simulateur d'impôts
                         </Link>
                       </li>
                       <li>
                         <Link href="/simulateur/3eme-pilier" className="text-primary hover:underline">
-                          â Calculateur 3ème pilier
+                          → Calculateur 3ème pilier
                         </Link>
                       </li>
                       <li>
                         <Link href="/simulateur/baisse-loyer" className="text-primary hover:underline">
-                          â Calculateur baisse de loyer
+                          → Calculateur baisse de loyer
                         </Link>
                       </li>
                     </ul>
@@ -194,17 +194,17 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                     <ul className="space-y-2">
                       <li>
                         <Link href="/tarifs" className="text-primary hover:underline">
-                          â Nos tarifs
+                          → Nos tarifs
                         </Link>
                       </li>
                       <li>
                         <Link href="/demande" className="text-primary hover:underline">
-                          â Déposer une demande
+                          → Déposer une demande
                         </Link>
                       </li>
                       <li>
                         <Link href="/faq" className="text-primary hover:underline">
-                          â Consulter la FAQ
+                          → Consulter la FAQ
                         </Link>
                       </li>
                     </ul>
