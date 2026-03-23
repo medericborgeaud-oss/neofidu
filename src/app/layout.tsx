@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.neofidu.ch"),
   title: {
-    default: "NeoFidu | Fiduciaire en ligne Suisse | Swiss Tax Returns & Accounting",
+    default: "NeoFidu | Fiduciaire en Ligne Suisse",
     template: "%s | NeoFidu",
   },
   description:
