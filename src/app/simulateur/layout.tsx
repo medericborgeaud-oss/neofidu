@@ -5,8 +5,7 @@ export const metadata: Metadata = {
     template: "%s | Simulateurs Fiscaux",
     default: "Simulateurs Fiscaux Gratuits 2026 | Vaud, Genève, Valais",
   },
-  description:
-    "Free Swiss tax calculators. Calculate your taxes, Pillar 3a savings, rental value impact. All cantons. | Simulateurs fiscaux gratuits Suisse romande. Vaud, Genève, Valais.",
+  description: "Simulateurs fiscaux gratuits pour la Suisse : impôts, salaire net, 3ème pilier, gain immobilier. Calculs précis pour tous les cantons romands.",
   keywords: [
     // English
     "swiss tax calculator",
