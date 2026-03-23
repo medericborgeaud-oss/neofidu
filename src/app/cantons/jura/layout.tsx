@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Jura 2026",
-  description:
-    "Tax return service in Jura. JuraTax, agricultural expertise. Delémont, Porrentruy. From CHF 50.",
+  description: "Fiduciaire en ligne pour le canton du Jura. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes diplômés. Dès CHF 50.",
   keywords: [
     "déclaration impôts Jura",
     "impôts Delémont",
