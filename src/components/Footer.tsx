@@ -41,7 +41,7 @@ export function Footer() {
       { label: isEnglish ? "Withholding tax guide" : "Guide impôt à la source", href: "/blog/impot-source-suisse-guide-complet-2026" },
       { label: isEnglish ? "Start a business" : "Créer son entreprise", href: "/blog/creer-entreprise-suisse-2026" },
       { label: isEnglish ? "Rent reduction 2026" : "Baisse de loyer 2026", href: "/blog/baisse-loyer-suisse-2026-taux-reference-hypothecaire" },
-      { label: isEnglish ? "First tax return" : "Première déclaration", href: "/blog/premiere-declaration-impots-suisse-guide" },
+      { label: isEnglish ? "First tax return" : "Première déclaration", href: "/blog/declaration-impots-2025-guide-complet" },
     ],
     info: [
       { label: isEnglish ? "About NeoFidu" : "Qui sommes-nous", href: "/#about" },
