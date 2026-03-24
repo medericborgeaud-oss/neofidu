@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact | NeoFidu",
+  title: "Contact",
   description:
     "Contactez NeoFidu, votre fiduciaire digitale en Suisse. Réponse sous 24h. Déclaration d'impôts, comptabilité, création d'entreprise — we speak English!",
   keywords: [
