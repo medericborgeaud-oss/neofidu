@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "expert fiscal Genève",
   ],
   openGraph: {
-    title: "Fiduciaire Genève â Déclaration d'impôts & comptabilité en ligne",
+    title: "Fiduciaire Genève - Déclaration d'impôts & comptabilité en ligne",
     description:
       "Fiduciaire en ligne pour Genève : déclaration d'impôts, quasi-résidents, travailleurs frontaliers. Service rapide, 100% digital.",
     url: "https://www.neofidu.ch/cantons/geneve",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const geneveSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Neofidu - Fiduciaire Genève",
+  "name": "NeoFidu - Fiduciaire Genève",
   "description": "Fiduciaire en ligne pour Genève : déclaration d'impôts, quasi-résidents, travailleurs frontaliers",
   "url": "https://www.neofidu.ch/cantons/geneve",
   "logo": "https://www.neofidu.ch/logo.svg",
