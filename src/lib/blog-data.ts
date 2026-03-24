@@ -241,7 +241,7 @@ export const blogArticles: BlogArticle[] = [
 <p>Vous payez peut-être trop cher de loyer sans le savoir. En Suisse, votre loyer est directement lié au <strong>taux de référence hypothécaire</strong> — et quand ce taux baisse, vous avez le droit de demander une réduction. Bonne nouvelle : on vous explique tout dans ce guide pratique.</p>
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #22c55e;">
-<p style="margin: 0; font-weight: 600;">ð Taux de référence actuel : 1.75% (mars 2026)</p>
+<p style="margin: 0; font-weight: 600;">📊 Taux de référence actuel : 1.75% (mars 2026)</p>
 <p style="margin: 8px 0 0 0; font-size: 14px; color: #666;">Utilisez notre <a href="/simulateur/baisse-loyer" style="color: #16a34a; font-weight: 500;">calculateur de baisse de loyer</a> pour estimer votre réduction en 30 secondes.</p>
 </div>
 
@@ -280,7 +280,7 @@ export const blogArticles: BlogArticle[] = [
 </ul>
 
 <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-<p style="margin: 0;"><strong>ð¡ Exemple concret :</strong> Vous avez signé en 2020 quand le taux était à 1.25% ? Pas de chance, le taux a monté depuis. Par contre, si vous êtes là depuis 2012 (taux à 2.25%), jackpot : vous pouvez demander une belle réduction !</p>
+<p style="margin: 0;"><strong>💡 Exemple concret :</strong> Vous avez signé en 2020 quand le taux était à 1.25% ? Pas de chance, le taux a monté depuis. Par contre, si vous êtes là depuis 2012 (taux à 2.25%), jackpot : vous pouvez demander une belle réduction !</p>
 </div>
 
 <h2 id="calcul"><strong>Combien je peux économiser ?</strong></p>
@@ -295,10 +295,10 @@ export const blogArticles: BlogArticle[] = [
 </tr>
 </thead>
 <tbody>
-<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">0.25%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">â 2.91%</td></tr>
-<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">0.50%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">â 5.82%</td></tr>
-<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">0.75%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">â 8.73%</td></tr>
-<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">1.00%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">â 11.64%</td></tr>
+<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">0.25%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">≈ 2.91%</td></tr>
+<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">0.50%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">≈ 5.82%</td></tr>
+<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">0.75%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">≈ 8.73%</td></tr>
+<tr><td style="padding: 12px; border: 1px solid #e2e8f0;">1.00%</td><td style="padding: 12px; border: 1px solid #e2e8f0;">≈ 11.64%</td></tr>
 </tbody>
 </table>
 
@@ -483,7 +483,7 @@ Meilleures salutations,
 <p>Pas de panique. Ce guide vous explique tout sur l'<strong>impôt à la source</strong>, et surtout : <strong>comment récupérer de l'argent si vous payez trop</strong> (spoiler : c'est souvent le cas).</p>
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 16px; border-radius: 8px; margin: 16px 0;">
-<p style="margin: 0;">â¡ <strong>Pressé ?</strong> Utilisez notre <a href="/simulateur/salaire-net" style="color: #16a34a;">simulateur de salaire net</a> pour calculer ce qui vous reste après impôts.</p>
+<p style="margin: 0;">⚡ <strong>Pressé ?</strong> Utilisez notre <a href="/simulateur/salaire-net" style="color: #16a34a;">simulateur de salaire net</a> pour calculer ce qui vous reste après impôts.</p>
 </div>
 
 <p><strong>Dans cet article</strong></p>
@@ -606,38 +606,38 @@ Meilleures salutations,
 <tbody>
 <tr>
 <td>Permis B, salaire < 120'000 CHF</td>
-<td>â Oui</td>
-<td>â Non (mais rectification possible)</td>
+<td>✅ Oui</td>
+<td>❌ Non (mais rectification possible)</td>
 </tr>
 <tr>
 <td>Permis B, salaire > 120'000 CHF</td>
-<td>â Acompte</td>
-<td>â Oui, obligatoire</td>
+<td>✅ Acompte</td>
+<td>✅ Oui, obligatoire</td>
 </tr>
 <tr>
 <td>Permis C</td>
-<td>â Non</td>
-<td>â Oui, obligatoire</td>
+<td>❌ Non</td>
+<td>✅ Oui, obligatoire</td>
 </tr>
 <tr>
 <td>Marié(e) à Suisse/permis C</td>
-<td>â Non</td>
-<td>â Oui, obligatoire</td>
+<td>❌ Non</td>
+<td>✅ Oui, obligatoire</td>
 </tr>
 <tr>
 <td>Frontalier (selon canton)</td>
-<td>â Oui (sauf exceptions)</td>
+<td>✅ Oui (sauf exceptions)</td>
 <td>Dépend du canton et du statut</td>
 </tr>
 <tr>
 <td>Propriétaire immobilier</td>
-<td>â Acompte</td>
-<td>â Oui, obligatoire</td>
+<td>✅ Acompte</td>
+<td>✅ Oui, obligatoire</td>
 </tr>
 <tr>
 <td>Fortune > 80'000-100'000 CHF</td>
-<td>â Acompte</td>
-<td>â Oui, obligatoire</td>
+<td>✅ Acompte</td>
+<td>✅ Oui, obligatoire</td>
 </tr>
 </tbody>
 </table>
@@ -858,25 +858,25 @@ Meilleures salutations,
 
 <br/>
 
-<h3><strong>â Ne pas demander de rectification</strong></h3>
+<h3><strong>❌ Ne pas demander de rectification</strong></h3>
 
 <p>C'est l'erreur la plus coûteuse ! Beaucoup de personnes ne savent pas qu'elles peuvent récupérer de l'argent. <strong>Ne laissez pas de l'argent sur la table.</strong></p>
 
 <br/>
 
-<h3><strong>â Rater le délai du 31 mars</strong></h3>
+<h3><strong>❌ Rater le délai du 31 mars</strong></h3>
 
 <p>Le délai est strict. Passé le 31 mars, vous perdez définitivement le droit à la rectification pour l'année concernée.</p>
 
 <br/>
 
-<h3><strong>â Oublier de verser au 3ème pilier</strong></h3>
+<h3><strong>❌ Oublier de verser au 3ème pilier</strong></h3>
 
 <p>Le 3ème pilier est LA déduction la plus importante. En 2026, vous pouvez déduire jusqu'à <strong>CHF 7'258</strong>. C'est de l'argent que vous récupérez via la rectification !</p>
 
 <br/>
 
-<h3><strong>â Ne pas signaler un changement de situation</strong></h3>
+<h3><strong>❌ Ne pas signaler un changement de situation</strong></h3>
 
 <p>Mariage, naissance, changement de canton... Tout changement doit être signalé à votre employeur pour ajuster votre barème.</p>
 
@@ -886,420 +886,15 @@ Meilleures salutations,
 
 <br/>
 
-<p>â Vérifiez que votre <strong>code tarifaire</strong> est correct sur votre fiche de salaire</p>
-<p>â Ouvrez et alimentez un <strong>3ème pilier</strong> (maximum CHF 7'258 en 2026)</p>
-<p>â Conservez tous vos <strong>justificatifs</strong> de déductions</p>
-<p>â Demandez une <strong>rectification avant le 31 mars</strong></p>
-<p>â Si vous êtes frontalier, vérifiez si vous êtes éligible au statut de <strong>quasi-résident</strong></p>
+<p>✅ Vérifiez que votre <strong>code tarifaire</strong> est correct sur votre fiche de salaire</p>
+<p>✅ Ouvrez et alimentez un <strong>3ème pilier</strong> (maximum CHF 7'258 en 2026)</p>
+<p>✅ Conservez tous vos <strong>justificatifs</strong> de déductions</p>
+<p>✅ Demandez une <strong>rectification avant le 31 mars</strong></p>
+<p>✅ Si vous êtes frontalier, vérifiez si vous êtes éligible au statut de <strong>quasi-résident</strong></p>
 
 <br/>
 
 <hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
-
-<h1><strong>ð¬ð§ ENGLISH</strong></h1>
-
-<br/>
-
-<p>Just arrived in Switzerland with a <strong>B permit</strong>? Are you a <strong>cross-border worker</strong> employed in Geneva, Lausanne, or another canton? Wondering why your employer deducts taxes directly from your salary? Welcome to the world of <strong>withholding tax</strong> (Quellensteuer in German).</p>
-
-<p>This comprehensive guide explains everything: who is affected, how it works, and most importantly, <strong>how to get money back</strong> if you're overpaying.</p>
-
-<br/>
-
-<p><strong>What Is Withholding Tax?</strong></p>
-
-<br/>
-
-<p><strong>Withholding tax</strong> (also called source tax) is a tax collection system where the employer deducts income tax directly from the employee's salary <strong>every month</strong>, before paying them their net salary.</p>
-
-<p>Unlike the ordinary procedure (where you file a return and pay afterward), here everything is automatic. The tax administration receives the money directly from your employer.</p>
-
-<br/>
-
-<h3><strong>Advantages of the System</strong></h3>
-
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â No large tax bill at year-end</li>
-<li style="margin-bottom: 0.25rem;">â Payments spread over 12 months</li>
-<li style="margin-bottom: 0.25rem;">â Simplicity: no return to file (in most cases)</li>
-</ul>
-
-<br/>
-
-<h3><strong>Disadvantages</strong></h3>
-
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â Flat-rate scale that doesn't account for all your deductions</li>
-<li style="margin-bottom: 0.25rem;">â You often pay <strong>more than necessary</strong></li>
-<li style="margin-bottom: 0.25rem;">â Need to request a correction to recover overpayments</li>
-</ul>
-
-<br/>
-
-<p><strong>Who Is Subject to Withholding Tax?</strong></p>
-
-<br/>
-
-<p>You are subject to withholding tax if you meet <strong>one of the following conditions</strong>:</p>
-
-<br/>
-
-<h3><strong>1. B Permit Holders (Residence Permit)</strong></h3>
-
-<p>If you have a <strong>B permit</strong> and earn <strong>less than CHF 120,000 gross per year</strong>, you are automatically subject to withholding tax.</p>
-
-<p><strong>Important:</strong> This CHF 120,000 threshold refers to <strong>gross annual income</strong>, not taxable income. It includes the 13th month salary, bonuses, and benefits in kind.</p>
-
-<br/>
-
-<h3><strong>2. Cross-Border Workers (Frontaliers)</strong></h3>
-
-<p><strong>Cross-border workers</strong> (living in France, Germany, Italy, or Austria and working in Switzerland) are generally taxed at source in Switzerland, with some exceptions (particularly for certain cantons with France).</p>
-
-<br/>
-
-<h3><strong>3. Temporary and Seasonal Workers</strong></h3>
-
-<p>Anyone working in Switzerland <strong>without Swiss tax residence</strong> is subject to withholding tax.</p>
-
-<br/>
-
-<h3><strong>4. Recipients of Pension Benefits</strong></h3>
-
-<p>People receiving Swiss <strong>pension payments or capital</strong> while residing abroad are taxed at source on this income.</p>
-
-<br/>
-
-<p><strong>When Withholding Tax Does NOT Apply</strong></p>
-
-<br/>
-
-<p>You are <strong>NOT subject</strong> to withholding tax if:</p>
-
-<br/>
-
-<h3><strong>1. You Have a C Permit (Settlement)</strong></h3>
-
-<p><strong>C permit</strong> holders are taxed like Swiss citizens: they receive a tax return to complete each year.</p>
-
-<br/>
-
-<h3><strong>2. You Are Married to a Swiss National or C Permit Holder</strong></h3>
-
-<p>If your spouse has Swiss nationality or a C permit, you are taxed under the ordinary procedure (tax return).</p>
-
-<br/>
-
-<h3><strong>3. Your Income Exceeds CHF 120,000</strong></h3>
-
-<p>If your gross annual salary exceeds <strong>CHF 120,000</strong>, you must file a <strong>mandatory tax return</strong>. The withholding tax is then considered an advance payment to be settled.</p>
-
-<br/>
-
-<h3><strong>4. You Own Real Estate in Switzerland</strong></h3>
-
-<p>Property owners must file a tax return, even if they would normally be subject to withholding tax.</p>
-
-<br/>
-
-<h3><strong>5. You Have Other Significant Income</strong></h3>
-
-<p>Rental income, secondary self-employment, significant wealth (> CHF 80,000-100,000 depending on canton)... These situations trigger the obligation to file a return.</p>
-
-<br/>
-
-<p><strong>Summary Table: Withholding Tax or Tax Return?</strong></p>
-
-<br/>
-
-<table>
-<thead>
-<tr>
-<th>Situation</th>
-<th>Withholding Tax</th>
-<th>Mandatory Return</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>B permit, salary < 120,000 CHF</td>
-<td>â Yes</td>
-<td>â No (but correction possible)</td>
-</tr>
-<tr>
-<td>B permit, salary > 120,000 CHF</td>
-<td>â Advance payment</td>
-<td>â Yes, mandatory</td>
-</tr>
-<tr>
-<td>C permit</td>
-<td>â No</td>
-<td>â Yes, mandatory</td>
-</tr>
-<tr>
-<td>Married to Swiss/C permit holder</td>
-<td>â No</td>
-<td>â Yes, mandatory</td>
-</tr>
-<tr>
-<td>Cross-border worker (varies by canton)</td>
-<td>â Yes (with exceptions)</td>
-<td>Depends on canton and status</td>
-</tr>
-<tr>
-<td>Property owner</td>
-<td>â Advance payment</td>
-<td>â Yes, mandatory</td>
-</tr>
-<tr>
-<td>Wealth > 80,000-100,000 CHF</td>
-<td>â Advance payment</td>
-<td>â Yes, mandatory</td>
-</tr>
-</tbody>
-</table>
-
-<br/>
-
-<p><strong>Tax Correction: Get Your Money Back!</strong></p>
-
-<br/>
-
-<p>Here's the good news: even if you're subject to withholding tax and earn less than CHF 120,000, you can request a <strong>correction</strong> to claim your deductions and potentially <strong>recover hundreds or thousands of francs</strong>.</p>
-
-<br/>
-
-<h3><strong>What Is a Tax Correction?</strong></h3>
-
-<p>A correction (also called <strong>rectification</strong>) allows you to:</p>
-
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">Deduct your <strong>3rd pillar (pillar 3a)</strong></li>
-<li style="margin-bottom: 0.25rem;">Deduct your <strong>commuting costs</strong></li>
-<li style="margin-bottom: 0.25rem;">Deduct your <strong>meal expenses</strong> outside home</li>
-<li style="margin-bottom: 0.25rem;">Deduct your <strong>childcare costs</strong></li>
-<li style="margin-bottom: 0.25rem;">Deduct your <strong>2nd pillar purchases</strong></li>
-<li style="margin-bottom: 0.25rem;">Deduct <strong>alimony payments</strong></li>
-<li style="margin-bottom: 0.25rem;">Deduct your <strong>continuing education costs</strong></li>
-</ul>
-
-<br/>
-
-<h3><strong>Deadline for Requesting a Correction</strong></h3>
-
-<p>You have until <strong>March 31 of the following year</strong> to submit your request.</p>
-
-<p><strong>Example:</strong> For tax year 2025, you have until <strong>March 31, 2026</strong> to request a correction.</p>
-
-<br/>
-
-<h3><strong>Correction Example with Numbers</strong></h3>
-
-<p><strong>Situation:</strong> Marco, 32, B permit, single, works in Lausanne.</p>
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">Annual salary: CHF 85,000</li>
-<li style="margin-bottom: 0.25rem;">Withholding tax deducted: CHF 11,200</li>
-</ul>
-
-<p><strong>His deductions:</strong></p>
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">3rd pillar: CHF 7,258</li>
-<li style="margin-bottom: 0.25rem;">Transport costs (30 km/day by train): CHF 3,200</li>
-<li style="margin-bottom: 0.25rem;">Meal costs (no canteen): CHF 3,200</li>
-</ul>
-
-<p><strong>After correction:</strong></p>
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">Recalculated tax: CHF 9,100</li>
-<li style="margin-bottom: 0.25rem;"><strong>Refund: CHF 2,100!</strong></li>
-</ul>
-
-<br/>
-
-<p><strong>Common Mistakes to Avoid</strong></p>
-
-<br/>
-
-<h3><strong>â Not Requesting a Correction</strong></h3>
-
-<p>This is the most costly mistake! Many people don't know they can get money back. <strong>Don't leave money on the table.</strong></p>
-
-<br/>
-
-<h3><strong>â Missing the March 31 Deadline</strong></h3>
-
-<p>The deadline is strict. After March 31, you permanently lose the right to a correction for that year.</p>
-
-<br/>
-
-<h3><strong>â Forgetting to Contribute to the 3rd Pillar</strong></h3>
-
-<p>The 3rd pillar is THE most important deduction. In 2026, you can deduct up to <strong>CHF 7,258</strong>. This is money you recover through the correction!</p>
-
-<br/>
-
-<p><strong>Checklist: Optimize Your Withholding Tax</strong></p>
-
-<br/>
-
-<p>â Check that your <strong>rate code</strong> is correct on your payslip</p>
-<p>â Open and fund a <strong>3rd pillar</strong> (maximum CHF 7,258 in 2026)</p>
-<p>â Keep all your <strong>deduction receipts</strong></p>
-<p>â Request a <strong>correction before March 31</strong></p>
-<p>â If you're a cross-border worker, check if you're eligible for <strong>quasi-resident status</strong></p>
-
-<br/>
-
-<p><strong>Need Help? | Besoin d'aide ?</strong></p>
-
-<br/>
-
-<p>At <strong>NeoFidu</strong>, we specialize in helping people subject to withholding tax recover their overpaid taxes. Our bilingual team handles everything for you.</p>
-
-<p>Chez <strong>NeoFidu</strong>, nous accompagnons les personnes soumises à l'impôt à la source pour récupérer les impôts payés en trop. Notre équipe bilingue s'occupe de tout pour vous.</p>
-
-<br/>
-
-<p style="text-align: center; margin: 30px 0;">
-<a href="/demande" style="display: inline-block; padding: 18px 40px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1em;">Request a Correction / Demander une rectification →</a>
-</p>
-
-<p style="text-align: center; color: #666;"><strong>From CHF 50 | À partir de CHF 50</strong><br/>10 business days | 10 jours ouvrés</p>
-
-<br/>
-
-<hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
-
-<p><strong>Barèmes de l'impôt à la source 2026 par canton (exemples)</strong></p>
-
-<br/>
-
-<p>Voici des exemples de taux d'imposition à la source pour un <strong>célibataire sans enfant (code A0)</strong> selon différents salaires bruts mensuels :</p>
-
-<br/>
-
-<table>
-<thead>
-<tr>
-<th>Salaire mensuel brut</th>
-<th>Genève (GE)</th>
-<th>Vaud (VD)</th>
-<th>Valais (VS)</th>
-<th>Fribourg (FR)</th>
-<th>Neuchâtel (NE)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CHF 5'000</td>
-<td>~8.5%</td>
-<td>~10.2%</td>
-<td>~9.8%</td>
-<td>~11.5%</td>
-<td>~12.1%</td>
-</tr>
-<tr>
-<td>CHF 7'000</td>
-<td>~11.2%</td>
-<td>~13.5%</td>
-<td>~12.8%</td>
-<td>~14.2%</td>
-<td>~15.0%</td>
-</tr>
-<tr>
-<td>CHF 10'000</td>
-<td>~14.8%</td>
-<td>~17.2%</td>
-<td>~16.1%</td>
-<td>~17.8%</td>
-<td>~18.5%</td>
-</tr>
-<tr>
-<td>CHF 12'000</td>
-<td>~16.5%</td>
-<td>~19.1%</td>
-<td>~17.9%</td>
-<td>~19.5%</td>
-<td>~20.2%</td>
-</tr>
-<tr>
-<td>CHF 15'000</td>
-<td>~18.8%</td>
-<td>~21.5%</td>
-<td>~20.2%</td>
-<td>~22.0%</td>
-<td>~22.8%</td>
-</tr>
-</tbody>
-</table>
-
-<p><em>Note : Ces taux sont indicatifs et varient selon la commune, la confession et la situation familiale. Utilisez notre <a href="/simulateur/salaire-net">simulateur de salaire net</a> pour un calcul précis.</em></p>
-
-<br/>
-
-<p><strong>FAQ - Questions fréquentes sur l'impôt à la source</strong></p>
-
-<br/>
-
-<h3><strong>Combien d'impôt à la source vais-je payer ?</strong></h3>
-<p>Le taux d'impôt à la source varie entre <strong>5% et 25%</strong> selon votre salaire, votre situation familiale et votre canton. Un célibataire gagnant CHF 80'000 à Genève paiera environ 13%, tandis qu'à Neuchâtel ce sera plutôt 16%. Utilisez notre <a href="/simulateur/salaire-net">simulateur de salaire net</a> pour un calcul précis.</p>
-
-<br/>
-
-<h3><strong>Puis-je récupérer l'impôt à la source payé en trop ?</strong></h3>
-<p>Oui ! En demandant une <strong>rectification avant le 31 mars</strong>, vous pouvez récupérer en moyenne <strong>CHF 1'500 à 3'000</strong> si vous avez un 3ème pilier, des frais de transport ou d'autres déductions. <a href="/demande">Faites votre demande ici</a>.</p>
-
-<br/>
-
-<h3><strong>Quelle est la différence entre rectification et TOU ?</strong></h3>
-<p>La <strong>rectification</strong> permet de corriger quelques déductions spécifiques (3ème pilier, frais professionnels). La <strong>TOU (Taxation Ordinaire Ultérieure)</strong> vous fait passer en imposition ordinaire complète, comme un résident suisse, avec TOUTES les déductions possibles. La TOU est réservée aux frontaliers quasi-résidents (90%+ revenus en Suisse).</p>
-
-<br/>
-
-<h3><strong>Je gagne exactement CHF 120'000, que se passe-t-il ?</strong></h3>
-<p>Le seuil de CHF 120'000 s'applique au <strong>revenu brut total</strong> incluant 13ème salaire, bonus, et avantages en nature. Si vous dépassez ce seuil, vous devez obligatoirement remplir une déclaration d'impôts. L'impôt à la source prélevé sera alors un <strong>acompte</strong> régularisé.</p>
-
-<br/>
-
-<h3><strong>L'impôt à la source inclut-il l'AVS et la LPP ?</strong></h3>
-<p>Non ! L'impôt à la source ne concerne que l'<strong>impôt sur le revenu</strong>. Les cotisations sociales (AVS, AI, APG, AC, LPP, AANP) sont prélevées séparément. Notre <a href="/simulateur/salaire-net">simulateur de salaire net</a> vous montre la répartition complète.</p>
-
-<br/>
-
-<h3><strong>Je suis frontalier, suis-je imposé en Suisse ou en France ?</strong></h3>
-<p>Cela dépend du canton et de votre commune de résidence :</p>
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;"><strong>Genève</strong> : Imposé à la source à Genève</li>
-<li style="margin-bottom: 0.25rem;"><strong>Vaud, Neuchâtel, Jura, Fribourg, Berne</strong> : Imposé en France (avec rétrocession fiscale)</li>
-<li style="margin-bottom: 0.25rem;"><strong>Valais</strong> : Dépend de la commune de résidence en France</li>
-</ul>
-
-<br/>
-
-<h3><strong>Que se passe-t-il si je rate le délai du 31 mars ?</strong></h3>
-<p>Malheureusement, le délai est <strong>strict et définitif</strong>. Passé le 31 mars, vous perdez le droit à la rectification pour l'année concernée. Vous ne pourrez pas récupérer l'impôt payé en trop. C'est pourquoi nous recommandons de <a href="/demande">faire votre demande tôt</a>.</p>
-
-<br/>
-
-<p><strong>Ressources utiles</strong></p>
-
-<br/>
-
-<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;"><a href="/simulateur/salaire-net">Simulateur de salaire net Suisse</a> - Calculez votre salaire net par canton</li>
-<li style="margin-bottom: 0.25rem;"><a href="/simulateur/impots">Simulateur d'impôts Suisse</a> - Estimez vos impôts annuels</li>
-<li style="margin-bottom: 0.25rem;"><a href="/simulateur/3eme-pilier">Simulateur 3ème pilier</a> - Calculez vos économies d'impôts</li>
-<li style="margin-bottom: 0.25rem;"><a href="/guide/deductions-fiscales">Guide des déductions fiscales</a> - Toutes les déductions possibles</li>
-<li style="margin-bottom: 0.25rem;"><a href="/faq">FAQ complète NeoFidu</a></li>
-</ul>
-
-<br/>
-
-<p style="text-align: center; padding: 20px; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); border-radius: 12px; margin: 30px 0;">
-<span style="color: white; font-size: 1.2em; font-weight: bold;">Ne laissez pas d'argent sur la table !</span><br/>
-<span style="color: rgba(255,255,255,0.9);">Demandez votre rectification avant le 31 mars 2026</span><br/><br/>
-<a href="/demande" style="display: inline-block; padding: 15px 40px; background: white; color: #f97316; text-decoration: none; border-radius: 8px; font-weight: 600;">Commencer ma demande →</a>
-</p>
     `,
     category: "expatries",
     date: "2026-03-14",
@@ -1332,7 +927,7 @@ Meilleures salutations,
 
 <br/>
 
-<h1><strong>ð«ð· FRANÇAIS</strong></h1>
+<h1><strong>🇫🇷 FRANÇAIS</strong></h1>
 
 <br/>
 
@@ -1467,15 +1062,15 @@ Meilleures salutations,
 
 <br/>
 
-<h3><strong>â Oublier les comptes à l'étranger</strong></h3>
+<h3><strong>❌ Oublier les comptes à l'étranger</strong></h3>
 
 <p>Vous <strong>devez</strong> déclarer tous vos comptes bancaires, même ceux dans votre pays d'origine. Le non-respect peut entraîner des amendes importantes.</p>
 
-<h3><strong>â Ne pas demander de rectification</strong></h3>
+<h3><strong>❌ Ne pas demander de rectification</strong></h3>
 
 <p>Si vous êtes imposé à la source, vous avez jusqu'au <strong>31 mars de l'année suivante</strong> pour demander une rectification et récupérer l'impôt payé en trop.</p>
 
-<h3><strong>â Ignorer le 3ème pilier</strong></h3>
+<h3><strong>❌ Ignorer le 3ème pilier</strong></h3>
 
 <p>Beaucoup d'expatriés découvrent le pilier 3a trop tard. Vous ne pouvez pas rattraper les années manquées !</p>
 
@@ -1483,7 +1078,7 @@ Meilleures salutations,
 
 <hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
 
-<h1><strong>ð¬ð§ ENGLISH</strong></h1>
+<h1><strong>🇬🇧 ENGLISH</strong></h1>
 
 <br/>
 
@@ -1614,15 +1209,15 @@ Meilleures salutations,
 
 <br/>
 
-<h3><strong>â Forgetting Foreign Accounts</strong></h3>
+<h3><strong>❌ Forgetting Foreign Accounts</strong></h3>
 
 <p>You <strong>must</strong> declare all your bank accounts, even those in your home country. Non-compliance can result in significant fines.</p>
 
-<h3><strong>â Not Requesting a Correction</strong></h3>
+<h3><strong>❌ Not Requesting a Correction</strong></h3>
 
 <p>If you're taxed at source, you have until <strong>March 31 of the following year</strong> to request a correction and recover overpaid taxes.</p>
 
-<h3><strong>â Ignoring Pillar 3a</strong></h3>
+<h3><strong>❌ Ignoring Pillar 3a</strong></h3>
 
 <p>Many expats discover pillar 3a too late. You cannot catch up on missed years!</p>
 
@@ -1676,7 +1271,7 @@ Meilleures salutations,
 <p>Le calcul du gain imposable suit une logique simple :</p>
 
 <p style="text-align: center; font-size: 1.1em; padding: 20px; background: #f5f5f5; border-radius: 8px; margin: 20px 0;">
-Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibles
+Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 </p>
 
 <br/>
@@ -2541,7 +2136,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ Et si vous voulez estimer vos impôts avant de vous lancer, utilisez notre <a href="/simulateur/impots"><strong>simulateur gratuit</strong></a>.</p>
+<p>💡 Et si vous voulez estimer vos impôts avant de vous lancer, utilisez notre <a href="/simulateur/impots"><strong>simulateur gratuit</strong></a>.</p>
     `,
     category: "fiscalite",
     date: "2026-03-03",
@@ -2757,11 +2352,11 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>â <strong>Tenez un registre</strong> de toutes vos transactions crypto (date, montant, prix)</p>
-<p>â <strong>Exportez régulièrement</strong> vos historiques depuis les exchanges</p>
-<p>â <strong>Conservez les justificatifs</strong> pendant 10 ans minimum</p>
-<p>â <strong>Utilisez un outil de tracking</strong> comme Koinly, CoinTracker ou Blockpit</p>
-<p>â <strong>Consultez un spécialiste</strong> si votre portefeuille est important</p>
+<p>✅ <strong>Tenez un registre</strong> de toutes vos transactions crypto (date, montant, prix)</p>
+<p>✅ <strong>Exportez régulièrement</strong> vos historiques depuis les exchanges</p>
+<p>✅ <strong>Conservez les justificatifs</strong> pendant 10 ans minimum</p>
+<p>✅ <strong>Utilisez un outil de tracking</strong> comme Koinly, CoinTracker ou Blockpit</p>
+<p>✅ <strong>Consultez un spécialiste</strong> si votre portefeuille est important</p>
 
 <br/>
 
@@ -2988,7 +2583,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>â ï¸ <strong>Attention</strong> : Ces dates sont indicatives et peuvent évoluer selon le processus politique.</p>
+<p>⚠️ <strong>Attention</strong> : Ces dates sont indicatives et peuvent évoluer selon le processus politique.</p>
 
 <br/>
 
@@ -3068,7 +2663,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Utilisez notre <a href="/simulateur/valeur-locative">simulateur valeur locative</a></strong> pour savoir si vous serez gagnant ou perdant avec la réforme.</p>
+<p>💡 <strong>Utilisez notre <a href="/simulateur/valeur-locative">simulateur valeur locative</a></strong> pour savoir si vous serez gagnant ou perdant avec la réforme.</p>
 
 <br/>
 
@@ -3147,12 +2742,12 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <br/>
 
 <p><strong>Exemple 1 - Éligible :</strong></p>
-<p>Jean gagne 100'000 CHF à Genève. Sa femme ne travaille pas. → 100% des revenus viennent de Suisse â</p>
+<p>Jean gagne 100'000 CHF à Genève. Sa femme ne travaille pas. → 100% des revenus viennent de Suisse ✅</p>
 
 <br/>
 
 <p><strong>Exemple 2 - Non éligible :</strong></p>
-<p>Marie gagne 80'000 CHF à Genève. Son mari gagne 15'000 â¬ en France. → Environ 84% des revenus viennent de Suisse â</p>
+<p>Marie gagne 80'000 CHF à Genève. Son mari gagne 15'000 € en France. → Environ 84% des revenus viennent de Suisse ❌</p>
 
 <br/>
 
@@ -3199,7 +2794,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>â ï¸ <strong>Attention</strong> : Une fois que vous optez pour le statut de quasi-résident, l'administration peut vous demander de <strong>payer un complément d'impôt</strong> si vos déductions ne compensent pas le changement de barème.</p>
+<p>⚠️ <strong>Attention</strong> : Une fois que vous optez pour le statut de quasi-résident, l'administration peut vous demander de <strong>payer un complément d'impôt</strong> si vos déductions ne compensent pas le changement de barème.</p>
 
 <br/>
 
@@ -3278,7 +2873,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>â ï¸ Ces chiffres sont indicatifs. Chaque situation est unique.</p>
+<p>⚠️ Ces chiffres sont indicatifs. Chaque situation est unique.</p>
 
 <br/>
 
@@ -3346,11 +2941,11 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <h3><strong>Avantages</strong></h3>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â <strong>Flexibilité totale</strong> : versez ce que vous voulez, quand vous voulez</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Pas d'engagement</strong> : vous pouvez arrêter à tout moment</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Frais réduits</strong> : généralement moins de frais que les assurances</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Choix d'investissement</strong> : compte épargne ou fonds de placement</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Transparence</strong> : vous voyez exactement combien vous avez</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Flexibilité totale</strong> : versez ce que vous voulez, quand vous voulez</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Pas d'engagement</strong> : vous pouvez arrêter à tout moment</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Frais réduits</strong> : généralement moins de frais que les assurances</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Choix d'investissement</strong> : compte épargne ou fonds de placement</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Transparence</strong> : vous voyez exactement combien vous avez</li>
 </ul>
 
 <br/>
@@ -3358,9 +2953,9 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <h3><strong>Inconvénients</strong></h3>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â <strong>Pas de couverture décès/invalidité</strong> incluse</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Rendements variables</strong> si vous choisissez des fonds</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Discipline personnelle</strong> requise pour verser régulièrement</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Pas de couverture décès/invalidité</strong> incluse</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Rendements variables</strong> si vous choisissez des fonds</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Discipline personnelle</strong> requise pour verser régulièrement</li>
 </ul>
 
 <br/>
@@ -3378,7 +2973,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Conseil</strong> : Pour des rendements potentiellement plus élevés, optez pour des <strong>fonds de placement 3a</strong> (VIAC, Finpension, True Wealth, etc.) avec des frais autour de 0.4-0.5%.</p>
+<p>💡 <strong>Conseil</strong> : Pour des rendements potentiellement plus élevés, optez pour des <strong>fonds de placement 3a</strong> (VIAC, Finpension, True Wealth, etc.) avec des frais autour de 0.4-0.5%.</p>
 
 <br/>
 
@@ -3395,10 +2990,10 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <h3><strong>Avantages</strong></h3>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â <strong>Couverture décès</strong> : vos proches reçoivent un capital si vous décédez</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Libération des primes</strong> : si vous devenez invalide, l'assurance continue de payer</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Discipline forcée</strong> : vous êtes "obligé" de cotiser</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Capital garanti</strong> : vous savez ce que vous aurez à terme (pour les produits garantis)</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Couverture décès</strong> : vos proches reçoivent un capital si vous décédez</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Libération des primes</strong> : si vous devenez invalide, l'assurance continue de payer</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Discipline forcée</strong> : vous êtes "obligé" de cotiser</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Capital garanti</strong> : vous savez ce que vous aurez à terme (pour les produits garantis)</li>
 </ul>
 
 <br/>
@@ -3406,11 +3001,11 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <h3><strong>Inconvénients</strong></h3>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â <strong>Engagement long terme</strong> : difficile (et coûteux) de sortir avant terme</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Frais plus élevés</strong> : commissions, frais de gestion, frais d'assurance</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Rendements souvent plus faibles</strong> que les solutions bancaires</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Manque de transparence</strong> : difficile de savoir combien va réellement à l'épargne</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Pénalités de rachat</strong> : si vous arrêtez, vous perdez une partie de votre capital</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Engagement long terme</strong> : difficile (et coûteux) de sortir avant terme</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Frais plus élevés</strong> : commissions, frais de gestion, frais d'assurance</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Rendements souvent plus faibles</strong> que les solutions bancaires</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Manque de transparence</strong> : difficile de savoir combien va réellement à l'épargne</li>
+<li style="margin-bottom: 0.25rem;">❌ <strong>Pénalités de rachat</strong> : si vous arrêtez, vous perdez une partie de votre capital</li>
 </ul>
 
 <br/>
@@ -3421,12 +3016,12 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <table>
 <tr><th>Critère</th><th>Banque</th><th>Assurance</th></tr>
-<tr><td>Flexibilité</td><td>â­â­â­â­â­</td><td>â­â­</td></tr>
-<tr><td>Frais</td><td>â­â­â­â­â­</td><td>â­â­</td></tr>
-<tr><td>Rendement potentiel</td><td>â­â­â­â­</td><td>â­â­â­</td></tr>
-<tr><td>Couverture risque</td><td>â­</td><td>â­â­â­â­â­</td></tr>
-<tr><td>Transparence</td><td>â­â­â­â­â­</td><td>â­â­</td></tr>
-<tr><td>Discipline</td><td>â­â­</td><td>â­â­â­â­â­</td></tr>
+<tr><td>Flexibilité</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td></tr>
+<tr><td>Frais</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td></tr>
+<tr><td>Rendement potentiel</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+<tr><td>Couverture risque</td><td>⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>Transparence</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td></tr>
+<tr><td>Discipline</td><td>⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
 </table>
 
 <br/>
@@ -3500,7 +3095,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Utilisez notre <a href="/simulateur/3eme-pilier">simulateur 3ème pilier gratuit</a></strong> pour calculer votre économie d'impôts annuelle et votre capital projeté à la retraite.</p>
+<p>💡 <strong>Utilisez notre <a href="/simulateur/3eme-pilier">simulateur 3ème pilier gratuit</a></strong> pour calculer votre économie d'impôts annuelle et votre capital projeté à la retraite.</p>
 
 <br/>
 
@@ -3547,7 +3142,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>â ï¸ <strong>Plafond fédéral</strong> : 3'200 CHF maximum pour l'impôt fédéral direct. Les cantons ont leurs propres limites.</p>
+<p>⚠️ <strong>Plafond fédéral</strong> : 3'200 CHF maximum pour l'impôt fédéral direct. Les cantons ont leurs propres limites.</p>
 
 <br/>
 
@@ -3721,19 +3316,19 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <p>Avant de valider votre déclaration, vérifiez que vous avez bien inclus :</p>
 
-<p>â Frais de transport domicile-travail<br/>
-â Frais de repas hors domicile<br/>
-â Versements 3ème pilier<br/>
-â Rachats 2ème pilier<br/>
-â Frais de formation continue<br/>
-â Frais de garde d'enfants<br/>
-â Intérêts hypothécaires<br/>
-â Frais d'entretien immobilier<br/>
-â Primes d'assurance maladie<br/>
-â Frais médicaux non remboursés<br/>
-â Dons et cotisations<br/>
-â Pensions alimentaires versées<br/>
-â Frais professionnels divers</p>
+<p>☐ Frais de transport domicile-travail<br/>
+☐ Frais de repas hors domicile<br/>
+☐ Versements 3ème pilier<br/>
+☐ Rachats 2ème pilier<br/>
+☐ Frais de formation continue<br/>
+☐ Frais de garde d'enfants<br/>
+☐ Intérêts hypothécaires<br/>
+☐ Frais d'entretien immobilier<br/>
+☐ Primes d'assurance maladie<br/>
+☐ Frais médicaux non remboursés<br/>
+☐ Dons et cotisations<br/>
+☐ Pensions alimentaires versées<br/>
+☐ Frais professionnels divers</p>
 
 <br/>
 
@@ -3741,7 +3336,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Utilisez notre <a href="/simulateur/impots">simulateur d'impôts gratuit</a></strong> pour estimer votre charge fiscale avec toutes ces déductions appliquées automatiquement.</p>
+<p>💡 <strong>Utilisez notre <a href="/simulateur/impots">simulateur d'impôts gratuit</a></strong> pour estimer votre charge fiscale avec toutes ces déductions appliquées automatiquement.</p>
 
 <br/>
 
@@ -3950,7 +3545,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Estimez vos impôts gratuitement</strong> avec notre <a href="/simulateur/impots">simulateur fiscal en ligne</a> avant de nous confier votre dossier.</p>
+<p>💡 <strong>Estimez vos impôts gratuitement</strong> avec notre <a href="/simulateur/impots">simulateur fiscal en ligne</a> avant de nous confier votre dossier.</p>
 
 <br/>
 
@@ -4178,7 +3773,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Calculez votre économie d'impôts</strong> avec notre <a href="/simulateur/3eme-pilier">simulateur 3ème pilier gratuit</a> et voyez combien vous pouvez économiser.</p>
+<p>💡 <strong>Calculez votre économie d'impôts</strong> avec notre <a href="/simulateur/3eme-pilier">simulateur 3ème pilier gratuit</a> et voyez combien vous pouvez économiser.</p>
 
 <br/>
 
@@ -5354,7 +4949,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Utilisez notre <a href="/simulateur/3eme-pilier">simulateur 3ème pilier gratuit</a></strong> pour calculer votre économie exacte selon votre situation.</p>
+<p>💡 <strong>Utilisez notre <a href="/simulateur/3eme-pilier">simulateur 3ème pilier gratuit</a></strong> pour calculer votre économie exacte selon votre situation.</p>
 
 <br/>
 
@@ -5367,11 +4962,11 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <p>Le <strong>pilier 3a</strong> est la solution la plus avantageuse fiscalement :</p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â <strong>100% déductible</strong> du revenu imposable</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Pas d'impôt sur la fortune</strong> pendant la durée</li>
-<li style="margin-bottom: 0.25rem;">â <strong>Pas d'impôt sur les gains</strong></li>
-<li style="margin-bottom: 0.25rem;">â ï¸ Capital bloqué jusqu'à 5 ans avant la retraite</li>
-<li style="margin-bottom: 0.25rem;">â ï¸ Imposé au retrait (taux réduit ~5-7%)</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>100% déductible</strong> du revenu imposable</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Pas d'impôt sur la fortune</strong> pendant la durée</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Pas d'impôt sur les gains</strong></li>
+<li style="margin-bottom: 0.25rem;">⚠️ Capital bloqué jusqu'à 5 ans avant la retraite</li>
+<li style="margin-bottom: 0.25rem;">⚠️ Imposé au retrait (taux réduit ~5-7%)</li>
 </ul>
 
 <br/>
@@ -5381,10 +4976,10 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <p>Le <strong>pilier 3b</strong> offre plus de flexibilité :</p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â <strong>Retrait libre</strong> à tout moment</li>
-<li style="margin-bottom: 0.25rem;">â Pas de plafond de cotisation</li>
-<li style="margin-bottom: 0.25rem;">â ï¸ <strong>Non déductible</strong> des impôts</li>
-<li style="margin-bottom: 0.25rem;">â ï¸ Soumis à l'impôt sur la fortune</li>
+<li style="margin-bottom: 0.25rem;">✅ <strong>Retrait libre</strong> à tout moment</li>
+<li style="margin-bottom: 0.25rem;">✅ Pas de plafond de cotisation</li>
+<li style="margin-bottom: 0.25rem;">⚠️ <strong>Non déductible</strong> des impôts</li>
+<li style="margin-bottom: 0.25rem;">⚠️ Soumis à l'impôt sur la fortune</li>
 </ul>
 
 <br/>
@@ -5500,7 +5095,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð¡ <strong>Utilisez notre <a href="/simulateur/impots">simulateur d'impôts gratuit</a></strong> pour estimer votre charge fiscale en 2 minutes.</p>
+<p>💡 <strong>Utilisez notre <a href="/simulateur/impots">simulateur d'impôts gratuit</a></strong> pour estimer votre charge fiscale en 2 minutes.</p>
 
 <br/>
 
@@ -5526,7 +5121,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>ð Consultez notre <a href="/guide/deductions-fiscales"><strong>guide complet des déductions fiscales</strong></a> pour ne rien oublier.</p>
+<p>📖 Consultez notre <a href="/guide/deductions-fiscales"><strong>guide complet des déductions fiscales</strong></a> pour ne rien oublier.</p>
 
 <br/>
 
@@ -5675,7 +5270,7 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 
 <br/>
 
-<p>â ï¸ Important : même avec une CDI, vous devez souvent déclarer vos revenus suisses dans votre pays de résidence (pour le calcul du taux d'imposition). Un expert peut vous aider à optimiser votre situation.</p>
+<p>⚠️ Important : même avec une CDI, vous devez souvent déclarer vos revenus suisses dans votre pays de résidence (pour le calcul du taux d'imposition). Un expert peut vous aider à optimiser votre situation.</p>
 
 <br/>
 
@@ -5733,11 +5328,11 @@ Gain imposable = Prix de vente â Prix d'acquisition â Frais déductibl
 <p><strong>NeoFidu</strong> résout tous ces problèmes :</p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">â Service <strong>100% en ligne</strong> accessible 24h/24</li>
-<li style="margin-bottom: 0.25rem;">â Communication par <strong>email et visioconférence</strong></li>
-<li style="margin-bottom: 0.25rem;">â Experts en <strong>fiscalité internationale suisse</strong></li>
-<li style="margin-bottom: 0.25rem;">â Documents envoyés et reçus par <strong>voie électronique</strong></li>
-<li style="margin-bottom: 0.25rem;">â Service disponible en <strong>français et anglais</strong></li>
+<li style="margin-bottom: 0.25rem;">✅ Service <strong>100% en ligne</strong> accessible 24h/24</li>
+<li style="margin-bottom: 0.25rem;">✅ Communication par <strong>email et visioconférence</strong></li>
+<li style="margin-bottom: 0.25rem;">✅ Experts en <strong>fiscalité internationale suisse</strong></li>
+<li style="margin-bottom: 0.25rem;">✅ Documents envoyés et reçus par <strong>voie électronique</strong></li>
+<li style="margin-bottom: 0.25rem;">✅ Service disponible en <strong>français et anglais</strong></li>
 </ul>
 
 <br/>
