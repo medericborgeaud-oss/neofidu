@@ -138,8 +138,11 @@ export default function ProlongationPage() {
 
     try {
       const formDataUpload = new FormData();
-      formDataUpload.append("file", file);
-      formDataUpload.append("category", "tax-form");
+      formDataUpload.append("files", file);
+      formDataUpload.append("categories", "tax-form");
+      formDataUpload.append("reference", `PROLONG_${Date.now()}`);
+      formDataUpload.append("lastName", formData.lastName || "DRAFT");
+      formDataUpload.append("firstName", formData.firstName || "USER");
 
       const response = await fetch("/api/upload", {
         method: "POST",
@@ -155,7 +158,7 @@ export default function ProlongationPage() {
         name: file.name,
         size: file.size,
         file: file,
-        url: data.url,
+        url: data.documents?.[0]?.url,
       });
     } catch {
       setError(isEnglish ? "Upload failed. Please try again." : "Échec du téléchargement.");
