@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "fiduciary Valais english speaking",
   ],
   openGraph: {
-    title: "Fiduciaire Valais â Tax Return & Accounting",
+    title: "Fiduciaire Valais - Tax Return & Accounting",
     description:
       "Online fiduciary for Canton Valais. Tax returns, secondary residences, accounting. Sion, Martigny, Zermatt. From CHF 50.-",
     url: "https://www.neofidu.ch/cantons/valais",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 const valaisSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Neofidu - Fiduciaire Valais",
+  "name": "NeoFidu - Fiduciaire Valais",
   "description": "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité",
   "url": "https://www.neofidu.ch/cantons/valais",
   "logo": "https://www.neofidu.ch/logo.svg",
