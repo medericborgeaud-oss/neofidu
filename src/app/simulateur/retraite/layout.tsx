@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Calculateur Retraite Suisse | AVS, LPP, 3ème Pilier",
+  title: { absolute: "Calculateur Retraite Suisse | AVS, LPP, 3ème Pilier | NeoFidu" },
   description:
     "Estimez votre revenu mensuel à la retraite en Suisse : AVS (1er pilier), LPP (2ème pilier) et 3ème pilier. Simulateur gratuit, résultat instantané.",
   keywords: [
