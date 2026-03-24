@@ -139,10 +139,10 @@ export function Contact() {
             <span className="text-white/70 font-semibold text-sm uppercase tracking-wider">
               {t.tagline}
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6">
               {t.title1}{" "}
               <span className="text-emerald-300">{t.title2}</span>
-            </h2>
+            </h1>
             <p className="text-white/80 text-lg mb-10">
               {t.description}
             </p>
