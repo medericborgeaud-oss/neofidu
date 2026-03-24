@@ -149,7 +149,6 @@ export default function RootLayout({
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Crettaz 1",
       addressLocality: "Leysin",
       postalCode: "1854",
       addressRegion: "VD",
@@ -162,7 +161,6 @@ export default function RootLayout({
       latitude: 46.3411,
       longitude: 7.0119,
     },
-    hasMap: "https://maps.google.com/?q=Neofidu,+Crettaz+1,+1854+Leysin,+Switzerland",
     // Opening hours matching Google Business (closes 5PM = 17:00)
     openingHoursSpecification: [
       {
@@ -320,7 +318,6 @@ export default function RootLayout({
     description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts, comptabilité, gérance immobilière",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Crettaz 1",
       addressLocality: "Leysin",
       postalCode: "1854",
       addressRegion: "VD",
