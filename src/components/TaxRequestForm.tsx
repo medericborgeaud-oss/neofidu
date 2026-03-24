@@ -2223,14 +2223,14 @@ export function TaxRequestForm() {
                 <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">6</div>
                 <div>
                   <p className="font-medium text-gray-900">{isEnglish ? "Tax assessment decision" : "Décision de taxation"}</p>
-                  <p className="text-sm text-gray-600">{isEnglish ? "You receive a tax assessment notice with the final tax amount to pay (or" : "Vous recevez un avis de taxation avec le montant d'impôt définitif à payer (ou à"} récupérer).</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "You receive a tax assessment notice with the final tax amount to pay (or recover)." : "Vous recevez un avis de taxation avec le montant d'impôt définitif à payer (ou à récupérer)."}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
                 <div className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs">7</div>
                 <div>
-                  <p className="font-medium text-gray-900">Paiement ou remboursement</p>
-                  <p className="text-sm text-gray-600">{isEnglish ? "You pay the remaining tax balance or receive a refund if you overpaid" : "Vous réglez le solde d'impôt ou recevez un remboursement si vous avez trop payé d"}'acomptes.</p>
+                  <p className="font-medium text-gray-900">{isEnglish ? "Payment or refund" : "Paiement ou remboursement"}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "You pay the remaining tax balance or receive a refund if you overpaid advance payments." : "Vous réglez le solde d'impôt ou recevez un remboursement si vous avez trop payé d'acomptes."}</p>
                 </div>
               </div>
             </div>
