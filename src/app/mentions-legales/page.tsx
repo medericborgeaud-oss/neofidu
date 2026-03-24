@@ -147,7 +147,6 @@ export default function MentionsLegalesPage() {
                       </div>
                       <div>
                         <p className="font-semibold text-foreground">{t.owner}</p>
-                        <p className="text-primary font-medium">Médéric Borgeaud</p>
                       </div>
                     </div>
 
@@ -156,7 +155,6 @@ export default function MentionsLegalesPage() {
                         <MapPin className="w-5 h-5 text-primary mt-0.5" />
                         <div>
                           <p className="font-semibold text-foreground">{t.fullAddress}</p>
-                          <p>Crettaz 1</p>
                           <p>1854 Leysin</p>
                           <p>{t.cantonVaud}</p>
                           <p>{t.switzerland}</p>
