@@ -94,7 +94,6 @@ const creationSchema = {
   "priceRange": "CHF 290 - CHF 1490",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Crettaz 1",
     "addressLocality": "Leysin",
     "postalCode": "1854",
     "addressRegion": "VD",
