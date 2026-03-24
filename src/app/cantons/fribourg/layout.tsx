@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "déductions famille Fribourg",
   ],
   openGraph: {
-    title: "Fiduciaire Fribourg â Déclaration d'impôts & comptabilité en ligne",
+    title: "Fiduciaire Fribourg - Déclaration d'impôts & comptabilité en ligne",
     description:
       "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité. Service 100% digital.",
     url: "https://www.neofidu.ch/cantons/fribourg",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const fribourgSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Neofidu - Fiduciaire Fribourg",
+  "name": "NeoFidu - Fiduciaire Fribourg",
   "description": "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité",
   "url": "https://www.neofidu.ch/cantons/fribourg",
   "logo": "https://www.neofidu.ch/logo.svg",
