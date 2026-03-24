@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Création d'entreprise en Suisse 2026",
   description:
-    "Créez votre entreprise en Suisse avec Neofidu. SA, Sàrl ou raison individuelle dès CHF 290.-. Devis gratuit sous 24h. RC, statuts et AVS inclus.",
+    "Créez votre entreprise en Suisse avec NeoFidu. SA, Sàrl ou raison individuelle dès CHF 290.-. Devis gratuit sous 24h. RC, statuts et AVS inclus.",
   keywords: [
     // Termes principaux
     "création entreprise suisse",
@@ -46,11 +46,11 @@ export const metadata: Metadata = {
     "company formation switzerland",
   ],
   openGraph: {
-    title: "Création d'entreprise en Suisse | SA, Sàrl, Raison individuelle | Neofidu",
+    title: "Création d'entreprise en Suisse | SA, Sàrl, Raison individuelle | NeoFidu",
     description:
       "Accompagnement complet pour créer votre entreprise en Suisse. Raison individuelle dès CHF 290.-, Sàrl dès CHF 990.-, SA dès CHF 1'490.-. Premier échange gratuit.",
     url: "https://www.neofidu.ch/creation-entreprise",
-    siteName: "Neofidu",
+    siteName: "NeoFidu",
     type: "website",
     locale: "fr_CH",
     images: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         url: "https://www.neofidu.ch/og-creation-entreprise.png",
         width: 1200,
         height: 630,
-        alt: "Création d'entreprise en Suisse avec Neofidu",
+        alt: "Création d'entreprise en Suisse avec NeoFidu",
       },
     ],
   },
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
 const creationSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Neofidu - Création d'entreprise en Suisse",
+  "name": "NeoFidu - Création d'entreprise en Suisse",
   "description": "Service de création d'entreprise en Suisse : accompagnement complet pour SA, Sàrl et raison individuelle. Inscription au registre du commerce, rédaction des statuts, affiliation AVS.",
   "url": "https://www.neofidu.ch/creation-entreprise",
   "logo": "https://www.neofidu.ch/logo.svg",
@@ -190,7 +190,7 @@ const faqSchema = {
       "name": "Combien coûte la création d'une entreprise en Suisse ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Chez Neofidu, la création d'une raison individuelle commence à CHF 290.-, une Sàrl à CHF 990.- et une SA à CHF 1'490.-. Ces prix n'incluent pas les frais de notaire et du Registre du Commerce qui varient selon le canton."
+        "text": "Chez NeoFidu, la création d'une raison individuelle commence à CHF 290.-, une Sàrl à CHF 990.- et une SA à CHF 1'490.-. Ces prix n'incluent pas les frais de notaire et du Registre du Commerce qui varient selon le canton."
       }
     },
     {
@@ -222,7 +222,7 @@ const faqSchema = {
       "name": "Peut-on transformer une raison individuelle en Sàrl ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui, c'est possible et courant quand l'activité se développe. On peut effectuer une transformation qui permet de transférer les actifs vers la nouvelle Sàrl. Neofidu vous accompagne dans cette démarche."
+        "text": "Oui, c'est possible et courant quand l'activité se développe. On peut effectuer une transformation qui permet de transférer les actifs vers la nouvelle Sàrl. NeoFidu vous accompagne dans cette démarche."
       }
     }
   ]
