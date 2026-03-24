@@ -12,7 +12,6 @@ import {
   ArrowRight,
   Clock,
   Shield,
-  Phone,
   Mail,
   Building,
   Users,
@@ -615,16 +614,6 @@ export default function SuissesEtrangerPage() {
                   className="text-primary hover:underline"
                 >
                   contact@neofidu.ch
-                </a>
-              </Card>
-              <Card className="p-6 bg-slate-800 border-slate-700">
-                <Phone className="w-8 h-8 text-primary mx-auto mb-3" />
-                <p className="font-semibold mb-1">{t("simulators.swissAbroadPage.phoneWhatsApp")}</p>
-                <a
-                  href="tel:+41786913912"
-                  className="text-primary hover:underline"
-                >
-                  +41 78 691 39 12
                 </a>
               </Card>
             </div>
