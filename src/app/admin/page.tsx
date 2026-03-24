@@ -372,7 +372,7 @@ function getCloudinaryFolderPath(reference: string, createdAt: string, lastName:
   if (lastName) folderName += `_${cleanName(lastName)}`;
   if (firstName) folderName += `_${cleanName(firstName)}`;
 
-  return `neofidu/documents/${folderName}`;
+  return `/documents/${folderName}`;
 }
 
 export default function AdminDashboard() {
@@ -567,9 +567,9 @@ Nous vous remercions de votre confiance et restons à votre disposition pour tou
 
 Cordialement,
 
-L'équipe NeoFidu
+L'équipe 
 ---
-NeoFidu Sàrl
+NeoFidu
 Fiduciaire digitale en Suisse romande
 www.neofidu.ch
 `;
