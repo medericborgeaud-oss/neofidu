@@ -46,6 +46,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.95,
     }),
+     createEntry("/demande/prolongation", {
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }),
 
     // Contact page
     createEntry("/contact", {
