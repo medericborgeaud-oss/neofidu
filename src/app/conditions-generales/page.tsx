@@ -14,7 +14,7 @@ const sectionsFr = [
     title: "1. Objet et champ d'application",
     icon: FileText,
     content: `
-      <p>Les présentes Conditions Générales (ci-après "CG") régissent l'ensemble des relations contractuelles entre NeoFidu, entreprise individuelle exploitée par <strong>Médéric Borgeaud</strong>, inscrite au Canton de Vaud, et ses clients (ci-après "le Client").</p>
+      <p>Les présentes Conditions Générales (ci-après "CG") régissent l'ensemble des relations contractuelles entre NeoFidu, Entreprise individuelle, inscrite au Canton de Vaud, et ses clients (ci-après "le Client").</p>
       <p>En utilisant les services de NeoFidu, le Client accepte sans réserve les présentes CG. NeoFidu se réserve le droit de modifier ces conditions à tout moment. Les modifications entrent en vigueur dès leur publication sur le site neofidu.ch.</p>
       <p>Les présentes CG s'appliquent à l'ensemble des prestations proposées par NeoFidu, notamment :</p>
       <ul>
@@ -250,8 +250,6 @@ const sectionsFr = [
       <p>Pour toute question relative aux présentes CG, le Client peut contacter NeoFidu à l'adresse suivante :</p>
       <p>
         <strong>NeoFidu – Entreprise individuelle</strong><br />
-        Propriétaire : <strong>Médéric Borgeaud</strong><br />
-        Crettaz 1<br />
         1854 Leysin<br />
         Canton de Vaud, Suisse<br />
         Tél : +41 78 691 39 12<br />
@@ -270,7 +268,6 @@ const sectionsEn = [
     title: "1. Purpose and Scope",
     icon: FileText,
     content: `
-      <p>These Terms and Conditions (hereinafter "T&C") govern all contractual relationships between NeoFidu, a sole proprietorship operated by <strong>Médéric Borgeaud</strong>, registered in the Canton of Vaud, and its clients (hereinafter "the Client").</p>
       <p>By using NeoFidu's services, the Client unconditionally accepts these T&C. NeoFidu reserves the right to modify these conditions at any time. Modifications take effect upon publication on the neofidu.ch website.</p>
       <p>These T&C apply to all services offered by NeoFidu, including:</p>
       <ul>
@@ -506,8 +503,6 @@ const sectionsEn = [
       <p>For any questions regarding these T&C, the Client may contact NeoFidu at:</p>
       <p>
         <strong>NeoFidu – Sole Proprietorship</strong><br />
-        Owner: <strong>Médéric Borgeaud</strong><br />
-        Crettaz 1<br />
         1854 Leysin<br />
         Canton of Vaud, Switzerland<br />
         Tel: +41 78 691 39 12<br />
