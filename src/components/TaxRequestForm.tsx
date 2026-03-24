@@ -5172,8 +5172,9 @@ export function TaxRequestForm() {
                       {isEnglish ? "Sending address" : "Adresse d'envoi"}
                     </h3>
                     <div className="bg-white rounded-xl p-6 border border-amber-200 shadow-sm">
-                      <p className="text-lg font-semibold text-gray-900">NeoFidu Sàrl</p>
+                      <p className="text-lg font-semibold text-gray-900">NeoFidu</p>
                       <p className="text-gray-700">1854 Leysin</p>
+                      <p className="text-gray-700">Crettaz 1</p>
                       <p className="text-gray-500 mt-2">{isEnglish ? "Switzerland" : "Suisse"}</p>
                     </div>
                   </div>
