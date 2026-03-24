@@ -27,7 +27,6 @@ const sectionsFr = [
       <p>Le responsable du traitement des données personnelles est :</p>
       <p>
         <strong>NeoFidu – Entreprise individuelle</strong><br />
-        Crettaz 1, 1854 Leysin, Suisse<br />
         Tél : +41 78 691 39 12<br />
         Email : contact@neofidu.ch
       </p>
@@ -207,7 +206,6 @@ const sectionsEn = [
       <p>The data controller for personal data is:</p>
       <p>
         <strong>NeoFidu – Sole Proprietorship</strong><br />
-        Crettaz 1, 1854 Leysin, Switzerland<br />
         Tel: +41 78 691 39 12<br />
         Email: contact@neofidu.ch
       </p>
