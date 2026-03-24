@@ -487,7 +487,7 @@ function generatePDFDocument(request: TaxRequestForPDF): jsPDF {
   doc.setFontSize(8);
   doc.setTextColor(...grayColor);
   doc.setFont("helvetica", "normal");
-  doc.text(`NeoFidu Sàrl - Crettaz 1, 1854 Leysin - Fiche générée le ${new Date().toLocaleDateString("fr-CH")}`, margin, footerY);
+  doc.text(`NeoFidu - Entreprise individuelle, 1854 Leysin - Fiche générée le ${new Date().toLocaleDateString("fr-CH")}`, margin, footerY);
   doc.text(`Montant: CHF ${request.payment.amount}.-`, pageWidth - margin - 35, footerY);
 
   return doc;
