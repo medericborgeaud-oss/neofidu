@@ -208,32 +208,32 @@ const pricingData = {
 const comparisonData = [
   {
     feature: "Prix déclaration simple",
-    neofidu: "Dès CHF 50.-",
+    neoFidu: "Dès CHF 50.-",
     traditional: "CHF 150.- à 300.-",
   },
   {
     feature: "Délai de traitement",
-    neofidu: "10 jours ouvrés",
+    neoFidu: "10 jours ouvrés",
     traditional: "2-4 semaines",
   },
   {
     feature: "Devis",
-    neofidu: "Gratuit, en 2 minutes",
+    neoFidu: "Gratuit, en 2 minutes",
     traditional: "Payant ou sur RDV",
   },
   {
     feature: "Communication",
-    neofidu: "100% digital, 7j/7",
+    neoFidu: "100% digital, 7j/7",
     traditional: "Heures de bureau",
   },
   {
     feature: "Transparence prix",
-    neofidu: "Prix fixes affichés",
+    neoFidu: "Prix fixes affichés",
     traditional: "Tarif horaire variable",
   },
   {
     feature: "Suivi dossier",
-    neofidu: "Espace client en ligne",
+    neoFidu: "Espace client en ligne",
     traditional: "Par téléphone/email",
   },
 ];
@@ -248,7 +248,7 @@ export default function TarifsPage() {
     "serviceType": "Fiduciary Services",
     "provider": {
       "@type": "Organization",
-      "name": "Neofidu",
+      "name": "NeoFidu",
       "url": "https://www.neofidu.ch",
       "logo": "https://www.neofidu.ch/logo.svg",
       "address": {
@@ -730,8 +730,8 @@ export default function TarifsPage() {
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold mb-3">
                 {isEnglish
-                  ? "Neofidu vs Traditional Fiduciary"
-                  : "Neofidu vs Fiduciaire traditionnelle"}
+                  ? "NeoFidu vs Traditional Fiduciary"
+                  : "NeoFidu vs Fiduciaire traditionnelle"}
               </h2>
               <p className="text-muted-foreground">
                 {isEnglish
@@ -748,7 +748,7 @@ export default function TarifsPage() {
                     <th className="p-4 text-center font-semibold text-primary">
                       <div className="flex items-center justify-center gap-2">
                         <Zap className="w-5 h-5" />
-                        Neofidu
+                        NeoFidu
                       </div>
                     </th>
                     <th className="p-4 text-center font-semibold text-muted-foreground">
