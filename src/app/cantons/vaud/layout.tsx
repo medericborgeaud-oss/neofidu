@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "accountant Montreux",
   ],
   openGraph: {
-    title: "Fiduciaire Vaud â Tax Return & Accounting",
+    title: "Fiduciaire Vaud - Tax Return & Accounting",
     description:
       "Online fiduciary for Canton Vaud. Tax returns, SME accounting, freelancers. Lausanne, Aigle, Bex, Montreux. Free quote.",
     url: "https://www.neofidu.ch/cantons/vaud",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const vaudSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Neofidu - Fiduciaire Vaud",
+  "name": "NeoFidu - Fiduciaire Vaud",
   "description": "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts, comptabilité PME, indépendants",
   "url": "https://www.neofidu.ch/cantons/vaud",
   "logo": "https://www.neofidu.ch/logo.svg",
