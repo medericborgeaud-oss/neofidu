@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Guides Fiscaux",
-    default: "Guides Fiscaux",
-  },
+  template: "%s | NeoFidu",
+  default: "NeoFidu",
+},
 };
 
 export default function GuideLayout({
