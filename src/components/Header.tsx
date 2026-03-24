@@ -152,7 +152,7 @@ export function Header() {
               {/* Services Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-base font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
                     {t("header.services")}
                     <ChevronDown className="w-4 h-4" />
                   </button>
@@ -187,7 +187,7 @@ export function Header() {
               </DropdownMenu>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-base font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
                     {isEnglish ? "Resources" : "Ressources"}
                     <ChevronDown className="w-4 h-4" />
                   </button>
@@ -216,7 +216,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-4 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
+                  className="px-4 py-2 rounded-full text-base font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
                 >
                   {item.label}
                 </Link>
@@ -229,7 +229,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-base font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all"
                 >
                   <ClipboardList className="w-3.5 h-3.5" />
                   {item.label}
