@@ -93,7 +93,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               </Badge>
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                {isEnglish && article.titleEn ? article.titleEn : article.title}
+                {article.title}
               </h1>
 
               <p className="text-xl text-muted-foreground mb-6">
