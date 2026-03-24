@@ -352,12 +352,7 @@ export function Footer() {
               <p className="text-slate-400">
                 {isEnglish ? "Sole proprietorship" : "Entreprise individuelle"}
               </p>
-              <p className="text-slate-400 mt-1">
-                <span className="text-white">{isEnglish ? "Owner:" : "Propriétaire :"}</span>{" "}
-                Médéric Borgeaud
-              </p>
               <p className="text-slate-400 mt-2">
-                Crettaz 1<br />
                 1854 Leysin<br />
                 {isEnglish ? "Canton of Vaud, Switzerland" : "Canton de Vaud, Suisse"}
               </p>
