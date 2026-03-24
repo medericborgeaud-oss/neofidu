@@ -469,7 +469,7 @@ export default function ProlongationPage() {
                     <label className="flex items-start gap-3 cursor-pointer">
                       <input type="checkbox" checked={formData.agreeTerms} onChange={(e) => updateForm("agreeTerms", e.target.checked)} className="w-5 h-5 rounded border-gray-300 text-primary mt-0.5" />
                       <span className="text-sm">
-                        {t.agreeTerms} <Link href="/conditions-generales" className="text-primary hover:underline">NeoFidu</Link>
+                        {t.agreeTerms} <Link href="/conditions-generales" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">NeoFidu</Link>
                       </span>
                     </label>
                   </div>
