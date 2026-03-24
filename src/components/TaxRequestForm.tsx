@@ -2411,7 +2411,7 @@ export function TaxRequestForm() {
                 <Check className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="font-medium text-sm">Reprise de votre demande</p>
+                <p className="font-medium text-sm">{isEnglish ? "Resume your request" : "Reprise de votre demande"}</p>
                 <p className="text-xs text-muted-foreground">
                   {isEnglish ? "You resumed where you left off. Your data is saved automatically." : "Vous avez repris là où vous en étiez. Vos données sont sauvegardées automatiquement."}
                 </p>
@@ -2424,7 +2424,7 @@ export function TaxRequestForm() {
               className="text-muted-foreground hover:text-destructive"
             >
               <X className="w-4 h-4 mr-1" />
-              Recommencer
+              {isEnglish ? "Start over" : "Recommencer"}
             </Button>
           </div>
 
@@ -3317,13 +3317,6 @@ export function TaxRequestForm() {
                     </h3>
                     <div className="grid md:grid-cols-3 gap-3">
                       {employmentStatuses
-                        .filter((status) => {
-                          // Montrer "Indépendant(e)" seulement si le conjoint a coché indépendant
-                          if (status.id === "selfemployed") {
-                            return formData.isIndependent2;
-                          }
-                          return true;
-                        })
                         .map((status) => (
                         <div
                           key={status.id}
@@ -3833,7 +3826,7 @@ export function TaxRequestForm() {
                   {isEnglish ? "Self-employed activity" : "Activité indépendante"}
                 </h3>
                 <p className="text-sm text-amber-700 mb-6">
-                  {isEnglish ? "This information is essential for correctly preparing your tax return as" : "Ces informations sont essentielles pour établir correctement votre déclaration en tan"}t qu'indépendant.
+                  {isEnglish ? "This information is essential for correctly preparing your tax return as a self-employed person." : "Ces informations sont essentielles pour établir correctement votre déclaration en tant qu'indépendant."}
                 </p>
 
                 {/* Type d'activité */}
@@ -3898,7 +3891,7 @@ export function TaxRequestForm() {
                         className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="font-medium">Je suis inscrit au Registre du Commerce</span>
+                        <span className="font-medium">{isEnglish ? "I am registered in the Commercial Register" : "Je suis inscrit au Registre du Commerce"}</span>
                         <p className="text-xs text-muted-foreground">{isEnglish ? "Required from CHF 100'000 in turnover" : "Obligatoire dès CHF 100'000 de chiffre d'affaires"}</p>
                       </div>
                     </label>
@@ -3931,7 +3924,7 @@ export function TaxRequestForm() {
                 </div>
 
                 {/* Cotisations sociales */}
-                <h4 className="font-semibold mb-3 text-amber-800">Cotisations sociales</h4>
+                <h4 className="font-semibold mb-3 text-amber-800">{isEnglish ? "Social contributions" : "Cotisations sociales"}</h4>
                 <div className="space-y-4 mb-6">
                   <div className="p-4 bg-white rounded-xl border">
                     <label className="flex items-center gap-3 cursor-pointer">
@@ -3951,7 +3944,7 @@ export function TaxRequestForm() {
                         <span className="text-sm">CHF</span>
                         <Input
                           type="number"
-                          placeholder="Montant annuel"
+                          placeholder={isEnglish ? "Annual amount" : "Montant annuel"}
                           value={formData.avsIndependentAmount}
                           onChange={(e) => updateForm("avsIndependentAmount", e.target.value)}
                           className="rounded-xl w-32"
@@ -3978,7 +3971,7 @@ export function TaxRequestForm() {
                         <span className="text-sm">CHF</span>
                         <Input
                           type="number"
-                          placeholder="Montant annuel"
+                          placeholder={isEnglish ? "Annual amount" : "Montant annuel"}
                           value={formData.lppVoluntaryAmount}
                           onChange={(e) => updateForm("lppVoluntaryAmount", e.target.value)}
                           className="rounded-xl w-32"
@@ -3995,7 +3988,7 @@ export function TaxRequestForm() {
                     {isEnglish ? "Your business result" : "Résultat de votre activité"} <span className="text-red-500">*</span>
                   </h4>
                   <p className="text-sm text-red-700 mb-4">
-                    {isEnglish ? "To prepare your tax return, we need to know your business result (profit or" : "Pour établir votre déclaration, nous avons besoin de connaître le résultat de votre activi"}té indépendante.
+                    {isEnglish ? "To prepare your tax return, we need to know your business result (profit or loss)." : "Pour établir votre déclaration, nous avons besoin de connaître le résultat de votre activité indépendante."}
                     {formData.canton === "VD" && (
                       <span className="block mt-1 font-medium">
                         ⚠️ Le canton de Vaud exige également le isEnglish ? "General self-employed questionnaire" : "Questionnaire général indépendant" à joindre à vos documents.
@@ -4026,7 +4019,7 @@ export function TaxRequestForm() {
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
                           <label className="block text-sm font-medium mb-2">
-                            Chiffre d'affaires annuel <span className="text-red-500">*</span>
+                            {isEnglish ? "Annual turnover" : "Chiffre d'affaires annuel"} <span className="text-red-500">*</span>
                           </label>
                           <div className="flex items-center gap-2">
                             <span className="text-sm font-medium">CHF</span>
@@ -4042,7 +4035,7 @@ export function TaxRequestForm() {
                         </div>
                         <div>
                           <label className="block text-sm font-medium mb-2">
-                            Total des charges annuelles <span className="text-red-500">*</span>
+                            {isEnglish ? "Total annual expenses" : "Total des charges annuelles"} <span className="text-red-500">*</span>
                           </label>
                           <div className="flex items-center gap-2">
                             <span className="text-sm font-medium">CHF</span>
@@ -4069,7 +4062,7 @@ export function TaxRequestForm() {
                 </div>
 
                 {/* Frais professionnels */}
-                <h4 className="font-semibold mb-3 text-amber-800">Frais professionnels</h4>
+                <h4 className="font-semibold mb-3 text-amber-800">{isEnglish ? "Professional expenses" : "Frais professionnels"}</h4>
                 <div className="space-y-4">
                   <div className="p-4 bg-white rounded-xl border">
                     <label className="flex items-center gap-3 cursor-pointer">
@@ -4081,7 +4074,7 @@ export function TaxRequestForm() {
                       />
                       <div>
                         <span className="font-medium">{isEnglish ? "Home office" : "Bureau à domicile"}</span>
-                        <p className="text-xs text-muted-foreground">{isEnglish ? "Share of rent allocated to professional activity" : "Part du loyer attribuée à l'activité professi"}onnelle</p>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Share of rent allocated to professional activity" : "Part du loyer attribuée à l'activité professionnelle"}</p>
                       </div>
                     </label>
                     {formData.hasHomeOffice && (
@@ -4096,13 +4089,13 @@ export function TaxRequestForm() {
                             onChange={(e) => updateForm("homeOfficePercent", e.target.value)}
                             className="rounded-xl w-20"
                           />
-                          <span className="text-sm">% de la surface</span>
+                          <span className="text-sm">{isEnglish ? "% of the area" : "% de la surface"}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="text-sm">CHF</span>
                           <Input
                             type="number"
-                            placeholder="Montant annuel"
+                            placeholder={isEnglish ? "Annual amount" : "Montant annuel"}
                             value={formData.homeOfficeAmount}
                             onChange={(e) => updateForm("homeOfficeAmount", e.target.value)}
                             className="rounded-xl w-32"
@@ -4122,7 +4115,7 @@ export function TaxRequestForm() {
                       />
                       <div>
                         <span className="font-medium">{isEnglish ? "Business vehicle" : "Véhicule professionnel"}</span>
-                        <p className="text-xs text-muted-foreground">{isEnglish ? "Share of vehicle costs allocated to professional activity" : "Part des frais de véhicule attribuée à l'acti"}vité</p>
+                        <p className="text-xs text-muted-foreground">{isEnglish ? "Share of vehicle costs allocated to professional activity" : "Part des frais de véhicule attribuée à l'activité"}</p>
                       </div>
                     </label>
                     {formData.hasBusinessVehicle && (
@@ -4165,7 +4158,7 @@ export function TaxRequestForm() {
               <div className="mt-8 p-6 bg-blue-50 border-2 border-blue-200 rounded-2xl">
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-blue-800">
                   <Users className="w-5 h-5" />
-                  {isEnglish ? "Self-employed activity" : "Activité indépendante"} du conjoint
+                  {isEnglish ? "Partner's self-employed activity" : "Activité indépendante du conjoint"}
                 </h3>
                 <label className="flex items-center gap-3 cursor-pointer mb-4">
                   <input
@@ -4183,7 +4176,7 @@ export function TaxRequestForm() {
                 {formData.isIndependent2 && (
                   <div className="mt-4 p-4 bg-white border border-blue-200 rounded-xl">
                     <h4 className="font-semibold mb-4 text-blue-800">
-                      {isEnglish ? "Self-employed activity" : "Activité indépendante"} de {formData.firstName2 || "votre conjoint"}
+                      {isEnglish ? `Self-employed activity of ${formData.firstName2 || "your partner"}` : `Activité indépendante de ${formData.firstName2 || "votre conjoint"}`}
                     </h4>
 
                     {/* Type d'activité */}
@@ -4247,7 +4240,7 @@ export function TaxRequestForm() {
                             onChange={(e) => updateForm("isRegisteredRC2", e.target.checked)}
                             className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
                           />
-                          <span className="text-sm">Inscrit au RC</span>
+                          <span className="text-sm">{isEnglish ? "Registered (RC)" : "Inscrit au RC"}</span>
                         </label>
                         <label className="flex items-center gap-2 cursor-pointer">
                           <input
@@ -4256,7 +4249,7 @@ export function TaxRequestForm() {
                             onChange={(e) => updateForm("hasVAT2", e.target.checked)}
                             className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
                           />
-                          <span className="text-sm">Assujetti TVA</span>
+                          <span className="text-sm">{isEnglish ? "Subject to VAT" : "Assujetti TVA"}</span>
                         </label>
                       </div>
                       {formData.hasVAT2 && (
@@ -4285,12 +4278,12 @@ export function TaxRequestForm() {
                       {!formData.hasBusinessAccounts2 && (
                         <div className="grid md:grid-cols-2 gap-4 p-3 bg-gray-50 rounded-lg">
                           <div>
-                            <label className="block text-xs font-medium mb-1">Chiffre d'affaires annuel *</label>
+                            <label className="block text-xs font-medium mb-1">{isEnglish ? "Annual turnover *" : "Chiffre d'affaires annuel *"}</label>
                             <div className="flex items-center gap-2">
                               <span className="text-sm">CHF</span>
                               <Input
                                 type="number"
-                                placeholder="CA annuel"
+                                placeholder={isEnglish ? "Annual turnover" : "CA annuel"}
                                 value={formData.businessRevenue2}
                                 onChange={(e) => updateForm("businessRevenue2", e.target.value)}
                                 className="rounded-lg text-sm"
@@ -4298,12 +4291,12 @@ export function TaxRequestForm() {
                             </div>
                           </div>
                           <div>
-                            <label className="block text-xs font-medium mb-1">Charges annuelles *</label>
+                            <label className="block text-xs font-medium mb-1">{isEnglish ? "Annual expenses *" : "Charges annuelles *"}</label>
                             <div className="flex items-center gap-2">
                               <span className="text-sm">CHF</span>
                               <Input
                                 type="number"
-                                placeholder="Charges"
+                                placeholder={isEnglish ? "Expenses" : "Charges"}
                                 value={formData.businessExpenses2}
                                 onChange={(e) => updateForm("businessExpenses2", e.target.value)}
                                 className="rounded-lg text-sm"
@@ -4320,7 +4313,7 @@ export function TaxRequestForm() {
                     </div>
 
                     {/* Cotisations sociales */}
-                    <h5 className="font-medium mb-3 text-blue-800">Cotisations sociales</h5>
+                    <h5 className="font-medium mb-3 text-blue-800">{isEnglish ? "Social contributions" : "Cotisations sociales"}</h5>
                     <div className="space-y-3 mb-6">
                       <div className="flex flex-wrap gap-4">
                         <label className="flex items-center gap-2">
@@ -4344,7 +4337,7 @@ export function TaxRequestForm() {
                       </div>
                       {formData.hasAVSIndependent2 && (
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">Cotisations AVS : CHF</span>
+                          <span className="text-sm">{isEnglish ? "AVS contributions: CHF" : "Cotisations AVS : CHF"}</span>
                           <Input
                             type="number"
                             value={formData.avsIndependentAmount2}
@@ -4355,7 +4348,7 @@ export function TaxRequestForm() {
                       )}
                       {formData.hasLPPVoluntary2 && (
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">Cotisations LPP : CHF</span>
+                          <span className="text-sm">{isEnglish ? "LPP contributions: CHF" : "Cotisations LPP : CHF"}</span>
                           <Input
                             type="number"
                             value={formData.lppVoluntaryAmount2}
@@ -4367,7 +4360,7 @@ export function TaxRequestForm() {
                     </div>
 
                     {/* Frais professionnels */}
-                    <h5 className="font-medium mb-3 text-blue-800">Frais professionnels</h5>
+                    <h5 className="font-medium mb-3 text-blue-800">{isEnglish ? "Professional expenses" : "Frais professionnels"}</h5>
                     <div className="space-y-3">
                       <label className="flex items-center gap-2">
                         <input
@@ -4387,11 +4380,11 @@ export function TaxRequestForm() {
                             onChange={(e) => updateForm("homeOfficePercent2", e.target.value)}
                             className="rounded-lg w-16 text-sm"
                           />
-                          <span className="text-xs">% surface</span>
+                          <span className="text-xs">{isEnglish ? "% of area" : "% surface"}</span>
                           <span className="text-sm">CHF</span>
                           <Input
                             type="number"
-                            placeholder="Montant"
+                            placeholder={isEnglish ? "Amount" : "Montant"}
                             value={formData.homeOfficeAmount2}
                             onChange={(e) => updateForm("homeOfficeAmount2", e.target.value)}
                             className="rounded-lg w-24 text-sm"
@@ -4417,11 +4410,11 @@ export function TaxRequestForm() {
                             onChange={(e) => updateForm("businessVehiclePercent2", e.target.value)}
                             className="rounded-lg w-16 text-sm"
                           />
-                          <span className="text-xs">% pro</span>
+                          <span className="text-xs">{isEnglish ? "% pro use" : "% pro"}</span>
                           <span className="text-sm">CHF</span>
                           <Input
                             type="number"
-                            placeholder="Frais"
+                            placeholder={isEnglish ? "Costs" : "Frais"}
                             value={formData.businessVehicleExpenses2}
                             onChange={(e) => updateForm("businessVehicleExpenses2", e.target.value)}
                             className="rounded-lg w-24 text-sm"
