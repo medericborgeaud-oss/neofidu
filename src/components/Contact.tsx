@@ -165,7 +165,6 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold text-lg">{t.address}</p>
-                  <p className="text-white/70">Crettaz 1</p>
                   <p className="text-white/70">1854 Leysin</p>
                 </div>
               </div>
