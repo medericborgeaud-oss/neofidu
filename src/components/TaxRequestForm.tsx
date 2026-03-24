@@ -4025,7 +4025,7 @@ export function TaxRequestForm() {
                             <span className="text-sm font-medium">CHF</span>
                             <Input
                               type="number"
-                              placeholder="Total des recettes"
+                              placeholder={isEnglish ? "Total revenue" : "Total des recettes"}
                               value={formData.businessRevenue}
                               onChange={(e) => updateForm("businessRevenue", e.target.value)}
                               className="rounded-xl bg-white"
@@ -4041,7 +4041,7 @@ export function TaxRequestForm() {
                             <span className="text-sm font-medium">CHF</span>
                             <Input
                               type="number"
-                              placeholder="Total des charges"
+                              placeholder={isEnglish ? "Total expenses" : "Total des charges"}
                               value={formData.businessExpenses}
                               onChange={(e) => updateForm("businessExpenses", e.target.value)}
                               className="rounded-xl bg-white"
