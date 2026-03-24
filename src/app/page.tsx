@@ -14,7 +14,14 @@ const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ defa
 
 export const metadata: Metadata = {
   title: "Fiduciaire en Ligne Suisse | Déclaration d’impôts | NeoFidu",
-  description: "Fiduciaire 100% en ligne en Suisse romande. Déclaration d’impôts dès CHFÂ 50, comptabilité, gérance immobilière. Devis gratuit.",
+  description: "Fiduciaire 100% en ligne en Suisse romande. Déclaration d'impôts dès CHF 50, comptabilité, gérance immobilière. Service rapide, prix transparents. Devis gratuit.
+(161 caractères — dans la plage 150-220, et sans caractère spécial)
+
+Note : assure-toi de taper CHF 50 avec un espace normal (pas copier-coller depuis un PDF ou Word).
+
+
+
+",
   keywords: [
     // Expat-specific keywords (high priority)
     "expat tax return switzerland",
