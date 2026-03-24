@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "NeoFidu" }],
   creator: "NeoFidu",
-  publisher: "NeoFidu SA",
+  publisher: "NeoFidu",
   formatDetection: {
     email: false,
     address: false,
@@ -93,11 +93,11 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "FinancialService", "AccountingService", "ProfessionalService"],
     "@id": "https://www.neofidu.ch/#organization",
-    name: "Neofidu",
+    name: "NeoFidu",
     legalName: "NeoFidu",
-    alternateName: ["NeoFidu", "Neofidu Fiduciaire", "NeoFidu Swiss Fiduciary"],
+    alternateName: ["NeoFidu", "NeoFidu Fiduciaire", "NeoFidu Swiss Fiduciary"],
     description:
-      "Votre fiduciaire nouvelle génération en Suisse romande. Simplifiez votre gestion financière avec Neofidu, la solution 100% en ligne pour particuliers, indépendants et PME. Spécialistes de la fiscalité et de la comptabilité.",
+      "Votre fiduciaire nouvelle génération en Suisse romande. Simplifiez votre gestion financière avec NeoFidu, la solution 100% en ligne pour particuliers, indépendants et PME. Spécialistes de la fiscalité et de la comptabilité.",
     "inLanguage": ["fr", "en"],
     "knowsLanguage": [
       { "@type": "Language", name: "French", alternateName: "fr" },
@@ -110,7 +110,7 @@ export default function RootLayout({
       url: "https://www.neofidu.ch/logo.svg",
       width: 200,
       height: 60,
-      caption: "Neofidu Logo",
+      caption: "NeoFidu Logo",
     },
     image: [
       "https://www.neofidu.ch/og-image.svg",
@@ -154,7 +154,7 @@ export default function RootLayout({
       addressRegion: "VD",
       addressCountry: "CH",
       // Additional address details for Google
-      name: "Neofidu",
+      name: "NeoFidu",
     },
     geo: {
       "@type": "GeoCoordinates",
@@ -187,7 +187,7 @@ export default function RootLayout({
     // Services offered
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Services fiduciaires Neofidu",
+      name: "Services fiduciaires NeoFidu",
       itemListElement: [
         {
           "@type": "Offer",
@@ -312,7 +312,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://www.neofidu.ch/#org",
-    name: "Neofidu",
+    name: "NeoFidu",
     url: "https://www.neofidu.ch",
     logo: "https://www.neofidu.ch/logo.svg",
     description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts, comptabilité, gérance immobilière",
@@ -339,7 +339,7 @@ export default function RootLayout({
     "@type": "WebSite",
     "@id": "https://www.neofidu.ch/#website",
     url: "https://www.neofidu.ch",
-    name: "Neofidu",
+    name: "NeoFidu",
     alternateName: "NeoFidu",
     description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts dès CHF 50",
     publisher: {
@@ -369,18 +369,18 @@ export default function RootLayout({
     mainEntity: [
       {
         "@type": "Question",
-        name: "Combien coûte une déclaration d'impôts chez Neofidu ?",
+        name: "Combien coûte une déclaration d'impôts chez NeoFidu ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Chez Neofidu, la déclaration d'impôts commence à CHF 50 pour les cas simples (Basic), CHF 100 pour les situations avec propriété ou personnes à charge (Comfort), et CHF 150 pour les patrimoines diversifiés (Integral). Tous les prix incluent la TVA à 8.1%.",
+          text: "Chez NeoFidu, la déclaration d'impôts commence à CHF 50 pour les cas simples (Basic), CHF 100 pour les situations avec propriété ou personnes à charge (Comfort), et CHF 150 pour les patrimoines diversifiés (Integral). Tous les prix incluent la TVA à 8.1%.",
         },
       },
       {
         "@type": "Question",
-        name: "Dans quels cantons suisses Neofidu est-il disponible ?",
+        name: "Dans quels cantons suisses NeoFidu est-il disponible ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Neofidu offre ses services dans 6 cantons de Suisse romande : Vaud, Valais, Genève, Neuchâtel, Jura et Fribourg. Notre service est 100% en ligne, accessible partout.",
+          text: "NeoFidu offre ses services dans 6 cantons de Suisse romande : Vaud, Valais, Genève, Neuchâtel, Jura et Fribourg. Notre service est 100% en ligne, accessible partout.",
         },
       },
       {
@@ -393,15 +393,15 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "Neofidu parle-t-il anglais ?",
+        name: "NeoFidu parle-t-il anglais ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Oui, Neofidu offre un service complet en anglais pour les expatriés et résidents internationaux en Suisse. We speak English and can help you with your Swiss tax return!",
+          text: "Oui, NeoFidu offre un service complet en anglais pour les expatriés et résidents internationaux en Suisse. We speak English and can help you with your Swiss tax return!",
         },
       },
       {
         "@type": "Question",
-        name: "Comment fonctionne le service en ligne de Neofidu ?",
+        name: "Comment fonctionne le service en ligne de NeoFidu ?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "1) Remplissez notre formulaire en ligne, 2) Téléchargez vos documents (certificat de salaire, relevés bancaires), 3) Payez en ligne (Visa, Mastercard, PayPal, Klarna), 4) Recevez votre déclaration complétée par email. Tout se fait depuis votre smartphone ou ordinateur.",
@@ -409,7 +409,7 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "Quels sont les horaires de Neofidu ?",
+        name: "Quels sont les horaires de NeoFidu ?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Nos bureaux sont ouverts du lundi au vendredi de 9h à 17h. Notre plateforme en ligne est accessible 24h/24 pour soumettre vos demandes.",
@@ -417,15 +417,15 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "Neofidu propose-t-il des services de comptabilité ?",
+        name: "NeoFidu propose-t-il des services de comptabilité ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Oui, Neofidu propose des services de comptabilité pour indépendants (dès CHF 500/an) et PME (dès CHF 1000/an), incluant la clôture annuelle, les décomptes TVA et le suivi comptable régulier.",
+          text: "Oui, NeoFidu propose des services de comptabilité pour indépendants (dès CHF 500/an) et PME (dès CHF 1000/an), incluant la clôture annuelle, les décomptes TVA et le suivi comptable régulier.",
         },
       },
       {
         "@type": "Question",
-        name: "Comment contacter Neofidu ?",
+        name: "Comment contacter NeoFidu ?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Vous pouvez nous contacter par email à contact@neofidu.ch, par téléphone au +41 78 691 39 12, ou via notre formulaire de contact en ligne. Réponse garantie sous 1 jour ouvré.",
