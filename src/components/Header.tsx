@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
@@ -101,6 +101,14 @@ export function Header() {
       label: isEnglish ? "Blog" : "Blog",
       icon: FileText,
       description: isEnglish ? "News and tax advice" : "Actualités et conseils fiscaux",
+    },
+    {
+      href: "/dette-suisse",
+      label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse",
+      icon: TrendingUp,
+      description: isEnglish
+        ? "Real-time federal debt tracker"
+        : "Suivi en temps réel de la dette fédérale",
     },
   ];
 
