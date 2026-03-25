@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/language-context";
 // ════════════════════════════════════════════════════════════════
 //  DATA — Swiss federal budget 2026
 //  Sources: Federal Finance Administration (FFA / EFV)
-//  efv.admin.ch · efd.admin.ch 
+//  efv.admin.ch · efd.admin.ch
 // ════════════════════════════════════════════════════════════════
 
 const DEBT_JAN1 = 140.0e9;
@@ -210,7 +210,7 @@ export default function SwissDebtClock() {
             ? "Estimated net debt of the Confederation — right now"
             : "Dette nette estimée de la Confédération — en ce moment"}
         </div>
-        <div className="text-4xl md:text-5xl font-extrabold text-red-400 tabular-nums leading-tight">
+        <div className="text-[1.65rem] sm:text-4xl md:text-5xl font-extrabold text-red-400 tabular-nums leading-tight">
           CHF {f2(vals.debt)}
         </div>
       </div>
