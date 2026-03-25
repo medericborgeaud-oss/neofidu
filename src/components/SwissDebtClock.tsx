@@ -183,7 +183,7 @@ export default function SwissDebtClock() {
             {en ? "Live · Federal Budget 2026" : "En direct · Budget fédéral 2026"}
           </span>
         </div>
-        <h1 className="text-3xl font-extrabold text-slate-100 mb-1">
+        <h2 className="text-3xl font-extrabold text-slate-100 mb-1">
           <svg
             className="inline-block align-middle mr-1.5 -mt-0.5"
             width="28"
@@ -195,7 +195,7 @@ export default function SwissDebtClock() {
             <rect x="13" y="8" width="6" height="16" rx="1" fill="#fff" />
           </svg>
           {en ? "Swiss Debt Clock" : "Compteur de la dette suisse"}
-        </h1>
+        </h2>
         <p className="text-xs opacity-40">
           {en
             ? "Real-time estimate · Source: Federal Finance Administration (FFA)"
