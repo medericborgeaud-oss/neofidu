@@ -65,7 +65,7 @@ export function Hero() {
           {/* Tagline Badge */}
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
             <span className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse" />
-            <span className="text-white/90 text-sm font-lg">
+            <span className="text-white/90 text-base font-medium">
               {tagline}
             </span>
           </div>
