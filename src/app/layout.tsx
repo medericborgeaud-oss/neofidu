@@ -384,6 +384,22 @@ export default function RootLayout({
         },
       },
       {
+  "@type": "Question",
+  name: "NeoFidu dispose-t-il d'un assistant virtuel pour les questions fiscales ?",
+  acceptedAnswer: {
+    "@type": "Answer",
+    text: "Oui, NeoFidu intègre un assistant fiscal intelligent disponible 24h/24 sur toutes les pages. Il répond immédiatement à vos questions sur les impôts suisses, les tarifs, les délais et les démarches. Powered by intelligence artificielle, il est disponible en français et en anglais.",
+  },
+},
+{
+  "@type": "Question",
+  name: "Can I get instant answers to Swiss tax questions online?",
+  acceptedAnswer: {
+    "@type": "Answer",
+    text: "Yes! NeoFidu offers an AI-powered tax assistant available 24/7 directly on the website. Ask any question about Swiss tax returns, deadlines, prices or documents — and get an immediate answer in English or French.",
+  },
+},
+      {
         "@type": "Question",
         name: "Quel est le délai pour recevoir ma déclaration d'impôts ?",
         acceptedAnswer: {
