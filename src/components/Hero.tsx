@@ -61,11 +61,11 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 md:py-32">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Tagline Badge */}
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
             <span className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse" />
-            <span className="text-white/90 text-sm font-medium">
+            <span className="text-white/90 text-sm font-lg">
               {tagline}
             </span>
           </div>
