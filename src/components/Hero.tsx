@@ -71,7 +71,7 @@ export function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
             {title1}{" "}
             <span className="relative inline-block">
               {title2}
