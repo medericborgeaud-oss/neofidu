@@ -35,6 +35,7 @@ export function Footer() {
       { label: isEnglish ? "Real estate gain tax" : "Gain immobilier", href: "/simulateur/gain-immobilier" },
       { label: isEnglish ? "Swiss tax map" : "Carte des impôts suisses", href: "/simulateur/carte-impots" },
       { label: isEnglish ? "Retirement simulator" : "Simulateur retraite", href: "/simulateur/retraite" },
+      { label: isEnglish ? "Swiss debt clock" : "Compteur dette suisse", href: "/dette-suisse" },
     ],
     guides: [
       { label: isEnglish ? "Tax deductions guide" : "Guide déductions fiscales", href: "/guide/deductions-fiscales" },
