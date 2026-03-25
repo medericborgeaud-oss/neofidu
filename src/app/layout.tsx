@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import { GoogleAnalytics, GoogleTagManagerNoScript } from "@/components/GoogleAnalytics";
-
+import { ChatBot } from "@/components/ChatBot";
 const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -480,9 +480,10 @@ export default function RootLayout({
         ))}
         <GoogleAnalytics />
       </head>
-      <body suppressHydrationWarning className="antialiased">
+       <body suppressHydrationWarning className="antialiased">
         <GoogleTagManagerNoScript />
         <ClientBody>{children}</ClientBody>
+        <ChatBot />
       </body>
     </html>
   );
