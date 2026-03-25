@@ -103,7 +103,7 @@ export function Header() {
       description: isEnglish ? "News and tax advice" : "Actualités et conseils fiscaux",
     },
     {
-      href: "/dette-suisse",
+      href: isEnglish ? "/swiss-debt" : "/dette-suisse",
       label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse",
       icon: TrendingUp,
       description: isEnglish
