@@ -82,7 +82,7 @@ export function ChatBot() {
     <>
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed inset-4 bottom-20 sm:inset-auto sm:bottom-20 sm:right-4 z-[9999] sm:w-[350px] sm:max-h-[500px] bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden">
+        <div className="fixed top-4 left-4 right-4 bottom-20 z-[9999] sm:top-auto sm:left-auto sm:right-4 sm:bottom-20 sm:w-[350px] sm:max-h-[500px] bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-primary px-4 py-3 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
