@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Home, FileText, Search } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 export default function NotFoundContent() {
   const { isEnglish } = useLanguage();
