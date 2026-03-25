@@ -1,6 +1,6 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { MessageCircle, X, Send, Loader2, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -20,8 +20,13 @@ export function ChatBot() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -32,13 +37,11 @@ export function ChatBot() {
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
-
     const userMessage: Message = { role: "user", content: input.trim() };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
     setInput("");
     setIsLoading(true);
-
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -73,17 +76,21 @@ export function ChatBot() {
     }
   };
 
-  return (
+  if (!mounted) return null;
+
+  const chatContent = (
     <>
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed bottom-20 right-4 left-4 sm:left-auto z-50 sm:w-[350px] max-h-[calc(100dvh-6rem)] bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden">
+        <div className="fixed inset-4 bottom-20 sm:inset-auto sm:bottom-20 sm:right-4 z-[9999] sm:w-[350px] sm:max-h-[500px] bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-primary px-4 py-3 flex items-center justify-between">
+          <div className="bg-primary px-4 py-3 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-white" />
               <div>
-                <p className="text-white font-semibold text-sm">Assistant NeoFidu</p>
+                <p className="text-white font-semibold text-sm">
+                  Assistant NeoFidu
+                </p>
                 <p className="text-white/70 text-xs">Réponse immédiate</p>
               </div>
             </div>
@@ -124,7 +131,7 @@ export function ChatBot() {
           </div>
 
           {/* Input */}
-          <div className="border-t p-3 flex gap-2">
+          <div className="border-t p-3 flex gap-2 shrink-0">
             <input
               ref={inputRef}
               type="text"
@@ -150,7 +157,7 @@ export function ChatBot() {
       {/* Toggle button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-20 right-4 z-50 w-14 h-14 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-105"
+        className="fixed bottom-20 right-4 z-[9999] w-14 h-14 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-105"
         aria-label="Ouvrir le chat"
       >
         {isOpen ? (
@@ -161,4 +168,6 @@ export function ChatBot() {
       </button>
     </>
   );
+
+  return createPortal(chatContent, document.body);
 }
