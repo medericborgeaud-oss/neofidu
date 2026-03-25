@@ -4,163 +4,17 @@ import { Footer } from "@/components/Footer";
 import SwissDebtClock from "@/components/SwissDebtClock";
 import Link from "next/link";
 
-// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-//  SEO â Metadata (Next.js App Router)
-// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-const TITLE = "Compteur de la dette suisse en direct â Budget fÃ©dÃ©ral 2026";
+// ════════════════════════════════════════════════════════════════
+//  SEO — Metadata (Next.js App Router)
+// ════════════════════════════════════════════════════════════════
+const TITLE = "Compteur de la dette suisse en direct — Budget fédéral 2026";
 const DESC =
-  "Suivez en temps rÃ©el l'Ã©volution de la dette fÃ©dÃ©rale suisse. " +
-  "Recettes, dÃ©penses et dÃ©ficit par seconde selon le budget 2026 " +
-  "de l'Administration fÃ©dÃ©rale des finances (AFF).";
+  "Suivez en temps réel l'évolution de la dette fédérale suisse. " +
+  "Recettes, dépenses et déficit par seconde selon le budget 2026 " +
+  "de l'Administration fédérale des finances (AFF).";
 const URL = "https://www.neofidu.ch/dette-suisse";
 const OG_IMAGE = "https://www.neofidu.ch/og/dette-suisse.png";
-
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESC,
-  keywords: [
-    "dette suisse",
-    "dette fÃ©dÃ©rale suisse",
-    "compteur dette suisse",
-    "budget fÃ©dÃ©ral 2026",
-    "finances fÃ©dÃ©rales suisse",
-    "dette confÃ©dÃ©ration",
-    "dÃ©ficit fÃ©dÃ©ral suisse",
-    "recettes fÃ©dÃ©rales",
-    "dÃ©penses fÃ©dÃ©rales",
-    "TVA suisse",
-    "impÃ´t fÃ©dÃ©ral direct",
-    "administration fÃ©dÃ©rale des finances",
-    "AFF",
-    "EFV",
-    "Swiss debt clock",
-    "Schweizer Schulden",
-    "Bundeshaushalt 2026",
-  ],
-  alternates: {
-    canonical: URL,
-  },
-  openGraph: {
-    title: TITLE,
-    description: DESC,
-    url: URL,
-    siteName: "NeoFidu",
-    locale: "fr_CH",
-    type: "website",
-    images: [
-      {
-        url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Compteur de la dette fÃ©dÃ©rale suisse en temps rÃ©el â NeoFidu",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESC,
-    images: [OG_IMAGE],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
-// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-//  JSON-LD Structured Data
-// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-function JsonLd() {
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Accueil",
-        item: "https://www.neofidu.ch",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Compteur de la dette suisse",
-        item: URL,
-      },
-    ],
-  };
-
-  const webpage = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: TITLE,
-    description: DESC,
-    url: URL,
-    inLanguage: "fr-CH",
-    isPartOf: {
-      "@type": "WebSite",
-      name: "NeoFidu",
-      url: "https://www.neofidu.ch",
-    },
-    about: {
-      "@type": "Thing",
-      name: "Dette fÃ©dÃ©rale suisse",
-      description:
-        "Estimation en temps rÃ©el de la dette nette de la ConfÃ©dÃ©ration suisse, basÃ©e sur le budget fÃ©dÃ©ral 2026.",
-    },
-    mainEntity: {
-      "@type": "Dataset",
-      name: "Budget fÃ©dÃ©ral suisse 2026",
-      description:
-        "Recettes et dÃ©penses de la ConfÃ©dÃ©ration suisse pour l'exercice 2026, selon l'Administration fÃ©dÃ©rale des finances.",
-      creator: {
-        "@type": "GovernmentOrganization",
-        name: "Administration fÃ©dÃ©rale des finances (AFF)",
-        url: "https://www.efv.admin.ch",
-      },
-      temporalCoverage: "2026",
-      spatialCoverage: {
-        "@type": "Country",
-        name: "Suisse",
-      },
-    },
-  };
-
-  const faq = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Quel est le montant de la dette fÃ©dÃ©rale suisse en 2026 ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "La dette nette de la ConfÃ©dÃ©ration suisse Ã©tait estimÃ©e Ã  environ 140 milliards de francs au dÃ©but de l'annÃ©e 2026, selon les donnÃ©es de l'Administration fÃ©dÃ©rale des finances (AFF). Le budget 2026 prÃ©voit un dÃ©ficit de financement de 742 millions de francs.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Quelles sont les principales recettes de la ConfÃ©dÃ©ration suisse ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Les principales recettes fÃ©dÃ©rales en 2026 sont : la TVA (28,1 milliards), l'impÃ´t fÃ©dÃ©ral direct sur les personnes morales (17,1 milliards), l'impÃ´t fÃ©dÃ©ral direct sur les personnes physiques (15,9 milliards), l'impÃ´t anticipÃ© (6,7 milliards) et l'impÃ´t sur les huiles minÃ©rales (4,5 milliards). Le total des recettes s'Ã©lÃ¨ve Ã  90,4 milliards de francs.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Quels sont les principaux postes de dÃ©penses fÃ©dÃ©rales ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Les dÃ©penses fÃ©dÃ©rales 2026 sont dominÃ©es par la prÃ©voyance sociale (AVS, AI, APG, PC, asile) avec 31,8 milliards, suivie par les finances et impÃ´ts (parts cantonales) Ã  14,8 milliards, le trafic et l'infrastructure Ã  11,2 milliards, et la formation et recherche Ã  9,0 milliards. Le total des dÃ©penses atteint 91,1 milliards de francs.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "D'oÃ¹ proviennent les donnÃ©es de ce compteur de la dette ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Les donnÃ©es sont basÃ©es sur le budget fÃ©dÃ©ral 2026 publiÃ© par l'Administration fÃ©dÃ©rale des finances (AFF / EFV). La dette nette de la ConfÃ©dÃ©ration est tirÃ©e des publications du DÃ©partement fÃ©dÃ©ral des finances (DFF). Le compteur extrapole le dÃ©ficit budgÃ©tÃ© en continu Ã  titre illustratif.",
+tion fédérale des finances (AFF / EFV). La dette nette de la Confédération est tirée des publications du Département fédéral des finances (DFF). Le compteur extrapole le déficit budgété en continu à titre illustratif.",
         },
       },
     ],
@@ -184,9 +38,9 @@ function JsonLd() {
   );
 }
 
-// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ════════════════════════════════════════════════════════════════
 //  PAGE
-// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ════════════════════════════════════════════════════════════════
 export default function DettesSuissePage() {
   return (
     <>
@@ -219,10 +73,10 @@ export default function DettesSuissePage() {
                 <span className="text-gradient">suisse</span>
               </h1>
               <p className="text-muted-foreground text-lg">
-                Visualisez en temps rÃ©el l&apos;Ã©volution de la dette de la
-                ConfÃ©dÃ©ration suisse. Ce compteur est basÃ© sur le{" "}
-                <strong className="text-foreground">budget fÃ©dÃ©ral 2026</strong>{" "}
-                publiÃ© par l&apos;Administration fÃ©dÃ©rale des finances.
+                Visualisez en temps réel l&apos;évolution de la dette de la
+                Confédération suisse. Ce compteur est basé sur le{" "}
+                <strong className="text-foreground">budget fédéral 2026</strong>{" "}
+                publié par l&apos;Administration fédérale des finances.
               </p>
             </div>
 
@@ -236,43 +90,43 @@ export default function DettesSuissePage() {
                   Comment fonctionne ce compteur ?
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Le compteur extrapole le dÃ©ficit annuel budgÃ©tÃ© (742 millions de
-                  CHF pour 2026) en continu, seconde par seconde, Ã  partir du
+                  Le compteur extrapole le déficit annuel budgété (742 millions de
+                  CHF pour 2026) en continu, seconde par seconde, à partir du
                   1er janvier 2026. Il s&apos;agit d&apos;une estimation
-                  illustrative : la dette rÃ©elle fluctue en fonction des
-                  encaissements et dÃ©caissements effectifs tout au long de
-                  l&apos;annÃ©e.
+                  illustrative : la dette réelle fluctue en fonction des
+                  encaissements et décaissements effectifs tout au long de
+                  l&apos;année.
                 </p>
               </div>
 
               <div className="bg-white/80 rounded-2xl border p-6 md:p-8 shadow-sm">
                 <h2 className="text-xl font-bold mb-3">
-                  Budget fÃ©dÃ©ral 2026 en bref
+                  Budget fédéral 2026 en bref
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  La ConfÃ©dÃ©ration prÃ©voit des recettes totales de{" "}
+                  La Confédération prévoit des recettes totales de{" "}
                   <strong className="text-foreground">90,4 milliards de francs</strong>{" "}
-                  et des dÃ©penses de{" "}
+                  et des dépenses de{" "}
                   <strong className="text-foreground">91,1 milliards de francs</strong>,
-                  soit un dÃ©ficit de financement de 742 millions. La TVA reste la
-                  premiÃ¨re source de revenus (28,1 Mrd), tandis que la prÃ©voyance
-                  sociale reprÃ©sente le plus gros poste de dÃ©penses (31,8 Mrd).
+                  soit un déficit de financement de 742 millions. La TVA reste la
+                  première source de revenus (28,1 Mrd), tandis que la prévoyance
+                  sociale représente le plus gros poste de dépenses (31,8 Mrd).
                 </p>
               </div>
 
               <div className="bg-white/80 rounded-2xl border p-6 md:p-8 shadow-sm">
                 <h2 className="text-xl font-bold mb-3">
-                  Sources et mÃ©thodologie
+                  Sources et méthodologie
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Toutes les donnÃ©es proviennent de l&apos;
+                  Toutes les données proviennent de l&apos;
                   <a
                     href="https://www.efv.admin.ch"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
-                    Administration fÃ©dÃ©rale des finances (AFF / EFV)
+                    Administration fédérale des finances (AFF / EFV)
                   </a>{" "}
                   et du{" "}
                   <a
@@ -281,10 +135,10 @@ export default function DettesSuissePage() {
                     rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
-                    DÃ©partement fÃ©dÃ©ral des finances (DFF / EFD)
+                    Département fédéral des finances (DFF / EFD)
                   </a>
-                  . La dette nette de la ConfÃ©dÃ©ration fin 2025 est estimÃ©e Ã 
-                  environ 140 milliards de francs. Ce compteur est proposÃ© Ã  titre
+                  . La dette nette de la Confédération fin 2025 est estimée à
+                  environ 140 milliards de francs. Ce compteur est proposé à titre
                   informatif et ne constitue pas un indicateur officiel.
                 </p>
               </div>
@@ -296,7 +150,7 @@ export default function DettesSuissePage() {
                 href="/demande"
                 className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors"
               >
-                Besoin d&apos;aide avec vos impÃ´ts ?
+                Besoin d&apos;aide avec vos impôts ?
               </Link>
             </div>
           </div>
