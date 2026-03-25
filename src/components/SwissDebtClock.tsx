@@ -2,11 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 
-// ================================================================
+// ════════════════════════════════════════════════════════════════
 //  DONNÉES — Budget fédéral suisse 2026
 //  Sources: Administration fédérale des finances (AFF / EFV)
 //  efv.admin.ch · efd.admin.ch
-// ================================================================
+// ════════════════════════════════════════════════════════════════
 
 const DEBT_JAN1 = 140.0e9; // Dette nette Confédération au 1er janv. 2026 (EFD)
 const ANNUAL_DEFICIT = 0.742e9; // Déficit de financement budgété 2026
@@ -52,7 +52,7 @@ const DEPENSES: Category[] = [
   { l: "Autres tâches fédérales", a: 8.9e9, c: "#94a3b8" },
 ];
 
-// -- Helpers --
+// ── Helpers ──
 function f2(n: number): string {
   return Math.round(n).toLocaleString("de-CH");
 }
@@ -62,7 +62,7 @@ function fShort(n: number): string {
   return f2(n);
 }
 
-// -- Sub-components --
+// ── Sub-components ──
 function CategoryBar({ cat, total }: { cat: Category; total: number }) {
   const pct = (cat.a / total) * 100;
   return (
@@ -83,9 +83,9 @@ function CategoryBar({ cat, total }: { cat: Category; total: number }) {
   );
 }
 
-// ================================================================
+// ════════════════════════════════════════════════════════════════
 //  MAIN COMPONENT
-// ================================================================
+// ════════════════════════════════════════════════════════════════
 export default function SwissDebtClock() {
   const [tab, setTab] = useState<"r" | "d">("r");
   const [vals, setVals] = useState({
@@ -139,7 +139,7 @@ export default function SwissDebtClock() {
   const total = tab === "r" ? ANNUAL_REV : ANNUAL_EXP;
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-200 rounded-2xl p-6 md:p-8 max-w-[760px] mx-auto border border-white/[0.06] shadow-2xl">
+    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-200 rounded-2xl p-6 md:p-10 max-w-[960px] mx-auto border border-white/[0.06] shadow-2xl">
       {/* Header */}
       <div className="text-center mb-6">
         <div className="inline-flex items-center mb-2">
@@ -147,11 +147,11 @@ export default function SwissDebtClock() {
             <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
             <span className="relative inline-flex rounded-full h-[9px] w-[9px] bg-emerald-500" />
           </span>
-          <span className="text-[0.7rem] uppercase tracking-widest text-emerald-400 font-semibold">
+          <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
             En direct · Budget fédéral 2026
           </span>
         </div>
-        <h1 className="text-2xl font-extrabold text-slate-100 mb-1">
+        <h1 className="text-3xl font-extrabold text-slate-100 mb-1">
           <svg
             className="inline-block align-middle mr-1.5 -mt-0.5"
             width="28"
@@ -172,10 +172,10 @@ export default function SwissDebtClock() {
 
       {/* Main debt counter */}
       <div className="bg-red-500/[0.07] border border-red-500/[0.12] rounded-xl p-5 text-center mb-3">
-        <div className="text-[0.65rem] uppercase tracking-wider opacity-55 mb-2">
+        <div className="text-xs uppercase tracking-wider opacity-55 mb-2">
           Dette nette estimée de la Confédération — en ce moment
         </div>
-        <div className="text-3xl md:text-4xl font-extrabold text-red-400 tabular-nums leading-tight">
+        <div className="text-4xl md:text-5xl font-extrabold text-red-400 tabular-nums leading-tight">
           CHF {f2(vals.debt)}
         </div>
       </div>
@@ -183,18 +183,18 @@ export default function SwissDebtClock() {
       {/* Delta cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
-          <div className="text-[0.65rem] uppercase tracking-wider opacity-55">
+          <div className="text-xs uppercase tracking-wider opacity-55">
             Augmentation depuis le 1er janv. 2026
           </div>
-          <div className="text-xl font-bold text-orange-400 tabular-nums mt-1.5">
+          <div className="text-2xl font-bold text-orange-400 tabular-nums mt-1.5">
             + CHF {f2(vals.ytd)}
           </div>
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
-          <div className="text-[0.65rem] uppercase tracking-wider opacity-55">
+          <div className="text-xs uppercase tracking-wider opacity-55">
             Augmentation depuis l&apos;ouverture de cette page
           </div>
-          <div className="text-xl font-bold text-yellow-400 tabular-nums mt-1.5">
+          <div className="text-2xl font-bold text-yellow-400 tabular-nums mt-1.5">
             + CHF {f2(vals.page)}
           </div>
         </div>
@@ -203,18 +203,18 @@ export default function SwissDebtClock() {
       {/* Revenue / Expenses since page open */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
-          <div className="text-[0.65rem] uppercase tracking-wider opacity-55">
+          <div className="text-xs uppercase tracking-wider opacity-55">
             Recettes fédérales depuis l&apos;ouverture de cette page
           </div>
-          <div className="text-lg font-bold text-emerald-400 tabular-nums mt-1.5">
+          <div className="text-xl font-bold text-emerald-400 tabular-nums mt-1.5">
             CHF {f2(vals.rev)}
           </div>
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
-          <div className="text-[0.65rem] uppercase tracking-wider opacity-55">
+          <div className="text-xs uppercase tracking-wider opacity-55">
             Dépenses fédérales depuis l&apos;ouverture de cette page
           </div>
-          <div className="text-lg font-bold text-red-400 tabular-nums mt-1.5">
+          <div className="text-xl font-bold text-red-400 tabular-nums mt-1.5">
             CHF {f2(vals.exp)}
           </div>
         </div>
@@ -223,26 +223,26 @@ export default function SwissDebtClock() {
       {/* Per-second */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4 text-center">
-          <div className="text-[0.65rem] uppercase tracking-wider opacity-55">
+          <div className="text-xs uppercase tracking-wider opacity-55">
             Recettes / seconde
           </div>
-          <div className="text-sm font-bold text-emerald-400 tabular-nums mt-1">
+          <div className="text-base font-bold text-emerald-400 tabular-nums mt-1">
             CHF {f2(PS_REV)}
           </div>
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4 text-center">
-          <div className="text-[0.65rem] uppercase tracking-wider opacity-55">
+          <div className="text-xs uppercase tracking-wider opacity-55">
             Dépenses / seconde
           </div>
-          <div className="text-sm font-bold text-red-400 tabular-nums mt-1">
+          <div className="text-base font-bold text-red-400 tabular-nums mt-1">
             CHF {f2(PS_EXP)}
           </div>
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4 text-center">
-          <div className="text-[0.65rem] uppercase tracking-wider opacity-55">
+          <div className="text-xs uppercase tracking-wider opacity-55">
             Déficit / seconde
           </div>
-          <div className="text-sm font-bold text-yellow-400 tabular-nums mt-1">
+          <div className="text-base font-bold text-yellow-400 tabular-nums mt-1">
             CHF {f2(PS_DEF)}
           </div>
         </div>
