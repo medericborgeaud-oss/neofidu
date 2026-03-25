@@ -82,8 +82,17 @@ export function ChatBot() {
     <>
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed top-4 left-4 right-4 bottom-20 z-[9999] sm:top-auto sm:left-auto sm:right-4 sm:bottom-20 sm:w-[350px] sm:max-h-[500px] bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden">
-          {/* Header */}
+       <div
+          style={{
+            position: 'fixed',
+            top: '1rem',
+            left: '1rem',
+            right: '1rem',
+            bottom: '5rem',
+            zIndex: 9999,
+          }}
+          className="bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden"
+        >
           <div className="bg-primary px-4 py-3 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-white" />
