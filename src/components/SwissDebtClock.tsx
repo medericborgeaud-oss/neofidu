@@ -1,19 +1,20 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/lib/language-context";
 
 // ════════════════════════════════════════════════════════════════
-//  DONNÉES — Budget fédéral suisse 2026
-//  Sources: Administration fédérale des finances (AFF / EFV)
+//  DATA — Swiss federal budget 2026
+//  Sources: Federal Finance Administration (FFA / EFV)
 //  efv.admin.ch · efd.admin.ch
 // ════════════════════════════════════════════════════════════════
 
-const DEBT_JAN1 = 140.0e9; // Dette nette Confédération au 1er janv. 2026 (EFD)
-const ANNUAL_DEFICIT = 0.742e9; // Déficit de financement budgété 2026
-const ANNUAL_REV = 90.4e9; // Recettes totales (ord. + extra.)
-const ANNUAL_EXP = 91.1e9; // Dépenses totales (ord. + extra.)
+const DEBT_JAN1 = 140.0e9;
+const ANNUAL_DEFICIT = 0.742e9;
+const ANNUAL_REV = 90.4e9;
+const ANNUAL_EXP = 91.1e9;
 
-const S = 365 * 24 * 3600; // Secondes en 2026
+const S = 365 * 24 * 3600;
 const PS_REV = ANNUAL_REV / S;
 const PS_EXP = ANNUAL_EXP / S;
 const PS_DEF = ANNUAL_DEFICIT / S;
@@ -26,7 +27,7 @@ interface Category {
   c: string;
 }
 
-const RECETTES: Category[] = [
+const RECETTES_FR: Category[] = [
   { l: "TVA", a: 28.1e9, c: "#34d399" },
   { l: "Impôt fédéral direct – personnes morales", a: 17.1e9, c: "#10b981" },
   { l: "Impôt fédéral direct – personnes physiques", a: 15.9e9, c: "#059669" },
@@ -41,7 +42,22 @@ const RECETTES: Category[] = [
   { l: "Autres recettes", a: 8.7e9, c: "#047857" },
 ];
 
-const DEPENSES: Category[] = [
+const RECETTES_EN: Category[] = [
+  { l: "VAT", a: 28.1e9, c: "#34d399" },
+  { l: "Direct federal tax – corporations", a: 17.1e9, c: "#10b981" },
+  { l: "Direct federal tax – individuals", a: 15.9e9, c: "#059669" },
+  { l: "Withholding tax", a: 6.7e9, c: "#6ee7b7" },
+  { l: "Mineral oil tax", a: 4.5e9, c: "#a7f3d0" },
+  { l: "Stamp duties", a: 2.3e9, c: "#86efac" },
+  { l: "Tobacco tax", a: 2.2e9, c: "#4ade80" },
+  { l: "OECD supplementary tax (new)", a: 1.6e9, c: "#22d3ee" },
+  { l: "Heavy vehicle charge (LSVA)", a: 1.5e9, c: "#22c55e" },
+  { l: "CO₂ levy", a: 1.1e9, c: "#2dd4bf" },
+  { l: "Customs duties", a: 0.7e9, c: "#14b8a6" },
+  { l: "Other revenue", a: 8.7e9, c: "#047857" },
+];
+
+const DEPENSES_FR: Category[] = [
   { l: "Prévoyance sociale (AVS, AI, APG, PC, asile)", a: 31.8e9, c: "#f87171" },
   { l: "Finances & impôts (part cantonale IFD)", a: 14.8e9, c: "#fb923c" },
   { l: "Trafic & infrastructure (CFF, routes, rail)", a: 11.2e9, c: "#fbbf24" },
@@ -52,25 +68,36 @@ const DEPENSES: Category[] = [
   { l: "Autres tâches fédérales", a: 8.9e9, c: "#94a3b8" },
 ];
 
+const DEPENSES_EN: Category[] = [
+  { l: "Social welfare (OASI, DI, APG, PC, asylum)", a: 31.8e9, c: "#f87171" },
+  { l: "Finance & taxes (cantonal share of DFT)", a: 14.8e9, c: "#fb923c" },
+  { l: "Transport & infrastructure (SBB, roads, rail)", a: 11.2e9, c: "#fbbf24" },
+  { l: "Education & research (ETH, SNSF, Erasmus+)", a: 9.0e9, c: "#a78bfa" },
+  { l: "National defence & army", a: 7.8e9, c: "#60a5fa" },
+  { l: "Foreign affairs & development cooperation", a: 3.8e9, c: "#c084fc" },
+  { l: "Agriculture & food", a: 3.8e9, c: "#f472b6" },
+  { l: "Other federal tasks", a: 8.9e9, c: "#94a3b8" },
+];
+
 // ── Helpers ──
 function f2(n: number): string {
   return Math.round(n).toLocaleString("de-CH");
 }
-function fShort(n: number): string {
-  if (n >= 1e9) return (n / 1e9).toFixed(2) + " Mrd";
-  if (n >= 1e6) return (n / 1e6).toFixed(1) + " Mio";
+function fShort(n: number, en: boolean): string {
+  if (n >= 1e9) return (n / 1e9).toFixed(2) + (en ? " bn" : " Mrd");
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + (en ? " m" : " Mio");
   return f2(n);
 }
 
 // ── Sub-components ──
-function CategoryBar({ cat, total }: { cat: Category; total: number }) {
+function CategoryBar({ cat, total, en }: { cat: Category; total: number; en: boolean }) {
   const pct = (cat.a / total) * 100;
   return (
     <div className="mb-3">
       <div className="flex justify-between text-xs mb-1 gap-2">
         <span className="font-medium">{cat.l}</span>
         <span className="opacity-60 whitespace-nowrap tabular-nums">
-          {fShort(cat.a)} · {pct.toFixed(1)}%
+          {fShort(cat.a, en)} · {pct.toFixed(1)}%
         </span>
       </div>
       <div className="h-[7px] rounded-full bg-white/[0.06] overflow-hidden">
@@ -87,6 +114,9 @@ function CategoryBar({ cat, total }: { cat: Category; total: number }) {
 //  MAIN COMPONENT
 // ════════════════════════════════════════════════════════════════
 export default function SwissDebtClock() {
+  const { isEnglish } = useLanguage();
+  const en = isEnglish;
+
   const [tab, setTab] = useState<"r" | "d">("r");
   const [vals, setVals] = useState({
     debt: DEBT_JAN1,
@@ -135,7 +165,9 @@ export default function SwissDebtClock() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const cats = tab === "r" ? RECETTES : DEPENSES;
+  const cats = tab === "r"
+    ? (en ? RECETTES_EN : RECETTES_FR)
+    : (en ? DEPENSES_EN : DEPENSES_FR);
   const total = tab === "r" ? ANNUAL_REV : ANNUAL_EXP;
 
   return (
@@ -148,7 +180,7 @@ export default function SwissDebtClock() {
             <span className="relative inline-flex rounded-full h-[9px] w-[9px] bg-emerald-500" />
           </span>
           <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
-            En direct · Budget fédéral 2026
+            {en ? "Live · Federal Budget 2026" : "En direct · Budget fédéral 2026"}
           </span>
         </div>
         <h1 className="text-3xl font-extrabold text-slate-100 mb-1">
@@ -162,18 +194,21 @@ export default function SwissDebtClock() {
             <rect x="8" y="13" width="16" height="6" rx="1" fill="#fff" />
             <rect x="13" y="8" width="6" height="16" rx="1" fill="#fff" />
           </svg>
-          Compteur de la dette suisse
+          {en ? "Swiss Debt Clock" : "Compteur de la dette suisse"}
         </h1>
         <p className="text-xs opacity-40">
-          Estimation en temps réel · Sources : Administration fédérale des
-          finances (AFF)
+          {en
+            ? "Real-time estimate · Source: Federal Finance Administration (FFA)"
+            : "Estimation en temps réel · Sources : Administration fédérale des finances (AFF)"}
         </p>
       </div>
 
       {/* Main debt counter */}
       <div className="bg-red-500/[0.07] border border-red-500/[0.12] rounded-xl p-5 text-center mb-3">
         <div className="text-xs uppercase tracking-wider opacity-55 mb-2">
-          Dette nette estimée de la Confédération — en ce moment
+          {en
+            ? "Estimated net debt of the Confederation — right now"
+            : "Dette nette estimée de la Confédération — en ce moment"}
         </div>
         <div className="text-4xl md:text-5xl font-extrabold text-red-400 tabular-nums leading-tight">
           CHF {f2(vals.debt)}
@@ -184,7 +219,7 @@ export default function SwissDebtClock() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            Augmentation depuis le 1er janv. 2026
+            {en ? "Increase since Jan 1, 2026" : "Augmentation depuis le 1er janv. 2026"}
           </div>
           <div className="text-2xl font-bold text-orange-400 tabular-nums mt-1.5">
             + CHF {f2(vals.ytd)}
@@ -192,7 +227,7 @@ export default function SwissDebtClock() {
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            Augmentation depuis l&apos;ouverture de cette page
+            {en ? "Increase since you opened this page" : "Augmentation depuis l\u0027ouverture de cette page"}
           </div>
           <div className="text-2xl font-bold text-yellow-400 tabular-nums mt-1.5">
             + CHF {f2(vals.page)}
@@ -204,7 +239,7 @@ export default function SwissDebtClock() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            Recettes fédérales depuis l&apos;ouverture de cette page
+            {en ? "Federal revenue since you opened this page" : "Recettes fédérales depuis l\u0027ouverture de cette page"}
           </div>
           <div className="text-xl font-bold text-emerald-400 tabular-nums mt-1.5">
             CHF {f2(vals.rev)}
@@ -212,7 +247,7 @@ export default function SwissDebtClock() {
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            Dépenses fédérales depuis l&apos;ouverture de cette page
+            {en ? "Federal spending since you opened this page" : "Dépenses fédérales depuis l\u0027ouverture de cette page"}
           </div>
           <div className="text-xl font-bold text-red-400 tabular-nums mt-1.5">
             CHF {f2(vals.exp)}
@@ -224,7 +259,7 @@ export default function SwissDebtClock() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            Recettes / seconde
+            {en ? "Revenue / second" : "Recettes / seconde"}
           </div>
           <div className="text-base font-bold text-emerald-400 tabular-nums mt-1">
             CHF {f2(PS_REV)}
@@ -232,7 +267,7 @@ export default function SwissDebtClock() {
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            Dépenses / seconde
+            {en ? "Spending / second" : "Dépenses / seconde"}
           </div>
           <div className="text-base font-bold text-red-400 tabular-nums mt-1">
             CHF {f2(PS_EXP)}
@@ -240,7 +275,7 @@ export default function SwissDebtClock() {
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            Déficit / seconde
+            {en ? "Deficit / second" : "Déficit / seconde"}
           </div>
           <div className="text-base font-bold text-yellow-400 tabular-nums mt-1">
             CHF {f2(PS_DEF)}
@@ -258,7 +293,7 @@ export default function SwissDebtClock() {
               : "text-slate-500 hover:bg-white/[0.04] hover:text-slate-300"
           }`}
         >
-          Recettes · 90.4 Mrd
+          {en ? "Revenue · 90.4 bn" : "Recettes · 90.4 Mrd"}
         </button>
         <button
           onClick={() => setTab("d")}
@@ -268,22 +303,26 @@ export default function SwissDebtClock() {
               : "text-slate-500 hover:bg-white/[0.04] hover:text-slate-300"
           }`}
         >
-          Dépenses · 91.1 Mrd
+          {en ? "Spending · 91.1 bn" : "Dépenses · 91.1 Mrd"}
         </button>
       </div>
 
       {/* Category bars */}
       <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5">
         {cats.map((c) => (
-          <CategoryBar key={c.l} cat={c} total={total} />
+          <CategoryBar key={c.l} cat={c} total={total} en={en} />
         ))}
       </div>
 
       {/* Footer */}
       <div className="text-center mt-4 text-[0.6rem] opacity-30 leading-relaxed">
-        neofidu.ch · Données indicatives basées sur le budget fédéral 2026
+        {en
+          ? "neofidu.ch · Indicative data based on the 2026 federal budget"
+          : "neofidu.ch · Données indicatives basées sur le budget fédéral 2026"}
         <br />
-        Sources : Administration fédérale des finances — efv.admin.ch
+        {en
+          ? "Source: Federal Finance Administration — efv.admin.ch"
+          : "Sources : Administration fédérale des finances — efv.admin.ch"}
       </div>
     </div>
   );
