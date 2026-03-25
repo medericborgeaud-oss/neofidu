@@ -143,10 +143,10 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <div className="relative">
-                <span className="text-2xl md:text-3xl font-bold text-primary">
+                <span className="text-2xl md:text-4xl font-bold text-primary">
                   neo
                 </span>
-                <span className="text-2xl md:text-3xl font-bold text-foreground">
+                <span className="text-2xl md:text-4xl font-bold text-foreground">
                   fidu
                 </span>
                 <span className="text-sm font-medium ml-1 text-muted-foreground">
@@ -248,7 +248,7 @@ export function Header() {
 
               <Button
                 asChild
-                className="ml-2 rounded-full px-6"
+                className="ml-2 rounded-full px-6 text-lg"
               >
                 <Link href="/demande">{t("header.cta")}</Link>
               </Button>
