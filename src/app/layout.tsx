@@ -281,7 +281,8 @@ export default function RootLayout({
     amenityFeature: [
       { "@type": "LocationFeatureSpecification", name: "Service 100% en ligne", value: true },
       { "@type": "LocationFeatureSpecification", name: "Support en anglais", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Paiement sécurisé", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Paiement sécurisé", value: true },{ "@type": "LocationFeatureSpecification", name: "Assistant fiscal IA 24/7", value: true },
+{ "@type": "LocationFeatureSpecification", name: "AI Tax Assistant 24/7", value: true },
     ],
     // Reviews placeholder - will help Google know you accept reviews
     aggregateRating: {
