@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/language-context";
 // ════════════════════════════════════════════════════════════════
 //  DATA — Swiss federal budget 2026
 //  Sources: Federal Finance Administration (FFA / EFV)
-//  efv.admin.ch · efd.admin.ch
+//  efv.admin.ch · efd.admin.ch 
 // ════════════════════════════════════════════════════════════════
 
 const DEBT_JAN1 = 140.0e9;
