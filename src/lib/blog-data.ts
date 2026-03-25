@@ -48,6 +48,98 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "27",
+    slug: "impact-conflit-iran-portefeuille-suisse",
+    title: "Conflit en Iran : quel impact sur le portefeuille des Suisses ?",
+    titleEn: "Iran conflict: what impact on Swiss portfolios?",
+    excerpt: "Hausse du pétrole, envolée du franc suisse, chute du SMI : la guerre en Iran bouleverse les marchés. Analyse des conséquences concrètes pour les investisseurs suisses et les stratégies à adopter.",
+    excerptEn: "Rising oil prices, soaring Swiss franc, SMI decline: the Iran war is shaking markets. Analysis of the concrete consequences for Swiss investors and strategies to adopt.",
+    content: `<p>Depuis l'escalade militaire au Moyen-Orient début 2026, les marchés financiers mondiaux traversent une phase de forte volatilité. Pour les investisseurs suisses, les répercussions sont multiples : <strong>hausse des prix de l'énergie, appréciation du franc suisse, correction boursière et poussée inflationniste</strong>. Décryptage des impacts concrets et des pistes pour protéger son patrimoine.</p>
+<br/>
+<h3><strong>Un choc pétrolier aux conséquences immédiates</strong></h3>
+<br/>
+<p>Le conflit en Iran a provoqué une flambée des cours du pétrole. Le prix du baril de Brent a bondi de <strong>17 à 18 %</strong> depuis le début des hostilités, dépassant les 115 dollars à son pic. La prise de contrôle du détroit d'Ormuz par l'Iran — par lequel transite <strong>20 % du pétrole mondial</strong> — a amplifié les craintes d'une pénurie durable.</p>
+<br/>
+<p>Pour les ménages suisses, cela se traduit par une hausse directe du prix de l'essence, du mazout et du chauffage. Selon certaines projections, <strong>le conflit pourrait coûter jusqu'à 1 700 francs par ménage suisse</strong> en surcoûts énergétiques et inflation induite.</p>
+<br/>
+<h3><strong>Le SMI sous pression : les secteurs les plus touchés</strong></h3>
+<br/>
+<p>L'indice phare de la bourse suisse, le <strong>SMI</strong>, a reculé de <strong>2,4 %</strong> entre fin février et début mars 2026. Les grandes capitalisations suisses n'ont pas été épargnées :</p>
+<br/>
+<table style="width:100%;border-collapse:collapse;margin-bottom:16px"><thead><tr style="background:#f3f4f6"><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Entreprise</th><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Secteur</th><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Recul</th></tr></thead><tbody>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">Holcim</td><td style="border:1px solid #d1d5db;padding:8px 12px">Construction</td><td style="border:1px solid #d1d5db;padding:8px 12px">−8 %</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">Swiss Re</td><td style="border:1px solid #d1d5db;padding:8px 12px">Assurance</td><td style="border:1px solid #d1d5db;padding:8px 12px">−6 %</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">Sika</td><td style="border:1px solid #d1d5db;padding:8px 12px">Chimie</td><td style="border:1px solid #d1d5db;padding:8px 12px">−5,7 %</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">Zurich Insurance</td><td style="border:1px solid #d1d5db;padding:8px 12px">Assurance</td><td style="border:1px solid #d1d5db;padding:8px 12px">−5,6 %</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">ABB</td><td style="border:1px solid #d1d5db;padding:8px 12px">Industrie</td><td style="border:1px solid #d1d5db;padding:8px 12px">−5,2 %</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">Givaudan</td><td style="border:1px solid #d1d5db;padding:8px 12px">Arômes & parfums</td><td style="border:1px solid #d1d5db;padding:8px 12px">−5 %</td></tr>
+</tbody></table>
+<br/>
+<p>Les secteurs les plus exposés sont la <strong>construction, les assurances et la chimie</strong>, en raison de leur dépendance aux coûts énergétiques et aux chaînes d'approvisionnement mondiales. À l'inverse, les valeurs défensives comme Nestlé ou Roche ont mieux résisté.</p>
+<br/>
+<h3><strong>Le franc suisse : valeur refuge par excellence</strong></h3>
+<br/>
+<p>Comme à chaque crise géopolitique majeure, le franc suisse s'est imposé comme <strong>valeur refuge</strong>. La devise helvétique a gagné 0,4 % face à l'euro dès les premières frappes, et la tendance s'est poursuivie. La Banque nationale suisse (BNS) a signalé qu'elle était prête à <strong>intervenir pour freiner l'appréciation excessive du franc</strong> si celui-ci franchissait le seuil de 0,90 face à l'euro.</p>
+<br/>
+<p>Pour les investisseurs suisses détenant des actifs en devises étrangères (actions américaines, fonds européens), cette appréciation du franc <strong>réduit la valeur en francs de ces placements</strong>. Un portefeuille exposé à 50 % en USD pourrait perdre 2 à 3 % de rendement uniquement sur l'effet de change.</p>
+<br/>
+<h3><strong>Inflation : le retour d'un risque qu'on croyait maîtrisé</strong></h3>
+<br/>
+<p>La hausse des prix de l'énergie se répercute rapidement sur l'inflation. Selon les estimations, une hausse de 5 à 10 % du prix du pétrole ajoute <strong>0,1 à 0,3 point de pourcentage</strong> à l'inflation. Avec un bond de près de 18 % du brut, l'impact est significatif.</p>
+<br/>
+<p>Pour les épargnants suisses, cela signifie que les rendements réels des comptes d'épargne et des obligations à faible coupon <strong>s'érodent davantage</strong>. Le pouvoir d'achat diminue, et le coût de la vie augmente — énergie, transports, alimentation.</p>
+<br/>
+<h3><strong>L'or et les matières premières en forte hausse</strong></h3>
+<br/>
+<p>Sans surprise, <strong>l'or</strong> figure parmi les grands bénéficiaires de la crise. En tant que réserve de valeur liquide et protection contre l'inflation, le métal jaune a vu son cours progresser nettement. Pour les investisseurs suisses, une allocation de <strong>5 à 10 % en or</strong> (physique ou via des ETF) peut servir de coussin amortisseur en période de turbulences.</p>
+<br/>
+<p>Les matières premières dans leur ensemble ont également profité du contexte, ce qui renforce l'attrait des fonds diversifiés intégrant ce type d'actifs.</p>
+<br/>
+<h3><strong>Les afflux vers la Suisse : une opportunité pour la place financière</strong></h3>
+<br/>
+<p>Paradoxalement, le conflit profite à la place financière suisse. De nombreux investisseurs fortunés du Golfe cherchent à <strong>transférer leurs actifs vers la Suisse</strong>, perçue comme un havre de stabilité. Les banquiers privés suisses gérant collectivement plus de mille milliards de dollars d'actifs anticipent une augmentation significative des flux en provenance du Moyen-Orient.</p>
+<br/>
+<h3><strong>Que faire concrètement pour protéger son portefeuille ?</strong></h3>
+<br/>
+<p>Face à cette situation, voici les principes à garder en tête :</p>
+<br/>
+<p><strong>1. Ne pas agir sous le coup de l'émotion.</strong> Les périodes de tensions géopolitiques provoquent souvent des réactions excessives à court terme. Vendre dans la panique cristallise les pertes. Historiquement, les marchés se redressent après les chocs géopolitiques.</p>
+<br/>
+<p><strong>2. Diversifier géographiquement et par classe d'actifs.</strong> Un portefeuille concentré sur un seul marché ou une seule devise est plus vulnérable. Obligations, immobilier, matières premières et or offrent une protection complémentaire aux actions.</p>
+<br/>
+<p><strong>3. Surveiller l'exposition au risque de change.</strong> Avec l'appréciation du franc, les investisseurs exposés en dollars ou en euros subissent un effet de change négatif. Des stratégies de couverture (hedging) peuvent limiter cet impact.</p>
+<br/>
+<p><strong>4. Renforcer les positions défensives.</strong> Les valeurs suisses de qualité (pharma, alimentaire) résistent généralement mieux que les cycliques. Les dividendes réguliers offrent un revenu stable même en période de baisse des cours.</p>
+<br/>
+<p><strong>5. Optimiser sa fiscalité.</strong> En période de moins-values, il peut être judicieux de réaliser certaines pertes pour les compenser fiscalement avec des gains futurs. Un conseil fiscal personnalisé est précieux dans ce contexte.</p>
+<br/>
+<h3><strong>Le rôle de votre fiduciaire dans cette période</strong></h3>
+<br/>
+<p>Chez <strong>neofidu.ch</strong>, nous accompagnons nos clients dans l'optimisation fiscale de leur patrimoine, y compris en période de crise. Que ce soit pour <strong>déclarer correctement des plus ou moins-values</strong>, évaluer l'impact fiscal d'un rééquilibrage de portefeuille ou simplement comprendre les implications fiscales de la situation actuelle, notre équipe est à votre disposition.</p>
+<br/>
+<p>N'hésitez pas à nous contacter pour un accompagnement personnalisé adapté à votre situation.</p>`,
+    category: "actualites",
+    date: "2026-03-25",
+    readTime: 8,
+    keywords: [
+      "Iran",
+      "conflit",
+      "guerre",
+      "portefeuille",
+      "Suisse",
+      "SMI",
+      "pétrole",
+      "franc suisse",
+      "valeur refuge",
+      "inflation",
+      "or",
+      "investissement",
+      "bourse",
+      "crise",
+      "Moyen-Orient"
+    ],
+  },
+  {
     id: "26",
     slug: "delais-declaration-impots-2025-cantons",
     title: "Délais déclaration d’impôts 2025 par canton romand",
