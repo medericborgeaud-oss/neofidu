@@ -50,6 +50,7 @@ export const blogArticles: BlogArticle[] = [
   {
     id: "27",
     slug: "impact-conflit-iran-portefeuille-suisse",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=60",
     title: "Conflit en Iran : quel impact sur le portefeuille des Suisses ?",
     titleEn: "Iran conflict: what impact on Swiss portfolios?",
     excerpt: "Hausse du pétrole, envolée du franc suisse, chute du SMI : la guerre en Iran bouleverse les marchés. Analyse des conséquences concrètes pour les investisseurs suisses et les stratégies à adopter.",
