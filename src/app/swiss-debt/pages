@@ -1,0 +1,305 @@
+import type { Metadata } from "next";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import SwissDebtClock from "@/components/SwissDebtClock";
+import Link from "next/link";
+
+// ════════════════════════════════════════════════════════════════
+//  SEO — Metadata (Next.js App Router)
+// ════════════════════════════════════════════════════════════════
+const TITLE = "Swiss Debt Clock — Federal Budget 2026";
+const DESC =
+  "Track Switzerland's federal debt in real time. Revenue, expenses " +
+  "and deficit per second based on the 2026 federal budget published " +
+  "by the Federal Finance Administration (FFA).";
+const URL = "https://www.neofidu.ch/swiss-debt";
+const OG_IMAGE = "https://www.neofidu.ch/og/dette-suisse.png";
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESC,
+  keywords: [
+    "Swiss debt clock",
+    "Switzerland federal debt",
+    "Swiss national debt",
+    "federal budget 2026",
+    "Swiss government spending",
+    "Swiss federal revenue",
+    "Swiss deficit",
+    "Bundeshaushalt 2026",
+    "Schweizer Schulden",
+    "dette suisse",
+    "Federal Finance Administration",
+    "FFA",
+    "EFV",
+  ],
+  alternates: {
+    canonical: URL,
+    languages: {
+      "fr-CH": "https://www.neofidu.ch/dette-suisse",
+      "en": URL,
+    },
+  },
+  openGraph: {
+    title: TITLE,
+    description: DESC,
+    url: URL,
+    siteName: "NeoFidu",
+    locale: "en",
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Swiss federal debt clock in real time — NeoFidu",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESC,
+    images: [OG_IMAGE],
+  },
+  robots: { index: true, follow: true },
+};
+
+// ════════════════════════════════════════════════════════════════
+//  JSON-LD Structured Data
+// ════════════════════════════════════════════════════════════════
+function JsonLd() {
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.neofidu.ch",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Swiss Debt Clock",
+        item: URL,
+      },
+    ],
+  };
+
+  const webpage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: TITLE,
+    description: DESC,
+    url: URL,
+    inLanguage: "en",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "NeoFidu",
+      url: "https://www.neofidu.ch",
+    },
+    about: {
+      "@type": "Thing",
+      name: "Swiss federal debt",
+      description:
+        "Real-time estimate of the Swiss Confederation net debt, based on the 2026 federal budget.",
+    },
+    mainEntity: {
+      "@type": "Dataset",
+      name: "Swiss federal budget 2026",
+      description:
+        "Revenue and expenditure of the Swiss Confederation for the fiscal year 2026, according to the Federal Finance Administration.",
+      creator: {
+        "@type": "GovernmentOrganization",
+        name: "Federal Finance Administration (FFA)",
+        url: "https://www.efv.admin.ch",
+      },
+      temporalCoverage: "2026",
+      spatialCoverage: {
+        "@type": "Country",
+        name: "Switzerland",
+      },
+    },
+  };
+
+  const faq = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How much is Switzerland's federal debt in 2026?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The net debt of the Swiss Confederation was estimated at approximately CHF 140 billion at the start of 2026, according to data from the Federal Finance Administration (FFA). The 2026 budget projects a financing deficit of CHF 742 million.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are Switzerland's main federal revenue sources?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The main federal revenue sources in 2026 are: VAT (CHF 28.1 billion), direct federal tax on corporations (CHF 17.1 billion), direct federal tax on individuals (CHF 15.9 billion), withholding tax (CHF 6.7 billion), and mineral oil tax (CHF 4.5 billion). Total revenue amounts to CHF 90.4 billion.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are the largest Swiss federal spending categories?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Federal spending in 2026 is dominated by social welfare (old-age insurance, disability, asylum) at CHF 31.8 billion, followed by finance & taxes (cantonal shares) at CHF 14.8 billion, transport & infrastructure at CHF 11.2 billion, and education & research at CHF 9.0 billion. Total expenditure reaches CHF 91.1 billion.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where does the data for this debt clock come from?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "All data is based on the 2026 federal budget published by the Swiss Federal Finance Administration (FFA / EFV). The Confederation's net debt figure comes from publications by the Federal Department of Finance (FDF). The clock extrapolates the budgeted deficit continuously for illustrative purposes.",
+        },
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpage) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
+      />
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE
+// ════════════════════════════════════════════════════════════════
+export default function SwissDebtPage() {
+  return (
+    <>
+      <JsonLd />
+      <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
+        <Header />
+
+        <div className="pt-28 pb-20">
+          <div className="container mx-auto px-4">
+            {/* Breadcrumb */}
+            <nav className="mb-8 text-sm text-muted-foreground">
+              <Link href="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
+              <span className="mx-2">/</span>
+              <span>Swiss Debt Clock</span>
+            </nav>
+
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <svg width="32" height="32" viewBox="0 0 32 32" className="text-primary">
+                  <rect width="32" height="32" rx="4" fill="#D52B1E" />
+                  <rect x="8" y="13" width="16" height="6" rx="1" fill="#fff" />
+                  <rect x="13" y="8" width="6" height="16" rx="1" fill="#fff" />
+                </svg>
+              </div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Swiss Federal Debt{" "}
+                <span className="text-gradient">Clock</span>
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                Watch Switzerland&apos;s federal debt evolve in real time. This
+                clock is based on the{" "}
+                <strong className="text-foreground">2026 federal budget</strong>{" "}
+                published by the Federal Finance Administration.
+              </p>
+            </div>
+
+            {/* Widget */}
+            <SwissDebtClock />
+
+            {/* SEO content */}
+            <section className="max-w-3xl mx-auto mt-16 space-y-8">
+              <div className="bg-white/80 rounded-2xl border p-6 md:p-8 shadow-sm">
+                <h2 className="text-xl font-bold mb-3">
+                  How does this clock work?
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  The clock extrapolates the annual budgeted deficit (CHF 742
+                  million for 2026) continuously, second by second, from
+                  January 1st 2026. This is an illustrative estimate: the
+                  actual debt fluctuates based on real cash flows throughout
+                  the year.
+                </p>
+              </div>
+
+              <div className="bg-white/80 rounded-2xl border p-6 md:p-8 shadow-sm">
+                <h2 className="text-xl font-bold mb-3">
+                  2026 Federal Budget at a Glance
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  The Confederation projects total revenue of{" "}
+                  <strong className="text-foreground">CHF 90.4 billion</strong>{" "}
+                  and expenditure of{" "}
+                  <strong className="text-foreground">CHF 91.1 billion</strong>,
+                  resulting in a financing deficit of CHF 742 million. VAT
+                  remains the largest revenue source (CHF 28.1 bn), while
+                  social welfare is the largest spending category (CHF 31.8 bn).
+                </p>
+              </div>
+
+              <div className="bg-white/80 rounded-2xl border p-6 md:p-8 shadow-sm">
+                <h2 className="text-xl font-bold mb-3">
+                  Sources &amp; Methodology
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  All data comes from the{" "}
+                  <a
+                    href="https://www.efv.admin.ch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Federal Finance Administration (FFA / EFV)
+                  </a>{" "}
+                  and the{" "}
+                  <a
+                    href="https://www.efd.admin.ch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Federal Department of Finance (FDF / EFD)
+                  </a>
+                  . The Confederation&apos;s net debt at end-2025 is estimated
+                  at approximately CHF 140 billion. This clock is provided for
+                  informational purposes and is not an official indicator.
+                </p>
+              </div>
+            </section>
+
+            {/* CTA */}
+            <div className="text-center mt-12">
+              <Link
+                href="/demande"
+                className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors"
+              >
+                Need help with your taxes?
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <Footer />
+      </main>
+    </>
+  );
+}
