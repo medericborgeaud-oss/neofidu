@@ -271,7 +271,7 @@ export function Header() {
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px] sm:w-[350px]">
-                  <div className="flex flex-col space-y-4 mt-8">
+                  <div className="flex flex-col space-y-4 mt-8 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 4rem)' }}>
                     <Link href="/" className="flex items-center space-x-2 mb-4">
                       <span className="text-2xl font-bold text-primary">neo</span>
                       <span className="text-2xl font-bold text-foreground">fidu</span>
