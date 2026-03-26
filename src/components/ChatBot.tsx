@@ -81,17 +81,19 @@ export function ChatBot() {
     <>
       {/* Chat window */}
       {isOpen && (
-       <div
-         style={{
-  position: 'fixed',
-  top: '1rem',
-  left: '1rem',
-  width: 'calc(100vw - 2rem)',
-  height: 'calc(100svh - 6rem)',
-  zIndex: 9999,
-}}
+        <div
+          style={{
+            position: "fixed",
+            top: "1rem",
+            left: "1rem",
+            width: "calc(100% - 2rem)",
+            height: "calc(100svh - 6rem)",
+            maxWidth: "350px",
+            zIndex: 9999,
+          }}
           className="bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden"
         >
+          {/* Header */}
           <div className="bg-primary px-4 py-3 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-white" />
@@ -147,7 +149,8 @@ export function ChatBot() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Votre question..."
-              className="flex-1 text-sm border rounded-xl px-3 py-2 outline-none focus:border-primary transition-colors"
+              className="flex-1 text-base border rounded-xl px-3 py-2 outline-none focus:border-primary transition-colors"
+              style={{ fontSize: "16px" }}
               disabled={isLoading}
             />
             <Button
