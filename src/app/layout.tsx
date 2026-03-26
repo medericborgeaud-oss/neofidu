@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | NeoFidu",
   },
   description:
-    "Fiduciaire digitale suisse. Déclaration d'impôts en ligne dès CHF 50. Service pour Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura. We speak English!",
+    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 50, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
   manifest: "/site.webmanifest",
   icons: {
     icon: [
