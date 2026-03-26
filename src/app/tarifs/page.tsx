@@ -740,7 +740,7 @@ export default function TarifsPage() {
               </p>
             </div>
 
-            <div className="max-w-3xl mx-auto overflow-hidden rounded-xl border">
+            <div className="max-w-3xl mx-auto overflow-x-auto rounded-xl border">
               <table className="w-full">
                 <thead>
                   <tr className="bg-secondary/50">
