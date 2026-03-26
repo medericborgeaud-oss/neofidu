@@ -272,7 +272,7 @@ export function Contact() {
                     required
                     value={formData.canton}
                     onChange={(e) => updateForm("canton", e.target.value)}
-                    className="w-full h-10 px-4 rounded-xl border-2 border-input bg-background text-sm focus:border-primary focus:outline-none"
+                    className="w-full h-10 px-4 rounded-xl border-2 border-input bg-background text-base focus:border-primary focus:outline-none"
                   >
                     <option value="">{t.selectCanton}</option>
                     <option value="Vaud">Vaud</option>
