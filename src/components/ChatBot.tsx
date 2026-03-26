@@ -82,14 +82,14 @@ export function ChatBot() {
       {/* Chat window */}
       {isOpen && (
        <div
-          style={{
-            position: 'fixed',
-            top: '1rem',
-            left: '1rem',
-            right: '1rem',
-            bottom: '5rem',
-            zIndex: 9999,
-          }}
+         style={{
+  position: 'fixed',
+  top: '1rem',
+  left: '1rem',
+  width: 'calc(100vw - 2rem)',
+  height: 'calc(100svh - 6rem)',
+  zIndex: 9999,
+}}
           className="bg-white rounded-2xl shadow-2xl border flex flex-col overflow-hidden"
         >
           <div className="bg-primary px-4 py-3 flex items-center justify-between shrink-0">
