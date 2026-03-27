@@ -111,14 +111,15 @@ function JsonLd() {
       name: "Swiss federal budget 2026",
       description:
         "Revenue and expenditure of the Swiss Confederation for the fiscal year 2026, according to the Federal Finance Administration.",
+  license: "https://opendata.swiss/en/terms-of-use", 
       creator: {
-        "@type": "GovernmentOrganization",
+        "@type": "Organization",
         name: "Federal Finance Administration (FFA)",
         url: "https://www.efv.admin.ch",
       },
       temporalCoverage: "2026",
       spatialCoverage: {
-        "@type": "Country",
+        "@type": "Place",
         name: "Switzerland",
       },
     },
