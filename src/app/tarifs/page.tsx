@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -20,10 +19,12 @@ import {
   Briefcase,
   Star,
   BadgeCheck,
+  HelpCircle,
+  MapPin,
+  CreditCard,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
-
 const pricingData = {
   particuliers: [
     {
@@ -112,7 +113,7 @@ const pricingData = {
         "Indépendant: +CHF 40.-",
         "Bien immobilier: +CHF 50.-/bien",
         "Enfant: +CHF 10.-/enfant",
-      
+
         "Actions (≥3): +CHF 20.-",],
       featuresen: [
         "Complete tax return",
@@ -120,7 +121,7 @@ const pricingData = {
         "Self-employed: +CHF 40.-",
         "Property: +CHF 50.-/property",
         "Child: +CHF 10.-/child",
-      
+
         "Securities (≥3): +CHF 20.-",],
       popular: false,
       isSwissAbroad: true,
@@ -204,43 +205,68 @@ const pricingData = {
     },
   ],
 };
-
 const comparisonData = [
   {
     feature: "Prix déclaration simple",
+    featureen: "Simple tax return price",
     neoFidu: "Dès CHF 50.-",
+    neoFiduen: "From CHF 50.-",
     traditional: "CHF 150.- à 300.-",
+    traditionalen: "CHF 150.- to 300.-",
   },
   {
     feature: "Délai de traitement",
+    featureen: "Processing time",
     neoFidu: "10 jours ouvrés",
+    neoFiduen: "10 business days",
     traditional: "2-4 semaines",
+    traditionalen: "2-4 weeks",
   },
   {
     feature: "Devis",
+    featureen: "Quote",
     neoFidu: "Gratuit, en 2 minutes",
+    neoFiduen: "Free, in 2 minutes",
     traditional: "Payant ou sur RDV",
+    traditionalen: "Paid or by appointment",
   },
   {
     feature: "Communication",
+    featureen: "Communication",
     neoFidu: "100% digital, 7j/7",
+    neoFiduen: "100% digital, 24/7",
     traditional: "Heures de bureau",
+    traditionalen: "Business hours",
   },
   {
     feature: "Transparence prix",
+    featureen: "Price transparency",
     neoFidu: "Prix fixes affichés",
+    neoFiduen: "Fixed displayed prices",
     traditional: "Tarif horaire variable",
+    traditionalen: "Variable hourly rate",
   },
   {
     feature: "Suivi dossier",
+    featureen: "File tracking",
     neoFidu: "Espace client en ligne",
+    neoFiduen: "Online client portal",
     traditional: "Par téléphone/email",
+    traditionalen: "By phone/email",
   },
+];
+
+const cantons = [
+  { name: "Genève", nameen: "Geneva", slug: "geneve", rate: "~44%" },
+  { name: "Vaud", nameen: "Vaud", slug: "vaud", rate: "~41%" },
+  { name: "Valais", nameen: "Valais", slug: "valais", rate: "~30%" },
+  { name: "Fribourg", nameen: "Fribourg", slug: "fribourg", rate: "~36%" },
+  { name: "Neuchâtel", nameen: "Neuchâtel", slug: "neuchatel", rate: "~38%" },
+  { name: "Jura", nameen: "Jura", slug: "jura", rate: "~37%" },
 ];
 
 export default function TarifsPage() {
   const { isEnglish } = useLanguage();
-
   // JSON-LD Schema for Services and Pricing
   const servicesSchema = {
     "@context": "https://schema.org",
@@ -346,7 +372,6 @@ export default function TarifsPage() {
       ]
     }
   };
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -372,12 +397,43 @@ export default function TarifsPage() {
         "name": "Quels moyens de paiement acceptez-vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nous acceptons les virements bancaires et cartes de crédit (Visa, Mastercard)."
+          "text": "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal et Klarna (paiement en 3 fois sans frais)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Les tarifs varient-ils selon le canton ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nos tarifs de base sont identiques pour tous les cantons romands (Genève, Vaud, Valais, Fribourg, Neuchâtel, Jura). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Le prix inclut-il les cryptomonnaies ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. Demandez un devis pour une estimation précise."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Que se passe-t-il si mon dossier est plus complexe que prévu ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Proposez-vous le paiement en plusieurs fois ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."
         }
       }
     ]
   };
-
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
       {/* JSON-LD Structured Data */}
@@ -390,7 +446,6 @@ export default function TarifsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Header />
-
       <div className="pt-28 pb-20">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
@@ -398,7 +453,6 @@ export default function TarifsPage() {
             items={[{ label: isEnglish ? "Pricing" : "Tarifs" }]}
             className="mb-8"
           />
-
           {/* Hero */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -413,20 +467,24 @@ export default function TarifsPage() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               {isEnglish ? (
                 <>
-                  Our <span className="text-gradient">Pricing</span>
+                  <span className="text-gradient">Pricing</span> for Fiduciary Services in French-Speaking Switzerland
                 </>
               ) : (
                 <>
-                  Nos <span className="text-gradient">Tarifs</span>
+                  <span className="text-gradient">Tarifs</span> fiduciaires en Suisse romande
                 </>
               )}
             </h1>
-            <p className="text-muted-foreground text-lg mb-8">
+            <p className="text-muted-foreground text-lg mb-4">
               {isEnglish
-                ? "No surprises, no hidden fees. Clear prices for all our fiduciary services in French-speaking Switzerland."
-                : "Pas de surprise, pas de frais cachés. Des prix clairs pour tous nos services fiduciaires en Suisse romande."}
+                ? "No surprises, no hidden fees. Clear prices for all our fiduciary services — tax returns, accounting, and company formation in Geneva, Vaud, Valais, Fribourg, Neuchâtel, and Jura."
+                : "Pas de surprise, pas de frais cachés. Des prix clairs pour tous nos services fiduciaires — déclarations d'impôts, comptabilité et création d'entreprise à Genève, Vaud, Valais, Fribourg, Neuchâtel et Jura."}
             </p>
-
+            <p className="text-muted-foreground text-sm mb-8">
+              {isEnglish
+                ? "Tax return starting from CHF 50.-, with free quote in 2 minutes. Payment in 3 installments available via Klarna."
+                : "Déclaration fiscale dès CHF 50.-, avec devis gratuit en 2 minutes. Paiement en 3 fois disponible via Klarna."}
+            </p>
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -438,12 +496,15 @@ export default function TarifsPage() {
                 <span>{isEnglish ? "Response within 1 business day" : "Réponse sous 1 jour ouvré"}</span>
               </div>
               <div className="flex items-center gap-2">
+                <CreditCard className="w-5 h-5 text-primary" />
+                <span>{isEnglish ? "Visa, Mastercard, PayPal, Klarna" : "Visa, Mastercard, PayPal, Klarna"}</span>
+              </div>
+              <div className="flex items-center gap-2">
                 <Zap className="w-5 h-5 text-primary" />
                 <span>{isEnglish ? "100% digital" : "100% digital"}</span>
               </div>
             </div>
           </motion.div>
-
           {/* CTA Banner */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -471,7 +532,6 @@ export default function TarifsPage() {
               </Button>
             </Link>
           </motion.div>
-
           {/* Particuliers Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -479,7 +539,7 @@ export default function TarifsPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mb-20"
           >
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                 <Users className="w-6 h-6 text-primary" />
               </div>
@@ -494,7 +554,11 @@ export default function TarifsPage() {
                 </p>
               </div>
             </div>
-
+            <p className="text-muted-foreground text-sm mb-8 max-w-3xl">
+              {isEnglish
+                ? "Our individual plans cover all tax situations in French-speaking Switzerland: single or married, homeowner or tenant, salaried or self-employed. Each plan includes preparation, optimization of deductions, and electronic filing to your cantonal tax office."
+                : "Nos formules particuliers couvrent toutes les situations fiscales en Suisse romande : célibataire ou marié, propriétaire ou locataire, salarié ou indépendant. Chaque formule inclut la préparation, l'optimisation des déductions et le dépôt électronique auprès de votre administration fiscale cantonale."}
+            </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {pricingData.particuliers.map((plan, index) => (
                 <Card
@@ -551,7 +615,6 @@ export default function TarifsPage() {
                 </Card>
               ))}
             </div>
-
             {/* Additional Options Box */}
             <div className="mt-8 max-w-3xl mx-auto">
               <Card className="border-2 border-dashed border-primary/20 bg-primary/5">
@@ -577,7 +640,6 @@ export default function TarifsPage() {
                 </div>
               </Card>
             </div>
-
             {/* Express Options Info Box */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -631,7 +693,6 @@ export default function TarifsPage() {
               </Card>
             </motion.div>
           </motion.section>
-
           {/* Entreprises Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -639,7 +700,7 @@ export default function TarifsPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mb-20"
           >
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-emerald-600" />
               </div>
@@ -654,7 +715,11 @@ export default function TarifsPage() {
                 </p>
               </div>
             </div>
-
+            <p className="text-muted-foreground text-sm mb-8 max-w-3xl">
+              {isEnglish
+                ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements — all handled digitally with a dedicated advisor."
+                : "Que vous soyez freelance, dirigeant d'une PME ou en train de créer votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilité aux déclarations TVA, en passant par la gestion des salaires et les états financiers annuels — le tout géré en ligne avec un conseiller dédié."}
+            </p>
             <div className="grid md:grid-cols-3 gap-6">
               {pricingData.entreprises.map((plan, index) => (
                 <Card
@@ -719,7 +784,46 @@ export default function TarifsPage() {
               ))}
             </div>
           </motion.section>
-
+          {/* Cantons Section - NEW SEO */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="mb-20"
+          >
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <MapPin className="w-6 h-6 text-primary" />
+                <h2 className="text-2xl md:text-3xl font-bold">
+                  {isEnglish
+                    ? "Same prices, all cantons in French-speaking Switzerland"
+                    : "Mêmes tarifs, tous les cantons romands"}
+                </h2>
+              </div>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                {isEnglish
+                  ? "Our pricing is the same regardless of your canton. However, each canton has its own tax rates and specific deductions. Discover our dedicated guides for each canton."
+                  : "Nos tarifs sont identiques quel que soit votre canton. Cependant, chaque canton a ses propres taux d'imposition et déductions spécifiques. Découvrez nos guides dédiés pour chaque canton."}
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
+              {cantons.map((canton) => (
+                <Link key={canton.slug} href={`/cantons/${canton.slug}`}>
+                  <Card className="p-4 text-center hover:border-primary hover:shadow-md transition-all cursor-pointer group">
+                    <h3 className="font-semibold group-hover:text-primary transition-colors">
+                      {isEnglish ? canton.nameen : canton.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {isEnglish ? "Tax rate" : "Taux"} {canton.rate}
+                    </p>
+                    <span className="text-xs text-primary mt-2 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {isEnglish ? "See guide" : "Voir le guide"} <ArrowRight className="w-3 h-3" />
+                    </span>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </motion.section>
           {/* Comparison Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -739,7 +843,6 @@ export default function TarifsPage() {
                   : "Pourquoi choisir une fiduciaire en ligne ?"}
               </p>
             </div>
-
             <div className="max-w-3xl mx-auto overflow-x-auto rounded-xl border">
               <table className="w-full">
                 <thead>
@@ -762,20 +865,24 @@ export default function TarifsPage() {
                       key={index}
                       className={index % 2 === 0 ? "bg-white" : "bg-secondary/20"}
                     >
-                      <td className="p-4 font-medium">{row.feature}</td>
+                      <td className="p-4 font-medium">{isEnglish ? row.featureen : row.feature}</td>
                       <td className="p-4 text-center text-primary font-medium">
-                        {row.neofidu}
+                        {isEnglish ? row.neoFiduen : row.neoFidu}
                       </td>
                       <td className="p-4 text-center text-muted-foreground">
-                        {row.traditional}
+                        {isEnglish ? row.traditionalen : row.traditional}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+            <p className="text-center text-muted-foreground text-sm mt-6 max-w-2xl mx-auto">
+              {isEnglish
+                ? "NeoFidu combines the expertise of a traditional fiduciary with the efficiency and transparency of a 100% digital platform. No appointment needed, no hidden costs — just professional tax services at fair prices."
+                : "NeoFidu combine l'expertise d'une fiduciaire traditionnelle avec l'efficacité et la transparence d'une plateforme 100% digitale. Pas de rendez-vous nécessaire, pas de coûts cachés — simplement des services fiscaux professionnels à des prix justes."}
+            </p>
           </motion.section>
-
           {/* FAQ Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -783,10 +890,12 @@ export default function TarifsPage() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mb-20 max-w-3xl mx-auto"
           >
-            <h2 className="text-2xl font-bold mb-8 text-center">
-              {isEnglish ? "Pricing FAQ" : "Questions sur les tarifs"}
-            </h2>
-
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <HelpCircle className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-bold text-center">
+                {isEnglish ? "Pricing FAQ" : "Questions fréquentes sur nos tarifs"}
+              </h2>
+            </div>
             <div className="space-y-4">
               <Card className="p-6">
                 <h3 className="font-semibold mb-2">
@@ -800,7 +909,6 @@ export default function TarifsPage() {
                     : "Les prix affichés sont des prix de départ. Le devis final dépend de la complexité de votre situation. Nous fournissons toujours un devis détaillé avant de commencer."}
                 </p>
               </Card>
-
               <Card className="p-6">
                 <h3 className="font-semibold mb-2">
                   {isEnglish
@@ -813,7 +921,6 @@ export default function TarifsPage() {
                     : "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email sous 1 jour ouvré, sans aucun engagement."}
                 </p>
               </Card>
-
               <Card className="p-6">
                 <h3 className="font-semibold mb-2">
                   {isEnglish
@@ -822,11 +929,58 @@ export default function TarifsPage() {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? "We accept bank transfers and credit cards (Visa, Mastercard)."
-                    : "Nous acceptons les virements bancaires et cartes de crédit (Visa, Mastercard)."}
+                    ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, and Klarna (pay in 3 installments, interest-free)."
+                    : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal et Klarna (paiement en 3 fois sans frais)."}
                 </p>
               </Card>
-
+              <Card className="p-6">
+                <h3 className="font-semibold mb-2">
+                  {isEnglish
+                    ? "Do you offer payment in installments?"
+                    : "Proposez-vous le paiement en plusieurs fois ?"}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? "Yes, with Klarna you can pay in 3 interest-free installments. This option is available for all individual and business plans."
+                    : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."}
+                </p>
+              </Card>
+              <Card className="p-6">
+                <h3 className="font-semibold mb-2">
+                  {isEnglish
+                    ? "Do prices vary by canton?"
+                    : "Les tarifs varient-ils selon le canton ?"}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? <>Our base prices are the same for all cantons in French-speaking Switzerland (<Link href="/cantons/geneve" className="text-primary hover:underline">Geneva</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">Neuchâtel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). The final price depends solely on the complexity of your file, not your canton of residence.</>
+                    : <>Nos tarifs de base sont identiques pour tous les cantons romands (<Link href="/cantons/geneve" className="text-primary hover:underline">Genève</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">Neuchâtel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence.</>}
+                </p>
+              </Card>
+              <Card className="p-6">
+                <h3 className="font-semibold mb-2">
+                  {isEnglish
+                    ? "Does the price include cryptocurrency declaration?"
+                    : "Le prix inclut-il les cryptomonnaies ?"}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? <>Declaring cryptocurrencies (Bitcoin, Ethereum, etc.) may require a supplement depending on the number of transactions and platforms used. <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline">Read our complete guide on crypto tax declaration in Switzerland</Link> and request a quote for an accurate estimate.</>
+                    : <>La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline">Consultez notre guide complet sur la déclaration crypto en Suisse</Link> et demandez un devis pour une estimation précise.</>}
+                </p>
+              </Card>
+              <Card className="p-6">
+                <h3 className="font-semibold mb-2">
+                  {isEnglish
+                    ? "What if my file is more complex than expected?"
+                    : "Que se passe-t-il si mon dossier est plus complexe que prévu ?"}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? "If additional elements appear after the initial quote, we contact you for a revised quote before continuing. No supplement is charged without your prior agreement."
+                    : "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable."}
+                </p>
+              </Card>
               <Card className="p-6">
                 <h3 className="font-semibold mb-2">
                   {isEnglish
@@ -841,7 +995,6 @@ export default function TarifsPage() {
               </Card>
             </div>
           </motion.section>
-
           {/* Final CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -856,8 +1009,8 @@ export default function TarifsPage() {
             </h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               {isEnglish
-                ? "Get your free quote in 2 minutes. No commitment."
-                : "Obtenez votre devis gratuit en 2 minutes. Sans engagement."}
+                ? "Get your free quote in 2 minutes. No commitment. Payment in installments available."
+                : "Obtenez votre devis gratuit en 2 minutes. Sans engagement. Paiement en plusieurs fois disponible."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/demande">
@@ -875,7 +1028,6 @@ export default function TarifsPage() {
           </motion.div>
         </div>
       </div>
-
       <Footer />
     </main>
   );
