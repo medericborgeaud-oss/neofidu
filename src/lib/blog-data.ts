@@ -2304,6 +2304,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
+<h3>Quand devient-on trader professionnel ?</h3>
+<p>Si le fisc considère que vous êtes un trader professionnel, vos gains en capital deviennent imposables comme un revenu. L'Administration fédérale des contributions (AFC) utilise cinq critères pour évaluer votre situation :</p>
+<p><strong>1. Volume de transactions élevé</strong> — Si le total de vos transactions dépasse 5 fois votre capital crypto initial sur l'année, c'est un signal fort.</p>
+<p><strong>2. Durée de détention courte</strong> — Vous achetez et revendez régulièrement en moins de 6 mois ? Cela ressemble à une activité professionnelle.</p>
+<p><strong>3. Utilisation de levier ou de marge</strong> — Le recours à l'emprunt pour investir (trading sur marge, futures, options) est un critère déterminant.</p>
+<p><strong>4. Part importante dans vos revenus</strong> — Si vos gains crypto représentent une part significative de votre revenu total, le fisc peut considérer que c'est votre activité principale.</p>
+<p><strong>5. Connaissances professionnelles</strong> — Vous travaillez dans la finance ou la tech ? Vous utilisez des outils d'analyse technique avancés ? Cela peut jouer en votre défaveur.</p>
+<p>Même si vous remplissez un ou deux critères, ce n'est pas automatique : le fisc examine la situation globale. Dans le doute, consultez un spécialiste pour évaluer votre risque de requalification.</p>
+
 <h2>Comment calculer la valeur de ses cryptos au 31 décembre ?</h2>
 
 <br/>
@@ -2382,6 +2391,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>Problème : les NFT sont souvent difficiles à évaluer. Utilisez le prix d'achat ou le dernier prix de vente comparable sur la marketplace.</p>
 
 <br/>
+
+<h2>CARF 2026-2027 : la fin du secret pour les cryptos</h2>
+<p>Le <strong>Crypto-Asset Reporting Framework (CARF)</strong> est un cadre d'échange automatique d'informations développé par l'OCDE, spécifiquement conçu pour les crypto-actifs. Son objectif : permettre aux administrations fiscales de savoir exactement ce que vous détenez sur les plateformes d'échange, même à l'étranger.</p>
+<p>Concrètement, les exchanges comme Binance, Kraken ou Coinbase devront transmettre vos données (soldes, transactions, identité) directement aux autorités fiscales de votre pays de résidence.</p>
+<p><strong>Calendrier pour la Suisse :</strong> initialement prévu pour 2026, le CARF a été repoussé à <strong>2027</strong> en Suisse. Les premiers échanges de données auront donc lieu en 2028, sur la base des transactions de 2027.</p>
+<p>Ce que cela change pour vous :</p>
+<p><strong>1. Ne pas déclarer n'est plus une option.</strong> Avec l'échange automatique, toute omission sera détectable.</p>
+<p><strong>2. Les wallets privés restent hors du radar</strong> — pour l'instant. Le CARF ne couvre que les plateformes centralisées (CEX). Vos wallets Ledger ou MetaMask ne sont pas concernés directement, mais les transferts vers un exchange le seront.</p>
+<p><strong>3. Régularisez maintenant.</strong> Si vous n'avez pas déclaré vos cryptos les années précédentes, une dénonciation spontanée avant 2027 vous évitera les pénalités (une seule fois dans votre vie).</p>
+<p>Pour en savoir plus, consultez notre article dédié : <a href="/blog/carf-2026-fin-secret-crypto-suisse">CARF 2026 : la fin du secret pour les cryptos en Suisse</a>.</p>
 
 <h2>Déclaration par canton : spécificités romandes</h2>
 
