@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -13,13 +12,14 @@ import {
   Building2,
   Users,
   Mountain,
-  Home
+  Home,
+  TrendingUp,
+  Shield,
+  HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-
 export default function ValaisPage() {
   const { isEnglish } = useLanguage();
-
   const communes = [
     "Monthey", "Troistorrents", "Val-d'Illiez", "Champéry", "Collombey-Muraz",
     "Vouvry", "St-Maurice", "Massongex", "Vérossaz",
@@ -27,7 +27,6 @@ export default function ValaisPage() {
     "Nendaz", "Bagnes", "Conthey", "Fully",
     "Savièse", "Ayent", "Zermatt", "Crans-Montana", "Verbier"
   ];
-
   const services = [
     {
       icon: Users,
@@ -54,7 +53,6 @@ export default function ValaisPage() {
       price: isEnglish ? "On quote" : "Sur devis"
     }
   ];
-
   const deadlines = [
     {
       date: isEnglish ? "March 31, 2026" : "31 mars 2026",
@@ -69,7 +67,6 @@ export default function ValaisPage() {
       description: isEnglish ? "Ultimate deadline with justification" : "Délai ultime avec motif"
     },
   ];
-
   const advantages = isEnglish ? [
     "In-depth knowledge of Valais taxation",
     "Secondary residence expertise in resort areas",
@@ -85,7 +82,49 @@ export default function ValaisPage() {
     "Conseil en prévoyance adapté au canton",
     "Accompagnement bilingue FR/DE"
   ];
-
+  const faqs = isEnglish ? [
+    {
+      question: "What is the deadline for filing a tax return in Valais?",
+      answer: "The regular deadline is March 31, 2026. An extension until June 30 is available upon request. In justified cases, a further extension until December 31 can be granted — Valais offers one of the longest possible deadlines in Switzerland."
+    },
+    {
+      question: "Is Valais really one of the lowest-taxed cantons?",
+      answer: "Yes, Valais offers very competitive tax rates. The combined marginal rate (federal + cantonal + municipal) is around 30-33% for the highest incomes in Sion, significantly lower than Geneva (44.75%) or Vaud (41.5%). The corporate tax rate is also very attractive at approximately 11.9%."
+    },
+    {
+      question: "How is the imputed rental value taxed for chalets in resort areas?",
+      answer: "If you own a secondary residence (chalet, apartment) in a Valais resort like Verbier, Zermatt, or Crans-Montana, you must declare the imputed rental value as income. This is calculated based on the property's market rental potential. Maintenance costs and mortgage interest are deductible against this income."
+    },
+    {
+      question: "I rent out my chalet seasonally — how is this taxed?",
+      answer: "Seasonal rental income must be declared as income. You can deduct maintenance costs, management fees, insurance, and mortgage interest. If your actual rental income exceeds the imputed rental value, you declare the actual income instead. We help optimize the declaration to minimize your tax burden."
+    },
+    {
+      question: "Can I declare my cryptocurrencies in Valais?",
+      answer: "Yes, cryptocurrencies must be declared as movable assets in your Valais tax return via VSTax. Use the official AFC rate from ICTax or your exchange rate on December 31. With Valais's lower wealth tax rates, crypto holdings are taxed more favorably than in many other cantons."
+    }
+  ] : [
+    {
+      question: "Quel est le délai pour la déclaration d'impôts en Valais ?",
+      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 décembre peut être accordé — le Valais offre l'un des délais les plus longs possibles en Suisse."
+    },
+    {
+      question: "Le Valais est-il vraiment l'un des cantons les moins imposés ?",
+      answer: "Oui, le Valais offre des taux d'imposition très compétitifs. Le taux marginal combiné (fédéral + cantonal + communal) se situe autour de 30-33% pour les revenus les plus élevés à Sion, nettement inférieur à Genève (44,75%) ou Vaud (41,5%). Le taux d'imposition des entreprises est également très attractif, à environ 11,9%."
+    },
+    {
+      question: "Comment la valeur locative est-elle imposée pour les chalets en station ?",
+      answer: "Si vous possédez une résidence secondaire (chalet, appartement) dans une station valaisanne comme Verbier, Zermatt ou Crans-Montana, vous devez déclarer la valeur locative comme revenu. Celle-ci est calculée sur la base du potentiel locatif du bien. Les frais d'entretien et les intérêts hypothécaires sont déductibles de ce revenu."
+    },
+    {
+      question: "Je loue mon chalet en saisonnier — comment est-ce imposé ?",
+      answer: "Les revenus de location saisonnière doivent être déclarés comme revenu. Vous pouvez déduire les frais d'entretien, les frais de gérance, l'assurance et les intérêts hypothécaires. Si vos revenus locatifs réels dépassent la valeur locative, vous déclarez les revenus réels. Nous aidons à optimiser la déclaration pour minimiser votre charge fiscale."
+    },
+    {
+      question: "Peut-on déclarer ses cryptomonnaies en Valais ?",
+      answer: "Oui, les cryptomonnaies doivent être déclarées dans la fortune mobilière de votre déclaration valaisanne via VSTax. Utilisez le cours officiel de l'AFC sur ICTax ou le cours de votre exchange au 31 décembre. Avec les taux d'impôt sur la fortune plus bas du Valais, les avoirs crypto sont imposés plus favorablement que dans d'autres cantons."
+    }
+  ];
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
       {/* Hero Section */}
@@ -109,8 +148,8 @@ export default function ValaisPage() {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mb-8">
             {isEnglish
-              ? "Online fiduciary specialized for canton Valais. We support Monthey, Sion, Sierre, Martigny and all of Valais with your 2025 tax return."
-              : "Fiduciaire en ligne spécialisée pour le canton du Valais. Nous accompagnons Monthey, Sion, Sierre, Martigny et tout le Valais pour votre déclaration 2025."}
+              ? "Online fiduciary specialized for canton Valais. We support Monthey, Sion, Sierre, Martigny and all of Valais with your tax return."
+              : "Fiduciaire en ligne spécialisée pour le canton du Valais. Nous accompagnons Monthey, Sion, Sierre, Martigny et tout le Valais pour votre déclaration 2026."}
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/demande">
@@ -127,7 +166,6 @@ export default function ValaisPage() {
           </div>
         </div>
       </section>
-
       {/* Fiscalité attractive */}
       <section className="py-16 bg-emerald-50">
         <div className="container mx-auto px-4">
@@ -179,7 +217,6 @@ export default function ValaisPage() {
           </div>
         </div>
       </section>
-
       {/* Délais Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -209,7 +246,120 @@ export default function ValaisPage() {
           </div>
         </div>
       </section>
-
+      {/* Taux d'imposition Section */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <TrendingUp className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold">
+              {isEnglish ? "Tax Rates in Valais 2026" : "Taux d'imposition en Valais en 2026"}
+            </h2>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div>
+              <p className="text-muted-foreground mb-4">
+                {isEnglish
+                  ? "Canton Valais is one of the most tax-friendly cantons in Switzerland. The combined marginal rate (federal + cantonal + municipal) ranges from 30% to 33% for the highest incomes depending on the municipality, compared to 41-45% in cantons like Geneva or Vaud."
+                  : "Le canton du Valais est l'un des cantons les plus fiscalement avantageux de Suisse. Le taux marginal combiné (fédéral + cantonal + communal) se situe entre 30% et 33% pour les revenus les plus élevés selon la commune, contre 41-45% dans des cantons comme Genève ou Vaud."}
+              </p>
+              <p className="text-muted-foreground mb-4">
+                {isEnglish
+                  ? "For businesses, the effective corporate tax rate is approximately 11.9%, making Valais highly competitive for company establishment. This has attracted numerous businesses in recent years, particularly in the Sion and Monthey regions."
+                  : "Pour les entreprises, le taux d'imposition effectif est d'environ 11,9%, rendant le Valais très compétitif pour l'implantation de sociétés. Cela a attiré de nombreuses entreprises ces dernières années, notamment dans les régions de Sion et Monthey."}
+              </p>
+              <p className="text-muted-foreground">
+                {isEnglish
+                  ? "The wealth tax is also moderate. Combined with lower real estate prices than in the Lake Geneva region, Valais offers an excellent overall tax-to-quality-of-life ratio."
+                  : "L'impôt sur la fortune est également modéré. Combiné à des prix immobiliers plus bas que dans l'arc lémanique, le Valais offre un excellent rapport fiscalité-qualité de vie."}
+              </p>
+            </div>
+            <Card className="p-6 border-primary/20">
+              <div className="flex items-center gap-3 mb-4">
+                <Calculator className="w-6 h-6 text-primary" />
+                <h3 className="text-xl font-bold">
+                  {isEnglish ? "Compare with other cantons" : "Comparez avec les autres cantons"}
+                </h3>
+              </div>
+              <p className="text-muted-foreground mb-6">
+                {isEnglish
+                  ? "Use our free simulator to calculate your exact tax burden in any Valais municipality and compare with Geneva, Vaud, or other cantons."
+                  : "Utilisez notre simulateur gratuit pour calculer votre charge fiscale exacte dans n'importe quelle commune valaisanne et comparer avec Genève, Vaud ou d'autres cantons."}
+              </p>
+              <Link href="/simulateur/impots">
+                <Button className="w-full">
+                  <Calculator className="mr-2 w-4 h-4" />
+                  {isEnglish ? "Free tax simulator" : "Simulateur d'impôts gratuit"}
+                </Button>
+              </Link>
+            </Card>
+          </div>
+        </div>
+      </section>
+      {/* Déductions Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <Shield className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold">
+              {isEnglish ? "Main Tax Deductions in Valais" : "Principales déductions fiscales en Valais"}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Property maintenance" : "Frais d'entretien immobilier"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Maintenance and renovation costs for your property are deductible. Choose between actual costs or a flat rate (10% for buildings under 10 years, 20% for older buildings)."
+                  : "Les frais d'entretien et de rénovation de votre bien immobilier sont déductibles. Choisissez entre les frais effectifs ou un forfait (10% pour les bâtiments de moins de 10 ans, 20% pour les plus anciens)."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Imputed rental value" : "Valeur locative"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Secondary residences in resort areas have a specific imputed rental value calculation. Mortgage interest and maintenance costs offset this taxable income."
+                  : "Les résidences secondaires en station ont un calcul de valeur locative spécifique. Les intérêts hypothécaires et frais d'entretien compensent ce revenu imposable."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Pillar 3a" : "3ème pilier A"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Deductible up to CHF 7,258 for employees with a 2nd pillar. Self-employed without pension fund: up to 20% of net income (max CHF 36,288)."
+                  : "Déductible jusqu'à CHF 7'258 pour les salariés avec 2e pilier. Indépendants sans caisse de pension : jusqu'à 20% du revenu net (max CHF 36'288)."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "2nd pillar buyback" : "Rachat de 2ème pilier"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Fully deductible from taxable income. Even with Valais's already low rates, buybacks remain a powerful optimization tool for higher incomes."
+                  : "Entièrement déductible du revenu imposable. Même avec les taux déjà bas du Valais, les rachats restent un outil d'optimisation puissant pour les revenus élevés."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Childcare costs" : "Frais de garde d'enfants"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Deduction for third-party childcare costs (daycare, nanny, after-school care) for children under 14 up to the cantonal ceiling."
+                  : "Déduction des frais de garde par des tiers (crèche, nounou, parascolaire) pour les enfants de moins de 14 ans dans la limite du plafond cantonal."}
+              </p>
+            </Card>
+            <Card className="p-6 bg-primary/5 border-primary/20">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Complete guide" : "Guide complet"}</h3>
+              <p className="text-muted-foreground text-sm mb-3">
+                {isEnglish
+                  ? "Discover all available deductions for the 2026 tax year."
+                  : "Découvrez toutes les déductions disponibles pour l'année fiscale 2026."}
+              </p>
+              <Link href="/guide/deductions-fiscales" className="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+                {isEnglish ? "View the guide" : "Voir le guide"}
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </Card>
+          </div>
+        </div>
+      </section>
       {/* Services Section */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
@@ -235,7 +385,6 @@ export default function ValaisPage() {
           </div>
         </div>
       </section>
-
       {/* Avantages Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -270,7 +419,6 @@ export default function ValaisPage() {
           </div>
         </div>
       </section>
-
       {/* Communes Section */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
@@ -297,7 +445,86 @@ export default function ValaisPage() {
           </div>
         </div>
       </section>
-
+      {/* FAQ Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <HelpCircle className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold">
+              {isEnglish ? "Frequently Asked Questions — Taxes in Valais" : "Questions fréquentes — Impôts en Valais"}
+            </h2>
+          </div>
+          <div className="space-y-6 max-w-3xl">
+            {faqs.map((faq, index) => (
+              <Card key={index} className="p-6">
+                <h3 className="text-lg font-bold mb-2">{faq.question}</h3>
+                <p className="text-muted-foreground">{faq.answer}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Related Content Section */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">
+                {isEnglish ? "Useful guides" : "Guides utiles"}
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/guide/deductions-fiscales" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "Tax deductions 2026" : "Déductions fiscales 2026"}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog/creer-entreprise-suisse-2026" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "Start a business in Switzerland" : "Créer son entreprise en Suisse"}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "Declaring crypto in Switzerland" : "Déclarer ses cryptomonnaies en Suisse"}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/simulateur/3eme-pilier" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "3rd pillar calculator" : "Simulateur 3ème pilier"}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/tarifs" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "View our pricing" : "Voir nos tarifs"}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">
+                {isEnglish ? "Other cantons" : "Autres cantons"}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <Link href="/cantons/vaud" className="px-4 py-2 bg-white rounded-full hover:bg-primary hover:text-white transition-colors">Vaud</Link>
+                <Link href="/cantons/geneve" className="px-4 py-2 bg-white rounded-full hover:bg-primary hover:text-white transition-colors">Genève</Link>
+                <Link href="/cantons/fribourg" className="px-4 py-2 bg-white rounded-full hover:bg-primary hover:text-white transition-colors">Fribourg</Link>
+                <Link href="/cantons/neuchatel" className="px-4 py-2 bg-white rounded-full hover:bg-primary hover:text-white transition-colors">Neuchâtel</Link>
+                <Link href="/cantons/jura" className="px-4 py-2 bg-white rounded-full hover:bg-primary hover:text-white transition-colors">Jura</Link>
+              </div>
+              <p className="text-muted-foreground text-sm mt-4">
+                {isEnglish
+                  ? "Our services are available throughout French-speaking Switzerland."
+                  : "Nos services sont disponibles dans toute la Suisse romande."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-emerald-600 text-white">
         <div className="container mx-auto px-4 text-center">
