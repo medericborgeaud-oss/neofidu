@@ -2252,7 +2252,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Les cryptomonnaies sont-elles imposables en Suisse ?</strong></p>
+<h2>Les cryptomonnaies sont-elles imposables en Suisse ?</h2>
 
 <br/>
 
@@ -2304,7 +2304,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Comment calculer la valeur de ses cryptos au 31 décembre ?</strong></p>
+<h2>Comment calculer la valeur de ses cryptos au 31 décembre ?</h2>
 
 <br/>
 
@@ -2346,7 +2346,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Cas particuliers : staking, airdrops, mining et NFT</strong></p>
+<h2>Cas particuliers : staking, airdrops, mining et NFT</h2>
 
 <br/>
 
@@ -2383,7 +2383,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Déclaration par canton : spécificités romandes</strong></p>
+<h2>Déclaration par canton : spécificités romandes</h2>
 
 <br/>
 
@@ -2413,7 +2413,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Les erreurs à éviter absolument</strong></p>
+<h2>Les erreurs à éviter absolument</h2>
 
 <br/>
 
@@ -2441,7 +2441,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Nos conseils pour une déclaration sereine</strong></p>
+<h2>Nos conseils pour une déclaration sereine</h2>
 
 <br/>
 
@@ -2453,7 +2453,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p><strong>Besoin d'aide pour déclarer vos cryptos ?</strong></p>
+<h2>Besoin d'aide pour déclarer vos cryptos ?</h2>
 
 <br/>
 
