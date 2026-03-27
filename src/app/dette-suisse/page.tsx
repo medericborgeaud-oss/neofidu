@@ -114,14 +114,15 @@ function JsonLd() {
       name: "Budget fédéral suisse 2026",
       description:
         "Recettes et dépenses de la Confédération suisse pour l'exercice 2026, selon l'Administration fédérale des finances.",
+       license: "https://opendata.swiss/en/terms-of-use",   
       creator: {
-        "@type": "GovernmentOrganization",
+        "@type": "Organization",
         name: "Administration fédérale des finances (AFF)",
         url: "https://www.efv.admin.ch",
       },
       temporalCoverage: "2026",
       spatialCoverage: {
-        "@type": "Country",
+        "@type": "Place",
         name: "Suisse",
       },
     },
