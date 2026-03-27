@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -13,19 +12,19 @@ import {
   Building2,
   Users,
   Tractor,
-  TreePine
+  TreePine,
+  TrendingUp,
+  Shield,
+  HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-
 export default function JuraPage() {
   const { isEnglish } = useLanguage();
-
   const communes = [
     "Delémont", "Porrentruy", "Bassecourt", "Courrendlin", "Courroux",
     "Courtételle", "Alle", "Fontenais", "Haute-Sorne", "Val Terbi",
     "Develier", "Saignelégier", "Les Breuleux", "Le Noirmont", "Clos du Doubs"
   ];
-
   const services = [
     {
       icon: Users,
@@ -52,7 +51,6 @@ export default function JuraPage() {
       price: isEnglish ? "On quote" : "Sur devis"
     }
   ];
-
   const deadlines = [
     {
       date: isEnglish ? "March 31, 2026" : "31 mars 2026",
@@ -67,7 +65,6 @@ export default function JuraPage() {
       description: isEnglish ? "Ultimate deadline with justification" : "Délai ultime avec motif"
     },
   ];
-
   const advantages = isEnglish ? [
     "Expertise in the Jura economic fabric",
     "Specialization in agriculture and livestock",
@@ -83,7 +80,49 @@ export default function JuraPage() {
     "Canton souple pour les prolongations",
     "Service personnalisé et réactif"
   ];
-
+  const faqs = isEnglish ? [
+    {
+      question: "What is the deadline for filing a tax return in Jura?",
+      answer: "The regular deadline is March 31, 2026. An extension until June 30 is available upon request. In justified cases, a further extension until October 31 can be granted — Jura is one of the most flexible cantons for deadlines."
+    },
+    {
+      question: "How are farmers taxed in canton Jura?",
+      answer: "Farmers in Jura can benefit from simplified flat-rate accounting or full bookkeeping depending on their operation size. Direct payments, livestock income, and land revenue each have specific tax treatments. We specialize in optimizing agricultural declarations."
+    },
+    {
+      question: "What are the tax rates in Jura?",
+      answer: "Jura applies a progressive tax system with combined marginal rates (federal + cantonal + municipal) that are moderate compared to other French-speaking cantons. The lower cost of living and competitive rates make Jura attractive for families and retirees."
+    },
+    {
+      question: "Is Jura interesting for cross-border workers?",
+      answer: "Yes, Jura borders France (Alsace and Franche-Comté). Cross-border workers are taxed at source in Switzerland. The proximity to France and lower living costs make Jura an interesting option for settling near the border."
+    },
+    {
+      question: "Can I declare my cryptocurrencies in Jura?",
+      answer: "Yes, cryptocurrencies must be declared as miscellaneous movable assets in your Jura tax return via JuraTax. Use the official AFC rate from ICTax or your exchange rate on December 31."
+    }
+  ] : [
+    {
+      question: "Quel est le délai pour la déclaration d'impôts dans le Jura ?",
+      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 octobre peut être accordé — le Jura est l'un des cantons les plus souples pour les délais."
+    },
+    {
+      question: "Comment les agriculteurs sont-ils imposés dans le canton du Jura ?",
+      answer: "Les agriculteurs jurassiens peuvent bénéficier d'une comptabilité forfaitaire simplifiée ou d'une comptabilité complète selon la taille de leur exploitation. Les paiements directs, les revenus d'élevage et les revenus fonciers ont chacun un traitement fiscal spécifique. Nous sommes spécialisés dans l'optimisation des déclarations agricoles."
+    },
+    {
+      question: "Quels sont les taux d'imposition dans le Jura ?",
+      answer: "Le Jura applique un système d'imposition progressif avec des taux marginaux combinés (fédéral + cantonal + communal) modérés par rapport aux autres cantons romands. Le coût de la vie plus bas et des taux compétitifs rendent le Jura attractif pour les familles et les retraités."
+    },
+    {
+      question: "Le Jura est-il intéressant pour les frontaliers ?",
+      answer: "Oui, le Jura est frontalier avec la France (Alsace et Franche-Comté). Les frontaliers sont imposés à la source en Suisse. La proximité avec la France et le coût de la vie plus bas font du Jura une option intéressante pour s'installer près de la frontière."
+    },
+    {
+      question: "Peut-on déclarer ses cryptomonnaies dans le Jura ?",
+      answer: "Oui, les cryptomonnaies doivent être déclarées dans la fortune mobilière diverse de votre déclaration jurassienne via JuraTax. Utilisez le cours officiel de l'AFC sur ICTax ou le cours de votre exchange au 31 décembre."
+    }
+  ];
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
       {/* Hero Section */}
@@ -107,8 +146,8 @@ export default function JuraPage() {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mb-8">
             {isEnglish
-              ? "The youngest Swiss canton deserves a modern fiduciary. From Delémont to Porrentruy, we support you with your 2025 declaration."
-              : "Le plus jeune canton suisse mérite une fiduciaire moderne. De Delémont à Porrentruy, nous vous accompagnons pour votre déclaration 2025."}
+              ? "The youngest Swiss canton deserves a modern fiduciary. From Delémont to Porrentruy, we support you with your declaration."
+              : "Le plus jeune canton suisse mérite une fiduciaire moderne. De Delémont à Porrentruy, nous vous accompagnons pour votre déclaration."}
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/demande">
@@ -125,7 +164,6 @@ export default function JuraPage() {
           </div>
         </div>
       </section>
-
       {/* Agriculture */}
       <section className="py-16 bg-emerald-50">
         <div className="container mx-auto px-4">
@@ -181,7 +219,6 @@ export default function JuraPage() {
           </div>
         </div>
       </section>
-
       {/* Délais Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -216,7 +253,120 @@ export default function JuraPage() {
           </p>
         </div>
       </section>
-
+      {/* Taux d'imposition Section */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <TrendingUp className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold">
+              {isEnglish ? "Tax Rates in Jura 2026" : "Taux d'imposition dans le Jura en 2026"}
+            </h2>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div>
+              <p className="text-muted-foreground mb-4">
+                {isEnglish
+                  ? "Canton Jura applies a progressive tax system with moderate rates compared to other French-speaking cantons. The combined marginal rate (federal + cantonal + municipal) is around 36-38% for the highest income brackets in Delémont, making it more competitive than Geneva or Vaud."
+                  : "Le canton du Jura applique un système d'imposition progressif avec des taux modérés par rapport aux autres cantons romands. Le taux marginal combiné (fédéral + cantonal + communal) se situe autour de 36-38% pour les tranches de revenus les plus élevées à Delémont, ce qui le rend plus compétitif que Genève ou Vaud."}
+              </p>
+              <p className="text-muted-foreground mb-4">
+                {isEnglish
+                  ? "Combined with a significantly lower cost of living (especially real estate), Jura offers an attractive overall tax-to-lifestyle ratio. This is particularly true for families, retirees, and remote workers who can take advantage of lower housing costs while benefiting from competitive tax rates."
+                  : "Combiné à un coût de la vie nettement plus bas (surtout l'immobilier), le Jura offre un rapport fiscalité-qualité de vie attractif. C'est particulièrement vrai pour les familles, les retraités et les télétravailleurs qui peuvent profiter de logements plus abordables tout en bénéficiant de taux d'imposition compétitifs."}
+              </p>
+              <p className="text-muted-foreground">
+                {isEnglish
+                  ? "Agricultural operators benefit from specific flat-rate regimes that can significantly reduce their tax burden compared to standard self-employment taxation."
+                  : "Les exploitants agricoles bénéficient de régimes forfaitaires spécifiques qui peuvent réduire significativement leur charge fiscale par rapport à l'imposition standard des indépendants."}
+              </p>
+            </div>
+            <Card className="p-6 border-primary/20">
+              <div className="flex items-center gap-3 mb-4">
+                <Calculator className="w-6 h-6 text-primary" />
+                <h3 className="text-xl font-bold">
+                  {isEnglish ? "Compare municipalities" : "Comparez les communes"}
+                </h3>
+              </div>
+              <p className="text-muted-foreground mb-6">
+                {isEnglish
+                  ? "Use our free simulator to calculate your exact tax burden in any Jura municipality and compare with other cantons."
+                  : "Utilisez notre simulateur gratuit pour calculer votre charge fiscale exacte dans n'importe quelle commune jurassienne et comparer avec les autres cantons."}
+              </p>
+              <Link href="/simulateur/impots">
+                <Button className="w-full">
+                  <Calculator className="mr-2 w-4 h-4" />
+                  {isEnglish ? "Free tax simulator" : "Simulateur d'impôts gratuit"}
+                </Button>
+              </Link>
+            </Card>
+          </div>
+        </div>
+      </section>
+      {/* Déductions Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <Shield className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold">
+              {isEnglish ? "Main Tax Deductions in Jura" : "Principales déductions fiscales dans le Jura"}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Agricultural flat rates" : "Forfaits agricoles"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Simplified accounting for farms with specific flat rates for livestock, dairy, and crop operations. Significantly reduces administrative burden."
+                  : "Comptabilité simplifiée pour les exploitations avec des forfaits spécifiques pour l'élevage, la production laitière et les cultures. Réduit significativement la charge administrative."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Pillar 3a" : "3ème pilier A"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Deductible up to CHF 7,258 for employees with a 2nd pillar. Self-employed without pension fund: up to 20% of net income (max CHF 36,288)."
+                  : "Déductible jusqu'à CHF 7'258 pour les salariés avec 2e pilier. Indépendants sans caisse de pension : jusqu'à 20% du revenu net (max CHF 36'288)."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "2nd pillar buyback" : "Rachat de 2ème pilier"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Fully deductible from taxable income. An effective strategy especially for self-employed and farmers approaching retirement."
+                  : "Entièrement déductible du revenu imposable. Une stratégie efficace surtout pour les indépendants et agriculteurs approchant de la retraite."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Childcare costs" : "Frais de garde d'enfants"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Deduction for third-party childcare costs (daycare, nanny, after-school care) up to the cantonal limit per child."
+                  : "Déduction des frais de garde par des tiers (crèche, nounou, parascolaire) dans la limite du plafond cantonal par enfant."}
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Property maintenance" : "Frais d'entretien immobilier"}</h3>
+              <p className="text-muted-foreground text-sm">
+                {isEnglish
+                  ? "Maintenance and renovation costs for your property are deductible. You can choose between actual costs or a flat rate of 10-20% of rental value."
+                  : "Les frais d'entretien et de rénovation de votre bien immobilier sont déductibles. Vous pouvez choisir entre les frais effectifs ou un forfait de 10-20% de la valeur locative."}
+              </p>
+            </Card>
+            <Card className="p-6 bg-primary/5 border-primary/20">
+              <h3 className="text-lg font-bold mb-2">{isEnglish ? "Complete guide" : "Guide complet"}</h3>
+              <p className="text-muted-foreground text-sm mb-3">
+                {isEnglish
+                  ? "Discover all available deductions for the 2026 tax year."
+                  : "Découvrez toutes les déductions disponibles pour l'année fiscale 2026."}
+              </p>
+              <Link href="/guide/deductions-fiscales" className="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+                {isEnglish ? "View the guide" : "Voir le guide"}
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </Card>
+          </div>
+        </div>
+      </section>
       {/* Services Section */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
@@ -242,7 +392,6 @@ export default function JuraPage() {
           </div>
         </div>
       </section>
-
       {/* Nature et tourisme */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -281,7 +430,6 @@ export default function JuraPage() {
           </div>
         </div>
       </section>
-
       {/* Spécificités */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
@@ -304,7 +452,6 @@ export default function JuraPage() {
           </Card>
         </div>
       </section>
-
       {/* Communes Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -331,7 +478,80 @@ export default function JuraPage() {
           </div>
         </div>
       </section>
-
+      {/* FAQ Section */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <HelpCircle className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold">
+              {isEnglish ? "Frequently Asked Questions — Taxes in Jura" : "Questions fréquentes — Impôts dans le Jura"}
+            </h2>
+          </div>
+          <div className="space-y-6 max-w-3xl">
+            {faqs.map((faq, index) => (
+              <Card key={index} className="p-6">
+                <h3 className="text-lg font-bold mb-2">{faq.question}</h3>
+                <p className="text-muted-foreground">{faq.answer}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Related Content Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">
+                {isEnglish ? "Useful guides" : "Guides utiles"}
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/guide/deductions-fiscales" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "Tax deductions 2026" : "Déductions fiscales 2026"}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog/creer-entreprise-suisse-2026" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "Start a business in Switzerland" : "Créer son entreprise en Suisse"}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "Declaring crypto in Switzerland" : "Déclarer ses cryptomonnaies en Suisse"}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/tarifs" className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "View our pricing" : "Voir nos tarifs"}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">
+                {isEnglish ? "Other cantons" : "Autres cantons"}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <Link href="/cantons/vaud" className="px-4 py-2 bg-secondary rounded-full hover:bg-primary hover:text-white transition-colors">Vaud</Link>
+                <Link href="/cantons/geneve" className="px-4 py-2 bg-secondary rounded-full hover:bg-primary hover:text-white transition-colors">Genève</Link>
+                <Link href="/cantons/fribourg" className="px-4 py-2 bg-secondary rounded-full hover:bg-primary hover:text-white transition-colors">Fribourg</Link>
+                <Link href="/cantons/valais" className="px-4 py-2 bg-secondary rounded-full hover:bg-primary hover:text-white transition-colors">Valais</Link>
+                <Link href="/cantons/neuchatel" className="px-4 py-2 bg-secondary rounded-full hover:bg-primary hover:text-white transition-colors">Neuchâtel</Link>
+              </div>
+              <p className="text-muted-foreground text-sm mt-4">
+                {isEnglish
+                  ? "Our services are available throughout French-speaking Switzerland."
+                  : "Nos services sont disponibles dans toute la Suisse romande."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-emerald-600 text-white">
         <div className="container mx-auto px-4 text-center">
