@@ -482,18 +482,18 @@ export default function TarifsPage() {
             </p>
             <p className="text-muted-foreground text-sm mb-8">
               {isEnglish
-                ? "Tax return starting from CHF 50.-, with free quote in 2 minutes. Payment in 3 installments available via Klarna."
-                : "Déclaration fiscale dès CHF 50.-, avec devis gratuit en 2 minutes. Paiement en 3 fois disponible via Klarna."}
+                ? "Fixed prices for tax returns · Personalized quote within 24h for accounting & property management. Payment in 3 installments available via Klarna."
+                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé sous 24h pour la comptabilité & gérance. Paiement en 3 fois disponible via Klarna."}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-primary" />
-                <span>{isEnglish ? "Free quote" : "Devis gratuit"}</span>
+                <FileText className="w-5 h-5 text-primary" />
+                <span>{isEnglish ? "Fixed prices for tax returns" : "Tarifs fixes déclarations"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
-                <span>{isEnglish ? "Response within 1 business day" : "Réponse sous 1 jour ouvré"}</span>
+                <span>{isEnglish ? "Custom quote within 24h" : "Devis sur mesure sous 24h"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CreditCard className="w-5 h-5 text-primary" />
@@ -514,13 +514,13 @@ export default function TarifsPage() {
           >
             <h2 className="text-xl md:text-2xl font-bold mb-2">
               {isEnglish
-                ? "Get your free quote in 2 minutes"
-                : "Obtenez votre devis gratuit en 2 minutes"}
+                ? "Tax returns: fixed prices displayed — Accounting: free quote"
+                : "Déclarations : tarifs fixes affichés — Comptabilité : devis gratuit"}
             </h2>
             <p className="text-white/90 mb-4">
               {isEnglish
-                ? "No commitment, personalized response within 1 business day"
-                : "Sans engagement, réponse personnalisée sous 1 jour ouvré"}
+                ? "No commitment. Personalized quote for accounting & property management within 24 hours."
+                : "Sans engagement. Devis personnalisé pour la comptabilité & gérance sous 24 heures."}
             </p>
             <Link href="/demande">
               <Button
