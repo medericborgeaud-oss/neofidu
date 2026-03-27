@@ -2487,7 +2487,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/><h3><strong>Que risque-t-on si on ne déclare pas ses cryptos ?</strong></h3>
 <p>Vous risquez un rappel d'impôt sur les années non prescrites (jusqu'à 10 ans), des intérêts de retard et une amende pouvant atteindre 3 fois l'impôt soustrait. Une dénonciation spontanée permet d'éviter l'amende.</p>
 
-<p>La fiscalité des cryptomonnaies peut être complexe, surtout si vous avez de nombreuses transactions ou des activités DeFi.</p>
+<p>La fiscalité des cryptomonnaies peut être complexe, surtout si vous avez de nombreuses transactions ou des activités DeFi.</p><br/>
 
 <p>Chez <strong>NeoFidu</strong>, nous accompagnons de plus en plus de clients dans la <strong>déclaration de leurs actifs numériques</strong>. Nous pouvons :</p>
 
