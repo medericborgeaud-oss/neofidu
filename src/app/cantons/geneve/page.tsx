@@ -136,8 +136,8 @@ export default function GenevePage() {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mb-8">
             {isEnglish
-              ? "Geneva tax experts, we support residents and cross-border workers with their 2026 tax return. Quasi-resident status, TOU, tax optimization."
-              : "Experts en fiscalité genevoise, nous accompagnons résidents et frontaliers pour leur déclaration d'impôts 2026. Statut quasi-résident, TOU, optimisation fiscale."}
+              ? "Geneva tax experts, we support residents and cross-border workers with their tax return. Quasi-resident status, TOU, tax optimization."
+              : "Experts en fiscalité genevoise, nous accompagnons résidents et frontaliers pour leur déclaration d'impôts. Statut quasi-résident, TOU, optimisation fiscale."}
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/demande">
