@@ -2475,16 +2475,16 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <h2>Besoin d'aide pour déclarer vos cryptos ?</h2>
 
 <br/>
-<h2>Questions fréquentes</h2>
-<h3>Faut-il déclarer ses cryptos si on ne les a pas vendues ?</h3>
+<h2><strong>Questions fréquentes</strong></h2><br/>
+<h3><strong>Faut-il déclarer ses cryptos si on ne les a pas vendues ?</strong></h3>
 <p>Oui. En Suisse, les cryptomonnaies sont soumises à l'impôt sur la fortune, même si vous ne les avez pas vendues. Vous devez déclarer leur valeur au 31 décembre.</p>
-<h3>Quel taux utiliser pour évaluer ses cryptos ?</h3>
+<br/><h3><strong>Quel taux utiliser pour évaluer ses cryptos ?</strong></h3>
 <p>L'Administration fédérale des contributions publie chaque année un cours officiel sur <a href="https://www.ictax.admin.ch" target="_blank" rel="noopener">ICTax</a>. Si votre crypto n'y figure pas, utilisez le cours de votre exchange au 31 décembre.</p>
-<h3>Les gains crypto sont-ils imposables en Suisse ?</h3>
+<br/><h3><strong>Les gains crypto sont-ils imposables en Suisse ?</strong></h3>
 <p>Non, pour un investisseur privé, les gains en capital sur les cryptomonnaies ne sont pas imposés. En revanche, si vous êtes requalifié comme trader professionnel, ils deviennent un revenu imposable.</p>
-<h3>Qu'est-ce que le CARF et quand entre-t-il en vigueur ?</h3>
+<br/><h3><strong>Qu'est-ce que le CARF et quand entre-t-il en vigueur ?</strong></h3>
 <p>Le CARF (Crypto-Asset Reporting Framework) est un standard OCDE d'échange automatique de données crypto entre pays. En Suisse, il entrera en vigueur en 2027, avec les premiers échanges de données en 2028.</p>
-<h3>Que risque-t-on si on ne déclare pas ses cryptos ?</h3>
+<br/><h3><strong>Que risque-t-on si on ne déclare pas ses cryptos ?</strong></h3>
 <p>Vous risquez un rappel d'impôt sur les années non prescrites (jusqu'à 10 ans), des intérêts de retard et une amende pouvant atteindre 3 fois l'impôt soustrait. Une dénonciation spontanée permet d'éviter l'amende.</p>
 
 <p>La fiscalité des cryptomonnaies peut être complexe, surtout si vous avez de nombreuses transactions ou des activités DeFi.</p>
