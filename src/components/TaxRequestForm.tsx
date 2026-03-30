@@ -2989,19 +2989,9 @@ export function TaxRequestForm() {
       if (digits.length > 4) formatted = digits.slice(0,2) + "." + digits.slice(2,4) + "." + digits.slice(4);
       else if (digits.length > 2) formatted = digits.slice(0,2) + "." + digits.slice(2);
       updateForm("birthDate", formatted);
-      if (value) {
-        const validation = validateBirthDate(value);
-        if (!validation.valid) {
-          setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
-        } else {
-          if (validation.normalizedDate && validation.normalizedDate !== value) {
-            updateForm("birthDate", validation.normalizedDate);
-          }
-          setValidationErrors(prev => ({ ...prev, birthDate: "" }));
-        }
-      } else {
-        setValidationErrors(prev => ({ ...prev, birthDate: "" }));
-      }
+      setValidationErrors(prev => ({ ...prev, birthDate: "" }));
+
+      
     }}
     onBlur={(e) => {
       const value = e.target.value;
@@ -3025,7 +3015,8 @@ export function TaxRequestForm() {
     </p>
   ) : (
     <p className="text-xs text-muted-foreground mt-1">
-      Utilisez le sélecteur de date de votre navigateur
+      Format : 31.12.1980
+
     </p>
   )}
 </div>
@@ -3136,21 +3127,8 @@ export function TaxRequestForm() {
       if (digits.length > 4) formatted = digits.slice(0,2) + "." + digits.slice(2,4) + "." + digits.slice(4);
       else if (digits.length > 2) formatted = digits.slice(0,2) + "." + digits.slice(2);
       updateForm("birthDate2", formatted);
+      setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
 
-    
-      if (value) {
-        const validation = validateBirthDate(value);
-        if (!validation.valid) {
-          setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
-        } else {
-          if (validation.normalizedDate && validation.normalizedDate !== value) {
-            updateForm("birthDate2", validation.normalizedDate);
-          }
-          setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
-        }
-      } else {
-        setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
-      }
     }}
     onBlur={(e) => {
       const value = e.target.value;
@@ -3174,7 +3152,8 @@ export function TaxRequestForm() {
     </p>
   ) : (
     <p className="text-xs text-muted-foreground mt-1">
-      Utilisez le sélecteur de date de votre navigateur
+      Format : 31.12.1980
+
     </p>
   )}
 </div>
