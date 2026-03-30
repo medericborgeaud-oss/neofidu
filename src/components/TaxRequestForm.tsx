@@ -424,7 +424,9 @@ const validateBirthDate = (dateStr: string): { valid: boolean; error?: string; n
   // Si le format n'est pas reconnu du tout
   if (!normalizedDate) {
     if (/\d/.test(dateStr)) {
-      return { valid: false, error: "Utilisez le sélecteur de date ou le format JJ.MM.AAAA" };
+      return { valid: false, error: "Format attendu : JJ.MM.AAAA (ex: 31.12.1980)" };
+
+      
     }
     return { valid: false, error: "Date de naissance requise" };
   }
@@ -2975,8 +2977,11 @@ export function TaxRequestForm() {
     Date de naissance <span className="text-red-500">*</span>
   </label>
   <Input
-    type="date"
+    type="text"
+    inputMode="numeric"
     value={formData.birthDate}
+
+  
     placeholder="JJ.MM.AAAA"
     onChange={(e) => {
       const digits = e.target.value.replace(/\D/g, "").slice(0, 8);
@@ -3011,8 +3016,7 @@ export function TaxRequestForm() {
       }
     }}
     className={`rounded-xl ${validationErrors.birthDate ? "border-red-500 focus:ring-red-500" : ""}`}
-    max={new Date().toISOString().split('T')[0]}
-    min="1900-01-01"
+   
   />
   {validationErrors.birthDate ? (
     <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
@@ -3120,8 +3124,10 @@ export function TaxRequestForm() {
     Date de naissance <span className="text-red-500">*</span>
   </label>
   <Input
-    type="date"
+    type="text"
+    inputMode="numeric"
     value={formData.birthDate2}
+
     placeholder="JJ.MM.AAAA"
 
     onChange={(e) => {
@@ -3159,8 +3165,7 @@ export function TaxRequestForm() {
       }
     }}
     className={`rounded-xl ${validationErrors.birthDate2 ? "border-red-500 focus:ring-red-500" : ""}`}
-    max={new Date().toISOString().split('T')[0]}
-    min="1900-01-01"
+    
   />
   {validationErrors.birthDate2 ? (
     <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
