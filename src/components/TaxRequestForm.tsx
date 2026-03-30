@@ -382,57 +382,84 @@ const areAllPropertiesValid = (props: Property[]): boolean => {
   return props.every(p => validateProperty(p).length === 0);
 };
 
-// === FONCTIONS DE VALIDATION ===
+// === FONCTIONS DE validation
+
+// Normaliser une date dans différents formats vers YYYY-MM-DD
+const normalizeDateInput = (dateStr: string): string | null => {
+  if (!dateStr || dateStr.trim() === "") return null;
+
+  const cleaned = dateStr.trim();
+
+  // Format ISO déjà correct: YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(cleaned)) {
+    return cleaned;
+  }
+
+  // Format suisse/européen: DD.MM.YYYY ou DD/MM/YYYY
+  const euroMatch = cleaned.match(/^(\d{1,2})[.\/](\d{1,2})[.\/](\d{4})$/);
+  if (euroMatch) {
+    const [, day, month, year] = euroMatch;
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  }
+
+  // Format avec tirets: DD-MM-YYYY
+  const euroMatchDash = cleaned.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+  if (euroMatchDash) {
+    const [, day, month, year] = euroMatchDash;
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  }
+
+  return null;
+};
 
 // Valider une date de naissance (doit être dans le passé, âge raisonnable 18-120 ans)
-const validateBirthDate = (dateStr: string): { valid: boolean; error?: string } => {
+const validateBirthDate = (dateStr: string): { valid: boolean; error?: string; normalizedDate?: string } => {
   if (!dateStr || dateStr.trim() === "") {
     return { valid: false, error: "Date de naissance requise" };
   }
 
-  // Vérifier le format de la date (YYYY-MM-DD)
-  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-  if (!dateRegex.test(dateStr)) {
-    return { valid: false, error: "Format de date invalide (JJ.MM.AAAA)" };
+  // Essayer de normaliser la date
+  const normalizedDate = normalizeDateInput(dateStr);
+
+  // Si le format n'est pas reconnu du tout
+  if (!normalizedDate) {
+    if (/\d/.test(dateStr)) {
+      return { valid: false, error: "Utilisez le sélecteur de date ou le format JJ.MM.AAAA" };
+    }
+    return { valid: false, error: "Date de naissance requise" };
   }
 
-  const date = new Date(dateStr);
+  const date = new Date(normalizedDate);
   const today = new Date();
-  today.setHours(23, 59, 59, 999); // Fin de la journée pour comparaison
+  today.setHours(23, 59, 59, 999);
 
-  // Vérifier que la date est valide (pas de 31 février, etc.)
   if (isNaN(date.getTime())) {
     return { valid: false, error: "Date invalide" };
   }
 
-  // Vérifier que les composants de la date correspondent (éviter les débordements de mois)
-  const [year, month, day] = dateStr.split("-").map(Number);
+  const [year, month, day] = normalizedDate.split("-").map(Number);
   if (date.getFullYear() !== year || date.getMonth() + 1 !== month || date.getDate() !== day) {
-    return { valid: false, error: "Date invalide (jour inexistant)" };
+    return { valid: false, error: "Cette date n'existe pas (ex: 31 février)" };
   }
 
-  // IMPORTANT: Pas dans le futur
   if (date > today) {
     return { valid: false, error: "La date de naissance ne peut pas être dans le futur" };
   }
 
-  // Âge minimum 18 ans pour un contribuable
   const age = Math.floor((today.getTime() - date.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
   if (age < 18) {
     return { valid: false, error: "Le contribuable doit avoir au moins 18 ans" };
   }
 
-  // Âge maximum raisonnable (120 ans)
   if (age > 120) {
-    return { valid: false, error: "Invalid date of birth (age over 120 years)" };
+    return { valid: false, error: "Date de naissance invalide (âge supérieur à 120 ans)" };
   }
 
-  // Année de naissance minimale raisonnable (1900)
   if (year < 1900) {
-    return { valid: false, error: "Invalid birth year (before 1900)" };
+    return { valid: false, error: "Année de naissance invalide (avant 1900)" };
   }
 
-  return { valid: true };
+  return { valid: true, normalizedDate };
 };
 
 // Valider un numéro de téléphone suisse
@@ -2942,42 +2969,63 @@ export function TaxRequestForm() {
                 />
               </div>
 
-              {/* {isEnglish ? "Date of birth" : "Date de naissance"} */}
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  {isEnglish ? "Date of birth" : "Date de naissance"} <span className="text-red-500">*</span>
-                </label>
-                <Input
-                  type="date"
-                  value={formData.birthDate}
-                  onChange={(e) => {
-                    updateForm("birthDate", e.target.value);
-                    // Valider immédiatement à chaque changement
-                    const validation = validateBirthDate(e.target.value);
-                    if (!validation.valid) {
-                      setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
-                    } else {
-                      setValidationErrors(prev => ({ ...prev, birthDate: "" }));
-                    }
-                  }}
-                  onBlur={(e) => {
-                    // Re-valider à la perte de focus
-                    const validation = validateBirthDate(e.target.value);
-                    if (!validation.valid) {
-                      setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
-                    }
-                  }}
-                  className={`rounded-xl ${validationErrors.birthDate ? "border-red-500 focus:ring-red-500" : ""}`}
-                  max={new Date().toISOString().split('T')[0]}
-                  min="1900-01-01"
-                />
-                {validationErrors.birthDate && (
-                  <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
-                    <AlertTriangle className="w-3 h-3" />
-                    {validationErrors.birthDate}
-                  </p>
-                )}
-              </div>
+              {/* Date de naissance */}
+<div>
+  <label className="block text-sm font-medium mb-2">
+    Date de naissance <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="date"
+    value={formData.birthDate}
+    placeholder="JJ.MM.AAAA"
+    onChange={(e) => {
+      const value = e.target.value;
+      updateForm("birthDate", value);
+      if (value) {
+        const validation = validateBirthDate(value);
+        if (!validation.valid) {
+          setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
+        } else {
+          if (validation.normalizedDate && validation.normalizedDate !== value) {
+            updateForm("birthDate", validation.normalizedDate);
+          }
+          setValidationErrors(prev => ({ ...prev, birthDate: "" }));
+        }
+      } else {
+        setValidationErrors(prev => ({ ...prev, birthDate: "" }));
+      }
+    }}
+    onBlur={(e) => {
+      const value = e.target.value;
+      if (value) {
+        const validation = validateBirthDate(value);
+        if (!validation.valid) {
+          setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
+        } else if (validation.normalizedDate && validation.normalizedDate !== value) {
+          updateForm("birthDate", validation.normalizedDate);
+          setValidationErrors(prev => ({ ...prev, birthDate: "" }));
+        }
+      }
+    }}
+    className={`rounded-xl ${validationErrors.birthDate ? "border-red-500 focus:ring-red-500" : ""}`}
+    max={new Date().toISOString().split('T')[0]}
+    min="1900-01-01"
+  />
+  {validationErrors.birthDate ? (
+    <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+      <AlertTriangle className="w-3 h-3" />
+      {validationErrors.birthDate}
+    </p>
+  ) : (
+    <p className="text-xs text-muted-foreground mt-1">
+      Utilisez le sélecteur de date de votre navigateur
+    </p>
+  )}
+</div>
+
+
+            
+                  
 
                             {/* {isEnglish ? "Residence status" : "Statut de résidence"} */}
               <div>
@@ -3061,41 +3109,66 @@ export function TaxRequestForm() {
                       className="rounded-xl"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      {isEnglish ? "Partner's date of birth" : "Date de naissance du conjoint"} <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      type="date"
-                      value={formData.birthDate2}
-                      onChange={(e) => {
-                        updateForm("birthDate2", e.target.value);
-                        // Valider immédiatement à chaque changement
-                        const validation = validateBirthDate(e.target.value);
-                        if (!validation.valid) {
-                          setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
-                        } else {
-                          setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
-                        }
-                      }}
-                      onBlur={(e) => {
-                        // Re-valider à la perte de focus
-                        const validation = validateBirthDate(e.target.value);
-                        if (!validation.valid) {
-                          setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
-                        }
-                      }}
-                      className={`rounded-xl ${validationErrors.birthDate2 ? "border-red-500 focus:ring-red-500" : ""}`}
-                      max={new Date().toISOString().split('T')[0]}
-                      min="1900-01-01"
-                    />
-                    {validationErrors.birthDate2 && (
-                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
-                        <AlertTriangle className="w-3 h-3" />
-                        {validationErrors.birthDate2}
-                      </p>
-                    )}
-                  </div>
+
+
+                  {/* Date de naissance */}
+<div>
+  <label className="block text-sm font-medium mb-2">
+    Date de naissance <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="date"
+    value={formData.birthDate2}
+    placeholder="JJ.MM.AAAA"
+    onChange={(e) => {
+      const value = e.target.value;
+      updateForm("birthDate2", value);
+      if (value) {
+        const validation = validateBirthDate(value);
+        if (!validation.valid) {
+          setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
+        } else {
+          if (validation.normalizedDate && validation.normalizedDate !== value) {
+            updateForm("birthDate2", validation.normalizedDate);
+          }
+          setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
+        }
+      } else {
+        setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
+      }
+    }}
+    onBlur={(e) => {
+      const value = e.target.value;
+      if (value) {
+        const validation = validateBirthDate(value);
+        if (!validation.valid) {
+          setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
+        } else if (validation.normalizedDate && validation.normalizedDate !== value) {
+          updateForm("birthDate", validation.normalizedDate);
+          setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
+        }
+      }
+    }}
+    className={`rounded-xl ${validationErrors.birthDate2 ? "border-red-500 focus:ring-red-500" : ""}`}
+    max={new Date().toISOString().split('T')[0]}
+    min="1900-01-01"
+  />
+  {validationErrors.birthDate2 ? (
+    <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+      <AlertTriangle className="w-3 h-3" />
+      {validationErrors.birthDate2}
+    </p>
+  ) : (
+    <p className="text-xs text-muted-foreground mt-1">
+      Utilisez le sélecteur de date de votre navigateur
+    </p>
+  )}
+</div>
+
+
+
+                  
+                  
                   <div>
                     <label className="block text-sm font-medium mb-2">
                       {isEnglish ? "Partner's residence status" : "Statut de résidence du conjoint"}
