@@ -2979,8 +2979,11 @@ export function TaxRequestForm() {
     value={formData.birthDate}
     placeholder="JJ.MM.AAAA"
     onChange={(e) => {
-      const value = e.target.value;
-      updateForm("birthDate", value);
+      const digits = e.target.value.replace(/\D/g, "").slice(0, 8);
+      let formatted = digits;
+      if (digits.length > 4) formatted = digits.slice(0,2) + "." + digits.slice(2,4) + "." + digits.slice(4);
+      else if (digits.length > 2) formatted = digits.slice(0,2) + "." + digits.slice(2);
+      updateForm("birthDate", formatted);
       if (value) {
         const validation = validateBirthDate(value);
         if (!validation.valid) {
@@ -3120,9 +3123,15 @@ export function TaxRequestForm() {
     type="date"
     value={formData.birthDate2}
     placeholder="JJ.MM.AAAA"
+
     onChange={(e) => {
-      const value = e.target.value;
-      updateForm("birthDate2", value);
+      const digits = e.target.value.replace(/\D/g, "").slice(0, 8);
+      let formatted = digits;
+      if (digits.length > 4) formatted = digits.slice(0,2) + "." + digits.slice(2,4) + "." + digits.slice(4);
+      else if (digits.length > 2) formatted = digits.slice(0,2) + "." + digits.slice(2);
+      updateForm("birthDate2", formatted);
+
+    
       if (value) {
         const validation = validateBirthDate(value);
         if (!validation.valid) {
