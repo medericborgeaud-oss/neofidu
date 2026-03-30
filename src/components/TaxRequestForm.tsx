@@ -3137,7 +3137,7 @@ export function TaxRequestForm() {
         if (!validation.valid) {
           setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
         } else if (validation.normalizedDate && validation.normalizedDate !== value) {
-          updateForm("birthDate", validation.normalizedDate);
+          updateForm("birthDate2", validation.normalizedDate);
           setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
         }
       }
