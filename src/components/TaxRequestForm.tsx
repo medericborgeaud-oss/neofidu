@@ -3113,8 +3113,9 @@ export function TaxRequestForm() {
                   {/* Date de naissance */}
 <div>
   <label className="block text-sm font-medium mb-2">
-    Date de naissance <span className="text-red-500">*</span>
-  </label>
+    {isEnglish ? "Partner's date of birth" : "Date de naissance du conjoint"} <span className="text-red-500">*</span>
+</label>
+
   <Input
     type="text"
     inputMode="numeric"
