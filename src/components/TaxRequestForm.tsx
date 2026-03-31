@@ -357,7 +357,8 @@ const createEmptyProperty = (): Property => ({
 });
 
 // Validation d'un bien immobilier - retourne les erreurs
-const validateProperty = (property: Property): string[] => {
+const validateProperty = (property: Property, isEnglish: boolean): string[] => {
+
   const errors: string[] = [];
 
   // Champs obligatoires
@@ -379,7 +380,8 @@ const validateProperty = (property: Property): string[] => {
 
 // Vérifier si tous les biens sont valides
 const areAllPropertiesValid = (props: Property[]): boolean => {
-  return props.every(p => validateProperty(p).length === 0);
+  return props.every(p => validateProperty(p, isEnglish).length === 0);
+
 };
 
 // === FONCTIONS DE validation
@@ -4602,14 +4604,17 @@ export function TaxRequestForm() {
 
                     <div className="space-y-6">
                       {/* Affichage des erreurs de validation */}
-                      {validateProperty(property).length > 0 && (
+                      {validateProperty(property, isEnglish).length > 0 && (
+
+                  
                         <div className="p-3 bg-red-50 border border-red-200 rounded-xl">
                           <div className="flex items-start gap-2">
                             <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
                             <div>
                               <p className="text-sm font-medium text-red-800">{isEnglish ? "Missing required fields:" : "Champs obligatoires manquants :"}</p>
                               <ul className="text-xs text-red-700 mt-1 list-disc pl-4">
-                                {validateProperty(property).map((error, i) => (
+                                {validateProperty(property, isEnglish).map((error, i) => (
+
                                   <li key={i}>{error}</li>
                                 ))}
                               </ul>
