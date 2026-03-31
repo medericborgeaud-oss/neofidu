@@ -431,16 +431,17 @@ const validateBirthDate = (dateStr: string): { valid: boolean; error?: string; n
     return { valid: false, error: "Date de naissance requise" };
   }
 
-  const date = new Date(normalizedDate);
-  const today = new Date();
-  today.setHours(23, 59, 59, 999);
-
-  if (isNaN(date.getTime())) {
-    return { valid: false, error: "Date invalide" };
-  }
-
   const [year, month, day] = normalizedDate.split("-").map(Number);
-  if (date.getFullYear() !== year || date.getMonth() + 1 !== month || date.getDate() !== day) {
+const date = new Date(year, month - 1, day);
+const today = new Date();
+today.setHours(23, 59, 59, 999);
+
+if (isNaN(date.getTime())) {
+  return { valid: false, error: "Date invalide" };
+}
+
+if (date.getFullYear() !== year || date.getMonth() + 1 !== month || date.getDate() !== day) {
+
     return { valid: false, error: "Cette date n'existe pas (ex: 31 février)" };
   }
 
@@ -2999,10 +3000,10 @@ export function TaxRequestForm() {
         const validation = validateBirthDate(value);
         if (!validation.valid) {
           setValidationErrors(prev => ({ ...prev, birthDate: validation.error || "Date invalide" }));
-        } else if (validation.normalizedDate && validation.normalizedDate !== value) {
-          updateForm("birthDate", validation.normalizedDate);
-          setValidationErrors(prev => ({ ...prev, birthDate: "" }));
-        }
+      } else {
+  setValidationErrors(prev => ({ ...prev, birthDate: "" }));
+}
+
       }
     }}
     className={`rounded-xl ${validationErrors.birthDate ? "border-red-500 focus:ring-red-500" : ""}`}
@@ -3136,10 +3137,10 @@ export function TaxRequestForm() {
         const validation = validateBirthDate(value);
         if (!validation.valid) {
           setValidationErrors(prev => ({ ...prev, birthDate2: validation.error || "Date invalide" }));
-        } else if (validation.normalizedDate && validation.normalizedDate !== value) {
-          updateForm("birthDate2", validation.normalizedDate);
-          setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
-        }
+        } else {
+  setValidationErrors(prev => ({ ...prev, birthDate2: "" }));
+}
+
       }
     }}
     className={`rounded-xl ${validationErrors.birthDate2 ? "border-red-500 focus:ring-red-500" : ""}`}
