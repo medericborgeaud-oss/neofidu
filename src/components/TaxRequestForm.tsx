@@ -379,8 +379,9 @@ const validateProperty = (property: Property, isEnglish: boolean): string[] => {
 };
 
 // Vérifier si tous les biens sont valides
-const areAllPropertiesValid = (props: Property[]): boolean => {
+const areAllPropertiesValid = (props: Property[], isEnglish: boolean): boolean => {
   return props.every(p => validateProperty(p, isEnglish).length === 0);
+
 
 };
 
@@ -1769,7 +1770,8 @@ export function TaxRequestForm() {
       if (!formData.hasProperty) return true;
       // Si propriété déclarée, au moins un bien doit exister et tous doivent être valides
       if (properties.length === 0) return false;
-      return areAllPropertiesValid(properties);
+      return areAllPropertiesValid(properties, isEnglish);
+
     }
     if (currentStep === 7) {
       // Si envoi par courrier postal, pas besoin de documents uploadés
