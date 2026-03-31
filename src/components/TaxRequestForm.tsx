@@ -4057,11 +4057,15 @@ export function TaxRequestForm() {
                   </h4>
                   <p className="text-sm text-red-700 mb-4">
                     {isEnglish ? "To prepare your tax return, we need to know your business result (profit or loss)." : "Pour établir votre déclaration, nous avons besoin de connaître le résultat de votre activité indépendante."}
+                   
                     {formData.canton === "VD" && (
-                      <span className="block mt-1 font-medium">
-                        ⚠️ Le canton de Vaud exige également le isEnglish ? "General self-employed questionnaire" : "Questionnaire général indépendant" à joindre à vos documents.
-                      </span>
-                    )}
+  <span className="block mt-1 font-medium">
+    ⚠️ Le canton de Vaud exige également le{" "}
+    {isEnglish ? "General self-employed questionnaire" : "Questionnaire général indépendant"} à joindre à vos documents.
+  </span>
+)}
+
+                
                   </p>
 
                   <div className="p-4 bg-white rounded-xl border mb-4">
