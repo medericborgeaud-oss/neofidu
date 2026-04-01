@@ -36,10 +36,17 @@ export async function POST(request: NextRequest) {
       formLoadedAt: body._formToken,
     });
 
-    if (spamCheck.isSpam) {
-      console.warn("Spam detected from " + clientIP + ": " + spamCheck.reason);
-      return NextResponse.json({ success: true, id: "SPAM-BLOCKED" });
-    }
+  if (spamCheck.isSpam) {
+  console.warn("Spam detected from " + clientIP + ": " + spamCheck.reason);
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Votre soumission a été bloquée par notre protection anti-spam. Veuillez rafraîchir la page et réessayer.",
+      spamBlocked: true,
+    },
+    { status: 429 }
+  );
+}
 
     const reference = generateReference();
     const id = Math.random().toString(36).substr(2, 9);
