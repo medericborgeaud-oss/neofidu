@@ -2693,7 +2693,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                     <p className="text-sm text-amber-800 flex items-start gap-2">
                       <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
                       <span>
-                        {isEnglish ? "A supplement of <strong>CHF 50.-</strong> applies to returns for Swiss abroad (management of con" : "Un supplément de <strong>CHF 50.-</strong> s'applique pour les déclarations des Suisses de l'étranger (gestion des con"}ventions de double imposition, complexité accrue).
+                        {isEnglish ? "A supplement of <strong>CHF 50.-</strong> applies to returns for Swiss abroad (management of con" : "Un supplément de CHF 50.- s'applique pour les déclarations des Suisses de l'étranger (gestion des con"}ventions de double imposition, complexité accrue).
                       </span>
                     </p>
                   </div>
