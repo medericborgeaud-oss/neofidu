@@ -5054,7 +5054,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {/* Info supplément */}
                 <div className="p-3 bg-primary/5 rounded-xl text-center">
                   <p className="text-sm text-muted-foreground">
-                    {isEnglish ? "Supplement of <strong>CHF 50.-</strong> per property" : "Supplément de <strong>CHF 50.-</strong> par bien immobilier"}
+                    {isEnglish ? "Supplement of <strong>CHF 50.-</strong> per property" : "Supplément de CHF 50.- par bien immobilier"}
                   </p>
                 </div>
               </div>
