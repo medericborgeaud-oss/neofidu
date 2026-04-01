@@ -2030,8 +2030,7 @@ export function TaxRequestForm() {
 
       const data = await response.json();
 
-      if (data.success && data.reference) {
-        setTaxRequestReference(data.reference);
+if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {        setTaxRequestReference(data.reference);
         if (data.existing) {
           console.log("📋 Demande existante récupérée:", data.reference, "| Message:", data.message);
         } else {
