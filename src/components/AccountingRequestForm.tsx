@@ -478,13 +478,19 @@ export function AccountingRequestForm() {
 
       const data = await response.json();
 
-      if (response.ok && data.success) {
+      if (response.ok && data.success && data.reference && data.reference !== "SPAM-BLOCKED") {
         setSubmitReference(data.reference);
         setIsSubmitted(true);
       } else {
-        setSubmitError(data.error || (isEnglish ? "An error occurred. Please try again." : "Une erreur est survenue. Veuillez réessayer."));
+        setSubmitError(
+          data?.spamBlocked
+            ? (isEnglish
+              ? "Your submission was blocked by our anti-spam protection. Please refresh the page and try again."
+              : "Votre soumission a été bloquée par notre protection anti-spam. Veuillez rafraîchir la page et réessayer.")
+            : (data?.error || (isEnglish ? "An error occurred. Please try again." : "Une erreur est survenue. Veuillez réessayer."))
+        );
       }
-    } catch (error) {
+      } catch (error) {
       console.error("Submit error:", error);
       setSubmitError(isEnglish ? "An error occurred. Please try again." : "Une erreur est survenue. Veuillez réessayer.");
     } finally {
@@ -1273,7 +1279,12 @@ export function AccountingRequestForm() {
             </div>
           </div>
         )}
-
+{submitError && (
+              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+                {submitError}
+              </div>
+            )}
         {/* Navigation */}
         <div className="flex justify-between mt-8 pt-6 border-t">
           <Button
