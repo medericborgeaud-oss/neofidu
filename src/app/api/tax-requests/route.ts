@@ -29,12 +29,18 @@ export async function POST(request: NextRequest) {
       formLoadedAt: body._formToken,
     });
 
-    if (spamCheck.isSpam) {
+   if (spamCheck.isSpam) {
       console.warn(`🚫 Spam detected from ${clientIP}: ${spamCheck.reason}`);
-      return NextResponse.json({
-        success: true,
-        reference: "SPAM-BLOCKED",
-      });
+      // IMPORTANT: Ne PAS retourner success:true pour du spam
+      // sinon le front-end croit que la demande a été sauvegardée
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Votre soumission a été bloquée par notre protection anti-spam. Veuillez rafraîchir la page et réessayer.",
+          spamBlocked: true,
+        },
+        { status: 429 }
+      );
     }
 
     // ===== VALIDATION DES DONNÉES OBLIGATOIRES =====
