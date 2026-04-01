@@ -222,12 +222,16 @@ export async function POST(request: NextRequest) {
     });
 
     if (spamCheck.isSpam) {
-      console.warn(`🚫 Spam detected from ${clientIP}: ${spamCheck.reason}`);
-      return NextResponse.json({
-        success: true,
-        reference: "SPAM-BLOCKED",
-      });
-    }
+  console.warn(`🚫 Spam detected from ${clientIP}: ${spamCheck.reason}`);
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Votre soumission a été bloquée par notre protection anti-spam. Veuillez rafraîchir la page et réessayer.",
+      spamBlocked: true,
+    },
+    { status: 429 }
+  );
+}
 
     // Validation
     if (!body.firstName || !body.lastName || !body.email || !body.canton || !body.companyName) {
