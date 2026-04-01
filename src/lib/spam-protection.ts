@@ -10,7 +10,7 @@ const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 5; // Max 5 requêtes par minute par IP
 const MIN_SUBMISSION_TIME = 3000; // Minimum 3 secondes pour remplir un formulaire
-const MAX_SUBMISSION_TIME = 30 * 60 * 1000; // Maximum 30 minutes
+
 
 export interface SpamCheckResult {
   isSpam: boolean;
@@ -72,7 +72,7 @@ export function checkRateLimit(ip: string): SpamCheckResult {
 
 /**
  * Vérifie le timestamp de soumission
- * Le formulaire ne doit pas être soumis trop rapidement (bot) ni trop tard (token expiré)
+ * Le formulaire ne doit pas être soumis trop rapidement (bot) 
  */
 export function checkTimestamp(formLoadedAt: number | undefined | null): SpamCheckResult {
   if (!formLoadedAt) {
@@ -88,10 +88,7 @@ export function checkTimestamp(formLoadedAt: number | undefined | null): SpamChe
     return { isSpam: true, reason: "too_fast" };
   }
 
-  if (elapsed > MAX_SUBMISSION_TIME) {
-    console.warn(`⏰ Form submission token expired: ${elapsed}ms`);
-    return { isSpam: true, reason: "token_expired" };
-  }
+
 
   return { isSpam: false };
 }
