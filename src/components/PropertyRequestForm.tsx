@@ -200,8 +200,16 @@ export function PropertyRequestForm() {
         return;
       }
 
-      setSubmitReference(data.reference || "");
-      setIsSubmitted(true);
+      if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {
+  setSubmitReference(data.reference);
+  setIsSubmitted(true);
+} else {
+  if (data.spamBlocked) {
+    throw new Error("Votre soumission a été bloquée par notre protection anti-spam. Veuillez rafraîchir la page et réessayer.");
+  } else {
+    throw new Error(data.error || "Une erreur est survenue lors de la soumission.");
+  }
+}
     } catch (error) {
       setSubmitError(isEnglish ? "Connection error" : "Erreur de connexion");
     } finally {
