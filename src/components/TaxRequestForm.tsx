@@ -299,6 +299,8 @@ interface Property {
   npa: string;
   city: string;
   canton: string;
+  location: string; // "switzerland" | "abroad" | ""
+  country: string; // Pays si bien à l'étranger
   parcelNumber: string; // Numéro de parcelle cadastrale
   // Caractéristiques
   propertyType: string;
@@ -339,6 +341,8 @@ const createEmptyProperty = (): Property => ({
   npa: "",
   city: "",
   canton: "",
+  location: "",
+  country: "",
   parcelNumber: "",
   propertyType: "",
   usage: "",
@@ -365,8 +369,9 @@ const validateProperty = (property: Property, isEnglish: boolean): string[] => {
   if (!property.street.trim()) errors.push(isEnglish ? "Street and number" : "Adresse (rue et numéro)");
   if (!property.npa.trim()) errors.push("NPA");
   if (!property.city.trim()) errors.push(isEnglish ? "City" : "Localité");
-  if (!property.canton) errors.push(isEnglish ? "Property canton" : "Canton du bien");
-  if (!property.propertyType) errors.push(isEnglish ? "Property type" : "Type de bien");
+  if (!property.location) errors.push(isEnglish ? "Property location" : "Localisation du bien");
+  if (property.location === "switzerland" && !property.canton) errors.push(isEnglish ? "Property canton" : "Canton du bien");
+  if (property.location === "abroad" && !property.country) errors.push(isEnglish ? "Property country" : "Pays du bien");  if (!property.propertyType) errors.push(isEnglish ? "Property type" : "Type de bien");
   if (!property.usage) errors.push(isEnglish ? "Property usage" : "Usage du bien");
   if (!property.fiscalValue.trim()) errors.push(isEnglish ? "Tax value" : "Valeur fiscale");
 
@@ -4664,23 +4669,62 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                               className="rounded-xl"
                             />
                           </div>
-                          <div>
-                            <label className="block text-sm font-medium mb-2">
-                              {isEnglish ? "Property canton" : "Canton du bien"} <span className="text-red-500">*</span>
-                            </label>
-                            <select
-                              value={property.canton}
-                              onChange={(e) => updateProperty(property.id, "canton", e.target.value)}
-                              className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-primary"
-                            >
-                              <option value="">{isEnglish ? "Select the canton" : "Sélectionnez le canton"}</option>
-                              {allCantons.map((c) => (
-                                <option key={c.code} value={c.code}>
-                                  {c.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
+                         <div>
+                <label className="block text-sm font-medium mb-2">
+                  {isEnglish ? "Property location" : "Localisation du bien"} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={property.location || ""}
+                  onChange={(e) => {
+                    updateProperty(property.id, "location", e.target.value);
+                    if (e.target.value === "abroad") {
+                      updateProperty(property.id, "canton", "");
+                    }
+                    if (e.target.value === "switzerland") {
+                      updateProperty(property.id, "country", "");
+                    }
+                  }}
+                  className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                >
+                  <option value="">{isEnglish ? "Select" : "Sélectionnez"}</option>
+                  <option value="switzerland">{isEnglish ? "Switzerland" : "Suisse"}</option>
+                  <option value="abroad">{isEnglish ? "Abroad" : "Étranger"}</option>
+                </select>
+              </div>
+
+              {property.location === "switzerland" && (
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  {isEnglish ? "Property canton" : "Canton du bien"} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={property.canton}
+                  onChange={(e) => updateProperty(property.id, "canton", e.target.value)}
+                  className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                >
+                  <option value="">{isEnglish ? "Select the canton" : "Sélectionnez le canton"}</option>
+                  {allCantons.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              )}
+
+              {property.location === "abroad" && (
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  {isEnglish ? "Country" : "Pays"} <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder={isEnglish ? "e.g. France" : "ex. France"}
+                  value={property.country || ""}
+                  onChange={(e) => updateProperty(property.id, "country", e.target.value)}
+                  className="rounded-xl"
+                />
+              </div>
+              )}
                           <div>
                             <label className="block text-sm font-medium mb-2 flex items-center gap-2">
                               {isEnglish ? "Cadastral parcel number" : "N° de parcelle cadastrale"}
