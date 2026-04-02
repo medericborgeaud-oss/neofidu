@@ -3854,14 +3854,25 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>En 7 ans jusqu'à la retraite, elle peut encore accumuler <strong>CHF 168'000.-</strong> tout en économisant environ <strong>CHF 6'000.- d'impôts par an</strong>.</p>
 
 <br/>
-
+<p><strong>Nouveauté 2026 : les rachats rétroactifs du pilier 3a</strong></p>
+<p>Grande nouveauté pour 2026 : il est désormais possible de <strong>racheter les cotisations 3a non versées</strong> lors des années précédentes. Si vous n'avez pas versé le maximum certaines années (temps partiel, congé parental, formation, difficultés financières), vous pouvez désormais combler ces lacunes.</p>
+<p>Les règles à retenir :</p>
+<ul>
+<li>Le rachat est possible pour les <strong>10 dernières années</strong> au maximum</li>
+<li>Seules les années de cotisation AVS <strong>à partir de 2025</strong> sont éligibles (en 2026, vous pouvez donc racheter uniquement l'année 2025 ; en 2027, les années 2025 et 2026 ; etc.)</li>
+<li>Vous devez exercer une activité lucrative l'année du rachat</li>
+<li>Le montant racheté est <strong>entièrement déductible</strong> du revenu imposable, en plus du versement annuel ordinaire</li>
+<li>Vous ne devez pas avoir effectué de retrait anticipé lié à l'âge</li>
+</ul>
+<p>C'est un levier d'optimisation fiscale considérable : vous pouvez potentiellement déduire jusqu'à <strong>deux fois le plafond annuel</strong> la même année (versement courant + rachat).</p>
+<br>
 <p><strong>Les pièges du pilier 3a à éviter</strong></p>
 
 <br/>
 
 <h3><strong>Retirer son 3a trop tôt</strong></h3>
 
-<p>Le 3a est bloqué jusqu'à <strong>5 ans avant l'âge légal de la retraite</strong> (soit 60 ans actuellement). Les seuls cas de retrait anticipé autorisés sont :</p>
+<p>Le 3a est bloqué jusqu'à 5 ans avant l'âge de référence AVS. Depuis la réforme AVS 21, cet âge est fixé à 65 ans pour les hommes et s'harmonise progressivement à 65 ans pour les femmes (atteint en 2028). Le retrait anticipé est donc possible dès 60 ans. Les seuls cas de retrait anticipé avant ce délai sont :</p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
 <li style="margin-bottom: 0.25rem;">Achat de votre <strong>résidence principale</strong></li>
