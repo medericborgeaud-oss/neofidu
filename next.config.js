@@ -79,6 +79,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/simulateur-retraite", destination: "/simulateur/retraite", permanent: true },
+      { source: "/blog/pilier-3a-guide-complet", destination: "/blog/pilier-3a-2026-plafonds-avantages", permanent: true },
     ];
   },
   async headers() {
