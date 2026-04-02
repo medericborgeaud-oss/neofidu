@@ -5795,4 +5795,218 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     category: "expatries",
     date: "2026-03-19",
     readTime: 7,
-  },];
+  },
+// À ajouter dans blog-data.ts AVANT le "]; " final (ligne 5799)
+// Coller ce bloc juste après la fermeture "}" du dernier article (ligne 5798, remplacer "},];" par "},")
+// puis coller ce qui suit, et terminer par "];""
+
+  {
+    id: "28",
+    slug: "suisses-etranger-erreurs-fiscales-eviter",
+    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&auto=format&fit=crop&q=80",
+    title: "Suisses de l'étranger : 7 erreurs fiscales courantes (et comment les éviter)",
+    titleEn: "Swiss Abroad: 7 Common Tax Mistakes (and How to Avoid Them)",
+    excerpt: "Vous quittez la Suisse, vous y revenez ou vous vivez à l'étranger avec des liens en Suisse ? Voici les erreurs fiscales que l'on voit le plus souvent — et ce qu'il faut faire à la place.",
+    excerptEn: "Leaving Switzerland, coming back, or living abroad with Swiss ties? Here are the most common tax mistakes we see — and what to do instead.",
+    keywords: [
+      "suisses de l'étranger impôts",
+      "quitter la suisse fiscalité",
+      "retour en suisse domicile fiscal",
+      "erreurs fiscales expatriés suisses",
+      "bien immobilier suisse étranger",
+      "AVS suisses de l'étranger",
+      "2ème pilier départ suisse",
+      "3ème pilier retrait étranger",
+      "déclaration impôts suisses abroad",
+      "cinquième suisse fiscalité",
+    ],
+    content: `<p>Ils sont plus de <strong>838'000</strong>. Les Suisses de l'étranger — la fameuse « cinquième Suisse » — représentent 11 % de la population du pays. Chaque année, des milliers quittent la Suisse, d'autres y reviennent, et beaucoup gardent des liens financiers avec la Confédération sans toujours savoir ce que ça implique fiscalement.</p>
+
+<br/>
+
+<p>Que vous prépariez votre départ, que vous viviez déjà à l'étranger, ou que vous planifiez un retour, voici les erreurs les plus fréquentes que nous voyons chez NeoFidu — et surtout, comment les éviter.</p>
+
+<br/>
+
+<h3><strong>Erreur n°1 : Croire que quitter la Suisse = fin des impôts suisses</strong></h3>
+
+<br/>
+
+<p>C'est l'erreur la plus répandue. Beaucoup pensent que dès qu'ils se désinscrivent de leur commune et s'installent à l'étranger, c'est terminé avec le fisc suisse. En réalité, c'est plus nuancé.</p>
+
+<br/>
+
+<p>Votre <strong>assujettissement illimité</strong> (déclaration de tous vos revenus mondiaux en Suisse) prend fin avec votre départ, c'est vrai. Mais un <strong>assujettissement limité</strong> continue si vous gardez des liens économiques avec la Suisse :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🏠 Vous possédez un <strong>bien immobilier en Suisse</strong> → vous devez déclarer vos revenus immobiliers dans le canton où se situe le bien</li>
+<li style="margin-bottom:8px">💼 Vous exercez une <strong>activité indépendante en Suisse</strong> → ces revenus restent imposables en Suisse</li>
+<li style="margin-bottom:8px">🏢 Vous êtes administrateur d'une <strong>société suisse</strong> → les tantièmes sont imposés à la source</li>
+</ul>
+
+<br/>
+
+<p>👉 <strong>Ce qu'il faut faire :</strong> Avant votre départ, contactez votre administration fiscale cantonale (idéalement <strong>30 jours avant</strong>) et renseignez-vous sur vos obligations résiduelles. Déposez votre déclaration pour l'année en cours avant de partir.</p>
+
+<br/>
+
+<h3><strong>Erreur n°2 : Ne pas déclarer ses revenus mondiaux quand on a un bien en Suisse</strong></h3>
+
+<br/>
+
+<p>Si vous vivez à l'étranger et possédez un appartement ou une maison en Suisse, vous devez remplir une déclaration dans le canton du bien. Jusque-là, la plupart des gens le savent.</p>
+
+<br/>
+
+<p>Ce qu'ils oublient souvent : dans cette déclaration, vous devez indiquer <strong>l'ensemble de vos revenus et de votre fortune mondiale</strong> — y compris votre salaire à l'étranger, vos comptes bancaires étrangers, votre maison à l'étranger, etc.</p>
+
+<br/>
+
+<p>Pourquoi ? Parce que la Suisse applique un système de <strong>taux d'imposition progressif</strong>. Vos revenus étrangers ne seront pas taxés en Suisse (pas de double imposition), mais ils servent à déterminer le <strong>taux applicable</strong> sur vos revenus suisses. C'est ce qu'on appelle la <strong>réserve de progressivité</strong>.</p>
+
+<br/>
+
+<p>👉 <strong>Ce qu'il faut faire :</strong> Déclarez honnêtement tous vos revenus mondiaux. Si vous ne le faites pas, l'administration fiscale peut estimer vos revenus elle-même — et en général, ce n'est pas en votre faveur.</p>
+
+<br/>
+
+<h3><strong>Erreur n°3 : Retirer son 2ème pilier sans réfléchir au timing fiscal</strong></h3>
+
+<br/>
+
+<p>Quand vous quittez définitivement la Suisse, vous pouvez demander le versement de votre 2ème pilier (LPP). Mais les règles varient selon votre destination :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🇪🇺 <strong>Départ vers un pays UE/AELE :</strong> Seule la part <strong>surobligatoire</strong> peut être retirée en cash. La part obligatoire reste en Suisse sur un compte de libre passage jusqu'à l'âge de la retraite.</li>
+<li style="margin-bottom:8px">🌍 <strong>Départ hors UE/AELE :</strong> Vous pouvez retirer la <strong>totalité</strong> du capital (obligatoire + surobligatoire).</li>
+</ul>
+
+<br/>
+
+<p>Dans les deux cas, un <strong>impôt à la source</strong> est prélevé en Suisse au moment du retrait. Le taux dépend du canton où siège votre caisse de pension — et les écarts entre cantons sont importants (parfois du simple au triple).</p>
+
+<br/>
+
+<p>Si une convention de double imposition existe avec votre pays de résidence, vous pouvez souvent <strong>demander le remboursement</strong> de cet impôt à la source suisse — mais il faudra alors déclarer ce revenu dans votre pays.</p>
+
+<br/>
+
+<p>👉 <strong>Ce qu'il faut faire :</strong> Avant de retirer, vérifiez le taux d'imposition du canton de votre caisse de pension. Si le taux est élevé, il peut valoir la peine de transférer d'abord vos avoirs vers une fondation de libre passage dans un canton fiscalement plus avantageux (Schwyz, Zoug, Appenzell Rhodes-Intérieures par exemple).</p>
+
+<br/>
+
+<h3><strong>Erreur n°4 : Oublier le 3ème pilier</strong></h3>
+
+<br/>
+
+<p>Votre 3ème pilier 3a ne disparaît pas quand vous quittez la Suisse. L'argent reste sur votre compte et continue de fructifier. Mais vous <strong>ne pouvez plus y cotiser</strong> si vous n'avez plus de revenu soumis à l'AVS en Suisse.</p>
+
+<br/>
+
+<p>Le départ définitif de Suisse est l'un des <strong>motifs légaux de retrait anticipé</strong> du 3ème pilier 3a. Comme pour le 2ème pilier, un impôt à la source sera prélevé, et le canton de l'institution de prévoyance détermine le taux.</p>
+
+<br/>
+
+<p>L'erreur courante : retirer son 2ème et son 3ème pilier la <strong>même année</strong>. Les montants se cumulent et font grimper le taux d'imposition à cause de la progressivité. Si possible, échelonnez les retraits sur <strong>deux années fiscales différentes</strong>.</p>
+
+<br/>
+
+<p>👉 <strong>Ce qu'il faut faire :</strong> Planifiez vos retraits. Si vous avez plusieurs comptes 3a, retirez-les sur des années différentes. Et coordonnez le timing avec le retrait du 2ème pilier.</p>
+
+<br/>
+
+<h3><strong>Erreur n°5 : Négliger les lacunes AVS</strong></h3>
+
+<br/>
+
+<p>Quand vous vivez à l'étranger, vous ne cotisez plus automatiquement à l'<strong>AVS</strong>. Chaque année sans cotisation crée une <strong>lacune</strong> qui réduit votre future rente de vieillesse. Une année manquante, c'est environ <strong>2,3 % de rente en moins</strong> — à vie.</p>
+
+<br/>
+
+<p>Peu de gens le savent, mais les Suisses de l'étranger peuvent <strong>continuer à cotiser volontairement à l'AVS</strong>, à condition de :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">📋 S'inscrire dans les <strong>12 mois suivant le départ</strong> de Suisse auprès de la Caisse suisse de compensation (CSC) à Genève</li>
+<li style="margin-bottom:8px">⏰ Avoir été affilié à l'AVS pendant au moins <strong>5 ans consécutifs</strong> avant le départ</li>
+<li style="margin-bottom:8px">💰 Verser une cotisation annuelle minimale (actuellement <strong>CHF 980</strong> par an)</li>
+</ul>
+
+<br/>
+
+<p>👉 <strong>Ce qu'il faut faire :</strong> Avant de partir, renseignez-vous sur l'AVS facultative. Le délai de 12 mois est strict — si vous le manquez, c'est trop tard. Demandez un extrait de compte AVS pour connaître votre situation actuelle.</p>
+
+<br/>
+
+<h3><strong>Erreur n°6 : Mal gérer son retour en Suisse</strong></h3>
+
+<br/>
+
+<p>Le retour en Suisse après plusieurs années à l'étranger est un moment clé sur le plan fiscal. Voici ce qui se passe :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">📅 Vous devenez imposable dans votre nouveau canton de domicile <strong>dès la date de votre arrivée</strong></li>
+<li style="margin-bottom:8px">📝 Vous déclarez vos revenus pour la <strong>période entre votre arrivée et le 31 décembre</strong> de la même année</li>
+<li style="margin-bottom:8px">💰 Votre fortune est évaluée au <strong>31 décembre</strong> de l'année d'arrivée</li>
+<li style="margin-bottom:8px">🏠 Si vous aviez un bien immobilier en Suisse pendant votre absence, les déclarations de ces années doivent être en ordre</li>
+</ul>
+
+<br/>
+
+<p>L'erreur classique : s'installer dans un canton sans avoir comparé les taux d'imposition. Entre Genève et Zoug, la différence peut être <strong>considérable</strong>. Si vous avez de la flexibilité sur votre lieu de domicile, c'est le moment de faire des simulations.</p>
+
+<br/>
+
+<p>👉 <strong>Ce qu'il faut faire :</strong> Utilisez un <a href="/simulateur/impots">simulateur d'impôts</a> pour comparer les cantons. Si vous créez une entreprise à votre retour (RI ou Sàrl), le choix du siège social a aussi un impact fiscal.</p>
+
+<br/>
+
+<h3><strong>Erreur n°7 : Ignorer l'échange automatique de renseignements (EAR)</strong></h3>
+
+<br/>
+
+<p>Depuis 2017, la Suisse échange automatiquement des informations financières avec plus de <strong>100 pays</strong>. Concrètement, si vous avez un compte bancaire en Suisse et que vous résidez à l'étranger, votre banque suisse transmet des informations à l'administration fiscale de votre pays de résidence — et vice versa.</p>
+
+<br/>
+
+<p>Cela signifie que ne pas déclarer un compte suisse à l'étranger (ou un compte étranger en Suisse) est devenu <strong>très risqué</strong>. Les administrations fiscales reçoivent les données et peuvent recouper les informations.</p>
+
+<br/>
+
+<p>👉 <strong>Ce qu'il faut faire :</strong> Déclarez tous vos comptes, dans tous les pays. L'époque où l'on pouvait « oublier » un compte en Suisse est révolue. En cas de doute, une dénonciation spontanée (autodenunciation) permet souvent de régulariser la situation sans amende.</p>
+
+<br/>
+
+<hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
+
+<br/>
+
+<h3><strong>En résumé</strong></h3>
+
+<br/>
+
+<p>La fiscalité des Suisses de l'étranger est un domaine où les erreurs coûtent cher — mais où une bonne planification fait toute la différence. Que ce soit pour un départ, un séjour prolongé à l'étranger, ou un retour en Suisse, chaque étape mérite une attention particulière.</p>
+
+<br/>
+
+<p>Chez <strong>NeoFidu</strong>, nous accompagnons régulièrement des Suisses de l'étranger dans leurs démarches fiscales : déclaration d'impôts pour des biens immobiliers en Suisse, conseil au retour, choix de structure juridique pour se mettre à son compte. Notre service est <strong>100 % en ligne</strong>, ce qui facilite les choses quand on vit à des milliers de kilomètres.</p>
+
+<br/>
+
+<p>Besoin d'un accompagnement personnalisé ? <strong><a href="/contact">Contactez-nous</a></strong> — nous sommes là pour vous aiguiller.</p>
+
+<br/>
+
+<p>Besoin d'aide pour votre déclaration ou votre retour en Suisse ? <strong>Neofidu</strong> vous accompagne de A à Z, où que vous soyez dans le monde. <a href="/demande">Déposez votre demande en ligne →</a></p>`,
+    category: "expatries",
+    date: "2026-04-02",
+    readTime: 12,
+  },
+];
