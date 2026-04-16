@@ -3644,38 +3644,48 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
             <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
             {(formData.employmentStatus === "employed" || formData.employmentStatus === "both") && (
   <>
-    {/* Contribuable 1 */}
-    <label className="flex items-center gap-3 cursor-pointer">
-      <input
-        type="checkbox"
-        checked={formData.hasMealsOutside}
-        onChange={(e) =>
-          setFormData((prev) => ({
-            ...prev,
-            hasMealsOutside: e.target.checked,
-          }))
-        }
-        className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
-      />
-      <span className="text-gray-700">
-        Repas pris hors du domicile (Contribuable 1)
-      </span>
-    </label>
-    <label className="flex items-center gap-3 cursor-pointer">
-  {/* ... checkbox existant ... */}
+   {/* Contribuable 1 */}
+<label className="flex items-center gap-3 cursor-pointer">
+  <input
+    type="checkbox"
+    checked={formData.hasMealsOutside}
+    onChange={(e) =>
+      setFormData((prev) => ({
+        ...prev,
+        hasMealsOutside: e.target.checked,
+      }))
+    }
+    className="w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary"
+  />
+  <div>
+    <span className="font-medium">
+      {formData.firstName || (isEnglish ? "Taxpayer 1" : "Contribuable 1")} — {isEnglish ? "eats outside home most working days" : "mange hors du domicile la majorité des jours de travail"}
+    </span>
+    <p className="text-sm text-blue-600 mt-1">
+      {isEnglish ? "Deductible if the taxpayer cannot return home during the lunch break" : "Déductible si le/la contribuable ne peut pas rentrer chez lui/elle pendant la pause de midi"}
+    </p>
+  </div>
 </label>
-<p className="text-sm text-blue-600 ml-8 mt-1">
-  {isEnglish 
-    ? "Deductible if the taxpayer cannot return home during the lunch break" 
-    : "Déductible si le/la contribuable ne peut pas rentrer chez lui/elle pendant la pause de midi"}
-</p>
 {formData.hasMealsOutside && (
-    
-      <div className="mt-4 ml-8">
-        {/* ... le contenu existant des détails repas ... */}
-      </div>
-    )}
-  </>
+  <div className="mt-4 ml-8">
+    <label className="block text-sm font-medium mb-2">
+      {isEnglish ? `Number of days per year ${formData.firstName || "the taxpayer"} eats outside` : `Nombre de jours par année où ${formData.firstName || "le/la contribuable"} mange à l'extérieur`}
+    </label>
+    <Input
+      type="number"
+      min="1"
+      max="260"
+      placeholder="Ex: 220"
+      value={formData.mealsOutsideDays}
+      onChange={(e) => updateForm("mealsOutsideDays", e.target.value)}
+      className="w-32 rounded-xl"
+    />
+    <p className="text-xs text-muted-foreground mt-1">
+      {isEnglish ? "About 220 days for full-time employment" : "Environ 220 jours pour un emploi à 100%"}
+    </p>
+  </div>
+)}
+</>
 )}
               {/* Conjoint(e) — affiché uniquement pour un couple */}
 {formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both") && (                <div className="border-t border-blue-200 mt-4 pt-4">
