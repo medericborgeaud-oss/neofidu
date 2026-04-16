@@ -266,7 +266,10 @@ interface PropertyDetail {
   city?: string;
   canton?: string;
   cantonName?: string;
-  parcelNumber?: string;surfaceM2?: string;
+  parcelNumber?: string;
+  surfaceM2?: string;
+   country?: string;
+    location?: string;
   propertyType?: string;
   propertyTypeName?: string;
   usage?: string;
@@ -3085,20 +3088,27 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                                     <p className="font-medium">{prop.cantonName || prop.canton}</p>
                                   </>
                                 )}
-                                {/* Numéro parcelle */}
+                               {/* Numéro parcelle */}
                                 {prop.parcelNumber && (
                                   <>
                                     <p className="text-muted-foreground">N° parcelle</p>
                                     <p className="font-medium">{prop.parcelNumber}</p>
                                   </>
                                 )}
-                                {/* Surface m² */}
-{prop.surfaceM2 && (
-  <>
-    <p className="text-muted-foreground">Surface</p>
-    <p className="font-medium">{prop.surfaceM2} m²</p>
-  </>
-)}
+                                {/* Surface en m² */}
+                                {prop.surfaceM2 && (
+                                  <>
+                                    <p className="text-muted-foreground">Surface</p>
+                                    <p className="font-medium">{prop.surfaceM2} m²</p>
+                                  </>
+                                )}
+                                {/* Localisation (Suisse/Étranger) */}
+                                {prop.location === "abroad" && prop.country && (
+                                  <>
+                                    <p className="text-muted-foreground">Pays</p>
+                                    <p className="font-medium">{prop.country}</p>
+                                  </>
+                                )}
                                 {/* Quotité */}
                                 {prop.ownershipShare && (
                                   <>
