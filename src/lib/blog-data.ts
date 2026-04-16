@@ -6009,7 +6009,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     date: "2026-04-02",
     readTime: 12,
   },
-  // À ajouter dans blog-data.ts AVANT le "]; " final
+ // À ajouter dans blog-data.ts AVANT le "]; " final
 // Coller ce bloc juste après la fermeture "}" du dernier article, ajouter une virgule après le "}" précédent si nécessaire
 
   {
@@ -6281,8 +6281,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
 
 <p>Envie d'optimiser votre épargne et vos impôts ? <strong><a href="/demande">Déposez votre demande en ligne →</a></strong></p>`,
-    category: "epargne",
+    category: "fiscalite",
     date: "2026-04-16",
     readTime: 10,
   },
+   
 ];
