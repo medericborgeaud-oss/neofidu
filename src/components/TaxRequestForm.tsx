@@ -3641,8 +3641,9 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
             )}
 
             {/* Repas hors domicile */}
-            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-            {(formData.employmentStatus === "employed" || formData.employmentStatus === "both") && (
+{((formData.employmentStatus === "employed" || formData.employmentStatus === "both") || (formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both"))) && (
+            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">           
+              {(formData.employmentStatus === "employed" || formData.employmentStatus === "both") && (
   <>
    {/* Contribuable 1 */}
 <label className="flex items-center gap-3 cursor-pointer">
@@ -3726,7 +3727,8 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                   )}
                 </div>
               )}
-            </div>
+            </div>  
+)}
 
             {/* Enfants à charge */}
             <div className="mb-8 p-5 bg-gradient-to-r from-blue-50 to-teal-50 border border-blue-200 rounded-xl">
