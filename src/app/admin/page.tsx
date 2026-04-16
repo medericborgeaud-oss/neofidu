@@ -2612,13 +2612,27 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                           </>
                         )}
 
-                        {selectedRequest.business.hasLPPVoluntary && (
-                          <>
-                            <p className="text-amber-700">LPP facultative</p>
-                            <p className="font-medium text-amber-900">CHF {selectedRequest.business.lppVoluntaryAmount || 0}.-</p>
-                          </>
-                        )}
-                      </div>
+                      {selectedRequest.business.hasLPPVoluntary && (
+                  <>
+                    <p className="text-amber-700">LPP facultative</p>
+                    <p className="font-medium text-amber-900">CHF {selectedRequest.business.lppVoluntaryAmount || 0}.-</p>
+                  </>
+                )}
+
+                {selectedRequest.business.hasHomeOffice && (
+                  <>
+                    <p className="text-amber-700">Home office</p>
+                    <p className="font-medium text-amber-900">{selectedRequest.business.homeOfficePercent}% — CHF {selectedRequest.business.homeOfficeAmount || 0}.-</p>
+                  </>
+                )}
+
+                {selectedRequest.business.hasBusinessVehicle && (
+                  <>
+                    <p className="text-amber-700">Véhicule professionnel</p>
+                    <p className="font-medium text-amber-900">{selectedRequest.business.businessVehiclePercent}% pro — CHF {selectedRequest.business.businessVehicleExpenses || 0}.-</p>
+                  </>
+                )}
+              </div>
                     </div>
                   </div>
                 )}
@@ -2696,13 +2710,27 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                           </>
                         )}
 
-                        {selectedRequest.business.hasLPPVoluntary2 && (
-                          <>
-                            <p className="text-blue-700">LPP facultative</p>
-                            <p className="font-medium text-blue-900">CHF {selectedRequest.business.lppVoluntaryAmount2 || 0}.-</p>
-                          </>
-                        )}
-                      </div>
+                       {selectedRequest.business.hasLPPVoluntary2 && (
+                  <>
+                    <p className="text-blue-700">LPP facultative</p>
+                    <p className="font-medium text-blue-900">CHF {selectedRequest.business.lppVoluntaryAmount2 || 0}.-</p>
+                  </>
+                )}
+
+                {selectedRequest.business.hasHomeOffice2 && (
+                  <>
+                    <p className="text-blue-700">Home office</p>
+                    <p className="font-medium text-blue-900">{selectedRequest.business.homeOfficePercent2}% — CHF {selectedRequest.business.homeOfficeAmount2 || 0}.-</p>
+                  </>
+                )}
+
+                {selectedRequest.business.hasBusinessVehicle2 && (
+                  <>
+                    <p className="text-blue-700">Véhicule professionnel</p>
+                    <p className="font-medium text-blue-900">{selectedRequest.business.businessVehiclePercent2}% pro — CHF {selectedRequest.business.businessVehicleExpenses2 || 0}.-</p>
+                  </>
+                )}
+              </div>
                     </div>
                   </div>
                 )}
