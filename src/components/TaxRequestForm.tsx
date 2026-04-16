@@ -3642,6 +3642,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
 
             {/* Repas hors domicile */}
             <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              {(formData.employmentStatus === "employed" || formData.employmentStatus === "both") && (
               {/* Contribuable 1 */}
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -3681,9 +3682,9 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                   </p>
                 </div>
               )}
+          )}
               {/* Conjoint(e) — affiché uniquement pour un couple */}
-              {formData.clientType === "couple" && (
-                <div className="border-t border-blue-200 mt-4 pt-4">
+{formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both") && (                <div className="border-t border-blue-200 mt-4 pt-4">
                   <label className="flex items-center gap-3 cursor-pointer">
                     <input
                       type="checkbox"
