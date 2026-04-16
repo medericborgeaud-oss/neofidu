@@ -3661,7 +3661,16 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
         Repas pris hors du domicile (Contribuable 1)
       </span>
     </label>
-    {formData.hasMealsOutside && (
+    <label className="flex items-center gap-3 cursor-pointer">
+  {/* ... checkbox existant ... */}
+</label>
+<p className="text-sm text-blue-600 ml-8 mt-1">
+  {isEnglish 
+    ? "Deductible if the taxpayer cannot return home during the lunch break" 
+    : "Déductible si le/la contribuable ne peut pas rentrer chez lui/elle pendant la pause de midi"}
+</p>
+{formData.hasMealsOutside && (
+    
       <div className="mt-4 ml-8">
         {/* ... le contenu existant des détails repas ... */}
       </div>
