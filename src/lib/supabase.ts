@@ -185,6 +185,7 @@ export interface TaxRequestDB {
       canton?: string;
       cantonName?: string;
       parcelNumber?: string;
+       surfaceM2?: string;
       ownershipShare?: string;
       acquisitionYear?: string;
       constructionYear?: string;
