@@ -266,7 +266,7 @@ interface PropertyDetail {
   city?: string;
   canton?: string;
   cantonName?: string;
-  parcelNumber?: string;
+  parcelNumber?: string;surfaceM2?: string;
   propertyType?: string;
   propertyTypeName?: string;
   usage?: string;
@@ -3092,6 +3092,13 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                                     <p className="font-medium">{prop.parcelNumber}</p>
                                   </>
                                 )}
+                                {/* Surface m² */}
+{prop.surfaceM2 && (
+  <>
+    <p className="text-muted-foreground">Surface</p>
+    <p className="font-medium">{prop.surfaceM2} m²</p>
+  </>
+)}
                                 {/* Quotité */}
                                 {prop.ownershipShare && (
                                   <>
