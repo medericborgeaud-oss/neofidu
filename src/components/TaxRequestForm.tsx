@@ -3675,13 +3675,13 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
       type="number"
       min="1"
       max="260"
-      placeholder="Ex: 220"
+      placeholder="Ex: 240"
       value={formData.mealsOutsideDays}
       onChange={(e) => updateForm("mealsOutsideDays", e.target.value)}
       className="w-32 rounded-xl"
     />
     <p className="text-xs text-muted-foreground mt-1">
-      {isEnglish ? "About 220 days for full-time employment" : "Environ 220 jours pour un emploi à 100%"}
+      {isEnglish ? "About 240 days for full-time employment" : "Environ 240 jours pour un emploi à 100%"}
     </p>
   </div>
 )}
@@ -3714,13 +3714,13 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                         type="number"
                         min="1"
                         max="260"
-                        placeholder="Ex: 220"
+                        placeholder="Ex: 240"
                         value={formData.mealsOutsideDays2}
                         onChange={(e) => updateForm("mealsOutsideDays2", e.target.value)}
                         className="w-32 rounded-xl"
                       />
                       <p className="text-xs text-muted-foreground mt-1">
-                        {isEnglish ? "About 220 days for full-time employment" : "Environ 220 jours pour un emploi à 100%"}
+                        {isEnglish ? "About 240 days for full-time employment" : "Environ 240 jours pour un emploi à 100%"}
                       </p>
                     </div>
                   )}
