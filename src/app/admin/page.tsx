@@ -952,9 +952,19 @@ www.neofidu.ch
     return labels[mode] || mode;
   };
 
-  const formatDate = (dateStr?: string) => {
+const formatDate = (dateStr?: string) => {
     if (!dateStr) return "Non spécifié";
     try {
+      // Handle DD.MM.YYYY Swiss format (stored as-is in some records)
+      const dotMatch = dateStr.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+      if (dotMatch) {
+        const [, day, month, year] = dotMatch;
+        return new Date(+year, +month - 1, +day).toLocaleDateString("fr-CH", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+      }
       return new Date(dateStr).toLocaleDateString("fr-CH", {
         day: "2-digit",
         month: "2-digit",
