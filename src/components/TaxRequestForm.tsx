@@ -3440,6 +3440,8 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               </div>
             )}
 
+              {(formData.employmentStatus === "employed" || formData.employmentStatus === "both") && (
+            <>
             {/* Section trajets professionnels - Adulte 1 */}
             <div className="mb-8">
               <h3 className="font-semibold mb-4">
@@ -3536,9 +3538,11 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {isEnglish ? "Add a workplace" : "Ajouter un lieu de travail"}
               </Button>
             </div>
+            </>
+            )}
 
             {/* Section trajets professionnels - Adulte 2 (couple) */}
-            {formData.clientType === "couple" && (
+       {formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both") && (
               <div className="mb-8">
                 <h3 className="font-semibold mb-4">
                   {isEnglish ? "Professional commute" : "Trajets professionnels"} {formData.firstName2 ? `(${formData.firstName2})` : (isEnglish ? "(partner)" : "(conjoint)")}
