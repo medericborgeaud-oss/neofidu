@@ -6009,4 +6009,280 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     date: "2026-04-02",
     readTime: 12,
   },
+  // À ajouter dans blog-data.ts AVANT le "]; " final
+// Coller ce bloc juste après la fermeture "}" du dernier article, ajouter une virgule après le "}" précédent si nécessaire
+
+  {
+    id: "29",
+    slug: "que-faire-epargne-suisse",
+    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&auto=format&fit=crop&q=80",
+    title: "Que faire avec mon épargne en Suisse ? Guide complet pour ne pas laisser dormir son argent",
+    titleEn: "What to Do With Your Savings in Switzerland? A Complete Guide to Making Your Money Work",
+    excerpt: "Votre argent dort sur un compte épargne à 0,1 % ? En Suisse, il existe des options bien plus intéressantes — à condition de les connaître. Tour d'horizon des solutions, du 3ème pilier aux placements en passant par le rachat LPP.",
+    excerptEn: "Is your money sitting in a savings account earning 0.1%? In Switzerland, there are much better options — if you know about them. Here's an overview from pillar 3a to investments and pension buybacks.",
+    keywords: [
+      "épargne suisse",
+      "que faire avec son argent suisse",
+      "3ème pilier 2026",
+      "rachat LPP",
+      "compte épargne suisse taux",
+      "placements suisse",
+      "ETF suisse",
+      "investir en suisse",
+      "prévoyance suisse",
+      "optimiser épargne fiscalité",
+    ],
+    content: `<p>Vous avez de l'argent de côté. Peut-être quelques milliers de francs, peut-être bien plus. Et cet argent dort sur un compte épargne classique, celui que vous avez ouvert quand vous étiez étudiant. Résultat : votre banque vous verse <strong>0,1 % d'intérêt par an</strong> — voire zéro — pendant que l'inflation grignote votre pouvoir d'achat.</p>
+
+<br/>
+
+<p>Vous n'êtes pas seul. En Suisse, les ménages détiennent collectivement plus de <strong>800 milliards de francs</strong> sur des comptes d'épargne. Une grande partie de cet argent ne travaille pas. Pourtant, il existe des solutions simples, accessibles, et souvent très avantageuses fiscalement.</p>
+
+<br/>
+
+<p>Voici un tour d'horizon complet de ce que vous pouvez faire avec votre épargne en Suisse en 2026.</p>
+
+<br/>
+
+<h3><strong>1. Le compte épargne classique : mieux que rien, mais à peine</strong></h3>
+
+<br/>
+
+<p>Commençons par l'évidence. Le compte épargne bancaire reste l'option par défaut pour la plupart des Suisses. C'est simple, c'est sûr, et c'est garanti à hauteur de <strong>100'000 CHF par déposant et par banque</strong> grâce à la garantie des dépôts (esisuisse).</p>
+
+<br/>
+
+<p>Le problème : les taux d'intérêt sont au plancher. En moyenne, les banques suisses offrent environ <strong>0,11 %</strong> en 2026. Quelques banques régionales font mieux — la Caisse d'Épargne d'Aubonne par exemple propose encore 1 % — mais c'est l'exception, pas la règle.</p>
+
+<br/>
+
+<p>Concrètement, si vous avez 50'000 CHF sur un compte épargne à 0,1 %, vous gagnez <strong>50 francs par an</strong>. Après impôt sur les intérêts, il vous reste encore moins. Pendant ce temps, même une inflation modérée de 1 % vous fait perdre 500 francs de pouvoir d'achat.</p>
+
+<br/>
+
+<p>👉 <strong>Le verdict :</strong> Gardez l'équivalent de 3 à 6 mois de dépenses en réserve de sécurité sur un compte épargne. Le reste mérite mieux.</p>
+
+<br/>
+
+<h3><strong>2. Le 3ème pilier 3a : l'incontournable</strong></h3>
+
+<br/>
+
+<p>Si vous ne faites qu'une seule chose avec votre épargne, faites celle-ci. Le <strong>3ème pilier 3a</strong> est probablement le meilleur outil d'épargne en Suisse pour une raison simple : chaque franc versé est <strong>déductible de votre revenu imposable</strong>.</p>
+
+<br/>
+
+<p>En 2026, les plafonds sont les suivants :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">💼 <strong>Salarié avec caisse de pension :</strong> CHF 7'258 par an</li>
+<li style="margin-bottom:8px">🏢 <strong>Indépendant sans caisse de pension :</strong> 20 % du revenu net, max. CHF 36'288 par an</li>
+</ul>
+
+<br/>
+
+<p>Selon votre canton et votre taux d'imposition, un versement de 7'258 CHF peut vous faire économiser entre <strong>1'500 et 2'500 CHF d'impôts</strong>. C'est un rendement immédiat de 20 à 35 % — aucun placement ne fait mieux.</p>
+
+<br/>
+
+<p><strong>Nouveauté 2026 :</strong> Depuis le 1er janvier 2026, il est possible de faire des <strong>versements rétroactifs</strong> dans le pilier 3a pour combler des lacunes des années précédentes (à partir de 2025). Concrètement, si vous n'avez pas cotisé le maximum en 2025, vous pouvez rattraper en 2026. C'est une opportunité historique.</p>
+
+<br/>
+
+<p>Deux options pour votre 3a :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🏦 <strong>Compte 3a bancaire :</strong> Capital garanti, mais taux très bas (0,3 à 0,8 % environ). Idéal si vous avez un horizon court (< 5 ans) ou si vous détestez le risque.</li>
+<li style="margin-bottom:8px">📈 <strong>3a en fonds/titres :</strong> Votre argent est investi dans des fonds (actions, obligations). Plus de risque à court terme, mais un rendement nettement supérieur sur le long terme. Sur 20 ans, la différence peut représenter des <strong>dizaines de milliers de francs</strong>. Des acteurs comme Finpension, VIAC ou Frankly proposent des solutions à frais réduits.</li>
+</ul>
+
+<br/>
+
+<p>👉 <strong>Le verdict :</strong> Si vous avez plus de 10 ans avant la retraite, un 3a en titres avec une forte exposition actions est le meilleur choix. Si vous êtes proche de la retraite ou que vous avez besoin de l'argent bientôt (achat immobilier, départ de Suisse), privilégiez un compte classique.</p>
+
+<br/>
+
+<h3><strong>3. Le rachat dans le 2ème pilier (LPP) : l'arme fiscale lourde</strong></h3>
+
+<br/>
+
+<p>Peu de gens y pensent, et pourtant c'est l'un des outils les plus puissants pour réduire sa facture fiscale. Si votre caisse de pension présente une <strong>lacune de prévoyance</strong> (la plupart en ont), vous pouvez effectuer un <strong>rachat volontaire</strong>.</p>
+
+<br/>
+
+<p>Le montant racheté est <strong>intégralement déductible</strong> de votre revenu imposable — sans plafond annuel (le plafond est le montant de votre lacune). Si vous avez une lacune de 80'000 CHF, vous pouvez théoriquement verser 80'000 CHF en une année et déduire cette somme entière de vos impôts.</p>
+
+<br/>
+
+<p>L'économie d'impôt représente en général <strong>25 à 45 % du montant racheté</strong>, selon votre canton et votre niveau de revenu. Pour un rachat de 30'000 CHF à Lausanne, vous économisez facilement 10'000 à 12'000 CHF d'impôts.</p>
+
+<br/>
+
+<p>Quelques points importants :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">⏰ <strong>Règle des 3 ans :</strong> Après un rachat, vous ne pouvez pas retirer le capital pendant 3 ans. Sinon, la déduction fiscale est annulée rétroactivement.</li>
+<li style="margin-bottom:8px">📊 <strong>Stratégie d'échelonnement :</strong> Plutôt que de racheter tout d'un coup, étalez vos rachats sur plusieurs années pour profiter de la progressivité fiscale à chaque fois.</li>
+<li style="margin-bottom:8px">📋 <strong>Demandez votre attestation :</strong> Contactez votre caisse de pension pour connaître votre potentiel de rachat maximal.</li>
+</ul>
+
+<br/>
+
+<p>👉 <strong>Le verdict :</strong> Si vous avez un revenu élevé et une lacune LPP, le rachat est l'optimisation fiscale la plus efficace en Suisse. À planifier idéalement avec un fiduciaire.</p>
+
+<br/>
+
+<h3><strong>4. Investir en bourse : ETF et fonds passifs</strong></h3>
+
+<br/>
+
+<p>Si vous avez de l'argent qui dépasse votre réserve de sécurité, votre 3a et vos rachats LPP, le prochain pas logique est l'investissement en bourse. Et contrairement à ce qu'on pourrait croire, il n'est pas nécessaire d'être un expert financier.</p>
+
+<br/>
+
+<p>Les <strong>ETF</strong> (Exchange Traded Funds) sont des fonds qui répliquent un indice boursier — par exemple le SMI suisse, le S&P 500 américain, ou un indice mondial. Ils offrent une diversification instantanée à des frais très bas (souvent moins de 0,2 % par an).</p>
+
+<br/>
+
+<p>Sur les 30 dernières années, un portefeuille diversifié en actions mondiales a généré un rendement annuel moyen de <strong>7 à 8 %</strong> — bien loin des 0,1 % du compte épargne. Bien sûr, il y a des années de baisse, mais sur un horizon de 10 ans ou plus, la bourse a toujours été plus performante que l'épargne bancaire.</p>
+
+<br/>
+
+<p>En Suisse, plusieurs courtiers facilitent l'accès aux ETF : <strong>Swissquote</strong>, <strong>Interactive Brokers</strong>, <strong>Yuh</strong>, <strong>Neon Invest</strong>, ou encore <strong>PostFinance</strong>. Les frais varient considérablement — comparez avant de choisir.</p>
+
+<br/>
+
+<p>Un avantage fiscal suisse : les <strong>gains en capital</strong> réalisés par des investisseurs privés sont <strong>exonérés d'impôts</strong> en Suisse. Vous ne payez des impôts que sur les dividendes (impôt anticipé de 35 %, remboursable via la déclaration d'impôts). C'est un avantage considérable par rapport à presque tous les autres pays.</p>
+
+<br/>
+
+<p>👉 <strong>Le verdict :</strong> Si vous avez un horizon de placement d'au moins 5 à 10 ans et que vous supportez les fluctuations, les ETF sont le meilleur rapport rendement/frais. Commencez petit si vous débutez — même 200 CHF par mois font une grande différence sur 20 ans.</p>
+
+<br/>
+
+<h3><strong>5. L'immobilier : le rêve suisse</strong></h3>
+
+<br/>
+
+<p>Devenir propriétaire en Suisse reste un objectif pour beaucoup. Mais les prix élevés — souvent <strong>supérieurs à 1 million de CHF</strong> dans les agglomérations — rendent l'accession difficile. Vous devez apporter au minimum <strong>20 % de fonds propres</strong>, dont au moins 10 % en « vrai » cash (pas du 2ème pilier).</p>
+
+<br/>
+
+<p>Ce que beaucoup ne savent pas : vous pouvez utiliser votre <strong>3ème pilier 3a</strong> et votre <strong>2ème pilier</strong> comme fonds propres pour l'achat de votre résidence principale. C'est même l'un des motifs légaux de retrait anticipé.</p>
+
+<br/>
+
+<p>Fiscalement, l'immobilier en Suisse a ses avantages :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🏠 Les <strong>intérêts hypothécaires</strong> sont déductibles de votre revenu</li>
+<li style="margin-bottom:8px">🔧 Les <strong>frais d'entretien</strong> (rénovation, réparations) sont déductibles</li>
+<li style="margin-bottom:8px">📉 Vous pouvez choisir entre un <strong>forfait</strong> (10 à 20 % de la valeur locative selon le canton) et les <strong>frais effectifs</strong></li>
+</ul>
+
+<br/>
+
+<p>Mais attention : la <strong>valeur locative</strong> (le loyer fictif que vous « vous payez ») est ajoutée à votre revenu imposable. C'est une particularité suisse qui réduit l'avantage fiscal de la propriété.</p>
+
+<br/>
+
+<p>👉 <strong>Le verdict :</strong> L'immobilier est un bon investissement à long terme en Suisse, mais il nécessite un capital de départ important. Ne vous précipitez pas — et ne videz pas votre prévoyance pour acheter.</p>
+
+<br/>
+
+<h3><strong>6. L'amortissement indirect : le deux-en-un malin</strong></h3>
+
+<br/>
+
+<p>Si vous êtes propriétaire avec une hypothèque, l'<strong>amortissement indirect</strong> via le pilier 3a est une stratégie très répandue en Suisse. Au lieu de rembourser directement votre hypothèque (amortissement direct), vous versez l'équivalent dans un compte 3a dédié. Celui-ci sera utilisé pour rembourser l'hypothèque plus tard.</p>
+
+<br/>
+
+<p>L'avantage est double :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">✅ Vous <strong>déduisez vos versements 3a</strong> de vos impôts (économie d'impôt annuelle)</li>
+<li style="margin-bottom:8px">✅ Vous continuez à <strong>déduire vos intérêts hypothécaires</strong> puisque votre dette reste constante</li>
+</ul>
+
+<br/>
+
+<p>Avec un amortissement direct, votre dette diminue, et donc vos intérêts aussi — ce qui réduit votre déduction fiscale. L'amortissement indirect maintient les deux avantages en parallèle.</p>
+
+<br/>
+
+<p>👉 <strong>Le verdict :</strong> Si vous avez une hypothèque, parlez-en à votre banque ou à votre fiduciaire. L'amortissement indirect est presque toujours plus avantageux que le direct.</p>
+
+<br/>
+
+<h3><strong>7. La crypto et les placements alternatifs : avec prudence</strong></h3>
+
+<br/>
+
+<p>Bitcoin, Ethereum, or physique, crowdfunding immobilier… Les placements alternatifs attirent de plus en plus de Suisses. C'est compréhensible quand les comptes épargne ne rapportent rien.</p>
+
+<br/>
+
+<p>Ce qu'il faut savoir côté fiscal :</p>
+
+<br/>
+
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🪙 Les <strong>gains en capital sur les cryptos</strong> sont en principe <strong>exonérés d'impôts</strong> pour les investisseurs privés en Suisse — comme pour les actions. Mais attention : si le fisc considère que vous tradez de manière professionnelle (volume élevé, fréquence, effet de levier), vous pourriez être requalifié comme « commerçant professionnel de titres » et vos gains deviendraient imposables.</li>
+<li style="margin-bottom:8px">💰 Vos cryptos doivent être déclarées dans votre <strong>fortune</strong> au 31 décembre de chaque année, à la valeur du marché.</li>
+<li style="margin-bottom:8px">🏗️ Le crowdfunding immobilier offre des rendements attractifs (4 à 8 %) mais comporte un risque de perte et un manque de liquidité.</li>
+</ul>
+
+<br/>
+
+<p>👉 <strong>Le verdict :</strong> Les placements alternatifs peuvent compléter un portefeuille, mais ne devraient jamais constituer sa base. Limitez-les à 5-10 % de votre patrimoine total et n'investissez que ce que vous pouvez vous permettre de perdre.</p>
+
+<br/>
+
+<hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
+
+<br/>
+
+<h3><strong>En résumé : par où commencer ?</strong></h3>
+
+<br/>
+
+<p>Voici l'ordre de priorité que nous recommandons chez NeoFidu :</p>
+
+<br/>
+
+<ol style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px"><strong>Réserve de sécurité :</strong> 3 à 6 mois de dépenses sur un compte épargne</li>
+<li style="margin-bottom:8px"><strong>3ème pilier 3a :</strong> Maximisez chaque année. Choisissez un 3a en titres si votre horizon est long.</li>
+<li style="margin-bottom:8px"><strong>Rachat LPP :</strong> Si vous avez une lacune et un revenu élevé, c'est l'optimisation fiscale reine.</li>
+<li style="margin-bottom:8px"><strong>Investissement en ETF :</strong> Avec l'excédent, construisez un portefeuille diversifié.</li>
+<li style="margin-bottom:8px"><strong>Immobilier :</strong> Si le projet est réaliste et que vous avez les fonds propres.</li>
+<li style="margin-bottom:8px"><strong>Placements alternatifs :</strong> Uniquement en complément, avec de l'argent « non essentiel ».</li>
+</ol>
+
+<br/>
+
+<p>Chaque situation est unique. Votre âge, votre canton de domicile, votre situation familiale et vos projets de vie influencent la meilleure stratégie. Un versement au 3ème pilier peut être plus intéressant qu'un rachat LPP, ou l'inverse — tout dépend de votre taux marginal d'imposition et de votre horizon.</p>
+
+<br/>
+
+<p>Chez <strong>NeoFidu</strong>, nous aidons chaque année des centaines de contribuables à optimiser leur situation fiscale. Notre service est <strong>100 % en ligne</strong>, rapide, et adapté à votre situation. Que vous ayez besoin d'un conseil ponctuel ou d'un accompagnement complet pour votre déclaration d'impôts, nous sommes là.</p>
+
+<br/>
+
+<p>Envie d'optimiser votre épargne et vos impôts ? <strong><a href="/demande">Déposez votre demande en ligne →</a></strong></p>`,
+    category: "epargne",
+    date: "2026-04-16",
+    readTime: 10,
+  },
 ];
