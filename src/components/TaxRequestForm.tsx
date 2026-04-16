@@ -4824,6 +4824,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                             </TooltipProvider>
                           </label>
                           <Input
+                            required
                             type="number"
                             min="1"
                             max="100"
