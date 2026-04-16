@@ -302,6 +302,7 @@ interface Property {
   location: string; // "switzerland" | "abroad" | ""
   country: string; // Pays si bien à l'étranger
   parcelNumber: string; // Numéro de parcelle cadastrale
+  surfaceM2: string; // Surface en m²
   // Caractéristiques
   propertyType: string;
   usage: string;
@@ -342,9 +343,10 @@ const createEmptyProperty = (): Property => ({
   city: "",
   canton: "",
   location: "",
-  country: "",
-  parcelNumber: "",
-  propertyType: "",
+     country: "",
+    parcelNumber: "",
+    surfaceM2: "",
+    propertyType: "",
   usage: "",
   ownershipShare: "100",
   acquisitionYear: "",
@@ -1987,6 +1989,7 @@ export function TaxRequestForm() {
           canton: p.canton,
           cantonName: allCantons.find(c => c.code === p.canton)?.name,
           parcelNumber: p.parcelNumber,
+          surfaceM2: p.surfaceM2 || "",
           propertyType: p.propertyType,
           propertyTypeName: propertyTypes.find(t => t.id === p.propertyType)?.name,
           usage: p.usage,
@@ -4726,8 +4729,9 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               </div>
               )}
                           <div>
-                            <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                              {isEnglish ? "Cadastral parcel number" : "N° de parcelle cadastrale"}
+<label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                      {isEnglish ? "Cadastral parcel number" : "N° de parcelle cadastrale"}
+                      <span className="text-red-500">*</span>
                               <TooltipProvider>
                                 <Tooltip>
                                   <TooltipTrigger>
@@ -4741,11 +4745,25 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                             </label>
                             <Input
                               placeholder="Ex: 1234 ou RF-VD-12345"
-                              value={property.parcelNumber}
-                              onChange={(e) => updateProperty(property.id, "parcelNumber", e.target.value)}
+                            required
+                      value={property.parcelNumber}
+                      onChange={(e) => updateProperty(property.id, "parcelNumber", e.target.value)}
                               className="rounded-xl"
                             />
                           </div>
+                          {/* Surface en m² */}
+                  <div>
+                    <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                      {isEnglish ? "Surface area (m²)" : "Surface (m²)"}
+                    </label>
+                    <Input
+                      type="number"
+                      min="0"
+                      placeholder={isEnglish ? "e.g. 85" : "ex. 85"}
+                      value={property.surfaceM2}
+                      onChange={(e) => updateProperty(property.id, "surfaceM2", e.target.value)}
+                    />
+                  </div>
                         </div>
                       </div>
 
