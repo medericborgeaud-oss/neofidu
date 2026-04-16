@@ -4809,9 +4809,10 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                       {/* Part de propriété et années */}
                       <div className="grid md:grid-cols-3 gap-4">
                         <div>
-                          <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                            {isEnglish ? "Your ownership share (%)" : "Votre quote-part (%)"}
-                            <TooltipProvider>
+                         <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+  {isEnglish ? "Your ownership share (%)" : "Votre quote-part (%)"}
+  <span className="text-red-500">*</span>          {/* ← AJOUTER ICI */}
+  <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger>
                                   <HelpCircle className="w-4 h-4 text-muted-foreground" />
