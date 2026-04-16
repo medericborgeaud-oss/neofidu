@@ -4753,10 +4753,11 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                           </div>
                           {/* Surface en m² */}
                   <div>
-                    <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                      {isEnglish ? "Surface area (m²)" : "Surface (m²)"}
+                   <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                      {isEnglish ? "Surface area (m²)" : "Surface (m²)"} <span className="text-red-500">*</span>
                     </label>
                     <Input
+                      required
                       type="number"
                       min="0"
                       placeholder={isEnglish ? "e.g. 85" : "ex. 85"}
@@ -4837,10 +4838,11 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                         </div>
                         <div>
                           <label className="block text-sm font-medium mb-2">
-                            {isEnglish ? "Year of acquisition" : "Année d'acquisition"}
-                          </label>
-                          <Input
-                            type="number"
+                      {isEnglish ? "Year of acquisition" : "Année d'acquisition"} <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      required
+                      type="number"
                             min="1900"
                             max={new Date().getFullYear()}
                             placeholder="Ex: 2015"
@@ -4850,9 +4852,10 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                            {isEnglish ? "Year of construction" : "Année de construction"}
-                            <TooltipProvider>
+                           <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                      {isEnglish ? "Year of construction" : "Année de construction"}
+                      <span className="text-red-500">*</span>
+                      <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger>
                                   <HelpCircle className="w-4 h-4 text-muted-foreground" />
