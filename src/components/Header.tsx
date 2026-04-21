@@ -79,7 +79,7 @@ export function Header() {
       description: isEnglish ? "Real-time federal debt tracker" : "Suivi en temps réel de la dette fédérale",
     },
     {
-      href: "simulateur/carte-impots",
+      href: "/carte-impots",
       label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse",
       icon: ClipboardList,
       description: isEnglish ? "Compare taxes by canton" : "Comparez les impôts par canton",
