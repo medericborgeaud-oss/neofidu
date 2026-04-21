@@ -61,54 +61,34 @@ export function Header() {
 
   const ressourcesItems = [
     {
-      href: "/simulateur/impots",
-      label: isEnglish ? "Tax Calculator" : "Simulateur d'impôts",
-      icon: Calculator,
-      description: isEnglish ? "Estimate your cantonal taxes" : "Estimez vos impôts cantonaux",
-    },
-    {
-      href: "/simulateur/salaire-net",
-      label: isEnglish ? "Net Salary" : "Salaire net",
-      icon: Calculator,
-      description: isEnglish ? "Calculate your net salary" : "Calculez votre salaire net",
-    },
-    {
-      href: "/simulateur/3eme-pilier",
-      label: isEnglish ? "3rd Pillar" : "3ème pilier",
-      icon: Calculator,
-      description: isEnglish ? "Optimize your retirement savings" : "Optimisez votre épargne retraite",
-    },
-    {
-      href: "/simulateur/retraite",
-      label: isEnglish ? "Retirement Income" : "Revenus à la retraite",
-      icon: Calculator,
-      description: isEnglish ? "AVS, LPP & 3rd pillar calculator" : "Calculateur AVS, LPP & 3ème pilier",
-    },
-    {
       href: "/simulateur",
-      label: isEnglish ? "All Simulators" : "Tous les simulateurs",
+      label: isEnglish ? "Simulators" : "Simulateurs",
       icon: Calculator,
-      description: isEnglish ? "See all our free tools" : "Voir tous nos outils gratuits",
+      description: isEnglish ? "Tax, salary, 3rd pillar, retirement" : "Impôts, salaire, 3ème pilier, retraite",
     },
     {
       href: "/guide/deductions-fiscales",
-      label: isEnglish ? "Tax Deductions" : "Déductions fiscales",
+      label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales",
       icon: FileText,
-      description: isEnglish ? "Guide to Swiss tax deductions" : "Guide des déductions en Suisse",
+      description: isEnglish ? "All deductions explained" : "Toutes les déductions expliquées",
+    },
+    {
+      href: isEnglish ? "/swiss-debt" : "/dette-suisse",
+      label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse",
+      icon: TrendingUp,
+      description: isEnglish ? "Real-time federal debt tracker" : "Suivi en temps réel de la dette fédérale",
+    },
+    {
+      href: "/carte-fiscalite",
+      label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse",
+      icon: ClipboardList,
+      description: isEnglish ? "Compare taxes by municipality" : "Comparez les impôts par commune",
     },
     {
       href: "/blog",
       label: isEnglish ? "Blog" : "Blog",
       icon: FileText,
       description: isEnglish ? "News and tax advice" : "Actualités et conseils fiscaux",
-    },
-    {
-      href: isEnglish ? "/swiss-debt" : "/dette-suisse",
-      label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse",
-      icon: TrendingUp,
-      description: isEnglish
-        ? "Real-time federal debt tracker"
-        : "Suivi en temps réel de la dette fédérale",
     },
   ];
 
