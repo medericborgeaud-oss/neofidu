@@ -6569,4 +6569,271 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     date: "2026-04-21",
     readTime: 12,
   },   
+
+   
+  {
+    id: "31",
+    slug: "divorce-suisse-impots-guide-fiscal",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop&q=80",
+    title: "Divorce en Suisse : ce que personne ne vous dit sur les impôts",
+    titleEn: "Divorce in Switzerland: What Nobody Tells You About Taxes",
+    excerpt: "Vous pensez à vous séparer — ou c'est déjà fait. Votre avocat vous parle garde des enfants et pension. Mais qui vous parle des impôts ? Voici tout ce qui change fiscalement après un divorce en Suisse.",
+    excerptEn: "Thinking about separating — or already going through it? Your lawyer talks custody and alimony. But who tells you about taxes? Here's everything that changes fiscally after a divorce in Switzerland.",
+    keywords: [
+      "divorce impôts suisse",
+      "conséquences fiscales divorce suisse",
+      "pension alimentaire déductible suisse",
+      "séparation impôts suisse",
+      "divorce partage LPP",
+      "divorce 2ème pilier suisse",
+      "garde alternée impôts suisse",
+      "divorce fiscalité suisse romande",
+      "imposition après divorce",
+      "déclaration impôts divorce suisse",
+    ],
+    content: `<p>Le divorce est l'un des moments les plus bouleversants d'une vie. Entre les émotions, les enfants, l'avocat et le juge, le dernier sujet dont on a envie de parler, c'est les <strong>impôts</strong>. Et pourtant, c'est peut-être celui qui aura le plus d'impact sur votre portefeuille pendant des années.</p>
+ 
+<br/>
+ 
+<p>La plupart des guides sur le divorce parlent de procédure, de garde et de pension. Presque aucun ne vous explique concrètement ce qui change sur votre <strong>déclaration d'impôts</strong>. Combien vous allez payer en plus — ou en moins. Ce que vous pouvez déduire. Ce que vous devez déclarer. Et les pièges à éviter.</p>
+ 
+<br/>
+ 
+<p>C'est exactement ce qu'on va faire ici.</p>
+ 
+<br/>
+ 
+<h3><strong>1. Dès la séparation : deux déclarations, deux barèmes</strong></h3>
+ 
+<br/>
+ 
+<p>En Suisse, dès que vous êtes <strong>séparés de fait ou légalement</strong>, chacun remplit sa propre déclaration d'impôts. Et ce, pour <strong>toute l'année fiscale</strong> au cours de laquelle la séparation survient — même si vous vous séparez le 30 décembre.</p>
+ 
+<br/>
+ 
+<p>Concrètement, si vous vous séparez en juin 2026, vous déposerez chacun une déclaration individuelle pour l'ensemble de l'année 2026. Pas de prorata.</p>
+ 
+<br/>
+ 
+<p>Le changement majeur : vous passez du <strong>barème marié</strong> (taxation conjointe, splitting) au <strong>barème personne seule</strong>. Et c'est là que beaucoup tombent des nues.</p>
+ 
+<br/>
+ 
+<p>Pour un couple à deux revenus similaires (par ex. 70'000 + 60'000 CHF), la séparation peut être <strong>fiscalement avantageuse</strong> : chacun est imposé sur son propre revenu, à un taux plus bas que le taux cumulé du barème marié.</p>
+ 
+<br/>
+ 
+<p>Mais pour un couple avec un seul revenu élevé (par ex. 120'000 + 0 CHF), la facture fiscale totale <strong>augmente souvent</strong> après la séparation. Le splitting disparaît, et le conjoint qui gagne bien se retrouve taxé plein pot sans le barème favorable aux familles.</p>
+ 
+<br/>
+ 
+<p>👉 <strong>À retenir :</strong> L'impact dépend entièrement de votre configuration de revenus. Avant de signer, faites simuler les deux scénarios.</p>
+ 
+<br/>
+ 
+<h3><strong>2. La pension alimentaire : ce que vous payez est déductible, ce que vous recevez est imposable</strong></h3>
+ 
+<br/>
+ 
+<p>C'est la règle fondamentale, et beaucoup l'ignorent. En Suisse, les <strong>contributions d'entretien</strong> (pensions alimentaires) fonctionnent comme un transfert de revenu fiscal :</p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">💸 <strong>Celui qui paie</strong> la pension peut la <strong>déduire</strong> de son revenu imposable</li>
+<li style="margin-bottom:8px">📥 <strong>Celui qui reçoit</strong> la pension doit la <strong>déclarer comme revenu</strong></li>
+</ul>
+ 
+<br/>
+ 
+<p>Cela concerne à la fois la pension pour l'<strong>ex-conjoint</strong> et la pension pour les <strong>enfants mineurs</strong>. Attention : dès qu'un enfant atteint 18 ans, la pension versée pour lui n'est <strong>plus déductible</strong> par le parent qui paie et n'est <strong>plus imposable</strong> chez le parent qui la reçoit.</p>
+ 
+<br/>
+ 
+<p>Un exemple concret : Marc verse 2'000 CHF/mois à son ex-femme (1'200 CHF de pension pour l'enfant + 800 CHF de contribution d'entretien pour elle). Marc déduit 24'000 CHF de son revenu imposable. Son ex-femme, elle, ajoute 24'000 CHF à ses revenus. Selon les taux respectifs, le bilan fiscal global peut être positif ou négatif.</p>
+ 
+<br/>
+ 
+<p><strong>Piège fréquent :</strong> une somme versée en capital unique lors du divorce (par ex. une compensation de 50'000 CHF) <strong>n'est pas déductible</strong>. Seules les pensions périodiques (mensuelles) le sont. Le choix entre capital et rente a donc un impact fiscal direct.</p>
+ 
+<br/>
+ 
+<p>👉 <strong>À retenir :</strong> Négociez le montant de la pension en tenant compte de l'impact fiscal net pour chacun. Un bon fiduciaire peut faire la simulation avant que vous ne signiez la convention.</p>
+ 
+<br/>
+ 
+<h3><strong>3. Les enfants : qui déduit quoi ?</strong></h3>
+ 
+<br/>
+ 
+<p>Après un divorce, les <strong>déductions liées aux enfants</strong> deviennent un vrai casse-tête. Les règles dépendent de qui a la garde :</p>
+ 
+<br/>
+ 
+<p><strong>Garde exclusive (un parent) :</strong></p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">👤 Le parent qui a la garde bénéficie du <strong>barème famille monoparentale</strong> (plus avantageux que le barème personne seule)</li>
+<li style="margin-bottom:8px">👤 Ce même parent bénéficie de la <strong>déduction pour enfant</strong> et de la <strong>déduction pour frais de garde</strong> par des tiers</li>
+<li style="margin-bottom:8px">👤 L'autre parent déduit la <strong>pension alimentaire</strong> qu'il verse</li>
+</ul>
+ 
+<br/>
+ 
+<p><strong>Garde alternée :</strong></p>
+ 
+<br/>
+ 
+<p>C'est plus complexe. En principe :</p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🔄 Le parent avec le <strong>revenu le plus élevé</strong> est imposé au barème famille monoparentale et bénéficie de la déduction pour enfant</li>
+<li style="margin-bottom:8px">🔄 Le parent avec le <strong>revenu le plus bas</strong> est imposé au barème personne seule — un taux plus élevé</li>
+<li style="margin-bottom:8px">🔄 Chaque parent peut déduire les <strong>frais de garde effectifs</strong> payés à des tiers, jusqu'à <strong>CHF 25'500 par enfant</strong> (impôt fédéral : max 5'050 CHF)</li>
+</ul>
+ 
+<br/>
+ 
+<p><strong>Astuce peu connue :</strong> En garde alternée, même s'il n'y a pas de différence de revenus significative, il est souvent <strong>fiscalement avantageux de prévoir une petite pension alimentaire</strong> dans la convention de divorce. Pourquoi ? Parce que cela permet au parent payeur de la déduire et peut optimiser la répartition des barèmes. Parlez-en à votre fiduciaire avant de finaliser la convention.</p>
+ 
+<br/>
+ 
+<p>👉 <strong>À retenir :</strong> La répartition des déductions dépend du type de garde. En garde alternée, une convention bien pensée peut faire économiser plusieurs milliers de francs au couple.</p>
+ 
+<br/>
+ 
+<h3><strong>4. Le partage du 2ème pilier : pas d'impôt au moment du divorce</strong></h3>
+ 
+<br/>
+ 
+<p>En cas de divorce, les avoirs de prévoyance professionnelle (LPP) accumulés <strong>pendant la durée du mariage</strong> sont partagés par moitié entre les époux. C'est la loi — quel que soit le régime matrimonial.</p>
+ 
+<br/>
+ 
+<p>La bonne nouvelle : ce transfert est <strong>fiscalement neutre</strong>. Le conjoint qui cède une partie de sa LPP ne paie pas d'impôt sur le montant transféré, et le conjoint qui le reçoit non plus. C'est un simple transfert entre institutions de prévoyance.</p>
+ 
+<br/>
+ 
+<p>Mais attention aux conséquences à long terme :</p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">📉 Si vous perdez la moitié de votre LPP, votre <strong>rente de retraite diminue</strong> considérablement</li>
+<li style="margin-bottom:8px">💡 Vous pouvez <strong>racheter des années</strong> pour combler la lacune créée par le partage — et ces rachats sont <strong>entièrement déductibles</strong> de vos impôts</li>
+<li style="margin-bottom:8px">⏰ Le rachat post-divorce est souvent la <strong>meilleure optimisation fiscale</strong> disponible dans les années qui suivent : vous réduisez vos impôts tout en reconstruisant votre prévoyance</li>
+</ul>
+ 
+<br/>
+ 
+<p>👉 <strong>À retenir :</strong> Le partage LPP ne coûte rien au moment du divorce. Mais planifiez des rachats dans les années suivantes — c'est fiscalement très intéressant.</p>
+ 
+<br/>
+ 
+<h3><strong>5. Le 3ème pilier : ça dépend de votre régime matrimonial</strong></h3>
+ 
+<br/>
+ 
+<p>Contrairement au 2ème pilier (partage obligatoire par moitié), le 3ème pilier est traité comme n'importe quel <strong>bien du patrimoine</strong>. Son sort dépend de votre régime matrimonial :</p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">💍 <strong>Participation aux acquêts</strong> (régime par défaut en Suisse) : le 3ème pilier alimenté pendant le mariage fait partie des acquêts et sera partagé</li>
+<li style="margin-bottom:8px">📜 <strong>Séparation de biens :</strong> Chacun garde son 3ème pilier, pas de partage</li>
+<li style="margin-bottom:8px">🤝 <strong>Communauté de biens :</strong> Tout est partagé, y compris le 3ème pilier</li>
+</ul>
+ 
+<br/>
+ 
+<p>Si un retrait du 3ème pilier est nécessaire pour la liquidation du régime matrimonial, il sera <strong>imposé séparément</strong> à un taux réduit (comme tout retrait de prévoyance). Ce n'est pas ajouté à vos revenus ordinaires.</p>
+ 
+<br/>
+ 
+<p>👉 <strong>À retenir :</strong> Vérifiez votre régime matrimonial. Si vous avez un 3a bien garni et que vous êtes en participation aux acquêts, il fera partie du gâteau à partager.</p>
+ 
+<br/>
+ 
+<h3><strong>6. La maison : vendre, racheter la part, ou garder ensemble ?</strong></h3>
+ 
+<br/>
+ 
+<p>Le bien immobilier est souvent le sujet le plus sensible d'un divorce. Fiscalement, trois scénarios :</p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">🏠 <strong>Un conjoint rachète la part de l'autre :</strong> Pas d'impôt sur le gain immobilier (c'est une liquidation de régime matrimonial, pas une vente). Mais celui qui garde la maison reprend seul l'hypothèque — la banque doit accepter.</li>
+<li style="margin-bottom:8px">🏷️ <strong>Vente du bien :</strong> L'impôt sur le gain immobilier s'applique. Le montant dépend de la plus-value réalisée et de la durée de détention. Attention : une vente rapide (< 5 ans de propriété) entraîne un <strong>supplément d'impôt</strong> dans la plupart des cantons.</li>
+<li style="margin-bottom:8px">🤝 <strong>Copropriété maintenue :</strong> Possible mais déconseillé. Les deux restent solidaires de l'hypothèque et de la valeur locative. Fiscalement et humainement, c'est rarement une bonne idée à long terme.</li>
+</ul>
+ 
+<br/>
+ 
+<p>Autre point important : si vous aviez utilisé votre <strong>2ème ou 3ème pilier</strong> pour financer l'achat, le partage du bien immobilier interagit avec le partage de la prévoyance. C'est un calcul complexe — ne le faites pas seul.</p>
+ 
+<br/>
+ 
+<p>👉 <strong>À retenir :</strong> Le rachat de la part du conjoint est fiscalement neutre. La vente peut coûter cher en impôt sur le gain immobilier, surtout si le bien a beaucoup pris de valeur.</p>
+ 
+<br/>
+ 
+<h3><strong>7. L'année du divorce : les erreurs à ne pas faire</strong></h3>
+ 
+<br/>
+ 
+<p>L'année de la séparation est critique. Voici les erreurs les plus courantes :</p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">❌ <strong>Oublier de signaler la séparation à l'administration fiscale :</strong> Vous devez informer votre office d'impôts dès la séparation effective. Sinon, vous recevrez une taxation conjointe erronée qu'il faudra contester.</li>
+<li style="margin-bottom:8px">❌ <strong>Ne pas adapter ses acomptes :</strong> Vos acomptes provisionnels sont basés sur l'ancien revenu du couple. Après la séparation, demandez un recalcul pour éviter de payer trop — ou pas assez.</li>
+<li style="margin-bottom:8px">❌ <strong>Oublier de déduire la pension dès le premier mois :</strong> Si vous commencez à verser une pension en cours d'année, déduisez-la dès le premier versement. Chaque mois oublié est de l'argent perdu.</li>
+<li style="margin-bottom:8px">❌ <strong>Déduire le 3a au mauvais plafond :</strong> L'année de la séparation, vous passez peut-être du plafond salarié (7'258 CHF) au plafond sans caisse de pension (36'288 CHF) si votre situation change. Vérifiez.</li>
+<li style="margin-bottom:8px">❌ <strong>Ignorer les rachats LPP possibles :</strong> Après le partage de votre 2ème pilier, vous avez une lacune. Chaque rachat est déductible. C'est souvent la meilleure optimisation post-divorce.</li>
+</ul>
+ 
+<br/>
+ 
+<hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
+ 
+<br/>
+ 
+<h3><strong>Ce qu'il faut retenir</strong></h3>
+ 
+<br/>
+ 
+<p>Un divorce change <strong>tout</strong> sur le plan fiscal. Voici les points essentiels :</p>
+ 
+<br/>
+ 
+<ul style="margin-left:20px;margin-bottom:16px">
+<li style="margin-bottom:8px">Vous passez immédiatement à une <strong>déclaration individuelle</strong> pour toute l'année</li>
+<li style="margin-bottom:8px">Les pensions alimentaires sont <strong>déductibles pour celui qui paie</strong> et <strong>imposables pour celui qui reçoit</strong></li>
+<li style="margin-bottom:8px">La répartition des <strong>déductions enfants</strong> dépend du type de garde — en garde alternée, une pension même symbolique peut optimiser la fiscalité</li>
+<li style="margin-bottom:8px">Le partage LPP est <strong>neutre fiscalement</strong>, mais les rachats post-divorce sont une opportunité d'optimisation majeure</li>
+<li style="margin-bottom:8px">Le 3ème pilier suit les règles du <strong>régime matrimonial</strong>, pas celles de la LPP</li>
+<li style="margin-bottom:8px">Le bien immobilier : privilégiez le <strong>rachat de part</strong> plutôt que la vente pour éviter l'impôt sur le gain immobilier</li>
+</ul>
+ 
+<br/>
+ 
+<p>Un divorce est déjà assez difficile comme ça. Ne laissez pas les impôts aggraver la situation. Une bonne planification fiscale <strong>avant de signer la convention</strong> peut vous faire économiser des milliers de francs — chaque année, pendant des années.</p>
+ 
+<br/>
+ 
+<p>Chez <strong>NeoFidu</strong>, nous aidons régulièrement des personnes en cours de séparation ou de divorce à comprendre l'impact fiscal et à optimiser leur nouvelle situation. Déclaration post-divorce, simulation de pension, rachats LPP — nous faisons le calcul pour que vous n'ayez pas à le faire dans un moment pareil.</p>
+ 
+<br/>
+ 
+<p>Besoin d'accompagnement pour votre déclaration après un divorce ? <strong><a href="/demande">Déposez votre demande en ligne →</a></strong></p>`,
+    category: "fiscalite",
+    date: "2026-04-21",
+    readTime: 12,
+  },
 ];
