@@ -6334,7 +6334,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<p>Un salarié qui gagne 80'000 CHF par an cotise automatiquement aux trois piliers. À la retraite, il touche l'AVS + une rente LPP + son 3ème pilier. Un indépendant qui gagne le même montant mais ne cotise qu'à l'AVS se retrouve avec <strong>2'450 CHF par mois</strong>. Point final.</p>
+<p>Un salarié qui gagne 80'000 CHF par an cotise automatiquement aux deux premiers piliers. À la retraite, il touche l'AVS + une rente LPP. Un indépendant qui gagne le même montant mais ne cotise qu'à l'AVS se retrouve avec <strong>2'450 CHF par mois</strong>. Point final.</p>
  
 <br/>
  
