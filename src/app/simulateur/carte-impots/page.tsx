@@ -137,14 +137,14 @@ export default function CarteImpotsPage() {
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
                   <Zap className="w-4 h-4 text-yellow-300" />
-                  <span className="text-sm font-medium">Simulateur gratuit Â· Suisse 2026</span>
+                  <span className="text-sm font-medium">Simulateur gratuit Suisse 2026</span>
                 </div>
                 <h1 className="text-3xl md:text-5xl font-bold mb-4">
                   Carte des{" "}
                   <span className="text-emerald-300">Impôts Suisses</span>
                 </h1>
                 <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                  Comparez les taux dâ€™imposition des 26 cantons suisses. Identifiez le canton le plus avantageux fiscalement pour votre profil.
+                  Comparez les taux d'imposition des 26 cantons suisses. Identifiez le canton le plus avantageux fiscalement pour votre profil.
                 </p>
               </div>
             </div>
