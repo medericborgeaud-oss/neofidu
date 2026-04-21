@@ -6574,7 +6574,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
   {
     id: "31",
     slug: "divorce-suisse-impots-guide-fiscal",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?w=800&auto=format&fit=crop&q=80",
     title: "Divorce en Suisse : ce que personne ne vous dit sur les impôts",
     titleEn: "Divorce in Switzerland: What Nobody Tells You About Taxes",
     excerpt: "Vous pensez à vous séparer — ou c'est déjà fait. Votre avocat vous parle garde des enfants et pension. Mais qui vous parle des impôts ? Voici tout ce qui change fiscalement après un divorce en Suisse.",
