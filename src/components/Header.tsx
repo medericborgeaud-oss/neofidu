@@ -82,7 +82,7 @@ export function Header() {
       href: "simulateur/carte-impots",
       label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse",
       icon: ClipboardList,
-      description: isEnglish ? "Compare taxes by municipality" : "Comparez les impôts par commune",
+      description: isEnglish ? "Compare taxes by canton" : "Comparez les impôts par canton",
     },
     {
       href: "/blog",
