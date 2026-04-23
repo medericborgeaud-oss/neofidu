@@ -936,8 +936,8 @@ export const translations = {
       email: "Email",
       address: "Address",
       hours: "Hours",
-      hoursValue: "Monday to Friday, 9am - 6pm",
-      hoursNote: "Response guaranteed within one business day",
+      hoursValue: "Monday to Friday, 8.30am - 5pm",
+      hoursNote: "Fast response guaranteed",
       form: {
         firstName: "First name",
         lastName: "Last name",
