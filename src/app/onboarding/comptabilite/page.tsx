@@ -195,7 +195,7 @@ export default function OnboardingComptabilitePage() {
             </h1>
             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
               Merci pour votre confiance. Nous avons bien reçu vos informations.
-              Notre équipe analysera votre dossier et vous contactera sous 48h.
+              Notre équipe analysera votre dossier et vous contactera.
             </p>
 
             <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 mb-8 border border-teal-200">
@@ -216,7 +216,7 @@ export default function OnboardingComptabilitePage() {
                   <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <Users className="w-4 h-4 text-teal-600" />
                   </div>
-                  <span className="text-gray-700">Contact sous 48h pour finaliser</span>
+                  <span className="text-gray-700">Contact rapide pour finaliser</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
