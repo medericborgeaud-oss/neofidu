@@ -159,16 +159,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-emerald-300" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">{t.address}</p>
-                  <p className="text-white/70">1854 Leysin</p>
-                </div>
-              </div>
-
+              
               
             </div>
           </div>
