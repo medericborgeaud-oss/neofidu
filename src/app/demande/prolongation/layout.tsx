@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Prolongation délai déclaration d'impôts 2025 | CHF 20.- | NeoFidu",
-  description: "Obtenez une prolongation de délai pour votre déclaration d'impôts 2025 en Suisse romande. Service rapide à CHF 20.- TTC. Cantons VD, GE, VS, NE, FR, JU. Traitement sous 1 jour ouvré.",
+  description: "Obtenez une prolongation de délai pour votre déclaration d'impôts 2025 en Suisse romande. Service rapide à CHF 20.- TTC. Cantons VD, GE, VS, NE, FR, JU. Traitement rapide.",
   keywords: ["prolongation délai impôts", "extension délai déclaration impôts", "prolongation fiscale Suisse", "délai déclaration impôts Vaud", "prolongation impôts Genève"],
   openGraph: {
     title: "Prolongation délai déclaration d'impôts 2025 | NeoFidu",
