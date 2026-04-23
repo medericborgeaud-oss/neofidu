@@ -206,7 +206,7 @@ export async function POST(request: NextRequest) {
             </div>
 
             <p style="font-size: 16px; color: #334155;">
-              Un expert Neofidu vous contactera dans les <strong>24 heures ouvrables</strong> pour discuter de votre projet et vous proposer un accompagnement personnalisé.
+              Un expert Neofidu vous contactera dans les pour discuter de votre projet et vous proposer un accompagnement personnalisé.
             </p>
 
             <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 24px 0;">
