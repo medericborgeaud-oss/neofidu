@@ -110,8 +110,8 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
   const t = {
     title: isEnglish ? "Start your project" : "Lancez votre projet",
     subtitle: isEnglish
-      ? "Fill out this form and we'll contact you within 1 business day"
-      : "Remplissez ce formulaire et nous vous contactons sous 1 jour ouvré",
+      ? "Fill out this form and we'll contact you"
+      : "Remplissez ce formulaire et nous vous contactons",
     firstName: isEnglish ? "First name *" : "Prénom *",
     lastName: isEnglish ? "Last name *" : "Nom *",
     email: "Email *",
@@ -126,7 +126,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
     submit: isEnglish ? "Send my request, no commitment" : "Envoyer ma demande sans engagement",
     sending: isEnglish ? "Sending..." : "Envoi en cours...",
     noCommitment: isEnglish ? "No commitment" : "Sans engagement",
-    responseTime: isEnglish ? "Response within 1 business day" : "Réponse sous 1 jour ouvré",
+    responseTime: isEnglish ? "Fast response" : "Réponse rapide",
   };
 
   return (
@@ -295,7 +295,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
             <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium">
               ✓ {isEnglish ? "Free" : "Gratuit"}
             </span>
-            {isEnglish ? "No commitment • Response within 1 business day" : "Sans engagement • Réponse sous 1 jour ouvré"}
+            {isEnglish ? "No commitment • Fast response" : "Sans engagement • Réponse rapide"}
           </p>
         </div>
       </form>
