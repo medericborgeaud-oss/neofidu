@@ -2215,7 +2215,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">1</div>
                 <div>
                   <p className="font-medium text-gray-900">{isEnglish ? "Document verification" : "Vérification des documents"}</p>
-                  <p className="text-sm text-gray-600">{isEnglish ? "Within 24-48h, we verify your documents and contact you if needed." : "Sous 24-48h, nous vérifions vos pièces et vous contactons si besoin."}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "We verify your documents and contact you if needed." : "Nous vérifions vos pièces et vous contactons si besoin."}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
