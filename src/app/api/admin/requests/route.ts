@@ -905,7 +905,7 @@ export async function PATCH(request: NextRequest) {
         completed: "Votre déclaration d'impôts est terminée et prête à être envoyée.",
         delivered: "Votre déclaration d'impôts a été envoyée. Merci de votre confiance !",
         // Messages pour demandes comptabilité / gérance
-        received: "Votre demande a bien été reçue. Un conseiller vous contactera sous 24 heures.",
+        received: "Votre demande a bien été reçue. Un conseiller vous contactera rapidement.",
         processing: "Notre équipe travaille actuellement sur votre dossier.",
         done: "Votre dossier est terminé. Merci de votre confiance !",
       };
