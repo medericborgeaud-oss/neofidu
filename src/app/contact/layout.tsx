@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contactez NeoFidu, votre fiduciaire digitale en Suisse. Réponse sous 24h. Déclaration d'impôts, comptabilité, création d'entreprise — we speak English!",
+    "Contactez NeoFidu, votre fiduciaire digitale en Suisse. Déclaration d'impôts, comptabilité, création d'entreprise — we speak English!",
   keywords: [
     "contact fiduciaire suisse",
     "contact neofidu",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact NeoFidu | Fiduciaire digitale en Suisse",
     description:
-      "Contactez notre équipe. Réponse sous 24h. We speak English!",
+      "Contactez notre équipe. We speak English!",
     type: "website",
     url: "https://www.neofidu.ch/contact",
   },
