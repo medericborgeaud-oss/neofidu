@@ -102,7 +102,7 @@ function ConfirmationContent() {
               <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-5 h-5 text-primary" />
-                  <span className="font-semibold text-primary">Sous 24-48h</span>
+                  <span className="font-semibold text-primary">Rapide</span>
                 </div>
                 <h4 className="font-medium mb-1">Analyse de votre dossier</h4>
                 <p className="text-sm text-muted-foreground">
