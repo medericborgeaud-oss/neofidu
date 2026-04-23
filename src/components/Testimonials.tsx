@@ -69,7 +69,7 @@ export function Testimonials() {
           icon: HeadphonesIcon,
           title: "Support réactif",
           description:
-            "Une question ? Notre équipe répond sous 48h ouvrables par email. Pas de répondeur, pas d'attente interminable.",
+            "Une question ? Notre équipe répond rapidement par email. Pas de répondeur, pas d'attente interminable.",
         },
         {
           icon: Lock,
