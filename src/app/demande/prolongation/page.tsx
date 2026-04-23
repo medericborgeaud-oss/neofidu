@@ -555,7 +555,7 @@ export default function ProlongationPage() {
                 </h3>
                 <ul className="space-y-3">
                   {[
-                    isEnglish ? "Request processed within 1 business day" : "Demande traitée sous 1 jour ouvré",
+                    isEnglish ? "Request fastly processed" : "Demande traitée rapidement",
                     isEnglish ? "Confirmation sent by email" : "Confirmation envoyée par email",
                     isEnglish ? "Administrative formalities handled" : "Démarches prises en charge",
                     isEnglish ? "Valid for 2025 tax year" : "Valable pour l'année fiscale 2025",
