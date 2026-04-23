@@ -477,8 +477,8 @@ export default function GeranceImmobilierePage() {
               </h2>
               <p className="text-white/90 mb-8">
                 {isEnglish
-                  ? "Contact us for a free quote. We will get back to you within 1 business day."
-                  : "Contactez-nous pour un devis gratuit. Nous vous recontactons sous 1 jour ouvré."}
+                  ? "Contact us for a free quote. We will get back to you."
+                  : "Contactez-nous pour un devis gratuit. Nous vous recontactons rapidement."}
               </p>
               <Button
                 asChild
