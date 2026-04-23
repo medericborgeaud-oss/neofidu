@@ -1480,7 +1480,7 @@ export const translations = {
         benefit1Title: "100% online service",
         benefit1Desc: "Manage your Swiss tax return from anywhere in the world, without traveling.",
         benefit2Title: "Flexible communication",
-        benefit2Desc: "Email exchanges without time constraints, guaranteed response within 1 business day.",
+        benefit2Desc: "Email exchanges without time constraints, guaranteed fast response.",
         benefit3Title: "Digital documents",
         benefit3Desc: "Send your documents electronically, receive your declaration by email.",
         benefit4Title: "Swiss tax expertise",
