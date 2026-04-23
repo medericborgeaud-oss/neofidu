@@ -46,7 +46,7 @@ function ThankYouContent() {
     ? [
         {
           icon: Phone,
-          title: "Free call within 1 business day",
+          title: "Free call",
           description: "A Neofidu expert will contact you to discuss your project and answer your questions.",
         },
         {
@@ -63,7 +63,7 @@ function ThankYouContent() {
     : [
         {
           icon: Phone,
-          title: "Appel gratuit sous 1 jour ouvré",
+          title: "Appel gratuit",
           description: "Un expert Neofidu vous contacte pour discuter de votre projet et répondre à vos questions.",
         },
         {
@@ -161,8 +161,8 @@ function ThankYouContent() {
 
             <p className="text-lg text-muted-foreground max-w-xl mx-auto">
               {isEnglish
-                ? "Your request has been received. Our team will contact you within 24 business hours to discuss your company creation project."
-                : "Votre demande a bien été reçue. Notre équipe vous contactera sous 1 jour ouvré pour discuter de votre projet de création d'entreprise."}
+                ? "Your request has been received. Our team will contact you to discuss your company creation project."
+                : "Votre demande a bien été reçue. Notre équipe vous contactera pour discuter de votre projet de création d'entreprise."}
             </p>
           </motion.div>
 
@@ -196,7 +196,7 @@ function ThankYouContent() {
                   <Clock className="w-6 h-6 text-amber-600 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-amber-900">
-                      {isEnglish ? "Response within 1 business day" : "Réponse sous 1 jour ouvré"}
+                      {isEnglish ? "Fast response" : "Réponse rapide"}
                     </p>
                     <p className="text-sm text-amber-700">
                       {isEnglish
