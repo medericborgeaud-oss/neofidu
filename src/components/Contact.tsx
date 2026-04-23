@@ -80,7 +80,7 @@ export function Contact() {
     address: isEnglish ? "Address" : "Adresse",
     hours: isEnglish ? "Hours" : "Horaires",
     hoursValue: isEnglish ? "Monday to Friday, 9am - 6pm" : "Du lundi au vendredi, 9h - 18h",
-    hoursNote: isEnglish ? "Response guaranteed within one business day" : "Retour garanti sous un jour ouvré",
+    hoursNote: isEnglish ? "Fast response guaranteed" : "Retour rapide garanti",
     firstName: isEnglish ? "First name *" : "Prénom *",
     lastName: isEnglish ? "Last name *" : "Nom *",
     emailLabel: "Email *",
@@ -100,8 +100,8 @@ export function Contact() {
       : "En soumettant ce formulaire, vous acceptez notre politique de confidentialité.",
     thankYou: isEnglish ? "Thank you for your request!" : "Merci pour votre demande !",
     recontact: isEnglish
-      ? "We will contact you within 24 business hours."
-      : "Nous vous recontacterons sous 1 jour ouvré.",
+      ? "We will contact you shortly."
+      : "Nous vous recontacterons rapidement.",
     services: isEnglish
       ? {
           tax: "Tax declaration",
