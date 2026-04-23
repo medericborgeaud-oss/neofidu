@@ -445,7 +445,7 @@ export default function RootLayout({
         name: "Comment contacter NeoFidu ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Vous pouvez nous contacter par email à contact@neofidu.ch, par téléphone au +41 78 691 39 12, ou via notre formulaire de contact en ligne. Réponse garantie sous 1 jour ouvré.",
+          text: "Vous pouvez nous contacter par email à contact@neofidu.ch ou via notre formulaire de contact en ligne. Réponse rapide garantie.",
         },
       },
     ],
