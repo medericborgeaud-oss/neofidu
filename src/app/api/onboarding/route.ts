@@ -297,7 +297,7 @@ export async function POST(request: NextRequest) {
             </div>
             <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
               <span style="background: #0d9488; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; flex-shrink: 0;">2</span>
-              <span style="color: #4b5563;">Nous vous contactons sous 48h pour finaliser l'onboarding</span>
+              <span style="color: #4b5563;">Nous vous contactons pour finaliser l'onboarding</span>
             </div>
             <div style="display: flex; align-items: flex-start;">
               <span style="background: #0d9488; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; flex-shrink: 0;">3</span>
