@@ -74,8 +74,8 @@ export function Contact() {
     title1: isEnglish ? "Request a" : "Sollicitez un",
     title2: isEnglish ? "free quote" : "devis sans frais",
     description: isEnglish
-      ? "Complete this form and receive a detailed proposal within 1 business day. No obligation on your part."
-      : "Complétez ce formulaire et recevez une proposition chiffrée sous 1 jour ouvré. Aucune obligation de votre part.",
+      ? "Complete this form and receive a detailed proposal. No obligation on your part."
+      : "Complétez ce formulaire et recevez une proposition chiffrée. Aucune obligation de votre part.",
     email: "Email",
     address: isEnglish ? "Address" : "Adresse",
     hours: isEnglish ? "Hours" : "Horaires",
@@ -169,16 +169,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-emerald-300" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">{t.hours}</p>
-                  <p className="text-white/70">{t.hoursValue}</p>
-                  <p className="text-white/60 text-sm">{t.hoursNote}</p>
-                </div>
-              </div>
+              
             </div>
           </div>
 
