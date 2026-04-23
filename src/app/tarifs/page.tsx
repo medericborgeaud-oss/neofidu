@@ -389,7 +389,7 @@ export default function TarifsPage() {
         "name": "Comment obtenir un devis personnalisé ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email sous 1 jour ouvré, sans aucun engagement."
+          "text": "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email, sans aucun engagement."
         }
       },
       {
@@ -482,8 +482,8 @@ export default function TarifsPage() {
             </p>
             <p className="text-muted-foreground text-sm mb-8">
               {isEnglish
-                ? "Fixed prices for tax returns · Personalized quote within 24h for accounting & property management. Payment in 3 installments available via Klarna."
-                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé sous 24h pour la comptabilité & gérance. Paiement en 3 fois disponible via Klarna."}
+                ? "Fixed prices for tax returns · Personalized quote for accounting & property management. Payment in 3 installments available via Klarna."
+                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé pour la comptabilité & gérance. Paiement en 3 fois disponible via Klarna."}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
@@ -493,7 +493,7 @@ export default function TarifsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
-                <span>{isEnglish ? "Custom quote within 24h" : "Devis sur mesure sous 24h"}</span>
+                <span>{isEnglish ? "Custom quote" : "Devis sur mesure"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CreditCard className="w-5 h-5 text-primary" />
@@ -519,8 +519,8 @@ export default function TarifsPage() {
             </h2>
             <p className="text-white/90 mb-4">
               {isEnglish
-                ? "No commitment. Personalized quote for accounting & property management within 24 hours."
-                : "Sans engagement. Devis personnalisé pour la comptabilité & gérance sous 24 heures."}
+                ? "No commitment. Personalized quote for accounting & property management."
+                : "Sans engagement. Devis personnalisé pour la comptabilité & gérance."}
             </p>
             <Link href="/demande">
               <Button
@@ -917,8 +917,8 @@ export default function TarifsPage() {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? "Fill out our online form in 2 minutes. You will receive a detailed quote by email within 1 business day, without any commitment."
-                    : "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email sous 1 jour ouvré, sans aucun engagement."}
+                    ? "Fill out our online form in 2 minutes. You will receive a detailed quote by email, without any commitment."
+                    : "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email, sans aucun engagement."}
                 </p>
               </Card>
               <Card className="p-6">
