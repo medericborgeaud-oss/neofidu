@@ -292,14 +292,14 @@ export function AccountingRequestForm() {
       ? "This request is free and without commitment"
       : "Cette demande est gratuite et sans engagement",
     quoteNote: isEnglish
-      ? "We will send you a detailed quote within 1 business day. Payment will only be requested after your approval."
-      : "Nous vous enverrons un devis détaillé sous 1 jour ouvré. Le paiement ne sera demandé qu'après validation de votre part.",
+      ? "We will send you a detailed quote. Payment will only be requested after your approval."
+      : "Nous vous enverrons un devis détaillé. Le paiement ne sera demandé qu'après validation de votre part.",
 
     // Success
     successTitle: isEnglish ? "Request sent successfully!" : "Demande envoyée avec succès !",
     successMessage: isEnglish
-      ? "Thank you for your interest. An advisor will analyze your file and contact you within 1 business day with a personalized quote."
-      : "Merci pour votre intérêt. Un conseiller analysera votre dossier et vous contactera sous 1 jour ouvré avec un devis personnalisé.",
+      ? "Thank you for your interest. An advisor will analyze your file and contact you with a personalized quote."
+      : "Merci pour votre intérêt. Un conseiller analysera votre dossier et vous contactera avec un devis personnalisé.",
     confirmationEmailSent: isEnglish ? "A confirmation email has been sent to you." : "Un email de confirmation vous a été envoyé.",
     nextStep: isEnglish ? "Next step" : "Prochaine étape",
     personalizedQuoteByEmail: isEnglish ? "Personalized quote by email" : "Devis personnalisé par email",
