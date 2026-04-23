@@ -31,7 +31,7 @@ export function Testimonials() {
           icon: HeadphonesIcon,
           title: "Responsive support",
           description:
-            "A question? Our team responds within 48 working hours by email. No voicemail, no endless waiting.",
+            "A question? Our team responds by email. No voicemail, no endless waiting.",
         },
         {
           icon: Lock,
