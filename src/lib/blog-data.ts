@@ -3672,7 +3672,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>N'attendez pas la dernière minute ! Plus tôt vous nous confiez votre dossier, plus nous avons le temps d'optimiser votre situation. <a href="/demande"><strong>Déposez votre demande en ligne</strong></a> et recevez votre devis sous 24 heures.</p>
+<p>N'attendez pas la dernière minute ! Plus tôt vous nous confiez votre dossier, plus nous avons le temps d'optimiser votre situation. <a href="/demande"><strong>Déposez votre demande en ligne</strong></a> et recevez votre devis rapidement.</p>
     `,
     category: "fiscalite",
     date: "2026-01-15",
