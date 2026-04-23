@@ -96,7 +96,7 @@ const faqItemsFR: FAQItem[] = [
   {
     category: "Informations générales",
     question: "Comment vous joindre ?",
-    answer: "Adressez-nous un message via contact@neofidu.ch ou remplissez le formulaire disponible sur le site. Nous garantissons une réponse sous un jour ouvré. En cas d'urgence liée à un dossier actif, un rappel téléphonique est prévu."
+    answer: "Adressez-nous un message via contact@neofidu.ch ou remplissez le formulaire disponible sur le site. Nous garantissons une réponse rapide. En cas d'urgence liée à un dossier actif, un rappel téléphonique est prévu."
   },
   {
     category: "Informations générales",
@@ -183,7 +183,7 @@ const faqItemsEN: FAQItem[] = [
   {
     category: "General Information",
     question: "How can I contact you?",
-    answer: "Send us a message via contact@neofidu.ch or fill out the form on the website. We guarantee a response within one business day. In case of urgency related to an active file, a phone callback is provided."
+    answer: "Send us a message via contact@neofidu.ch or fill out the form on the website. We guarantee a fast response. In case of urgency related to an active file, a phone callback is provided."
   },
   {
     category: "General Information",
@@ -223,8 +223,8 @@ export default function FAQPage() {
       : "Trouvez rapidement les réponses à vos questions sur nos services de déclarations d'impôts et de comptabilité.",
     notFound: isEnglish ? "Didn't find your answer?" : "Vous n'avez pas trouvé votre réponse ?",
     notFoundDesc: isEnglish
-      ? "Our team is here to help. Contact us and we'll respond within one business day."
-      : "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons sous 1 jour ouvré.",
+      ? "Our team is here to help. Contact us and we'll respond shortly."
+      : "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons rapidement.",
     contactUs: isEnglish ? "Contact us" : "Nous contacter",
     startRequest: isEnglish ? "Start a request" : "Démarrer une demande",
   };
