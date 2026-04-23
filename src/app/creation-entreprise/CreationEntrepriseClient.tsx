@@ -343,7 +343,7 @@ export default function CreationEntreprisePage() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-violet-600" />
-                <span>{isEnglish ? "Response within 1 business day" : "Réponse sous 1 jour ouvré"}</span>
+                <span>{isEnglish ? "Fast response" : "Réponse rapide"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-violet-600" />
@@ -609,8 +609,8 @@ export default function CreationEntreprisePage() {
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {isEnglish
-                  ? "Fill out the form below and we'll contact you within 1 business day for a free 30-minute consultation."
-                  : "Remplissez le formulaire ci-dessous et nous vous contactons sous 1 jour ouvré pour une consultation gratuite de 30 minutes."}
+                  ? "Fill out the form below and we'll contact you for a free consultation."
+                  : "Remplissez le formulaire ci-dessous et nous vous contactons pour une consultation gratuite."}
               </p>
             </div>
             <div className="max-w-xl mx-auto">
