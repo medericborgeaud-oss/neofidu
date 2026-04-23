@@ -278,7 +278,7 @@ export default function IndependantsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
-                <span>{isEnglish ? "Response within 1 business day" : "Réponse sous 1 jour ouvré"}</span>
+                <span>{isEnglish ? "Fast response" : "Réponse rapide"}</span>
               </div>
             </div>
           </motion.section>
