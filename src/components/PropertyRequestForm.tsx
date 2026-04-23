@@ -110,8 +110,8 @@ export function PropertyRequestForm() {
     // Success
     successTitle: isEnglish ? "Request sent!" : "Demande envoyée !",
     successMessage: isEnglish
-      ? "We will contact you within 24 business hours to discuss your project."
-      : "Nous vous recontacterons sous 1 jour ouvré pour discuter de votre projet.",
+      ? "We will contact you to discuss your project."
+      : "Nous vous recontacterons pour discuter de votre projet.",
     reference: isEnglish ? "Reference" : "Référence",
     perYear: isEnglish ? "/year" : "/an",
     stepLabel: isEnglish ? "Step" : "Étape",
