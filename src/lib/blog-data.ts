@@ -6836,4 +6836,87 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     date: "2026-04-21",
     readTime: 12,
   },
+
+  {
+    id: "32",
+    slug: "pas-de-suisse-10-millions-impact-pme-independants-romands",
+    image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&auto=format&fit=crop&q=60",
+    title: "« Pas de Suisse à 10 millions » : quel impact pour les PME et indépendants romands ?",
+    titleEn: "No Switzerland at 10 million: what impact for SMEs and self-employed in French-speaking Switzerland?",
+    excerpt: "Le 14 juin 2026, le peuple vote sur l'initiative UDC. 460'000 travailleurs en moins d'ici 2035, fin des bilatérales, hausse des salaires : voici les conséquences concrètes pour votre entreprise.",
+    excerptEn: "On June 14, 2026, Swiss voters decide on the SVP initiative. 460,000 fewer workers by 2035, end of bilateral agreements, rising wages: here are the concrete consequences for your business.",
+    keywords: ["votation 14 juin 2026", "pas de suisse à 10 millions", "impact PME", "pénurie main oeuvre suisse", "accords bilatéraux", "indépendant suisse", "charges sociales employeur 2026", "initiative UDC immigration", "libre circulation personnes", "recrutement PME romande"],
+    category: "actualites",
+    date: "2026-04-23",
+    readTime: 7,
+    content: `<p>Le <strong>14 juin 2026</strong>, le peuple suisse vote sur l'initiative « Pas de Suisse à 10 millions ! ». Derrière le débat politique, une question très concrète se pose pour les entrepreneurs romands : quelles seraient les conséquences sur votre entreprise si l'initiative était acceptée ? Hausse des coûts, pénurie de personnel, remise en cause des accords bilatéraux — voici ce que vous devez savoir.</p>
+<br/>
+<h3><strong>Ce que propose l'initiative</strong></h3>
+<br/>
+<p>L'initiative, lancée par l'UDC, demande que la population résidante permanente de la Suisse ne dépasse pas 10 millions d'habitants avant 2050. Si le seuil de 9,5 millions est franchi, le Conseil fédéral devrait prendre des mesures pour limiter l'immigration, notamment en matière d'asile et de regroupement familial.</p>
+<br/>
+<p>En pratique, cela impliquerait très probablement la dénonciation de l'Accord sur la libre circulation des personnes (ALCP) avec l'Union européenne — et potentiellement la chute de l'ensemble des accords bilatéraux I, liés par une clause guillotine.</p>
+<br/>
+<div style="text-align:center;margin:32px 0;padding:28px;background:linear-gradient(135deg,#16697a 0%,#1a8a9e 100%);border-radius:12px;color:#fff">
+<span style="font-size:48px;font-weight:700;display:block;margin-bottom:8px">460'000</span>
+<span style="font-size:16px;opacity:0.9">travailleurs pourraient manquer en Suisse d'ici 2035 si l'immigration est fortement restreinte</span>
+</div>
+<br/>
+<h3><strong>Une pénurie de main-d'œuvre déjà critique</strong></h3>
+<br/>
+<p>Les chiffres parlent d'eux-mêmes. Selon les projections du SECO et de diverses études économiques, la Suisse pourrait manquer de près de <strong>460'000 équivalents plein temps d'ici 2035</strong> si l'immigration était fortement restreinte. Aujourd'hui déjà, plus de 85'000 postes sont ouverts dans le pays, et un travailleur sur quatre approche l'âge de la retraite.</p>
+<br/>
+<p>Les secteurs les plus exposés sont ceux qui dépendent fortement de la main-d'œuvre étrangère : la santé (un médecin sur quatre a plus de 60 ans), la construction, la restauration, l'hôtellerie, l'agriculture et les services administratifs. Mais les PME de tous les secteurs seraient touchées, y compris les fiduciaires, les cabinets de conseil et les entreprises technologiques.</p>
+<br/>
+<h3><strong>L'impact direct sur les PME romandes</strong></h3>
+<br/>
+<h4><strong>Recruter deviendrait plus cher et plus lent</strong></h4>
+<br/>
+<p>Aujourd'hui, un employeur romand peut recruter un ressortissant européen sans formalités lourdes grâce à la libre circulation. Sans cet accord, chaque embauche d'un travailleur étranger nécessiterait un permis de travail, des contingents, des procédures administratives — exactement comme pour les ressortissants de pays tiers aujourd'hui. Pour une PME de 5 ou 10 personnes, c'est un frein considérable.</p>
+<br/>
+<h4><strong>Les salaires sous pression</strong></h4>
+<br/>
+<p>Moins de candidats disponibles signifie une pression à la hausse sur les salaires. C'est arithmétique : quand l'offre de travail se raréfie, le prix augmente. Pour les grandes entreprises, c'est absorbable. Pour une PME ou un indépendant qui débute, c'est un coût supplémentaire qui peut faire la différence entre rentabilité et déficit.</p>
+<br/>
+<h4><strong>Les accords bilatéraux : un effet domino</strong></h4>
+<br/>
+<p>Les accords bilatéraux I sont liés entre eux. Dénoncer la libre circulation pourrait entraîner la chute de six autres accords, dont ceux sur les obstacles techniques au commerce, les marchés publics et le transport aérien. Pour les PME romandes qui exportent ou travaillent avec des clients européens, cela signifierait des barrières douanières, des certifications supplémentaires et une perte de compétitivité.</p>
+<br/>
+<h3><strong>Combien coûte réellement un employé en Suisse en 2026 ?</strong></h3>
+<br/>
+<p>Puisqu'on parle de main-d'œuvre, c'est l'occasion de rappeler ce que coûte réellement un salarié à un employeur suisse. Au-delà du salaire brut, les charges sociales représentent environ 15 à 20% du salaire :</p>
+<br/>
+<table style="width:100%;border-collapse:collapse;margin-bottom:16px"><thead><tr style="background:#f3f4f6"><th style="border:1px solid #d1d5db;padding:10px 14px;text-align:left">Charge</th><th style="border:1px solid #d1d5db;padding:10px 14px;text-align:left">Part employeur</th></tr></thead><tbody>
+<tr><td style="border:1px solid #d1d5db;padding:10px 14px"><strong>AVS / AI / APG</strong></td><td style="border:1px solid #d1d5db;padding:10px 14px">5,3%</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:10px 14px"><strong>LPP (2ème pilier)</strong></td><td style="border:1px solid #d1d5db;padding:10px 14px">Variable, généralement 50/50</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:10px 14px"><strong>LAA (accidents prof.)</strong></td><td style="border:1px solid #d1d5db;padding:10px 14px">100% employeur</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:10px 14px"><strong>LAA non-professionnels</strong></td><td style="border:1px solid #d1d5db;padding:10px 14px">Souvent pris en charge</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:10px 14px"><strong>AC (chômage)</strong></td><td style="border:1px solid #d1d5db;padding:10px 14px">1,1%</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:10px 14px"><strong>Allocations familiales</strong></td><td style="border:1px solid #d1d5db;padding:10px 14px">100% employeur (variable par canton)</td></tr>
+</tbody></table>
+<br/>
+<div style="background:#f0f7fa;border-radius:8px;padding:20px 24px;margin:24px 0">
+<p style="margin:0"><strong>Exemple concret :</strong> pour un salaire brut de 6'000 CHF par mois, le coût total employeur se situe entre 6'900 et 7'200 CHF. Si la pénurie de main-d'œuvre s'aggrave, ce sont ces salaires bruts qui augmenteront mécaniquement, entraînant une hausse proportionnelle des charges.</p>
+</div>
+<br/>
+<h3><strong>Et si vous êtes indépendant ?</strong></h3>
+<br/>
+<p>Les indépendants sans employés ne sont pas directement concernés par la pénurie de recrutement. Mais ils le sont indirectement : si vos clients (entreprises, institutions) peinent à fonctionner par manque de personnel, vos mandats peuvent être reportés ou annulés. Et si vous travaillez avec des sous-traitants européens (développeurs, graphistes, traducteurs), la fin de la libre circulation compliquerait aussi ces collaborations.</p>
+<br/>
+<p>Par ailleurs, la fin des bilatérales aurait un impact macroéconomique : selon le SECO, l'économie suisse perdrait plusieurs milliards de francs, ce qui se répercuterait sur les salaires, le pouvoir d'achat et donc le volume d'affaires de tous les indépendants.</p>
+<br/>
+<h3><strong>Notre analyse</strong></h3>
+<br/>
+<p>Quelle que soit votre opinion sur l'immigration, les conséquences économiques de cette initiative méritent d'être prises au sérieux. Le Conseil fédéral, les cantons et les partenaires sociaux s'y opposent unanimement, principalement en raison du risque pour les accords bilatéraux et la pénurie de main-d'œuvre.</p>
+<br/>
+<p>Pour les PME et indépendants romands, l'enjeu est concret : pouvoir continuer à recruter librement, maintenir des coûts salariaux compétitifs, et préserver l'accès aux marchés européens sans barrières supplémentaires.</p>
+<br/>
+<div style="background:#f0f7fa;border:2px solid #16697a;border-radius:12px;padding:28px;margin-top:40px;text-align:center">
+<h4 style="color:#16697a;margin:0 0 12px 0">Vous êtes indépendant ou dirigez une PME en Suisse romande ?</h4>
+<p style="color:#555;font-size:15px;margin-bottom:16px">NeoFidu vous accompagne dans la création de votre entreprise, la gestion de vos charges sociales et l'optimisation de votre prévoyance.</p>
+<a href="/demande" style="display:inline-block;background:#16697a;color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600">Contactez-nous</a>
+</div>
+<br/>
+<p style="font-size:13px;color:#999"><strong>Sources :</strong> Conseil fédéral, SECO, FER Genève, Adecco Group (Indice de la pénurie 2025), Secrétariat d'État aux migrations (SEM).</p>`,
+  },
 ];
