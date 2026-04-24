@@ -240,7 +240,7 @@ interface UploadedFile {
   size: number;
   category: string;
   file: File; // Le fichier réel pour l'upload
-  url?: string; // URL après upload vers Cloudinary
+  url?: string; // URL après upload vers Supabase Storage
   uploadStatus: "pending" | "uploading" | "success" | "error"; // Statut de l'upload
   uploadError?: string; // Message d'erreur si échec
 }
@@ -731,7 +731,7 @@ export function TaxRequestForm() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeCategory, setActiveCategory] = useState<string>("bank");
 
-  // Service health check - CRITICAL: blocks submission if Cloudinary is down
+  // Service health check - CRITICAL: blocks submission if Supabase Storage is down
   const [servicesHealthy, setServicesHealthy] = useState<boolean | null>(null);
   const [healthError, setHealthError] = useState<string>("");
 
@@ -747,7 +747,7 @@ export function TaxRequestForm() {
   // Erreurs de validation des champs
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  // Référence temporaire stable pour éviter les dossiers Cloudinary dupliqués
+  // Référence temporaire stable pour éviter les dossiers Supabase Storage dupliqués
   const tempReferenceRef = useRef<string>("");
 
   // Workplaces for adult 1 and adult 2 (spouse)
@@ -960,7 +960,7 @@ export function TaxRequestForm() {
         if (!health.services?.cloudinary) {
           setServicesHealthy(false);
           setHealthError("The document storage service is unavailable. Please try again later or contacter contact@neofidu.ch");
-          console.error("❌ CRITICAL: Cloudinary not configured!", health);
+          console.error("❌ CRITICAL: Supabase Storage not configured!", health);
         } else {
           setServicesHealthy(true);
           setHealthError("");
@@ -1125,8 +1125,8 @@ export function TaxRequestForm() {
     );
   };
 
-  // Upload immédiat d'un fichier vers Cloudinary
-  const uploadFileToCloudinary = async (fileToUpload: UploadedFile): Promise<{ success: boolean; url?: string; error?: string }> => {
+  // Upload immédiat d'un fichier vers Supabase Storage
+  const uploadFileToSupabase Storage = async (fileToUpload: UploadedFile): Promise<{ success: boolean; url?: string; error?: string }> => {
     try {
       // Générer une référence temporaire si nécessaire
       if (!taxRequestReference && !tempReferenceRef.current) {
@@ -1190,7 +1190,7 @@ export function TaxRequestForm() {
 
     // Uploader chaque fichier immédiatement
     for (const newFile of newFiles) {
-      const result = await uploadFileToCloudinary(newFile);
+      const result = await uploadFileToSupabase Storage(newFile);
 
       setUploadedFiles((prev) =>
         prev.map((f) =>
@@ -1219,7 +1219,7 @@ export function TaxRequestForm() {
       )
     );
 
-    const result = await uploadFileToCloudinary(fileToRetry);
+    const result = await uploadFileToSupabase Storage(fileToRetry);
 
     setUploadedFiles((prev) =>
       prev.map((f) =>
@@ -2020,7 +2020,7 @@ export function TaxRequestForm() {
         wantsReview: formData.wantsReview,
         deadline: formData.deadline,
         comments: formData.comments,
-        // Documents (déjà uploadés vers Cloudinary avant paiement)
+        // Documents (déjà uploadés vers Supabase Storage avant paiement)
         documents: uploadedDocuments,
       };
 
@@ -2104,7 +2104,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
   const [postPaymentStatus, setPostPaymentStatus] = useState<string>("");
 
   // Fonction appelée APRÈS le paiement réussi
-  // C'est ici que les documents sont uploadés vers Cloudinary ET les emails envoyés
+  // C'est ici que les documents sont uploadés vers Supabase Storage ET les emails envoyés
   const handlePaymentSuccess = async (paymentIntentId: string) => {
     console.log("✅ Paiement réussi:", paymentIntentId);
     setIsProcessingPostPayment(true);
