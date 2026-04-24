@@ -76,7 +76,7 @@ export function About() {
         { value: "6", label: "Cantons served" },
       ]
     : [
-        { value: "10+", label: "Ans d'activité" },
+        { value: "10+", label: "Ans d'expérience" },
         { value: "24/7", label: "Disponibilité en ligne" },
         { value: "6", label: "Cantons desservis" },
       ];
