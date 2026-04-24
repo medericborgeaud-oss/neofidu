@@ -73,7 +73,7 @@ export default function MentionsLegalesPage() {
       : "Les données sont hébergées via des prestataires conformes au RGPD et à la LPD suisse, avec des garanties contractuelles appropriées (Clauses Contractuelles Types) pour les transferts internationaux.",
     webApp: isEnglish ? "Web application: Vercel (USA/Europe)" : "Application web : Vercel (États-Unis/Europe)",
     database: isEnglish ? "Database: Supabase (Europe)" : "Base de données : Supabase (Europe)",
-    documents: isEnglish ? "Documents: Cloudinary (USA, AES-256 encryption)" : "Documents : Cloudinary (États-Unis, chiffrement AES-256)",
+    documents: isEnglish ? "Documents: Supabase Storage (Dublin, UE) (USA, AES-256 encryption)" : "Documents : Supabase Storage (Dublin, UE) (États-Unis, chiffrement AES-256)",
     payments: isEnglish ? "Payments: Stripe (PCI DSS Level 1 certified)" : "Paiements : Stripe (certifié PCI DSS Level 1)",
     dataProtection: isEnglish ? "Data Protection" : "Protection des données",
     dataProtectionText: isEnglish
