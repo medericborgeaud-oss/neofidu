@@ -80,6 +80,10 @@ const nextConfig = {
     return [
       { source: "/simulateur-retraite", destination: "/simulateur/retraite", permanent: true },
       { source: "/blog/pilier-3a-guide-complet", destination: "/blog/pilier-3a-2026-plafonds-avantages", permanent: true },
+       { source: "/services", destination: "/#services", permanent: true },
+      { source: "/services/:path*", destination: "/#services", permanent: true },
+      { source: "/about", destination: "/#about", permanent: true },
+      { source: "/declaration-impots", destination: "/demande", permanent: true },
     ];
   },
   async headers() {
