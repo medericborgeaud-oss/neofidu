@@ -6,22 +6,21 @@ import {
   updateTaxRequestDocuments,
   supabase,
 } from "@/lib/supabase";
-import { uploadToCloudinary, getDocumentsForReference, type UploadResult } from "@/lib/cloudinary";
+import {
+  uploadToCloudinary,
+  getDocumentsForReference,
+  isCloudinaryConfigured,
+  type UploadResult,
+} from "@/lib/cloudinary";
 
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
 
-// Fallback in-memory storage (used when Cloudinary is not configured)
-const uploadedDocumentsMemory: Map<string, { name: string; size: number; type: string; uploadedAt: Date; url?: string }[]> = new Map();
-
-// Check if Cloudinary is configured
-function isCloudinaryConfigured(): boolean {
-  return !!(
-    process.env.CLOUDINARY_CLOUD_NAME &&
-    process.env.CLOUDINARY_API_KEY &&
-    process.env.CLOUDINARY_API_SECRET
-  );
-}
+// Fallback in-memory storage (used when Supabase Storage is not configured)
+const uploadedDocumentsMemory: Map<
+  string,
+  { name: string; size: number; type: string; uploadedAt: Date; url?: string }[]
+> = new Map();
 
 export async function POST(
   request: NextRequest,
@@ -38,8 +37,17 @@ export async function POST(
     let customerFirstName = "";
     let taxRequestId: string | null = null;
     let genericRequestId: string | null = null;
-    let existingTaxDocuments: { category: string; name: string; url?: string; uploadedAt?: string }[] = [];
-    let existingGenericDocuments: { name: string; uploadedAt?: string; url?: string }[] = [];
+    let existingTaxDocuments: {
+      category: string;
+      name: string;
+      url?: string;
+      uploadedAt?: string;
+    }[] = [];
+    let existingGenericDocuments: {
+      name: string;
+      uploadedAt?: string;
+      url?: string;
+    }[] = [];
 
     // 2. If not found, check tax_requests table
     if (!clientRequest) {
@@ -52,11 +60,14 @@ export async function POST(
         existingTaxDocuments = taxRequest.documents || [];
       } else {
         // 3. Also try generic requests in Supabase
-        const genericRequest = await findGenericRequestByReference(reference);
+        const genericRequest =
+          await findGenericRequestByReference(reference);
         if (genericRequest) {
           requestReference = genericRequest.reference;
-          customerLastName = genericRequest.customer_name?.split(" ").pop() || "";
-          customerFirstName = genericRequest.customer_name?.split(" ")[0] || "";
+          customerLastName =
+            genericRequest.customer_name?.split(" ").pop() || "";
+          customerFirstName =
+            genericRequest.customer_name?.split(" ")[0] || "";
           genericRequestId = genericRequest.id;
           existingGenericDocuments = genericRequest.documents || [];
         }
@@ -99,27 +110,41 @@ export async function POST(
     for (const file of files) {
       if (file.size > maxSize) {
         return NextResponse.json(
-          { error: `Le fichier "${file.name}" dépasse la taille maximale de 10 MB` },
+          {
+            error: `Le fichier "${file.name}" dépasse la taille maximale de 10 MB`,
+          },
           { status: 400 }
         );
       }
-
       if (!allowedTypes.includes(file.type)) {
         return NextResponse.json(
-          { error: `Le type de fichier "${file.name}" n'est pas autorisé` },
+          {
+            error: `Le type de fichier "${file.name}" n'est pas autorisé`,
+          },
           { status: 400 }
         );
       }
     }
 
-    const uploadedFiles: { name: string; size: number; type: string; uploadedAt: Date; url?: string }[] = [];
+    const uploadedFiles: {
+      name: string;
+      size: number;
+      type: string;
+      uploadedAt: Date;
+      url?: string;
+    }[] = [];
 
-    // Check if Cloudinary is configured
+    // Check if Supabase Storage is configured
     if (isCloudinaryConfigured()) {
-      // Upload to Cloudinary
+      // Upload to Supabase Storage
       for (const file of files) {
         try {
-          const result = await uploadToCloudinary(file, requestReference, customerLastName, customerFirstName);
+          const result = await uploadToCloudinary(
+            file,
+            requestReference,
+            customerLastName,
+            customerFirstName
+          );
           uploadedFiles.push({
             name: result.original_filename,
             size: result.bytes,
@@ -128,9 +153,14 @@ export async function POST(
             url: result.secure_url,
           });
         } catch (uploadError) {
-          console.error(`Error uploading ${file.name} to Cloudinary:`, uploadError);
+          console.error(
+            `Error uploading ${file.name} to Supabase Storage:`,
+            uploadError
+          );
           return NextResponse.json(
-            { error: `Erreur lors du téléversement de "${file.name}"` },
+            {
+              error: `Erreur lors du téléversement de "${file.name}"`,
+            },
             { status: 500 }
           );
         }
@@ -145,22 +175,31 @@ export async function POST(
         try {
           // Merge existing documents with new ones
           const newDocuments = uploadedFiles.map((f) => ({
-            category: "other", // Default category for documents added via suivi page
+            category: "other",
             name: f.name,
             url: f.url,
             uploadedAt: f.uploadedAt.toISOString(),
           }));
 
           // Check for duplicates by name and merge
-          const existingNames = new Set(existingTaxDocuments.map((d) => d.name));
-          const uniqueNewDocs = newDocuments.filter((d) => !existingNames.has(d.name));
+          const existingNames = new Set(
+            existingTaxDocuments.map((d) => d.name)
+          );
+          const uniqueNewDocs = newDocuments.filter(
+            (d) => !existingNames.has(d.name)
+          );
           const allDocuments = [...existingTaxDocuments, ...uniqueNewDocs];
 
           await updateTaxRequestDocuments(taxRequestId, allDocuments);
-          console.log(`📎 [SUIVI] Documents mis à jour dans tax_requests pour ${requestReference}: ${uniqueNewDocs.length} nouveaux, ${allDocuments.length} total`);
+          console.log(
+            `📎 [SUIVI] Documents mis à jour dans tax_requests pour ${requestReference}: ${uniqueNewDocs.length} nouveaux, ${allDocuments.length} total`
+          );
         } catch (dbError) {
-          console.error("Erreur mise à jour documents dans tax_requests:", dbError);
-          // Continue - documents are in Cloudinary even if DB update failed
+          console.error(
+            "Erreur mise à jour documents dans tax_requests:",
+            dbError
+          );
+          // Continue - documents are in Storage even if DB update failed
         }
       }
 
@@ -175,8 +214,12 @@ export async function POST(
           }));
 
           // Check for duplicates by name and merge
-          const existingNames = new Set(existingGenericDocuments.map((d) => d.name));
-          const uniqueNewDocs = newDocuments.filter((d) => !existingNames.has(d.name));
+          const existingNames = new Set(
+            existingGenericDocuments.map((d) => d.name)
+          );
+          const uniqueNewDocs = newDocuments.filter(
+            (d) => !existingNames.has(d.name)
+          );
           const allDocuments = [...existingGenericDocuments, ...uniqueNewDocs];
 
           const { error } = await supabase
@@ -188,18 +231,26 @@ export async function POST(
             .eq("id", genericRequestId);
 
           if (error) {
-            console.error("Erreur mise à jour documents dans requests:", error);
+            console.error(
+              "Erreur mise à jour documents dans requests:",
+              error
+            );
           } else {
-            console.log(`📎 [SUIVI] Documents mis à jour dans requests pour ${requestReference}: ${uniqueNewDocs.length} nouveaux, ${allDocuments.length} total`);
+            console.log(
+              `📎 [SUIVI] Documents mis à jour dans requests pour ${requestReference}: ${uniqueNewDocs.length} nouveaux, ${allDocuments.length} total`
+            );
           }
         } catch (dbError) {
-          console.error("Erreur mise à jour documents dans requests:", dbError);
-          // Continue - documents are in Cloudinary even if DB update failed
+          console.error(
+            "Erreur mise à jour documents dans requests:",
+            dbError
+          );
+          // Continue - documents are in Storage even if DB update failed
         }
       }
     } else {
       // Fallback to in-memory storage (for development/demo)
-      console.warn("Cloudinary not configured, using in-memory storage");
+      console.warn("Supabase Storage not configured, using in-memory storage");
       for (const file of files) {
         uploadedFiles.push({
           name: file.name,
@@ -211,14 +262,17 @@ export async function POST(
 
       // Store in memory
       const existing = uploadedDocumentsMemory.get(requestReference) || [];
-      uploadedDocumentsMemory.set(requestReference, [...existing, ...uploadedFiles]);
+      uploadedDocumentsMemory.set(requestReference, [
+        ...existing,
+        ...uploadedFiles,
+      ]);
     }
 
     return NextResponse.json({
       success: true,
       message: `${uploadedFiles.length} document(s) téléversé(s) avec succès`,
       documents: uploadedFiles,
-      storage: isCloudinaryConfigured() ? "cloudinary" : "memory",
+      storage: isCloudinaryConfigured() ? "supabase" : "memory",
       databaseUpdated: !!(taxRequestId || genericRequestId),
     });
   } catch (error) {
@@ -273,13 +327,19 @@ export async function GET(
       );
     }
 
-    let documents: { name: string; size?: number; type?: string; uploadedAt: Date | string; url?: string }[] = [];
+    let documents: {
+      name: string;
+      size?: number;
+      type?: string;
+      uploadedAt: Date | string;
+      url?: string;
+    }[] = [];
 
-    // Check if Cloudinary is configured
+    // Check if Supabase Storage is configured
     if (isCloudinaryConfigured()) {
-      // Fetch from Cloudinary
-      const cloudinaryDocs = await getDocumentsForReference(requestReference);
-      documents = cloudinaryDocs.map((doc) => ({
+      // Fetch from Supabase Storage
+      const storageDocs = await getDocumentsForReference(requestReference);
+      documents = storageDocs.map((doc) => ({
         name: doc.original_filename,
         size: doc.bytes,
         type: doc.format,
@@ -288,7 +348,8 @@ export async function GET(
       }));
     } else {
       // Fallback to in-memory storage
-      const memoryDocs = uploadedDocumentsMemory.get(requestReference) || [];
+      const memoryDocs =
+        uploadedDocumentsMemory.get(requestReference) || [];
       documents = memoryDocs;
     }
 
@@ -299,7 +360,7 @@ export async function GET(
           (rd) => !documents.some((d) => d.name === rd.name)
         ),
       ],
-      storage: isCloudinaryConfigured() ? "cloudinary" : "memory",
+      storage: isCloudinaryConfigured() ? "supabase" : "memory",
     });
   } catch (error) {
     console.error("Erreur récupération documents:", error);
