@@ -122,7 +122,7 @@ const sectionsFr = [
       <p>Vos données peuvent être communiquées aux destinataires suivants :</p>
       <ul>
         <li><strong>Autorités fiscales</strong> : dans le cadre de l'établissement de vos déclarations</li>
-        <li><strong>Prestataires techniques</strong> : hébergement (Vercel), base de données (Supabase), stockage de documents (Cloudinary), paiements (Stripe), envoi d'emails (Resend) – tous soumis à des obligations de confidentialité</li>
+        <li><strong>Prestataires techniques</strong> : hébergement (Vercel), base de données (Supabase), stockage de documents (Supabase Storage (Dublin, UE)), paiements (Stripe), envoi d'emails (Resend) – tous soumis à des obligations de confidentialité</li>
         <li><strong>Professionnels du droit</strong> : en cas de litige, avec votre accord préalable</li>
       </ul>
       <p>Certains de nos prestataires sont basés aux États-Unis. Ces transferts sont encadrés par des Clauses Contractuelles Types (CCT) approuvées par la Commission européenne, garantissant un niveau de protection adéquat conformément à la LPD et au RGPD.</p>
@@ -141,7 +141,7 @@ const sectionsFr = [
         <li>Formation du personnel à la protection des données</li>
         <li>Audits de sécurité réguliers</li>
       </ul>
-      <p>Notre infrastructure est hébergée via des prestataires conformes au RGPD et à la LPD : Vercel (application web), Supabase (base de données en Europe), Cloudinary (documents avec chiffrement AES-256), et Stripe (paiements certifiés PCI DSS Level 1). Des Clauses Contractuelles Types encadrent les transferts internationaux.</p>
+      <p>Notre infrastructure est hébergée via des prestataires conformes au RGPD et à la LPD : Vercel (application web), Supabase (base de données en Europe), Supabase Storage (Dublin, UE) (documents avec chiffrement AES-256), et Stripe (paiements certifiés PCI DSS Level 1). Des Clauses Contractuelles Types encadrent les transferts internationaux.</p>
     `,
   },
   {
@@ -301,7 +301,7 @@ const sectionsEn = [
       <p>Your data may be shared with the following recipients:</p>
       <ul>
         <li><strong>Tax authorities</strong>: as part of preparing your tax returns</li>
-        <li><strong>Technical providers</strong>: hosting (Vercel), database (Supabase), document storage (Cloudinary), payments (Stripe), email sending (Resend) – all subject to confidentiality obligations</li>
+        <li><strong>Technical providers</strong>: hosting (Vercel), database (Supabase), document storage (Supabase Storage (Dublin, UE)), payments (Stripe), email sending (Resend) – all subject to confidentiality obligations</li>
         <li><strong>Legal professionals</strong>: in case of dispute, with your prior consent</li>
       </ul>
       <p>Some of our providers are based in the United States. These transfers are governed by Standard Contractual Clauses (SCC) approved by the European Commission, ensuring an adequate level of protection in accordance with the DPA and GDPR.</p>
@@ -320,7 +320,7 @@ const sectionsEn = [
         <li>Staff training on data protection</li>
         <li>Regular security audits</li>
       </ul>
-      <p>Our infrastructure is hosted through GDPR and DPA compliant providers: Vercel (web application), Supabase (database in Europe), Cloudinary (documents with AES-256 encryption), and Stripe (PCI DSS Level 1 certified payments). Standard Contractual Clauses govern international transfers.</p>
+      <p>Our infrastructure is hosted through GDPR and DPA compliant providers: Vercel (web application), Supabase (database in Europe), Supabase Storage (Dublin, UE) (documents with AES-256 encryption), and Stripe (PCI DSS Level 1 certified payments). Standard Contractual Clauses govern international transfers.</p>
     `,
   },
   {
