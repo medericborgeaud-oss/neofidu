@@ -1,409 +1,430 @@
-import { v2 as cloudinary } from "cloudinary";
+import { createClient } from "@supabase/supabase-js";
 
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-  secure: true,
-});
+// ============================================================
+// SUPABASE STORAGE - Remplacement de cloudinary.ts
+// ============================================================
+// Ce fichier remplace src/lib/cloudinary.ts
+// Bucket privé "documents" dans Supabase Storage (Dublin EU)
+// ============================================================
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
+// Client avec service role pour les opérations storage côté serveur
+const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+
+const BUCKET_NAME = "documents";
 
 export interface UploadResult {
-  public_id: string;
-  secure_url: string;
+  public_id: string; // chemin dans le bucket (rétro-compatible avec l'ancien champ)
+  secure_url: string; // URL signée temporaire
   original_filename: string;
   format: string;
   bytes: number;
   created_at: string;
 }
 
-/**
- * Generate a signed URL for authenticated/private files
- * @param publicId - The public_id of the file
- * @param resourceType - 'image' or 'raw'
- * @param expiresInSeconds - URL expiration time (default: 1 hour)
- */
-export function generateSignedUrl(
-  publicId: string,
-  resourceType: "image" | "raw" = "raw",
-  expiresInSeconds: number = 3600
-): string {
-  const expiresAt = Math.floor(Date.now() / 1000) + expiresInSeconds;
+// -------------------------------------------------------
+// Helpers
+// -------------------------------------------------------
 
-  return cloudinary.url(publicId, {
-    resource_type: resourceType,
-    type: "authenticated",
-    sign_url: true,
-    secure: true,
-    expires_at: expiresAt,
-  });
+/**
+ * Nettoie un nom (supprime accents, caractères spéciaux)
+ */
+function cleanName(name: string | undefined): string {
+  if (!name) return "";
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9]/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_|_$/g, "");
 }
 
 /**
- * Generate a folder name with reference, date, and customer name
- * Format: reference_YYYY-MM-DD_lastName_firstName
+ * Génère le chemin du dossier client
+ * Format: neofidu/documents/reference_YYYY-MM-DD_lastName_firstName
  */
-function getCustomerFolder(reference: string, lastName?: string, firstName?: string): string {
-  const now = new Date();
-  const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
-
-  // Clean names for folder path (remove special characters, spaces -> underscores)
-  const cleanName = (name: string | undefined) => {
-    if (!name) return '';
-    return name
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Remove accents
-      .replace(/[^a-zA-Z0-9]/g, '_')   // Replace special chars with underscore
-      .replace(/_+/g, '_')              // Remove multiple underscores
-      .replace(/^_|_$/g, '');           // Remove leading/trailing underscores
-  };
-
-  const cleanLastName = cleanName(lastName);
-  const cleanFirstName = cleanName(firstName);
-
-  // Build folder name: reference_date_lastName_firstName
+function getCustomerFolder(
+  reference: string,
+  lastName?: string,
+  firstName?: string
+): string {
+  const dateStr = new Date().toISOString().split("T")[0];
   let folderName = reference;
   folderName += `_${dateStr}`;
-  if (cleanLastName) {
-    folderName += `_${cleanLastName}`;
-  }
-  if (cleanFirstName) {
-    folderName += `_${cleanFirstName}`;
-  }
-
+  if (lastName) folderName += `_${cleanName(lastName)}`;
+  if (firstName) folderName += `_${cleanName(firstName)}`;
   return `neofidu/documents/${folderName}`;
 }
 
+// -------------------------------------------------------
+// Génération d'URLs signées
+// -------------------------------------------------------
+
 /**
- * Upload a file to Cloudinary (PRIVATE/AUTHENTICATED mode)
- * Files are NOT publicly accessible - requires signed URL for access
+ * Génère une URL signée temporaire pour un fichier privé.
+ *
+ * ⚠️  CHANGEMENT vs Cloudinary : cette fonction est maintenant ASYNC.
+ *     L'ancienne version Cloudinary était synchrone (HMAC local).
+ *     Supabase nécessite un appel réseau pour signer l'URL.
+ *
+ * @param filePath - Le chemin du fichier dans le bucket
+ * @param _resourceType - Ignoré (gardé pour rétro-compatibilité de la signature)
+ * @param expiresInSeconds - Durée de validité (défaut: 1 heure)
  */
-export async function uploadToCloudinary(
+export async function generateSignedUrl(
+  filePath: string,
+  _resourceType: "image" | "raw" = "raw",
+  expiresInSeconds: number = 3600
+): Promise<string> {
+  const { data, error } = await supabaseAdmin.storage
+    .from(BUCKET_NAME)
+    .createSignedUrl(filePath, expiresInSeconds);
+
+  if (error) {
+    console.error("Erreur génération URL signée:", error);
+    throw error;
+  }
+  return data.signedUrl;
+}
+
+// -------------------------------------------------------
+// Upload
+// -------------------------------------------------------
+
+/**
+ * Upload un fichier vers Supabase Storage (bucket privé)
+ * Remplace uploadToCloudinary()
+ */
+export async function uploadToStorage(
   file: File,
   reference: string,
   lastName?: string,
   firstName?: string
 ): Promise<UploadResult> {
-  // Convert File to base64
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const base64 = buffer.toString("base64");
-  const mimeType = file.type;
-  const dataUri = `data:${mimeType};base64,${base64}`;
 
-  // Determine resource type based on file type
-  // PDFs need to be uploaded as "image" type for Cloudinary preview support
-  const isImage = mimeType.startsWith("image/");
-  const isPDF = mimeType === "application/pdf";
-  const resourceType = (isImage || isPDF) ? "image" : "raw";
-
-  // Get file extension
+  // Extension et nom nettoyé
   const fileExtension = file.name.split(".").pop()?.toLowerCase() || "";
   const fileNameWithoutExt = file.name.replace(/\.[^/.]+$/, "");
+  const cleanFileName = cleanName(fileNameWithoutExt);
 
-  // Clean the original filename for use in public_id
-  const cleanFileName = fileNameWithoutExt
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // Remove accents
-    .replace(/[^a-zA-Z0-9]/g, '_')   // Replace special chars with underscore
-    .replace(/_+/g, '_')              // Remove multiple underscores
-    .replace(/^_|_$/g, '');           // Remove leading/trailing underscores
-
-  // Clean names for file naming
-  const cleanName = (name: string | undefined) => {
-    if (!name) return '';
-    return name
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-zA-Z0-9]/g, '_')
-      .replace(/_+/g, '_')
-      .replace(/^_|_$/g, '');
-  };
-
-  // Format date as YYYY-MM-DD
-  const now = new Date();
-  const dateStr = now.toISOString().split('T')[0];
-
-  // Build file name: reference_date_lastName_firstName_originalFileName
+  // Construire le chemin: folder/reference_date_nom_prenom_fichier.ext
+  const dateStr = new Date().toISOString().split("T")[0];
   let filePrefix = reference;
   filePrefix += `_${dateStr}`;
   if (lastName) filePrefix += `_${cleanName(lastName)}`;
   if (firstName) filePrefix += `_${cleanName(firstName)}`;
   filePrefix += `_${cleanFileName}`;
 
-  // For raw files (PDFs, docs, etc.), keep the extension in the public_id
-  const publicId = isImage
-    ? filePrefix
-    : `${filePrefix}.${fileExtension}`;
-
-  // Use customer folder naming
   const folder = getCustomerFolder(reference, lastName, firstName);
+  const filePath = `${folder}/${filePrefix}.${fileExtension}`;
 
-  // Upload to Cloudinary with AUTHENTICATED type (PRIVATE)
-  // Files will NOT be publicly accessible without a signed URL
-  const result = await cloudinary.uploader.upload(dataUri, {
-    folder: folder,
-    resource_type: resourceType,
-    type: "authenticated", // 🔒 PRIVATE - requires signed URL to access
-    public_id: publicId,
-    tags: ["neofidu", "document", reference, "private"],
-    ...(resourceType === "raw" && {
-      use_filename: true,
-      unique_filename: false,
-    }),
-  });
+  // Upload vers Supabase Storage
+  const { data, error } = await supabaseAdmin.storage
+    .from(BUCKET_NAME)
+    .upload(filePath, buffer, {
+      contentType: file.type,
+      upsert: true, // Écrase si le fichier existe déjà
+    });
 
-  // Generate a signed URL for admin access (valid for 1 hour)
-  // This URL will expire and cannot be shared permanently
-  const signedUrl = generateSignedUrl(
-    result.public_id,
-    resourceType as "image" | "raw",
-    3600 // 1 hour expiration
-  );
+  if (error) {
+    console.error("Erreur upload Supabase Storage:", error);
+    throw error;
+  }
 
-  console.log(`🔒 Document uploaded as PRIVATE: ${result.public_id}`);
+  // Générer une URL signée (valide 1h)
+  const signedUrl = await generateSignedUrl(filePath, "raw", 3600);
+
+  console.log(`🔒 Document uploadé (Supabase Storage): ${filePath}`);
 
   return {
-    public_id: result.public_id,
-    secure_url: signedUrl, // Return signed URL instead of public URL
+    public_id: filePath, // Le chemin sert d'identifiant
+    secure_url: signedUrl,
     original_filename: file.name,
-    format: result.format || fileExtension,
-    bytes: result.bytes,
-    created_at: result.created_at,
+    format: fileExtension,
+    bytes: buffer.length,
+    created_at: new Date().toISOString(),
   };
 }
 
-/**
- * Delete a file from Cloudinary
- */
-export async function deleteFromCloudinary(publicId: string): Promise<boolean> {
-  try {
-    // Try deleting as authenticated first
-    let result = await cloudinary.uploader.destroy(publicId, {
-      type: "authenticated",
-      invalidate: true,
-    });
-
-    // If not found, try as public (for old files)
-    if (result.result !== "ok") {
-      result = await cloudinary.uploader.destroy(publicId, {
-        invalidate: true,
-      });
-    }
-
-    return result.result === "ok";
-  } catch (error) {
-    console.error("Error deleting from Cloudinary:", error);
-    return false;
-  }
-}
+// Alias rétro-compatible
+export const uploadToCloudinary = uploadToStorage;
 
 /**
- * Get all documents for a reference with fresh signed URLs
+ * Upload un buffer PDF vers Supabase Storage
+ * Remplace uploadPDFToCloudinary()
  */
-export async function getDocumentsForReference(reference: string): Promise<UploadResult[]> {
-  try {
-    // Search in authenticated resources
-    const result = await cloudinary.search
-      .expression(`folder:neofidu/documents/${reference}* AND type:authenticated`)
-      .sort_by("created_at", "desc")
-      .max_results(100)
-      .execute();
-
-    return result.resources.map((resource: any) => {
-      // PDFs are uploaded as "image" type for Cloudinary preview support
-      const isPDF = /\.pdf$/i.test(resource.public_id);
-      const resourceType = (resource.resource_type === "image" || isPDF) ? "image" : "raw";
-
-      return {
-        public_id: resource.public_id,
-        // Generate fresh signed URL for each document
-        secure_url: generateSignedUrl(resource.public_id, resourceType, 3600),
-        original_filename: resource.filename || resource.public_id.split("/").pop(),
-        format: resource.format,
-        bytes: resource.bytes,
-        created_at: resource.created_at,
-      };
-    });
-  } catch (error) {
-    console.error("Error fetching documents from Cloudinary:", error);
-    return [];
-  }
-}
-
-/**
- * Get a fresh signed URL for a specific document (for admin viewing)
- * @param publicId - The public_id of the document
- * @param expiresInSeconds - How long the URL should be valid (default: 2 hours)
- */
-export function getSecureDocumentUrl(publicId: string, expiresInSeconds: number = 7200): string {
-  // Determine resource type from public_id
-  // PDFs are uploaded as "image" type for Cloudinary preview support
-  const isImage = /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(publicId);
-  const isPDF = /\.pdf$/i.test(publicId);
-  const resourceType = (isImage || isPDF) ? "image" : "raw";
-
-  return generateSignedUrl(publicId, resourceType, expiresInSeconds);
-}
-
-/**
- * Upload PDF summary to Cloudinary (PRIVATE)
- */
-export async function uploadPDFToCloudinary(
+export async function uploadPDFToStorage(
   pdfBuffer: Buffer,
   reference: string,
   lastName?: string,
   firstName?: string
 ): Promise<UploadResult | null> {
   try {
-    // Convert buffer to base64
-    const base64 = pdfBuffer.toString("base64");
-    const dataUri = `data:application/pdf;base64,${base64}`;
-
-    // Clean names for file naming
-    const cleanName = (name: string | undefined) => {
-      if (!name) return '';
-      return name
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-zA-Z0-9]/g, '_')
-        .replace(/_+/g, '_')
-        .replace(/^_|_$/g, '');
-    };
-
-    // Format date as YYYY-MM-DD
-    const now = new Date();
-    const dateStr = now.toISOString().split('T')[0];
-
-    // Build file name
+    const dateStr = new Date().toISOString().split("T")[0];
     let filePrefix = reference;
     filePrefix += `_${dateStr}`;
     if (lastName) filePrefix += `_${cleanName(lastName)}`;
     if (firstName) filePrefix += `_${cleanName(firstName)}`;
-    const publicId = `${filePrefix}_Fiche_Recapitulative.pdf`;
 
+    const fileName = `${filePrefix}_Fiche_Recapitulative.pdf`;
     const folder = getCustomerFolder(reference, lastName, firstName);
+    const filePath = `${folder}/${fileName}`;
 
-    // Upload as PRIVATE/AUTHENTICATED
-    // Use "image" resource_type for PDFs to enable Cloudinary preview
-    const result = await cloudinary.uploader.upload(dataUri, {
-      folder: folder,
-      resource_type: "image",
-      type: "authenticated", // 🔒 PRIVATE
-      public_id: publicId,
-      tags: ["neofidu", "summary", "pdf", reference, "private"],
-      use_filename: true,
-      unique_filename: false,
-    });
+    const { data, error } = await supabaseAdmin.storage
+      .from(BUCKET_NAME)
+      .upload(filePath, pdfBuffer, {
+        contentType: "application/pdf",
+        upsert: true,
+      });
 
-    // Generate signed URL
-    const signedUrl = generateSignedUrl(result.public_id, "image", 3600);
+    if (error) {
+      console.error("Erreur upload PDF:", error);
+      return null;
+    }
+
+    const signedUrl = await generateSignedUrl(filePath, "image", 3600);
 
     return {
-      public_id: result.public_id,
+      public_id: filePath,
       secure_url: signedUrl,
-      original_filename: `${filePrefix}_Fiche_Recapitulative.pdf`,
+      original_filename: fileName,
       format: "pdf",
-      bytes: result.bytes,
-      created_at: result.created_at,
+      bytes: pdfBuffer.length,
+      created_at: new Date().toISOString(),
     };
   } catch (error) {
-    console.error("Error uploading PDF to Cloudinary:", error);
+    console.error("Erreur upload PDF Supabase Storage:", error);
     return null;
   }
 }
 
+// Alias rétro-compatible
+export const uploadPDFToCloudinary = uploadPDFToStorage;
+
 /**
- * Upload text summary as a .txt file to Cloudinary (PRIVATE)
+ * Upload un résumé texte vers Supabase Storage
+ * Remplace uploadSummaryToCloudinary()
  */
-export async function uploadSummaryToCloudinary(
+export async function uploadSummaryToStorage(
   textContent: string,
   reference: string,
   lastName?: string,
   firstName?: string
 ): Promise<UploadResult | null> {
   try {
-    // Convert text to base64
     const buffer = Buffer.from(textContent, "utf-8");
-    const base64 = buffer.toString("base64");
-    const dataUri = `data:text/plain;base64,${base64}`;
+    const dateStr = new Date().toISOString().split("T")[0];
 
-    // Clean names for file naming
-    const cleanName = (name: string | undefined) => {
-      if (!name) return '';
-      return name
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-zA-Z0-9]/g, '_')
-        .replace(/_+/g, '_')
-        .replace(/^_|_$/g, '');
-    };
-
-    // Format date as YYYY-MM-DD
-    const now = new Date();
-    const dateStr = now.toISOString().split('T')[0];
-
-    // Build file name
     let filePrefix = reference;
     filePrefix += `_${dateStr}`;
     if (lastName) filePrefix += `_${cleanName(lastName)}`;
     if (firstName) filePrefix += `_${cleanName(firstName)}`;
-    const publicId = `${filePrefix}_Fiche_Recapitulative.txt`;
 
+    const fileName = `${filePrefix}_Fiche_Recapitulative.txt`;
     const folder = getCustomerFolder(reference, lastName, firstName);
+    const filePath = `${folder}/${fileName}`;
 
-    // Upload as PRIVATE/AUTHENTICATED
-    const result = await cloudinary.uploader.upload(dataUri, {
-      folder: folder,
-      resource_type: "raw",
-      type: "authenticated", // 🔒 PRIVATE
-      public_id: publicId,
-      tags: ["neofidu", "summary", reference, "private"],
-      use_filename: true,
-      unique_filename: false,
-    });
+    const { data, error } = await supabaseAdmin.storage
+      .from(BUCKET_NAME)
+      .upload(filePath, buffer, {
+        contentType: "text/plain",
+        upsert: true,
+      });
 
-    // Generate signed URL
-    const signedUrl = generateSignedUrl(result.public_id, "raw", 3600);
+    if (error) {
+      console.error("Erreur upload résumé:", error);
+      return null;
+    }
+
+    const signedUrl = await generateSignedUrl(filePath, "raw", 3600);
 
     return {
-      public_id: result.public_id,
+      public_id: filePath,
       secure_url: signedUrl,
-      original_filename: `${filePrefix}_Fiche_Recapitulative.txt`,
+      original_filename: fileName,
       format: "txt",
-      bytes: result.bytes,
-      created_at: result.created_at,
+      bytes: buffer.length,
+      created_at: new Date().toISOString(),
     };
   } catch (error) {
-    console.error("Error uploading summary to Cloudinary:", error);
+    console.error("Erreur upload résumé Supabase Storage:", error);
     return null;
   }
 }
 
+// Alias rétro-compatible
+export const uploadSummaryToCloudinary = uploadSummaryToStorage;
+
+// -------------------------------------------------------
+// Suppression
+// -------------------------------------------------------
+
 /**
- * Get folder URL for a reference (with customer name)
+ * Supprime un fichier de Supabase Storage
+ * Remplace deleteFromCloudinary()
  */
-export function getCloudinaryFolderUrl(reference: string, lastName?: string, firstName?: string): string {
-  const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-  const now = new Date();
-  const dateStr = now.toISOString().split('T')[0];
+export async function deleteFromStorage(filePath: string): Promise<boolean> {
+  try {
+    const { error } = await supabaseAdmin.storage
+      .from(BUCKET_NAME)
+      .remove([filePath]);
 
-  const cleanName = (name: string | undefined) => {
-    if (!name) return '';
-    return name
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-zA-Z0-9]/g, '_')
-      .replace(/_+/g, '_')
-      .replace(/^_|_$/g, '');
-  };
-
-  let folderName = reference;
-  folderName += `_${dateStr}`;
-  if (lastName) folderName += `_${cleanName(lastName)}`;
-  if (firstName) folderName += `_${cleanName(firstName)}`;
-
-  return `https://console.cloudinary.com/console/${cloudName}/media_library/folders/neofidu/documents/${folderName}`;
+    if (error) {
+      console.error("Erreur suppression:", error);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("Erreur suppression Supabase Storage:", error);
+    return false;
+  }
 }
 
-export default cloudinary;
+// Alias rétro-compatible
+export const deleteFromCloudinary = deleteFromStorage;
+
+// -------------------------------------------------------
+// Liste des documents
+// -------------------------------------------------------
+
+/**
+ * Récupère tous les documents pour une référence avec des URLs signées fraîches
+ * Remplace getDocumentsForReference()
+ */
+export async function getDocumentsForReference(
+  reference: string
+): Promise<UploadResult[]> {
+  try {
+    // Lister les dossiers qui correspondent à cette référence
+    const { data: folders, error: listError } = await supabaseAdmin.storage
+      .from(BUCKET_NAME)
+      .list("neofidu/documents", {
+        search: reference,
+        limit: 1000,
+      });
+
+    if (listError || !folders) {
+      console.error("Erreur listing dossiers:", listError);
+      return [];
+    }
+
+    const results: UploadResult[] = [];
+
+    // Pour chaque dossier correspondant, lister les fichiers
+    for (const folder of folders) {
+      if (!folder.name.startsWith(reference)) continue;
+
+      const folderPath = `neofidu/documents/${folder.name}`;
+      const { data: files, error: filesError } = await supabaseAdmin.storage
+        .from(BUCKET_NAME)
+        .list(folderPath, { limit: 1000 });
+
+      if (filesError || !files) continue;
+
+      for (const file of files) {
+        if (!file.name || file.id === null) continue; // skip .emptyFolderPlaceholder
+
+        const filePath = `${folderPath}/${file.name}`;
+        const format = file.name.split(".").pop() || "";
+
+        try {
+          const signedUrl = await generateSignedUrl(filePath, "raw", 3600);
+          results.push({
+            public_id: filePath,
+            secure_url: signedUrl,
+            original_filename: file.name,
+            format,
+            bytes: file.metadata?.size || 0,
+            created_at: file.created_at || new Date().toISOString(),
+          });
+        } catch {
+          // Skip files that can't be signed
+        }
+      }
+    }
+
+    return results;
+  } catch (error) {
+    console.error("Erreur récupération documents:", error);
+    return [];
+  }
+}
+
+// -------------------------------------------------------
+// URLs utilitaires
+// -------------------------------------------------------
+
+/**
+ * Génère une URL signée pour un document spécifique (vue admin)
+ *
+ * ⚠️  CHANGEMENT vs Cloudinary : cette fonction est maintenant ASYNC.
+ *     L'ancienne version Cloudinary était synchrone.
+ *     Tous les appelants doivent utiliser \`await\`.
+ *
+ * Remplace getSecureDocumentUrl()
+ */
+export async function getSecureDocumentUrl(
+  filePath: string,
+  expiresInSeconds: number = 7200
+): Promise<string> {
+  return generateSignedUrl(filePath, "raw", expiresInSeconds);
+}
+
+/**
+ * Génère l'URL du dashboard Supabase Storage pour un dossier
+ * Remplace getCloudinaryFolderUrl()
+ *
+ * ✅ Reste synchrone (pas de changement pour les appelants)
+ */
+export function getStorageFolderUrl(
+  reference: string,
+  lastName?: string,
+  firstName?: string
+): string {
+  const projectRef = supabaseUrl.replace("https://", "").split(".")[0];
+  const folder = getCustomerFolder(reference, lastName, firstName);
+  return `https://supabase.com/dashboard/project/${projectRef}/storage/buckets/${BUCKET_NAME}/${folder}`;
+}
+
+// Alias rétro-compatible
+export const getCloudinaryFolderUrl = getStorageFolderUrl;
+
+// -------------------------------------------------------
+// Vérification de configuration
+// -------------------------------------------------------
+
+/**
+ * Vérifie si Supabase Storage est configuré
+ * Remplace isCloudinaryConfigured()
+ *
+ * ✅ Reste synchrone (pas de changement pour les appelants)
+ */
+export function isStorageConfigured(): boolean {
+  return !!(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  );
+}
+
+// Alias rétro-compatible
+export function isCloudinaryConfigured(): boolean {
+  return isStorageConfigured();
+}
+
+// -------------------------------------------------------
+// Export default (rétro-compatibilité)
+// -------------------------------------------------------
+// L'original exportait \`export default cloudinary\` (instance v2).
+// Certains fichiers peuvent faire \`import cloudinary from "@/lib/cloudinary"\`.
+// On exporte un objet utilitaire pour ne pas casser les imports.
+
+const storageClient = {
+  storage: supabaseAdmin.storage,
+  bucket: BUCKET_NAME,
+};
+
+export default storageClient;
