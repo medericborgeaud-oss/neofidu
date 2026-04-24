@@ -32,15 +32,15 @@ export async function GET(request: NextRequest) {
         status: process.env.STRIPE_SECRET_KEY && process.env.STRIPE_WEBHOOK_SECRET ? "✅ Configuré" : "❌ Non configuré",
       },
 
-      // Cloudinary configuration
-      cloudinary: {
-        cloudName: !!process.env.CLOUDINARY_CLOUD_NAME,
-        apiKey: !!process.env.CLOUDINARY_API_KEY,
-        apiSecret: !!process.env.CLOUDINARY_API_SECRET,
-        status: process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET
+      // storage configuration
+      storage: {
+        cloudName: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+        apiKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+        apiSecret: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+        status: process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_SERVICE_ROLE_KEY
           ? "✅ Configuré"
           : "❌ Non configuré - Documents en mode SIMULATION",
-        cloudNameValue: process.env.CLOUDINARY_CLOUD_NAME || "NON DÉFINI",
+        cloudNameValue: process.env.NEXT_PUBLIC_SUPABASE_URL || "NON DÉFINI",
       },
 
       // Supabase configuration
@@ -75,8 +75,8 @@ export async function GET(request: NextRequest) {
     };
 
     // Collect issues
-    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-      config.issues.push("🔴 CLOUDINARY: Variables manquantes - Les documents ne seront PAS uploadés");
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      config.issues.push("🔴 storage: Variables manquantes - Les documents ne seront PAS uploadés");
     }
 
     if (!process.env.RESEND_API_KEY) {
@@ -93,12 +93,12 @@ export async function GET(request: NextRequest) {
 
     // Instructions
     const instructions = {
-      cloudinary: {
-        step1: "Créer un compte sur https://cloudinary.com",
+      storage: {
+        step1: "Créer un compte sur https://storage.com",
         step2: "Aller dans Settings > API Keys",
         step3: "Copier Cloud name, API Key et API Secret",
         step4: "Ajouter dans GitHub: Repository > Settings > Secrets and variables > Actions",
-        variables: ["CLOUDINARY_CLOUD_NAME", "CLOUDINARY_API_KEY", "CLOUDINARY_API_SECRET"],
+        variables: ["NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SERVICE_ROLE_KEY"],
       },
       resend: {
         step1: "Créer un compte sur https://resend.com",
