@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendCriticalAlertEmail } from "@/lib/email";
-import { uploadToStorage, isStorageConfigured, type UploadResult } from "@/lib/storage";
+import { uploadToStorage, isStorageConfigured, type UploadResult } from "@/lib/cloudinary";
 
 // Force dynamic rendering for this API route
 export const dynamic = "force-dynamic";
