@@ -317,27 +317,27 @@ interface ChartData {
 // Couleurs pour les graphiques
 const CHART_COLORS = ["#10B981", "#3B82F6", "#F59E0B", "#EF4444", "#8B5CF6", "#EC4899"];
 
-// Check if Cloudinary is configured
-const isCloudinaryConfigured = !!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-const cloudinaryCloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "YOUR_CLOUD_NAME";
+// Check if Storage is configured
+const isStorageConfigured = !!(process.env.NEXT_PUBLIC_SUPABASE_URL);
+const supabaseProjectRef = process.env.NEXT_PUBLIC_SUPABASE_URL || "YOUR_CLOUD_NAME";
 
-// Helper function to generate Cloudinary Media Library URL
+// Helper function to generate Supabase Storage URL
 // Navigate directly to the folder containing the documents
-function getCloudinaryFolderUrl(reference: string, createdAt: string, lastName: string, firstName: string): string {
-  const cloudName = cloudinaryCloudName;
+function getStorageFolderUrl(reference: string, createdAt: string, lastName: string, firstName: string): string {
+  const cloudName = supabaseProjectRef;
 
   // Build folder path (same logic as upload)
-  const folderPath = getCloudinaryFolderPath(reference, createdAt, lastName, firstName);
+  const folderPath = getStorageFolderPath(reference, createdAt, lastName, firstName);
 
-  // New Cloudinary console URL format (2024+)
+  // New Supabase dashboard URL format (2024+)
   // Goes to Media Library with folder filter
-  // Format: https://console.cloudinary.com/pm/c-CLOUD_NAME/media-explorer/folders/FOLDER_PATH
+  // Format: https://supabase.com/dashboard/pm/c-CLOUD_NAME/media-explorer/folders/FOLDER_PATH
   // Or simpler: direct link to search by folder
-  return `https://console.cloudinary.com/pm/${cloudName}/media-explorer?assetId=&q=folder%3A${encodeURIComponent(folderPath)}*`;
+  return `https://supabase.com/dashboard/pm/${cloudName}/media-explorer?assetId=&q=folder%3A${encodeURIComponent(folderPath)}*`;
 }
 
-// Fix broken Cloudinary URLs (remove fl_attachment which causes ERR_INVALID_RESPONSE)
-function fixCloudinaryUrl(url: string | undefined): string | undefined {
+// Fix broken Storage URLs (remove fl_attachment which causes ERR_INVALID_RESPONSE)
+function fixStorageUrl(url: string | undefined): string | undefined {
   if (!url) return url;
   // Remove fl_attachment from the URL as it causes issues with raw files
   return url.replace("/upload/fl_attachment/", "/upload/");
@@ -346,7 +346,7 @@ function fixCloudinaryUrl(url: string | undefined): string | undefined {
 // Check if a document URL is a demo/simulated URL (not real)
 function isSimulatedUrl(url: string | undefined): boolean {
   if (!url) return true; // No URL = simulated
-  return url.includes("demo.cloudinary.com") || url.includes("demo/");
+  return url.includes("supabase.co/storage") || url.includes("demo/");
 }
 
 // Check if a request has missing/simulated documents
@@ -356,7 +356,7 @@ function hasMissingDocuments(request: TaxRequest): boolean {
 }
 
 // Alternative: Generate the folder path for reference
-function getCloudinaryFolderPath(reference: string, createdAt: string, lastName: string, firstName: string): string {
+function getStorageFolderPath(reference: string, createdAt: string, lastName: string, firstName: string): string {
   const date = new Date(createdAt);
   const dateStr = date.toISOString().split('T')[0]; // YYYY-MM-DD
 
@@ -1146,16 +1146,16 @@ const formatDate = (dateStr?: string) => {
               variant="outline"
               size="sm"
               asChild
-              className={`rounded-full ${!isCloudinaryConfigured ? "border-amber-300 text-amber-600" : ""}`}
+              className={`rounded-full ${!isStorageConfigured ? "border-amber-300 text-amber-600" : ""}`}
             >
               <a
-                href={`https://console.cloudinary.com/pm/${cloudinaryCloudName}/media-explorer?q=folder%3Aneofidu*`}
+                href={`https://supabase.com/dashboard/pm/${supabaseProjectRef}/media-explorer?q=folder%3Aneofidu*`}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={isCloudinaryConfigured ? "Ouvrir les documents NeoFidu" : "Cloudinary non configuré - Ajoutez NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME"}
+                title={isStorageConfigured ? "Ouvrir les documents NeoFidu" : "Storage non configuré - Ajoutez NEXT_PUBLIC_SUPABASE_URL"}
               >
                 <FolderOpen className="w-4 h-4 mr-2" />
-                Cloudinary
+                Supabase Storage
                 <ExternalLink className="w-4 h-4 ml-2" />
               </a>
             </Button>
@@ -1164,7 +1164,7 @@ const formatDate = (dateStr?: string) => {
               size="sm"
               onClick={checkConfiguration}
               className="rounded-full border-amber-300 text-amber-600 hover:bg-amber-50"
-              title="Vérifier la configuration (Cloudinary, Resend, Stripe)"
+              title="Vérifier la configuration (Supabase Storage, Resend, Stripe)"
             >
               <AlertCircle className="w-4 h-4 mr-2" />
               Diagnostic
@@ -1224,14 +1224,14 @@ const formatDate = (dateStr?: string) => {
                   </div>
                 )}
 
-                {/* Cloudinary */}
-                <div className={`p-4 rounded-xl border ${(configDiagnostic.data.cloudinary as any)?.status?.includes("✅") ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
-                  <h3 className="font-semibold mb-2">📁 Cloudinary (Documents)</h3>
-                  <p className={`${(configDiagnostic.data.cloudinary as any)?.status?.includes("✅") ? "text-green-700" : "text-red-700"}`}>
-                    {(configDiagnostic.data.cloudinary as any)?.status}
+                {/* Supabase Storage */}
+                <div className={`p-4 rounded-xl border ${(configDiagnostic.data.storage as any)?.status?.includes("✅") ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+                  <h3 className="font-semibold mb-2">📁 Storage (Documents)</h3>
+                  <p className={`${(configDiagnostic.data.storage as any)?.status?.includes("✅") ? "text-green-700" : "text-red-700"}`}>
+                    {(configDiagnostic.data.storage as any)?.status}
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Cloud Name: {(configDiagnostic.data.cloudinary as any)?.cloudNameValue}
+                    Cloud Name: {(configDiagnostic.data.storage as any)?.cloudNameValue}
                   </p>
                 </div>
 
@@ -1783,7 +1783,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                   <th className="text-left p-4 font-medium">Statut</th>
                   <th className="text-left p-4 font-medium">Date</th>
                   <th className="text-left p-4 font-medium">Voir</th>
-                  <th className="text-left p-4 font-medium">Cloudinary</th>
+                  <th className="text-left p-4 font-medium">Supabase Storage</th>
                 </tr>
               </thead>
               <tbody>
@@ -1850,7 +1850,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                         </td>
                         <td className="p-4">
                           {hasMissingDocuments(request) ? (
-                            <Badge className="bg-red-100 text-red-700" title="Documents non uploadés - Cloudinary non configuré lors de l'upload">
+                            <Badge className="bg-red-100 text-red-700" title="Documents non uploadés - Storage non configuré lors de l'upload">
                               <AlertCircle className="w-3 h-3 mr-1" />
                               {request.documents.length} ⚠️
                             </Badge>
@@ -1955,11 +1955,11 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                             variant="ghost"
                             size="sm"
                             asChild
-                            title="Ouvrir le dossier Cloudinary"
+                            title="Ouvrir le dossier Supabase"
                             onClick={e => e.stopPropagation()}
                           >
                             <a
-                              href={getCloudinaryFolderUrl(
+                              href={getStorageFolderUrl(
                                 request.reference,
                                 request.createdAt,
                                 request.customer.lastName,
@@ -2011,7 +2011,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                                     <p key={i} className="truncate text-muted-foreground">
                                       {doc.url ? (
                                         <a
-                                          href={fixCloudinaryUrl(doc.url)}
+                                          href={fixStorageUrl(doc.url)}
                                           target="_blank"
                                           rel="noopener noreferrer"
                                           className="hover:text-primary hover:underline"
@@ -2185,10 +2185,10 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                     variant="outline"
                     size="sm"
                     asChild
-                    title="Ouvrir le dossier Cloudinary"
+                    title="Ouvrir le dossier Supabase"
                   >
                     <a
-                      href={getCloudinaryFolderUrl(
+                      href={getStorageFolderUrl(
                         selectedRequest.reference,
                         selectedRequest.createdAt,
                         selectedRequest.customer.lastName,
@@ -2198,7 +2198,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                       rel="noopener noreferrer"
                     >
                       <FolderOpen className="w-4 h-4 mr-1" />
-                      Cloudinary
+                      Supabase Storage
                       <ExternalLink className="w-4 h-4 ml-2" />
                     </a>
                   </Button>
@@ -3390,7 +3390,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                       <div>
                         <p className="font-medium text-red-800">Documents non sauvegardés</p>
                         <p className="text-sm text-red-700 mt-1">
-                          Les documents ont été uploadés alors que Cloudinary n'était pas configuré.
+                          Les documents ont été uploadés alors que Storage n'était pas configuré.
                           Les fichiers n'ont pas été sauvegardés et doivent être re-uploadés par le client.
                         </p>
                         <div className="flex gap-2 mt-3">
@@ -3433,7 +3433,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                             <FileText className={`w-4 h-4 flex-shrink-0 ${isMissing ? 'text-red-500' : 'text-green-600'}`} />
                             {isUploaded ? (
                               <a
-                                href={fixCloudinaryUrl(doc.url)}
+                                href={fixStorageUrl(doc.url)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="truncate hover:text-green-700 hover:underline text-green-800"
