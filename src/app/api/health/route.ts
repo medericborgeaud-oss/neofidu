@@ -18,8 +18,7 @@ export async function GET() {
   const services = {
     cloudinary: !!(
       process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.SUPABASE_SERVICE_ROLE_KEY &&
-      process.env.CLOUDINARY_API_SECRET
+      process.env.SUPABASE_SERVICE_ROLE_KEY
     ),
     stripe: !!(
       process.env.STRIPE_SECRET_KEY &&
