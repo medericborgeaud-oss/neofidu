@@ -1756,21 +1756,25 @@ export function TaxRequestForm() {
         if (!hasBusinessFinancials2) return false;
       }
 
-      // At least one workplace for adult 1 must have a transport mode selected
-      const adult1HasTransport = workplaces1.some((wp) => wp.transportMode !== "");
-      // For car transport, justification is required
-      const adult1CarJustificationOk = workplaces1.every((wp) =>
-        wp.transportMode !== "car" || (wp.transportMode === "car" && wp.carJustification.trim().length > 0)
-      );
-      // For couples, adult 2 must also have at least one transport mode selected
-      if (formData.clientType === "couple") {
+      // Transport validation only for employed/both status (not for unemployed/retired)
+      const needsTransport1 = formData.employmentStatus === "employed" || formData.employmentStatus === "both";
+      const needsTransport2 = formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both");
+      
+      if (needsTransport1) {
+        const adult1HasTransport = workplaces1.some((wp) => wp.transportMode !== "");
+        const adult1CarJustificationOk = workplaces1.every((wp) =>
+          wp.transportMode !== "car" || (wp.transportMode === "car" && wp.carJustification.trim().length > 0)
+        );
+        if (!adult1HasTransport || !adult1CarJustificationOk) return false;
+      }
+      if (needsTransport2) {
         const adult2HasTransport = workplaces2.some((wp) => wp.transportMode !== "");
         const adult2CarJustificationOk = workplaces2.every((wp) =>
           wp.transportMode !== "car" || (wp.transportMode === "car" && wp.carJustification.trim().length > 0)
         );
-        return adult1HasTransport && adult2HasTransport && adult1CarJustificationOk && adult2CarJustificationOk;
+        if (!adult2HasTransport || !adult2CarJustificationOk) return false;
       }
-      return adult1HasTransport && adult1CarJustificationOk;
+      return true;
     }
     if (currentStep === 5) {
       // Si pas de propriété, on peut passer
@@ -6029,20 +6033,20 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {formData.clientType === "couple" && formData.employmentStatus2 === "employed" && !formData.occupationRate2 && (
                   <li>{isEnglish ? "Indicate your partner's employment rate (%)" : "Indiquez le taux d'occupation de votre conjoint (%)"}</li>
                 )}
-                {/* Mode de transport manquant */}
-                {!workplaces1.some((wp) => wp.transportMode !== "") && (
+                {/* Mode de transport manquant (uniquement pour salariés) */}
+                {(formData.employmentStatus === "employed" || formData.employmentStatus === "both") && !workplaces1.some((wp) => wp.transportMode !== "") && (
                   <li>{isEnglish ? "Select a transport mode for your professional commute" : "Sélectionnez un mode de transport pour vos trajets professionnels"}</li>
                 )}
-                {/* Justification voiture manquante */}
-                {workplaces1.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
+                {/* Justification voiture manquante (uniquement pour salariés) */}
+                {(formData.employmentStatus === "employed" || formData.employmentStatus === "both") && workplaces1.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
                   <li>{isEnglish ? "Justify the use of the car (required by the tax administration)" : "Justifiez l'utilisation de la voiture (obligatoire pour l'administration fiscale)"}</li>
                 )}
-                {/* Mode de transport manquant pour le conjoint */}
-                {formData.clientType === "couple" && !workplaces2.some((wp) => wp.transportMode !== "") && (
+                {/* Mode de transport manquant pour le conjoint (uniquement si salarié) */}
+                {formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both") && !workplaces2.some((wp) => wp.transportMode !== "") && (
                   <li>{isEnglish ? "Select a transport mode for your partner" : "Sélectionnez un mode de transport pour le conjoint"}</li>
                 )}
-                {/* Justification voiture manquante pour le conjoint */}
-                {formData.clientType === "couple" && workplaces2.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
+                {/* Justification voiture manquante pour le conjoint (uniquement si salarié) */}
+                {formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both") && workplaces2.some((wp) => wp.transportMode === "car" && !wp.carJustification.trim()) && (
                   <li>{isEnglish ? "Justify the car use by your partner" : "Justifiez l'utilisation de la voiture par le conjoint"}</li>
                 )}
                 {/* Informations indépendant manquantes */}
