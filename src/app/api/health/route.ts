@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 interface HealthStatus {
   status: "ok" | "degraded" | "error";
   services: {
-    storage: boolean;
+    cloudinary: boolean;
     stripe: boolean;
     resend: boolean;
     supabase: boolean;
@@ -16,7 +16,7 @@ interface HealthStatus {
 
 export async function GET() {
   const services = {
-    storage: !!(
+    cloudinary: !!(
       process.env.NEXT_PUBLIC_SUPABASE_URL &&
       process.env.SUPABASE_SERVICE_ROLE_KEY &&
       process.env.CLOUDINARY_API_SECRET
