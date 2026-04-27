@@ -122,10 +122,10 @@ const sectionsFr = [
       <p>Vos données peuvent être communiquées aux destinataires suivants :</p>
       <ul>
         <li><strong>Autorités fiscales</strong> : dans le cadre de l'établissement de vos déclarations</li>
-        <li><strong>Prestataires techniques</strong> : hébergement (Vercel), base de données (Supabase), stockage de documents (Supabase Storage (Dublin, UE)), paiements (Stripe), envoi d'emails (Resend) – tous soumis à des obligations de confidentialité</li>
+        <li><strong>Prestataires techniques</strong> (tous soumis à des obligations de confidentialité) :<ul><li>Hébergement application web : <strong>Vercel</strong> (Francfort, Allemagne, UE)</li><li>Base de données et stockage de documents : <strong>Supabase</strong> (Dublin, Irlande, UE)</li><li>Paiements : <strong>Stripe</strong> (Dublin, Irlande, UE, certifié PCI DSS Level 1)</li><li>Emails transactionnels : <strong>Resend</strong> (États-Unis — uniquement données de contact : nom et email)</li></ul></li>
         <li><strong>Professionnels du droit</strong> : en cas de litige, avec votre accord préalable</li>
       </ul>
-      <p>Certains de nos prestataires sont basés aux États-Unis. Ces transferts sont encadrés par des Clauses Contractuelles Types (CCT) approuvées par la Commission européenne, garantissant un niveau de protection adéquat conformément à la LPD et au RGPD.</p>
+      <p>Seul notre prestataire d'envoi d'emails transactionnels (Resend) est basé aux États-Unis. Ce transfert est encadré par des Clauses Contractuelles Types (CCT) approuvées par la Commission européenne. Aucun document fiscal client ne transite par les États-Unis : vos documents sont stockés exclusivement dans l'Union européenne (Dublin, Irlande).</p>
     `,
   },
   {
@@ -141,14 +141,7 @@ const sectionsFr = [
         <li>Formation du personnel à la protection des données</li>
         <li>Audits de sécurité réguliers</li>
       </ul>
-      <p>Notre infrastructure est hébergée via des prestataires conformes au RGPD et à la LPD, tous situés dans l'Union européenne : Vercel (application web, Francfort), Supabase (base de données et stockage de documents, Dublin), Stripe (paiements, Dublin, certifié PCI DSS Level 1). Les emails transactionnels sont envoyés via Resend (États-Unis), seul prestataire hors UE, encadré par des Clauses Contractuelles Types. Les données standards (chiffrement AES-256 au repos, SSL/TLS en transit) protègent l'ensemble de vos informations.`,
-  },
-  {
-    id: "droits",
-    title: "9. Vos droits",
-    icon: UserCheck,
-    content: `
-      <p>Conformément à la législation applicable, vous disposez des droits suivants :</p>
+      <p>Notre infrastructure est hébergée via des prestataires conformes au RGPD et à la LPD, tous situés dans l'Union européenne : Vercel (application web, Francfort), Supabase (base de données et stockage de documents, Dublin), Stripe (paiements, Dublin, certifié PCI DSS Level 1). Les emails transactionnels sont envoyés via Resend (États-Unis), seul prestataire hors UE, encadré par des Clauses Contractuelles Types. Les données sont protégées par chiffrement AES-256 au repos et SSL/TLS en transit.</p>
       <ul>
         <li><strong>Droit d'accès</strong> : obtenir une copie de vos données personnelles</li>
         <li><strong>Droit de rectification</strong> : corriger des données inexactes ou incomplètes</li>
