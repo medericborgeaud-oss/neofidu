@@ -346,7 +346,7 @@ function fixStorageUrl(url: string | undefined): string | undefined {
 // Check if a document URL is a demo/simulated URL (not real)
 function isSimulatedUrl(url: string | undefined): boolean {
   if (!url) return true; // No URL = simulated
-  return url.includes("supabase.co/storage") || url.includes("demo/");
+  return url.includes("demo/");
 }
 
 // Check if a request has missing/simulated documents
