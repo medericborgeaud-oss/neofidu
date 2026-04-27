@@ -319,7 +319,7 @@ const CHART_COLORS = ["#10B981", "#3B82F6", "#F59E0B", "#EF4444", "#8B5CF6", "#E
 
 // Check if Storage is configured
 const isStorageConfigured = !!(process.env.NEXT_PUBLIC_SUPABASE_URL);
-const supabaseProjectRef = process.env.NEXT_PUBLIC_SUPABASE_URL || "YOUR_CLOUD_NAME";
+const supabaseProjectRef = (process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace("https://", "").split(".")[0] || "YOUR_PROJECT_REF";
 
 // Helper function to generate Supabase Storage URL
 // Navigate directly to the folder containing the documents
@@ -333,7 +333,7 @@ function getStorageFolderUrl(reference: string, createdAt: string, lastName: str
   // Goes to Media Library with folder filter
   // Format: https://supabase.com/dashboard/pm/c-CLOUD_NAME/media-explorer/folders/FOLDER_PATH
   // Or simpler: direct link to search by folder
-  return `https://supabase.com/dashboard/pm/${cloudName}/media-explorer?assetId=&q=folder%3A${encodeURIComponent(folderPath)}*`;
+  return `https://supabase.com/dashboard/project/${cloudName}/storage/buckets/documents${folderPath}`;
 }
 
 // Fix broken Storage URLs (remove fl_attachment which causes ERR_INVALID_RESPONSE)
