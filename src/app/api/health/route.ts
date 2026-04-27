@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 interface HealthStatus {
   status: "ok" | "degraded" | "error";
   services: {
-    cloudinary: boolean;
+    storage: boolean;
     stripe: boolean;
     resend: boolean;
     supabase: boolean;
@@ -16,7 +16,7 @@ interface HealthStatus {
 
 export async function GET() {
   const services = {
-    cloudinary: !!(
+    storage: !!(
       process.env.NEXT_PUBLIC_SUPABASE_URL &&
       process.env.SUPABASE_SERVICE_ROLE_KEY
     ),
@@ -33,12 +33,12 @@ export async function GET() {
 
   const missingServices: string[] = [];
 
-  if (!services.cloudinary) missingServices.push("Supabase Storage (stockage documents)");
+  if (!services.storage) missingServices.push("Supabase Storage (stockage documents)");
   if (!services.stripe) missingServices.push("Stripe (paiements)");
   if (!services.resend) missingServices.push("Resend (emails)");
 
   // Supabase Storage is CRITICAL - without it, documents are lost
-  const status: HealthStatus["status"] = !services.cloudinary
+  const status: HealthStatus["status"] = !services.storage
     ? "error"
     : missingServices.length > 0
       ? "degraded"
@@ -52,7 +52,7 @@ export async function GET() {
   };
 
   // Return 503 if Supabase Storage is not configured (critical service)
-  const httpStatus = services.cloudinary ? 200 : 503;
+  const httpStatus = services.storage ? 200 : 503;
 
   return NextResponse.json(health, { status: httpStatus });
 }
