@@ -333,7 +333,7 @@ function getStorageFolderUrl(reference: string, createdAt: string, lastName: str
   // Goes to Media Library with folder filter
   // Format: https://supabase.com/dashboard/pm/c-CLOUD_NAME/media-explorer/folders/FOLDER_PATH
   // Or simpler: direct link to search by folder
-  return `https://supabase.com/dashboard/project/${cloudName}/storage/buckets/documents${folderPath}`;
+  return `https://supabase.com/dashboard/project/${cloudName}/storage/files/buckets/documents`;
 }
 
 // Fix broken Storage URLs (remove fl_attachment which causes ERR_INVALID_RESPONSE)
