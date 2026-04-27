@@ -69,12 +69,13 @@ export default function MentionsLegalesPage() {
     hostingTitle: isEnglish ? "Hosting and Security" : "Hébergement et sécurité",
     infrastructure: isEnglish ? "Infrastructure and data" : "Infrastructure et données",
     infrastructureText: isEnglish
-      ? "Data is hosted through GDPR and Swiss DPA compliant providers, with appropriate contractual guarantees (Standard Contractual Clauses) for international transfers."
-      : "Les données sont hébergées via des prestataires conformes au RGPD et à la LPD suisse, avec des garanties contractuelles appropriées (Clauses Contractuelles Types) pour les transferts internationaux.",
-    webApp: isEnglish ? "Web application: Vercel (USA/Europe)" : "Application web : Vercel (États-Unis/Europe)",
+      ? "Data is hosted through GDPR and Swiss DPA compliant providers located in the European Union. Only the transactional email service (Resend) is based in the USA, governed by Standard Contractual Clauses (SCC). No client documents transit through the United States."
+      : "Les données sont hébergées via des prestataires conformes au RGPD et à la LPD suisse, situés dans l'Union européenne. Seul le service d'envoi d'emails transactionnels (Resend) est basé aux États-Unis, encadré par des Clauses Contractuelles Types (CCT). Aucun document client ne transite par les États-Unis.",
+    webApp: isEnglish ? "Web application: Vercel (Frankfurt, Germany, EU)" : "Application web : Vercel (Francfort, Allemagne, UE)",
     database: isEnglish ? "Database: Supabase (Europe)" : "Base de données : Supabase (Europe)",
-    documents: isEnglish ? "Documents: Supabase Storage (Dublin, UE) (USA, AES-256 encryption)" : "Documents : Supabase Storage (Dublin, UE) (États-Unis, chiffrement AES-256)",
-    payments: isEnglish ? "Payments: Stripe (PCI DSS Level 1 certified)" : "Paiements : Stripe (certifié PCI DSS Level 1)",
+    documents: isEnglish ? "Documents: Supabase Storage (Dublin, Ireland, EU, AES-256 encryption)" : "Documents : Supabase Storage (Dublin, Irlande, UE, chiffrement AES-256)",
+    payments: isEnglish ? "Payments: Stripe (Dublin, Ireland, EU, PCI DSS Level 1 certified)" : "Paiements : Stripe (Dublin, Irlande, UE, certifié PCI DSS Level 1)",
+    emails: isEnglish ? "Transactional emails: Resend (USA – only contact data, governed by Standard Contractual Clauses)" : "Emails transactionnels : Resend (États-Unis – uniquement données de contact, encadré par Clauses Contractuelles Types)",
     dataProtection: isEnglish ? "Data Protection" : "Protection des données",
     dataProtectionText: isEnglish
       ? "Data is protected in accordance with the Swiss Federal Data Protection Act (DPA) and GDPR."
@@ -322,6 +323,7 @@ export default function MentionsLegalesPage() {
                       <li>• {t.database}</li>
                       <li>• {t.documents}</li>
                       <li>• {t.payments}</li>
+                    <li>• {t.emails}</li>
                     </ul>
                   </div>
 
