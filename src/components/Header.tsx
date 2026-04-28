@@ -90,6 +90,12 @@ export function Header() {
       icon: FileText,
       description: isEnglish ? "News and tax advice" : "Actualités et conseils fiscaux",
     },
+    {
+            href: "/observatoire",
+            label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
+            icon: TrendingUp,
+            description: isEnglish ? "New companies in real time" : "Créations d'entreprises en temps réel",
+    },
   ];
 
   const navItems = [
