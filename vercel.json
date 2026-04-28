@@ -3,6 +3,12 @@
   "framework": "nextjs",
   "installCommand": "npm install --legacy-peer-deps",
   "regions": ["fra1"],
+  "crons": [
+    {
+      "path": "/api/cron/zefix",
+      "schedule": "0 6 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
