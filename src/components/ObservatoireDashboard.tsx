@@ -166,9 +166,9 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                     <div
                       className="w-full rounded-t-sm overflow-hidden relative"
                       style={{ height: `${height}%` }}
-                      title={`${t.label}: ${t.total} créations (RI: ${t.byForm.RI}, SÃ rl: ${t.byForm.Sarl}, SA: ${t.byForm.SA})`}
+                      title={`${t.label}: ${t.total} créations (RI: ${t.byForm.RI}, Sàrl: ${t.byForm.Sarl}, SA: ${t.byForm.SA})`}
                     >
-                      {/* Stacked bar: RI (dark) + SÃ rl (medium) + SA (light) */}
+                      {/* Stacked bar: RI (dark) + Sàrl (medium) + SA (light) */}
                       <div className="absolute inset-0 flex flex-col">
                         <div style={{ height: `${riPct}%`, backgroundColor: "#1D9E75" }} />
                         <div style={{ height: `${sarlPct}%`, backgroundColor: "#5DCAA5" }} />
@@ -187,7 +187,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
               </div>
               <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "#5DCAA5" }} />
-                SÃ rl
+                Sàrl
               </div>
               <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "#9FE1CB" }} />
@@ -329,15 +329,15 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
               <div className="space-y-2 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-sm bg-emerald-600" />
-                  RI â {stats.byForm.RI ? Math.round((stats.byForm.RI / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
+                  RI — {stats.byForm.RI ? Math.round((stats.byForm.RI / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-sm bg-emerald-400" />
-                  SÃ rl â {stats.byForm.Sarl ? Math.round((stats.byForm.Sarl / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
+                  Sàrl — {stats.byForm.Sarl ? Math.round((stats.byForm.Sarl / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-sm bg-emerald-200" />
-                  SA â {stats.byForm.SA ? Math.round((stats.byForm.SA / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
+                  SA — {stats.byForm.SA ? Math.round((stats.byForm.SA / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
                 </div>
               </div>
             </div>
@@ -419,7 +419,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                       )}
                     </p>
                     <p className="text-xs text-gray-500 truncate">
-                      {c.purpose?.split(",")[0] || ""} â {c.city}, {c.canton}
+                      {c.purpose?.split(",")[0] || ""} — {c.city}, {c.canton}
                     </p>
                   </div>
                   <span className="text-xs text-gray-400 whitespace-nowrap">
