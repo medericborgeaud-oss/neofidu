@@ -1,9 +1,19 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+let _supabase: SupabaseClient | null = null;
+
+function getSupabase(): SupabaseClient {
+  if (!_supabase) {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error("Supabase credentials not configured");
+    }
+    _supabase = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return _supabase;
+}
 
 export interface Company {
   id: string;
@@ -71,42 +81,54 @@ const FORM_LABELS: Record<string, string> = {
 export { CANTONS_ROMANDS, CANTON_NAMES, FORM_LABELS };
 
 export async function getCompanies(filters: CompanyFilters = {}) {
-  const { search, canton, legal_form, sector, page = 1, limit = 20 } = filters;
+  try {
+    const supabase = getSupabase();
+    const { search, canton, legal_form, sector, page = 1, limit = 20 } = filters;
 
-  let query = supabase
-    .from("companies")
-    .select("*", { count: "exact" })
-    .eq("is_active", true)
-    .order("creation_date", { ascending: false });
+    let query = supabase
+      .from("companies")
+      .select("*", { count: "exact" })
+      .eq("is_active", true)
+      .order("creation_date", { ascending: false });
 
-  if (canton) query = query.eq("canton", canton);
-  if (legal_form) query = query.eq("legal_form", legal_form);
-  if (sector) query = query.eq("sector", sector);
-  if (search) query = query.ilike("name", `%${search}%`);
+    if (canton) query = query.eq("canton", canton);
+    if (legal_form) query = query.eq("legal_form", legal_form);
+    if (sector) query = query.eq("sector", sector);
+    if (search) query = query.ilike("name", `%${search}%`);
 
-  query = query.range((page - 1) * limit, page * limit - 1);
+    query = query.range((page - 1) * limit, page * limit - 1);
 
-  const { data, error, count } = await query;
-  if (error) {
+    const { data, error, count } = await query;
+    if (error) {
+      console.error("getCompanies error:", error);
+      return { companies: [] as Company[], total: 0 };
+    }
+    return { companies: (data as Company[]) || [], total: count || 0 };
+  } catch (error) {
     console.error("getCompanies error:", error);
     return { companies: [] as Company[], total: 0 };
   }
-  return { companies: (data as Company[]) || [], total: count || 0 };
 }
 
 export async function getCompanyBySlug(slug: string): Promise<Company | null> {
-  const { data, error } = await supabase
-    .from("companies")
-    .select("*")
-    .eq("slug", slug)
-    .single();
+  try {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from("companies")
+      .select("*")
+      .eq("slug", slug)
+      .single();
 
-  if (error) return null;
-  return data as Company;
+    if (error) return null;
+    return data as Company;
+  } catch {
+    return null;
+  }
 }
 
 export async function getStats(): Promise<CompanyStats> {
   try {
+    const supabase = getSupabase();
     const now = new Date();
     const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
