@@ -39,7 +39,7 @@ export default async function ObservatoirePage(props: {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-white pt-24">
         <ObservatoireDashboard
           companies={companies}
           total={total}
