@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 import { Metadata } from "next";
-import { getCompanies, getStats } from "@/lib/companies";
+import { getCompanies, getStats, getMonthlyTrends, getSectorDistribution } from "@/lib/companies";
 import { ObservatoireDashboard } from "@/components/ObservatoireDashboard";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -31,9 +31,11 @@ export default async function ObservatoirePage(props: {
     page: parseInt((searchParams.page as string) || "1"),
   };
 
-  const [{ companies, total }, stats] = await Promise.all([
+  const [{ companies, total }, stats, monthlyTrends, sectorDistribution] = await Promise.all([
     getCompanies(filters),
     getStats(),
+    getMonthlyTrends(),
+    getSectorDistribution(),
   ]);
 
   return (
@@ -45,6 +47,8 @@ export default async function ObservatoirePage(props: {
           total={total}
           stats={stats}
           initialFilters={filters}
+          monthlyTrends={monthlyTrends}
+          sectorDistribution={sectorDistribution}
         />
       </main>
       <Footer />
