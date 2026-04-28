@@ -20,12 +20,12 @@ export default function DemandePage() {
   const [serviceType, setServiceType] = useState<ServiceType>(null);
 
   const t = {
-    backToHome: isEnglish ? "Back to home" : "Retour Ã  l'accueil",
+    backToHome: isEnglish ? "Back to home" : "Retour à l'accueil",
     title1: isEnglish ? "Submit your" : "Déposez votre",
     title2: isEnglish ? "request online" : "demande en ligne",
     subtitle: isEnglish
       ? "Fill out the form below and receive a personalized quote immediately."
-      : "Remplissez le formulaire ci-dessous et recevez un devis personnalisé immédiatement.",
+      : "Remplissez le formulaire ci-dessous et recevez un devis personnalisé rapidement.",
     whichService: isEnglish ? "Which service interests you?" : "Quel service vous intéresse ?",
     changeService: isEnglish ? "Change service" : "Changer de service",
     taxTitle: isEnglish ? "Tax Declaration" : "Déclaration d'impôt",
