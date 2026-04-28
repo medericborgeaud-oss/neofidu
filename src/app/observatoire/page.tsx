@@ -19,17 +19,16 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
-export default async function ObservatoirePage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
+export default async function ObservatoirePage(props: {
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
+  const searchParams = props.searchParams || {};
   const filters = {
-    search: searchParams.q || "",
-    canton: searchParams.canton || "",
-    legal_form: searchParams.forme || "",
-    sector: searchParams.secteur || "",
-    page: parseInt(searchParams.page || "1"),
+    search: (searchParams.q as string) || "",
+    canton: (searchParams.canton as string) || "",
+    legal_form: (searchParams.forme as string) || "",
+    sector: (searchParams.secteur as string) || "",
+    page: parseInt((searchParams.page as string) || "1"),
   };
 
   const [{ companies, total }, stats] = await Promise.all([
