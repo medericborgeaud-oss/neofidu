@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // ISR: revalidate every hour
+export const revalidate = 3600;
 
 export default async function ObservatoirePage(props: {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -44,6 +44,7 @@ export default async function ObservatoirePage(props: {
           companies={companies}
           total={total}
           stats={stats}
+          initialFilters={filters}
         />
       </main>
       <Footer />
