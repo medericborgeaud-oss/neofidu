@@ -3,24 +3,24 @@ export const dynamic = 'force-dynamic';
 import { Metadata } from "next";
 import { getCompanies, getStats } from "@/lib/companies";
 import { ObservatoireDashboard } from "@/components/ObservatoireDashboard";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Observatoire romand des entreprises | NeoFidu",
   description:
-    "Suivez en temps rÃ©el toutes les crÃ©ations d'entreprises en Suisse romande. Recherchez par canton, forme juridique ou secteur d'activitÃ©.",
+    "Suivez en temps réel toutes les créations d'entreprises en Suisse romande. Recherchez par canton, forme juridique ou secteur d'activité.",
   openGraph: {
     title: "Observatoire romand des entreprises | NeoFidu",
     description:
-      "Toutes les crÃ©ations d'entreprises en Suisse romande, en temps rÃ©el.",
+      "Toutes les créations d'entreprises en Suisse romande, en temps réel.",
   },
 };
-
-export const revalidate = 3600; // ISR: revalidate every hour
 
 export default async function ObservatoirePage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const filters = {
     search: searchParams.q || "",
@@ -36,13 +36,16 @@ export default async function ObservatoirePage({
   ]);
 
   return (
-    <main className="min-h-screen bg-white">
-      <ObservatoireDashboard
-        companies={companies}
-        total={total}
-        stats={stats}
-        initialFilters={filters}
-      />
-    </main>
+    <>
+      <Header />
+      <main className="min-h-screen bg-white">
+        <ObservatoireDashboard
+          companies={companies}
+          total={total}
+          stats={stats}
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
