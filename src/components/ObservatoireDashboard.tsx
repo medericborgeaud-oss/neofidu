@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Search, X, ArrowRight, CreditCard } from "lucide-react";
+import { Search, X, ArrowRight, CreditCard, TrendingUp, BarChart3 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Company, CompanyStats, CompanyFilters, CANTON_NAMES, FORM_LABELS } from "@/lib/companies";
+import { Company, CompanyStats, CompanyFilters, MonthlyTrend, SectorDistribution, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS } from "@/lib/companies";
 
 const CANTONS = ["VD", "GE", "VS", "FR", "NE", "JU"];
 const FORMS = ["RI", "Sarl", "SA"];
@@ -34,14 +34,26 @@ const BAR_COLORS: Record<string, string> = {
   JU: "#E1F5EE",
 };
 
+const SECTOR_COLORS: Record<string, string> = {
+  tech: "#1D9E75",
+  conseil: "#5DCAA5",
+  commerce: "#9FE1CB",
+  sante: "#3B82F6",
+  construction: "#F59E0B",
+  restauration: "#EF4444",
+  immobilier: "#8B5CF6",
+};
+
 interface Props {
   companies: Company[];
   total: number;
   stats: CompanyStats;
   initialFilters: CompanyFilters;
+  monthlyTrends: MonthlyTrend[];
+  sectorDistribution: SectorDistribution[];
 }
 
-export function ObservatoireDashboard({ companies, total, stats, initialFilters }: Props) {
+export function ObservatoireDashboard({ companies, total, stats, initialFilters, monthlyTrends, sectorDistribution }: Props) {
   const [search, setSearch] = useState(initialFilters.search || "");
   const [canton, setCanton] = useState(initialFilters.canton || "");
   const [form, setForm] = useState(initialFilters.legal_form || "");
@@ -88,6 +100,8 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
   }
 
   const maxCanton = stats.byCantonSorted.length > 0 ? stats.byCantonSorted[0].count : 1;
+  const maxTrend = Math.max(...monthlyTrends.map((t) => t.total), 1);
+  const totalSectors = sectorDistribution.reduce((a, b) => a + b.count, 0);
 
   return (
     <section className="py-12 bg-white">
@@ -134,6 +148,55 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
           </div>
         </div>
 
+        {/* âââ NEW: Monthly trends chart âââ */}
+        {monthlyTrends.some((t) => t.total > 0) && (
+          <Card className="p-5 mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <TrendingUp className="w-4 h-4 text-emerald-600" />
+              <h3 className="text-sm font-medium text-gray-900">Tendance des créations (12 derniers mois)</h3>
+            </div>
+            <div className="flex items-end gap-1 h-40">
+              {monthlyTrends.map((t) => {
+                const height = Math.max((t.total / maxTrend) * 100, 2);
+                const riPct = t.total > 0 ? (t.byForm.RI / t.total) * 100 : 0;
+                const sarlPct = t.total > 0 ? (t.byForm.Sarl / t.total) * 100 : 0;
+                return (
+                  <div key={t.month} className="flex-1 flex flex-col items-center gap-1">
+                    <span className="text-[10px] text-gray-500 font-medium">{t.total || ""}</span>
+                    <div
+                      className="w-full rounded-t-sm overflow-hidden relative"
+                      style={{ height: `${height}%` }}
+                      title={`${t.label}: ${t.total} créations (RI: ${t.byForm.RI}, SÃ rl: ${t.byForm.Sarl}, SA: ${t.byForm.SA})`}
+                    >
+                      {/* Stacked bar: RI (dark) + SÃ rl (medium) + SA (light) */}
+                      <div className="absolute inset-0 flex flex-col">
+                        <div style={{ height: `${riPct}%`, backgroundColor: "#1D9E75" }} />
+                        <div style={{ height: `${sarlPct}%`, backgroundColor: "#5DCAA5" }} />
+                        <div className="flex-1" style={{ backgroundColor: "#9FE1CB" }} />
+                      </div>
+                    </div>
+                    <span className="text-[10px] text-gray-400 whitespace-nowrap">{t.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex items-center gap-4 mt-3 pt-3 border-t border-gray-100">
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "#1D9E75" }} />
+                RI
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "#5DCAA5" }} />
+                SÃ rl
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "#9FE1CB" }} />
+                SA
+              </div>
+            </div>
+          </Card>
+        )}
+
         {/* Filters */}
         <div className="flex flex-wrap gap-2 mb-4">
           <div className="relative flex-1 min-w-[200px]">
@@ -147,32 +210,71 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
               className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-emerald-400"
             />
           </div>
-          <select value={canton} onChange={(e) => { setCanton(e.target.value); }} className="px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white">
+          <select
+            value={canton}
+            onChange={(e) => { setCanton(e.target.value); }}
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white"
+          >
             <option value="">Tous les cantons</option>
-            {CANTONS.map((c) => (<option key={c} value={c}>{CANTON_NAMES[c]}</option>))}
+            {CANTONS.map((c) => (
+              <option key={c} value={c}>{CANTON_NAMES[c]}</option>
+            ))}
           </select>
-          <select value={form} onChange={(e) => { setForm(e.target.value); }} className="px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white">
+          <select
+            value={form}
+            onChange={(e) => { setForm(e.target.value); }}
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white"
+          >
             <option value="">Toutes formes</option>
-            {FORMS.map((f) => (<option key={f} value={f}>{FORM_LABELS[f]}</option>))}
+            {FORMS.map((f) => (
+              <option key={f} value={f}>{FORM_LABELS[f]}</option>
+            ))}
           </select>
-          <select value={sector} onChange={(e) => { setSector(e.target.value); }} className="px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white">
+          <select
+            value={sector}
+            onChange={(e) => { setSector(e.target.value); }}
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white"
+          >
             <option value="">Tous secteurs</option>
-            {SECTORS.map((s) => (<option key={s.value} value={s.value}>{s.label}</option>))}
+            {SECTORS.map((s) => (
+              <option key={s.value} value={s.value}>{s.label}</option>
+            ))}
           </select>
-          <Button onClick={applyFilters} className="bg-emerald-500 hover:bg-emerald-600 text-white">Rechercher</Button>
+          <Button
+            onClick={applyFilters}
+            className="bg-emerald-500 hover:bg-emerald-600 text-white"
+          >
+            Rechercher
+          </Button>
         </div>
 
         {/* Active filter pills */}
         {hasFilters && (
           <div className="flex flex-wrap gap-2 mb-6">
-            {canton && (<button onClick={() => clearFilter("canton")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">{CANTON_NAMES[canton]} <X className="w-3 h-3" /></button>)}
-            {form && (<button onClick={() => clearFilter("form")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">{FORM_LABELS[form]} <X className="w-3 h-3" /></button>)}
-            {sector && (<button onClick={() => clearFilter("sector")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">{SECTORS.find((s) => s.value === sector)?.label} <X className="w-3 h-3" /></button>)}
-            {search && (<button onClick={() => clearFilter("search")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">&quot;{search}&quot; <X className="w-3 h-3" /></button>)}
+            {canton && (
+              <button onClick={() => clearFilter("canton")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">
+                {CANTON_NAMES[canton]} <X className="w-3 h-3" />
+              </button>
+            )}
+            {form && (
+              <button onClick={() => clearFilter("form")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">
+                {FORM_LABELS[form]} <X className="w-3 h-3" />
+              </button>
+            )}
+            {sector && (
+              <button onClick={() => clearFilter("sector")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">
+                {SECTORS.find((s) => s.value === sector)?.label} <X className="w-3 h-3" />
+              </button>
+            )}
+            {search && (
+              <button onClick={() => clearFilter("search")} className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">
+                &quot;{search}&quot; <X className="w-3 h-3" />
+              </button>
+            )}
           </div>
         )}
 
-        {/* Charts row */}
+        {/* Charts row: cantons + forms + sectors */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {/* Canton ranking */}
           <Card className="p-5">
@@ -184,8 +286,13 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
                   <Link key={c} href={buildUrl({ canton: c })} className="flex items-center gap-2 group">
                     <span className="text-xs text-gray-500 w-7 text-right">{c}</span>
                     <div className="flex-1 h-5 bg-gray-100 rounded overflow-hidden">
-                      <div className="h-full rounded flex items-center pl-2 transition-all" style={{ width: `${pct}%`, backgroundColor: BAR_COLORS[c] || "#9FE1CB" }}>
-                        <span className="text-xs font-medium text-white">{count.toLocaleString("fr-CH")}</span>
+                      <div
+                        className="h-full rounded flex items-center pl-2 transition-all"
+                        style={{ width: `${pct}%`, backgroundColor: BAR_COLORS[c] || "#9FE1CB" }}
+                      >
+                        <span className="text-xs font-medium text-white">
+                          {count.toLocaleString("fr-CH")}
+                        </span>
                       </div>
                     </div>
                   </Link>
@@ -222,20 +329,60 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
               <div className="space-y-2 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-sm bg-emerald-600" />
-                  RI — {stats.byForm.RI ? Math.round((stats.byForm.RI / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
+                  RI â {stats.byForm.RI ? Math.round((stats.byForm.RI / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-sm bg-emerald-400" />
-                  Sàrl — {stats.byForm.Sarl ? Math.round((stats.byForm.Sarl / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
+                  SÃ rl â {stats.byForm.Sarl ? Math.round((stats.byForm.Sarl / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-sm bg-emerald-200" />
-                  SA — {stats.byForm.SA ? Math.round((stats.byForm.SA / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
+                  SA â {stats.byForm.SA ? Math.round((stats.byForm.SA / (stats.byForm.RI + stats.byForm.Sarl + stats.byForm.SA)) * 100) : 0}%
                 </div>
               </div>
             </div>
           </Card>
         </div>
+
+        {/* âââ NEW: Sector distribution âââ */}
+        {sectorDistribution.length > 0 && (
+          <Card className="p-5 mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <BarChart3 className="w-4 h-4 text-emerald-600" />
+              <h3 className="text-sm font-medium text-gray-900">Répartition par secteur d&apos;activité</h3>
+              <span className="text-xs text-gray-400 ml-auto">{totalSectors} entreprises classifiées</span>
+            </div>
+            <div className="space-y-2.5">
+              {sectorDistribution.map(({ sector: s, label, count, percentage }) => {
+                const maxSector = sectorDistribution[0]?.count || 1;
+                const barWidth = Math.max((count / maxSector) * 100, 3);
+                return (
+                  <Link
+                    key={s}
+                    href={buildUrl({ sector: s })}
+                    className="flex items-center gap-3 group"
+                  >
+                    <span className="text-xs text-gray-600 w-24 text-right truncate">{label}</span>
+                    <div className="flex-1 h-6 bg-gray-50 rounded overflow-hidden">
+                      <div
+                        className="h-full rounded flex items-center px-2 transition-all group-hover:opacity-80"
+                        style={{
+                          width: `${barWidth}%`,
+                          backgroundColor: SECTOR_COLORS[s] || "#9FE1CB",
+                        }}
+                      >
+                        <span className="text-xs font-medium text-white">
+                          {count.toLocaleString("fr-CH")}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-xs text-gray-400 w-10 text-right">{percentage}%</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </Card>
+        )}
 
         {/* Results count */}
         <p className="text-sm font-medium text-gray-900 mb-4">
@@ -252,19 +399,32 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
             {companies.map((c) => (
               <Link key={c.id} href={`/observatoire/${c.slug}`}>
                 <div className="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:border-emerald-300 transition-colors cursor-pointer">
-                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: c.legal_form === "SA" ? "#9FE1CB" : c.legal_form === "Sarl" ? "#5DCAA5" : "#1D9E75" }} />
+                  <div
+                    className="w-2 h-2 rounded-full flex-shrink-0"
+                    style={{
+                      backgroundColor:
+                        c.legal_form === "SA" ? "#9FE1CB" : c.legal_form === "Sarl" ? "#5DCAA5" : "#1D9E75",
+                    }}
+                  />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-900 truncate">
                       {c.name}
                       <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${BADGE_CLASSES[c.legal_form] || ""}`}>
                         {FORM_LABELS[c.legal_form] || c.legal_form}
                       </span>
+                      {c.sector && (
+                        <span className="ml-1 text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+                          {SECTOR_LABELS[c.sector] || c.sector}
+                        </span>
+                      )}
                     </p>
                     <p className="text-xs text-gray-500 truncate">
-                      {c.purpose?.split(",")[0] || ""} — {c.city}, {c.canton}
+                      {c.purpose?.split(",")[0] || ""} â {c.city}, {c.canton}
                     </p>
                   </div>
-                  <span className="text-xs text-gray-400 whitespace-nowrap">{timeAgo(c.created_at)}</span>
+                  <span className="text-xs text-gray-400 whitespace-nowrap">
+                    {timeAgo(c.created_at)}
+                  </span>
                   <ArrowRight className="w-4 h-4 text-gray-300" />
                 </div>
               </Link>
@@ -275,8 +435,10 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
         {/* Footer */}
         <div className="text-center space-y-4 pt-4 border-t">
           <p className="text-xs text-gray-400">
-            Données Zefix / FOSC &middot; Mis à jour en continu &middot; Propulsé par{" "}
-            <Link href="/" className="text-emerald-600 hover:text-emerald-700 font-medium">NeoFidu</Link>
+            Données Zefix / FOSC &middot; Classification IA par secteur &middot; Propulsé par{" "}
+            <Link href="/" className="text-emerald-600 hover:text-emerald-700 font-medium">
+              NeoFidu
+            </Link>
           </p>
           <Link href="/demande">
             <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
@@ -289,4 +451,3 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters 
     </section>
   );
 }
-
