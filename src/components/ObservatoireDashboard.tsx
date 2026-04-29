@@ -191,14 +191,20 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
           {/* Left: Company list (3/5) */}
           <div className="lg:col-span-3">
             <p className="text-sm font-medium text-gray-900 mb-3">
-              {total.toLocaleString("fr-CH")} entreprises
-              {hasFilters && <span className="text-gray-400 font-normal"> (filtrées)</span>}
+              {hasFilters ? (
+                <>{total.toLocaleString("fr-CH")} résultats</>
+              ) : (
+                <>Dernières entreprises enregistrées</>
+              )}
             </p>
 
-            {companies.length === 0 ? (
+            {companies.length === 0 && hasFilters ? (
               <div className="text-center py-16 border border-dashed border-gray-200 rounded-lg">
                 <Building2 className="w-8 h-8 text-gray-300 mx-auto mb-3" />
-                <p className="text-gray-500 text-sm">Aucun résultat pour ces filtres.</p>
+                <p className="text-gray-500 text-sm mb-2">Aucun résultat pour ces filtres.</p>
+                <Link href="/observatoire" className="text-sm text-emerald-600 hover:text-emerald-700">
+                  Effacer les filtres
+                </Link>
               </div>
             ) : (
               <div className="space-y-2">
