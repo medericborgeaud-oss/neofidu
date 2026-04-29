@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 import { Metadata } from "next";
-import { getCompanies, getStats, getMonthlyTrends, getSectorDistribution } from "@/lib/companies";
+import { getCompanies, getStats, getSectorDistribution } from "@/lib/companies";
 import { ObservatoireDashboard } from "@/components/ObservatoireDashboard";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -9,11 +9,11 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Observatoire romand des entreprises | NeoFidu",
   description:
-    "Suivez en temps réel toutes les créations d'entreprises en Suisse romande. Recherchez par canton, forme juridique ou secteur d'activité.",
+    "Toutes les entreprises actives en Suisse romande. Recherchez par canton, forme juridique ou secteur d'activité.",
   openGraph: {
     title: "Observatoire romand des entreprises | NeoFidu",
     description:
-      "Toutes les créations d'entreprises en Suisse romande, en temps réel.",
+      "Toutes les entreprises actives en Suisse romande.",
   },
 };
 
@@ -31,10 +31,9 @@ export default async function ObservatoirePage(props: {
     page: parseInt((searchParams.page as string) || "1"),
   };
 
-  const [{ companies, total }, stats, monthlyTrends, sectorDistribution] = await Promise.all([
+  const [{ companies, total }, stats, sectorDistribution] = await Promise.all([
     getCompanies(filters),
     getStats(),
-    getMonthlyTrends(),
     getSectorDistribution(),
   ]);
 
@@ -47,7 +46,6 @@ export default async function ObservatoirePage(props: {
           total={total}
           stats={stats}
           initialFilters={filters}
-          monthlyTrends={monthlyTrends}
           sectorDistribution={sectorDistribution}
         />
       </main>
