@@ -318,6 +318,7 @@ export async function GET(request: Request) {
     let totalClassified = 0;
     let totalSkipped = 0;
     let totalErrors = 0;
+    let firstError: { message: string; code: string; details: string; hint: string; sample: Record<string, unknown> } | null = null;
     const cantonResults: { canton: string; fetched: number; inserted: number; error?: string }[] = [];
 
     for (const [cantonCode, range] of cantonEntries) {
@@ -386,6 +387,8 @@ export async function GET(request: Request) {
           const { error } = await supabase.from("companies").upsert(records, { onConflict: "uid" });
           if (error) {
             console.error(`Batch insert error:`, error.message);
+            // Capture first error for debugging
+            if (!firstError) firstError = { message: error.message, code: error.code, details: error.details, hint: error.hint, sample: records[0] };
             totalErrors += records.length;
           } else {
             totalInserted += records.length;
@@ -406,6 +409,7 @@ export async function GET(request: Request) {
       totalClassified,
       totalSkipped,
       totalErrors,
+      firstError,
       cantonResults,
     });
   } catch (error) {
