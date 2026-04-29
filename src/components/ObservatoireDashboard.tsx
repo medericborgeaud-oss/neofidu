@@ -134,8 +134,8 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
             </p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-xs text-gray-500 mb-1">Aujourd&apos;hui</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.today}</p>
+<p className="text-xs text-gray-500 mb-1">Ce mois</p>
+<p className="text-2xl font-semibold text-gray-900">{stats.thisMonth.toLocaleString("fr-CH")}</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4 text-center">
             <p className="text-xs text-gray-500 mb-1">Canton #1</p>
