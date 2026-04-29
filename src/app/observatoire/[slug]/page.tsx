@@ -3,8 +3,8 @@ export const dynamic = 'force-dynamic';
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCompanyBySlug, CANTON_NAMES, FORM_LABELS } from "@/lib/companies";
-import { ArrowLeft, Building2, Calendar, MapPin, Hash, FileText, Users, Clock } from "lucide-react";
+import { getCompanyBySlug, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS } from "@/lib/companies";
+import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -14,14 +14,14 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const company = await getCompanyBySlug(params.slug);
-  if (!company) return { title: "Entreprise non trouvÃ©e | NeoFidu" };
+  if (!company) return { title: "Entreprise non trouvée | NeoFidu" };
 
   const formLabel = FORM_LABELS[company.legal_form] || company.legal_form;
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
 
   return {
     title: `${company.name} | Observatoire romand | NeoFidu`,
-    description: `${company.name} â ${formLabel} Ã  ${company.city} (${cantonName}). ${company.purpose?.substring(0, 120) || ""}`,
+    description: `${company.name} — ${formLabel} à ${company.city} (${cantonName}). ${company.purpose?.substring(0, 120) || ""}`,
   };
 }
 
@@ -31,6 +31,7 @@ export default async function CompanyPage({ params }: Props) {
 
   const formLabel = FORM_LABELS[company.legal_form] || company.legal_form;
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
+  const sectorLabel = company.sector ? (SECTOR_LABELS[company.sector] || company.sector) : null;
 
   const badgeClass =
     company.legal_form === "RI"
@@ -71,27 +72,43 @@ export default async function CompanyPage({ params }: Props) {
             {/* Info grid */}
             <div className="grid grid-cols-2 gap-3 mb-6">
               <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Building2 className="w-3 h-3" />Forme juridique</div>
+                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                  <Building2 className="w-3 h-3" />Forme juridique
+                </div>
                 <p className="text-sm font-medium text-gray-900">{formLabel}</p>
               </div>
+
               <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Calendar className="w-3 h-3" />Date de création</div>
-                <p className="text-sm font-medium text-gray-900">{company.creation_date}</p>
-              </div>
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><MapPin className="w-3 h-3" />Siège</div>
+                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                  <MapPin className="w-3 h-3" />Siège
+                </div>
                 <p className="text-sm font-medium text-gray-900">{company.city}, {company.canton}</p>
               </div>
+
               {company.ide_number && (
                 <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Hash className="w-3 h-3" />N° IDE</div>
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                    <Hash className="w-3 h-3" />N° IDE
+                  </div>
                   <p className="text-sm font-medium text-gray-900">{company.ide_number}</p>
                 </div>
               )}
+
               {company.capital && (
                 <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Building2 className="w-3 h-3" />Capital</div>
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                    <Building2 className="w-3 h-3" />Capital
+                  </div>
                   <p className="text-sm font-medium text-gray-900">{company.capital}</p>
+                </div>
+              )}
+
+              {sectorLabel && (
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                    <Tag className="w-3 h-3" />Secteur
+                  </div>
+                  <p className="text-sm font-medium text-gray-900">{sectorLabel}</p>
                 </div>
               )}
             </div>
@@ -99,19 +116,27 @@ export default async function CompanyPage({ params }: Props) {
             {/* Purpose */}
             {company.purpose && (
               <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-2"><FileText className="w-3 h-3" />But social</div>
-                <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3 leading-relaxed">{company.purpose}</p>
+                <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                  <FileText className="w-3 h-3" />But social
+                </div>
+                <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3 leading-relaxed">
+                  {company.purpose}
+                </p>
               </div>
             )}
 
             {/* Persons */}
             {company.persons && company.persons.length > 0 && (
               <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3"><Users className="w-3 h-3" />Personnes inscrites</div>
+                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                  <Users className="w-3 h-3" />Personnes inscrites
+                </div>
                 <div className="space-y-3">
-                  {company.persons.map((person, i) => (
+                  {company.persons.map((person: any, i: number) => (
                     <div key={i} className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-xs font-medium text-blue-700">{person.initials}</div>
+                      <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-xs font-medium text-blue-700">
+                        {person.initials}
+                      </div>
                       <div>
                         <p className="text-sm font-medium text-gray-900">{person.name}</p>
                         <p className="text-xs text-gray-500">{person.role}</p>
@@ -125,9 +150,11 @@ export default async function CompanyPage({ params }: Props) {
             {/* FOSC History */}
             {company.fosc_history && company.fosc_history.length > 0 && (
               <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3"><Clock className="w-3 h-3" />Historique FOSC</div>
+                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                  <Clock className="w-3 h-3" />Historique FOSC
+                </div>
                 <div className="space-y-2">
-                  {company.fosc_history.map((entry, i) => (
+                  {company.fosc_history.map((entry: any, i: number) => (
                     <div key={i} className="flex gap-3 text-sm">
                       <span className="text-gray-400 w-20 flex-shrink-0">{entry.date}</span>
                       <span className="text-gray-600">{entry.text}</span>
@@ -144,12 +171,16 @@ export default async function CompanyPage({ params }: Props) {
                 <p className="text-sm text-emerald-600">{ctaText.offer}</p>
               </div>
               <Link href={ctaText.href}>
-                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">En savoir plus</Button>
+                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">
+                  En savoir plus
+                </Button>
               </Link>
             </div>
 
             {/* Source */}
-            <p className="text-center text-xs text-gray-400 mt-4">Source : Registre du commerce via Zefix / FOSC</p>
+            <p className="text-center text-xs text-gray-400 mt-4">
+              Source : Registre du commerce via Zefix / FOSC
+            </p>
           </div>
         </Card>
       </div>
