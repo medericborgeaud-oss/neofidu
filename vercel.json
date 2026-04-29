@@ -5,8 +5,28 @@
   "regions": ["fra1"],
   "crons": [
     {
-      "path": "/api/cron/zefix",
-      "schedule": "0 6 * * *"
+      "path": "/api/cron/zefix-backfill?canton=VD",
+      "schedule": "0 5 * * 1"
+    },
+    {
+      "path": "/api/cron/zefix-backfill?canton=GE",
+      "schedule": "0 5 * * 2"
+    },
+    {
+      "path": "/api/cron/zefix-backfill?canton=VS",
+      "schedule": "0 5 * * 3"
+    },
+    {
+      "path": "/api/cron/zefix-backfill?canton=FR",
+      "schedule": "0 5 * * 4"
+    },
+    {
+      "path": "/api/cron/zefix-backfill?canton=NE",
+      "schedule": "0 5 * * 5"
+    },
+    {
+      "path": "/api/cron/zefix-backfill?canton=JU",
+      "schedule": "0 5 * * 6"
     }
   ],
   "headers": [
