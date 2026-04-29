@@ -81,7 +81,7 @@ const FORM_LABELS: Record<string, string> = {
   Sarl: "Sàrl",
   SA: "SA",
 };
-const SECTOR_LABELS: Record<string, string> = {
+export const SECTOR_LABELS: Record<string, string> = {
   tech: "Informatique",
   conseil: "Conseil",
   commerce: "Commerce",
@@ -89,9 +89,17 @@ const SECTOR_LABELS: Record<string, string> = {
   construction: "Construction",
   restauration: "Restauration",
   immobilier: "Immobilier",
+  transport: "Transport",
+  education: "Éducation",
+  finance: "Finance",
+  industrie: "Industrie",
+  agriculture: "Agriculture",
+  art_culture: "Art & Culture",
+  nettoyage: "Nettoyage",
+  beaute: "Beauté",
 };
 
-export { CANTONS_ROMANDS, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS };
+export { CANTONS_ROMANDS, CANTON_NAMES, FORM_LABELS};
 
 export async function getCompanies(filters: CompanyFilters = {}) {
   const { search, canton, legal_form, sector, page = 1, limit = 20 } = filters;
