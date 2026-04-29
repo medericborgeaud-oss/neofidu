@@ -1,25 +1,30 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
-// Backfill route — fetches historical Zefix data
-// Call with ?days=30 to fetch last 30 days (default: 14)
+// Backfill route v2 — uses POST /api/v1/company/search (public endpoint)
+// No more /shab/welcome.json (deprecated/requires special subscription)
+// Call with ?days=30 to fetch last 30 days (default: 30)
 export const dynamic = "force-dynamic";
 export const maxDuration = 300; // 5 minutes for backfill
 
 const ZEFIX_API = "https://www.zefix.admin.ch/ZefixPublicREST/api/v1";
 const CANTONS_ROMANDS = ["VD", "GE", "VS", "FR", "NE", "JU"];
 
-interface ZefixCompany {
-  uid: string;
+// Name prefixes to paginate through all companies (Zefix requires name with minLength 3)
+const NAME_PREFIXES = ["A*", "B*", "C*", "D*", "E*", "F*", "G*", "H*", "I*", "J*", "K*", "L*", "M*", "N*", "O*", "P*", "Q*", "R*", "S*", "T*", "U*", "V*", "W*", "X*", "Y*", "Z*", "0*", "1*", "2*", "3*", "4*", "5*", "6*", "7*", "8*", "9*"];
+
+interface ZefixCompanyShort {
   name: string;
+  ehraid: number;
+  uid: string;
+  chid: string;
+  legalSeatId: number;
   legalSeat: string;
-  cantonalExcerptWeb?: string;
-  purpose?: string;
-  legalForm?: { name?: string; uid?: string };
-  registryOfCommerce?: { canton?: string };
-  shabDate?: string;
-  deleteDate?: string;
-  status?: string;
+  registryOfCommerceId: number;
+  legalForm?: { id?: number; name?: string; uid?: string };
+  status: string;
+  sogcDate: string; // Last SOGC/SHAB publication date (YYYY-MM-DD)
+  deletionDate?: string;
 }
 
 function mapLegalForm(zefixForm: string | undefined): string {
@@ -36,7 +41,6 @@ function classifySector(purpose: string | undefined): string | null {
   if (!purpose) return null;
   const p = purpose.toLowerCase();
 
-  // Tech / Informatique
   if (
     p.includes("informatique") || p.includes("logiciel") || p.includes("software") ||
     p.includes("développement web") || p.includes("application") || p.includes("digital") ||
@@ -48,7 +52,6 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("internet") || p.includes("web") || p.includes("app ")
   ) return "tech";
 
-  // Santé / Médical
   if (
     p.includes("médic") || p.includes("santé") || p.includes("soins") ||
     p.includes("dentaire") || p.includes("dentiste") || p.includes("pharma") ||
@@ -61,7 +64,6 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("yoga") || p.includes("coach") || p.includes("nutrition")
   ) return "sante";
 
-  // Construction / BTP
   if (
     p.includes("construction") || p.includes("bâtiment") || p.includes("travaux") ||
     p.includes("rénovation") || p.includes("maçonnerie") || p.includes("plomberie") ||
@@ -73,7 +75,6 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("bau") || p.includes("renovierung") || p.includes("montage")
   ) return "construction";
 
-  // Restauration / Hôtellerie
   if (
     p.includes("restaurant") || p.includes("café") || p.includes("bar") ||
     p.includes("traiteur") || p.includes("boulangerie") || p.includes("pâtisserie") ||
@@ -84,7 +85,6 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("restauration") || p.includes("tea room") || p.includes("kebab")
   ) return "restauration";
 
-  // Immobilier
   if (
     p.includes("immobili") || p.includes("gérance") || p.includes("courtage") ||
     p.includes("promotion immobili") || p.includes("régie") || p.includes("foncier") ||
@@ -93,7 +93,6 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("immobilien") || p.includes("liegenschaft")
   ) return "immobilier";
 
-  // Conseil / Services aux entreprises
   if (
     p.includes("conseil") || p.includes("consulting") || p.includes("consultant") ||
     p.includes("fiduciaire") || p.includes("comptab") || p.includes("révision") ||
@@ -106,7 +105,6 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("beratung") || p.includes("treuhand") || p.includes("buchhaltung")
   ) return "conseil";
 
-  // Commerce (catch-all for trade activities)
   if (
     p.includes("commerce") || p.includes("vente") || p.includes("achat") ||
     p.includes("import") || p.includes("export") || p.includes("négoce") ||
@@ -132,55 +130,88 @@ function generateSlug(name: string, uid: string): string {
   return `${slug}-${shortUid}`;
 }
 
-function getBusinessDays(daysBack: number): string[] {
-  const dates: string[] = [];
-  const now = new Date();
-  for (let i = 1; i <= daysBack; i++) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    const day = d.getDay();
-    // Skip weekends (0=Sun, 6=Sat) — SHAB only publishes on business days
-    if (day === 0 || day === 6) continue;
-    dates.push(d.toISOString().split("T")[0]);
-  }
-  return dates;
-}
+/**
+ * Fetch companies from a canton using POST /api/v1/company/search
+ * This endpoint is public (no authentication required).
+ * We use name prefixes (A*, B*, C*...) to paginate since no date filter exists.
+ * Then filter by sogcDate locally.
+ */
+async function fetchCompaniesForCanton(
+  canton: string,
+  sinceDate: string,
+  authHeader?: string
+): Promise<ZefixCompanyShort[]> {
+  const recentCompanies: ZefixCompanyShort[] = [];
+  const seenUids = new Set<string>();
 
-async function fetchZefixForDate(username: string, password: string, dateStr: string): Promise<ZefixCompany[]> {
-  const auth = Buffer.from(`${username}:${password}`).toString("base64");
-  const allCompanies: ZefixCompany[] = [];
-
-  for (const canton of CANTONS_ROMANDS) {
+  for (const prefix of NAME_PREFIXES) {
     try {
-      const response = await fetch(
-        `${ZEFIX_API}/shab/welcome.json?registryOfCommerceCanton=${canton}&shabDate=${dateStr}`,
-        {
-          headers: {
-            Authorization: `Basic ${auth}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      };
+      // Add auth if available (optional but may increase rate limits)
+      if (authHeader) {
+        headers["Authorization"] = authHeader;
+      }
+
+      const response = await fetch(`${ZEFIX_API}/company/search`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          canton,
+          name: prefix,
+          activeOnly: true,
+        }),
+      });
 
       if (!response.ok) {
-        console.error(`Zefix API error for ${canton} on ${dateStr}: ${response.status}`);
+        console.error(`Zefix search error for ${canton}/${prefix}: ${response.status}`);
+        // If 401, try without auth on next iteration
         continue;
       }
 
-      const data = await response.json();
+      const data: ZefixCompanyShort[] = await response.json();
+
       if (Array.isArray(data)) {
-        allCompanies.push(...data.map((c: ZefixCompany) => ({
-          ...c,
-          registryOfCommerce: { canton },
-          shabDate: dateStr,
-        })));
+        for (const company of data) {
+          // Filter: only keep companies with sogcDate >= sinceDate
+          if (company.sogcDate && company.sogcDate >= sinceDate && !seenUids.has(company.uid)) {
+            seenUids.add(company.uid);
+            recentCompanies.push(company);
+          }
+        }
       }
     } catch (error) {
-      console.error(`Error fetching ${canton} on ${dateStr}:`, error);
+      console.error(`Error searching ${canton}/${prefix}:`, error);
     }
   }
 
-  return allCompanies;
+  return recentCompanies;
+}
+
+/**
+ * Alternative: fetch company details by UID to get purpose field
+ * GET /api/v1/company/uid/{uid} — may require auth
+ */
+async function fetchCompanyDetails(uid: string, authHeader?: string): Promise<{ purpose?: string; cantonalExcerptWeb?: string } | null> {
+  try {
+    const headers: Record<string, string> = { Accept: "application/json" };
+    if (authHeader) {
+      headers["Authorization"] = authHeader;
+    }
+
+    const response = await fetch(`${ZEFIX_API}/company/uid/${uid}`, { headers });
+    if (!response.ok) return null;
+
+    const data = await response.json();
+    return {
+      purpose: data?.purpose?.translations?.fr || data?.purpose?.translations?.de || data?.purpose?.text || "",
+      cantonalExcerptWeb: data?.cantonalExcerptWeb || null,
+    };
+  } catch {
+    return null;
+  }
 }
 
 export async function GET(request: Request) {
@@ -188,7 +219,6 @@ export async function GET(request: Request) {
   const cronSecret = process.env.CRON_SECRET;
 
   if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-    // Allow query param auth for manual trigger
     const url = new URL(request.url);
     const secret = url.searchParams.get("secret");
     if (secret !== cronSecret) {
@@ -198,38 +228,48 @@ export async function GET(request: Request) {
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  const zefixUser = process.env.ZEFIX_USERNAME;
-  const zefixPass = process.env.ZEFIX_PASSWORD;
 
   if (!supabaseUrl || !supabaseKey) {
     return NextResponse.json({ error: "Supabase not configured" }, { status: 500 });
   }
-  if (!zefixUser || !zefixPass) {
-    return NextResponse.json({ error: "Zefix credentials not configured" }, { status: 500 });
-  }
 
   const url = new URL(request.url);
   const daysBack = parseInt(url.searchParams.get("days") || "30");
-  const maxDays = Math.min(daysBack, 90); // Cap at 90 days
+  const maxDays = Math.min(daysBack, 90);
+  const fetchDetails = url.searchParams.get("details") !== "false"; // default: true
+
+  // Calculate the cutoff date
+  const cutoffDate = new Date();
+  cutoffDate.setDate(cutoffDate.getDate() - maxDays);
+  const sinceDate = cutoffDate.toISOString().split("T")[0];
+
+  // Optional Zefix auth (for detail endpoints)
+  const zefixUser = process.env.ZEFIX_USERNAME;
+  const zefixPass = process.env.ZEFIX_PASSWORD;
+  const zefixAuth = zefixUser && zefixPass
+    ? `Basic ${Buffer.from(`${zefixUser}:${zefixPass}`).toString("base64")}`
+    : undefined;
 
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   try {
-    const businessDays = getBusinessDays(maxDays);
-    console.log(`Backfill: fetching ${businessDays.length} business days (last ${maxDays} days)`);
+    console.log(`Backfill v2: searching companies since ${sinceDate} (${maxDays} days back)`);
 
     let totalFetched = 0;
     let totalInserted = 0;
     let totalClassified = 0;
     let totalSkipped = 0;
     let totalErrors = 0;
-    const dailyResults: { date: string; fetched: number; inserted: number }[] = [];
+    let totalDetailsFound = 0;
+    const cantonResults: { canton: string; fetched: number; inserted: number }[] = [];
 
-    for (const dateStr of businessDays) {
-      const companies = await fetchZefixForDate(zefixUser, zefixPass, dateStr);
+    for (const canton of CANTONS_ROMANDS) {
+      console.log(`Searching canton ${canton}...`);
+      const companies = await fetchCompaniesForCanton(canton, sinceDate, zefixAuth);
       totalFetched += companies.length;
+      console.log(`${canton}: found ${companies.length} recent companies`);
 
-      let dayInserted = 0;
+      let cantonInserted = 0;
 
       for (const company of companies) {
         if (!company.uid || !company.name) {
@@ -237,11 +277,23 @@ export async function GET(request: Request) {
           continue;
         }
 
-        const canton = company.registryOfCommerce?.canton || "";
         const slug = generateSlug(company.name, company.uid);
         const legalForm = mapLegalForm(company.legalForm?.name);
-        const sector = classifySector(company.purpose);
 
+        // Try to get detailed info (purpose) if auth available
+        let purpose = "";
+        let cantonalExcerptUrl: string | null = null;
+
+        if (fetchDetails && zefixAuth) {
+          const details = await fetchCompanyDetails(company.uid, zefixAuth);
+          if (details) {
+            purpose = details.purpose || "";
+            cantonalExcerptUrl = details.cantonalExcerptWeb || null;
+            totalDetailsFound++;
+          }
+        }
+
+        const sector = classifySector(purpose || undefined);
         if (sector) totalClassified++;
 
         try {
@@ -253,13 +305,13 @@ export async function GET(request: Request) {
               canton,
               legal_form: legalForm,
               legal_seat: company.legalSeat || "",
-              purpose: company.purpose || "",
+              purpose,
               sector,
               status: company.status || "active",
               source: "zefix",
-              creation_date: company.shabDate || dateStr,
-              is_active: !company.deleteDate,
-              cantonal_excerpt_url: company.cantonalExcerptWeb || null,
+              creation_date: company.sogcDate || sinceDate,
+              is_active: !company.deletionDate,
+              cantonal_excerpt_url: cantonalExcerptUrl,
               updated_at: new Date().toISOString(),
             },
             { onConflict: "uid" }
@@ -270,7 +322,7 @@ export async function GET(request: Request) {
             totalErrors++;
           } else {
             totalInserted++;
-            dayInserted++;
+            cantonInserted++;
           }
         } catch (err) {
           console.error(`Error processing ${company.uid}:`, err);
@@ -278,30 +330,28 @@ export async function GET(request: Request) {
         }
       }
 
-      if (companies.length > 0) {
-        dailyResults.push({ date: dateStr, fetched: companies.length, inserted: dayInserted });
-      }
-
-      console.log(`${dateStr}: fetched ${companies.length}, inserted ${dayInserted}`);
+      cantonResults.push({ canton, fetched: companies.length, inserted: cantonInserted });
     }
 
     const result = {
       success: true,
       backfill: true,
-      daysScanned: businessDays.length,
-      totalDays: maxDays,
+      version: 2,
+      sinceDate,
+      maxDays,
       totalFetched,
       totalInserted,
       totalClassified,
       totalSkipped,
       totalErrors,
-      dailyResults,
+      totalDetailsFound,
+      cantonResults,
     };
 
-    console.log("Backfill result:", JSON.stringify(result));
+    console.log("Backfill v2 result:", JSON.stringify(result));
     return NextResponse.json(result);
   } catch (error) {
-    console.error("Backfill error:", error);
+    console.error("Backfill v2 error:", error);
     return NextResponse.json(
       { error: "Backfill failed", details: String(error) },
       { status: 500 }
