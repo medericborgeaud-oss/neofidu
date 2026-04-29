@@ -380,6 +380,24 @@ export async function GET(request: Request) {
   if (testMode) {
     const testCanton = singleCanton || "VD";
     console.log(`Running diagnostic on canton ${testCanton}...`);
+
+    // Debug: show env var diagnostics (masked)
+    const envDebug = {
+      ZEFIX_USERNAME: zefixUser
+        ? { set: true, length: zefixUser.length, value: zefixUser.substring(0, 3) + "***" + zefixUser.substring(zefixUser.length - 3) }
+        : { set: false },
+      ZEFIX_PASSWORD: zefixPass
+        ? { set: true, length: zefixPass.length, firstChar: zefixPass[0], lastChar: zefixPass[zefixPass.length - 1] }
+        : { set: false },
+      authHeaderPreview: zefixAuth
+        ? zefixAuth.substring(0, 15) + "..." + zefixAuth.substring(zefixAuth.length - 5)
+        : "(none)",
+      // Show the raw base64 so we can verify it decodes correctly
+      base64Payload: zefixUser && zefixPass
+        ? Buffer.from(`${zefixUser}:${zefixPass}`).toString("base64")
+        : "(none)",
+    };
+
     const diagnosticResults = await runDiagnostic(testCanton, zefixAuth);
     return NextResponse.json({
       test: true,
@@ -387,6 +405,7 @@ export async function GET(request: Request) {
       canton: testCanton,
       hasAuth: !!zefixAuth,
       authUser: zefixUser || "(none)",
+      envDebug,
       results: diagnosticResults,
       hint: "Look for patterns with httpStatus=200 and resultCount>0. Those work!",
     });
