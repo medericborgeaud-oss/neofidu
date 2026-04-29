@@ -297,18 +297,21 @@ export async function GET(request: Request) {
   const singleCanton = url.searchParams.get("canton");
   const limitPerCanton = parseInt(url.searchParams.get("limit") || "10000");
 
-  // ── SCHEMA MODE — discover table columns ───────────────────────────────
+  // ── SCHEMA MODE — discover table columns via OpenAPI spec ───────────────
   if (url.searchParams.get("schema") === "true") {
-    const supabase = createClient(supabaseUrl, supabaseKey);
-    const { data, error } = await supabase.from("companies").select("*").limit(1);
-    const columns = data && data.length > 0 ? Object.keys(data[0]) : null;
-    return NextResponse.json({
-      schema: true,
-      columns,
-      sampleRow: data?.[0] || null,
-      error: error?.message || null,
-      hint: columns ? "Use these column names in the upsert" : "Table might be empty or not exist",
-    });
+    try {
+      const res = await fetch(`${supabaseUrl}/rest/v1/`, {
+        headers: { "apikey": supabaseKey, "Authorization": `Bearer ${supabaseKey}` },
+      });
+      const spec = await res.json();
+      const companiesDef = spec?.definitions?.companies;
+      const columns = companiesDef?.properties ? Object.keys(companiesDef.properties) : null;
+      const details = companiesDef?.properties || null;
+      const required = companiesDef?.required || [];
+      return NextResponse.json({ schema: true, columns, required, details });
+    } catch (err) {
+      return NextResponse.json({ schema: true, error: String(err) });
+    }
   }
 
   // ── TEST MODE ─────────────────────────────────────────────────────────────
@@ -381,19 +384,23 @@ export async function GET(request: Request) {
           if (sector) totalClassified++;
 
           records.push({
-            uid,
+            zefix_uid: uid,
+            ide_number: uid,
             name,
             slug,
             canton: cantonCode,
+            city: row.municipality?.value || "",
             legal_form: legalForm,
             purpose,
             sector,
+            is_active: true,
+            creation_date: new Date().toISOString().split("T")[0],
             updated_at: new Date().toISOString(),
           });
         }
 
         if (records.length > 0) {
-          const { error } = await supabase.from("companies").upsert(records, { onConflict: "uid" });
+          const { error } = await supabase.from("companies").upsert(records, { onConflict: "zefix_uid" });
           if (error) {
             console.error(`Batch insert error:`, error.message);
             // Capture first error for debugging
