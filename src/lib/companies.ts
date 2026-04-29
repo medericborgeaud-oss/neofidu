@@ -111,23 +111,21 @@ export const SECTOR_LABELS: Record<string, string> = {
 export async function getCompanies(filters: CompanyFilters = {}) {
   const { search, canton, legal_form, sector, page = 1, limit = 20 } = filters;
 
-  let query = supabase
-    .from("companies")
-    .select("*", { count: "exact" })
-    .eq("is_active", true)
-    .order("creation_date", { ascending: false });
+  const { data, error } = await supabase.rpc("search_companies", {
+    search_term: search || "",
+    filter_canton: canton || "",
+    filter_form: legal_form || "",
+    filter_sector: sector || "",
+    page_num: page,
+    page_size: limit,
+  });
 
-  if (canton) query = query.eq("canton", canton);
-  if (legal_form) query = query.eq("legal_form", legal_form);
-  if (sector) query = query.eq("sector", sector);
-  if (search) query = query.ilike("name", `%${search}%`);
-
-  query = query.range((page - 1) * limit, page * limit - 1);
-
-  const { data, error, count } = await query;
   if (error) throw error;
 
-  return { companies: (data as Company[]) || [], total: count || 0 };
+  return {
+    companies: (data?.companies as Company[]) || [],
+    total: data?.total || 0,
+  };
 }
 
 export async function getCompanyBySlug(slug: string): Promise<Company | null> {
