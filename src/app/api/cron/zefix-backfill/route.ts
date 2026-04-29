@@ -297,6 +297,20 @@ export async function GET(request: Request) {
   const singleCanton = url.searchParams.get("canton");
   const limitPerCanton = parseInt(url.searchParams.get("limit") || "10000");
 
+  // ── SCHEMA MODE — discover table columns ───────────────────────────────
+  if (url.searchParams.get("schema") === "true") {
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    const { data, error } = await supabase.from("companies").select("*").limit(1);
+    const columns = data && data.length > 0 ? Object.keys(data[0]) : null;
+    return NextResponse.json({
+      schema: true,
+      columns,
+      sampleRow: data?.[0] || null,
+      error: error?.message || null,
+      hint: columns ? "Use these column names in the upsert" : "Table might be empty or not exist",
+    });
+  }
+
   // ── TEST MODE ─────────────────────────────────────────────────────────────
   if (testMode) {
     const results = await runDiagnostic();
