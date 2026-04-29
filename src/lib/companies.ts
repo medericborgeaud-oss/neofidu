@@ -123,22 +123,18 @@ export async function getCompanyBySlug(slug: string): Promise<Company | null> {
 }
 
 export async function getStats(): Promise<CompanyStats> {
-  const now = new Date();
-  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
-  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
-
-  const [totalRes, todayRes, monthRes, cantonRes, formRes] = await Promise.all([
-    supabase.from("companies").select("*", { count: "exact", head: true }).eq("is_active", true),
-    supabase.from("companies").select("*", { count: "exact", head: true }).eq("is_active", true).gte("created_at", startOfDay),
-    supabase.from("companies").select("*", { count: "exact", head: true }).eq("is_active", true).gte("created_at", startOfMonth),
+  const [statsRes, cantonRes, formRes] = await Promise.all([
+    supabase.rpc("total_stats"),
     supabase.rpc("count_by_canton"),
     supabase.rpc("count_by_form"),
   ]);
 
+  const stats = (statsRes.data as any) || { total: 0, today: 0, thisMonth: 0 };
+
   return {
-    total: totalRes.count || 0,
-    today: todayRes.count || 0,
-    thisMonth: monthRes.count || 0,
+    total: stats.total || 0,
+    today: stats.today || 0,
+    thisMonth: stats.thisMonth || 0,
     byCantonSorted: (cantonRes.data as any[]) || [],
     byForm: (formRes.data as any) || { RI: 0, Sarl: 0, SA: 0 },
   };
