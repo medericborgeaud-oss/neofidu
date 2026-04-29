@@ -1,56 +1,33 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
-// Backfill route v3 — uses LINDAS SPARQL (Swiss Linked Data)
-// NO AUTHENTICATION NEEDED — Zefix data is public open data
+// Backfill route v3.1 — uses LINDAS SPARQL (Swiss Open Data)
+// NO AUTHENTICATION NEEDED — 783k+ companies available
 // Endpoint: https://lindas.admin.ch/query
 //
 // Usage:
-//   ?days=30         → fetch companies created in last 30 days (default: 30, max: 90)
+//   ?days=30         → fetch all active companies (LINDAS has no date filter, we get all)
 //   ?canton=VD       → single canton only
-//   ?test=true       → diagnostic mode: test SPARQL connectivity + discover schema
-//   ?details=true    → include purpose field (slower, needs Zefix REST API auth)
+//   ?test=true       → diagnostic mode
+//   ?limit=5000      → max companies per canton (default: 10000)
 export const dynamic = "force-dynamic";
 export const maxDuration = 300; // 5 minutes for backfill
 
 const SPARQL_ENDPOINT = "https://lindas.admin.ch/query";
+const ZEFIX_GRAPH = "https://lindas.admin.ch/foj/zefix";
 
-// Canton codes mapped to their LINDAS URIs
-// Swiss cantons in LINDAS use the FSO (OFS) municipality numbers
-const CANTONS_ROMANDS: Record<string, { code: string; id: string }> = {
-  VD: { code: "VD", id: "22" },
-  GE: { code: "GE", id: "25" },
-  VS: { code: "VS", id: "23" },
-  FR: { code: "FR", id: "10" },
-  NE: { code: "NE", id: "24" },
-  JU: { code: "JU", id: "26" },
+// Canton codes → LINDAS canton IDs (FSO numbering)
+const CANTONS_ROMANDS: Record<string, string> = {
+  VD: "22",
+  GE: "25",
+  VS: "23",
+  FR: "10",
+  NE: "24",
+  JU: "26",
 };
 
-interface SparqlResult {
-  name?: { value: string };
-  uid?: { value: string };
-  legalForm?: { value: string };
-  legalFormLabel?: { value: string };
-  municipality?: { value: string };
-  canton?: { value: string };
-  cantonCode?: { value: string };
-  company?: { value: string };
-  dateRegistration?: { value: string };
-  status?: { value: string };
-  purpose?: { value: string };
-}
-
-interface ParsedCompany {
-  uid: string;
-  name: string;
-  legalForm: string;
-  legalSeat: string;
-  canton: string;
-  purpose: string;
-  registrationDate: string;
-  status: string;
-  zefixUrl: string;
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SparqlBinding = Record<string, { type: string; value: string }>;
 
 function mapLegalForm(zefixForm: string | undefined): string {
   if (!zefixForm) return "Autre";
@@ -157,10 +134,21 @@ function generateSlug(name: string, uid: string): string {
 }
 
 /**
- * Execute a SPARQL query against LINDAS endpoint.
- * Returns parsed JSON results or error.
+ * Extract CHE UID from LINDAS URI.
+ * Input:  "https://register.ld.admin.ch/zefix/company/773824/UID/CHE112103297"
+ * Output: "CHE-112.103.297"
  */
-async function sparqlQuery(query: string): Promise<{ success: boolean; data?: SparqlResult[]; error?: string; status?: number }> {
+function extractUID(uidUri: string): string {
+  const match = uidUri.match(/CHE(\d{9})/);
+  if (!match) return uidUri;
+  const digits = match[1];
+  return `CHE-${digits.substring(0, 3)}.${digits.substring(3, 6)}.${digits.substring(6, 9)}`;
+}
+
+/**
+ * Execute a SPARQL query against LINDAS.
+ */
+async function sparqlQuery(query: string): Promise<{ success: boolean; data?: SparqlBinding[]; error?: string; status?: number }> {
   try {
     const response = await fetch(SPARQL_ENDPOINT, {
       method: "POST",
@@ -185,178 +173,153 @@ async function sparqlQuery(query: string): Promise<{ success: boolean; data?: Sp
 
 /**
  * ── TEST MODE ──
- * Tests SPARQL connectivity, discovers available properties, and fetches sample data.
+ * Discovers the exact schema and tests canton filtering.
  */
 async function runDiagnostic() {
   const tests = [];
 
-  // Test 1: Basic connectivity — count companies
-  const countQuery = `
+  // Test 1: Count total companies
+  const t1 = await sparqlQuery(`
+    PREFIX admin: <https://schema.ld.admin.ch/>
+    SELECT (COUNT(DISTINCT ?c) AS ?total) WHERE {
+      GRAPH <${ZEFIX_GRAPH}> { ?c a admin:ZefixOrganisation }
+    }
+  `);
+  tests.push({ test: "total_companies", result: t1.data?.[0]?.total?.value, ok: t1.success });
+
+  // Test 2: Get full details of ONE company to see all properties
+  const t2 = await sparqlQuery(`
     PREFIX schema: <http://schema.org/>
     PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT (COUNT(?company) AS ?total)
-    WHERE {
-      GRAPH <https://lindas.admin.ch/foj/zefix> {
-        ?company a admin:ZefixOrganisation .
+    SELECT ?prop ?val WHERE {
+      GRAPH <${ZEFIX_GRAPH}> {
+        <https://register.ld.admin.ch/zefix/company/773824> ?prop ?val .
       }
     }
-  `;
-  const countResult = await sparqlQuery(countQuery);
+  `);
   tests.push({
-    test: "count_all_companies",
-    success: countResult.success,
-    httpStatus: countResult.status,
-    result: countResult.data?.[0]?.total?.value || null,
-    error: countResult.error || null,
+    test: "all_properties_of_one_company",
+    result: t2.data?.map(r => ({ prop: r.prop?.value, val: r.val?.value })),
+    ok: t2.success,
   });
 
-  // Test 2: Discover properties on a single company
-  const propsQuery = `
+  // Test 3: Explore municipality link (for canton filtering)
+  const t3 = await sparqlQuery(`
     PREFIX schema: <http://schema.org/>
     PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT DISTINCT ?property
-    WHERE {
-      GRAPH <https://lindas.admin.ch/foj/zefix> {
-        ?company a admin:ZefixOrganisation ;
-                 ?property ?value .
+    SELECT ?muni ?muniProp ?muniVal WHERE {
+      GRAPH <${ZEFIX_GRAPH}> {
+        <https://register.ld.admin.ch/zefix/company/773824> admin:municipality ?muni .
       }
+      ?muni ?muniProp ?muniVal .
     }
-    LIMIT 50
-  `;
-  const propsResult = await sparqlQuery(propsQuery);
+    LIMIT 20
+  `);
   tests.push({
-    test: "discover_properties",
-    success: propsResult.success,
-    httpStatus: propsResult.status,
-    result: propsResult.data?.map((r: Record<string, { value: string }>) => r.property?.value) || [],
-    error: propsResult.error || null,
+    test: "municipality_properties",
+    result: t3.data?.map(r => ({ muni: r.muni?.value, prop: r.muniProp?.value, val: r.muniVal?.value })),
+    ok: t3.success,
   });
 
-  // Test 3: Fetch 5 sample companies from VD with all available fields
-  const sampleQuery = `
+  // Test 4: Try canton filtering via municipality
+  const t4 = await sparqlQuery(`
     PREFIX schema: <http://schema.org/>
     PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?company ?name ?uid ?legalFormLabel ?municipality
-    WHERE {
-      GRAPH <https://lindas.admin.ch/foj/zefix> {
-        ?company a admin:ZefixOrganisation ;
-                 schema:legalName ?name .
-        OPTIONAL { ?company schema:identifier ?uid }
-        OPTIONAL { ?company schema:additionalType/schema:name ?legalFormLabel }
-        OPTIONAL { ?company schema:address/schema:addressLocality ?municipality }
-      }
-    }
-    LIMIT 5
-  `;
-  const sampleResult = await sparqlQuery(sampleQuery);
-  tests.push({
-    test: "sample_companies",
-    success: sampleResult.success,
-    httpStatus: sampleResult.status,
-    result: sampleResult.data?.slice(0, 5) || [],
-    error: sampleResult.error || null,
-  });
-
-  // Test 4: Try filtering by canton (VD)
-  const cantonQuery = `
-    PREFIX schema: <http://schema.org/>
-    PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?name ?uid ?municipality
-    WHERE {
-      GRAPH <https://lindas.admin.ch/foj/zefix> {
+    SELECT ?name ?uid ?municipality WHERE {
+      GRAPH <${ZEFIX_GRAPH}> {
         ?company a admin:ZefixOrganisation ;
                  schema:legalName ?name ;
-                 schema:address ?addr .
-        ?addr schema:addressLocality ?municipality .
-        OPTIONAL { ?company schema:identifier ?uid }
-        FILTER(CONTAINS(STR(?company), "/canton/22") || CONTAINS(STR(?addr), "Vaud") || CONTAINS(STR(?municipality), "Lausanne"))
+                 admin:municipality ?muni ;
+                 schema:identifier ?uidNode .
+        FILTER(CONTAINS(STR(?uidNode), "/UID/"))
       }
+      ?muni <https://schema.ld.admin.ch/canton> <https://ld.admin.ch/canton/22> .
+      ?muni schema:name ?municipality .
+      BIND(STR(?uidNode) AS ?uid)
     }
     LIMIT 5
-  `;
-  const cantonResult = await sparqlQuery(cantonQuery);
+  `);
   tests.push({
-    test: "filter_by_canton_VD",
-    success: cantonResult.success,
-    httpStatus: cantonResult.status,
-    result: cantonResult.data?.slice(0, 5) || [],
-    error: cantonResult.error || null,
+    test: "canton_VD_via_municipality",
+    count: t4.data?.length,
+    result: t4.data?.slice(0, 5),
+    ok: t4.success,
+    error: t4.error,
   });
 
-  // Test 5: Alternative canton filter approach
-  const cantonQuery2 = `
+  // Test 5: Alternative — canton link directly on company
+  const t5 = await sparqlQuery(`
     PREFIX schema: <http://schema.org/>
     PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?name ?uid ?municipality ?canton
-    WHERE {
-      GRAPH <https://lindas.admin.ch/foj/zefix> {
+    SELECT ?name ?uid ?desc ?municipality WHERE {
+      GRAPH <${ZEFIX_GRAPH}> {
         ?company a admin:ZefixOrganisation ;
-                 schema:legalName ?name .
-        OPTIONAL { ?company schema:identifier ?uid }
-        OPTIONAL { ?company schema:address/schema:addressLocality ?municipality }
-        OPTIONAL { ?company admin:canton ?canton }
+                 schema:legalName ?name ;
+                 admin:municipality ?muni ;
+                 schema:identifier ?uidNode .
+        OPTIONAL { ?company schema:description ?desc }
+        FILTER(CONTAINS(STR(?uidNode), "/UID/"))
+        FILTER(CONTAINS(STR(?muni), "municipality/5586"))
       }
+      OPTIONAL { ?muni schema:name ?municipality }
+      BIND(STR(?uidNode) AS ?uid)
     }
-    LIMIT 3
-  `;
-  const cantonResult2 = await sparqlQuery(cantonQuery2);
+    LIMIT 5
+  `);
   tests.push({
-    test: "discover_canton_property",
-    success: cantonResult2.success,
-    httpStatus: cantonResult2.status,
-    result: cantonResult2.data?.slice(0, 3) || [],
-    error: cantonResult2.error || null,
+    test: "canton_VD_lausanne_municipality_5586",
+    count: t5.data?.length,
+    result: t5.data?.slice(0, 5),
+    ok: t5.success,
+    error: t5.error,
   });
 
-  // Test 6: Try without GRAPH clause (maybe data isn't in named graph)
-  const noGraphQuery = `
+  // Test 6: Count companies per canton (VD) using the municipality→canton link
+  const t6 = await sparqlQuery(`
     PREFIX schema: <http://schema.org/>
     PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?company ?name
-    WHERE {
-      ?company a admin:ZefixOrganisation ;
-               schema:legalName ?name .
+    SELECT (COUNT(DISTINCT ?company) AS ?total) WHERE {
+      GRAPH <${ZEFIX_GRAPH}> {
+        ?company a admin:ZefixOrganisation ;
+                 admin:municipality ?muni .
+      }
+      ?muni <https://schema.ld.admin.ch/canton> <https://ld.admin.ch/canton/22> .
     }
-    LIMIT 3
-  `;
-  const noGraphResult = await sparqlQuery(noGraphQuery);
+  `);
   tests.push({
-    test: "query_without_graph",
-    success: noGraphResult.success,
-    httpStatus: noGraphResult.status,
-    result: noGraphResult.data?.slice(0, 3) || [],
-    error: noGraphResult.error || null,
+    test: "count_VD_companies",
+    result: t6.data?.[0]?.total?.value,
+    ok: t6.success,
+    error: t6.error,
   });
 
   return tests;
 }
 
 /**
- * Build SPARQL query to fetch companies for a canton since a given date.
- * The exact query will be refined after test mode reveals the schema.
+ * Fetch companies for a canton via SPARQL.
+ * Uses municipality → canton link for filtering.
+ * Only fetches UID-type identifiers to avoid duplicates.
  */
-function buildCantonQuery(cantonCode: string, sinceDate: string, limit: number = 10000): string {
-  // This query attempts multiple approaches to filter by canton
-  // Will be refined based on test mode results
+function buildCantonQuery(cantonId: string, limit: number): string {
   return `
     PREFIX schema: <http://schema.org/>
     PREFIX admin: <https://schema.ld.admin.ch/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT ?company ?name ?uid ?legalFormLabel ?municipality ?dateRegistration
+    SELECT DISTINCT ?company ?name ?uid ?legalFormLabel ?municipality ?description
     WHERE {
-      GRAPH <https://lindas.admin.ch/foj/zefix> {
+      GRAPH <${ZEFIX_GRAPH}> {
         ?company a admin:ZefixOrganisation ;
-                 schema:legalName ?name .
-        OPTIONAL { ?company schema:identifier ?uid }
+                 schema:legalName ?name ;
+                 admin:municipality ?muni ;
+                 schema:identifier ?uidNode .
         OPTIONAL { ?company schema:additionalType/schema:name ?legalFormLabel }
-        OPTIONAL { ?company schema:address/schema:addressLocality ?municipality }
-        OPTIONAL { ?company schema:foundingDate ?dateRegistration }
-
-        # Filter by canton — using the register of commerce canton
-        ?company admin:registeredIn ?register .
-        ?register admin:canton <https://ld.admin.ch/canton/${CANTONS_ROMANDS[cantonCode]?.id || "22"}> .
+        OPTIONAL { ?company schema:description ?description }
+        FILTER(CONTAINS(STR(?uidNode), "/UID/"))
       }
+      ?muni <https://schema.ld.admin.ch/canton> <https://ld.admin.ch/canton/${cantonId}> .
+      OPTIONAL { ?muni schema:name ?municipality }
+      BIND(STR(?uidNode) AS ?uid)
     }
     LIMIT ${limit}
   `;
@@ -384,34 +347,30 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const testMode = url.searchParams.get("test") === "true";
   const singleCanton = url.searchParams.get("canton");
-  const daysBack = parseInt(url.searchParams.get("days") || "30");
-  const maxDays = Math.min(daysBack, 90);
+  const limitPerCanton = parseInt(url.searchParams.get("limit") || "10000");
 
   // ── TEST MODE ─────────────────────────────────────────────────────────────
   if (testMode) {
-    console.log("Running SPARQL diagnostic...");
-    const diagnosticResults = await runDiagnostic();
+    console.log("Running SPARQL v3.1 diagnostic...");
+    const results = await runDiagnostic();
     return NextResponse.json({
       test: true,
-      version: "3.0",
+      version: "3.1",
       source: "LINDAS SPARQL (no auth needed)",
       endpoint: SPARQL_ENDPOINT,
-      results: diagnosticResults,
-      hint: "Check which tests succeed and what properties are available. This will help us build the right query.",
+      results,
     });
   }
 
   // ── BACKFILL MODE ─────────────────────────────────────────────────────────
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - maxDays);
-  const sinceDate = cutoffDate.toISOString().split("T")[0];
+  const cantonEntries = singleCanton && CANTONS_ROMANDS[singleCanton]
+    ? [[singleCanton, CANTONS_ROMANDS[singleCanton]]]
+    : Object.entries(CANTONS_ROMANDS);
 
-  const cantonCodes = singleCanton ? [singleCanton] : Object.keys(CANTONS_ROMANDS);
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   try {
-    console.log(`Backfill v3: SPARQL query for companies since ${sinceDate} (${maxDays} days back)`);
-    console.log(`Cantons: ${cantonCodes.join(", ")}`);
+    console.log(`Backfill v3.1: SPARQL query for ${cantonEntries.map(e => e[0]).join(", ")}`);
 
     let totalFetched = 0;
     let totalInserted = 0;
@@ -420,9 +379,9 @@ export async function GET(request: Request) {
     let totalErrors = 0;
     const cantonResults: { canton: string; fetched: number; inserted: number; queryError?: string }[] = [];
 
-    for (const cantonCode of cantonCodes) {
-      console.log(`Querying canton ${cantonCode} via SPARQL...`);
-      const query = buildCantonQuery(cantonCode, sinceDate);
+    for (const [cantonCode, cantonId] of cantonEntries) {
+      console.log(`Querying ${cantonCode} (canton ID ${cantonId})...`);
+      const query = buildCantonQuery(cantonId, limitPerCanton);
       const result = await sparqlQuery(query);
 
       if (!result.success || !result.data) {
@@ -431,24 +390,35 @@ export async function GET(request: Request) {
         continue;
       }
 
-      const companies = result.data;
-      totalFetched += companies.length;
-      console.log(`${cantonCode}: found ${companies.length} companies`);
+      // Deduplicate by company URI (in case of multiple bindings)
+      const seen = new Set<string>();
+      const uniqueRows: SparqlBinding[] = [];
+      for (const row of result.data) {
+        const companyUri = row.company?.value || "";
+        if (!seen.has(companyUri)) {
+          seen.add(companyUri);
+          uniqueRows.push(row);
+        }
+      }
+
+      totalFetched += uniqueRows.length;
+      console.log(`${cantonCode}: ${result.data.length} raw rows → ${uniqueRows.length} unique companies`);
 
       let cantonInserted = 0;
 
-      for (const row of companies) {
-        const uid = row.uid?.value || "";
+      for (const row of uniqueRows) {
+        const uidRaw = row.uid?.value || "";
         const name = row.name?.value || "";
 
-        if (!uid || !name) {
+        if (!uidRaw || !name) {
           totalSkipped++;
           continue;
         }
 
+        const uid = extractUID(uidRaw);
         const slug = generateSlug(name, uid);
         const legalForm = mapLegalForm(row.legalFormLabel?.value);
-        const purpose = row.purpose?.value || "";
+        const purpose = row.description?.value || "";
         const sector = classifySector(purpose || undefined);
         if (sector) totalClassified++;
 
@@ -465,7 +435,7 @@ export async function GET(request: Request) {
               sector,
               status: "active",
               source: "zefix-sparql",
-              creation_date: row.dateRegistration?.value || sinceDate,
+              creation_date: new Date().toISOString().split("T")[0],
               is_active: true,
               updated_at: new Date().toISOString(),
             },
@@ -485,16 +455,14 @@ export async function GET(request: Request) {
         }
       }
 
-      cantonResults.push({ canton: cantonCode, fetched: companies.length, inserted: cantonInserted });
+      cantonResults.push({ canton: cantonCode, fetched: uniqueRows.length, inserted: cantonInserted });
     }
 
     const result = {
       success: true,
       backfill: true,
-      version: "3.0",
+      version: "3.1",
       source: "LINDAS SPARQL",
-      sinceDate,
-      maxDays,
       totalFetched,
       totalInserted,
       totalClassified,
@@ -503,10 +471,10 @@ export async function GET(request: Request) {
       cantonResults,
     };
 
-    console.log("Backfill v3 result:", JSON.stringify(result));
+    console.log("Backfill v3.1 result:", JSON.stringify(result));
     return NextResponse.json(result);
   } catch (error) {
-    console.error("Backfill v3 error:", error);
+    console.error("Backfill v3.1 error:", error);
     return NextResponse.json(
       { error: "Backfill failed", details: String(error) },
       { status: 500 }
