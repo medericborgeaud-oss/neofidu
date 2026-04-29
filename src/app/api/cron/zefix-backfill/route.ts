@@ -1,29 +1,29 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
-// Backfill route v3.1 — uses LINDAS SPARQL (Swiss Open Data)
-// NO AUTHENTICATION NEEDED — 783k+ companies available
-// Endpoint: https://lindas.admin.ch/query
+// Backfill route v3.2 — LINDAS SPARQL (Swiss Open Data)
+// NO AUTHENTICATION NEEDED
+// Filters by canton using BFS municipality number ranges
 //
 // Usage:
-//   ?days=30         → fetch all active companies (LINDAS has no date filter, we get all)
-//   ?canton=VD       → single canton only
-//   ?test=true       → diagnostic mode
-//   ?limit=5000      → max companies per canton (default: 10000)
+//   ?test=true       → diagnostic: verify queries work
+//   ?canton=VD       → single canton
+//   ?limit=5000      → max per canton (default: 10000)
 export const dynamic = "force-dynamic";
-export const maxDuration = 300; // 5 minutes for backfill
+export const maxDuration = 300;
 
 const SPARQL_ENDPOINT = "https://lindas.admin.ch/query";
 const ZEFIX_GRAPH = "https://lindas.admin.ch/foj/zefix";
+const MUNI_PREFIX = "https://ld.admin.ch/municipality/";
 
-// Canton codes → LINDAS canton IDs (FSO numbering)
-const CANTONS_ROMANDS: Record<string, string> = {
-  VD: "22",
-  GE: "25",
-  VS: "23",
-  FR: "10",
-  NE: "24",
-  JU: "26",
+// BFS municipality number ranges per canton (well-known Swiss administrative numbering)
+const CANTONS_ROMANDS: Record<string, { min: number; max: number }> = {
+  FR: { min: 2000, max: 2399 },
+  VD: { min: 5400, max: 5999 },
+  VS: { min: 6000, max: 6399 },
+  NE: { min: 6400, max: 6499 },
+  GE: { min: 6600, max: 6699 },
+  JU: { min: 6700, max: 6799 },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -135,19 +135,24 @@ function generateSlug(name: string, uid: string): string {
 
 /**
  * Extract CHE UID from LINDAS URI.
- * Input:  "https://register.ld.admin.ch/zefix/company/773824/UID/CHE112103297"
- * Output: "CHE-112.103.297"
+ * "https://register.ld.admin.ch/zefix/company/773824/UID/CHE112103297" → "CHE-112.103.297"
  */
 function extractUID(uidUri: string): string {
   const match = uidUri.match(/CHE(\d{9})/);
   if (!match) return uidUri;
-  const digits = match[1];
-  return `CHE-${digits.substring(0, 3)}.${digits.substring(3, 6)}.${digits.substring(6, 9)}`;
+  const d = match[1];
+  return `CHE-${d.substring(0, 3)}.${d.substring(3, 6)}.${d.substring(6, 9)}`;
 }
 
 /**
- * Execute a SPARQL query against LINDAS.
+ * Extract municipality number from LINDAS URI.
+ * "https://ld.admin.ch/municipality/5586" → 5586
  */
+function extractMuniId(muniUri: string): number {
+  const match = muniUri.match(/municipality\/(\d+)/);
+  return match ? parseInt(match[1]) : 0;
+}
+
 async function sparqlQuery(query: string): Promise<{ success: boolean; data?: SparqlBinding[]; error?: string; status?: number }> {
   try {
     const response = await fetch(SPARQL_ENDPOINT, {
@@ -172,13 +177,41 @@ async function sparqlQuery(query: string): Promise<{ success: boolean; data?: Sp
 }
 
 /**
+ * Build SPARQL query for a canton using BFS municipality number range.
+ */
+function buildCantonQuery(cantonCode: string, range: { min: number; max: number }, limit: number): string {
+  return `
+    PREFIX schema: <http://schema.org/>
+    PREFIX admin: <https://schema.ld.admin.ch/>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT DISTINCT ?company ?name ?uid ?legalFormLabel ?municipality ?description ?muniUri
+    WHERE {
+      GRAPH <${ZEFIX_GRAPH}> {
+        ?company a admin:ZefixOrganisation ;
+                 schema:legalName ?name ;
+                 admin:municipality ?muniUri ;
+                 schema:identifier ?uidNode .
+        OPTIONAL { ?company schema:additionalType/schema:name ?legalFormLabel }
+        OPTIONAL { ?company schema:description ?description }
+        FILTER(CONTAINS(STR(?uidNode), "/UID/"))
+        BIND(xsd:integer(REPLACE(STR(?muniUri), "${MUNI_PREFIX}", "")) AS ?muniId)
+        FILTER(?muniId >= ${range.min} && ?muniId <= ${range.max})
+      }
+      OPTIONAL { ?muniUri schema:name ?municipality }
+      BIND(STR(?uidNode) AS ?uid)
+    }
+    LIMIT ${limit}
+  `;
+}
+
+/**
  * ── TEST MODE ──
- * Discovers the exact schema and tests canton filtering.
  */
 async function runDiagnostic() {
   const tests = [];
 
-  // Test 1: Count total companies
+  // Test 1: Count total
   const t1 = await sparqlQuery(`
     PREFIX admin: <https://schema.ld.admin.ch/>
     SELECT (COUNT(DISTINCT ?c) AS ?total) WHERE {
@@ -187,142 +220,57 @@ async function runDiagnostic() {
   `);
   tests.push({ test: "total_companies", result: t1.data?.[0]?.total?.value, ok: t1.success });
 
-  // Test 2: Get full details of ONE company to see all properties
+  // Test 2: Count VD companies using BFS range filter
+  const vdRange = CANTONS_ROMANDS["VD"];
   const t2 = await sparqlQuery(`
     PREFIX schema: <http://schema.org/>
     PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?prop ?val WHERE {
-      GRAPH <${ZEFIX_GRAPH}> {
-        <https://register.ld.admin.ch/zefix/company/773824> ?prop ?val .
-      }
-    }
-  `);
-  tests.push({
-    test: "all_properties_of_one_company",
-    result: t2.data?.map(r => ({ prop: r.prop?.value, val: r.val?.value })),
-    ok: t2.success,
-  });
-
-  // Test 3: Explore municipality link (for canton filtering)
-  const t3 = await sparqlQuery(`
-    PREFIX schema: <http://schema.org/>
-    PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?muni ?muniProp ?muniVal WHERE {
-      GRAPH <${ZEFIX_GRAPH}> {
-        <https://register.ld.admin.ch/zefix/company/773824> admin:municipality ?muni .
-      }
-      ?muni ?muniProp ?muniVal .
-    }
-    LIMIT 20
-  `);
-  tests.push({
-    test: "municipality_properties",
-    result: t3.data?.map(r => ({ muni: r.muni?.value, prop: r.muniProp?.value, val: r.muniVal?.value })),
-    ok: t3.success,
-  });
-
-  // Test 4: Try canton filtering via municipality
-  const t4 = await sparqlQuery(`
-    PREFIX schema: <http://schema.org/>
-    PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?name ?uid ?municipality WHERE {
-      GRAPH <${ZEFIX_GRAPH}> {
-        ?company a admin:ZefixOrganisation ;
-                 schema:legalName ?name ;
-                 admin:municipality ?muni ;
-                 schema:identifier ?uidNode .
-        FILTER(CONTAINS(STR(?uidNode), "/UID/"))
-      }
-      ?muni <https://schema.ld.admin.ch/canton> <https://ld.admin.ch/canton/22> .
-      ?muni schema:name ?municipality .
-      BIND(STR(?uidNode) AS ?uid)
-    }
-    LIMIT 5
-  `);
-  tests.push({
-    test: "canton_VD_via_municipality",
-    count: t4.data?.length,
-    result: t4.data?.slice(0, 5),
-    ok: t4.success,
-    error: t4.error,
-  });
-
-  // Test 5: Alternative — canton link directly on company
-  const t5 = await sparqlQuery(`
-    PREFIX schema: <http://schema.org/>
-    PREFIX admin: <https://schema.ld.admin.ch/>
-    SELECT ?name ?uid ?desc ?municipality WHERE {
-      GRAPH <${ZEFIX_GRAPH}> {
-        ?company a admin:ZefixOrganisation ;
-                 schema:legalName ?name ;
-                 admin:municipality ?muni ;
-                 schema:identifier ?uidNode .
-        OPTIONAL { ?company schema:description ?desc }
-        FILTER(CONTAINS(STR(?uidNode), "/UID/"))
-        FILTER(CONTAINS(STR(?muni), "municipality/5586"))
-      }
-      OPTIONAL { ?muni schema:name ?municipality }
-      BIND(STR(?uidNode) AS ?uid)
-    }
-    LIMIT 5
-  `);
-  tests.push({
-    test: "canton_VD_lausanne_municipality_5586",
-    count: t5.data?.length,
-    result: t5.data?.slice(0, 5),
-    ok: t5.success,
-    error: t5.error,
-  });
-
-  // Test 6: Count companies per canton (VD) using the municipality→canton link
-  const t6 = await sparqlQuery(`
-    PREFIX schema: <http://schema.org/>
-    PREFIX admin: <https://schema.ld.admin.ch/>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     SELECT (COUNT(DISTINCT ?company) AS ?total) WHERE {
       GRAPH <${ZEFIX_GRAPH}> {
         ?company a admin:ZefixOrganisation ;
                  admin:municipality ?muni .
+        BIND(xsd:integer(REPLACE(STR(?muni), "${MUNI_PREFIX}", "")) AS ?muniId)
+        FILTER(?muniId >= ${vdRange.min} && ?muniId <= ${vdRange.max})
       }
-      ?muni <https://schema.ld.admin.ch/canton> <https://ld.admin.ch/canton/22> .
     }
   `);
+  tests.push({ test: "count_VD_bfs_range", result: t2.data?.[0]?.total?.value, ok: t2.success, error: t2.error });
+
+  // Test 3: Fetch 5 VD companies with all fields
+  const t3 = await sparqlQuery(buildCantonQuery("VD", vdRange, 5));
   tests.push({
-    test: "count_VD_companies",
-    result: t6.data?.[0]?.total?.value,
-    ok: t6.success,
-    error: t6.error,
+    test: "sample_VD_companies",
+    count: t3.data?.length,
+    result: t3.data?.slice(0, 5).map(r => ({
+      name: r.name?.value,
+      uid: r.uid?.value ? extractUID(r.uid.value) : null,
+      municipality: r.municipality?.value,
+      legalForm: r.legalFormLabel?.value,
+      description: r.description?.value?.substring(0, 100),
+    })),
+    ok: t3.success,
+    error: t3.error,
   });
 
-  return tests;
-}
-
-/**
- * Fetch companies for a canton via SPARQL.
- * Uses municipality → canton link for filtering.
- * Only fetches UID-type identifiers to avoid duplicates.
- */
-function buildCantonQuery(cantonId: string, limit: number): string {
-  return `
-    PREFIX schema: <http://schema.org/>
-    PREFIX admin: <https://schema.ld.admin.ch/>
-
-    SELECT DISTINCT ?company ?name ?uid ?legalFormLabel ?municipality ?description
-    WHERE {
-      GRAPH <${ZEFIX_GRAPH}> {
-        ?company a admin:ZefixOrganisation ;
-                 schema:legalName ?name ;
-                 admin:municipality ?muni ;
-                 schema:identifier ?uidNode .
-        OPTIONAL { ?company schema:additionalType/schema:name ?legalFormLabel }
-        OPTIONAL { ?company schema:description ?description }
-        FILTER(CONTAINS(STR(?uidNode), "/UID/"))
+  // Test 4: Count all romandie cantons
+  for (const [code, range] of Object.entries(CANTONS_ROMANDS)) {
+    const t = await sparqlQuery(`
+      PREFIX admin: <https://schema.ld.admin.ch/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      SELECT (COUNT(DISTINCT ?c) AS ?total) WHERE {
+        GRAPH <${ZEFIX_GRAPH}> {
+          ?c a admin:ZefixOrganisation ;
+             admin:municipality ?muni .
+          BIND(xsd:integer(REPLACE(STR(?muni), "${MUNI_PREFIX}", "")) AS ?muniId)
+          FILTER(?muniId >= ${range.min} && ?muniId <= ${range.max})
+        }
       }
-      ?muni <https://schema.ld.admin.ch/canton> <https://ld.admin.ch/canton/${cantonId}> .
-      OPTIONAL { ?muni schema:name ?municipality }
-      BIND(STR(?uidNode) AS ?uid)
-    }
-    LIMIT ${limit}
-  `;
+    `);
+    tests.push({ test: `count_${code}`, result: t.data?.[0]?.total?.value, ok: t.success });
+  }
+
+  return tests;
 }
 
 export async function GET(request: Request) {
@@ -351,117 +299,107 @@ export async function GET(request: Request) {
 
   // ── TEST MODE ─────────────────────────────────────────────────────────────
   if (testMode) {
-    console.log("Running SPARQL v3.1 diagnostic...");
     const results = await runDiagnostic();
-    return NextResponse.json({
-      test: true,
-      version: "3.1",
-      source: "LINDAS SPARQL (no auth needed)",
-      endpoint: SPARQL_ENDPOINT,
-      results,
-    });
+    return NextResponse.json({ test: true, version: "3.2", results });
   }
 
   // ── BACKFILL MODE ─────────────────────────────────────────────────────────
   const cantonEntries = singleCanton && CANTONS_ROMANDS[singleCanton]
-    ? [[singleCanton, CANTONS_ROMANDS[singleCanton]]]
-    : Object.entries(CANTONS_ROMANDS);
+    ? [[singleCanton, CANTONS_ROMANDS[singleCanton]] as [string, { min: number; max: number }]]
+    : Object.entries(CANTONS_ROMANDS) as [string, { min: number; max: number }][];
 
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   try {
-    console.log(`Backfill v3.1: SPARQL query for ${cantonEntries.map(e => e[0]).join(", ")}`);
+    console.log(`Backfill v3.2: ${cantonEntries.map(e => e[0]).join(", ")}`);
 
     let totalFetched = 0;
     let totalInserted = 0;
     let totalClassified = 0;
     let totalSkipped = 0;
     let totalErrors = 0;
-    const cantonResults: { canton: string; fetched: number; inserted: number; queryError?: string }[] = [];
+    const cantonResults: { canton: string; fetched: number; inserted: number; error?: string }[] = [];
 
-    for (const [cantonCode, cantonId] of cantonEntries) {
-      console.log(`Querying ${cantonCode} (canton ID ${cantonId})...`);
-      const query = buildCantonQuery(cantonId, limitPerCanton);
+    for (const [cantonCode, range] of cantonEntries) {
+      console.log(`Querying ${cantonCode} (BFS ${range.min}-${range.max})...`);
+      const query = buildCantonQuery(cantonCode, range, limitPerCanton);
       const result = await sparqlQuery(query);
 
       if (!result.success || !result.data) {
         console.error(`SPARQL error for ${cantonCode}:`, result.error);
-        cantonResults.push({ canton: cantonCode, fetched: 0, inserted: 0, queryError: result.error });
+        cantonResults.push({ canton: cantonCode, fetched: 0, inserted: 0, error: result.error });
         continue;
       }
 
-      // Deduplicate by company URI (in case of multiple bindings)
+      // Deduplicate by company URI
       const seen = new Set<string>();
       const uniqueRows: SparqlBinding[] = [];
       for (const row of result.data) {
-        const companyUri = row.company?.value || "";
-        if (!seen.has(companyUri)) {
-          seen.add(companyUri);
+        const key = row.company?.value || "";
+        if (key && !seen.has(key)) {
+          seen.add(key);
           uniqueRows.push(row);
         }
       }
 
       totalFetched += uniqueRows.length;
-      console.log(`${cantonCode}: ${result.data.length} raw rows → ${uniqueRows.length} unique companies`);
+      console.log(`${cantonCode}: ${uniqueRows.length} companies`);
 
       let cantonInserted = 0;
 
-      for (const row of uniqueRows) {
-        const uidRaw = row.uid?.value || "";
-        const name = row.name?.value || "";
+      // Process in batches for Supabase
+      const BATCH_SIZE = 50;
+      for (let i = 0; i < uniqueRows.length; i += BATCH_SIZE) {
+        const batch = uniqueRows.slice(i, i + BATCH_SIZE);
+        const records = [];
 
-        if (!uidRaw || !name) {
-          totalSkipped++;
-          continue;
+        for (const row of batch) {
+          const uidRaw = row.uid?.value || "";
+          const name = row.name?.value || "";
+          if (!uidRaw || !name) { totalSkipped++; continue; }
+
+          const uid = extractUID(uidRaw);
+          const slug = generateSlug(name, uid);
+          const legalForm = mapLegalForm(row.legalFormLabel?.value);
+          const purpose = row.description?.value || "";
+          const sector = classifySector(purpose || undefined);
+          if (sector) totalClassified++;
+
+          records.push({
+            uid,
+            name,
+            slug,
+            canton: cantonCode,
+            legal_form: legalForm,
+            legal_seat: row.municipality?.value || "",
+            purpose,
+            sector,
+            status: "active",
+            source: "zefix-sparql",
+            creation_date: new Date().toISOString().split("T")[0],
+            is_active: true,
+            updated_at: new Date().toISOString(),
+          });
         }
 
-        const uid = extractUID(uidRaw);
-        const slug = generateSlug(name, uid);
-        const legalForm = mapLegalForm(row.legalFormLabel?.value);
-        const purpose = row.description?.value || "";
-        const sector = classifySector(purpose || undefined);
-        if (sector) totalClassified++;
-
-        try {
-          const { error } = await supabase.from("companies").upsert(
-            {
-              uid,
-              name,
-              slug,
-              canton: cantonCode,
-              legal_form: legalForm,
-              legal_seat: row.municipality?.value || "",
-              purpose,
-              sector,
-              status: "active",
-              source: "zefix-sparql",
-              creation_date: new Date().toISOString().split("T")[0],
-              is_active: true,
-              updated_at: new Date().toISOString(),
-            },
-            { onConflict: "uid" }
-          );
-
+        if (records.length > 0) {
+          const { error } = await supabase.from("companies").upsert(records, { onConflict: "uid" });
           if (error) {
-            console.error(`Error inserting ${uid}:`, error.message);
-            totalErrors++;
+            console.error(`Batch insert error:`, error.message);
+            totalErrors += records.length;
           } else {
-            totalInserted++;
-            cantonInserted++;
+            totalInserted += records.length;
+            cantonInserted += records.length;
           }
-        } catch (err) {
-          console.error(`Error processing ${uid}:`, err);
-          totalErrors++;
         }
       }
 
       cantonResults.push({ canton: cantonCode, fetched: uniqueRows.length, inserted: cantonInserted });
     }
 
-    const result = {
+    return NextResponse.json({
       success: true,
-      backfill: true,
-      version: "3.1",
+      version: "3.2",
       source: "LINDAS SPARQL",
       totalFetched,
       totalInserted,
@@ -469,15 +407,9 @@ export async function GET(request: Request) {
       totalSkipped,
       totalErrors,
       cantonResults,
-    };
-
-    console.log("Backfill v3.1 result:", JSON.stringify(result));
-    return NextResponse.json(result);
+    });
   } catch (error) {
-    console.error("Backfill v3.1 error:", error);
-    return NextResponse.json(
-      { error: "Backfill failed", details: String(error) },
-      { status: 500 }
-    );
+    console.error("Backfill v3.2 error:", error);
+    return NextResponse.json({ error: "Backfill failed", details: String(error) }, { status: 500 });
   }
 }
