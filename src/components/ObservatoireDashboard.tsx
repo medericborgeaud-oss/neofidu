@@ -16,6 +16,14 @@ const SECTORS = [
   { value: "construction", label: "Construction" },
   { value: "restauration", label: "Restauration" },
   { value: "immobilier", label: "Immobilier" },
+  { value: "transport", label: "Transport" },
+  { value: "education", label: "Éducation" },
+  { value: "finance", label: "Finance" },
+  { value: "industrie", label: "Industrie" },
+  { value: "agriculture", label: "Agriculture" },
+  { value: "art_culture", label: "Art & Culture" },
+  { value: "nettoyage", label: "Nettoyage" },
+  { value: "beaute", label: "Beauté" },
 ];
 
 const BADGE_CLASSES: Record<string, string> = {
@@ -41,6 +49,14 @@ const SECTOR_COLORS: Record<string, string> = {
   construction: "#F59E0B",
   restauration: "#EF4444",
   immobilier: "#8B5CF6",
+  transport: "#EC4899",
+  education: "#14B8A6",
+  finance: "#6366F1",
+  industrie: "#78716C",
+  agriculture: "#84CC16",
+  art_culture: "#F97316",
+  nettoyage: "#06B6D4",
+  beaute: "#D946EF",
 };
 
 interface Props {
