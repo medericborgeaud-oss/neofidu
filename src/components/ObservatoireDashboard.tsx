@@ -303,15 +303,17 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                   <span className="text-xs text-gray-400">{totalSectors.toLocaleString("fr-CH")} classifiées</span>
                 </div>
                 <div className="space-y-2">
-                  {sectorDistribution.slice(0, 7).map(({ sector: s, label, count }) => {
+                  {sectorDistribution.slice(0, 7).map(({ sector: s, count }) => {
                     const maxSector = sectorDistribution[0]?.count || 1;
                     const barWidth = Math.max((count / maxSector) * 100, 8);
+                    const sectorLabel = SECTOR_LABELS[s] || s;
                     return (
                       <Link
                         key={s}
                         href={buildUrl({ sector: s })}
                         className="flex items-center gap-2 group"
                       >
+                        <span className="text-xs text-gray-600 w-24 text-right truncate">{sectorLabel}</span>
                         <div className="flex-1 h-5 bg-gray-50 rounded overflow-hidden">
                           <div
                             className="h-full rounded flex items-center px-2 transition-all group-hover:opacity-80"
@@ -321,7 +323,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                             }}
                           >
                             <span className="text-[11px] font-medium text-white whitespace-nowrap">
-                              {label} — {count.toLocaleString("fr-CH")}
+                              {count.toLocaleString("fr-CH")}
                             </span>
                           </div>
                         </div>
