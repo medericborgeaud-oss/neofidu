@@ -374,10 +374,6 @@ export async function GET(request: Request) {
             legal_form: legalForm,
             purpose,
             sector,
-            status: "active",
-            source: "zefix-sparql",
-            creation_date: new Date().toISOString().split("T")[0],
-            is_active: true,
             updated_at: new Date().toISOString(),
           });
         }
