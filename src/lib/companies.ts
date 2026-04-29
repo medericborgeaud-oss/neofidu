@@ -8,6 +8,9 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     fetch: (url, options = {}) => fetch(url, { ...options, cache: 'no-store' }),
   },
 });
+
+// ─── Types ───
+
 export interface Company {
   id: string;
   slug: string;
@@ -56,7 +59,6 @@ export interface CompanyStats {
   byForm: { RI: number; Sarl: number; SA: number };
 }
 
-// --- Nouveaux types pour les graphiques ---
 export interface MonthlyTrend {
   month: string;
   count: number;
@@ -67,8 +69,11 @@ export interface SectorDistribution {
   count: number;
 }
 
-const CANTONS_ROMANDS = ["VD", "GE", "VS", "FR", "NE", "JU"];
-const CANTON_NAMES: Record<string, string> = {
+// ─── Constants ───
+
+export const CANTONS_ROMANDS = ["VD", "GE", "VS", "FR", "NE", "JU"];
+
+export const CANTON_NAMES: Record<string, string> = {
   VD: "Vaud",
   GE: "Genève",
   VS: "Valais",
@@ -76,11 +81,13 @@ const CANTON_NAMES: Record<string, string> = {
   NE: "Neuchâtel",
   JU: "Jura",
 };
-const FORM_LABELS: Record<string, string> = {
+
+export const FORM_LABELS: Record<string, string> = {
   RI: "RI",
   Sarl: "Sàrl",
   SA: "SA",
 };
+
 export const SECTOR_LABELS: Record<string, string> = {
   tech: "Informatique",
   conseil: "Conseil",
@@ -99,7 +106,7 @@ export const SECTOR_LABELS: Record<string, string> = {
   beaute: "Beauté",
 };
 
-export { CANTONS_ROMANDS, CANTON_NAMES, FORM_LABELS};
+// ─── Queries ───
 
 export async function getCompanies(filters: CompanyFilters = {}) {
   const { search, canton, legal_form, sector, page = 1, limit = 20 } = filters;
@@ -119,6 +126,7 @@ export async function getCompanies(filters: CompanyFilters = {}) {
 
   const { data, error, count } = await query;
   if (error) throw error;
+
   return { companies: (data as Company[]) || [], total: count || 0 };
 }
 
@@ -151,27 +159,21 @@ export async function getStats(): Promise<CompanyStats> {
   };
 }
 
-// --- Nouvelles fonctions optimisées (RPC au lieu de fetch 55k lignes) ---
-
 export async function getMonthlyTrends(): Promise<MonthlyTrend[]> {
   const { data, error } = await supabase.rpc("monthly_trends");
-
   if (error) {
     console.error("monthly_trends RPC error:", error);
     return [];
   }
-
   return (data as MonthlyTrend[]) || [];
 }
 
 export async function getSectorDistribution(): Promise<SectorDistribution[]> {
   const { data, error } = await supabase.rpc("count_by_sector");
-
   if (error) {
     console.error("count_by_sector RPC error:", error);
     return [];
   }
-
   return (data as SectorDistribution[]) || [];
 }
 
