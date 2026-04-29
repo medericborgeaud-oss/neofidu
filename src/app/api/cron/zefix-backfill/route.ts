@@ -1,14 +1,15 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
-// Backfill route v3.2 — LINDAS SPARQL (Swiss Open Data)
+// Backfill route v3.3 — LINDAS SPARQL (Swiss Open Data)
 // NO AUTHENTICATION NEEDED
 // Filters by canton using BFS municipality number ranges
+// Legal forms mapped via eCH-0097 codes from additionalType URI
 //
 // Usage:
 //   ?test=true       → diagnostic: verify queries work
 //   ?canton=VD       → single canton
-//   ?limit=5000      → max per canton (default: 10000)
+//   ?limit=100000    → max per canton (default: 100000)
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
@@ -29,14 +30,31 @@ const CANTONS_ROMANDS: Record<string, { min: number; max: number }> = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SparqlBinding = Record<string, { type: string; value: string }>;
 
-function mapLegalForm(zefixForm: string | undefined): string {
-  if (!zefixForm) return "Autre";
-  const lower = zefixForm.toLowerCase();
-  if (lower.includes("raison individuelle") || lower.includes("einzelunternehm") || lower.includes("sole proprietorship")) return "RI";
-  if (lower.includes("sarl") || lower.includes("gmbh") || lower.includes("limited liability")) return "Sarl";
-  if (lower.includes("société anonyme") || lower.includes("aktiengesellschaft") || lower.includes("stock corporation") || lower === "sa" || lower === "ag") return "SA";
-  if (lower.includes("association") || lower.includes("verein")) return "Association";
-  if (lower.includes("fondation") || lower.includes("stiftung") || lower.includes("foundation")) return "Fondation";
+// eCH-0097 legal form codes → display labels
+const LEGAL_FORM_MAP: Record<string, string> = {
+  "0101": "RI",        // Raison individuelle
+  "0102": "RI",        // Raison individuelle (variante)
+  "0103": "SNC",       // Société en nom collectif
+  "0104": "SC",        // Société en commandite
+  "0105": "SCA",       // Société en commandite par actions
+  "0106": "SA",        // Société anonyme
+  "0107": "Sarl",      // Société à responsabilité limitée
+  "0108": "SCoop",     // Société coopérative
+  "0109": "Association",
+  "0110": "Fondation",
+  "0111": "Succursale",
+  "0113": "Autre",     // Forme étrangère
+  "0117": "Autre",     // Institut de droit public (fédéral)
+  "0118": "Autre",     // Procuration d'une entreprise étrangère
+  "0119": "Autre",     // Administration fédérale
+  "0151": "Autre",     // Institut de droit public
+};
+
+function mapLegalForm(typeUri: string | undefined): string {
+  if (!typeUri) return "Autre";
+  // Extract code from URI: "https://ld.admin.ch/ech/97/legalforms/0107" → "0107"
+  const match = typeUri.match(/legalforms\/(\d+)/);
+  if (match && LEGAL_FORM_MAP[match[1]]) return LEGAL_FORM_MAP[match[1]];
   return "Autre";
 }
 
@@ -185,14 +203,14 @@ function buildCantonQuery(cantonCode: string, range: { min: number; max: number 
     PREFIX admin: <https://schema.ld.admin.ch/>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?company ?name ?uid ?legalFormLabel ?municipality ?description ?muniUri
+    SELECT DISTINCT ?company ?name ?uid ?legalFormType ?municipality ?description ?muniUri
     WHERE {
       GRAPH <${ZEFIX_GRAPH}> {
         ?company a admin:ZefixOrganisation ;
                  schema:legalName ?name ;
                  admin:municipality ?muniUri ;
                  schema:identifier ?uidNode .
-        OPTIONAL { ?company schema:additionalType/schema:name ?legalFormLabel }
+        OPTIONAL { ?company schema:additionalType ?legalFormType }
         OPTIONAL { ?company schema:description ?description }
         FILTER(CONTAINS(STR(?uidNode), "/UID/"))
         BIND(xsd:integer(REPLACE(STR(?muniUri), "${MUNI_PREFIX}", "")) AS ?muniId)
@@ -246,7 +264,8 @@ async function runDiagnostic() {
       name: r.name?.value,
       uid: r.uid?.value ? extractUID(r.uid.value) : null,
       municipality: r.municipality?.value,
-      legalForm: r.legalFormLabel?.value,
+      legalFormUri: r.legalFormType?.value,
+      legalForm: mapLegalForm(r.legalFormType?.value),
       description: r.description?.value?.substring(0, 100),
     })),
     ok: t3.success,
@@ -295,7 +314,7 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const testMode = url.searchParams.get("test") === "true";
   const singleCanton = url.searchParams.get("canton");
-  const limitPerCanton = parseInt(url.searchParams.get("limit") || "10000");
+  const limitPerCanton = parseInt(url.searchParams.get("limit") || "100000");
 
   // ── SCHEMA MODE — discover table columns via OpenAPI spec ───────────────
   if (url.searchParams.get("schema") === "true") {
@@ -378,7 +397,7 @@ export async function GET(request: Request) {
 
           const uid = extractUID(uidRaw);
           const slug = generateSlug(name, uid);
-          const legalForm = mapLegalForm(row.legalFormLabel?.value);
+          const legalForm = mapLegalForm(row.legalFormType?.value);
           const purpose = row.description?.value || "";
           const sector = classifySector(purpose || undefined);
           if (sector) totalClassified++;
