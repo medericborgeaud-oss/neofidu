@@ -62,29 +62,43 @@ function classifySector(purpose: string | undefined): string | null {
   if (!purpose) return null;
   const p = purpose.toLowerCase();
 
+  // ── 1. Tech / Informatique ──
   if (
     p.includes("informatique") || p.includes("logiciel") || p.includes("software") ||
     p.includes("développement web") || p.includes("application") || p.includes("digital") ||
     p.includes("données") || p.includes("data") || p.includes("intelligence artificielle") ||
     p.includes("cybersécurité") || p.includes("cloud") || p.includes("saas") ||
     p.includes("fintech") || p.includes("blockchain") || p.includes("crypto") ||
-    p.includes("e-commerce") || p.includes("plateforme") || p.includes("hébergement") ||
+    p.includes("e-commerce") || p.includes("plateforme") ||
     p.includes("technolog") || p.includes("it-") || p.includes("programmation") ||
     p.includes("internet") || p.includes("web") || p.includes("app ")
   ) return "tech";
 
+  // ── 2. Santé (médical uniquement) ──
   if (
     p.includes("médic") || p.includes("santé") || p.includes("soins") ||
     p.includes("dentaire") || p.includes("dentiste") || p.includes("pharma") ||
     p.includes("thérap") || p.includes("psycholog") || p.includes("infirm") ||
-    p.includes("fitness") || p.includes("sport") || p.includes("physiothérap") ||
-    p.includes("cabinet") || p.includes("clinique") || p.includes("laborat") ||
+    p.includes("physiothérap") || p.includes("ergothérap") ||
+    p.includes("cabinet médic") || p.includes("clinique") || p.includes("laborat") ||
     p.includes("vétérinaire") || p.includes("ostéopath") || p.includes("diététi") ||
     p.includes("gesundheit") || p.includes("medizin") || p.includes("praxis") ||
-    p.includes("cosmétique") || p.includes("esthétique") || p.includes("massage") ||
-    p.includes("yoga") || p.includes("coach") || p.includes("nutrition")
+    p.includes("hôpital") || p.includes("ophtalmolog") || p.includes("chirurg") ||
+    p.includes("radiolog") || p.includes("orthopéd")
   ) return "sante";
 
+  // ── 3. Beauté / Bien-être ──
+  if (
+    p.includes("cosmétique") || p.includes("esthétique") || p.includes("massage") ||
+    p.includes("yoga") || p.includes("coiffur") || p.includes("coiffeu") ||
+    p.includes("onglerie") || p.includes("manucure") || p.includes("pédicure") ||
+    p.includes("salon de beauté") || p.includes("bien-être") || p.includes("bienêtre") ||
+    p.includes("spa") || p.includes("maquillage") || p.includes("tatouage") ||
+    p.includes("piercing") || p.includes("soins du corps") || p.includes("soins esthétiques") ||
+    p.includes("epilation") || p.includes("kosmetik") || p.includes("schönheit")
+  ) return "beaute";
+
+  // ── 4. Construction ──
   if (
     p.includes("construction") || p.includes("bâtiment") || p.includes("travaux") ||
     p.includes("rénovation") || p.includes("maçonnerie") || p.includes("plomberie") ||
@@ -96,6 +110,7 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("bau") || p.includes("renovierung") || p.includes("montage")
   ) return "construction";
 
+  // ── 5. Restauration / Hôtellerie ──
   if (
     p.includes("restaurant") || p.includes("café") || p.includes("bar") ||
     p.includes("traiteur") || p.includes("boulangerie") || p.includes("pâtisserie") ||
@@ -106,6 +121,37 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("restauration") || p.includes("tea room") || p.includes("kebab")
   ) return "restauration";
 
+  // ── 6. Transport / Logistique ──
+  if (
+    p.includes("transport") || p.includes("logistique") || p.includes("déménagement") ||
+    p.includes("livraison") || p.includes("coursier") || p.includes("taxi") ||
+    p.includes("vtc") || p.includes("ambulance") || p.includes("fret") ||
+    p.includes("entreposage") || p.includes("stockage") || p.includes("expédition") ||
+    p.includes("camionnage") || p.includes("routier") || p.includes("maritime") ||
+    p.includes("aérien") || p.includes("spedition") || p.includes("logistik")
+  ) return "transport";
+
+  // ── 7. Éducation / Formation ──
+  if (
+    p.includes("école") || p.includes("enseignement") || p.includes("formation") ||
+    p.includes("éducation") || p.includes("cours") || p.includes("soutien scolaire") ||
+    p.includes("crèche") || p.includes("garderie") || p.includes("pédagog") ||
+    p.includes("université") || p.includes("académi") || p.includes("institut de formation") ||
+    p.includes("langue") || p.includes("tutorat") || p.includes("e-learning") ||
+    p.includes("schule") || p.includes("bildung") || p.includes("ausbildung")
+  ) return "education";
+
+  // ── 8. Finance / Assurance ──
+  if (
+    p.includes("financ") || p.includes("banque") || p.includes("assurance") ||
+    p.includes("investissement") || p.includes("gestion de fortune") || p.includes("patrimoine") ||
+    p.includes("prévoyance") || p.includes("placement") || p.includes("bourse") ||
+    p.includes("crédit") || p.includes("prêt") || p.includes("épargne") ||
+    p.includes("courtage en assurance") || p.includes("réassurance") ||
+    p.includes("versicherung") || p.includes("finanz") || p.includes("vermögen")
+  ) return "finance";
+
+  // ── 9. Immobilier ──
   if (
     p.includes("immobili") || p.includes("gérance") || p.includes("courtage") ||
     p.includes("promotion immobili") || p.includes("régie") || p.includes("foncier") ||
@@ -114,11 +160,51 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("immobilien") || p.includes("liegenschaft")
   ) return "immobilier";
 
+  // ── 10. Industrie / Production ──
+  if (
+    p.includes("fabrication") || p.includes("manufacture") || p.includes("usinage") ||
+    p.includes("mécanique de précision") || p.includes("métallurgie") || p.includes("soudure") ||
+    p.includes("injection") || p.includes("moulage") || p.includes("emboutissage") ||
+    p.includes("assemblage") || p.includes("production industrielle") || p.includes("usine") ||
+    p.includes("industrie") || p.includes("automatisation") || p.includes("robotique") ||
+    p.includes("herstellung") || p.includes("fertigung") || p.includes("industrie")
+  ) return "industrie";
+
+  // ── 11. Agriculture / Viticulture ──
+  if (
+    p.includes("agricol") || p.includes("agriculture") || p.includes("viticol") ||
+    p.includes("viticult") || p.includes("vignoble") || p.includes("élevage") ||
+    p.includes("exploitation agricole") || p.includes("maraîch") || p.includes("horticult") ||
+    p.includes("pépinière") || p.includes("apicult") || p.includes("sylvicult") ||
+    p.includes("forestier") || p.includes("paysagis") || p.includes("jardin") ||
+    p.includes("landwirtschaft") || p.includes("weinbau") || p.includes("gartenbau")
+  ) return "agriculture";
+
+  // ── 12. Art / Culture / Médias ──
+  if (
+    p.includes("artisti") || p.includes("art ") || p.includes("galerie") ||
+    p.includes("musique") || p.includes("cinéma") || p.includes("théâtre") ||
+    p.includes("photogra") || p.includes("vidéo") || p.includes("film") ||
+    p.includes("édition") || p.includes("presse") || p.includes("média") ||
+    p.includes("graphi") || p.includes("design") || p.includes("créati") ||
+    p.includes("spectacle") || p.includes("divertissement") || p.includes("animation") ||
+    p.includes("kunst") || p.includes("verlag") || p.includes("medien")
+  ) return "art_culture";
+
+  // ── 13. Nettoyage / Entretien ──
+  if (
+    p.includes("nettoyage") || p.includes("conciergerie") || p.includes("entretien") ||
+    p.includes("hygiène") || p.includes("désinfection") || p.includes("blanchisserie") ||
+    p.includes("pressing") || p.includes("lavage") || p.includes("dératisation") ||
+    p.includes("reinigung") || p.includes("gebäudereinigung") || p.includes("hauswartung")
+  ) return "nettoyage";
+
+  // ── 14. Conseil / Services aux entreprises ──
   if (
     p.includes("conseil") || p.includes("consulting") || p.includes("consultant") ||
     p.includes("fiduciaire") || p.includes("comptab") || p.includes("révision") ||
     p.includes("audit") || p.includes("gestion d'entreprise") || p.includes("management") ||
-    p.includes("ressources humaines") || p.includes("recrutement") || p.includes("formation") ||
+    p.includes("ressources humaines") || p.includes("recrutement") ||
     p.includes("coaching") || p.includes("stratégi") || p.includes("marketing") ||
     p.includes("communication") || p.includes("publicité") || p.includes("relations publiques") ||
     p.includes("avoca") || p.includes("juridique") || p.includes("notari") ||
@@ -126,6 +212,7 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("beratung") || p.includes("treuhand") || p.includes("buchhaltung")
   ) return "conseil";
 
+  // ── 15. Commerce (catch-all pour négoce) ──
   if (
     p.includes("commerce") || p.includes("vente") || p.includes("achat") ||
     p.includes("import") || p.includes("export") || p.includes("négoce") ||
