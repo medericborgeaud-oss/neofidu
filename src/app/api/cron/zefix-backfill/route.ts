@@ -1,17 +1,44 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
-// Backfill route v2 — uses POST /api/v1/company/search (public endpoint)
-// No more /shab/welcome.json (deprecated/requires special subscription)
-// Call with ?days=30 to fetch last 30 days (default: 30)
+// Backfill route v2.1 — uses POST /api/v1/company/search (public endpoint)
+// FIX: name field requires minLength: 3. Old "A*" (2 chars) silently failed.
+// Now uses "A**" (3 chars) or smarter patterns.
+//
+// Usage:
+//   ?days=30         → fetch last 30 days (default: 30, max: 90)
+//   ?details=false   → skip fetching purpose from detail endpoint
+//   ?test=true       → diagnostic mode: tries different name patterns, reports what works
+//   ?canton=VD       → test a single canton only
 export const dynamic = "force-dynamic";
 export const maxDuration = 300; // 5 minutes for backfill
 
 const ZEFIX_API = "https://www.zefix.admin.ch/ZefixPublicREST/api/v1";
 const CANTONS_ROMANDS = ["VD", "GE", "VS", "FR", "NE", "JU"];
 
-// Name prefixes to paginate through all companies (Zefix requires name with minLength 3)
-const NAME_PREFIXES = ["A*", "B*", "C*", "D*", "E*", "F*", "G*", "H*", "I*", "J*", "K*", "L*", "M*", "N*", "O*", "P*", "Q*", "R*", "S*", "T*", "U*", "V*", "W*", "X*", "Y*", "Z*", "0*", "1*", "2*", "3*", "4*", "5*", "6*", "7*", "8*", "9*"];
+// ── Name prefix strategies (Zefix requires name minLength: 3) ───────────────
+// Strategy 1: single letter + two wildcards → "A**" (3 chars, broadest coverage)
+// Strategy 2: common Swiss company name starters (FR/DE) → more targeted
+// Strategy 3: two-letter combos + wildcard → "Ab*", "Ac*"... (more precise but many requests)
+
+const WILDCARD_PREFIXES = [
+  ...Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map(c => `${c}**`),
+  ...Array.from("0123456789").map(c => `${c}**`),
+];
+
+// Fallback: common 3+ char starters if wildcards don't work
+const COMMON_PREFIXES = [
+  // French company starters
+  "Soc", "Ass", "Cab", "Con", "Imm", "Fon", "Ent", "Gro", "Ins", "Pro",
+  "Ser", "Age", "Ate", "Bur", "Cie", "Com", "Coo", "Eco", "Etu", "Exp",
+  "Fin", "Gar", "Ges", "Hol", "Int", "Inv", "Lab", "Man", "Med", "Net",
+  "Par", "Pha", "Pol", "Pre", "Res", "Sau", "Tra", "Uni", "Val", "Ven",
+  // German company starters
+  "Bau", "Ber", "Die", "Ein", "Fir", "Geb", "Han", "Ind", "Kap", "Lie",
+  "Mie", "Neu", "Pri", "Sch", "Sta", "Ste", "Tec", "Ver", "Woh", "Zen",
+  // Common international
+  "The", "New", "All", "Glo", "Dig", "Tec", "Sol", "Art", "Max", "Top",
+];
 
 interface ZefixCompanyShort {
   name: string;
@@ -131,70 +158,133 @@ function generateSlug(name: string, uid: string): string {
 }
 
 /**
- * Fetch companies from a canton using POST /api/v1/company/search
- * This endpoint is public (no authentication required).
- * We use name prefixes (A*, B*, C*...) to paginate since no date filter exists.
- * Then filter by sogcDate locally.
+ * Try a single search request and return status + result count.
+ * Used by both the test mode and the main backfill.
+ */
+async function trySearch(
+  name: string,
+  canton: string,
+  authHeader?: string
+): Promise<{ status: number; count: number; error?: string; data?: ZefixCompanyShort[] }> {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (authHeader) {
+    headers["Authorization"] = authHeader;
+  }
+
+  try {
+    const response = await fetch(`${ZEFIX_API}/company/search`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ canton, name, activeOnly: true }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text().catch(() => "");
+      return { status: response.status, count: 0, error: errorText.substring(0, 200) };
+    }
+
+    const data = await response.json();
+    if (Array.isArray(data)) {
+      return { status: response.status, count: data.length, data };
+    }
+    return { status: response.status, count: 0, error: "Response is not an array" };
+  } catch (err) {
+    return { status: 0, count: 0, error: String(err).substring(0, 200) };
+  }
+}
+
+/**
+ * ── TEST MODE ──
+ * Tries multiple name patterns against a single canton to find what works.
+ * Call with ?test=true&canton=VD
+ */
+async function runDiagnostic(canton: string, authHeader?: string) {
+  const testPatterns = [
+    // Wildcard patterns (check if * is treated as wildcard)
+    { name: "A**", description: "letter + two wildcards (3 chars)" },
+    { name: "***", description: "three wildcards" },
+    { name: "A*B", description: "letter + wildcard + letter" },
+    // Percent wildcard (SQL-style)
+    { name: "A%%", description: "letter + two percent wildcards" },
+    { name: "%%%", description: "three percent wildcards" },
+    // Plain text (no wildcards)
+    { name: "ABC", description: "plain 3-letter prefix" },
+    { name: "Soc", description: "common FR start (Société)" },
+    { name: "Sch", description: "common DE start (Schweizerische)" },
+    // Longer patterns
+    { name: "Société", description: "full FR word" },
+    { name: "Association", description: "full FR word" },
+    // Without auth
+    { name: "Test", description: "simple word, no auth", skipAuth: true },
+  ];
+
+  const results = [];
+  for (const pattern of testPatterns) {
+    const auth = pattern.skipAuth ? undefined : authHeader;
+    const result = await trySearch(pattern.name, canton, auth);
+    results.push({
+      pattern: pattern.name,
+      description: pattern.description,
+      httpStatus: result.status,
+      resultCount: result.count,
+      error: result.error || null,
+      sampleNames: result.data?.slice(0, 3).map(c => c.name) || [],
+    });
+    console.log(`TEST ${pattern.name} (${pattern.description}): HTTP ${result.status}, ${result.count} results`);
+  }
+
+  return results;
+}
+
+/**
+ * Fetch companies from a canton using POST /api/v1/company/search.
+ * Uses the best available prefix strategy.
  */
 async function fetchCompaniesForCanton(
   canton: string,
   sinceDate: string,
+  prefixes: string[],
   authHeader?: string
-): Promise<ZefixCompanyShort[]> {
+): Promise<{ companies: ZefixCompanyShort[]; apiErrors: number; httpStatuses: Record<number, number> }> {
   const recentCompanies: ZefixCompanyShort[] = [];
   const seenUids = new Set<string>();
+  let apiErrors = 0;
+  const httpStatuses: Record<number, number> = {};
 
-  for (const prefix of NAME_PREFIXES) {
-    try {
-      const headers: Record<string, string> = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      };
-      // Add auth if available (optional but may increase rate limits)
-      if (authHeader) {
-        headers["Authorization"] = authHeader;
+  for (const prefix of prefixes) {
+    const result = await trySearch(prefix, canton, authHeader);
+
+    // Track HTTP status distribution
+    httpStatuses[result.status] = (httpStatuses[result.status] || 0) + 1;
+
+    if (result.status !== 200 || !result.data) {
+      if (result.status !== 200) apiErrors++;
+      continue;
+    }
+
+    for (const company of result.data) {
+      // Filter: only keep companies with sogcDate >= sinceDate
+      if (company.sogcDate && company.sogcDate >= sinceDate && !seenUids.has(company.uid)) {
+        seenUids.add(company.uid);
+        recentCompanies.push(company);
       }
-
-      const response = await fetch(`${ZEFIX_API}/company/search`, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          canton,
-          name: prefix,
-          activeOnly: true,
-        }),
-      });
-
-      if (!response.ok) {
-        console.error(`Zefix search error for ${canton}/${prefix}: ${response.status}`);
-        // If 401, try without auth on next iteration
-        continue;
-      }
-
-      const data: ZefixCompanyShort[] = await response.json();
-
-      if (Array.isArray(data)) {
-        for (const company of data) {
-          // Filter: only keep companies with sogcDate >= sinceDate
-          if (company.sogcDate && company.sogcDate >= sinceDate && !seenUids.has(company.uid)) {
-            seenUids.add(company.uid);
-            recentCompanies.push(company);
-          }
-        }
-      }
-    } catch (error) {
-      console.error(`Error searching ${canton}/${prefix}:`, error);
     }
   }
 
-  return recentCompanies;
+  return { companies: recentCompanies, apiErrors, httpStatuses };
 }
 
 /**
- * Alternative: fetch company details by UID to get purpose field
- * GET /api/v1/company/uid/{uid} — may require auth
+ * Fetch company details by UID to get purpose field.
+ * GET /api/v1/company/uid/{uid} — requires auth.
  */
-async function fetchCompanyDetails(uid: string, authHeader?: string): Promise<{ purpose?: string; cantonalExcerptWeb?: string } | null> {
+async function fetchCompanyDetails(
+  uid: string,
+  authHeader?: string
+): Promise<{ purpose?: string; cantonalExcerptWeb?: string } | null> {
   try {
     const headers: Record<string, string> = { Accept: "application/json" };
     if (authHeader) {
@@ -212,6 +302,45 @@ async function fetchCompanyDetails(uid: string, authHeader?: string): Promise<{ 
   } catch {
     return null;
   }
+}
+
+/**
+ * Auto-detect the best prefix strategy by testing a few patterns.
+ * Returns the prefixes to use for the full backfill.
+ */
+async function detectBestPrefixes(canton: string, authHeader?: string): Promise<{ prefixes: string[]; strategy: string }> {
+  // Test 1: Does "A**" work? (wildcard strategy)
+  const test1 = await trySearch("A**", canton, authHeader);
+  if (test1.status === 200 && test1.count > 0) {
+    console.log(`Strategy: wildcard "X**" works (test returned ${test1.count} results)`);
+    return { prefixes: WILDCARD_PREFIXES, strategy: "wildcard_double_star" };
+  }
+
+  // Test 2: Does "***" work? (full wildcard)
+  const test2 = await trySearch("***", canton, authHeader);
+  if (test2.status === 200 && test2.count > 0) {
+    console.log(`Strategy: "***" works (${test2.count} results) — single request per canton!`);
+    return { prefixes: ["***"], strategy: "triple_wildcard" };
+  }
+
+  // Test 3: Plain text search? (no wildcards, just common names)
+  const test3 = await trySearch("Société", canton, authHeader);
+  if (test3.status === 200 && test3.count > 0) {
+    console.log(`Strategy: plain text works (test returned ${test3.count} results)`);
+    return { prefixes: COMMON_PREFIXES, strategy: "common_prefixes" };
+  }
+
+  // Test 4: Try with percent wildcards (SQL LIKE style)
+  const test4 = await trySearch("A%%", canton, authHeader);
+  if (test4.status === 200 && test4.count > 0) {
+    const percentPrefixes = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789").map(c => `${c}%%`);
+    console.log(`Strategy: percent wildcards work (test returned ${test4.count} results)`);
+    return { prefixes: percentPrefixes, strategy: "percent_wildcard" };
+  }
+
+  // Fallback: use common prefixes (better than nothing)
+  console.warn("No wildcard strategy worked. Using common prefixes as fallback.");
+  return { prefixes: COMMON_PREFIXES, strategy: "common_prefixes_fallback" };
 }
 
 export async function GET(request: Request) {
@@ -234,14 +363,11 @@ export async function GET(request: Request) {
   }
 
   const url = new URL(request.url);
+  const testMode = url.searchParams.get("test") === "true";
+  const singleCanton = url.searchParams.get("canton");
   const daysBack = parseInt(url.searchParams.get("days") || "30");
   const maxDays = Math.min(daysBack, 90);
-  const fetchDetails = url.searchParams.get("details") !== "false"; // default: true
-
-  // Calculate the cutoff date
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - maxDays);
-  const sinceDate = cutoffDate.toISOString().split("T")[0];
+  const fetchDetails = url.searchParams.get("details") !== "false";
 
   // Optional Zefix auth (for detail endpoints)
   const zefixUser = process.env.ZEFIX_USERNAME;
@@ -250,10 +376,37 @@ export async function GET(request: Request) {
     ? `Basic ${Buffer.from(`${zefixUser}:${zefixPass}`).toString("base64")}`
     : undefined;
 
+  // ── TEST MODE ─────────────────────────────────────────────────────────────
+  if (testMode) {
+    const testCanton = singleCanton || "VD";
+    console.log(`Running diagnostic on canton ${testCanton}...`);
+    const diagnosticResults = await runDiagnostic(testCanton, zefixAuth);
+    return NextResponse.json({
+      test: true,
+      version: "2.1",
+      canton: testCanton,
+      hasAuth: !!zefixAuth,
+      authUser: zefixUser || "(none)",
+      results: diagnosticResults,
+      hint: "Look for patterns with httpStatus=200 and resultCount>0. Those work!",
+    });
+  }
+
+  // ── BACKFILL MODE ─────────────────────────────────────────────────────────
+  const cutoffDate = new Date();
+  cutoffDate.setDate(cutoffDate.getDate() - maxDays);
+  const sinceDate = cutoffDate.toISOString().split("T")[0];
+
+  const cantons = singleCanton ? [singleCanton] : CANTONS_ROMANDS;
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   try {
-    console.log(`Backfill v2: searching companies since ${sinceDate} (${maxDays} days back)`);
+    console.log(`Backfill v2.1: searching companies since ${sinceDate} (${maxDays} days back)`);
+    console.log(`Cantons: ${cantons.join(", ")}`);
+
+    // Auto-detect best prefix strategy using first canton
+    const { prefixes, strategy } = await detectBestPrefixes(cantons[0], zefixAuth);
+    console.log(`Using strategy: ${strategy} (${prefixes.length} prefixes per canton)`);
 
     let totalFetched = 0;
     let totalInserted = 0;
@@ -261,13 +414,15 @@ export async function GET(request: Request) {
     let totalSkipped = 0;
     let totalErrors = 0;
     let totalDetailsFound = 0;
-    const cantonResults: { canton: string; fetched: number; inserted: number }[] = [];
+    let totalApiErrors = 0;
+    const cantonResults: { canton: string; fetched: number; inserted: number; apiErrors: number; httpStatuses: Record<number, number> }[] = [];
 
-    for (const canton of CANTONS_ROMANDS) {
-      console.log(`Searching canton ${canton}...`);
-      const companies = await fetchCompaniesForCanton(canton, sinceDate, zefixAuth);
+    for (const canton of cantons) {
+      console.log(`Searching canton ${canton} with ${prefixes.length} prefixes...`);
+      const { companies, apiErrors, httpStatuses } = await fetchCompaniesForCanton(canton, sinceDate, prefixes, zefixAuth);
       totalFetched += companies.length;
-      console.log(`${canton}: found ${companies.length} recent companies`);
+      totalApiErrors += apiErrors;
+      console.log(`${canton}: found ${companies.length} recent companies (${apiErrors} API errors)`);
 
       let cantonInserted = 0;
 
@@ -330,28 +485,32 @@ export async function GET(request: Request) {
         }
       }
 
-      cantonResults.push({ canton, fetched: companies.length, inserted: cantonInserted });
+      cantonResults.push({ canton, fetched: companies.length, inserted: cantonInserted, apiErrors, httpStatuses });
     }
 
     const result = {
       success: true,
       backfill: true,
-      version: 2,
+      version: "2.1",
+      strategy,
+      prefixCount: prefixes.length,
       sinceDate,
       maxDays,
+      hasAuth: !!zefixAuth,
       totalFetched,
       totalInserted,
       totalClassified,
       totalSkipped,
       totalErrors,
+      totalApiErrors,
       totalDetailsFound,
       cantonResults,
     };
 
-    console.log("Backfill v2 result:", JSON.stringify(result));
+    console.log("Backfill v2.1 result:", JSON.stringify(result));
     return NextResponse.json(result);
   } catch (error) {
-    console.error("Backfill v2 error:", error);
+    console.error("Backfill v2.1 error:", error);
     return NextResponse.json(
       { error: "Backfill failed", details: String(error) },
       { status: 500 }
