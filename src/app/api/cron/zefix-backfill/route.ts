@@ -372,7 +372,6 @@ export async function GET(request: Request) {
             slug,
             canton: cantonCode,
             legal_form: legalForm,
-            legal_seat: row.municipality?.value || "",
             purpose,
             sector,
             status: "active",
