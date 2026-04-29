@@ -114,12 +114,9 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
 
         {/* ─── Header + Search ─── */}
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-1">
+          <h1 className="text-3xl font-bold text-gray-900">
             Observatoire romand des entreprises
           </h1>
-          <p className="text-gray-500 text-sm">
-            {stats.total.toLocaleString("fr-CH")} entreprises actives en Suisse romande
-          </p>
         </div>
 
         {/* Search bar */}
