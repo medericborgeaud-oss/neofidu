@@ -199,10 +199,10 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
         )}
 
         {/* ─── Main layout: Results + Sidebar ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className={`grid grid-cols-1 ${hasFilters ? "" : "lg:grid-cols-5"} gap-6`}>
 
-          {/* Left: Company list (3/5) */}
-          <div className="lg:col-span-3">
+          {/* Left: Company list */}
+          <div className={hasFilters ? "" : "lg:col-span-3"}>
             <p className="text-sm font-medium text-gray-900 mb-3">
               {hasFilters ? (
                 <>{total.toLocaleString("fr-CH")} résultats</>
@@ -280,8 +280,8 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
             )}
           </div>
 
-          {/* Right: Sidebar (2/5) */}
-          <div className="lg:col-span-2 space-y-4">
+          {/* Right: Sidebar (2/5) — hidden when filters active */}
+          {!hasFilters && <div className="lg:col-span-2 space-y-4">
 
             {/* Canton ranking */}
             <div className="border border-gray-100 rounded-xl p-4">
@@ -346,7 +346,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                 </div>
               </div>
             )}
-          </div>
+          </div>}
         </div>
 
         {/* Footer CTA */}
