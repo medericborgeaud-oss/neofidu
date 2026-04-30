@@ -471,8 +471,8 @@ export async function GET(request: Request) {
 
       let cantonInserted = 0;
 
-      // Process in batches for Supabase
-      const BATCH_SIZE = 50;
+      // Process in small batches to avoid Supabase statement timeout
+      const BATCH_SIZE = 20;
       for (let i = 0; i < uniqueRows.length; i += BATCH_SIZE) {
         const batch = uniqueRows.slice(i, i + BATCH_SIZE);
         const records = [];
@@ -506,15 +506,28 @@ export async function GET(request: Request) {
         }
 
         if (records.length > 0) {
-          const { error } = await supabase.from("companies").upsert(records, { onConflict: "zefix_uid" });
-          if (error) {
-            console.error(`Batch insert error:`, error.message);
-            // Capture first error for debugging
-            if (!firstError) firstError = { message: error.message, code: error.code, details: error.details, hint: error.hint, sample: records[0] };
+          // Retry once on timeout
+          let upsertError = null;
+          for (let attempt = 0; attempt < 2; attempt++) {
+            const { error } = await supabase.from("companies").upsert(records, { onConflict: "zefix_uid" });
+            if (!error) {
+              upsertError = null;
+              totalInserted += records.length;
+              cantonInserted += records.length;
+              break;
+            }
+            upsertError = error;
+            if (attempt === 0 && error.code === "57014") {
+              // Statement timeout — wait a bit and retry
+              await new Promise(r => setTimeout(r, 500));
+              continue;
+            }
+            break;
+          }
+          if (upsertError) {
+            console.error(`Batch insert error:`, upsertError.message);
+            if (!firstError) firstError = { message: upsertError.message, code: upsertError.code, details: upsertError.details, hint: upsertError.hint, sample: records[0] };
             totalErrors += records.length;
-          } else {
-            totalInserted += records.length;
-            cantonInserted += records.length;
           }
         }
       }
