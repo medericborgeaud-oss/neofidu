@@ -146,7 +146,7 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("financ") || p.includes("banque") || p.includes("assurance") ||
     p.includes("investissement") || p.includes("gestion de fortune") || p.includes("patrimoine") ||
     p.includes("prévoyance") || p.includes("placement") || p.includes("bourse") ||
-    p.includes("crédit") || p.includes("prêt") || p.includes("épargne") ||
+    p.includes("crédit") || p.includes("prêt hypothécaire") || p.includes("prêt personnel") || p.includes("épargne") ||
     p.includes("courtage en assurance") || p.includes("réassurance") ||
     p.includes("versicherung") || p.includes("finanz") || p.includes("vermögen")
   ) return "finance";
