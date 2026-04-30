@@ -1,7 +1,14 @@
 import { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
+import { createClient } from "@supabase/supabase-js";
 
 const baseUrl = "https://www.neofidu.ch";
+const BATCH_SIZE = 45000;
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 // Create sitemap entry with all required fields
 function createEntry(
@@ -17,7 +24,6 @@ function createEntry(
     changeFrequency = "monthly",
     priority = 0.5,
   } = options;
-
   return {
     url: path ? `${baseUrl}${path}` : baseUrl,
     lastModified: typeof lastModified === "string" ? lastModified : lastModified.toISOString(),
@@ -26,217 +32,102 @@ function createEntry(
   };
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Tell Next.js how many sitemap files to generate
+// This creates /sitemap/0.xml, /sitemap/1.xml, etc.
+export async function generateSitemaps() {
+  const { count } = await supabase
+    .from("companies")
+    .select("id", { count: "exact", head: true })
+    .eq("is_active", true);
+
+  const total = count || 0;
+  // Sitemap 0 = static pages + first batch of companies
+  const numSitemaps = Math.max(1, Math.ceil(total / BATCH_SIZE));
+
+  return Array.from({ length: numSitemaps }, (_, i) => ({ id: i }));
+}
+
+export default async function sitemap({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date();
 
   // ============================================
-  // STATIC PAGES - Core site pages
+  // STATIC PAGES — only in first sitemap (id=0)
   // ============================================
-  const staticPages: MetadataRoute.Sitemap = [
-    // Homepage - highest priority
-    createEntry("", {
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    }),
-
-    // Tax request form - critical conversion page
-    createEntry("/demande", {
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.95,
-    }),
-     createEntry("/demande/prolongation", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    }),
-
-    // Contact page
-    createEntry("/contact", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    }),
-
-    // Pricing page - high conversion intent
-    createEntry("/tarifs", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-
-    // Swiss abroad page
-    createEntry("/suisses-etranger", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-
-    // Expats page - High priority for international SEO
-    createEntry("/expats", {
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.95,
-    }),
-
-    // Independants & Freelances page - High conversion intent
-    createEntry("/independants", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-
-    // Company creation page - High conversion intent
-    createEntry("/creation-entreprise", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-
-    // Property management page - High conversion intent
-    createEntry("/gerance-immobiliere", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-
+  const staticPages: MetadataRoute.Sitemap = id === 0 ? [
+    // Homepage
+    createEntry("", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
+    // Tax request form
+    createEntry("/demande", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
+    createEntry("/demande/prolongation", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
+    // Contact
+    createEntry("/contact", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
+    // Pricing
+    createEntry("/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    // Swiss abroad
+    createEntry("/suisses-etranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    // Expats
+    createEntry("/expats", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
+    // Independants
+    createEntry("/independants", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    // Company creation
+    createEntry("/creation-entreprise", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    // Property management
+    createEntry("/gerance-immobiliere", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     // FAQ
-    createEntry("/faq", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    }),
-  ];
+    createEntry("/faq", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
 
-  // ============================================
-  // SIMULATORS - High-value tools
-  // ============================================
-  const simulatorPages: MetadataRoute.Sitemap = [
-    createEntry("/simulateur", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-    createEntry("/simulateur/impots", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.95,
-    }),
-    createEntry("/simulateur/3eme-pilier", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-    createEntry("/simulateur/valeur-locative", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-    createEntry("/simulateur/gain-immobilier", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-    createEntry("/simulateur/carte-impots", {
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    }),
-    createEntry("/simulateur/salaire-net", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.95,
-    }),
-    createEntry("/simulateur/baisse-loyer", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.95,
-    }),
-    createEntry("/simulateur/retraite", {
-    lastModified: currentDate,
-    changeFrequency: "monthly",
-    priority: 0.92,
-  }),
-  ];
+    // ── Simulators ──
+    createEntry("/simulateur", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/simulateur/impots", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+    createEntry("/simulateur/3eme-pilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/simulateur/valeur-locative", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/simulateur/gain-immobilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/simulateur/carte-impots", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
+    createEntry("/simulateur/salaire-net", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+    createEntry("/simulateur/baisse-loyer", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+    createEntry("/simulateur/retraite", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.92 }),
 
-  // ============================================
-  // GUIDES - Educational content
-  // ============================================
-  const guidePages: MetadataRoute.Sitemap = [
-    createEntry("/guide/deductions-fiscales", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    }),
-  ];
+    // ── Guides ──
+    createEntry("/guide/deductions-fiscales", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
 
-  // ============================================
-  // CANTON PAGES - Local SEO targeting
-  // ============================================
-  const cantons = ["vaud", "geneve", "valais", "fribourg", "neuchatel", "jura"];
-
-  const cantonPages: MetadataRoute.Sitemap = [
-    createEntry("/cantons", {
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    }),
-    ...cantons.map((canton) =>
-      createEntry(`/cantons/${canton}`, {
-        lastModified: currentDate,
-        changeFrequency: "monthly",
-        priority: 0.85,
-      })
+    // ── Cantons ──
+    createEntry("/cantons", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
+    ...["vaud", "geneve", "valais", "fribourg", "neuchatel", "jura"].map((canton) =>
+      createEntry(`/cantons/${canton}`, { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 })
     ),
-  ];
 
-  // ============================================
-  // BLOG - Main blog page and articles
-  // ============================================
-  const blogPages: MetadataRoute.Sitemap = [
-    createEntry("/blog", {
-      lastModified: currentDate,
-      changeFrequency: "daily",
-      priority: 0.85,
-    }),
+    // ── Blog ──
+    createEntry("/blog", { lastModified: currentDate, changeFrequency: "daily", priority: 0.85 }),
     ...blogArticles.map((article) =>
-      createEntry(`/blog/${article.slug}`, {
-        lastModified: article.date,
-        changeFrequency: "monthly",
-        priority: 0.7,
-      })
+      createEntry(`/blog/${article.slug}`, { lastModified: article.date, changeFrequency: "monthly", priority: 0.7 })
     ),
-  ];
+
+    // ── Observatoire main page ──
+    createEntry("/observatoire", { lastModified: currentDate, changeFrequency: "daily", priority: 0.9 }),
+
+    // ── Legal ──
+    createEntry("/conditions-generales", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
+    createEntry("/politique-confidentialite", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
+    createEntry("/mentions-legales", { lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 }),
+  ] : [];
 
   // ============================================
-  // LEGAL PAGES - Lower priority
+  // COMPANY PAGES — batched across all sitemaps
   // ============================================
-  const legalPages: MetadataRoute.Sitemap = [
-    createEntry("/conditions-generales", {
-      lastModified: "2026-02-01",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    }),
-    createEntry("/politique-confidentialite", {
-      lastModified: "2026-02-01",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    }),
-    createEntry("/mentions-legales", {
-      lastModified: currentDate,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    }),
-  ];
+  const start = id * BATCH_SIZE;
+  const { data: companies } = await supabase
+    .from("companies")
+    .select("slug, updated_at")
+    .eq("is_active", true)
+    .order("slug", { ascending: true })
+    .range(start, start + BATCH_SIZE - 1);
 
-  // Combine all pages
-  return [
-    ...staticPages,
-    ...simulatorPages,
-    ...guidePages,
-    ...cantonPages,
-    ...blogPages,
-    ...legalPages,
-  ];
+  const companyPages: MetadataRoute.Sitemap = (companies || []).map((c) => ({
+    url: `${baseUrl}/observatoire/${c.slug}`,
+    lastModified: new Date(c.updated_at),
+    changeFrequency: "monthly" as const,
+    priority: 0.3,
+  }));
+
+  return [...staticPages, ...companyPages];
 }
