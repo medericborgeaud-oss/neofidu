@@ -63,12 +63,13 @@ export default async function CompanyPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <main className="min-h-screen bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 py-8">
         {/* Back link */}
         <Link href="/observatoire" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 mb-6 transition-colors">
           <ArrowLeft className="w-4 h-4" />
@@ -186,4 +187,24 @@ export default async function CompanyPage({ params }: Props) {
             {/* CTA */}
             <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm text-emerald-800 font-mediu
+                <p className="text-sm text-emerald-800 font-medium">{ctaText.text}</p>
+                <p className="text-sm text-emerald-600">{ctaText.offer}</p>
+              </div>
+              <Link href={ctaText.href}>
+                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">
+                  En savoir plus
+                </Button>
+              </Link>
+            </div>
+
+            {/* Source */}
+            <p className="text-center text-xs text-gray-400 mt-4">
+              Source : Registre du commerce via Zefix / FOSC
+            </p>
+          </div>
+        </Card>
+        </div>
+      </main>
+    </>
+  );
+}
