@@ -402,6 +402,7 @@ export async function GET(request: Request) {
   const testMode = url.searchParams.get("test") === "true";
   const singleCanton = url.searchParams.get("canton");
   const limitPerCanton = parseInt(url.searchParams.get("limit") || "100000");
+  const skipOffset = parseInt(url.searchParams.get("offset") || "0");
 
   // ── SCHEMA MODE — discover table columns via OpenAPI spec ───────────────
   if (url.searchParams.get("schema") === "true") {
@@ -466,15 +467,22 @@ export async function GET(request: Request) {
         }
       }
 
-      totalFetched += uniqueRows.length;
-      console.log(`${cantonCode}: ${uniqueRows.length} companies`);
+      console.log(`${cantonCode}: ${uniqueRows.length} total companies from SPARQL`);
+
+      // Apply offset and limit to 10k per run to stay within Vercel 300s
+      const CHUNK_SIZE = 10000;
+      const slicedRows = uniqueRows.slice(skipOffset, skipOffset + CHUNK_SIZE);
+      const remaining = uniqueRows.length - skipOffset - slicedRows.length;
+
+      totalFetched += slicedRows.length;
+      console.log(`${cantonCode}: processing ${slicedRows.length} (offset=${skipOffset}, remaining=${Math.max(0, remaining)})`);
 
       let cantonInserted = 0;
 
       // Process in small batches to avoid Supabase statement timeout
       const BATCH_SIZE = 20;
-      for (let i = 0; i < uniqueRows.length; i += BATCH_SIZE) {
-        const batch = uniqueRows.slice(i, i + BATCH_SIZE);
+      for (let i = 0; i < slicedRows.length; i += BATCH_SIZE) {
+        const batch = slicedRows.slice(i, i + BATCH_SIZE);
         const records = [];
 
         for (const row of batch) {
@@ -532,7 +540,7 @@ export async function GET(request: Request) {
         }
       }
 
-      cantonResults.push({ canton: cantonCode, fetched: uniqueRows.length, inserted: cantonInserted });
+      cantonResults.push({ canton: cantonCode, fetched: slicedRows.length, inserted: cantonInserted, totalFromSparql: uniqueRows.length, offset: skipOffset, remaining: Math.max(0, remaining) });
     }
 
     return NextResponse.json({
