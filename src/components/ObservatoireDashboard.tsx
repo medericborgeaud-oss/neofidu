@@ -316,7 +316,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                   <span className="text-xs text-gray-400">{totalSectors.toLocaleString("fr-CH")} classifiées</span>
                 </div>
                 <div className="space-y-2">
-                  {sectorDistribution.slice(0, 7).map(({ sector: s, count }) => {
+                  {sectorDistribution.slice(0, 15).map(({ sector: s, count }) => {
                     const maxSector = sectorDistribution[0]?.count || 1;
                     const barWidth = Math.max((count / maxSector) * 100, 8);
                     const sectorLabel = SECTOR_LABELS[s] || s;
