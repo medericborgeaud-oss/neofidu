@@ -3,7 +3,7 @@ import { blogArticles } from "@/lib/blog-data";
 import { createClient } from "@supabase/supabase-js";
 
 const baseUrl = "https://www.neofidu.ch";
-const BATCH_SIZE = 45000;
+const BATCH_SIZE = 5000;
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
