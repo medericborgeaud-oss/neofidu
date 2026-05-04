@@ -181,10 +181,25 @@ export async function getSectorDistribution(): Promise<SectorDistribution[]> {
 export async function getSimilarCompanies(
   slug: string,
   canton: string,
+  city: string,
   sector: string | null,
   limit = 6
 ): Promise<Pick<Company, "name" | "slug" | "legal_form" | "city">[]> {
-  // Same sector + same canton, excluding the current company
+  // Priority 1: same sector + same city
+  if (sector) {
+    const { data } = await supabase
+      .from("companies")
+      .select("name, slug, legal_form, city")
+      .eq("canton", canton)
+      .eq("city", city)
+      .eq("sector", sector)
+      .eq("is_active", true)
+      .neq("slug", slug)
+      .limit(limit);
+    if (data && data.length >= 3) return data;
+  }
+
+  // Priority 2: same sector + same canton
   if (sector) {
     const { data } = await supabase
       .from("companies")
@@ -193,19 +208,18 @@ export async function getSimilarCompanies(
       .eq("sector", sector)
       .eq("is_active", true)
       .neq("slug", slug)
-      .order("name")
       .limit(limit);
     if (data && data.length >= 3) return data;
   }
 
-  // Fallback: same canton only
+  // Fallback: same city
   const { data } = await supabase
     .from("companies")
     .select("name, slug, legal_form, city")
     .eq("canton", canton)
+    .eq("city", city)
     .eq("is_active", true)
     .neq("slug", slug)
-    .order("name")
     .limit(limit);
 
   return data || [];
@@ -214,43 +228,36 @@ export async function getSimilarCompanies(
 // ─── Canton fiscal context ───
 
 export const CANTON_FISCAL: Record<string, {
-  tauxPersonne: string;
   tauxEntreprise: string;
   capitalMin: string;
   particularite: string;
 }> = {
   VD: {
-    tauxPersonne: "~33%",
     tauxEntreprise: "14%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
     particularite: "Déduction des frais de garde et formation continue",
   },
   GE: {
-    tauxPersonne: "~45%",
     tauxEntreprise: "14%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
     particularite: "Statut quasi-résident pour les frontaliers",
   },
   VS: {
-    tauxPersonne: "~28%",
     tauxEntreprise: "12%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
     particularite: "Un des cantons les plus avantageux fiscalement",
   },
   FR: {
-    tauxPersonne: "~35%",
     tauxEntreprise: "14%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
     particularite: "Réductions pour les familles avec enfants",
   },
   NE: {
-    tauxPersonne: "~38%",
     tauxEntreprise: "13.5%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
     particularite: "Baisse progressive de la fiscalité des entreprises",
   },
   JU: {
-    tauxPersonne: "~39%",
     tauxEntreprise: "12%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
     particularite: "Taux attractif pour les PME",
