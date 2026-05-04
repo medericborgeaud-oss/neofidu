@@ -206,7 +206,6 @@ export default async function CompanyPage({ params }: Props) {
                       <p className="font-medium text-gray-900">{fiscal.capitalMin}</p>
                     </div>
                   </div>
-                  <p className="text-xs text-blue-700">{fiscal.particularite}</p>
                 </div>
               </div>
             )}
@@ -217,8 +216,8 @@ export default async function CompanyPage({ params }: Props) {
                 <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
                   <TrendingUp className="w-3 h-3" />
                   {sectorLabel
-                    ? `Autres entreprises en ${sectorLabel} — ${cantonName}`
-                    : `Autres entreprises — ${cantonName}`}
+                    ? `Autres entreprises en ${sectorLabel} — ${company.city}`
+                    : `Autres entreprises — ${company.city}`}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {similarCompanies.map((c) => (
