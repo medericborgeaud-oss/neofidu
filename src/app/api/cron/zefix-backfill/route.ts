@@ -58,9 +58,22 @@ function mapLegalForm(typeUri: string | undefined): string {
   return "Autre";
 }
 
-function classifySector(purpose: string | undefined): string | null {
+function classifySector(purpose: string | undefined, companyName?: string): string | null {
   if (!purpose) return null;
   const p = purpose.toLowerCase();
+  const n = (companyName || "").toLowerCase();
+
+  // ── Priority: company name contains obvious sector hint ──
+  if (n.includes("immobili") || n.includes("immo ") || n.includes("régie") || n.includes("foncier")) return "immobilier";
+  if (n.includes("restaurant") || n.includes("pizzeria") || n.includes("brasserie") || n.includes("café ") || n.includes("bistro")) return "restauration";
+  if (n.includes("garage") || n.includes("carrosserie")) return "commerce";
+  if (n.includes("coiffur") || n.includes("salon de beauté") || n.includes("esthétique")) return "beaute";
+  if (n.includes("architecte") || n.includes("construction") || n.includes("bâtiment")) return "construction";
+  if (n.includes("nettoyage") || n.includes("conciergerie")) return "nettoyage";
+  if (n.includes("transport") || n.includes("taxi") || n.includes("déménagement")) return "transport";
+
+  // ── Absolute priority: "immobilier" anywhere in name OR purpose always wins ──
+  if (n.includes("immobili") || p.includes("immobili")) return "immobilier";
 
   // ── 1. Tech / Informatique ──
   if (
@@ -118,7 +131,7 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("food") || p.includes("gastronomie") || p.includes("cuisine") ||
     p.includes("pizzeria") || p.includes("brasserie") || p.includes("bistro") ||
     p.includes("take away") || p.includes("livraison de repas") || p.includes("snack") ||
-    p.includes("restauration") || p.includes("tea room") || p.includes("kebab")
+    p.includes("restauration") || p.includes("tea room") || p.includes("tea-room") || p.includes("tearoom") || p.includes("kebab")
   ) return "restauration";
 
   // ── 6. Transport / Logistique ──
@@ -141,24 +154,28 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("schule") || p.includes("bildung") || p.includes("ausbildung")
   ) return "education";
 
-  // ── 8. Finance / Assurance ──
+  // ── 8. Immobilier (AVANT finance pour éviter les faux positifs "investissement immobilier") ──
   if (
-    p.includes("financ") || p.includes("banque") || p.includes("assurance") ||
-    p.includes("investissement") || p.includes("gestion de fortune") || p.includes("patrimoine") ||
+    p.includes("immobili") || p.includes("gérance") || p.includes("courtage immobili") ||
+    p.includes("promotion immobili") || p.includes("régie") || p.includes("foncier") ||
+    p.includes("location d'") || p.includes("location de") || p.includes("achat et vente d'immeubles") ||
+    p.includes("gestion d'immeubles") || p.includes("copropriété") ||
+    p.includes("immobilien") || p.includes("liegenschaft") ||
+    p.includes("achat et vente de biens") || p.includes("biens immobiliers") ||
+    p.includes("location immobili") || p.includes("investissement immobili")
+  ) return "immobilier";
+
+  // ── 9. Finance / Assurance ──
+  if (
+    (p.includes("financ") && !p.includes("immobili")) ||
+    p.includes("banque") || p.includes("assurance") ||
+    (p.includes("investissement") && !p.includes("immobili")) ||
+    p.includes("gestion de fortune") || p.includes("gestion de patrimoine") ||
     p.includes("prévoyance") || p.includes("placement") || p.includes("bourse") ||
     p.includes("crédit") || p.includes("prêt hypothécaire") || p.includes("prêt personnel") || p.includes("épargne") ||
     p.includes("courtage en assurance") || p.includes("réassurance") ||
     p.includes("versicherung") || p.includes("finanz") || p.includes("vermögen")
   ) return "finance";
-
-  // ── 9. Immobilier ──
-  if (
-    p.includes("immobili") || p.includes("gérance") || p.includes("courtage") ||
-    p.includes("promotion immobili") || p.includes("régie") || p.includes("foncier") ||
-    p.includes("location d'") || p.includes("location de") || p.includes("achat et vente d'immeubles") ||
-    p.includes("gestion d'immeubles") || p.includes("copropriété") ||
-    p.includes("immobilien") || p.includes("liegenschaft")
-  ) return "immobilier";
 
   // ── 10. Industrie / Production ──
   if (
@@ -209,10 +226,14 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("communication") || p.includes("publicité") || p.includes("relations publiques") ||
     p.includes("avoca") || p.includes("juridique") || p.includes("notari") ||
     p.includes("traduction") || p.includes("événement") || p.includes("organisation") ||
-    p.includes("beratung") || p.includes("treuhand") || p.includes("buchhaltung")
+    p.includes("beratung") || p.includes("treuhand") || p.includes("buchhaltung") ||
+    p.includes("expertise") || p.includes("accompagnement") || p.includes("assistance") ||
+    p.includes("ingénieur") || p.includes("bureau d'étude") || p.includes("étude") ||
+    p.includes("planification") || p.includes("projet") || p.includes("mandat") ||
+    p.includes("géomètre") || p.includes("topograph")
   ) return "conseil";
 
-  // ── 15. Commerce (catch-all pour négoce) ──
+  // ── 15. Commerce (catch-all large pour négoce) ──
   if (
     p.includes("commerce") || p.includes("vente") || p.includes("achat") ||
     p.includes("import") || p.includes("export") || p.includes("négoce") ||
@@ -220,10 +241,27 @@ function classifySector(purpose: string | undefined): string | null {
     p.includes("marchandise") || p.includes("produit") || p.includes("fourniture") ||
     p.includes("magasin") || p.includes("boutique") || p.includes("représentation") ||
     p.includes("courtier") || p.includes("agent") || p.includes("handel") ||
-    p.includes("verkauf") || p.includes("vertrieb") || p.includes("shop")
+    p.includes("verkauf") || p.includes("vertrieb") || p.includes("shop") ||
+    p.includes("épicerie") || p.includes("kiosque") || p.includes("tabac") ||
+    p.includes("fleur") || p.includes("optique") || p.includes("bijout") ||
+    p.includes("horloger") || p.includes("textile") || p.includes("vêtement") ||
+    p.includes("mode") || p.includes("chaussur") || p.includes("meuble") ||
+    p.includes("électroménager") || p.includes("quincaillerie") || p.includes("librairie") ||
+    p.includes("papeterie") || p.includes("jouet") || p.includes("sport") ||
+    p.includes("vélo") || p.includes("moto") || p.includes("auto") ||
+    p.includes("garage") || p.includes("carrosserie") || p.includes("pneu")
   ) return "commerce";
 
-  return null;
+  // ── 16. Services divers (catch-all final) ──
+  if (
+    p.includes("prestation") || p.includes("service") || p.includes("exploitation") ||
+    p.includes("activité") || p.includes("dienstleistung") || p.includes("betrieb") ||
+    p.includes("gestion") || p.includes("gérance") || p.includes("administration") ||
+    p.includes("location") || p.includes("holding") || p.includes("participation") ||
+    p.includes("société") || p.includes("entreprise")
+  ) return "conseil";
+
+  return "autres";
 }
 
 function generateSlug(name: string, uid: string): string {
@@ -494,7 +532,7 @@ export async function GET(request: Request) {
           const slug = generateSlug(name, uid);
           const legalForm = mapLegalForm(row.legalFormType?.value);
           const purpose = row.description?.value || "";
-          const sector = classifySector(purpose || undefined);
+          const sector = classifySector(purpose || undefined, name);
           if (sector) totalClassified++;
 
           records.push({
