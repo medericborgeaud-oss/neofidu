@@ -208,4 +208,3 @@ export default async function CompanyPage({ params }: Props) {
     </>
   );
 }
-&offset=10000
