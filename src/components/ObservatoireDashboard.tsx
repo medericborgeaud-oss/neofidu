@@ -57,6 +57,7 @@ const SECTOR_COLORS: Record<string, string> = {
   art_culture: "#F97316",
   nettoyage: "#06B6D4",
   beaute: "#D946EF",
+  autres: "#9CA3AF",
 };
 
 interface Props {
@@ -297,7 +298,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                           className="h-full rounded flex items-center pl-2 transition-all group-hover:opacity-80"
                           style={{ width: `${Math.max(pct, 8)}%`, backgroundColor: BAR_COLORS[c] || "#9FE1CB" }}
                         >
-                          <span className="text-xs font-medium text-white">
+                          <span className="text-xs font-medium text-white whitespace-nowrap drop-shadow-sm">
                             {count.toLocaleString("fr-CH")}
                           </span>
                         </div>
@@ -326,7 +327,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                         href={buildUrl({ sector: s })}
                         className="flex items-center gap-2 group"
                       >
-                        <span className="text-xs text-gray-600 w-24 text-right truncate">{sectorLabel}</span>
+                        <span className="text-xs text-gray-600 w-36 text-right truncate flex-shrink-0">{sectorLabel}</span>
                         <div className="flex-1 h-5 bg-gray-50 rounded overflow-hidden">
                           <div
                             className="h-full rounded flex items-center px-2 transition-all group-hover:opacity-80"
@@ -335,7 +336,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                               backgroundColor: SECTOR_COLORS[s] || "#9FE1CB",
                             }}
                           >
-                            <span className="text-[11px] font-medium text-white whitespace-nowrap">
+                            <span className="text-[11px] font-medium text-white whitespace-nowrap drop-shadow-sm">
                               {count.toLocaleString("fr-CH")}
                             </span>
                           </div>
