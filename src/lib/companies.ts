@@ -235,22 +235,22 @@ export const CANTON_FISCAL: Record<string, {
   VD: {
     tauxEntreprise: "14%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
-    particularite: "Déduction des frais de garde et formation continue",
+    particularite: "Exonérations possibles pour les start-ups innovantes",
   },
   GE: {
     tauxEntreprise: "14%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
-    particularite: "Statut quasi-résident pour les frontaliers",
+    particularite: "Place financière internationale, accès aux talents frontaliers",
   },
   VS: {
     tauxEntreprise: "12%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
-    particularite: "Un des cantons les plus avantageux fiscalement",
+    particularite: "Un des taux les plus bas de Suisse pour les entreprises",
   },
   FR: {
     tauxEntreprise: "14%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
-    particularite: "Réductions pour les familles avec enfants",
+    particularite: "Canton bilingue, accès aux marchés romand et alémanique",
   },
   NE: {
     tauxEntreprise: "13.5%",
