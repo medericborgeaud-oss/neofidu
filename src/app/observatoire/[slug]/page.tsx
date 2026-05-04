@@ -3,8 +3,8 @@ export const dynamic = 'force-dynamic';
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCompanyBySlug, getSimilarCompanies, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS, CANTON_FISCAL } from "@/lib/companies";
-import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark } from "lucide-react";
+import { getCompanyBySlug, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS } from "@/lib/companies";
+import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -29,14 +29,9 @@ export default async function CompanyPage({ params }: Props) {
   const company = await getCompanyBySlug(params.slug);
   if (!company) notFound();
 
-  const [similarCompanies] = await Promise.all([
-    getSimilarCompanies(params.slug, company.canton, company.sector),
-  ]);
-
   const formLabel = FORM_LABELS[company.legal_form] || company.legal_form;
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
   const sectorLabel = company.sector ? (SECTOR_LABELS[company.sector] || company.sector) : null;
-  const fiscal = CANTON_FISCAL[company.canton];
 
   const badgeClass =
     company.legal_form === "RI"
@@ -189,52 +184,6 @@ export default async function CompanyPage({ params }: Props) {
               </div>
             )}
 
-            {/* Canton fiscal context */}
-            {fiscal && (
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                  <Landmark className="w-3 h-3" />Contexte fiscal — {cantonName}
-                </div>
-                <div className="bg-blue-50 rounded-lg p-4 space-y-2">
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <span className="text-gray-500">Taux imposition personne physique</span>
-                      <p className="font-medium text-gray-900">{fiscal.tauxPersonne}</p>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Taux imposition entreprise</span>
-                      <p className="font-medium text-gray-900">{fiscal.tauxEntreprise}</p>
-                    </div>
-                  </div>
-                  <p className="text-xs text-blue-700">{fiscal.particularite}</p>
-                </div>
-              </div>
-            )}
-
-            {/* Similar companies */}
-            {similarCompanies.length > 0 && (
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                  <TrendingUp className="w-3 h-3" />
-                  {sectorLabel
-                    ? `Autres entreprises en ${sectorLabel} — ${cantonName}`
-                    : `Autres entreprises — ${cantonName}`}
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {similarCompanies.map((c) => (
-                    <Link
-                      key={c.slug}
-                      href={`/observatoire/${c.slug}`}
-                      className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors"
-                    >
-                      <p className="text-sm font-medium text-gray-900 truncate">{c.name}</p>
-                      <p className="text-xs text-gray-500">{c.city} · {FORM_LABELS[c.legal_form] || c.legal_form}</p>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* CTA */}
             <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
               <div>
@@ -259,3 +208,4 @@ export default async function CompanyPage({ params }: Props) {
     </>
   );
 }
+&offset=10000
