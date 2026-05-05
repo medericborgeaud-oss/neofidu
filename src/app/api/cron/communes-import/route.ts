@@ -28,8 +28,6 @@ const CANTON_MAP: Record<number, string> = {
   26: "JU",
 };
 
-const CANTON_CODES = Object.keys(CANTON_MAP).join(", ");
-
 // ─── Slug generator ───
 
 function generateSlug(nom: string, canton: string): string {
@@ -44,38 +42,42 @@ function generateSlug(nom: string, canton: string): string {
   );
 }
 
-// ─── LINDAS SPARQL : communes + population + superficie ───
+// ─── SOURCE 1 : LINDAS SPARQL (schéma corrigé) ───
 
 async function fetchCommunesLINDAS(filterCanton?: string): Promise<any[]> {
-  // Requête SPARQL pour récupérer les communes actuelles des cantons romands
-  // depuis le registre officiel LINDAS (Linked Data Service de la Confédération)
+  // Requête SPARQL corrigée — utilise le namespace schema.ld.admin.ch
+  // au lieu de gont.ch (l'ancien namespace ne retournait aucun résultat)
+  //
+  // Structure LINDAS :
+  //   - Communes : https://ld.admin.ch/municipality/{code_ofs}
+  //   - Cantons  : https://ld.admin.ch/canton/{code_ofs}
+  //   - Classe   : https://schema.ld.admin.ch/PoliticalMunicipality
+  //   - Propriétés : schema:name, schema:identifier
+
+  const cantonFilter = filterCanton
+    ? `FILTER(?cantonId = ${Object.entries(CANTON_MAP).find(([, v]) => v === filterCanton)?.[0] || 0})`
+    : `FILTER(?cantonId IN (10, 22, 23, 24, 25, 26))`;
+
   const query = `
 PREFIX schema: <http://schema.org/>
-PREFIX gont: <https://gont.ch/>
+PREFIX admin: <https://schema.ld.admin.ch/>
 
-SELECT DISTINCT ?id ?name ?cantonId ?districtName ?population ?area
+SELECT DISTINCT ?id ?name ?cantonId
 WHERE {
-  ?municipality a gont:PoliticalMunicipality ;
-    gont:id ?id ;
+  ?municipality a admin:PoliticalMunicipality ;
     schema:name ?name ;
-    gont:canton ?cantonUri ;
-    gont:district ?districtUri .
+    schema:identifier ?id .
 
-  ?cantonUri gont:id ?cantonId .
-  ?districtUri schema:name ?districtName .
+  ?canton a admin:Canton ;
+    schema:containsPlace ?municipality ;
+    schema:identifier ?cantonId .
 
-  OPTIONAL { ?municipality schema:population ?population . }
-  OPTIONAL { ?municipality gont:area ?area . }
-
-  FILTER(?cantonId IN (${CANTON_CODES}))
-
-  # Seulement les entités actuelles (pas les anciennes communes fusionnées)
-  FILTER NOT EXISTS { ?municipality gont:abolitionDate ?abolished . }
+  ${cantonFilter}
 }
 ORDER BY ?cantonId ?name
 `;
 
-  console.log("[LINDAS] Sending SPARQL query...");
+  console.log("[LINDAS] Sending SPARQL query (schema.ld.admin.ch)...");
 
   const res = await fetch("https://ld.admin.ch/query", {
     method: "POST",
@@ -84,7 +86,7 @@ ORDER BY ?cantonId ?name
       Accept: "application/sparql-results+json",
     },
     body: query,
-    signal: AbortSignal.timeout(60000), // 60s timeout
+    signal: AbortSignal.timeout(60000),
   });
 
   if (!res.ok) {
@@ -97,7 +99,7 @@ ORDER BY ?cantonId ?name
 
   console.log(`[LINDAS] Got ${bindings.length} raw results`);
 
-  // Dédupliquer (LINDAS peut retourner des doublons à cause des labels multilingues)
+  // Dédupliquer (LINDAS peut retourner des doublons multilingues)
   const seen = new Set<number>();
   const communes: any[] = [];
 
@@ -110,45 +112,121 @@ ORDER BY ?cantonId ?name
     const canton = CANTON_MAP[cantonId];
     if (!canton) continue;
 
-    if (filterCanton && canton !== filterCanton) continue;
-
     communes.push({
       code_ofs: codeOfs,
       nom: b.name.value,
       canton,
-      district: b.districtName?.value || null,
-      population: b.population ? parseInt(b.population.value) : null,
-      superficie_km2: b.area ? parseFloat(b.area.value) : null,
+      district: null, // LINDAS simple query — district enrichi plus tard
+      population: null,
+      superficie_km2: null,
     });
   }
 
   return communes;
 }
 
-// ─── Fallback : API STATPOP via opendata.swiss ───
+// ─── SOURCE 2 : OpenPLZ API (fallback fiable) ───
 
-async function fetchCommunesStatpop(): Promise<any[]> {
-  // Si LINDAS échoue, on utilise le répertoire officiel des communes
-  // via l'API JSON du registre
-  const url = "https://sms.bfs.admin.ch/WcfBFSSpecificService.svc/AnonymousRest/communes/search?canton=10,22,23,24,25,26";
+async function fetchCommunesOpenPLZ(filterCanton?: string): Promise<any[]> {
+  // OpenPLZ API : REST simple, pas de SPARQL
+  // https://openplzapi.org/ch/Cantons/{key}/Communes
+  console.log("[OpenPLZ] Fetching communes via REST API...");
 
-  try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
-    if (!res.ok) throw new Error(`STATPOP HTTP ${res.status}`);
-    const data = await res.json();
+  const cantonEntries = filterCanton
+    ? Object.entries(CANTON_MAP).filter(([, v]) => v === filterCanton)
+    : Object.entries(CANTON_MAP);
 
-    return (data || []).map((c: any) => ({
-      code_ofs: c.id || c.communeId,
-      nom: c.name || c.communeName,
-      canton: CANTON_MAP[c.cantonId] || "",
-      district: c.districtName || null,
-      population: c.population || null,
-      superficie_km2: c.area || null,
-    }));
-  } catch (e) {
-    console.error("[STATPOP] Fallback also failed:", e);
-    return [];
+  const communes: any[] = [];
+
+  for (const [cantonCode, cantonAbbr] of cantonEntries) {
+    try {
+      // pageSize=500 pour tout récupérer d'un coup (max ~400 communes par canton)
+      const url = `https://openplzapi.org/ch/Cantons/${cantonCode}/Communes?pageSize=500`;
+      console.log(`[OpenPLZ] Fetching ${cantonAbbr}: ${url}`);
+
+      const res = await fetch(url, {
+        headers: { Accept: "text/json" },
+        signal: AbortSignal.timeout(30000),
+      });
+
+      if (!res.ok) {
+        console.error(`[OpenPLZ] HTTP ${res.status} for canton ${cantonAbbr}`);
+        continue;
+      }
+
+      const data = await res.json();
+      console.log(`[OpenPLZ] ${cantonAbbr}: ${data.length} communes`);
+
+      for (const c of data) {
+        communes.push({
+          code_ofs: parseInt(c.key) || parseInt(c.historicalCode) || 0,
+          nom: c.name || c.shortName || "",
+          canton: cantonAbbr,
+          district: c.district?.name || null,
+          population: null,
+          superficie_km2: null,
+        });
+      }
+    } catch (e: any) {
+      console.error(`[OpenPLZ] Error for ${cantonAbbr}:`, e.message);
+    }
   }
+
+  return communes;
+}
+
+// ─── SOURCE 3 : geo.admin.ch API (dernier recours) ───
+
+async function fetchCommunesGeoAdmin(filterCanton?: string): Promise<any[]> {
+  // API GeoAdmin : swissBOUNDARIES3D — contient toutes les communes suisses
+  // On utilise le endpoint "find" avec un wildcard pour récupérer tout
+  console.log("[GeoAdmin] Fetching communes via find API...");
+
+  const communes: any[] = [];
+  const cantonEntries = filterCanton
+    ? Object.entries(CANTON_MAP).filter(([, v]) => v === filterCanton)
+    : Object.entries(CANTON_MAP);
+
+  for (const [, cantonAbbr] of cantonEntries) {
+    try {
+      // Chercher toutes les communes du canton via le champ "kanton"
+      const url = `https://api3.geo.admin.ch/rest/services/api/MapServer/find?layer=ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill&searchField=kanton&searchText=${cantonAbbr}&returnGeometry=false`;
+
+      const res = await fetch(url, {
+        signal: AbortSignal.timeout(30000),
+      });
+
+      if (!res.ok) {
+        console.error(`[GeoAdmin] HTTP ${res.status} for ${cantonAbbr}`);
+        continue;
+      }
+
+      const data = await res.json();
+      const results = data.results || [];
+      console.log(`[GeoAdmin] ${cantonAbbr}: ${results.length} results`);
+
+      for (const r of results) {
+        const attrs = r.attributes || r.properties || {};
+        const codeOfs = attrs.bfs_nr || attrs.id || attrs.gemeindenummer || 0;
+        const nom = attrs.gemname || attrs.name || "";
+
+        if (codeOfs && nom) {
+          communes.push({
+            code_ofs: parseInt(codeOfs),
+            nom,
+            canton: cantonAbbr,
+            district: attrs.bezirksname || null,
+            population: null,
+            superficie_km2: attrs.gemflaeche ? parseFloat(attrs.gemflaeche) / 1000000 : null,
+          });
+        }
+      }
+    } catch (e: any) {
+      console.error(`[GeoAdmin] Error for ${cantonAbbr}:`, e.message);
+    }
+  }
+
+  return communes;
 }
 
 // ─── Enrichissement : nombre d'entreprises par commune ───
@@ -157,7 +235,6 @@ async function enrichWithCompanies(): Promise<{
   updated: number;
   errors: number;
 }> {
-  // Compter les entreprises par ville depuis notre table companies
   const { data, error } = await supabase.rpc("count_companies_by_city");
 
   if (error || !data) {
@@ -212,18 +289,39 @@ export async function GET(request: Request) {
   try {
     // ─── STEP 1 : Import des communes ───
     if (step === "communes") {
-      // Essayer LINDAS d'abord
-      let communes = await fetchCommunesLINDAS(canton).catch((e) => {
-        console.error("[LINDAS] Error:", e.message);
-        return [] as any[];
-      });
+      let communes: any[] = [];
+      let source = "";
 
-      // Fallback si LINDAS échoue
+      // Source 1 : LINDAS SPARQL
+      try {
+        communes = await fetchCommunesLINDAS(canton);
+        source = "LINDAS";
+        console.log(`[communes-import] LINDAS: ${communes.length} communes`);
+      } catch (e: any) {
+        console.error("[communes-import] LINDAS failed:", e.message);
+      }
+
+      // Source 2 : OpenPLZ API (fallback)
       if (communes.length === 0) {
-        console.log("[communes-import] LINDAS returned 0, trying fallback...");
-        communes = await fetchCommunesStatpop();
-        if (canton) {
-          communes = communes.filter((c) => c.canton === canton);
+        try {
+          console.log("[communes-import] Trying OpenPLZ fallback...");
+          communes = await fetchCommunesOpenPLZ(canton);
+          source = "OpenPLZ";
+          console.log(`[communes-import] OpenPLZ: ${communes.length} communes`);
+        } catch (e: any) {
+          console.error("[communes-import] OpenPLZ failed:", e.message);
+        }
+      }
+
+      // Source 3 : geo.admin.ch (dernier recours)
+      if (communes.length === 0) {
+        try {
+          console.log("[communes-import] Trying GeoAdmin fallback...");
+          communes = await fetchCommunesGeoAdmin(canton);
+          source = "GeoAdmin";
+          console.log(`[communes-import] GeoAdmin: ${communes.length} communes`);
+        } catch (e: any) {
+          console.error("[communes-import] GeoAdmin failed:", e.message);
         }
       }
 
@@ -231,13 +329,13 @@ export async function GET(request: Request) {
         return NextResponse.json(
           {
             success: false,
-            error: "Aucune commune récupérée depuis LINDAS ni le fallback",
+            error: "Aucune commune récupérée (LINDAS + OpenPLZ + GeoAdmin ont tous échoué)",
           },
           { status: 500 }
         );
       }
 
-      console.log(`[communes-import] ${communes.length} communes à importer`);
+      console.log(`[communes-import] ${communes.length} communes à importer (source: ${source})`);
 
       // Préparer les rows avec slugs
       const rows = communes.map((c) => ({
@@ -277,10 +375,11 @@ export async function GET(request: Request) {
       return NextResponse.json({
         success: true,
         step: "communes",
+        source,
         total: communes.length,
         inserted,
         errors: errCount,
-        sample: communes.slice(0, 3).map((c) => `${c.nom} (${c.canton})`),
+        sample: communes.slice(0, 5).map((c) => `${c.nom} (${c.canton})`),
       });
     }
 
