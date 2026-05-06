@@ -334,65 +334,152 @@ SELECT ?bfsCode ?population ?area WHERE {
     if (missingPop && missingPop.length > 0) {
       console.log(`[population] ${missingPop.length} communes still missing population, trying BFS PXWEB...`);
 
+      const missingCodes = new Set(missingPop.map((c: any) => c.code_ofs));
+
       // BFS PXWEB API : table px-x-0102010000_103 (population par commune)
-      const pxUrl = "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-0102010000_103/px-x-0102010000_103.px";
-      const pxQuery = {
-        query: [
-          { code: "Bevölkerungstyp", selection: { filter: "item", values: ["1"] } },
-          { code: "Geschlecht", selection: { filter: "item", values: ["0"] } },
-          { code: "Zivilstand", selection: { filter: "item", values: ["0"] } },
-          { code: "Altersklasse", selection: { filter: "item", values: ["0"] } },
-          { code: "Jahr", selection: { filter: "top", values: ["1"] } },
-        ],
-        response: { format: "json" },
-      };
+      // Étape 1 : GET metadata pour découvrir les codes de variables (FR vs DE)
+      const pxBase = "https://www.pxweb.bfs.admin.ch/api/v1";
+      const pxTable = "px-x-0102010000_103/px-x-0102010000_103.px";
 
-      const pxRes = await fetch(pxUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(pxQuery),
-        signal: AbortSignal.timeout(60000),
-      });
+      let pxUpdates: { code: number; pop: number }[] = [];
 
-      if (pxRes.ok) {
-        const pxData = await pxRes.json();
-        const pxValues = pxData?.data || [];
-        console.log(`[BFS PXWEB] Got ${pxValues.length} entries`);
+      // Essayer d'abord /de/ (codes allemands connus), puis /fr/ avec auto-discovery
+      for (const lang of ["de", "fr"]) {
+        if (pxUpdates.length > 0) break; // déjà trouvé
 
-        const missingCodes = new Set(missingPop.map((c: any) => c.code_ofs));
-        let pxUpdated = 0;
+        const pxUrl = `${pxBase}/${lang}/${pxTable}`;
+        console.log(`[BFS PXWEB] Trying ${lang} endpoint...`);
 
-        const pxUpdates: { code: number; pop: number }[] = [];
-        for (const entry of pxValues) {
-          // Le premier key est le code commune (format "......XXXX")
-          const rawKey = entry.key?.[0] || "";
-          const codeStr = rawKey.replace(/\./g, "").trim();
-          const code = parseInt(codeStr);
-          const pop = parseInt(entry.values?.[0]) || 0;
+        try {
+          // GET metadata pour découvrir les noms exacts des variables
+          const metaRes = await fetch(pxUrl, {
+            method: "GET",
+            headers: { "Accept": "application/json" },
+            signal: AbortSignal.timeout(30000),
+          });
 
-          if (code && pop > 0 && missingCodes.has(code)) {
-            pxUpdates.push({ code, pop });
+          if (!metaRes.ok) {
+            console.log(`[BFS PXWEB] ${lang} metadata HTTP ${metaRes.status}, skipping`);
+            continue;
           }
-        }
 
-        // Batch update
-        for (let i = 0; i < pxUpdates.length; i += 50) {
-          const chunk = pxUpdates.slice(i, i + 50);
-          await Promise.all(
-            chunk.map(({ code, pop }) =>
-              supabase
-                .from("communes")
-                .update({ population: pop, updated_at: new Date().toISOString() })
-                .eq("code_ofs", code)
-            )
-          );
-          pxUpdated += chunk.length;
-        }
+          const meta = await metaRes.json();
+          const variables = meta?.variables || [];
+          console.log(`[BFS PXWEB] ${lang} variables:`, variables.map((v: any) => `${v.code}(${v.values?.length || 0})`).join(", "));
 
+          // Construire la query dynamiquement à partir des métadonnées
+          // On veut : population résidente permanente, total sexe, total état civil, total âge, dernière année
+          // La variable commune (première) n'est PAS filtrée → retourne toutes les communes
+          const query: any[] = [];
+
+          for (const v of variables) {
+            const code = v.code as string;
+            const values = (v.values || []) as string[];
+            const texts = (v.valueTexts || []) as string[];
+
+            // Skip la variable commune (première variable, contient les codes OFS)
+            if (v === variables[0]) continue;
+
+            // Pour chaque variable, sélectionner "Total" ou la première valeur
+            // Et pour l'année, prendre la dernière (la plus récente)
+            const isYear = code.toLowerCase().includes("jahr") ||
+                          code.toLowerCase().includes("ann") ||
+                          code.toLowerCase().includes("year") ||
+                          (values.length > 0 && /^\d{4}$/.test(values[0]));
+
+            if (isYear) {
+              // Dernière année disponible
+              query.push({
+                code,
+                selection: { filter: "item", values: [values[values.length - 1]] },
+              });
+              console.log(`[BFS PXWEB] Year variable "${code}" → ${values[values.length - 1]}`);
+            } else {
+              // Chercher "Total" ou la valeur agrégée (généralement "0" ou la première)
+              const totalIdx = texts.findIndex((t: string) =>
+                t.toLowerCase().includes("total") || t === "Total" || t === "Totale"
+              );
+              const selectedValue = totalIdx >= 0 ? values[totalIdx] : values[0];
+              query.push({
+                code,
+                selection: { filter: "item", values: [selectedValue] },
+              });
+              console.log(`[BFS PXWEB] Variable "${code}" → "${selectedValue}" (${texts[totalIdx >= 0 ? totalIdx : 0]})`);
+            }
+          }
+
+          // POST query
+          const pxRes = await fetch(pxUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query, response: { format: "json" } }),
+            signal: AbortSignal.timeout(60000),
+          });
+
+          if (!pxRes.ok) {
+            const errText = await pxRes.text().catch(() => "");
+            console.error(`[BFS PXWEB] ${lang} POST HTTP ${pxRes.status}: ${errText.slice(0, 200)}`);
+            continue;
+          }
+
+          const pxData = await pxRes.json();
+          const pxValues = pxData?.data || [];
+          console.log(`[BFS PXWEB] Got ${pxValues.length} entries from ${lang} endpoint`);
+
+          for (const entry of pxValues) {
+            // Le premier key est le code commune
+            const rawKey = entry.key?.[0] || "";
+            // Format possible : "......1234" ou "1234" ou "..1234"
+            const codeStr = rawKey.replace(/\D/g, "").trim();
+            const code = parseInt(codeStr);
+            const pop = parseInt(entry.values?.[0]) || 0;
+
+            if (code && pop > 0 && missingCodes.has(code)) {
+              pxUpdates.push({ code, pop });
+            }
+          }
+
+          console.log(`[BFS PXWEB] Matched ${pxUpdates.length}/${missingPop.length} missing communes from ${lang}`);
+
+        } catch (langErr: any) {
+          console.error(`[BFS PXWEB] ${lang} error:`, langErr.message);
+        }
+      }
+
+      // Batch update des communes trouvées
+      let pxUpdated = 0;
+      for (let i = 0; i < pxUpdates.length; i += 50) {
+        const chunk = pxUpdates.slice(i, i + 50);
+        await Promise.all(
+          chunk.map(({ code, pop }) =>
+            supabase
+              .from("communes")
+              .update({ population: pop, updated_at: new Date().toISOString() })
+              .eq("code_ofs", code)
+          )
+        );
+        pxUpdated += chunk.length;
+      }
+
+      if (pxUpdated > 0) {
         console.log(`[BFS PXWEB] Updated ${pxUpdated} additional communes`);
         updated += pxUpdated;
-      } else {
-        console.error(`[BFS PXWEB] HTTP ${pxRes.status}`);
+      }
+
+      // Log les communes toujours manquantes
+      const { data: stillMissing } = await supabase
+        .from("communes")
+        .select("code_ofs, nom, canton")
+        .is("population", null);
+
+      if (stillMissing && stillMissing.length > 0) {
+        console.log(`[population] Still missing ${stillMissing.length} communes:`);
+        for (const c of stillMissing.slice(0, 20)) {
+          console.log(`  - ${c.nom} (${c.canton}) [OFS ${c.code_ofs}]`);
+        }
+        if (stillMissing.length > 20) {
+          console.log(`  ... and ${stillMissing.length - 20} more`);
+        }
       }
     }
   } catch (e: any) {
