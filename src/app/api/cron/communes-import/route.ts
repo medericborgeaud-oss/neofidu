@@ -810,8 +810,66 @@ export async function GET(request: Request) {
       });
     }
 
+    // ─── STEP 4 : Nettoyage des communes historiques/fusionnées ───
+    if (step === "cleanup") {
+      // Supprimer les communes sans population = communes historiques/fusionnées
+      // qui n'existent plus en tant qu'entités indépendantes
+      const { data: obsolete } = await supabase
+        .from("communes")
+        .select("code_ofs, nom, canton, population")
+        .is("population", null);
+
+      if (!obsolete || obsolete.length === 0) {
+        return NextResponse.json({
+          success: true,
+          step: "cleanup",
+          message: "Aucune commune obsolète à supprimer",
+          deleted: 0,
+        });
+      }
+
+      console.log(`[cleanup] ${obsolete.length} communes sans population (historiques/fusionnées)`);
+      for (const c of obsolete.slice(0, 20)) {
+        console.log(`[cleanup]   - ${c.nom} (${c.canton}) [OFS ${c.code_ofs}]`);
+      }
+
+      // Supprimer par batch
+      const codes = obsolete.map((c: any) => c.code_ofs);
+      let deleted = 0;
+
+      for (let i = 0; i < codes.length; i += 100) {
+        const chunk = codes.slice(i, i + 100);
+        const { error } = await supabase
+          .from("communes")
+          .delete()
+          .in("code_ofs", chunk);
+
+        if (error) {
+          console.error(`[cleanup] Delete error:`, error.message);
+        } else {
+          deleted += chunk.length;
+          console.log(`[cleanup] ✓ ${deleted}/${codes.length}`);
+        }
+      }
+
+      // Compter le total restant
+      const { count } = await supabase
+        .from("communes")
+        .select("*", { count: "exact", head: true });
+
+      console.log(`[cleanup] Done: ${deleted} supprimées, ${count} communes restantes`);
+
+      return NextResponse.json({
+        success: true,
+        step: "cleanup",
+        deleted,
+        remaining: count,
+        sample_deleted: obsolete.slice(0, 10).map((c: any) => `${c.nom} (${c.canton})`),
+      });
+    }
+
     return NextResponse.json(
-      { error: `Step inconnu: "${step}". Utilisez ?step=communes, ?step=population ou ?step=companies` },
+      { error: `Step inconnu: "${step}". Utilisez ?step=communes, ?step=population, ?step=companies ou ?step=cleanup` },
       { status: 400 }
     );
   } catch (error: any) {
