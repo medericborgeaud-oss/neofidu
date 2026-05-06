@@ -347,9 +347,18 @@ async function enrichWithPopulationBFS(): Promise<{
     return { updated: 0, errors: 0, still_missing: 0 };
   }
 
+  // Log les premiers codes manquants et leur type
+  const sampleMissing = missingPop.slice(0, 10);
   console.log(`[BFS PXWEB] ${missingPop.length} communes missing population`);
+  console.log(`[BFS PXWEB] Sample missing codes: ${sampleMissing.map((c: any) => `${c.code_ofs}(${typeof c.code_ofs})`).join(", ")}`);
+  console.log(`[BFS PXWEB] Sample missing names: ${sampleMissing.map((c: any) => c.nom).join(", ")}`);
 
   const missingCodes = new Set(missingPop.map((c: any) => c.code_ofs));
+
+  // Vérif rapide : est-ce que le Set fonctionne correctement ?
+  const firstCode = missingPop[0].code_ofs;
+  console.log(`[BFS PXWEB] Set check: firstCode=${firstCode} (${typeof firstCode}), has=${missingCodes.has(firstCode)}, has_number=${missingCodes.has(Number(firstCode))}, has_string=${missingCodes.has(String(firstCode))}`);
+
   let pxUpdates: { code: number; pop: number }[] = [];
 
   const pxBase = "https://www.pxweb.bfs.admin.ch/api/v1";
@@ -409,13 +418,21 @@ async function enrichWithPopulationBFS(): Promise<{
 
       // Mapper les codes OFS vers les valeurs PxWeb
       const targetPxValues: string[] = [];
+      const matchedCodes: { pxVal: string; cleaned: string; code: number; text: string }[] = [];
       for (let i = 0; i < communeValues.length; i++) {
         const pxVal = communeValues[i];
         const cleaned = pxVal.replace(/\./g, "").replace(/-/g, "").trim();
         const code = parseInt(cleaned);
         if (code > 0 && missingCodes.has(code)) {
           targetPxValues.push(pxVal);
+          matchedCodes.push({ pxVal, cleaned, code, text: communeTexts[i] || "" });
         }
+      }
+
+      // Log les codes matchés pour debug
+      console.log(`[BFS PXWEB] First 10 matched codes:`);
+      for (const m of matchedCodes.slice(0, 10)) {
+        console.log(`[BFS PXWEB]   pxVal="${m.pxVal}" → cleaned="${m.cleaned}" → code=${m.code} → text="${m.text}"`);
       }
 
       console.log(`[BFS PXWEB] Found ${targetPxValues.length}/${missingPop.length} missing codes in PxWeb data`);
