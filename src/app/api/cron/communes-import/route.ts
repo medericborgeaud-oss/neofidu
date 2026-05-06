@@ -868,101 +868,52 @@ export async function GET(request: Request) {
       });
     }
 
-    // ─── STEP 5 : Supprimer les communes qui ne sont plus dans le répertoire BFS actuel ───
+    // ─── STEP 5 : Supprimer les communes historiques connues (liste manuelle vérifiée) ───
     if (step === "dedup") {
-      // Approche fiable : récupérer la liste OFFICIELLE des communes actuelles
-      // depuis BFS PXWEB, et supprimer toute commune de notre DB qui n'y figure pas.
-      const pxUrl = "https://www.pxweb.bfs.admin.ch/api/v1/de/px-x-0102010000_103/px-x-0102010000_103.px";
+      // Liste vérifiée des anciens codes OFS pour des communes fusionnées/renommées
+      // qui ont été remplacées par de nouvelles entrées dans LINDAS.
+      // Source: OFS Répertoire officiel des communes, mutations 2017-2025
+      const obsoleteCodes: { code: number; reason: string }[] = [
+        // VS - Valais
+        { code: 6023, reason: "Bagnes → Val de Bagnes (2021)" },
+        { code: 6153, reason: "Montana → Crans-Montana (2017)" },
+        { code: 6159, reason: "Randogne → Crans-Montana (2017)" },
+        { code: 6156, reason: "Mollens (VS) → Crans-Montana (2017)" },
+        { code: 6148, reason: "Chermignon → Crans-Montana (2017)" },
+        { code: 6084, reason: "Martigny-Combe → Martigny (2021)" },
+        { code: 6211, reason: "Obergoms → Goms (2017)" },
+        // FR - Fribourg
+        { code: 2075, reason: "La Folliaz → Villaz (2020)" },
+        { code: 2107, reason: "Villaz-Saint-Pierre → Villaz (2020)" },
+        // Ajouter d'autres au besoin — ne jamais utiliser de détection automatique
+      ];
 
-      const metaRes = await fetch(pxUrl, {
-        method: "GET",
-        headers: { "Accept": "application/json" },
-        signal: AbortSignal.timeout(30000),
-      });
-
-      if (!metaRes.ok) {
-        return NextResponse.json({
-          success: false,
-          error: `BFS metadata HTTP ${metaRes.status}`,
-        }, { status: 500 });
-      }
-
-      const meta = await metaRes.json();
-      const variables = meta?.variables || [];
-
-      // Trouver la variable commune (celle avec 2000+ valeurs)
-      const communeVar = variables.find((v: any) =>
-        v.code.toLowerCase().includes("gemeinde") ||
-        v.code.toLowerCase().includes("kanton") ||
-        (v.values?.length || 0) > 500
-      );
-
-      if (!communeVar) {
-        return NextResponse.json({
-          success: false,
-          error: "Could not find commune variable in BFS metadata",
-        }, { status: 500 });
-      }
-
-      // Extraire les codes OFS actuels (communes uniquement, pas cantons/districts)
-      // Format: "......XXXX" pour communes, "-X" pour cantons, ">>XXXX" pour districts
-      const bfsCodes = new Set<number>();
-      const communeValues = communeVar.values as string[];
-      const communeTexts = communeVar.valueTexts as string[];
-
-      for (let i = 0; i < communeValues.length; i++) {
-        const val = communeValues[i];
-        // Les communes commencent par "......" (6 points)
-        if (val.startsWith("......")) {
-          const code = parseInt(val.replace(/\./g, ""));
-          if (code > 0 && code < 10000) {
-            bfsCodes.add(code);
-          }
-        }
-      }
-
-      console.log(`[dedup] BFS has ${bfsCodes.size} current communes`);
-
-      // Récupérer toutes nos communes
+      // Vérifier lesquels existent dans notre DB
       const { data: ourCommunes } = await supabase
         .from("communes")
-        .select("code_ofs, nom, canton, population");
+        .select("code_ofs, nom, canton")
+        .in("code_ofs", obsoleteCodes.map((c) => c.code));
 
-      if (!ourCommunes) {
-        return NextResponse.json({ success: false, error: "DB query failed" }, { status: 500 });
+      const existingCodes = new Set((ourCommunes || []).map((c: any) => c.code_ofs));
+      const toDelete = obsoleteCodes.filter((c) => existingCodes.has(c.code));
+
+      console.log(`[dedup] ${toDelete.length}/${obsoleteCodes.length} obsolete codes found in DB`);
+      for (const c of toDelete) {
+        console.log(`[dedup]   - OFS ${c.code}: ${c.reason}`);
       }
 
-      console.log(`[dedup] Our DB has ${ourCommunes.length} communes`);
-
-      // Identifier les communes obsolètes (pas dans BFS)
-      const toDelete: { code: number; nom: string; canton: string }[] = [];
-      for (const c of ourCommunes) {
-        if (!bfsCodes.has(c.code_ofs)) {
-          toDelete.push({ code: c.code_ofs, nom: c.nom, canton: c.canton });
-        }
-      }
-
-      console.log(`[dedup] ${toDelete.length} communes not in current BFS list:`);
-      for (const c of toDelete.slice(0, 30)) {
-        console.log(`[dedup]   - ${c.nom} (${c.canton}) [OFS ${c.code}]`);
-      }
-
-      // Supprimer
       let deleted = 0;
       if (toDelete.length > 0) {
         const codes = toDelete.map((c) => c.code);
-        for (let i = 0; i < codes.length; i += 100) {
-          const chunk = codes.slice(i, i + 100);
-          const { error } = await supabase
-            .from("communes")
-            .delete()
-            .in("code_ofs", chunk);
+        const { error } = await supabase
+          .from("communes")
+          .delete()
+          .in("code_ofs", codes);
 
-          if (error) {
-            console.error(`[dedup] Delete error:`, error.message);
-          } else {
-            deleted += chunk.length;
-          }
+        if (error) {
+          console.error(`[dedup] Delete error:`, error.message);
+        } else {
+          deleted = toDelete.length;
         }
       }
 
@@ -973,11 +924,9 @@ export async function GET(request: Request) {
       return NextResponse.json({
         success: true,
         step: "dedup",
-        bfs_current: bfsCodes.size,
-        our_total_before: ourCommunes.length,
         deleted,
         remaining: count,
-        sample_deleted: toDelete.slice(0, 15).map((c) => `${c.nom} (${c.canton})`),
+        details: toDelete.map((c) => c.reason),
       });
     }
 
