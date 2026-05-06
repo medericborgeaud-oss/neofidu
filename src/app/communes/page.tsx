@@ -18,8 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // ISR : cache 1h
-
+export const dynamic = "force-dynamic"; // Pas de cache — données toujours fraîches
 export default async function CommunesPage(props: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
