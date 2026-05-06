@@ -337,27 +337,24 @@ async function enrichWithPopulationBFS(): Promise<{
   errors: number;
   still_missing: number;
 }> {
-  const { data: missingPop } = await supabase
+  // Récupérer TOUTES les communes (pas juste celles sans population)
+  // pour écraser les éventuelles données Wikidata incorrectes
+  const { data: allCommunes } = await supabase
     .from("communes")
-    .select("code_ofs, nom, canton")
-    .is("population", null);
+    .select("code_ofs, nom, canton");
 
-  if (!missingPop || missingPop.length === 0) {
-    console.log("[BFS PXWEB] No communes missing population!");
+  if (!allCommunes || allCommunes.length === 0) {
+    console.log("[BFS PXWEB] No communes in DB!");
     return { updated: 0, errors: 0, still_missing: 0 };
   }
 
-  // Log les premiers codes manquants et leur type
-  const sampleMissing = missingPop.slice(0, 10);
-  console.log(`[BFS PXWEB] ${missingPop.length} communes missing population`);
-  console.log(`[BFS PXWEB] Sample missing codes: ${sampleMissing.map((c: any) => `${c.code_ofs}(${typeof c.code_ofs})`).join(", ")}`);
-  console.log(`[BFS PXWEB] Sample missing names: ${sampleMissing.map((c: any) => c.nom).join(", ")}`);
+  console.log(`[BFS PXWEB] ${allCommunes.length} communes to enrich with BFS data`);
 
-  const missingCodes = new Set(missingPop.map((c: any) => c.code_ofs));
+  const allCodes = new Set(allCommunes.map((c: any) => c.code_ofs));
 
   // Vérif rapide : est-ce que le Set fonctionne correctement ?
-  const firstCode = missingPop[0].code_ofs;
-  console.log(`[BFS PXWEB] Set check: firstCode=${firstCode} (${typeof firstCode}), has=${missingCodes.has(firstCode)}, has_number=${missingCodes.has(Number(firstCode))}, has_string=${missingCodes.has(String(firstCode))}`);
+  const firstCode = allCommunes[0].code_ofs;
+  console.log(`[BFS PXWEB] Set check: firstCode=${firstCode} (${typeof firstCode}), has=${allCodes.has(firstCode)}, has_number=${allCodes.has(Number(firstCode))}, has_string=${allCodes.has(String(firstCode))}`);
 
   let pxUpdates: { code: number; pop: number }[] = [];
 
@@ -423,7 +420,7 @@ async function enrichWithPopulationBFS(): Promise<{
         const pxVal = communeValues[i];
         const cleaned = pxVal.replace(/\./g, "").replace(/-/g, "").trim();
         const code = parseInt(cleaned);
-        if (code > 0 && missingCodes.has(code)) {
+        if (code > 0 && allCodes.has(code)) {
           targetPxValues.push(pxVal);
           matchedCodes.push({ pxVal, cleaned, code, text: communeTexts[i] || "" });
         }
@@ -435,7 +432,7 @@ async function enrichWithPopulationBFS(): Promise<{
         console.log(`[BFS PXWEB]   pxVal="${m.pxVal}" → cleaned="${m.cleaned}" → code=${m.code} → text="${m.text}"`);
       }
 
-      console.log(`[BFS PXWEB] Found ${targetPxValues.length}/${missingPop.length} missing codes in PxWeb data`);
+      console.log(`[BFS PXWEB] Found ${targetPxValues.length}/${allCommunes.length} missing codes in PxWeb data`);
 
       if (targetPxValues.length === 0) {
         console.log(`[BFS PXWEB] No matching codes found in ${lang}, trying next...`);
@@ -510,7 +507,7 @@ async function enrichWithPopulationBFS(): Promise<{
         const code = parseInt(codeStr);
         const pop = parseInt(entry.values?.[0]) || 0;
 
-        if (code > 0 && code < 10000 && pop > 0 && missingCodes.has(code)) {
+        if (code > 0 && code < 10000 && pop > 0 && allCodes.has(code)) {
           pxUpdates.push({ code, pop });
         }
       }
