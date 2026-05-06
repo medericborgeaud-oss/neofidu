@@ -40,11 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tauxText = commune.taux_commune
     ? `coefficient communal ${commune.taux_commune}`
     : "";
-  const entrText = commune.nb_entreprises
-    ? `${commune.nb_entreprises} entreprises`
-    : "";
-
-  const parts = [popText, tauxText, entrText].filter(Boolean);
+  const parts = [popText, tauxText].filter(Boolean);
 
   return {
     title: `${commune.nom} (${cantonName}) — Fiscalité, population | NeoFidu`,
@@ -83,17 +79,11 @@ export default async function CommunePage({ params }: Props) {
       : "bg-gray-100 text-gray-500";
 
   // CTA contextuel
-  const ctaText = commune.nb_entreprises && commune.nb_entreprises > 50
-    ? {
-        text: `Vous créez votre entreprise à ${commune.nom} ?`,
-        offer: "Comptabilité et création d'entreprise dès CHF 500.—",
-        href: "/demande",
-      }
-    : {
-        text: `Vous habitez à ${commune.nom} ?`,
-        offer: "Déclaration d'impôts dès CHF 50.—",
-        href: "/demande",
-      };
+  const ctaText = {
+    text: `Vous habitez à ${commune.nom} ?`,
+    offer: "Déclaration d'impôts dès CHF 50.—",
+    href: "/demande",
+  };
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -173,18 +163,6 @@ export default async function CommunePage({ params }: Props) {
                 </p>
               </div>
 
-              {/* Entreprises */}
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
-                  <Building2 className="w-3 h-3" />
-                  Entreprises actives
-                </div>
-                <p className="text-sm font-medium text-gray-900">
-                  {commune.nb_entreprises
-                    ? commune.nb_entreprises.toLocaleString("fr-CH")
-                    : "—"}
-                </p>
-              </div>
             </div>
 
             {/* ─── Fiscalité ─── */}
@@ -233,39 +211,28 @@ export default async function CommunePage({ params }: Props) {
               </div>
             </div>
 
+
             {/* ─── Économie ─── */}
-            {(commune.nb_entreprises || commune.secteur_dominant) && (
+            {commune.secteur_dominant && (
               <div className="mb-6">
                 <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-emerald-500" />
                   Économie
                 </h2>
                 <div className="bg-gray-50 rounded-lg p-4">
-                  {commune.nb_entreprises && (
-                    <p className="text-sm text-gray-600 mb-2">
-                      <span className="font-medium text-gray-900">
-                        {commune.nb_entreprises.toLocaleString("fr-CH")}
-                      </span>{" "}
-                      entreprises actives enregistrées
-                    </p>
-                  )}
-                  {commune.secteur_dominant && (
-                    <p className="text-sm text-gray-600">
-                      Secteur dominant :{" "}
-                      <span className="font-medium text-gray-900 capitalize">
-                        {commune.secteur_dominant}
-                      </span>
-                    </p>
-                  )}
-                  {commune.nb_entreprises && commune.nb_entreprises > 0 && (
-                    <Link
-                      href={`/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
-                      className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 mt-3"
-                    >
-                      Voir les entreprises de {commune.nom}
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  )}
+                  <p className="text-sm text-gray-600">
+                    Secteur dominant :{" "}
+                    <span className="font-medium text-gray-900 capitalize">
+                      {commune.secteur_dominant}
+                    </span>
+                  </p>
+                  <Link
+                    href={`/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
+                    className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 mt-3"
+                  >
+                    Voir les entreprises de {commune.nom}
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
                 </div>
               </div>
             )}
