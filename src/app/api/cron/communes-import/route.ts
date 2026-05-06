@@ -414,19 +414,18 @@ async function enrichWithPopulationBFS(): Promise<{
       const communeTexts = communeVar.valueTexts as string[];
 
       // Mapper les codes OFS vers les valeurs PxWeb
-      // IMPORTANT : ne garder QUE les communes (commencent par des points "......")
-      // Ignorer les cantons (commencent par "-") et districts (commencent par ">>")
+      // Format PxWeb : canton=2 chars ("FR"), district=6 chars ("001004"), commune=4 chars ("2173")
+      // CRITICAL : parseInt("002173") (district) == 2173 (commune) → on ne garde QUE les 4 chars
       const targetPxValues: string[] = [];
       const matchedCodes: { pxVal: string; cleaned: string; code: number; text: string }[] = [];
       for (let i = 0; i < communeValues.length; i++) {
         const pxVal = communeValues[i];
-        // Filtrer : skip cantons (-) et districts (>>)
-        if (pxVal.startsWith("-") || pxVal.startsWith(">")) continue;
-        const cleaned = pxVal.replace(/\./g, "").trim();
-        const code = parseInt(cleaned);
+        // Uniquement les communes (4 caractères), skip cantons (2), districts (6), pays (8100)
+        if (pxVal.length !== 4 || pxVal === "8100") continue;
+        const code = parseInt(pxVal);
         if (code > 0 && allCodes.has(code)) {
           targetPxValues.push(pxVal);
-          matchedCodes.push({ pxVal, cleaned, code, text: communeTexts[i] || "" });
+          matchedCodes.push({ pxVal, cleaned: pxVal, code, text: communeTexts[i] || "" });
         }
       }
 
