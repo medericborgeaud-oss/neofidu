@@ -367,9 +367,35 @@ SELECT ?bfsCode ?population ?area WHERE {
           const variables = meta?.variables || [];
           console.log(`[BFS PXWEB] ${lang} variables:`, variables.map((v: any) => `${v.code}(${v.values?.length || 0})`).join(", "));
 
-          // Construire la query dynamiquement à partir des métadonnées
-          // On veut : population résidente permanente, total sexe, total état civil, total âge, dernière année
-          // La variable commune (première) n'est PAS filtrée → retourne toutes les communes
+          // Identifier les variables par rôle (pas par position !)
+          // - Commune : celle avec le plus de valeurs (2000+), contient "Gemeinde"/"Commune"/"Kanton"
+          // - Année : celle dont le code contient "Jahr"/"Ann" ou dont TOUTES les valeurs sont des années 4 chiffres
+          // - Autres : filtrer sur "Total" ou valeur agrégée
+          const communeVar = variables.find((v: any) =>
+            v.code.toLowerCase().includes("gemeinde") ||
+            v.code.toLowerCase().includes("commune") ||
+            v.code.toLowerCase().includes("kanton") ||
+            (v.values?.length || 0) > 500
+          );
+
+          const yearVar = variables.find((v: any) => {
+            const c = (v.code as string).toLowerCase();
+            if (c.includes("jahr") || c === "année" || c === "year") return true;
+            // Toutes les valeurs sont des années (4 chiffres entre 1900-2100)
+            const vals = v.values || [];
+            return vals.length > 0 && vals.length < 50 &&
+              vals.every((val: string) => /^\d{4}$/.test(val) && parseInt(val) >= 1900 && parseInt(val) <= 2100);
+          });
+
+          console.log(`[BFS PXWEB] Commune var: "${communeVar?.code}" (${communeVar?.values?.length} values)`);
+          console.log(`[BFS PXWEB] Year var: "${yearVar?.code}" (${yearVar?.values?.length} values)`);
+
+          if (!communeVar || !yearVar) {
+            console.error(`[BFS PXWEB] Could not identify commune/year variables, skipping ${lang}`);
+            continue;
+          }
+
+          // Construire la query : NE PAS filtrer la variable commune, filtrer tout le reste
           const query: any[] = [];
 
           for (const v of variables) {
@@ -377,36 +403,35 @@ SELECT ?bfsCode ?population ?area WHERE {
             const values = (v.values || []) as string[];
             const texts = (v.valueTexts || []) as string[];
 
-            // Skip la variable commune (première variable, contient les codes OFS)
-            if (v === variables[0]) continue;
+            // Skip la variable commune → retourne TOUTES les communes
+            if (v === communeVar) {
+              console.log(`[BFS PXWEB] SKIP commune var "${code}" (all ${values.length} values)`);
+              continue;
+            }
 
-            // Pour chaque variable, sélectionner "Total" ou la première valeur
-            // Et pour l'année, prendre la dernière (la plus récente)
-            const isYear = code.toLowerCase().includes("jahr") ||
-                          code.toLowerCase().includes("ann") ||
-                          code.toLowerCase().includes("year") ||
-                          (values.length > 0 && /^\d{4}$/.test(values[0]));
-
-            if (isYear) {
+            if (v === yearVar) {
               // Dernière année disponible
+              const lastYear = values[values.length - 1];
               query.push({
                 code,
-                selection: { filter: "item", values: [values[values.length - 1]] },
+                selection: { filter: "item", values: [lastYear] },
               });
-              console.log(`[BFS PXWEB] Year variable "${code}" → ${values[values.length - 1]}`);
+              console.log(`[BFS PXWEB] Year "${code}" → ${lastYear}`);
             } else {
-              // Chercher "Total" ou la valeur agrégée (généralement "0" ou la première)
+              // Chercher "Total" dans les textes
               const totalIdx = texts.findIndex((t: string) =>
-                t.toLowerCase().includes("total") || t === "Total" || t === "Totale"
+                /total/i.test(t)
               );
               const selectedValue = totalIdx >= 0 ? values[totalIdx] : values[0];
               query.push({
                 code,
                 selection: { filter: "item", values: [selectedValue] },
               });
-              console.log(`[BFS PXWEB] Variable "${code}" → "${selectedValue}" (${texts[totalIdx >= 0 ? totalIdx : 0]})`);
+              console.log(`[BFS PXWEB] Filter "${code}" → "${selectedValue}" (${texts[totalIdx >= 0 ? totalIdx : 0]})`);
             }
           }
+
+          console.log(`[BFS PXWEB] POST query with ${query.length} filters...`);
 
           // POST query
           const pxRes = await fetch(pxUrl, {
@@ -426,15 +451,27 @@ SELECT ?bfsCode ?population ?area WHERE {
           const pxValues = pxData?.data || [];
           console.log(`[BFS PXWEB] Got ${pxValues.length} entries from ${lang} endpoint`);
 
+          // Log quelques exemples pour debug
+          if (pxValues.length > 0) {
+            const sample = pxValues.slice(0, 3);
+            for (const s of sample) {
+              console.log(`[BFS PXWEB] Sample: key=${JSON.stringify(s.key)}, values=${JSON.stringify(s.values)}`);
+            }
+          }
+
+          // Trouver l'index de la variable commune dans les keys
+          const communeVarIdx = variables.indexOf(communeVar);
+
           for (const entry of pxValues) {
-            // Le premier key est le code commune
-            const rawKey = entry.key?.[0] || "";
-            // Format possible : "......1234" ou "1234" ou "..1234"
-            const codeStr = rawKey.replace(/\D/g, "").trim();
+            // Le key à l'index de la variable commune contient le code OFS
+            const rawKey = entry.key?.[communeVarIdx] || entry.key?.[0] || "";
+            // Formats possibles : "......1234", "..1234", "1234", "-1" (agrégats)
+            const codeStr = rawKey.replace(/\./g, "").replace(/-/g, "").trim();
             const code = parseInt(codeStr);
             const pop = parseInt(entry.values?.[0]) || 0;
 
-            if (code && pop > 0 && missingCodes.has(code)) {
+            // Ignorer les agrégats (codes négatifs, 0, ou très grands)
+            if (code > 0 && code < 10000 && pop > 0 && missingCodes.has(code)) {
               pxUpdates.push({ code, pop });
             }
           }
