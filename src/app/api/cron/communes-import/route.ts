@@ -292,35 +292,35 @@ SELECT ?bfsCode ?population ?area WHERE {
 
   console.log(`[Wikidata] ${byCode.size} matching communes with data`);
 
-  // 4. Préparer les rows pour upsert par batch (beaucoup plus rapide que update individuel)
-  const rows: any[] = [];
-  for (const [code, data] of byCode.entries()) {
-    const row: any = { code_ofs: code, updated_at: new Date().toISOString() };
-    if (data.population) row.population = data.population;
-    if (data.area) row.superficie_km2 = Math.round(data.area * 100) / 100;
-    if (data.population && data.area) {
-      row.densite = Math.round((data.population / data.area) * 10) / 10;
+  // 4. Préparer les updates
+  const updates: { code: number; data: any }[] = [];
+  for (const [code, d] of byCode.entries()) {
+    const upd: any = { updated_at: new Date().toISOString() };
+    if (d.population) upd.population = d.population;
+    if (d.area) upd.superficie_km2 = Math.round(d.area * 100) / 100;
+    if (d.population && d.area) {
+      upd.densite = Math.round((d.population / d.area) * 10) / 10;
     }
-    rows.push(row);
+    updates.push({ code, data: upd });
   }
 
   let updated = 0;
   let errors = 0;
 
-  // 5. Upsert par batch de 200
-  for (let i = 0; i < rows.length; i += 200) {
-    const chunk = rows.slice(i, i + 200);
-    const { error } = await supabase
-      .from("communes")
-      .upsert(chunk, { onConflict: "code_ofs", ignoreDuplicates: false });
+  // 5. Updates en parallèle par batch de 50
+  for (let i = 0; i < updates.length; i += 50) {
+    const chunk = updates.slice(i, i + 50);
+    const results = await Promise.all(
+      chunk.map(({ code, data }) =>
+        supabase.from("communes").update(data).eq("code_ofs", code)
+      )
+    );
 
-    if (error) {
-      console.error(`[population] Upsert error batch ${i}:`, error.message);
-      errors++;
-    } else {
-      updated += chunk.length;
-      console.log(`[population] ✓ ${updated}/${rows.length}`);
+    for (const r of results) {
+      if (r.error) errors++;
+      else updated++;
     }
+    console.log(`[population] ✓ ${updated}/${updates.length} (${errors} err)`);
   }
 
   return { updated, errors };
