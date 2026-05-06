@@ -505,9 +505,29 @@ async function enrichWithPopulationBFS(): Promise<{
     }
   }
 
-  // Batch update
+  // Batch update — avec count pour vérifier les lignes réellement modifiées
   let updated = 0;
   let errors = 0;
+  let rowsAffected = 0;
+
+  // D'abord, vérifier que les codes existent bien en DB
+  if (pxUpdates.length > 0) {
+    const sampleCodes = pxUpdates.slice(0, 5).map((u) => u.code);
+    const { data: checkRows, error: checkErr } = await supabase
+      .from("communes")
+      .select("code_ofs, nom, population")
+      .in("code_ofs", sampleCodes);
+
+    console.log(`[BFS PXWEB] DB check for codes ${sampleCodes.join(",")}:`);
+    if (checkErr) {
+      console.error(`[BFS PXWEB] DB check error:`, checkErr.message);
+    } else if (checkRows) {
+      for (const r of checkRows) {
+        console.log(`[BFS PXWEB]   code_ofs=${r.code_ofs} (${typeof r.code_ofs}), nom=${r.nom}, pop=${r.population}`);
+      }
+      console.log(`[BFS PXWEB]   Found ${checkRows.length}/${sampleCodes.length} in DB`);
+    }
+  }
 
   for (let i = 0; i < pxUpdates.length; i += 50) {
     const chunk = pxUpdates.slice(i, i + 50);
@@ -517,19 +537,30 @@ async function enrichWithPopulationBFS(): Promise<{
           .from("communes")
           .update({
             population: pop,
-            densite: null, // sera recalculé si superficie existe
             updated_at: new Date().toISOString(),
           })
           .eq("code_ofs", code)
+          .select("code_ofs, population")
       )
     );
 
-    for (const r of results) {
-      if (r.error) errors++;
-      else updated++;
+    for (let j = 0; j < results.length; j++) {
+      const r = results[j];
+      if (r.error) {
+        errors++;
+        if (errors <= 3) console.error(`[BFS PXWEB] Update error for ${chunk[j].code}:`, r.error.message);
+      } else {
+        updated++;
+        const affected = r.data?.length || 0;
+        rowsAffected += affected;
+        // Log les premiers pour debug
+        if (i === 0 && j < 3) {
+          console.log(`[BFS PXWEB] Update code=${chunk[j].code} pop=${chunk[j].pop} → affected=${affected}, data=${JSON.stringify(r.data)}`);
+        }
+      }
     }
 
-    console.log(`[BFS PXWEB] ✓ ${updated}/${pxUpdates.length} (${errors} err)`);
+    console.log(`[BFS PXWEB] ✓ ${updated}/${pxUpdates.length} (${errors} err, ${rowsAffected} rows affected)`);
   }
 
   // Recalculer la densité pour les communes mises à jour qui ont une superficie
