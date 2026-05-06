@@ -960,8 +960,51 @@ export async function GET(request: Request) {
       });
     }
 
+    // ─── DEBUG : tester la requête exacte du frontend ───
+    if (step === "debug") {
+      // Créer un client avec la clé anon (comme le frontend)
+      const anonUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+      const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+      const anonClient = createClient(anonUrl, anonKey);
+
+      // Requête identique à getCommunes() dans lib/communes.ts
+      const { data, error, count } = await anonClient
+        .from("communes")
+        .select("*", { count: "exact" })
+        .order("population", { ascending: false, nullsFirst: false })
+        .range(0, 4);
+
+      // Aussi tester le RPC stats
+      const { data: statsData, error: statsError } = await anonClient.rpc("communes_stats");
+
+      // Et un simple count avec le service role
+      const { count: serviceCount } = await supabase
+        .from("communes")
+        .select("*", { count: "exact", head: true });
+
+      return NextResponse.json({
+        env: {
+          url_set: !!anonUrl,
+          url_prefix: anonUrl.substring(0, 30),
+          anon_key_set: !!anonKey,
+          anon_key_length: anonKey.length,
+        },
+        anon_query: {
+          error: error?.message || null,
+          count,
+          rows_returned: data?.length || 0,
+          sample: (data || []).slice(0, 2).map((c: any) => ({ nom: c.nom, canton: c.canton, population: c.population })),
+        },
+        anon_stats: {
+          error: statsError?.message || null,
+          has_data: !!statsData,
+        },
+        service_role_count: serviceCount,
+      });
+    }
+
     return NextResponse.json(
-      { error: `Step inconnu: "${step}". Steps disponibles: communes, population, population-bfs, companies, cleanup, dedup` },
+      { error: `Step inconnu: "${step}". Steps disponibles: communes, population, population-bfs, companies, cleanup, dedup, debug` },
       { status: 400 }
     );
   } catch (error: any) {
