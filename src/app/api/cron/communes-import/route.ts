@@ -230,31 +230,29 @@ async function fetchCommunesGeoAdmin(filterCanton?: string): Promise<any[]> {
   return communes;
 }
 
-// ─── Enrichissement : population + superficie via Wikidata ───
+// ─── Enrichissement : superficie via Wikidata (NE TOUCHE PAS à la population) ───
 
-async function enrichWithPopulation(): Promise<{
+async function enrichWithArea(): Promise<{
   updated: number;
   errors: number;
 }> {
-  // 1. Récupérer les code_ofs de nos communes (seulement celles sans population)
+  // 1. Récupérer nos communes avec leur population BFS
   const { data: existingCommunes } = await supabase
     .from("communes")
-    .select("code_ofs");
-  const ourCodes = new Set((existingCommunes || []).map((c: any) => c.code_ofs));
-  console.log(`[population] ${ourCodes.size} communes in our DB`);
+    .select("code_ofs, population");
+  const ourCommunes = new Map((existingCommunes || []).map((c: any) => [c.code_ofs, c.population]));
+  console.log(`[area] ${ourCommunes.size} communes in our DB`);
 
-  // 2. Wikidata SPARQL : population et superficie
-  // Requête élargie : cherche TOUT entity avec un code commune BFS (P771)
-  // Inclut Q70208 (municipality), Q685309 (Einwohnergemeinde), et autres variantes
+  // 2. Wikidata SPARQL : UNIQUEMENT la superficie (P2046)
   const query = `
-SELECT ?bfsCode ?population ?area WHERE {
+SELECT ?bfsCode ?area WHERE {
+  ?municipality wdt:P31/wdt:P279* wd:Q70208 .
   ?municipality wdt:P771 ?bfsCode .
-  OPTIONAL { ?municipality wdt:P1082 ?population . }
-  OPTIONAL { ?municipality wdt:P2046 ?area . }
+  ?municipality wdt:P2046 ?area .
 }
 `;
 
-  console.log("[Wikidata] Fetching population data...");
+  console.log("[Wikidata] Fetching area data only...");
 
   const res = await fetch("https://query.wikidata.org/sparql", {
     method: "POST",
@@ -274,33 +272,36 @@ SELECT ?bfsCode ?population ?area WHERE {
 
   const json = await res.json();
   const bindings = json.results?.bindings || [];
-  console.log(`[Wikidata] Got ${bindings.length} raw results`);
+  console.log(`[Wikidata] Got ${bindings.length} area results`);
 
-  // 3. Dédupliquer par code BFS (garder la plus grande population = plus récente)
-  const byCode = new Map<number, { population: number | null; area: number | null }>();
+  // 3. Dédupliquer par code BFS (garder la plus petite surface = commune, pas district)
+  const byCode = new Map<number, number>();
   for (const b of bindings) {
     const code = parseInt(b.bfsCode.value);
-    if (!ourCodes.has(code)) continue; // Ignorer les communes hors romandes
+    if (!ourCommunes.has(code)) continue;
 
-    const pop = b.population ? parseInt(b.population.value) : null;
-    const area = b.area ? parseFloat(b.area.value) : null;
+    const area = parseFloat(b.area.value);
+    if (area <= 0) continue;
 
     const existing = byCode.get(code);
-    if (!existing || (pop && (!existing.population || pop > existing.population))) {
-      byCode.set(code, { population: pop, area: area || existing?.area || null });
+    // Garder la plus petite surface (commune < district < canton)
+    if (!existing || area < existing) {
+      byCode.set(code, area);
     }
   }
 
-  console.log(`[Wikidata] ${byCode.size} matching communes with data`);
+  console.log(`[Wikidata] ${byCode.size} communes with area data`);
 
-  // 4. Préparer les updates
+  // 4. Préparer les updates (superficie + densité, JAMAIS la population)
   const updates: { code: number; data: any }[] = [];
-  for (const [code, d] of byCode.entries()) {
-    const upd: any = { updated_at: new Date().toISOString() };
-    if (d.population) upd.population = d.population;
-    if (d.area) upd.superficie_km2 = Math.round(d.area * 100) / 100;
-    if (d.population && d.area) {
-      upd.densite = Math.round((d.population / d.area) * 10) / 10;
+  for (const [code, area] of byCode.entries()) {
+    const pop = ourCommunes.get(code);
+    const upd: any = {
+      superficie_km2: Math.round(area * 100) / 100,
+      updated_at: new Date().toISOString(),
+    };
+    if (pop && area) {
+      upd.densite = Math.round((pop / area) * 10) / 10;
     }
     updates.push({ code, data: upd });
   }
@@ -308,7 +309,6 @@ SELECT ?bfsCode ?population ?area WHERE {
   let updated = 0;
   let errors = 0;
 
-  // 5. Updates en parallèle par batch de 50
   for (let i = 0; i < updates.length; i += 50) {
     const chunk = updates.slice(i, i + 50);
     const results = await Promise.all(
@@ -321,11 +321,8 @@ SELECT ?bfsCode ?population ?area WHERE {
       if (r.error) errors++;
       else updated++;
     }
-    console.log(`[population] ✓ ${updated}/${updates.length} (${errors} err)`);
+    console.log(`[area] ✓ ${updated}/${updates.length} (${errors} err)`);
   }
-
-  // Note : le fallback BFS PXWEB est dans un step séparé (step=population-bfs)
-  // pour éviter les timeouts Vercel
 
   return { updated, errors };
 }
@@ -775,14 +772,14 @@ export async function GET(request: Request) {
       });
     }
 
-    // ─── STEP 2 : Enrichir population + superficie (Wikidata) ───
+    // ─── STEP 2 : Enrichir superficie + densité (Wikidata — ne touche PAS la population) ───
     if (step === "population") {
-      const result = await enrichWithPopulation();
+      const result = await enrichWithArea();
 
       return NextResponse.json({
         success: true,
         step: "population",
-        source: "Wikidata",
+        source: "Wikidata (area only)",
         ...result,
       });
     }
