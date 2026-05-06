@@ -868,8 +868,116 @@ export async function GET(request: Request) {
       });
     }
 
+    // ─── STEP 5 : Dédupliquer les communes renommées/fusionnées ───
+    if (step === "dedup") {
+      // Liste des communes connues comme renommées ou fusionnées
+      // Format: { old_code, old_name, new_code, new_name }
+      // Source: https://www.bfs.admin.ch/bfs/fr/home/bases-statistiques/repertoire-officiel-communes-suisse/mutations-communes.html
+      const knownMergers: { oldCode: number; newCode: number; oldName: string; newName: string }[] = [
+        // VS - Valais
+        { oldCode: 6023, oldName: "Bagnes", newCode: 6252, newName: "Val de Bagnes" },
+        // Ajouter d'autres au fur et à mesure
+      ];
+
+      // Stratégie 1 : supprimer les anciennes versions connues
+      let deleted = 0;
+      const deletedNames: string[] = [];
+
+      for (const m of knownMergers) {
+        const { error } = await supabase
+          .from("communes")
+          .delete()
+          .eq("code_ofs", m.oldCode);
+
+        if (!error) {
+          deleted++;
+          deletedNames.push(`${m.oldName} → ${m.newName}`);
+          console.log(`[dedup] Deleted ${m.oldName} (${m.oldCode}) → kept ${m.newName} (${m.newCode})`);
+        }
+      }
+
+      // Stratégie 2 : détecter automatiquement les doublons potentiels
+      // = communes du même canton dont le nom est contenu dans un autre
+      const { data: allCommunes } = await supabase
+        .from("communes")
+        .select("code_ofs, nom, canton, population, slug")
+        .order("population", { ascending: false });
+
+      const autoDeleted: string[] = [];
+      const codesToDelete: number[] = [];
+
+      if (allCommunes) {
+        // Grouper par canton
+        const byCanton: Record<string, typeof allCommunes> = {};
+        for (const c of allCommunes) {
+          if (!byCanton[c.canton]) byCanton[c.canton] = [];
+          byCanton[c.canton].push(c);
+        }
+
+        for (const [canton, communes] of Object.entries(byCanton)) {
+          for (let i = 0; i < communes.length; i++) {
+            for (let j = i + 1; j < communes.length; j++) {
+              const a = communes[i]; // plus grande population (trié desc)
+              const b = communes[j]; // plus petite
+
+              if (codesToDelete.includes(a.code_ofs) || codesToDelete.includes(b.code_ofs)) continue;
+
+              // Vérifier si c'est un doublon (nom inclus dans l'autre, même canton)
+              const normA = a.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+              const normB = b.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+              const isDuplicate =
+                // "Bagnes" contenu dans "Val de Bagnes"
+                (normA.includes(normB) && normA !== normB && normB.length >= 4) ||
+                // ou l'inverse
+                (normB.includes(normA) && normA !== normB && normA.length >= 4);
+
+              if (isDuplicate) {
+                // Garder la commune avec le plus grand code OFS (= la plus récente en général)
+                // ET la plus grande population
+                const toKeep = a.code_ofs > b.code_ofs ? a : (a.population || 0) >= (b.population || 0) ? a : b;
+                const toRemove = toKeep === a ? b : a;
+
+                console.log(`[dedup] Potential duplicate: "${toRemove.nom}" (${toRemove.code_ofs}, pop=${toRemove.population}) ↔ "${toKeep.nom}" (${toKeep.code_ofs}, pop=${toKeep.population}) → delete "${toRemove.nom}"`);
+                codesToDelete.push(toRemove.code_ofs);
+                autoDeleted.push(`${toRemove.nom} (${canton}) → ${toKeep.nom}`);
+              }
+            }
+          }
+        }
+
+        // Supprimer les doublons détectés
+        if (codesToDelete.length > 0) {
+          const { error } = await supabase
+            .from("communes")
+            .delete()
+            .in("code_ofs", codesToDelete);
+
+          if (error) {
+            console.error(`[dedup] Auto-delete error:`, error.message);
+          } else {
+            deleted += codesToDelete.length;
+            console.log(`[dedup] Auto-deleted ${codesToDelete.length} duplicates`);
+          }
+        }
+      }
+
+      const { count } = await supabase
+        .from("communes")
+        .select("*", { count: "exact", head: true });
+
+      return NextResponse.json({
+        success: true,
+        step: "dedup",
+        deleted,
+        remaining: count,
+        known_mergers: deletedNames,
+        auto_detected: autoDeleted,
+      });
+    }
+
     return NextResponse.json(
-      { error: `Step inconnu: "${step}". Utilisez ?step=communes, ?step=population, ?step=companies ou ?step=cleanup` },
+      { error: `Step inconnu: "${step}". Steps disponibles: communes, population, population-bfs, companies, cleanup, dedup` },
       { status: 400 }
     );
   } catch (error: any) {
