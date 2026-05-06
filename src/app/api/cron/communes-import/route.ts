@@ -236,11 +236,14 @@ async function enrichWithPopulation(): Promise<{
   updated: number;
   errors: number;
 }> {
-  // Wikidata SPARQL : population et superficie de toutes les communes suisses
-  // P31 = Q70208 (municipality of Switzerland)
-  // P771 = code commune BFS (code_ofs)
-  // P1082 = population
-  // P2046 = superficie en km²
+  // 1. Récupérer les code_ofs de nos communes existantes
+  const { data: existingCommunes } = await supabase
+    .from("communes")
+    .select("code_ofs");
+  const ourCodes = new Set((existingCommunes || []).map((c: any) => c.code_ofs));
+  console.log(`[population] ${ourCodes.size} communes in our DB`);
+
+  // 2. Wikidata SPARQL : population et superficie
   const query = `
 SELECT ?bfsCode ?population ?area WHERE {
   ?municipality wdt:P31 wd:Q70208 ;
@@ -260,7 +263,7 @@ SELECT ?bfsCode ?population ?area WHERE {
       "User-Agent": "NeoFidu-CommunesImport/1.0 (https://neofidu.ch)",
     },
     body: `query=${encodeURIComponent(query)}`,
-    signal: AbortSignal.timeout(60000),
+    signal: AbortSignal.timeout(90000),
   });
 
   if (!res.ok) {
@@ -270,50 +273,53 @@ SELECT ?bfsCode ?population ?area WHERE {
 
   const json = await res.json();
   const bindings = json.results?.bindings || [];
-  console.log(`[Wikidata] Got ${bindings.length} results`);
+  console.log(`[Wikidata] Got ${bindings.length} raw results`);
 
-  // Dédupliquer par code BFS (garder la plus récente population)
+  // 3. Dédupliquer par code BFS (garder la plus grande population = plus récente)
   const byCode = new Map<number, { population: number | null; area: number | null }>();
   for (const b of bindings) {
     const code = parseInt(b.bfsCode.value);
+    if (!ourCodes.has(code)) continue; // Ignorer les communes hors romandes
+
     const pop = b.population ? parseInt(b.population.value) : null;
     const area = b.area ? parseFloat(b.area.value) : null;
 
     const existing = byCode.get(code);
-    // Garder la valeur la plus grande (= plus récente pour la population)
     if (!existing || (pop && (!existing.population || pop > existing.population))) {
       byCode.set(code, { population: pop, area: area || existing?.area || null });
     }
   }
 
-  console.log(`[Wikidata] ${byCode.size} unique municipalities with data`);
+  console.log(`[Wikidata] ${byCode.size} matching communes with data`);
+
+  // 4. Préparer les rows pour upsert par batch (beaucoup plus rapide que update individuel)
+  const rows: any[] = [];
+  for (const [code, data] of byCode.entries()) {
+    const row: any = { code_ofs: code, updated_at: new Date().toISOString() };
+    if (data.population) row.population = data.population;
+    if (data.area) row.superficie_km2 = Math.round(data.area * 100) / 100;
+    if (data.population && data.area) {
+      row.densite = Math.round((data.population / data.area) * 10) / 10;
+    }
+    rows.push(row);
+  }
 
   let updated = 0;
   let errors = 0;
 
-  // Mettre à jour par batch
-  const entries = Array.from(byCode.entries());
-  for (const [code, data] of entries) {
-    const updateData: any = { updated_at: new Date().toISOString() };
-    if (data.population) {
-      updateData.population = data.population;
-    }
-    if (data.area) {
-      updateData.superficie_km2 = Math.round(data.area * 100) / 100;
-    }
-    if (data.population && data.area) {
-      updateData.densite = Math.round((data.population / data.area) * 10) / 10;
-    }
-
+  // 5. Upsert par batch de 200
+  for (let i = 0; i < rows.length; i += 200) {
+    const chunk = rows.slice(i, i + 200);
     const { error } = await supabase
       .from("communes")
-      .update(updateData)
-      .eq("code_ofs", code);
+      .upsert(chunk, { onConflict: "code_ofs", ignoreDuplicates: false });
 
     if (error) {
+      console.error(`[population] Upsert error batch ${i}:`, error.message);
       errors++;
     } else {
-      updated++;
+      updated += chunk.length;
+      console.log(`[population] ✓ ${updated}/${rows.length}`);
     }
   }
 
