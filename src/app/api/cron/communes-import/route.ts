@@ -4,6 +4,7 @@
 //
 // Usage :
 //   ?secret=xxx&step=communes          → importe les communes depuis LINDAS
+//   ?secret=xxx&step=population         → enrichit avec population + superficie (Wikidata)
 //   ?secret=xxx&step=companies          → enrichit avec nb entreprises + secteur
 //   ?secret=xxx&step=communes&canton=VD → importe seulement Vaud
 
@@ -229,6 +230,96 @@ async function fetchCommunesGeoAdmin(filterCanton?: string): Promise<any[]> {
   return communes;
 }
 
+// ─── Enrichissement : population + superficie via Wikidata ───
+
+async function enrichWithPopulation(): Promise<{
+  updated: number;
+  errors: number;
+}> {
+  // Wikidata SPARQL : population et superficie de toutes les communes suisses
+  // P31 = Q70208 (municipality of Switzerland)
+  // P771 = code commune BFS (code_ofs)
+  // P1082 = population
+  // P2046 = superficie en km²
+  const query = `
+SELECT ?bfsCode ?population ?area WHERE {
+  ?municipality wdt:P31 wd:Q70208 ;
+    wdt:P771 ?bfsCode .
+  OPTIONAL { ?municipality wdt:P1082 ?population . }
+  OPTIONAL { ?municipality wdt:P2046 ?area . }
+}
+`;
+
+  console.log("[Wikidata] Fetching population data...");
+
+  const res = await fetch("https://query.wikidata.org/sparql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/sparql-results+json",
+      "User-Agent": "NeoFidu-CommunesImport/1.0 (https://neofidu.ch)",
+    },
+    body: `query=${encodeURIComponent(query)}`,
+    signal: AbortSignal.timeout(60000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`Wikidata HTTP ${res.status}: ${errText.substring(0, 300)}`);
+  }
+
+  const json = await res.json();
+  const bindings = json.results?.bindings || [];
+  console.log(`[Wikidata] Got ${bindings.length} results`);
+
+  // Dédupliquer par code BFS (garder la plus récente population)
+  const byCode = new Map<number, { population: number | null; area: number | null }>();
+  for (const b of bindings) {
+    const code = parseInt(b.bfsCode.value);
+    const pop = b.population ? parseInt(b.population.value) : null;
+    const area = b.area ? parseFloat(b.area.value) : null;
+
+    const existing = byCode.get(code);
+    // Garder la valeur la plus grande (= plus récente pour la population)
+    if (!existing || (pop && (!existing.population || pop > existing.population))) {
+      byCode.set(code, { population: pop, area: area || existing?.area || null });
+    }
+  }
+
+  console.log(`[Wikidata] ${byCode.size} unique municipalities with data`);
+
+  let updated = 0;
+  let errors = 0;
+
+  // Mettre à jour par batch
+  const entries = Array.from(byCode.entries());
+  for (const [code, data] of entries) {
+    const updateData: any = { updated_at: new Date().toISOString() };
+    if (data.population) {
+      updateData.population = data.population;
+    }
+    if (data.area) {
+      updateData.superficie_km2 = Math.round(data.area * 100) / 100;
+    }
+    if (data.population && data.area) {
+      updateData.densite = Math.round((data.population / data.area) * 10) / 10;
+    }
+
+    const { error } = await supabase
+      .from("communes")
+      .update(updateData)
+      .eq("code_ofs", code);
+
+    if (error) {
+      errors++;
+    } else {
+      updated++;
+    }
+  }
+
+  return { updated, errors };
+}
+
 // ─── Enrichissement : nombre d'entreprises par commune ───
 
 async function enrichWithCompanies(): Promise<{
@@ -383,7 +474,19 @@ export async function GET(request: Request) {
       });
     }
 
-    // ─── STEP 2 : Enrichir avec données entreprises ───
+    // ─── STEP 2 : Enrichir population + superficie (Wikidata) ───
+    if (step === "population") {
+      const result = await enrichWithPopulation();
+
+      return NextResponse.json({
+        success: true,
+        step: "population",
+        source: "Wikidata",
+        ...result,
+      });
+    }
+
+    // ─── STEP 3 : Enrichir avec données entreprises ───
     if (step === "companies") {
       const result = await enrichWithCompanies();
 
@@ -395,7 +498,7 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json(
-      { error: `Step inconnu: "${step}". Utilisez ?step=communes ou ?step=companies` },
+      { error: `Step inconnu: "${step}". Utilisez ?step=communes, ?step=population ou ?step=companies` },
       { status: 400 }
     );
   } catch (error: any) {
