@@ -961,46 +961,54 @@ export async function GET(request: Request) {
       });
     }
 
-    // ─── DEBUG : tester la requête exacte du frontend ───
+    // ─── DEBUG : voir le format exact des valeurs BFS PxWeb ───
     if (step === "debug") {
-      // Créer un client avec la clé anon (comme le frontend)
-      const anonUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-      const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
-      const anonClient = createClient(anonUrl, anonKey);
+      const pxBase = "https://www.pxweb.bfs.admin.ch/api/v1";
+      const pxTable = "px-x-0102010000_103/px-x-0102010000_103.px";
+      const pxUrl = `${pxBase}/fr/${pxTable}`;
 
-      // Requête identique à getCommunes() dans lib/communes.ts
-      const { data, error, count } = await anonClient
-        .from("communes")
-        .select("*", { count: "exact" })
-        .order("population", { ascending: false, nullsFirst: false })
-        .range(0, 4);
+      const metaRes = await fetch(pxUrl, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        signal: AbortSignal.timeout(30000),
+      });
 
-      // Aussi tester le RPC stats
-      const { data: statsData, error: statsError } = await anonClient.rpc("communes_stats");
+      const meta = await metaRes.json();
+      const variables = meta?.variables || [];
 
-      // Et un simple count avec le service role
-      const { count: serviceCount } = await supabase
-        .from("communes")
-        .select("*", { count: "exact", head: true });
+      // Trouver la variable commune (la plus grande)
+      const communeVar = variables.find((v: any) => (v.values?.length || 0) > 500);
+
+      if (!communeVar) {
+        return NextResponse.json({ error: "Commune variable not found", variables: variables.map((v: any) => ({ code: v.code, count: v.values?.length })) });
+      }
+
+      const vals = communeVar.values as string[];
+      const texts = communeVar.valueTexts as string[];
+
+      // Montrer les 50 premières valeurs avec leur format exact
+      const samples = vals.slice(0, 50).map((v: string, i: number) => ({
+        idx: i,
+        value: v,
+        text: texts[i] || "?",
+        startChar: v.charAt(0),
+        length: v.length,
+        hasDots: v.includes("."),
+        startsWithDash: v.startsWith("-"),
+        startsWithGt: v.startsWith(">"),
+      }));
+
+      // Aussi montrer quelques exemples de communes Fribourg (code 2xxx)
+      const frSamples = vals
+        .map((v: string, i: number) => ({ value: v, text: texts[i], idx: i }))
+        .filter((x: any) => x.text.includes("Senèdes") || x.text.includes("Villaraboud") || x.text.includes("Autigny") || x.text.includes("Fribourg") || x.text.includes("Sarine"))
+        .slice(0, 15);
 
       return NextResponse.json({
-        env: {
-          url_set: !!anonUrl,
-          url_prefix: anonUrl.substring(0, 30),
-          anon_key_set: !!anonKey,
-          anon_key_length: anonKey.length,
-        },
-        anon_query: {
-          error: error?.message || null,
-          count,
-          rows_returned: data?.length || 0,
-          sample: (data || []).slice(0, 2).map((c: any) => ({ nom: c.nom, canton: c.canton, population: c.population })),
-        },
-        anon_stats: {
-          error: statsError?.message || null,
-          has_data: !!statsData,
-        },
-        service_role_count: serviceCount,
+        variable_code: communeVar.code,
+        total_values: vals.length,
+        first_50: samples,
+        fribourg_samples: frSamples,
       });
     }
 
