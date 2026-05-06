@@ -310,14 +310,6 @@ export function CommunesDashboard({
               </p>
             </div>
 
-            {/* Entreprises */}
-            <div className="hidden sm:block text-right w-16">
-              <p className="text-xs text-gray-400">Entr.</p>
-              <p className="text-sm font-medium text-gray-700">
-                {commune.nb_entreprises || "—"}
-              </p>
-            </div>
-
             {/* Arrow */}
             <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-emerald-500 transition-colors flex-shrink-0" />
           </Link>
