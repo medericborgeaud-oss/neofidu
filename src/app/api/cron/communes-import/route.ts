@@ -868,7 +868,37 @@ export async function GET(request: Request) {
       });
     }
 
-    // ─── STEP 5 : Supprimer les communes historiques connues (liste manuelle vérifiée) ───
+    // ─── STEP 5 : Chercher ou supprimer des communes ───
+    if (step === "search") {
+      const q = searchParams.get("q") || "";
+      const { data } = await supabase
+        .from("communes")
+        .select("code_ofs, nom, canton, population, slug")
+        .ilike("nom", `%${q}%`);
+
+      return NextResponse.json({ results: data });
+    }
+
+    if (step === "delete-code") {
+      const code = parseInt(searchParams.get("code") || "0");
+      if (!code) return NextResponse.json({ error: "Missing ?code=XXXX" }, { status: 400 });
+
+      const { data: before } = await supabase
+        .from("communes")
+        .select("code_ofs, nom, canton")
+        .eq("code_ofs", code)
+        .single();
+
+      if (!before) return NextResponse.json({ error: `Code ${code} not found` }, { status: 404 });
+
+      const { error } = await supabase.from("communes").delete().eq("code_ofs", code);
+      return NextResponse.json({
+        success: !error,
+        deleted: before,
+        error: error?.message,
+      });
+    }
+
     if (step === "dedup") {
       // Liste vérifiée des anciens codes OFS pour des communes fusionnées/renommées
       // qui ont été remplacées par de nouvelles entrées dans LINDAS.
