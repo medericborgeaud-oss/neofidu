@@ -395,7 +395,7 @@ SELECT ?bfsCode ?population ?area WHERE {
             continue;
           }
 
-          // Construire la query : NE PAS filtrer la variable commune, filtrer tout le reste
+          // Construire la query : inclure TOUTES les communes explicitement, filtrer le reste
           const query: any[] = [];
 
           for (const v of variables) {
@@ -403,9 +403,13 @@ SELECT ?bfsCode ?population ?area WHERE {
             const values = (v.values || []) as string[];
             const texts = (v.valueTexts || []) as string[];
 
-            // Skip la variable commune → retourne TOUTES les communes
+            // Variable commune → sélectionner TOUTES les valeurs (sinon PxWeb agrège en un total)
             if (v === communeVar) {
-              console.log(`[BFS PXWEB] SKIP commune var "${code}" (all ${values.length} values)`);
+              query.push({
+                code,
+                selection: { filter: "all", values: ["*"] },
+              });
+              console.log(`[BFS PXWEB] Commune var "${code}" → ALL (${values.length} values)`);
               continue;
             }
 
