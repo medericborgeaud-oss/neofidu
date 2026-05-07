@@ -125,7 +125,7 @@ export default async function CommunePage({ params }: Props) {
             </p>
 
             {/* ─── KPI Grid ─── */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-3 gap-3 mb-6">
               {/* Population */}
               <div className="bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
@@ -172,7 +172,7 @@ export default async function CommunePage({ params }: Props) {
                 Fiscalité
               </h2>
               <div className="bg-gray-50 rounded-lg p-4">
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-xs text-gray-400 mb-1">
                       Coefficient communal
@@ -187,14 +187,6 @@ export default async function CommunePage({ params }: Props) {
                     </p>
                     <p className="text-lg font-semibold text-gray-900">
                       {formatTaux(commune.taux_canton)}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-400 mb-1">
-                      Impôt ecclés.
-                    </p>
-                    <p className="text-lg font-semibold text-gray-900">
-                      {formatTaux(commune.taux_eglise)}
                     </p>
                   </div>
                 </div>
