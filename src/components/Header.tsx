@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,11 +11,9 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp, MapPin } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-
-
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +21,6 @@ export function Header() {
   const [ressourcesOpen, setRessourcesOpen] = useState(false);
   const { t, locale, isEnglish } = useLanguage();
   const pathname = usePathname();
-
   // Services dropdown items
   const serviceItems = [
     {
@@ -58,7 +54,6 @@ export function Header() {
       description: isEnglish ? "International clients" : "Clients internationaux",
     },
   ];
-
   const ressourcesItems = [
     {
       href: "/simulateur",
@@ -91,20 +86,24 @@ export function Header() {
       description: isEnglish ? "News and tax advice" : "Actualités et conseils fiscaux",
     },
     {
-            href: "/observatoire",
-            label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
-            icon: TrendingUp,
-            description: isEnglish ? "New companies in real time" : "Créations d'entreprises en temps réel",
+      href: "/observatoire",
+      label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
+      icon: TrendingUp,
+      description: isEnglish ? "New companies in real time" : "Créations d'entreprises en temps réel",
+    },
+    {
+      href: "/communes",
+      label: isEnglish ? "Communes" : "Communes romandes",
+      icon: MapPin,
+      description: isEnglish ? "Tax rates by municipality" : "Fiscalité par commune (VD, GE, VS, FR, NE, JU)",
     },
   ];
-
   const navItems = [
     { href: "/tarifs", label: t("header.pricing") },
-    
+
     { href: "/suivi", label: t("header.tracking"), isClient: true },
     { href: "/contact", label: t("header.contact") },
   ];
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -112,10 +111,8 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <>
-
       <header
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
@@ -140,7 +137,6 @@ export function Header() {
                 </span>
               </div>
             </Link>
-
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-1">
               {/* Services Dropdown */}
@@ -205,7 +201,6 @@ export function Header() {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-
               {navItems.filter(item => !item.isClient).map((item) => (
                 <Link
                   key={item.href}
@@ -215,10 +210,8 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-
               {/* Espace client separator */}
               <span className="w-px h-5 bg-border mx-1" aria-hidden="true" />
-
               {navItems.filter(item => item.isClient).map((item) => (
                 <Link
                   key={item.href}
@@ -229,9 +222,6 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-
-
-
               <Button
                 asChild
                 className="ml-2 rounded-full px-6 text-base"
@@ -239,7 +229,6 @@ export function Header() {
                 <Link href="/demande">{t("header.cta")}</Link>
               </Button>
             </nav>
-
             {/* Mobile Menu */}
             <div className="flex items-center gap-2 md:hidden">
               <LanguageSwitcher
@@ -263,7 +252,6 @@ export function Header() {
                       <span className="text-2xl font-bold text-foreground">fidu</span>
                       <span className="text-sm text-muted-foreground">.ch</span>
                     </Link>
-
                     {/* Mobile Services Section */}
                     <div className="border-b border-border pb-4">
                       <button
@@ -292,7 +280,6 @@ export function Header() {
                         </div>
                       )}
                     </div>
-
                     {/* Mobile Ressources Section */}
                     <div className="border-b border-border pb-4">
                       <button
@@ -321,7 +308,6 @@ export function Header() {
                         </div>
                       )}
                     </div>
-
                     {navItems.filter(item => !item.isClient).map((item) => (
                       <Link
                         key={item.href}
@@ -332,7 +318,6 @@ export function Header() {
                         {item.label}
                       </Link>
                     ))}
-
                     {/* Espace client section */}
                     <div className="pt-3 mt-1 border-t border-border">
                       <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2 flex items-center gap-1.5">
