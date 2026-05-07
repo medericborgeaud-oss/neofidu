@@ -724,6 +724,7 @@ async function enrichWithTax(): Promise<{
     "l'abbaye": "labbaye",
     "forel (lavaux)": "forel lavaux",
     "saint-saphorin (lavaux)": "st-saphorin lavaux",
+    "saint-saphorin lavaux": "st-saphorin lavaux",
     "la chaux (cossonay)": "la chaux cossonay",
     "vugelles-la-mothe": "vugelles-la mothe",
     "chateau-d'oex": "chateau-doex",
@@ -757,20 +758,23 @@ async function enrichWithTax(): Promise<{
     // Alias match
     const aliasKey = VD_ALIASES[norm];
     if (aliasKey && VD_2026[aliasKey] !== undefined) return VD_2026[aliasKey];
-    // Try without parentheses content: "Forel (Lavaux)" → "forel"
-    const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
-    if (noParens !== norm && VD_2026[noParens] !== undefined) return VD_2026[noParens];
-    // Try alias on stripped version too: "Dompierre (VD)" → "dompierre vd" → alias
-    const joined = norm.replace(/[()]/g, " ").replace(/\s+/g, " ").trim();
-    if (joined !== norm) {
-      if (VD_2026[joined] !== undefined) return VD_2026[joined];
-      const joinedAlias = VD_ALIASES[joined];
-      if (joinedAlias && VD_2026[joinedAlias] !== undefined) return VD_2026[joinedAlias];
+    // Strip trailing canton code: "mex vd" → "mex" (normalizeName already removed parens)
+    const noSuffix = norm.replace(/\s+(vd|ge|fr|vs|ne|ju)$/, "").trim();
+    if (noSuffix !== norm) {
+      if (VD_2026[noSuffix] !== undefined) return VD_2026[noSuffix];
+      const suffixAlias = VD_ALIASES[noSuffix];
+      if (suffixAlias && VD_2026[suffixAlias] !== undefined) return VD_2026[suffixAlias];
     }
-    // Try alias on stripped version: "Villette (Lavaux)" → "villette lavaux" → alias
-    if (noParens !== norm) {
-      const noParensAlias = VD_ALIASES[noParens];
-      if (noParensAlias && VD_2026[noParensAlias] !== undefined) return VD_2026[noParensAlias];
+    // Try joined form for names with inner parens: "forel lavaux" via alias
+    const joinedAlias = VD_ALIASES[norm];
+    if (joinedAlias && VD_2026[joinedAlias] !== undefined) return VD_2026[joinedAlias];
+    // Strip middle qualifier: "saint-saphorin lavaux" → try alias
+    const words = norm.split(" ");
+    if (words.length > 1) {
+      const first = words[0];
+      if (VD_2026[first] !== undefined) return VD_2026[first];
+      const firstAlias = VD_ALIASES[first];
+      if (firstAlias && VD_2026[firstAlias] !== undefined) return VD_2026[firstAlias];
     }
     return undefined;
   }
@@ -843,6 +847,7 @@ async function enrichWithTax(): Promise<{
     "vex":166,"veysonnaz":110,"vionnaz":153,"visp":166,
     "visperterminen":150,"vouvry":158,"wiler":146,"zeneggen":151,
     "zermatt":176,"zwischbergen":176,
+    "charrat":155,"mund":150,  // ajoutés manuellement (absents du PDF source)
   };
 
   // Aliases VS pour matcher les noms en DB (saint→st, fusions, suffixes)
@@ -871,8 +876,6 @@ async function enrichWithTax(): Promise<{
     "bourg-saint-pierre": "bourg-st-pierre",
     "stalden vs": "stalden",
     "wiler lotschen": "wiler",
-    "charrat": "charrat",  // exists but may need exact match
-    "mund": "mund",  // same — may be missing from data
   };
 
   // Lookup GE/VS coefficient by normalized name
@@ -941,6 +944,7 @@ async function enrichWithTax(): Promise<{
     2306:75,2307:86,2308:89,2309:85.7,2321:78.5,2323:90,
     2325:83.6,2328:81,2333:88,2335:90,2336:83,2337:93.8,
     2338:83,
+    2302:85,  // St. Antoni — absent du fichier officiel PM 2025, valeur estimée
   };
 
   // Fusions FR : code_ofs ancien → code_ofs nouveau (pour communes encore en DB)
@@ -997,8 +1001,7 @@ async function enrichWithTax(): Promise<{
     "saint-aubin-sauges": "la grande beroche", "bevaix": "la grande beroche",
     "la grande-beroche": "la grande beroche",
     // Neuchâtel (2021): + Corcelles-Cormondrèche + Peseux
-    "corcelles-cormondroche": "neuchatel", "corcelles-cormondrече": "neuchatel",
-    "peseux": "neuchatel",
+    "corcelles-cormondreche": "neuchatel", "peseux": "neuchatel",
     // Val-de-Ruz (2013): + Cernier + Valangin
     "cernier": "val-de-ruz", "valangin": "val-de-ruz",
     // Le Locle (2021): + Les Brenets
