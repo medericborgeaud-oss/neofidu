@@ -622,6 +622,18 @@ async function enrichWithPopulationBFS(): Promise<{
 
 // ─── Enrichissement : coefficients fiscaux (taux d'imposition communaux) ───
 
+// Helper: normaliser un nom de commune pour le matching
+function normalizeName(s: string): string {
+  return s
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 async function enrichWithTax(): Promise<{
   updated: number;
   errors: number;
@@ -638,488 +650,110 @@ async function enrichWithTax(): Promise<{
     return { updated: 0, errors: 0, source: "none", year: null, debug: "No communes in DB" };
   }
 
-  const allCodes = new Set(allCommunes.map((c: any) => c.code_ofs));
   console.log(`[tax] ${allCommunes.length} communes to enrich`);
+  const debugInfo: any = { matched_vd: 0, matched_other: 0, unmatched: [] };
 
-  // ─── Approche 1 : ESTV API (calculateur fédéral) ───
-  // L'API ESTV expose les données fiscales par commune
-  // Endpoints connus :
-  //   /delegate/ost-integration/v1/lg/fr/municipalities
-  //   /delegate/ost-integration/v1/lg/fr/tax-scales/{bfsCode}/{year}
+  // ═══════════════════════════════════════════════════════════════════
+  // VD 2026 — 301 communes (Arrêtés d'imposition 2026, source officielle)
+  // Clé = nom normalisé, valeur = pour-cent total (coeff communal + impôt spécial affecté)
+  // ═══════════════════════════════════════════════════════════════════
+  const VD_2026: Record<string, number> = {
+    "aclens":60,"agiez":76,"aigle":66,"allaman":65,"arnex-sur-nyon":66,"arnex-sur-orbe":71,
+    "arzier-le muids":64,"assens":70,"aubonne":68,"avenches":65,"ballaigues":65,"ballens":73,
+    "bassins":72.5,"baulmes":76.5,"bavois":72,"begnins":62.5,"belmont-sur-lausanne":72,
+    "belmont-sur-yverdon":70,"bercher":79,"berolle":75.5,"bettens":70,"bex":71,"biere":69,
+    "bioley-magnoux":72,"blonay - saint-legier":67.5,"bofflens":69,"bogis-bossey":70,
+    "bonvillars":67,"borex":57,"bottens":72.5,"bougy-villars":62,"boulens":71.5,
+    "bourg-en-lavaux":62.5,"bournens":65,"boussens":64,"bremblens":68,"bretigny-sur-morrens":76,
+    "bretonnieres":69,"buchillon":52,"bullet":75,"bursinel":62,"bursins":71,"burtigny":75,
+    "bussigny":62.5,"bussy-sur-moudon":78.5,"chamblon":66,"champagne":65,"champtauroz":77,
+    "champvent":70,"chardonne":68,"chateau-doex":81.5,"chavannes-de-bogis":58,
+    "chavannes-des-bois":66,"chavannes-le-chene":75,"chavannes-le-veyron":77,
+    "chavannes-pres-renens":77.5,"chavannes-sur-moudon":70,"chavornay":70.5,"chene-paquier":75,
+    "cheseaux-noreaz":67,"cheseaux-sur-lausanne":73,"cheserex":59,"chessel":65,"chevilly":70,
+    "chevroux":68.5,"chexbres":67.5,"chigny":62,"clarmont":72,"coinsins":49,"commugny":58,
+    "concise":68,"coppet":57,"corbeyrier":74,"corcelles-le-jorat":75,"corcelles-pres-concise":69,
+    "corcelles-pres-payerne":65,"corseaux":67.5,"corsier-sur-vevey":64.5,"cossonay":66,
+    "crans":59,"crassier":65,"crissier":63.5,"cronay":75,"croy":74,"cuarnens":76,"cuarny":73,
+    "cudrefin":59,"cugy":76,"curtilles":71,"daillens":66,"demoret":78,"denens":63,"denges":62,
+    "dizy":75,"dompierre":78,"donneloye":73,"duillier":66,"dully":53,"echallens":72.5,
+    "echandens":60.5,"echichens":66,"eclepens":46,"ecublens":62.5,"epalinges":64.5,
+    "ependes":73.5,"essertines-sur-rolle":66.5,"essertines-sur-yverdon":72,"etagnieres":73,
+    "etoy":60,"eysins":59.5,"faoug":65,"fechy":64,"ferreyres":76,"fey":75,"fiez":69,
+    "fontaines-sur-grandson":72,"forel lavaux":69,"founex":57,"froideville":72,"genolier":52,
+    "giez":69,"gilly":62.5,"gimel":73,"gingins":60,"givrins":68.5,"gland":61,"gollion":74,
+    "goumoens":75.5,"grancy":70,"grandcour":72,"grandevent":71,"grandson":69,"grens":60,
+    "gryon":73.5,"hautemorges":68,"henniez":69,"hermenches":78,"jongny":69.5,
+    "jorat-menthue":70.5,"jorat-mezieres":71,"jouxtens-mezery":59,"juriens":79,
+    "la chaux cossonay":76,"la praz":83,"la rippe":63.5,"la sarraz":70,"la tour-de-peilz":64,
+    "labbaye":76,"labergement":80,"lausanne":78.5,"lavey-morcles":71.5,"lavigny":73,
+    "le chenit":58.5,"le lieu":70,"le mont-sur-lausanne":72,"le vaud":69,"les clees":80,
+    "leysin":78,"lignerolle":78.5,"lisle":75,"lonay":55,"longirod":77.5,"lovatens":75,
+    "lucens":69.5,"luins":58.5,"lully":58,"lussery-villars":75,"lussy-sur-morges":61.5,
+    "lutry":54,"maracon":74.5,"marchissy":77.5,"mathod":72,"mauborget":70,"mauraz":75,
+    "mex":59.5,"mies":54,"missy":69,"moiry":76,"mollens":74,"molondin":81,"mont-la-ville":76,
+    "mont-sur-rolle":62,"montagny-pres-yverdon":64.5,"montanaire":70,"montcherand":72,
+    "montilliez":72.5,"montpreveyres":74.5,"montreux":65,"montricher":64,"morges":67,
+    "morrens":74,"moudon":72.5,"mutrux":80,"novalles":76,"noville":75,"nyon":61,"ogens":76,
+    "ollon":68,"onnens":65,"oppens":79,"orbe":75.5,"orges":74,"ormont-dessous":77,
+    "ormont-dessus":76,"orny":73,"oron":69,"orzens":79,"oulens-sous-echallens":71,"pailly":76,
+    "paudex":66.5,"payerne":70,"penthalaz":72.5,"penthaz":69.5,"penthereaz":74,"perroy":60.5,
+    "poliez-pittet":73,"pompaples":66,"pomy":71,"prangins":57,"premier":79.5,"preverenges":65,
+    "prevonloup":72.5,"prilly":72.5,"provence":81,"puidoux":68.5,"pully":61,"rances":76.5,
+    "renens":77,"rennaz":64,"rivaz":62,"roche":66.5,"rolle":59.5,"romainmotier-envy":81,
+    "romanel-sur-lausanne":70.5,"romanel-sur-morges":56,"ropraz":77.5,"rossenges":65,
+    "rossiniere":81,"rougemont":79,"rovray":73,"rueyres":73,"saint-barthelemy":77,
+    "saint-cergue":66,"saint-george":69.5,"saint-livres":69,"saint-oyens":77,"saint-prex":59,
+    "saint-sulpice":55,"sainte-croix":70,"saubraz":77,"savigny":69,"senarclens":68.5,
+    "sergey":76,"servion":69,"signy-avenex":58,"st-saphorin lavaux":74,"suchy":70,
+    "sullens":64,"suscevaz":72,"syens":65,"tannay":60.5,"tartegnin":79,"tevenon":71.5,
+    "tolochenaz":64,"trelex":57,"trey":78,"treycovagnes":73,"treytorrens":81.5,"ursins":75,
+    "valbroye":70.5,"valeyres-sous-montagny":70.5,"valeyres-sous-rances":71,
+    "valeyres-sous-ursins":77,"vallorbe":70,"vaulion":81,"vaux-sur-morges":56,"vevey":74.5,
+    "veytaux":65,"vich":63,"villars-epeney":72,"villars-le-comte":68,"villars-le-terroir":76,
+    "villars-sainte-croix":60.5,"villars-sous-yens":74,"villarzel":75,"villeneuve":66.5,
+    "vinzel":65,"vuarrens":73.5,"vucherens":75,"vufflens-la-ville":65,"vufflens-le-chateau":60.5,
+    "vugelles-la mothe":70,"vuiteboeuf":75,"vulliens":74,"vullierens":76,"vully-les-lacs":67,
+    "yens":68,"yverdon-les-bains":75,"yvonand":73,"yvorne":71.5,
+  };
 
-  const debugInfo: any = { attempts: [] };
+  // Variantes de noms VD pour le matching (nom DB → nom dans le fichier)
+  const VD_ALIASES: Record<string, string> = {
+    "labbaye": "labbaye",
+    "l'abbaye": "labbaye",
+    "forel (lavaux)": "forel lavaux",
+    "saint-saphorin (lavaux)": "st-saphorin lavaux",
+    "la chaux (cossonay)": "la chaux cossonay",
+    "vugelles-la-mothe": "vugelles-la mothe",
+    "chateau-d'oex": "chateau-doex",
+    "chateau-doex": "chateau-doex",
+    "blonay-saint-legier": "blonay - saint-legier",
+    "blonay - saint-legier": "blonay - saint-legier",
+  };
 
-  // 1a. Essayer de récupérer la liste des communes ESTV
-  try {
-    console.log("[tax] Trying ESTV municipalities endpoint...");
-    const estvBase = "https://swisstaxcalculator.estv.admin.ch";
-
-    // D'abord, récupérer la liste des municipalités avec leur année disponible
-    const muniRes = await fetch(
-      `${estvBase}/delegate/ost-integration/v1/lg/fr/municipalities`,
-      {
-        headers: { Accept: "application/json" },
-        signal: AbortSignal.timeout(30000),
-      }
-    );
-
-    if (muniRes.ok) {
-      const muniData = await muniRes.json();
-      const muniList = Array.isArray(muniData) ? muniData : muniData?.municipalities || muniData?.data || [];
-
-      console.log(`[tax] ESTV municipalities: ${muniList.length} entries`);
-      debugInfo.estv_municipalities = {
-        count: muniList.length,
-        sample: muniList.slice(0, 5),
-        keys: muniList.length > 0 ? Object.keys(muniList[0]) : [],
-      };
-
-      // Si on a des données avec des taux directement
-      if (muniList.length > 0 && muniList[0]) {
-        const sample = muniList[0];
-        const hasTaux =
-          sample.taxRate !== undefined ||
-          sample.taux !== undefined ||
-          sample.coefficient !== undefined ||
-          sample.multiplier !== undefined ||
-          sample.steuerfuss !== undefined;
-
-        if (hasTaux) {
-          console.log("[tax] ESTV has tax rates in municipality list!");
-          // TODO: mapper les données si format simple
-        }
-      }
-    } else {
-      console.log(`[tax] ESTV municipalities HTTP ${muniRes.status}`);
-      debugInfo.attempts.push({
-        source: "ESTV municipalities",
-        status: muniRes.status,
-      });
-    }
-
-    // 1b. Essayer l'endpoint exportManySimpleRates
-    const year = 2025;
-    const ratesEndpoints = [
-      `/delegate/ost-integration/v1/lg/fr/export-many-simple-rates`,
-      `/delegate/ost-integration/v1/lg/fr/simple-rates`,
-      `/delegate/ost-integration/v1/lg/fr/tax-rates`,
-    ];
-
-    for (const endpoint of ratesEndpoints) {
-      try {
-        console.log(`[tax] Trying ESTV ${endpoint}...`);
-        const ratesRes = await fetch(`${estvBase}${endpoint}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            year,
-            municipalityIds: allCommunes.slice(0, 10).map((c: any) => c.code_ofs),
-          }),
-          signal: AbortSignal.timeout(30000),
-        });
-
-        const ratesStatus = ratesRes.status;
-        let ratesBody: any = null;
-        try {
-          ratesBody = await ratesRes.json();
-        } catch {
-          ratesBody = await ratesRes.text().catch(() => "");
-        }
-
-        console.log(`[tax] ESTV ${endpoint}: HTTP ${ratesStatus}`);
-        debugInfo.attempts.push({
-          source: `ESTV ${endpoint}`,
-          status: ratesStatus,
-          response_type: typeof ratesBody,
-          sample: typeof ratesBody === "string" ? ratesBody.substring(0, 300) : JSON.stringify(ratesBody).substring(0, 500),
-        });
-
-        if (ratesRes.ok && ratesBody) {
-          // Si ça marche, essayer d'extraire les taux
-          console.log(`[tax] ESTV ${endpoint} returned data!`);
-        }
-      } catch (e: any) {
-        console.log(`[tax] ESTV ${endpoint} error: ${e.message}`);
-        debugInfo.attempts.push({
-          source: `ESTV ${endpoint}`,
-          error: e.message,
-        });
-      }
-    }
-  } catch (e: any) {
-    console.error("[tax] ESTV approach failed:", e.message);
-    debugInfo.attempts.push({ source: "ESTV", error: e.message });
+  // Lookup VD coefficient by normalized name with fuzzy alias support
+  function getVdCoeff(nom: string): number | undefined {
+    const norm = normalizeName(nom);
+    // Direct match
+    if (VD_2026[norm] !== undefined) return VD_2026[norm];
+    // Alias match
+    const aliasKey = VD_ALIASES[norm];
+    if (aliasKey && VD_2026[aliasKey] !== undefined) return VD_2026[aliasKey];
+    // Try without parentheses content: "Forel (Lavaux)" → "forel"
+    const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").trim();
+    if (noParens !== norm && VD_2026[noParens] !== undefined) return VD_2026[noParens];
+    // Try with parentheses content joined: "Forel (Lavaux)" → "forel lavaux"
+    const joined = norm.replace(/[()]/g, " ").replace(/\s+/g, " ").trim();
+    if (joined !== norm && VD_2026[joined] !== undefined) return VD_2026[joined];
+    return undefined;
   }
 
-  // ─── Approche 2 : EFV (Administration fédérale des finances) ───
-  // Publie les Steuerfüsse (coefficients fiscaux) de toutes les communes
-  // Format Excel téléchargeable annuellement
-
-  try {
-    console.log("[tax] Trying EFV Steuerfüsse download...");
-
-    const efvUrls = [
-      "https://www.efv.admin.ch/dam/efv/fr/dokumente/finanzstatistik/daten/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
-      "https://www.efv.admin.ch/dam/efv/de/dokumente/finanzstatistik/daten/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
-    ];
-
-    for (const url of efvUrls) {
-      try {
-        const res = await fetch(url, {
-          signal: AbortSignal.timeout(30000),
-          redirect: "follow",
-        });
-
-        console.log(`[tax] EFV ${url.includes("/fr/") ? "FR" : "DE"}: HTTP ${res.status}, content-type: ${res.headers.get("content-type")}`);
-
-        debugInfo.attempts.push({
-          source: `EFV Steuerfüsse (${url.includes("/fr/") ? "FR" : "DE"})`,
-          status: res.status,
-          content_type: res.headers.get("content-type"),
-          content_length: res.headers.get("content-length"),
-        });
-
-        if (res.ok) {
-          const contentType = res.headers.get("content-type") || "";
-          if (
-            contentType.includes("spreadsheet") ||
-            contentType.includes("excel") ||
-            contentType.includes("octet-stream")
-          ) {
-            console.log("[tax] EFV Excel file found! Size: " + res.headers.get("content-length"));
-            // On a le fichier Excel — le parser est complexe mais possible
-            // Pour l'instant, on log et on continue
-            debugInfo.efv_excel_found = true;
-          }
-        }
-      } catch (e: any) {
-        debugInfo.attempts.push({
-          source: `EFV Steuerfüsse`,
-          error: e.message,
-        });
-      }
-    }
-  } catch (e: any) {
-    console.error("[tax] EFV approach failed:", e.message);
-  }
-
-  // ─── Approche 3 : BFS PxWeb (table fiscale) ───
-  // Tables connues : px-x-1803020000_100 (charge fiscale)
-
-  try {
-    console.log("[tax] Trying BFS PxWeb tax table...");
-
-    const taxTables = [
-      "px-x-1803020000_100/px-x-1803020000_100.px", // Charge fiscale
-      "px-x-1803000000_100/px-x-1803000000_100.px", // Statistique financière
-    ];
-
-    for (const table of taxTables) {
-      try {
-        const pxUrl = `https://www.pxweb.bfs.admin.ch/api/v1/fr/${table}`;
-        console.log(`[tax] Fetching PxWeb metadata: ${table}...`);
-
-        const metaRes = await fetch(pxUrl, {
-          method: "GET",
-          headers: { Accept: "application/json" },
-          signal: AbortSignal.timeout(30000),
-        });
-
-        if (!metaRes.ok) {
-          console.log(`[tax] PxWeb ${table}: HTTP ${metaRes.status}`);
-          debugInfo.attempts.push({
-            source: `BFS PxWeb ${table}`,
-            status: metaRes.status,
-          });
-          continue;
-        }
-
-        const meta = await metaRes.json();
-
-        // C'est peut-être un dossier (liste de tables)
-        if (Array.isArray(meta)) {
-          console.log(`[tax] PxWeb ${table}: folder with ${meta.length} items`);
-          debugInfo.attempts.push({
-            source: `BFS PxWeb ${table}`,
-            type: "folder",
-            items: meta.slice(0, 10).map((m: any) => ({
-              id: m.id,
-              text: m.text,
-              type: m.type,
-            })),
-          });
-          continue;
-        }
-
-        const variables = meta?.variables || [];
-        console.log(
-          `[tax] PxWeb ${table}: ${variables.length} variables:`,
-          variables.map((v: any) => `${v.code}(${v.values?.length || 0})`).join(", ")
-        );
-
-        debugInfo.attempts.push({
-          source: `BFS PxWeb ${table}`,
-          type: "table",
-          variables: variables.map((v: any) => ({
-            code: v.code,
-            text: v.text,
-            count: v.values?.length || 0,
-            sample_values: (v.values || []).slice(0, 5),
-            sample_texts: (v.valueTexts || []).slice(0, 5),
-          })),
-        });
-
-        // Identifier la variable commune et année
-        const communeVar = variables.find(
-          (v: any) => (v.values?.length || 0) > 100
-        );
-        const yearVar = variables.find((v: any) => {
-          const vals = v.values || [];
-          return (
-            vals.length > 0 &&
-            vals.length < 50 &&
-            vals.every(
-              (val: string) =>
-                /^\d{4}$/.test(val) &&
-                parseInt(val) >= 1900 &&
-                parseInt(val) <= 2100
-            )
-          );
-        });
-
-        if (communeVar && yearVar) {
-          console.log(
-            `[tax] Found commune var "${communeVar.code}" (${communeVar.values.length}) and year var "${yearVar.code}" (${yearVar.values.length})`
-          );
-
-          // Identifier les variables de type d'impôt
-          const otherVars = variables.filter(
-            (v: any) => v !== communeVar && v !== yearVar
-          );
-          for (const ov of otherVars) {
-            console.log(
-              `[tax] Other var "${ov.code}": ${(ov.valueTexts || []).slice(0, 10).join(", ")}`
-            );
-          }
-
-          // Dernière année disponible
-          const lastYear =
-            yearVar.values[yearVar.values.length - 1];
-
-          // Trouver les valeurs PxWeb qui correspondent à nos communes
-          const communeValues = communeVar.values as string[];
-          const targetPxVals: string[] = [];
-
-          for (const pxVal of communeValues) {
-            if (pxVal.length !== 4 || pxVal === "8100") continue;
-            const code = parseInt(pxVal);
-            if (code > 0 && allCodes.has(code)) {
-              targetPxVals.push(pxVal);
-            }
-          }
-
-          console.log(
-            `[tax] Matched ${targetPxVals.length} commune codes in PxWeb`
-          );
-
-          if (targetPxVals.length > 0) {
-            // Construire la query
-            const query: any[] = [];
-
-            for (const v of variables) {
-              if (v === communeVar) {
-                query.push({
-                  code: v.code,
-                  selection: { filter: "item", values: targetPxVals },
-                });
-              } else if (v === yearVar) {
-                query.push({
-                  code: v.code,
-                  selection: { filter: "item", values: [lastYear] },
-                });
-              } else {
-                // Pour les autres variables, prendre toutes les valeurs
-                // pour voir ce qui est disponible
-                const vals = (v.values || []) as string[];
-                query.push({
-                  code: v.code,
-                  selection: { filter: "item", values: vals.slice(0, 3) },
-                });
-              }
-            }
-
-            console.log(`[tax] POST query for ${targetPxVals.length} communes, year ${lastYear}...`);
-
-            const pxRes = await fetch(pxUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                query,
-                response: { format: "json" },
-              }),
-              signal: AbortSignal.timeout(120000),
-            });
-
-            if (pxRes.ok) {
-              const pxData = await pxRes.json();
-              const entries = pxData?.data || [];
-              console.log(
-                `[tax] PxWeb returned ${entries.length} entries`
-              );
-
-              // Log samples pour comprendre le format
-              debugInfo.pxweb_tax_data = {
-                table,
-                year: lastYear,
-                total_entries: entries.length,
-                sample_entries: entries.slice(0, 20).map((e: any) => ({
-                  key: e.key,
-                  values: e.values,
-                })),
-              };
-
-              // Essayer de mapper les données aux communes
-              // Le format dépend de la table — on va l'analyser
-              const communeVarIdx = variables.indexOf(communeVar);
-              const taxUpdates: {
-                code: number;
-                taux_commune: number | null;
-                taux_canton: number | null;
-                taux_eglise: number | null;
-              }[] = [];
-
-              // Grouper par commune
-              const byCommune = new Map<number, any[]>();
-              for (const entry of entries) {
-                const rawKey = entry.key?.[communeVarIdx] || "";
-                const code = parseInt(rawKey);
-                if (code > 0 && code < 10000 && allCodes.has(code)) {
-                  if (!byCommune.has(code)) byCommune.set(code, []);
-                  byCommune.get(code)!.push(entry);
-                }
-              }
-
-              console.log(`[tax] Grouped entries for ${byCommune.size} communes`);
-
-              // Analyser le format pour mapper les valeurs
-              // Les "autres variables" nous disent quel type de taux chaque valeur représente
-              for (const [code, cEntries] of byCommune) {
-                // Si une seule entrée par commune avec une valeur = c'est probablement le coefficient
-                if (cEntries.length === 1) {
-                  const val = parseFloat(cEntries[0].values?.[0]);
-                  if (val > 0) {
-                    taxUpdates.push({
-                      code,
-                      taux_commune: val,
-                      taux_canton: null,
-                      taux_eglise: null,
-                    });
-                  }
-                } else {
-                  // Plusieurs entrées — analyser les clés pour distinguer commune/canton/église
-                  const vals: Record<string, number> = {};
-                  for (const e of cEntries) {
-                    // Les clés des "autres variables" identifient le type
-                    const otherKeys = e.key
-                      .filter((_: any, i: number) => i !== communeVarIdx && variables[i] !== yearVar)
-                      .join("_");
-                    const val = parseFloat(e.values?.[0]);
-                    if (!isNaN(val)) vals[otherKeys] = val;
-                  }
-
-                  // Log pour debug
-                  if (taxUpdates.length < 3) {
-                    console.log(`[tax] Commune ${code}: keys = ${JSON.stringify(vals)}`);
-                  }
-
-                  // Heuristique: la première valeur est souvent le coefficient communal
-                  const allVals = Object.values(vals).filter((v) => v > 0);
-                  if (allVals.length > 0) {
-                    taxUpdates.push({
-                      code,
-                      taux_commune: allVals[0] || null,
-                      taux_canton: allVals[1] || null,
-                      taux_eglise: allVals[2] || null,
-                    });
-                  }
-                }
-              }
-
-              console.log(`[tax] ${taxUpdates.length} communes with tax data to update`);
-
-              // Appliquer les updates
-              if (taxUpdates.length > 0) {
-                let updated = 0;
-                let errors = 0;
-                const annee = parseInt(lastYear);
-
-                for (let i = 0; i < taxUpdates.length; i += 50) {
-                  const chunk = taxUpdates.slice(i, i + 50);
-                  const results = await Promise.all(
-                    chunk.map(({ code, taux_commune, taux_canton, taux_eglise }) =>
-                      supabase
-                        .from("communes")
-                        .update({
-                          ...(taux_commune !== null ? { taux_commune } : {}),
-                          ...(taux_canton !== null ? { taux_canton } : {}),
-                          ...(taux_eglise !== null ? { taux_eglise } : {}),
-                          annee_fiscale: annee,
-                          updated_at: new Date().toISOString(),
-                        })
-                        .eq("code_ofs", code)
-                    )
-                  );
-
-                  for (const r of results) {
-                    if (r.error) errors++;
-                    else updated++;
-                  }
-                  console.log(`[tax] ✓ ${updated}/${taxUpdates.length}`);
-                }
-
-                return {
-                  updated,
-                  errors,
-                  source: `BFS PxWeb (${table})`,
-                  year: annee,
-                  debug: debugInfo,
-                };
-              }
-            } else {
-              console.log(`[tax] PxWeb POST HTTP ${pxRes.status}`);
-              const errText = await pxRes.text().catch(() => "");
-              debugInfo.attempts.push({
-                source: `BFS PxWeb POST ${table}`,
-                status: pxRes.status,
-                error: errText.substring(0, 300),
-              });
-            }
-          }
-        }
-      } catch (e: any) {
-        console.error(`[tax] PxWeb ${table} error:`, e.message);
-        debugInfo.attempts.push({
-          source: `BFS PxWeb ${table}`,
-          error: e.message,
-        });
-      }
-    }
-  } catch (e: any) {
-    console.error("[tax] BFS PxWeb approach failed:", e.message);
-  }
-
-  // ─── Approche 4 : Données cantonales hardcodées (fallback fiable) ───
-  // Coefficients communaux 2025 pour les principales communes romandes
-  // Source : sites officiels des cantons respectifs
-
-  console.log("[tax] Falling back to known cantonal coefficients...");
+  // ESTV API désactivée (retourne 405 sur tous les endpoints POST)
+  debugInfo.estv = "disabled - ESTV operation endpoints return 405 (browser-only access)";
 
   // Coefficients cantonaux de base (identiques pour toutes les communes du canton)
   const CANTONAL_RATES: Record<string, { taux_canton: number; taux_eglise: number }> = {
-    VD: { taux_canton: 154.5, taux_eglise: 0 },    // VD: coefficient cantonal 2025
+    VD: { taux_canton: 154.5, taux_eglise: 0 },    // VD: coefficient cantonal 2026
     GE: { taux_canton: 100, taux_eglise: 0 },      // GE: centime additionnel cantonal (base rate)
     FR: { taux_canton: 100, taux_eglise: 0 },      // FR: coefficient cantonal (base rate)
     VS: { taux_canton: 100, taux_eglise: 0 },      // VS: coefficient cantonal (base rate)
@@ -1127,229 +761,239 @@ async function enrichWithTax(): Promise<{
     JU: { taux_canton: 100, taux_eglise: 0 },      // JU: coefficient cantonal (base rate)
   };
 
-  // Coefficients communaux 2025 — données complètes de 6 cantons romands
-  // Sources : ArCA (GE), sites officiels cantonaux (VD, FR, VS, NE, JU), décrets fiscaux 2025
-  const KNOWN_COEFFICIENTS: Record<number, number> = {
-    // ═══════════════════════════════════════════════════════════════════
-    // GENÈVE 2025 — 45 communes (centimes additionnels communaux)
-    // Décret ArCA 2025 — tous les codes OFS
-    // ═══════════════════════════════════════════════════════════════════
-    6621: 45.5,   // Genève
-    6608: 50.0,   // Aire-la-Ville
-    6609: 31.0,   // Anières
-    6610: 44.0,   // Avully
-    6611: 50.0,   // Avusy
-    6612: 43.0,   // Bardonnex
-    6613: 39.0,   // Bellevue
-    6639: 48.0,   // Bernex
-    6630: 40.0,   // Carouge
-    6614: 39.0,   // Cartigny
-    6615: 33.0,   // Céligny
-    6616: 51.0,   // Chancy
-    6631: 32.0,   // Chêne-Bougeries
-    6632: 39.0,   // Chêne-Bourg
-    6617: 44.0,   // Collex-Bossy
-    6644: 29.0,   // Collonge-Bellerive
-    6643: 25.0,   // Cologny
-    6618: 51.0,   // Confignon
-    6619: 33.0,   // Corsier
-    6620: 43.0,   // Dardagny
-    6629: 39.0,   // Grand-Saconnex
-    6622: 20.0,   // Genthod
-    6623: 39.0,   // Gy
-    6624: 35.0,   // Hermance
-    6625: 35.0,   // Jussy
-    6626: 46.0,   // Laconnex
-    6628: 47.0,   // Lancy
-    6633: 36.0,   // Meinier
-    6636: 39.0,   // Meyrin
-    6638: 50.5,   // Onex
-    6637: 43.0,   // Perly-Certoux
-    6640: 25.0,   // Plan-les-Ouates
-    6641: 26.0,   // Pregny-Chambésy
-    6634: 33.0,   // Presinge
-    6635: 37.0,   // Puplinge
-    6645: 32.0,   // Russin
-    6646: 29.0,   // Satigny
-    6647: 43.0,   // Soral
-    6627: 36.0,   // Thônex
-    6648: 29.0,   // Troinex
-    6642: 25.0,   // Vandoeuvres
-    6649: 51.0,   // Vernier
-    6650: 42.0,   // Versoix
-    6651: 36.0,   // Veyrier
-
-    // ═══════════════════════════════════════════════════════════════════
-    // VAUD 2025 — 43 communes principales (coefficient communal)
-    // Sources : vd.ch/impots, statistiques cantonales 2025
-    // ═══════════════════════════════════════════════════════════════════
-    5586: 78.5,   // Lausanne
-    5938: 74.5,   // Vevey
-    5518: 75.0,   // Yverdon-les-Bains
-    5890: 65.5,   // Montreux
-    5724: 65.0,   // Morges
-    5721: 61.0,   // Nyon
-    5806: 76.5,   // Payerne
-    5643: 61.0,   // Renens
-    5642: 55.0,   // Pully
-    5644: 58.0,   // Prilly
-    5648: 54.0,   // Ecublens
-    5651: 57.5,   // Crissier
-    5649: 58.0,   // Chavannes-près-Renens
-    5584: 58.0,   // Le Mont-sur-Lausanne
-    5585: 57.5,   // Lutry
-    5591: 55.5,   // Paudex
-    5889: 66.0,   // La Tour-de-Peilz
-    5887: 50.0,   // Saint-Légier-La Chiésaz
-    5886: 61.0,   // Blonay
-    5576: 66.0,   // Echallens
-    5902: 60.0,   // Bourg-en-Lavaux
-    5803: 68.0,   // Moudon
-    5707: 70.0,   // Gland
-    5726: 67.0,   // Rolle
-    5935: 59.5,   // Villeneuve
-    5561: 63.0,   // Aigle
-    5871: 68.0,   // Bex
-    5757: 73.0,   // Orbe
-    5822: 74.0,   // Avenches
-    5414: 77.0,   // Grandson
-    5566: 75.0,   // Bourg-Saint-Pierre
-    5656: 54.0,   // Bussigny
-    5904: 53.0,   // Belmont-sur-Lausanne
-    5478: 82.0,   // Sainte-Croix
-    5834: 73.0,   // Château-d'Oex
-    5903: 53.0,   // Epalinges
-    5582: 49.0,   // Jouxtens-Mézery
-    5589: 59.0,   // Savigny
-    5655: 52.0,   // Villars-Sainte-Croix
-    5652: 54.0,   // Bussigny (alt code)
-    5588: 56.0,   // Romanel-sur-Lausanne
-    5645: 56.0,   // Saint-Sulpice
-
-    // ═══════════════════════════════════════════════════════════════════
-    // FRIBOURG 2025 — 28 communes (coefficient communal)
-    // Sources : fr.ch/impots, décret fiscal 2025
-    // ═══════════════════════════════════════════════════════════════════
-    2196: 85.0,   // Fribourg
-    2175: 80.0,   // Bulle
-    2236: 85.0,   // Morat/Murten
-    2295: 80.0,   // Romont
-    2135: 80.0,   // Estavayer
-    2061: 70.0,   // Düdingen
-    2275: 75.0,   // Villars-sur-Glâne
-    2197: 80.0,   // Givisiez
-    2274: 80.0,   // Marly
-    2121: 85.0,   // Châtel-Saint-Denis
-    2125: 83.0,   // Attalens
-    2004: 80.0,   // Belfaux
-    2296: 85.0,   // Rue
-    2293: 82.0,   // Siviriez
-    2233: 80.0,   // Kerzers
-    2300: 85.0,   // Surpierre
-    2138: 80.0,   // Montagny
-    2305: 83.0,   // Vuisternens-devant-Romont
-    2280: 75.0,   // Corminboeuf
-    2206: 70.0,   // Granges-Paccot
-    2194: 75.0,   // Avry
-    2044: 73.0,   // Wünnewil-Flamatt
-    2016: 80.0,   // Courtepin
-    2012: 73.0,   // Bösingen
-    2043: 73.0,   // Ueberstorf
-    2306: 80.0,   // La Brillaz
-    2122: 80.0,   // Remaufens
-    2008: 75.0,   // Gurmels
-
-    // ═══════════════════════════════════════════════════════════════════
-    // VALAIS 2025 — 40 communes (coefficient communal / indice)
-    // Sources : vs.ch/impots, décrets fiscaux 2025
-    // ═══════════════════════════════════════════════════════════════════
-    6266: 130.0,  // Sion
-    6248: 130.0,  // Sierre
-    6083: 135.0,  // Martigny
-    6192: 130.0,  // Monthey
-    6011: 120.0,  // Visp
-    6002: 120.0,  // Brig-Glis
-    6136: 110.0,  // Nendaz
-    6037: 130.0,  // Val de Bagnes
-    6208: 130.0,  // Saint-Maurice
-    6153: 120.0,  // Crans-Montana
-    6081: 135.0,  // Fully
-    6032: 130.0,  // Conthey
-    6023: 120.0,  // Savièse
-    6024: 125.0,  // Ayent
-    6261: 130.0,  // Vétroz
-    6007: 115.0,  // Naters
-    6008: 120.0,  // Raron
-    6009: 125.0,  // Stalden
-    6181: 135.0,  // Collombey-Muraz
-    6182: 166.0,  // Troistorrents
-    6183: 140.0,  // Val-d'Illiez
-    6184: 130.0,  // Vouvry
-    6191: 120.0,  // Port-Valais
-    6131: 145.0,  // Hérémence
-    6132: 150.0,  // Saint-Martin
-    6133: 176.0,  // Evolène
-    6134: 135.0,  // Vex
-    6135: 125.0,  // Les Agettes
-    6247: 130.0,  // Anniviers
-    6249: 120.0,  // Lens
-    6250: 130.0,  // Noble-Contrée
-    6252: 135.0,  // Chalais
-    6241: 120.0,  // Leuk
-    6242: 145.0,  // Leukerbad
-    6006: 110.0,  // Zermatt
-    6010: 115.0,  // Saas-Fee
-    6084: 135.0,  // Martigny-Combe
-    6082: 135.0,  // Saxon
-    6053: 130.0,  // Riddes
-    6054: 150.0,  // Isérables
-
-    // ═══════════════════════════════════════════════════════════════════
-    // NEUCHÂTEL 2025 — 16 communes (coefficient communal)
-    // Sources : ne.ch/impots, décrets fiscaux 2025
-    // ═══════════════════════════════════════════════════════════════════
-    6458: 130.0,  // Neuchâtel
-    6421: 128.0,  // La Chaux-de-Fonds
-    6436: 110.0,  // Le Locle
-    6487: 120.0,  // Val-de-Travers
-    6407: 110.0,  // Boudry
-    6454: 120.0,  // Milvignes
-    6414: 115.0,  // Hauterive
-    6431: 117.0,  // La Grande Béroche
-    6457: 118.0,  // Val-de-Ruz
-    6412: 120.0,  // Corcelles-Cormondrèche
-    6413: 117.0,  // Cortaillod
-    6453: 120.0,  // Peseux
-    6483: 115.0,  // La Tène
-    6434: 130.0,  // Les Ponts-de-Martel
-    6440: 130.0,  // La Brévine
-    6486: 120.0,  // Rochefort
-
-    // ═══════════════════════════════════════════════════════════════════
-    // JURA 2025 — 14 communes (coefficient communal)
-    // Sources : ju.ch/impots, décrets fiscaux 2025
-    // ═══════════════════════════════════════════════════════════════════
-    6711: 130.0,  // Delémont
-    6784: 125.0,  // Porrentruy
-    6742: 120.0,  // Saignelégier
-    6706: 125.0,  // Bassecourt
-    6713: 125.0,  // Courrendlin
-    6714: 115.0,  // Courroux
-    6708: 125.0,  // Haute-Sorne
-    6781: 130.0,  // Boncourt
-    6791: 130.0,  // Clos du Doubs
-    6783: 125.0,  // Fontenais
-    6792: 130.0,  // La Baroche
-    6786: 125.0,  // Alle
-    6741: 125.0,  // Les Breuleux
-    6743: 120.0,  // Le Noirmont
+  // ═══════════════════════════════════════════════════════════════════
+  // GENÈVE 2026 — 45 communes (centimes additionnels communaux)
+  // Source : centimes2018-2026_0.xlsx (fichier officiel)
+  // ═══════════════════════════════════════════════════════════════════
+  const GE_2026: Record<string, number> = {
+    "aire-la-ville":50,"anieres":31,"avully":51,"avusy":49,
+    "bardonnex":43,"bellevue":39,"bernex":48,"carouge":40,
+    "cartigny":42,"celigny":33,"chancy":51,"chene-bougeries":32,
+    "chene-bourg":46,"choulex":40,"collex-bossy":46,"collonge-bellerive":28,
+    "cologny":25,"confignon":46,"corsier":31,"dardagny":48,
+    "geneve":45.49,"genthod":25,"grand-saconnex":44,"gy":46,
+    "hermance":42,"jussy":41,"laconnex":44,"lancy":47,
+    "meinier":42,"meyrin":42,"onex":50.5,"perly-certoux":43,
+    "plan-les-ouates":37,"pregny-chambesy":32,"presinge":40,"puplinge":49,
+    "russin":39,"satigny":39,"soral":44,"thonex":44,
+    "troinex":40,"vandoeuvres":27,"vernier":50,"versoix":45.5,
+    "veyrier":37,
   };
 
+  // ═══════════════════════════════════════════════════════════════════
+  // VALAIS 2026 — 122 communes (coefficient total %)
+  // Source : Coefficients_Indexations_Communes_2022-2027.pdf (officiel)
+  // ═══════════════════════════════════════════════════════════════════
+  const VS_2026: Record<string, number> = {
+    "agarn":153,"albinen":145,"anniviers":146,"arbaz":146,
+    "ardon":166,"ausserberg":138,"ayent":158,"baltschieder":166,
+    "bellwald":160,"bettmeralp":136,"binn":156,"bister":176,
+    "bitsch":176,"blatten":136,"bourg-st-pierre":176,"bovernier":156,
+    "brigglis":176,"burchen":146,"chalais":146,"chamoson":143,
+    "champery":141,"chippis":146,"collombey-muraz":171,"collonges":165,
+    "conthey":163,"crans-montana":176,"dorenaz":161,"eggerberg":133,
+    "eischoll":146,"eisten":176,"embd":158,"ergisch":176,
+    "ernen":176,"evionnaz":176,"evolene":140,"ferden":151,
+    "fiesch":160,"fieschertal":176,"finhaut":176,"fully":165,
+    "gampel-bratsch":151,"goms":173,"grachen":135,"grengiols":146,
+    "grimisuat":163,"grone":143,"guttet-feschel":148,"heremence":176,
+    "icogne":176,"inden":136,"iserables":138,"kippel":136,
+    "lalden":158,"lax":163,"lens":176,"leuk":156,
+    "leukerbad":151,"leytron":146,"liddes":143,"martigny":166,
+    "martigny-combe":163,"massongex":168,"mont-noble":148,"monthey":170,
+    "morel-filet":140,"naters":176,"nendaz":156,"niedergesteln":156,
+    "noble-contree":166,"oberems":176,"obergoms":176,"orsieres":150,
+    "port-valais":170,"randa":176,"raron":165,"riddes":153,
+    "ried-brig":170,"riederalp":138,"saas-almagell":150,"saas-balen":153,
+    "saas-fee":145,"saas-grund":133,"saillon":146,"salgesch":136,
+    "salvan":173,"saviese":156,"saxon":166,"sembrancher":155,
+    "sierre":161,"simplon":176,"sion":176,"st niklaus":160,
+    "st-gingolph":133,"st-leonard":158,"st-martin":150,"st-maurice":163,
+    "stalden":171,"staldenried":176,"steg-hohtenn":156,"tasch":155,
+    "termen":176,"torbel":176,"trient":176,"troistorrents":166,
+    "turtmann - unterems":166,"unterbach":138,"val de bagnes":176,"val dilliez":151,
+    "varen":156,"vernayaz":166,"verossaz":153,"vetroz":163,
+    "vex":166,"veysonnaz":110,"vionnaz":153,"visp":166,
+    "visperterminen":150,"vouvry":158,"wiler":146,"zeneggen":151,
+    "zermatt":176,"zwischbergen":176,
+  };
+
+  // Aliases VS pour matcher les noms en DB
+  const VS_ALIASES: Record<string, string> = {
+    "brig-glis": "brigglis",
+    "saint-maurice": "st-maurice",
+    "saint-leonard": "st-leonard",
+    "saint-martin": "st-martin",
+    "saint-gingolph": "st-gingolph",
+    "val d'illiez": "val dilliez",
+    "val-d'illiez": "val dilliez",
+    "saint-niklaus": "st niklaus",
+    "turtmann-unterems": "turtmann - unterems",
+  };
+
+  // Lookup GE/VS coefficient by normalized name
+  function getNameCoeff(nom: string, canton: string): number | undefined {
+    const norm = normalizeName(nom);
+
+    if (canton === "GE") {
+      if (GE_2026[norm] !== undefined) return GE_2026[norm];
+      // GE aliases
+      const geAliases: Record<string, string> = {
+        "le grand-saconnex": "grand-saconnex",
+      };
+      const alias = geAliases[norm];
+      if (alias && GE_2026[alias] !== undefined) return GE_2026[alias];
+      return undefined;
+    }
+
+    if (canton === "VS") {
+      if (VS_2026[norm] !== undefined) return VS_2026[norm];
+      const alias = VS_ALIASES[norm];
+      if (alias && VS_2026[alias] !== undefined) return VS_2026[alias];
+      // Try removing parentheses
+      const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+      if (noParens !== norm && VS_2026[noParens] !== undefined) return VS_2026[noParens];
+      return undefined;
+    }
+
+    return undefined;
+  }
+
+  // ═══════════════════════════════════════════════════════════════════
+  // FRIBOURG 2025 — 121 communes (code_ofs → coefficient PM)
+  // Source : Calculette PM 2025.xlsx, onglet "taux 2025 communes"
+  // ═══════════════════════════════════════════════════════════════════
+  const FR_2025: Record<number, number> = {
+    2008:87,2011:85,2016:85.6,2022:68.9,2025:80,2027:88.1,
+    2029:79.2,2035:87.9,2038:90.3,2041:80,2043:50,2044:84,
+    2045:83,2050:77.4,2051:49.9,2053:78,2054:84,2055:70,
+    2063:100,2067:55,2068:85,2079:85,2086:86.9,2087:83,
+    2096:90,2097:48,2099:88,2102:77,2113:88.4,2114:80,
+    2115:85,2117:85,2121:97,2122:75,2123:85,2124:92,
+    2125:74.3,2128:79.5,2129:77.2,2130:67,2131:70,2134:80,
+    2135:75.6,2137:77.7,2138:100,2140:75,2143:88.1,2145:79.7,
+    2147:75,2148:73,2149:100,2152:86,2153:78,2155:79,
+    2160:82.8,2162:83.2,2163:89.8,2173:90,2174:69.1,2175:84,
+    2177:91.7,2183:75,2186:93,2194:55,2196:80,2197:70,
+    2198:67.8,2206:89,2208:80,2211:81,2216:75,2220:84.5,
+    2226:80,2228:69,2230:100,2233:74,2234:85,2235:100,
+    2236:82,2237:80,2238:85,2239:80,2250:76,2254:80,
+    2257:68,2258:75,2261:32,2262:80,2265:79,2266:75,
+    2271:52.3,2272:92.6,2274:58,2275:62,2276:72.5,2278:85,
+    2284:58,2292:89,2293:82,2294:85.9,2295:76,2296:78,
+    2299:90,2300:95,2301:86,2303:95,2304:75,2305:72,
+    2306:75,2307:86,2308:89,2309:85.7,2321:78.5,2323:90,
+    2325:83.6,2328:81,2333:88,2335:90,2336:83,2337:93.8,
+    2338:83,
+  };
+
+  // ═══════════════════════════════════════════════════════════════════
+  // NEUCHÂTEL 2026 — 24 communes (nom normalisé → coefficient)
+  // Source : screenshot coefficients communaux 2026
+  // Fusions : Hauterive + Saint-Blaise + Enges + La Tène → Laténa (68)
+  // ═══════════════════════════════════════════════════════════════════
+  const NE_2026: Record<string, number> = {
+    "cornaux":74,"cressier":77,"le landeron":66,"lignieres":67,
+    "boudry":68,"cortaillod":66,"la cote-aux-fees":75,"les verrieres":79,
+    "le cerneux-pequignot":72,"la brevine":75,"la chaux-du-milieu":75,"les ponts-de-martel":75,
+    "brot-plamboz":75,"la chaux-de-fonds":75,"les planchettes":77,"la sagne":75,
+    "val-de-travers":76,"milvignes":63,"val-de-ruz":66,"rochefort":67,
+    "la grande beroche":63,"neuchatel":65,"le locle":69,"latena":68,
+  };
+
+  // Aliases NE pour matcher les noms en DB
+  const NE_ALIASES: Record<string, string> = {
+    "hauterive": "latena",
+    "hauterive (ne)": "latena",
+    "saint-blaise": "latena",
+    "enges": "latena",
+    "la tene": "latena",
+    "la grande-beroche": "la grande beroche",
+  };
+
+  // ═══════════════════════════════════════════════════════════════════
+  // JURA 2026 — 51 communes (nom normalisé → quotité × 100 = coefficient %)
+  // Source : quotites_2026.pdf (3 districts: Delémont, Franches-Montagnes, Porrentruy)
+  // Quotité de l'État : 2.85
+  // ═══════════════════════════════════════════════════════════════════
+  const JU_2026: Record<string, number> = {
+    // District de Delémont (20 communes)
+    "haute-sorne":210,"boecourt":200,"bourrignon":225,"chatillon":200,
+    "val terbi":220,"courchapoix":215,"courrendlin":225,"courroux":215,
+    "courtetelle":165,"delemont":190,"develier":195,"ederswiler":220,
+    "mervelier":225,"mettembert":220,"movelier":225,"pleigne":210,
+    "rossemaison":200,"saulcy":220,"soyhieres":215,"moutier":230,
+    // District des Franches-Montagnes (13 communes)
+    "le bemont":195,"les bois":205,"les breuleux":130,"les enfers":205,
+    "clos du doubs":215,"le genevez":205,"lajoux":220,"montfaucon":220,
+    "muriaux":160,"le noirmont":170,"saignelegier":230,"st-brais":225,
+    "soubey":225,
+    // District de Porrentruy (24 communes)
+    "alle":225,"basse-vendline":210,"boncourt":155,"basse-allaine":235,
+    "bure":225,"haute-ajoie":215,"coeuve":235,"cornol":205,
+    "courchavon":190,"courgenay":205,"courtedoux":220,"damphreux-lugnez":215,
+    "fahy":230,"fontenais":235,"grandfontaine":225,"la baroche":215,
+    "porrentruy":205,"vendlincourt":230,
+  };
+
+  // Aliases JU pour matcher les noms en DB
+  const JU_ALIASES: Record<string, string> = {
+    "saint-brais": "st-brais",
+    "chatillon (ju)": "chatillon",
+  };
+
+  // ═══════════════════════════════════════════════════════════════════
+  // MATCHING : combiner toutes les sources (6 cantons)
+  // VD → par nom (VD_2026, 301 communes, 2026)
+  // GE → par nom (GE_2026, 45 communes, 2026)
+  // VS → par nom (VS_2026, 122 communes, 2026)
+  // FR → par code_ofs (FR_2025, 121 communes, 2025)
+  // NE → par nom (NE_2026, 24 communes, 2026)
+  // JU → par nom (JU_2026, 51 communes, 2026)
+  // ═══════════════════════════════════════════════════════════════════
+
   const taxUpdates: { code: number; data: any }[] = [];
-  const annee = 2025;
 
   for (const commune of allCommunes) {
-    const coeff = KNOWN_COEFFICIENTS[commune.code_ofs];
+    let coeff: number | undefined;
+    let annee = 2026;
+
+    if (commune.canton === "VD") {
+      coeff = getVdCoeff(commune.nom);
+      if (coeff !== undefined) debugInfo.matched_vd++;
+    } else if (commune.canton === "GE") {
+      coeff = getNameCoeff(commune.nom, "GE");
+      if (coeff !== undefined) debugInfo.matched_ge = (debugInfo.matched_ge || 0) + 1;
+    } else if (commune.canton === "VS") {
+      coeff = getNameCoeff(commune.nom, "VS");
+      if (coeff !== undefined) debugInfo.matched_vs = (debugInfo.matched_vs || 0) + 1;
+    } else if (commune.canton === "FR") {
+      coeff = FR_2025[commune.code_ofs];
+      annee = 2025;
+      if (coeff !== undefined) debugInfo.matched_fr = (debugInfo.matched_fr || 0) + 1;
+    } else if (commune.canton === "NE") {
+      const norm = normalizeName(commune.nom);
+      coeff = NE_2026[norm];
+      if (coeff === undefined) {
+        const alias = NE_ALIASES[norm];
+        if (alias) coeff = NE_2026[alias];
+      }
+      if (coeff !== undefined) debugInfo.matched_ne = (debugInfo.matched_ne || 0) + 1;
+    } else if (commune.canton === "JU") {
+      const norm = normalizeName(commune.nom);
+      coeff = JU_2026[norm];
+      if (coeff === undefined) {
+        const alias = JU_ALIASES[norm];
+        if (alias) coeff = JU_2026[alias];
+      }
+      // Try without parentheses: "Châtillon (JU)" → "chatillon"
+      if (coeff === undefined) {
+        const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+        if (noParens !== norm) coeff = JU_2026[noParens];
+      }
+      if (coeff !== undefined) debugInfo.matched_ju = (debugInfo.matched_ju || 0) + 1;
+    }
+
     if (coeff !== undefined) {
       const cantonRates = CANTONAL_RATES[commune.canton] || { taux_canton: null, taux_eglise: null };
       taxUpdates.push({
@@ -1362,10 +1006,12 @@ async function enrichWithTax(): Promise<{
           updated_at: new Date().toISOString(),
         },
       });
+    } else {
+      debugInfo.unmatched.push({ code: commune.code_ofs, nom: commune.nom, canton: commune.canton });
     }
   }
 
-  console.log(`[tax] ${taxUpdates.length} communes with known coefficients (fallback data)`);
+  console.log(`[tax] ${taxUpdates.length} communes matched (VD:${debugInfo.matched_vd}, GE:${debugInfo.matched_ge||0}, VS:${debugInfo.matched_vs||0}, FR:${debugInfo.matched_fr||0}, NE:${debugInfo.matched_ne||0}, JU:${debugInfo.matched_ju||0})`);
 
   let updated = 0;
   let errors = 0;
@@ -1388,8 +1034,8 @@ async function enrichWithTax(): Promise<{
   return {
     updated,
     errors,
-    source: "Known cantonal coefficients (fallback)",
-    year: annee,
+    source: "Official cantonal sources (VD:300, GE:45, VS:122, FR:121, NE:24, JU:51)",
+    year: 2026,
     debug: debugInfo,
   };
 }
@@ -1746,7 +1392,7 @@ export async function GET(request: Request) {
 
     // ─── STEP 7 : Explorer les APIs fiscales (diagnostic v2) ───
     if (step === "tax-explore") {
-      const results: any = { endpoints: [] };
+      const results: any = { datasets: [], downloads: [] };
       const estvBase = "https://swisstaxcalculator.estv.admin.ch";
 
       // Helper : lire un endpoint proprement (fix "Body already read")
@@ -1842,216 +1488,275 @@ export async function GET(request: Request) {
         }
       }
 
-      // ── 2. POST vers les vrais endpoints ESTV /operation/ ──
-      // Découverts dans le JS bundle : c3b67379_ESTV est l'operationId
-      console.log("[tax-explore] Testing ESTV /operation/ POST endpoints...");
+      // ── V4 : Approche opendata.swiss + parsing cantonal ──
+      // L'API ESTV retourne 405 (browser-only). On passe par les données ouvertes.
 
-      const operationBase = `${estvBase}/operation/c3b67379_ESTV`;
+      // ── 2. opendata.swiss — chercher les datasets de coefficients fiscaux ──
+      console.log("[tax-explore] Searching opendata.swiss for tax coefficient datasets...");
 
-      // 2a. D'abord getTaxYearRange (pas de params probablement)
-      const yearRangeBodies = [
-        {},
-        { language: "fr" },
-        { lg: "fr" },
-        null, // empty POST
-      ];
-      for (const body of yearRangeBodies) {
-        const result = await probe(`${operationBase}/API_getTaxYearRange`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: body !== null ? JSON.stringify(body) : undefined,
-        });
-        results.endpoints.push({ ...result, label: "getTaxYearRange", request_body: body });
-      }
-
-      // 2b. getTaxVersion
-      for (const body of [{}, { language: "fr" }, { year: 2025 }, { taxYear: 2025 }]) {
-        const result = await probe(`${operationBase}/API_getTaxVersion`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(body),
-        });
-        results.endpoints.push({ ...result, label: "getTaxVersion", request_body: body });
-      }
-
-      // 2c. searchLocation — clé pour lister les communes
-      const searchBodies = [
-        { searchTerm: "Lausanne" },
-        { query: "Lausanne" },
-        { name: "Lausanne" },
-        { searchTerm: "Lausanne", year: 2025 },
-        { searchTerm: "Lausanne", taxYear: 2025 },
-        { searchTerm: "Lausanne", taxPeriod: 2025 },
-        { term: "Lausanne" },
-        { search: "Lausanne", language: "fr" },
-        { searchTerm: "Lausanne", lg: "fr" },
-        // Peut-être format array ou structure imbriquée
-        { input: { searchTerm: "Lausanne" } },
-        { params: { searchTerm: "Lausanne" } },
-        // Format avec canton
-        { canton: "VD" },
-        { cantonId: 22 },
-        // Vide pour tout récupérer
-        {},
+      // Recherches ciblées pour trouver des datasets avec coefficients/Steuerfüsse
+      const searches = [
+        "steuerf%C3%BCsse+gemeinden+schweiz",
+        "coefficients+impots+communaux",
+        "charge+fiscale+communes",
+        "steuerfuss+kantone+gemeinden",
+        "ESTV+steuerbelastung",
       ];
 
-      for (const body of searchBodies) {
-        const result = await probe(`${operationBase}/API_searchLocation`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(body),
-        });
-        results.endpoints.push({ ...result, label: "searchLocation", request_body: body });
-        // Si on a un résultat JSON valide, on arrête de tester
-        if (result.is_json && result.status === 200 && !result.sample?.includes("nginx")) break;
+      for (const q of searches) {
+        try {
+          const res = await fetch(
+            `https://opendata.swiss/api/3/action/package_search?q=${q}&rows=3`,
+            { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(15000) }
+          );
+          if (res.ok) {
+            const data = await res.json();
+            const packages = data?.result?.results || [];
+            for (const pkg of packages) {
+              // Extraire les URLs de téléchargement (CSV, XLSX, JSON)
+              const resources = (pkg.resources || [])
+                .filter((r: any) => /csv|xlsx|json|px/i.test(r.format || r.media_type || ""))
+                .map((r: any) => ({
+                  name: r.name?.fr || r.name?.de || r.name || "",
+                  url: r.download_url || r.url,
+                  format: r.format,
+                  size: r.byte_size,
+                }));
+              results.datasets.push({
+                id: pkg.id,
+                identifier: pkg.identifier,
+                title: pkg.title?.fr || pkg.title?.de || pkg.display_name || "",
+                description: (pkg.description?.fr || pkg.description?.de || "").substring(0, 200),
+                organization: pkg.organization?.title?.fr || pkg.organization?.title?.de || "",
+                resources_count: (pkg.resources || []).length,
+                csv_json_resources: resources.slice(0, 5),
+                search_query: q,
+              });
+            }
+          }
+        } catch (e: any) {
+          results.datasets.push({ error: e.message, search_query: q });
+        }
       }
 
-      // 2d. exportManySimpleRates — l'endpoint principal pour les taux
-      const rateBodies = [
-        { year: 2025, bfsNrs: [5586] },
-        { taxYear: 2025, bfsNrs: [5586] },
-        { taxPeriod: 2025, bfsNrs: [5586] },
-        { year: 2025, municipalityIds: [5586] },
-        { year: 2025, locations: [5586] },
-        { year: 2025, locationIds: [5586] },
-        { year: 2025, bfsCodes: [5586] },
-        { taxPeriod: 2025, locations: [{ bfsNr: 5586 }] },
-        { input: { year: 2025, bfsNrs: [5586] } },
-        // Lausanne = code 5586, essayer aussi string
-        { year: 2025, bfsNrs: ["5586"] },
-        // Vide
-        {},
+      // ── 3. Chercher spécifiquement le dataset ESTV "Steuerbelastung" ──
+      console.log("[tax-explore] Looking for ESTV Steuerbelastung dataset...");
+
+      try {
+        // L'ESTV publie annuellement "Steuerbelastung in der Schweiz"
+        const estvRes = await fetch(
+          `https://opendata.swiss/api/3/action/package_search?q=steuerbelastung+ESTV&rows=10`,
+          { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(15000) }
+        );
+        if (estvRes.ok) {
+          const data = await estvRes.json();
+          const packages = data?.result?.results || [];
+          results.estv_datasets = packages.map((pkg: any) => ({
+            id: pkg.id,
+            identifier: pkg.identifier,
+            title: pkg.title?.fr || pkg.title?.de || "",
+            org: pkg.organization?.title?.fr || pkg.organization?.title?.de || "",
+            resources: (pkg.resources || []).map((r: any) => ({
+              name: r.name?.fr || r.name?.de || r.name || "",
+              url: r.download_url || r.url,
+              format: r.format,
+            })).slice(0, 8),
+          }));
+        }
+      } catch (e: any) {
+        results.estv_datasets_error = e.message;
+      }
+
+      // ── 4. Chercher les datasets cantonaux romands spécifiquement ──
+      console.log("[tax-explore] Looking for cantonal datasets (VD, GE, FR, VS, NE, JU)...");
+
+      const cantonSearches = [
+        { q: "coefficients+communaux+Vaud", canton: "VD" },
+        { q: "centimes+additionnels+Geneve", canton: "GE" },
+        { q: "coefficients+communaux+Fribourg", canton: "FR" },
+        { q: "coefficients+communaux+Valais", canton: "VS" },
+        { q: "coefficients+communaux+Neuchatel", canton: "NE" },
+        { q: "coefficients+impots+Jura", canton: "JU" },
       ];
 
-      for (const body of rateBodies) {
-        const result = await probe(`${operationBase}/API_exportManySimpleRates`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(body),
-        });
-        results.endpoints.push({ ...result, label: "exportManySimpleRates", request_body: body });
-        if (result.is_json && result.status === 200 && !result.sample?.includes("nginx")) break;
+      for (const { q, canton } of cantonSearches) {
+        try {
+          const res = await fetch(
+            `https://opendata.swiss/api/3/action/package_search?q=${q}&rows=3`,
+            { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(10000) }
+          );
+          if (res.ok) {
+            const data = await res.json();
+            const packages = data?.result?.results || [];
+            results[`canton_${canton}`] = packages.map((pkg: any) => ({
+              id: pkg.id,
+              identifier: pkg.identifier,
+              title: pkg.title?.fr || pkg.title?.de || "",
+              org: pkg.organization?.title?.fr || pkg.organization?.title?.de || "",
+              resources: (pkg.resources || [])
+                .filter((r: any) => /csv|xlsx|json|px|pdf/i.test(r.format || ""))
+                .map((r: any) => ({
+                  url: r.download_url || r.url,
+                  format: r.format,
+                  name: r.name?.fr || r.name?.de || r.name || "",
+                })).slice(0, 5),
+            }));
+          }
+        } catch (e: any) {
+          results[`canton_${canton}`] = { error: e.message };
+        }
       }
 
-      // 2e. calculateManySimpleTaxes — calculer l'impôt pour en déduire les taux
-      const calcBodies = [
-        { year: 2025, bfsNr: 5586, taxableIncome: 100000, status: "single" },
-        { taxYear: 2025, municipalityId: 5586, taxableIncome: 100000 },
-        { year: 2025, locations: [{ bfsNr: 5586 }], income: 100000, civilStatus: "single" },
-        { input: { year: 2025, bfsNr: 5586, taxableIncome: 100000 } },
+      // ── 5. Tester des URLs de téléchargement direct ESTV ──
+      console.log("[tax-explore] Testing direct ESTV download URLs...");
+
+      const estvDownloads = [
+        // L'ESTV publie les Steuerfüsse dans des fichiers Excel/CSV
+        "https://www.estv.admin.ch/dam/estv/fr/dokumente/allgemein/Steuerstatistiken/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
+        "https://www.estv.admin.ch/dam/estv/fr/dokumente/allgemein/Steuerstatistiken/steuerbelastung/steuerfuesse-gemeinden.xlsx.download.xlsx",
+        "https://www.estv.admin.ch/dam/estv/de/dokumente/allgemein/Steuerstatistiken/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
+        "https://www.estv.admin.ch/dam/estv/de/dokumente/allgemein/Steuerstatistiken/steuerbelastung-2025.xlsx.download.xlsx",
+        // Charge fiscale PDF/Excel links
+        "https://www.estv.admin.ch/dam/estv/fr/dokumente/allgemein/Steuerstatistiken/charge-fiscale/charge-fiscale-suisse.xlsx.download.xlsx",
+        // Essayer aussi sans le suffixe .download.xlsx
+        "https://www.estv.admin.ch/dam/estv/fr/dokumente/allgemein/Steuerstatistiken/steuerbelastung/steuerfuesse.xlsx",
+        "https://www.estv.admin.ch/dam/estv/de/dokumente/allgemein/Steuerstatistiken/steuerbelastung/steuerfuesse.xlsx",
       ];
 
-      for (const body of calcBodies) {
-        const result = await probe(`${operationBase}/API_calculateManySimpleTaxes`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(body),
-        });
-        results.endpoints.push({ ...result, label: "calculateManySimpleTaxes", request_body: body });
-        if (result.is_json && result.status === 200 && !result.sample?.includes("nginx")) break;
+      for (const url of estvDownloads) {
+        try {
+          const res = await fetch(url, {
+            method: "HEAD",
+            signal: AbortSignal.timeout(10000),
+            redirect: "follow",
+          });
+          results.downloads.push({
+            url,
+            status: res.status,
+            content_type: res.headers.get("content-type") || "",
+            content_length: res.headers.get("content-length") || "",
+            location: res.headers.get("location") || "",
+          });
+        } catch (e: any) {
+          results.downloads.push({ url, error: e.message });
+        }
       }
 
-      // ── 3. Tester aussi avec d'autres Content-Types (form-encoded, etc.) ──
-      console.log("[tax-explore] Testing alternative Content-Types...");
+      // ── 6. Parser le HTML de Genève (centimes additionnels) ──
+      console.log("[tax-explore] Parsing Geneva centimes additionnels HTML...");
 
-      // Peut-être que c'est du form-encoded ou du XML
-      const altContentTypes = [
-        { ct: "application/x-www-form-urlencoded", body: "searchTerm=Lausanne" },
-        { ct: "text/plain", body: JSON.stringify({ searchTerm: "Lausanne" }) },
-        { ct: "application/xml", body: "<request><searchTerm>Lausanne</searchTerm></request>" },
-      ];
-
-      for (const alt of altContentTypes) {
-        const result = await probe(`${operationBase}/API_searchLocation`, {
-          method: "POST",
-          headers: { "Content-Type": alt.ct, Accept: "application/json" },
-          body: alt.body,
-        });
-        results.endpoints.push({ ...result, label: "searchLocation-alt-ct", content_type_sent: alt.ct });
-      }
-
-      // ── 4. Opendata.swiss — données fiscales en téléchargement ──
-      console.log("[tax-explore] Checking opendata.swiss for tax data...");
-
-      const opendataUrls = [
-        "https://opendata.swiss/api/3/action/package_search?q=steuerf%C3%BCsse+gemeinden&rows=5",
-        "https://opendata.swiss/api/3/action/package_search?q=coefficients+fiscaux+communes&rows=5",
-        "https://opendata.swiss/api/3/action/package_search?q=taux+imposition+communal&rows=5",
-        "https://opendata.swiss/api/3/action/package_search?q=tax+rates+municipalities&rows=5",
-      ];
-
-      for (const url of opendataUrls) {
-        const result = await probe(url, { headers: { Accept: "application/json" } });
-        results.endpoints.push({ ...result, label: "opendata.swiss" });
-      }
-
-      // ── 5. BFS PxWeb — avec délai pour éviter 429 ──
-      console.log("[tax-explore] Browsing BFS PxWeb fiscal tables (with delay)...");
-
-      const pxFolders = [
-        "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803000000_100",
-        "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803020000_100",
-      ];
-
-      for (const url of pxFolders) {
-        await new Promise(r => setTimeout(r, 2000)); // 2s delay to avoid 429
-        const result = await probe(url, { headers: { Accept: "application/json" } });
-        results.endpoints.push({ ...result, label: "bfs-pxweb" });
-      }
-
-      // ── 6. Sources cantonales directes (GE htm accessible!) ──
-      console.log("[tax-explore] Testing cantonal sources...");
-
-      const cantonalUrls = [
-        { url: "https://silgeneve.ch/legis/data/rsg_D3_05p30.htm", label: "ge-centimes-htm" },
-        { url: "https://www.fr.ch/sites/default/files/2024-12/coefficients-communaux-2025.pdf", label: "fr-coeff-pdf" },
-        { url: "https://www.ne.ch/autorites/DFS/SCCO/impot-pp/Documents/coefficients.pdf", label: "ne-coeff-pdf" },
-        { url: "https://www.vs.ch/documents/529400/594058/coefficients+communaux+2025.pdf", label: "vs-coeff-pdf" },
-      ];
-
-      for (const { url, label } of cantonalUrls) {
-        const result = await probe(url);
-        results.endpoints.push({ ...result, label });
-      }
-
-      // ── 7. Si GE htm est accessible, parser les centimes additionnels ──
       try {
         const geRes = await fetch("https://silgeneve.ch/legis/data/rsg_D3_05p30.htm", {
           signal: AbortSignal.timeout(15000),
         });
         if (geRes.ok) {
           const html = await geRes.text();
-          // Chercher les patterns de type "Commune ... XX.XX" ou tableaux
-          const communeMatches: string[] = [];
-          // Pattern courant: nom de commune suivi d'un nombre
-          const lines = html.split(/\n|<br>|<tr>|<\/tr>/);
-          for (const line of lines) {
-            // Nettoyer les tags HTML
-            const clean = line.replace(/<[^>]+>/g, " ").trim();
-            // Chercher un pattern avec un nombre décimal (centime additionnel)
-            const match = clean.match(/([A-ZÀ-Ü][a-zà-ü\-\s']+)\s+(\d{2,3}(?:[.,]\d+)?)/);
-            if (match) {
-              communeMatches.push(`${match[1].trim()} → ${match[2]}`);
+
+          // Extraire les cellules de tableau
+          // Le HTML a 3 tables — les centimes sont dans un tableau structuré
+          const tableMatches = html.match(/<table[\s\S]*?<\/table>/gi) || [];
+
+          const tables: any[] = [];
+          for (let t = 0; t < tableMatches.length; t++) {
+            const tableHtml = tableMatches[t];
+            // Extraire les lignes
+            const rows = tableHtml.match(/<tr[\s\S]*?<\/tr>/gi) || [];
+            const parsedRows: string[][] = [];
+            for (const row of rows) {
+              const cells = row.match(/<t[dh][\s\S]*?<\/t[dh]>/gi) || [];
+              const cellTexts = cells.map((cell: string) =>
+                cell.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim()
+              );
+              if (cellTexts.some((c: string) => c.length > 0)) {
+                parsedRows.push(cellTexts);
+              }
             }
+            tables.push({
+              table_index: t,
+              row_count: parsedRows.length,
+              column_count: parsedRows[0]?.length || 0,
+              first_5_rows: parsedRows.slice(0, 5),
+              last_3_rows: parsedRows.slice(-3),
+              // Chercher les lignes qui ressemblent à des communes avec des taux
+              rate_rows: parsedRows.filter((row: string[]) =>
+                row.some((c: string) => /\d{2,3}[.,]\d/.test(c)) &&
+                row.some((c: string) => /^[A-ZÀ-Ü]/.test(c))
+              ).slice(0, 10),
+            });
           }
+
+          // Aussi chercher du contenu hors tableaux
+          const plainText = html.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ");
+          const numberMatches = plainText.match(/[A-ZÀ-Ü][a-zà-ü\-']+[\s\S]{1,30}\d{2,3}[.,]\d/g) || [];
+
           results.ge_parsed = {
             html_size: html.length,
-            communes_found: communeMatches.length,
-            sample: communeMatches.slice(0, 20),
-            // Extraire aussi les structures de tableau
-            has_tables: html.includes("<table"),
-            table_count: (html.match(/<table/gi) || []).length,
+            table_count: tableMatches.length,
+            tables,
+            text_matches_sample: numberMatches.slice(0, 15),
+            // Aussi dumper les 2000 premiers caractères du texte nettoyé
+            plain_text_start: plainText.substring(0, 2000).trim(),
           };
         }
       } catch (e: any) {
         results.ge_parsed = { error: e.message };
       }
 
+      // ── 7. Tester aussi les datasets Fribourg sur opendata.swiss ──
+      // On a vu "be3df8df-bd71-4b82-a286-81ec31b60d2d" dans la recherche précédente
+      console.log("[tax-explore] Fetching Fribourg coefficients dataset details...");
+
+      try {
+        const frRes = await fetch(
+          `https://opendata.swiss/api/3/action/package_show?id=be3df8df-bd71-4b82-a286-81ec31b60d2d`,
+          { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(10000) }
+        );
+        if (frRes.ok) {
+          const data = await frRes.json();
+          const pkg = data?.result;
+          results.fr_dataset = {
+            title: pkg?.title?.fr || "",
+            resources: (pkg?.resources || []).map((r: any) => ({
+              name: r.name?.fr || r.name?.de || r.name || "",
+              url: r.download_url || r.url,
+              format: r.format,
+              size: r.byte_size,
+            })),
+          };
+
+          // Essayer de télécharger le premier CSV
+          const csvResource = (pkg?.resources || []).find((r: any) =>
+            /csv/i.test(r.format || "")
+          );
+          if (csvResource) {
+            const csvUrl = csvResource.download_url || csvResource.url;
+            try {
+              const csvRes = await fetch(csvUrl, { signal: AbortSignal.timeout(15000) });
+              if (csvRes.ok) {
+                const csvText = await csvRes.text();
+                results.fr_csv = {
+                  url: csvUrl,
+                  size: csvText.length,
+                  first_500_chars: csvText.substring(0, 500),
+                  line_count: csvText.split("\n").length,
+                  first_5_lines: csvText.split("\n").slice(0, 5),
+                };
+              } else {
+                results.fr_csv = { url: csvUrl, status: csvRes.status };
+              }
+            } catch (e: any) {
+              results.fr_csv = { url: csvUrl, error: e.message };
+            }
+          }
+        }
+      } catch (e: any) {
+        results.fr_dataset_error = e.message;
+      }
+
       return NextResponse.json({
         success: true,
-        step: "tax-explore-v3",
-        discovered_js_paths: discoveredPaths.length,
-        total_endpoints_tested: results.endpoints.length,
+        step: "tax-explore-v4",
+        total_datasets: results.datasets.length,
         ...results,
       });
     }
