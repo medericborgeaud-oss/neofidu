@@ -85,13 +85,29 @@ export default async function CommunePage({ params }: Props) {
   const voisines = await getCommunesVoisines(params.slug);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
 
-  // Calcul du taux "attractivité"
+  // Seuils d'attractivité par canton (basés sur les fourchettes réelles)
+  // Chaque canton a ses propres plages : [seuil_bas, médiane]
+  // En dessous du seuil_bas = attractif (emerald)
+  // Entre seuil_bas et médiane = moyen (amber)
+  // Au-dessus de la médiane = élevé pour ce canton (red)
+  const CANTON_THRESHOLDS: Record<string, { low: number; mid: number }> = {
+    VD: { low: 54, mid: 65 },   // fourchette ~46-83
+    GE: { low: 35, mid: 44 },   // fourchette ~25-51
+    VS: { low: 120, mid: 135 }, // fourchette ~110-176
+    FR: { low: 50, mid: 70 },   // fourchette ~32-100
+    NE: { low: 68, mid: 72 },   // fourchette ~63-79
+    JU: { low: 155, mid: 175 }, // fourchette ~130-235
+  };
+
+  const thresholds = CANTON_THRESHOLDS[commune.canton] || { low: 70, mid: 90 };
+
+  // Calcul du taux "attractivité" relatif au canton
   const tauxColor =
     commune.taux_commune === null
       ? "gray"
-      : commune.taux_commune < 70
+      : commune.taux_commune <= thresholds.low
       ? "emerald"
-      : commune.taux_commune < 90
+      : commune.taux_commune <= thresholds.mid
       ? "amber"
       : "red";
 
@@ -104,15 +120,15 @@ export default async function CommunePage({ params }: Props) {
       ? "bg-red-100 text-red-700"
       : "bg-gray-100 text-gray-500";
 
-  // Texte d'attractivité fiscale
+  // Texte d'attractivité fiscale relatif au canton
   const attractiviteText =
     commune.taux_commune === null
       ? ""
-      : commune.taux_commune < 70
-      ? "Cette commune bénéficie d'un taux d'imposition particulièrement attractif."
-      : commune.taux_commune < 90
-      ? "Cette commune se situe dans la moyenne en termes de fiscalité."
-      : "Cette commune applique un taux d'imposition relativement élevé.";
+      : tauxColor === "emerald"
+      ? `Par rapport aux autres communes ${cantonName.toLowerCase() === "valais" ? "valaisannes" : cantonName.toLowerCase() === "vaud" ? "vaudoises" : cantonName.toLowerCase() === "genève" ? "genevoises" : cantonName.toLowerCase() === "fribourg" ? "fribourgeoises" : cantonName.toLowerCase() === "neuchâtel" ? "neuchâteloises" : "jurassiennes"}, ${commune.nom} bénéficie d'un coefficient communal particulièrement attractif.`
+      : tauxColor === "amber"
+      ? `Le coefficient communal de ${commune.nom} se situe dans la moyenne des communes du canton de ${cantonName}.`
+      : `Par rapport aux autres communes du canton de ${cantonName}, ${commune.nom} applique un coefficient communal relativement élevé.`;
 
   // CTA contextuel
   const ctaText = {
