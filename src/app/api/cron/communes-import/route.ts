@@ -1842,82 +1842,215 @@ export async function GET(request: Request) {
         }
       }
 
-      // ── 2. Tester les endpoints ESTV découverts + ceux connus ──
-      const pathsToTest = [
-        ...new Set([
-          ...discoveredPaths,
-          "/api/v1/municipalities",
-          "/api/municipalities",
-          "/api/v1/tax-rates",
-        ]),
-      ].slice(0, 20); // Max 20 pour pas timeout
+      // ── 2. POST vers les vrais endpoints ESTV /operation/ ──
+      // Découverts dans le JS bundle : c3b67379_ESTV est l'operationId
+      console.log("[tax-explore] Testing ESTV /operation/ POST endpoints...");
 
-      console.log(`[tax-explore] Testing ${pathsToTest.length} discovered ESTV paths...`);
+      const operationBase = `${estvBase}/operation/c3b67379_ESTV`;
 
-      for (const path of pathsToTest) {
-        const fullUrl = path.startsWith("http") ? path : `${estvBase}${path}`;
-        const result = await probe(fullUrl, { headers: { Accept: "application/json" } });
-        results.endpoints.push(result);
-      }
-
-      // ── 3. Tester ESTV POST avec différentes structures de body ──
-      console.log("[tax-explore] Testing ESTV POST endpoints...");
-
-      const postTests = [
-        { path: "/api/v1/municipalities", body: {} },
-        { path: "/api/v1/municipalities", body: { year: 2025, cantonId: 22 } },
-        { path: "/api/v1/calculate", body: { municipalityId: 5586, year: 2025, taxableIncome: 100000 } },
+      // 2a. D'abord getTaxYearRange (pas de params probablement)
+      const yearRangeBodies = [
+        {},
+        { language: "fr" },
+        { lg: "fr" },
+        null, // empty POST
       ];
-
-      for (const test of postTests) {
-        const result = await probe(`${estvBase}${test.path}`, {
+      for (const body of yearRangeBodies) {
+        const result = await probe(`${operationBase}/API_getTaxYearRange`, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(test.body),
+          body: body !== null ? JSON.stringify(body) : undefined,
         });
-        results.endpoints.push({ ...result, method: "POST", request_body: test.body });
+        results.endpoints.push({ ...result, label: "getTaxYearRange", request_body: body });
       }
 
-      // ── 4. BFS PxWeb — explorer le dossier racine fiscal ──
-      console.log("[tax-explore] Browsing BFS PxWeb fiscal folders...");
+      // 2b. getTaxVersion
+      for (const body of [{}, { language: "fr" }, { year: 2025 }, { taxYear: 2025 }]) {
+        const result = await probe(`${operationBase}/API_getTaxVersion`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body),
+        });
+        results.endpoints.push({ ...result, label: "getTaxVersion", request_body: body });
+      }
 
-      // D'abord le dossier racine thème 18 (finances publiques)
+      // 2c. searchLocation — clé pour lister les communes
+      const searchBodies = [
+        { searchTerm: "Lausanne" },
+        { query: "Lausanne" },
+        { name: "Lausanne" },
+        { searchTerm: "Lausanne", year: 2025 },
+        { searchTerm: "Lausanne", taxYear: 2025 },
+        { searchTerm: "Lausanne", taxPeriod: 2025 },
+        { term: "Lausanne" },
+        { search: "Lausanne", language: "fr" },
+        { searchTerm: "Lausanne", lg: "fr" },
+        // Peut-être format array ou structure imbriquée
+        { input: { searchTerm: "Lausanne" } },
+        { params: { searchTerm: "Lausanne" } },
+        // Format avec canton
+        { canton: "VD" },
+        { cantonId: 22 },
+        // Vide pour tout récupérer
+        {},
+      ];
+
+      for (const body of searchBodies) {
+        const result = await probe(`${operationBase}/API_searchLocation`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body),
+        });
+        results.endpoints.push({ ...result, label: "searchLocation", request_body: body });
+        // Si on a un résultat JSON valide, on arrête de tester
+        if (result.is_json && result.status === 200 && !result.sample?.includes("nginx")) break;
+      }
+
+      // 2d. exportManySimpleRates — l'endpoint principal pour les taux
+      const rateBodies = [
+        { year: 2025, bfsNrs: [5586] },
+        { taxYear: 2025, bfsNrs: [5586] },
+        { taxPeriod: 2025, bfsNrs: [5586] },
+        { year: 2025, municipalityIds: [5586] },
+        { year: 2025, locations: [5586] },
+        { year: 2025, locationIds: [5586] },
+        { year: 2025, bfsCodes: [5586] },
+        { taxPeriod: 2025, locations: [{ bfsNr: 5586 }] },
+        { input: { year: 2025, bfsNrs: [5586] } },
+        // Lausanne = code 5586, essayer aussi string
+        { year: 2025, bfsNrs: ["5586"] },
+        // Vide
+        {},
+      ];
+
+      for (const body of rateBodies) {
+        const result = await probe(`${operationBase}/API_exportManySimpleRates`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body),
+        });
+        results.endpoints.push({ ...result, label: "exportManySimpleRates", request_body: body });
+        if (result.is_json && result.status === 200 && !result.sample?.includes("nginx")) break;
+      }
+
+      // 2e. calculateManySimpleTaxes — calculer l'impôt pour en déduire les taux
+      const calcBodies = [
+        { year: 2025, bfsNr: 5586, taxableIncome: 100000, status: "single" },
+        { taxYear: 2025, municipalityId: 5586, taxableIncome: 100000 },
+        { year: 2025, locations: [{ bfsNr: 5586 }], income: 100000, civilStatus: "single" },
+        { input: { year: 2025, bfsNr: 5586, taxableIncome: 100000 } },
+      ];
+
+      for (const body of calcBodies) {
+        const result = await probe(`${operationBase}/API_calculateManySimpleTaxes`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body),
+        });
+        results.endpoints.push({ ...result, label: "calculateManySimpleTaxes", request_body: body });
+        if (result.is_json && result.status === 200 && !result.sample?.includes("nginx")) break;
+      }
+
+      // ── 3. Tester aussi avec d'autres Content-Types (form-encoded, etc.) ──
+      console.log("[tax-explore] Testing alternative Content-Types...");
+
+      // Peut-être que c'est du form-encoded ou du XML
+      const altContentTypes = [
+        { ct: "application/x-www-form-urlencoded", body: "searchTerm=Lausanne" },
+        { ct: "text/plain", body: JSON.stringify({ searchTerm: "Lausanne" }) },
+        { ct: "application/xml", body: "<request><searchTerm>Lausanne</searchTerm></request>" },
+      ];
+
+      for (const alt of altContentTypes) {
+        const result = await probe(`${operationBase}/API_searchLocation`, {
+          method: "POST",
+          headers: { "Content-Type": alt.ct, Accept: "application/json" },
+          body: alt.body,
+        });
+        results.endpoints.push({ ...result, label: "searchLocation-alt-ct", content_type_sent: alt.ct });
+      }
+
+      // ── 4. Opendata.swiss — données fiscales en téléchargement ──
+      console.log("[tax-explore] Checking opendata.swiss for tax data...");
+
+      const opendataUrls = [
+        "https://opendata.swiss/api/3/action/package_search?q=steuerf%C3%BCsse+gemeinden&rows=5",
+        "https://opendata.swiss/api/3/action/package_search?q=coefficients+fiscaux+communes&rows=5",
+        "https://opendata.swiss/api/3/action/package_search?q=taux+imposition+communal&rows=5",
+        "https://opendata.swiss/api/3/action/package_search?q=tax+rates+municipalities&rows=5",
+      ];
+
+      for (const url of opendataUrls) {
+        const result = await probe(url, { headers: { Accept: "application/json" } });
+        results.endpoints.push({ ...result, label: "opendata.swiss" });
+      }
+
+      // ── 5. BFS PxWeb — avec délai pour éviter 429 ──
+      console.log("[tax-explore] Browsing BFS PxWeb fiscal tables (with delay)...");
+
       const pxFolders = [
         "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803000000_100",
         "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803020000_100",
-        "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803000000_101",
       ];
 
       for (const url of pxFolders) {
+        await new Promise(r => setTimeout(r, 2000)); // 2s delay to avoid 429
         const result = await probe(url, { headers: { Accept: "application/json" } });
-        results.endpoints.push(result);
+        results.endpoints.push({ ...result, label: "bfs-pxweb" });
       }
 
-      // ── 5. Sources cantonales directes ──
+      // ── 6. Sources cantonales directes (GE htm accessible!) ──
       console.log("[tax-explore] Testing cantonal sources...");
 
       const cantonalUrls = [
-        // GE — arrêté officiel centimes additionnels
-        "https://silgeneve.ch/legis/data/rsg/rsg_d3_05p30.pdf",
-        "https://silgeneve.ch/legis/data/rsg_D3_05p30.htm",
-        // FR — coefficients communaux
-        "https://www.fr.ch/sites/default/files/2024-12/coefficients-communaux-2025.pdf",
-        "https://www.fr.ch/sites/default/files/contenu/diaf/scom/fichiers/coefficients_communaux.xlsx",
-        // NE — coefficients
-        "https://www.ne.ch/autorites/DFS/SCCO/impot-pp/Documents/coefficients.pdf",
-        // VS — barèmes
-        "https://www.vs.ch/documents/529400/594058/coefficients+communaux+2025.pdf",
+        { url: "https://silgeneve.ch/legis/data/rsg_D3_05p30.htm", label: "ge-centimes-htm" },
+        { url: "https://www.fr.ch/sites/default/files/2024-12/coefficients-communaux-2025.pdf", label: "fr-coeff-pdf" },
+        { url: "https://www.ne.ch/autorites/DFS/SCCO/impot-pp/Documents/coefficients.pdf", label: "ne-coeff-pdf" },
+        { url: "https://www.vs.ch/documents/529400/594058/coefficients+communaux+2025.pdf", label: "vs-coeff-pdf" },
       ];
 
-      for (const url of cantonalUrls) {
+      for (const { url, label } of cantonalUrls) {
         const result = await probe(url);
-        results.endpoints.push(result);
+        results.endpoints.push({ ...result, label });
+      }
+
+      // ── 7. Si GE htm est accessible, parser les centimes additionnels ──
+      try {
+        const geRes = await fetch("https://silgeneve.ch/legis/data/rsg_D3_05p30.htm", {
+          signal: AbortSignal.timeout(15000),
+        });
+        if (geRes.ok) {
+          const html = await geRes.text();
+          // Chercher les patterns de type "Commune ... XX.XX" ou tableaux
+          const communeMatches: string[] = [];
+          // Pattern courant: nom de commune suivi d'un nombre
+          const lines = html.split(/\n|<br>|<tr>|<\/tr>/);
+          for (const line of lines) {
+            // Nettoyer les tags HTML
+            const clean = line.replace(/<[^>]+>/g, " ").trim();
+            // Chercher un pattern avec un nombre décimal (centime additionnel)
+            const match = clean.match(/([A-ZÀ-Ü][a-zà-ü\-\s']+)\s+(\d{2,3}(?:[.,]\d+)?)/);
+            if (match) {
+              communeMatches.push(`${match[1].trim()} → ${match[2]}`);
+            }
+          }
+          results.ge_parsed = {
+            html_size: html.length,
+            communes_found: communeMatches.length,
+            sample: communeMatches.slice(0, 20),
+            // Extraire aussi les structures de tableau
+            has_tables: html.includes("<table"),
+            table_count: (html.match(/<table/gi) || []).length,
+          };
+        }
+      } catch (e: any) {
+        results.ge_parsed = { error: e.message };
       }
 
       return NextResponse.json({
         success: true,
-        step: "tax-explore",
-        discovered_paths: discoveredPaths.length,
+        step: "tax-explore-v3",
+        discovered_js_paths: discoveredPaths.length,
         total_endpoints_tested: results.endpoints.length,
         ...results,
       });
