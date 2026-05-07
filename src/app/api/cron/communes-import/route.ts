@@ -1744,244 +1744,180 @@ export async function GET(request: Request) {
       });
     }
 
-    // ─── STEP 7 : Explorer les APIs fiscales (diagnostic) ───
+    // ─── STEP 7 : Explorer les APIs fiscales (diagnostic v2) ───
     if (step === "tax-explore") {
       const results: any = { endpoints: [] };
-
-      // ── 1. ESTV Calculator — explorer la structure de l'API ──
       const estvBase = "https://swisstaxcalculator.estv.admin.ch";
-      const estvPaths = [
-        "/api/v1/municipalities",
-        "/api/municipalities",
-        "/api/v1/tax-rates",
-        "/api/v1/communes",
-        "/delegate/ost-integration/v1/lg/fr/municipalities",
-        "/delegate/ost-integration/v1/lg/fr/tax-locations",
-        "/delegate/ost-integration/v1/lg/fr/basis-data",
-        "/delegate/ost-integration/v1/lg/fr/cantons",
-        "/delegate/ost-integration/v1/lg/de/municipalities",
-        "/delegate/ost-integration/v1/municipalities",
-        "/tax-calculator/api/municipalities",
-        "/tax-calculator/api/v1/municipalities",
-      ];
 
-      for (const path of estvPaths) {
+      // Helper : lire un endpoint proprement (fix "Body already read")
+      async function probe(url: string, opts: any = {}) {
         try {
-          const res = await fetch(`${estvBase}${path}`, {
-            headers: { Accept: "application/json" },
-            signal: AbortSignal.timeout(10000),
-          });
-          const status = res.status;
-          let body: any = null;
-          if (status < 400) {
-            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 500); }
-          }
-          results.endpoints.push({
-            url: `${estvBase}${path}`,
-            status,
-            type: body ? (Array.isArray(body) ? `array[${body.length}]` : typeof body) : null,
-            sample: body ? JSON.stringify(body).substring(0, 500) : null,
-            keys: body && !Array.isArray(body) ? Object.keys(body) : (Array.isArray(body) && body[0] ? Object.keys(body[0]) : null),
-          });
-        } catch (e: any) {
-          results.endpoints.push({ url: `${estvBase}${path}`, error: e.message });
-        }
-      }
-
-      // ── 2. ESTV Steuerbelastung (charge fiscale) — données téléchargeables ──
-      const estvDataUrls = [
-        "https://www.estv.admin.ch/estv/fr/accueil/afc/statistique-fiscale/charge-fiscale.html",
-        "https://www.estv.admin.ch/dam/estv/fr/dokumente/allgemein/Dokumentation/Zahlen_Fakten/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
-        "https://www.estv.admin.ch/dam/estv/de/dokumente/allgemein/Dokumentation/Zahlen_Fakten/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
-      ];
-
-      for (const url of estvDataUrls) {
-        try {
-          const res = await fetch(url, { signal: AbortSignal.timeout(15000), redirect: "follow" });
-          results.endpoints.push({
-            url,
-            status: res.status,
-            content_type: res.headers.get("content-type"),
-            content_length: res.headers.get("content-length"),
-          });
-        } catch (e: any) {
-          results.endpoints.push({ url, error: e.message });
-        }
-      }
-
-      // ── 3. BFS PxWeb — explorer le dossier fiscal ──
-      const pxBase = "https://www.pxweb.bfs.admin.ch/api/v1/fr";
-      const pxPaths = [
-        "/px-x-1803020000_100",  // Charge fiscale
-        "/px-x-1803000000_100",  // Statistique financière
-        "/px-x-1803000000_101",
-        "/px-x-1803000000_102",
-        "/px-x-1803020000_101",
-        "/px-x-1803020000_102",
-      ];
-
-      for (const path of pxPaths) {
-        try {
-          const res = await fetch(`${pxBase}${path}`, {
-            headers: { Accept: "application/json" },
+          const res = await fetch(url, {
+            ...opts,
             signal: AbortSignal.timeout(15000),
           });
           const status = res.status;
-          let body: any = null;
-          if (status < 400) {
-            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 500); }
+          const contentType = res.headers.get("content-type") || "";
+          const text = await res.text(); // Toujours lire comme texte d'abord
+          let parsed: any = null;
+          if (contentType.includes("json") || text.startsWith("{") || text.startsWith("[")) {
+            try { parsed = JSON.parse(text); } catch {}
           }
-          results.endpoints.push({
-            url: `${pxBase}${path}`,
-            status,
-            type: Array.isArray(body) ? `folder[${body.length}]` : "table",
-            items: Array.isArray(body) ? body.slice(0, 10).map((x: any) => ({ id: x.id, text: x.text, type: x.type })) : null,
-            variables: !Array.isArray(body) && body?.variables ? body.variables.map((v: any) => ({
-              code: v.code, text: v.text, count: v.values?.length,
-              sample_vals: (v.values || []).slice(0, 5),
-              sample_texts: (v.valueTexts || []).slice(0, 5),
-            })) : null,
-          });
-        } catch (e: any) {
-          results.endpoints.push({ url: `${pxBase}${path}`, error: e.message });
-        }
-      }
-
-      // ── 4. Canton VD — télécharger le fichier Excel des taux ──
-      const vdUrls = [
-        "https://www.vd.ch/fileadmin/user_upload/themes/etat_droit/finances_communales/fichiers_pdf/Taux_impots_2025.xlsx",
-        "https://www.vd.ch/fileadmin/user_upload/themes/etat_droit/finances_communales/fichiers_pdf/Taux_impots_2024.xlsx",
-        "https://www.vd.ch/fileadmin/user_upload/organisation/dfin/aci/fichiers_pdf/Taux_impots_2025.xlsx",
-      ];
-
-      for (const url of vdUrls) {
-        try {
-          const res = await fetch(url, { signal: AbortSignal.timeout(15000), redirect: "follow" });
-          results.endpoints.push({
-            url,
-            status: res.status,
-            content_type: res.headers.get("content-type"),
-            content_length: res.headers.get("content-length"),
-            final_url: res.url !== url ? res.url : null,
-          });
-        } catch (e: any) {
-          results.endpoints.push({ url, error: e.message });
-        }
-      }
-
-      // ── 5. Comparis/Raiffeisen — APIs communes ──
-      const otherApis = [
-        "https://en.comparis.ch/steuern/steuervergleich/api/tax/municipalities",
-        "https://www.comparis.ch/steuern/steuervergleich/api/tax/municipalities",
-        "https://www.lsi.ch/api/municipalities",
-      ];
-
-      for (const url of otherApis) {
-        try {
-          const res = await fetch(url, {
-            headers: { Accept: "application/json" },
-            signal: AbortSignal.timeout(10000),
-          });
-          const status = res.status;
-          let body: any = null;
-          if (status < 400) {
-            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 300); }
-          }
-          results.endpoints.push({
+          return {
             url,
             status,
-            type: body ? (Array.isArray(body) ? `array[${body.length}]` : typeof body) : null,
-            sample: body ? JSON.stringify(body).substring(0, 500) : null,
-          });
-        } catch (e: any) {
-          results.endpoints.push({ url, error: e.message });
-        }
-      }
-
-      // ── 6. ESTV Calculator — essayer un calcul pour une commune test ──
-      // Ça nous montre la structure exacte de l'API
-      try {
-        // Essayer de faire un calcul pour Lausanne (BFS 5586) pour voir la réponse
-        const calcPaths = [
-          `/delegate/ost-integration/v1/lg/fr/calculate`,
-          `/delegate/ost-integration/v1/lg/fr/tax-calculation`,
-          `/api/v1/calculate`,
-        ];
-
-        for (const path of calcPaths) {
-          try {
-            const res = await fetch(`${estvBase}${path}`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json", Accept: "application/json" },
-              body: JSON.stringify({
-                municipalityId: 5586,
-                year: 2025,
-                taxableIncome: 100000,
-                fortune: 0,
-                civilStatus: "single",
-                confession: "without",
-              }),
-              signal: AbortSignal.timeout(10000),
-            });
-            const status = res.status;
-            let body: any = null;
-            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 500); }
-            results.endpoints.push({
-              url: `${estvBase}${path}`,
-              method: "POST",
-              status,
-              sample: JSON.stringify(body).substring(0, 500),
-            });
-          } catch (e: any) {
-            results.endpoints.push({ url: `${estvBase}${path}`, method: "POST", error: e.message });
-          }
-        }
-      } catch (e: any) {
-        results.endpoints.push({ source: "ESTV calculate", error: e.message });
-      }
-
-      // ── 7. Page HTML du calculateur ESTV — extraire les URLs d'API depuis le JS ──
-      try {
-        const pageRes = await fetch(estvBase, {
-          signal: AbortSignal.timeout(15000),
-        });
-        if (pageRes.ok) {
-          const html = await pageRes.text();
-          // Chercher les URLs d'API dans le HTML/JS
-          const apiMatches = html.match(/["'](\/[a-zA-Z0-9\/_-]*(?:api|delegate|municipality|tax|rate|calc)[a-zA-Z0-9\/_-]*)["']/gi) || [];
-          const jsMatches = html.match(/src=["']([^"']*\.js[^"']*)["']/gi) || [];
-          results.estv_page = {
-            status: pageRes.status,
-            html_length: html.length,
-            api_urls_found: [...new Set(apiMatches)].slice(0, 20),
-            js_files: jsMatches.slice(0, 10),
+            content_type: contentType,
+            size: text.length,
+            is_json: !!parsed,
+            is_array: Array.isArray(parsed),
+            array_length: Array.isArray(parsed) ? parsed.length : null,
+            keys: parsed && !Array.isArray(parsed) ? Object.keys(parsed) : null,
+            first_item_keys: Array.isArray(parsed) && parsed[0] ? Object.keys(parsed[0]) : null,
+            sample: parsed ? JSON.stringify(parsed).substring(0, 800) : text.substring(0, 400),
           };
-
-          // Essayer de récupérer le premier JS pour trouver les endpoints
-          if (jsMatches.length > 0) {
-            const jsUrl = jsMatches[0].replace(/src=["']/i, "").replace(/["']$/, "");
-            const fullJsUrl = jsUrl.startsWith("http") ? jsUrl : `${estvBase}${jsUrl}`;
-            try {
-              const jsRes = await fetch(fullJsUrl, { signal: AbortSignal.timeout(10000) });
-              if (jsRes.ok) {
-                const jsContent = await jsRes.text();
-                const jsApiMatches = jsContent.match(/["'](\/[a-zA-Z0-9\/_-]*(?:api|delegate|municip|tax|rate|calc|location|commune)[a-zA-Z0-9\/_.-]*)["']/gi) || [];
-                results.estv_js = {
-                  url: fullJsUrl,
-                  size: jsContent.length,
-                  api_urls_found: [...new Set(jsApiMatches)].slice(0, 30),
-                };
-              }
-            } catch {}
-          }
+        } catch (e: any) {
+          return { url, error: e.message };
         }
-      } catch (e: any) {
-        results.estv_page = { error: e.message };
+      }
+
+      // ── 1. ESTV — analyser le JS principal pour trouver les vrais endpoints ──
+      console.log("[tax-explore] Fetching ESTV main JS bundle...");
+
+      // Le chunk principal contient les endpoints API
+      const jsUrls = [
+        `${estvBase}/static/ost-web/1.4.55/static/js/main.633aced1.chunk.js`,
+        `${estvBase}/static/ost-web/1.4.55/static/js/2.84f0dd44.chunk.js`,
+      ];
+
+      const discoveredPaths: string[] = [];
+
+      for (const jsUrl of jsUrls) {
+        try {
+          const jsRes = await fetch(jsUrl, { signal: AbortSignal.timeout(15000) });
+          if (jsRes.ok) {
+            const js = await jsRes.text();
+            console.log(`[tax-explore] JS ${jsUrl.split("/").pop()}: ${js.length} bytes`);
+
+            // Extraire TOUS les chemins d'URL de l'API
+            // Chercher les patterns courants dans le code React/JS
+            const patterns = [
+              /["'`](\/[a-zA-Z0-9\/_.-]+(?:municip|tax|rate|calc|canton|location|commune|scale|deduction|simple|export|burden|load)[a-zA-Z0-9\/_.-]*)["'`]/gi,
+              /["'`](\/delegate\/[a-zA-Z0-9\/_.-]+)["'`]/gi,
+              /["'`](\/api\/[a-zA-Z0-9\/_.-]+)["'`]/gi,
+              /fetch\(["'`]([^"'`]+)["'`]/gi,
+              /url:\s*["'`]([^"'`]+)["'`]/gi,
+              /endpoint[s]?['"`:]\s*["'`]([^"'`]+)["'`]/gi,
+              /baseUrl['"`:]\s*["'`]([^"'`]+)["'`]/gi,
+              /concat\(["'`]([^"'`]*(?:delegate|api|ost)[^"'`]*)["'`]/gi,
+            ];
+
+            const allMatches = new Set<string>();
+            for (const pattern of patterns) {
+              let match;
+              while ((match = pattern.exec(js)) !== null) {
+                const path = match[1];
+                if (path && path.length > 3 && path.length < 200) {
+                  allMatches.add(path);
+                }
+              }
+            }
+
+            // Aussi chercher "ost-integration" qui est le namespace connu
+            const ostMatches = js.match(/ost-integration[^"'`\s)}\]]{0,100}/g) || [];
+            const delegateMatches = js.match(/delegate[^"'`\s)}\]]{0,100}/g) || [];
+
+            results[`js_${jsUrl.split("/").pop()}`] = {
+              size: js.length,
+              api_paths: [...allMatches].slice(0, 50),
+              ost_references: [...new Set(ostMatches)].slice(0, 20),
+              delegate_references: [...new Set(delegateMatches)].slice(0, 20),
+            };
+
+            for (const p of allMatches) {
+              if (p.startsWith("/")) discoveredPaths.push(p);
+            }
+          }
+        } catch (e: any) {
+          results[`js_error`] = e.message;
+        }
+      }
+
+      // ── 2. Tester les endpoints ESTV découverts + ceux connus ──
+      const pathsToTest = [
+        ...new Set([
+          ...discoveredPaths,
+          "/api/v1/municipalities",
+          "/api/municipalities",
+          "/api/v1/tax-rates",
+        ]),
+      ].slice(0, 20); // Max 20 pour pas timeout
+
+      console.log(`[tax-explore] Testing ${pathsToTest.length} discovered ESTV paths...`);
+
+      for (const path of pathsToTest) {
+        const fullUrl = path.startsWith("http") ? path : `${estvBase}${path}`;
+        const result = await probe(fullUrl, { headers: { Accept: "application/json" } });
+        results.endpoints.push(result);
+      }
+
+      // ── 3. Tester ESTV POST avec différentes structures de body ──
+      console.log("[tax-explore] Testing ESTV POST endpoints...");
+
+      const postTests = [
+        { path: "/api/v1/municipalities", body: {} },
+        { path: "/api/v1/municipalities", body: { year: 2025, cantonId: 22 } },
+        { path: "/api/v1/calculate", body: { municipalityId: 5586, year: 2025, taxableIncome: 100000 } },
+      ];
+
+      for (const test of postTests) {
+        const result = await probe(`${estvBase}${test.path}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(test.body),
+        });
+        results.endpoints.push({ ...result, method: "POST", request_body: test.body });
+      }
+
+      // ── 4. BFS PxWeb — explorer le dossier racine fiscal ──
+      console.log("[tax-explore] Browsing BFS PxWeb fiscal folders...");
+
+      // D'abord le dossier racine thème 18 (finances publiques)
+      const pxFolders = [
+        "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803000000_100",
+        "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803020000_100",
+        "https://www.pxweb.bfs.admin.ch/api/v1/fr/px-x-1803000000_101",
+      ];
+
+      for (const url of pxFolders) {
+        const result = await probe(url, { headers: { Accept: "application/json" } });
+        results.endpoints.push(result);
+      }
+
+      // ── 5. Sources cantonales directes ──
+      console.log("[tax-explore] Testing cantonal sources...");
+
+      const cantonalUrls = [
+        // GE — arrêté officiel centimes additionnels
+        "https://silgeneve.ch/legis/data/rsg/rsg_d3_05p30.pdf",
+        "https://silgeneve.ch/legis/data/rsg_D3_05p30.htm",
+        // FR — coefficients communaux
+        "https://www.fr.ch/sites/default/files/2024-12/coefficients-communaux-2025.pdf",
+        "https://www.fr.ch/sites/default/files/contenu/diaf/scom/fichiers/coefficients_communaux.xlsx",
+        // NE — coefficients
+        "https://www.ne.ch/autorites/DFS/SCCO/impot-pp/Documents/coefficients.pdf",
+        // VS — barèmes
+        "https://www.vs.ch/documents/529400/594058/coefficients+communaux+2025.pdf",
+      ];
+
+      for (const url of cantonalUrls) {
+        const result = await probe(url);
+        results.endpoints.push(result);
       }
 
       return NextResponse.json({
         success: true,
         step: "tax-explore",
+        discovered_paths: discoveredPaths.length,
         total_endpoints_tested: results.endpoints.length,
         ...results,
       });
