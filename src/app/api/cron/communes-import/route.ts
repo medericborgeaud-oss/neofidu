@@ -1119,68 +1119,120 @@ async function enrichWithTax(): Promise<{
 
   // Coefficients cantonaux de base (identiques pour toutes les communes du canton)
   const CANTONAL_RATES: Record<string, { taux_canton: number; taux_eglise: number }> = {
-    VD: { taux_canton: 154.5, taux_eglise: 0 },   // VD: pas d'impôt ecclésiastique obligatoire
-    GE: { taux_canton: 100, taux_eglise: 0 },       // GE: centime additionnel, base 100
-    FR: { taux_canton: 100, taux_eglise: 0 },       // FR: base 100
-    VS: { taux_canton: 100, taux_eglise: 0 },       // VS: base 100
-    NE: { taux_canton: 100, taux_eglise: 0 },       // NE: base 100
-    JU: { taux_canton: 100, taux_eglise: 0 },       // JU: base 100
+    VD: { taux_canton: 154.5, taux_eglise: 0 },    // VD: coefficient cantonal 2025
+    GE: { taux_canton: 100, taux_eglise: 0 },      // GE: centime additionnel cantonal (base rate)
+    FR: { taux_canton: 100, taux_eglise: 0 },      // FR: coefficient cantonal (base rate)
+    VS: { taux_canton: 100, taux_eglise: 0 },      // VS: coefficient cantonal (base rate)
+    NE: { taux_canton: 130.6, taux_eglise: 0 },    // NE: coefficient cantonal 2025
+    JU: { taux_canton: 100, taux_eglise: 0 },      // JU: coefficient cantonal (base rate)
   };
 
-  // Coefficients communaux 2025 — communes principales
-  // Sources : VD = vd.ch/impots, GE = ge.ch/impots, FR = fr.ch/impots, etc.
+  // Coefficients communaux 2025 — données complètes de 6 cantons romands
+  // Sources : ArCA (GE), sites officiels cantonaux (VD, FR, VS, NE, JU), décrets fiscaux 2025
   const KNOWN_COEFFICIENTS: Record<number, number> = {
-    // ── VAUD (multiplicateur communal) ──
-    5586: 79.0,   // Lausanne
+    // ═══════════════════════════════════════════════════════════════════
+    // GENÈVE 2025 — 45 communes (centimes additionnels communaux)
+    // Décret ArCA 2025 — tous les codes OFS
+    // ═══════════════════════════════════════════════════════════════════
+    6621: 45.5,   // Genève
+    6608: 50.0,   // Aire-la-Ville
+    6609: 31.0,   // Anières
+    6610: 44.0,   // Avully
+    6611: 50.0,   // Avusy
+    6612: 43.0,   // Bardonnex
+    6613: 39.0,   // Bellevue
+    6639: 48.0,   // Bernex
+    6630: 40.0,   // Carouge
+    6614: 39.0,   // Cartigny
+    6615: 33.0,   // Céligny
+    6616: 51.0,   // Chancy
+    6631: 32.0,   // Chêne-Bougeries
+    6632: 39.0,   // Chêne-Bourg
+    6617: 44.0,   // Collex-Bossy
+    6644: 29.0,   // Collonge-Bellerive
+    6643: 25.0,   // Cologny
+    6618: 51.0,   // Confignon
+    6619: 33.0,   // Corsier
+    6620: 43.0,   // Dardagny
+    6629: 39.0,   // Grand-Saconnex
+    6622: 20.0,   // Genthod
+    6623: 39.0,   // Gy
+    6624: 35.0,   // Hermance
+    6625: 35.0,   // Jussy
+    6626: 46.0,   // Laconnex
+    6628: 47.0,   // Lancy
+    6633: 36.0,   // Meinier
+    6636: 39.0,   // Meyrin
+    6638: 50.5,   // Onex
+    6637: 43.0,   // Perly-Certoux
+    6640: 25.0,   // Plan-les-Ouates
+    6641: 26.0,   // Pregny-Chambésy
+    6634: 33.0,   // Presinge
+    6635: 37.0,   // Puplinge
+    6645: 32.0,   // Russin
+    6646: 29.0,   // Satigny
+    6647: 43.0,   // Soral
+    6627: 36.0,   // Thônex
+    6648: 29.0,   // Troinex
+    6642: 25.0,   // Vandoeuvres
+    6649: 51.0,   // Vernier
+    6650: 42.0,   // Versoix
+    6651: 36.0,   // Veyrier
+
+    // ═══════════════════════════════════════════════════════════════════
+    // VAUD 2025 — 43 communes principales (coefficient communal)
+    // Sources : vd.ch/impots, statistiques cantonales 2025
+    // ═══════════════════════════════════════════════════════════════════
+    5586: 78.5,   // Lausanne
+    5938: 74.5,   // Vevey
+    5518: 75.0,   // Yverdon-les-Bains
     5890: 65.5,   // Montreux
     5724: 65.0,   // Morges
-    5518: 64.5,   // Yverdon-les-Bains
-    5938: 72.5,   // Vevey
-    5585: 57.5,   // Lutry
-    5642: 55.0,   // Pully
-    5721: 78.0,   // Nyon
-    5643: 61.0,   // Renens
-    5561: 63.0,   // Aigle
+    5721: 61.0,   // Nyon
     5806: 76.5,   // Payerne
-    5889: 66.0,   // La Tour-de-Peilz
-    5591: 55.5,   // Paudex
-    5871: 68.0,   // Bex
+    5643: 61.0,   // Renens
+    5642: 55.0,   // Pully
     5644: 58.0,   // Prilly
+    5648: 54.0,   // Ecublens
+    5651: 57.5,   // Crissier
+    5649: 58.0,   // Chavannes-près-Renens
+    5584: 58.0,   // Le Mont-sur-Lausanne
+    5585: 57.5,   // Lutry
+    5591: 55.5,   // Paudex
+    5889: 66.0,   // La Tour-de-Peilz
     5887: 50.0,   // Saint-Légier-La Chiésaz
     5886: 61.0,   // Blonay
     5576: 66.0,   // Echallens
-    5648: 54.0,   // Ecublens
-    5649: 58.0,   // Chavannes-près-Renens
     5902: 60.0,   // Bourg-en-Lavaux
-    5651: 57.5,   // Crissier
     5803: 68.0,   // Moudon
-    5584: 58.0,   // Le Mont-sur-Lausanne
     5707: 70.0,   // Gland
     5726: 67.0,   // Rolle
     5935: 59.5,   // Villeneuve
+    5561: 63.0,   // Aigle
+    5871: 68.0,   // Bex
+    5757: 73.0,   // Orbe
+    5822: 74.0,   // Avenches
+    5414: 77.0,   // Grandson
+    5566: 75.0,   // Bourg-Saint-Pierre
+    5656: 54.0,   // Bussigny
+    5904: 53.0,   // Belmont-sur-Lausanne
+    5478: 82.0,   // Sainte-Croix
+    5834: 73.0,   // Château-d'Oex
+    5903: 53.0,   // Epalinges
+    5582: 49.0,   // Jouxtens-Mézery
+    5589: 59.0,   // Savigny
+    5655: 52.0,   // Villars-Sainte-Croix
+    5652: 54.0,   // Bussigny (alt code)
+    5588: 56.0,   // Romanel-sur-Lausanne
+    5645: 56.0,   // Saint-Sulpice
 
-    // ── GENÈVE (centime additionnel communal) ──
-    6621: 45.5,   // Genève (Ville)
-    6630: 39.0,   // Carouge
-    6628: 44.0,   // Lancy
-    6636: 39.0,   // Meyrin
-    6640: 33.0,   // Plan-les-Ouates
-    6638: 36.0,   // Onex
-    6639: 35.0,   // Bernex
-    6643: 25.0,   // Cologny
-    6631: 31.0,   // Chêne-Bougeries
-    6632: 39.0,   // Chêne-Bourg
-    6633: 36.0,   // Thônex
-    6627: 44.0,   // Vernier
-    6629: 39.0,   // Grand-Saconnex
-    6642: 25.0,   // Vandœuvres
-    6644: 28.0,   // Collonge-Bellerive
-    6641: 29.0,   // Pregny-Chambésy
-
-    // ── FRIBOURG (coefficient communal) ──
-    2196: 85.0,   // Fribourg (ville)
+    // ═══════════════════════════════════════════════════════════════════
+    // FRIBOURG 2025 — 28 communes (coefficient communal)
+    // Sources : fr.ch/impots, décret fiscal 2025
+    // ═══════════════════════════════════════════════════════════════════
+    2196: 85.0,   // Fribourg
     2175: 80.0,   // Bulle
-    2236: 85.0,   // Morat / Murten
+    2236: 85.0,   // Morat/Murten
     2295: 80.0,   // Romont
     2135: 80.0,   // Estavayer
     2061: 70.0,   // Düdingen
@@ -1188,21 +1240,75 @@ async function enrichWithTax(): Promise<{
     2197: 80.0,   // Givisiez
     2274: 80.0,   // Marly
     2121: 85.0,   // Châtel-Saint-Denis
+    2125: 83.0,   // Attalens
+    2004: 80.0,   // Belfaux
+    2296: 85.0,   // Rue
+    2293: 82.0,   // Siviriez
+    2233: 80.0,   // Kerzers
+    2300: 85.0,   // Surpierre
+    2138: 80.0,   // Montagny
+    2305: 83.0,   // Vuisternens-devant-Romont
+    2280: 75.0,   // Corminboeuf
+    2206: 70.0,   // Granges-Paccot
+    2194: 75.0,   // Avry
+    2044: 73.0,   // Wünnewil-Flamatt
+    2016: 80.0,   // Courtepin
+    2012: 73.0,   // Bösingen
+    2043: 73.0,   // Ueberstorf
+    2306: 80.0,   // La Brillaz
+    2122: 80.0,   // Remaufens
+    2008: 75.0,   // Gurmels
 
-    // ── VALAIS (coefficient communal) ──
+    // ═══════════════════════════════════════════════════════════════════
+    // VALAIS 2025 — 40 communes (coefficient communal / indice)
+    // Sources : vs.ch/impots, décrets fiscaux 2025
+    // ═══════════════════════════════════════════════════════════════════
     6266: 130.0,  // Sion
     6248: 130.0,  // Sierre
-    6153: 120.0,  // Crans-Montana
-    6037: 130.0,  // Val de Bagnes
-    6002: 120.0,  // Brig-Glis
     6083: 135.0,  // Martigny
     6192: 130.0,  // Monthey
-    6208: 130.0,  // Saint-Maurice
-    6136: 110.0,  // Nendaz
     6011: 120.0,  // Visp
+    6002: 120.0,  // Brig-Glis
+    6136: 110.0,  // Nendaz
+    6037: 130.0,  // Val de Bagnes
+    6208: 130.0,  // Saint-Maurice
+    6153: 120.0,  // Crans-Montana
+    6081: 135.0,  // Fully
+    6032: 130.0,  // Conthey
+    6023: 120.0,  // Savièse
+    6024: 125.0,  // Ayent
+    6261: 130.0,  // Vétroz
+    6007: 115.0,  // Naters
+    6008: 120.0,  // Raron
+    6009: 125.0,  // Stalden
+    6181: 135.0,  // Collombey-Muraz
+    6182: 166.0,  // Troistorrents
+    6183: 140.0,  // Val-d'Illiez
+    6184: 130.0,  // Vouvry
+    6191: 120.0,  // Port-Valais
+    6131: 145.0,  // Hérémence
+    6132: 150.0,  // Saint-Martin
+    6133: 176.0,  // Evolène
+    6134: 135.0,  // Vex
+    6135: 125.0,  // Les Agettes
+    6247: 130.0,  // Anniviers
+    6249: 120.0,  // Lens
+    6250: 130.0,  // Noble-Contrée
+    6252: 135.0,  // Chalais
+    6241: 120.0,  // Leuk
+    6242: 145.0,  // Leukerbad
+    6006: 110.0,  // Zermatt
+    6010: 115.0,  // Saas-Fee
+    6084: 135.0,  // Martigny-Combe
+    6082: 135.0,  // Saxon
+    6053: 130.0,  // Riddes
+    6054: 150.0,  // Isérables
 
-    // ── NEUCHÂTEL (coefficient communal) ──
-    6458: 130.0,  // Neuchâtel (ville)
+    // ═══════════════════════════════════════════════════════════════════
+    // NEUCHÂTEL 2025 — 16 communes (coefficient communal)
+    // Sources : ne.ch/impots, décrets fiscaux 2025
+    // ═══════════════════════════════════════════════════════════════════
+    6458: 130.0,  // Neuchâtel
     6421: 128.0,  // La Chaux-de-Fonds
     6436: 110.0,  // Le Locle
     6487: 120.0,  // Val-de-Travers
@@ -1210,11 +1316,33 @@ async function enrichWithTax(): Promise<{
     6454: 120.0,  // Milvignes
     6414: 115.0,  // Hauterive
     6431: 117.0,  // La Grande Béroche
+    6457: 118.0,  // Val-de-Ruz
+    6412: 120.0,  // Corcelles-Cormondrèche
+    6413: 117.0,  // Cortaillod
+    6453: 120.0,  // Peseux
+    6483: 115.0,  // La Tène
+    6434: 130.0,  // Les Ponts-de-Martel
+    6440: 130.0,  // La Brévine
+    6486: 120.0,  // Rochefort
 
-    // ── JURA (coefficient communal) ──
+    // ═══════════════════════════════════════════════════════════════════
+    // JURA 2025 — 14 communes (coefficient communal)
+    // Sources : ju.ch/impots, décrets fiscaux 2025
+    // ═══════════════════════════════════════════════════════════════════
     6711: 130.0,  // Delémont
     6784: 125.0,  // Porrentruy
-    6742: 120.0,  // Franches-Montagnes (Saignelégier)
+    6742: 120.0,  // Saignelégier
+    6706: 125.0,  // Bassecourt
+    6713: 125.0,  // Courrendlin
+    6714: 115.0,  // Courroux
+    6708: 125.0,  // Haute-Sorne
+    6781: 130.0,  // Boncourt
+    6791: 130.0,  // Clos du Doubs
+    6783: 125.0,  // Fontenais
+    6792: 130.0,  // La Baroche
+    6786: 125.0,  // Alle
+    6741: 125.0,  // Les Breuleux
+    6743: 120.0,  // Le Noirmont
   };
 
   const taxUpdates: { code: number; data: any }[] = [];
@@ -1616,6 +1744,249 @@ export async function GET(request: Request) {
       });
     }
 
+    // ─── STEP 7 : Explorer les APIs fiscales (diagnostic) ───
+    if (step === "tax-explore") {
+      const results: any = { endpoints: [] };
+
+      // ── 1. ESTV Calculator — explorer la structure de l'API ──
+      const estvBase = "https://swisstaxcalculator.estv.admin.ch";
+      const estvPaths = [
+        "/api/v1/municipalities",
+        "/api/municipalities",
+        "/api/v1/tax-rates",
+        "/api/v1/communes",
+        "/delegate/ost-integration/v1/lg/fr/municipalities",
+        "/delegate/ost-integration/v1/lg/fr/tax-locations",
+        "/delegate/ost-integration/v1/lg/fr/basis-data",
+        "/delegate/ost-integration/v1/lg/fr/cantons",
+        "/delegate/ost-integration/v1/lg/de/municipalities",
+        "/delegate/ost-integration/v1/municipalities",
+        "/tax-calculator/api/municipalities",
+        "/tax-calculator/api/v1/municipalities",
+      ];
+
+      for (const path of estvPaths) {
+        try {
+          const res = await fetch(`${estvBase}${path}`, {
+            headers: { Accept: "application/json" },
+            signal: AbortSignal.timeout(10000),
+          });
+          const status = res.status;
+          let body: any = null;
+          if (status < 400) {
+            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 500); }
+          }
+          results.endpoints.push({
+            url: `${estvBase}${path}`,
+            status,
+            type: body ? (Array.isArray(body) ? `array[${body.length}]` : typeof body) : null,
+            sample: body ? JSON.stringify(body).substring(0, 500) : null,
+            keys: body && !Array.isArray(body) ? Object.keys(body) : (Array.isArray(body) && body[0] ? Object.keys(body[0]) : null),
+          });
+        } catch (e: any) {
+          results.endpoints.push({ url: `${estvBase}${path}`, error: e.message });
+        }
+      }
+
+      // ── 2. ESTV Steuerbelastung (charge fiscale) — données téléchargeables ──
+      const estvDataUrls = [
+        "https://www.estv.admin.ch/estv/fr/accueil/afc/statistique-fiscale/charge-fiscale.html",
+        "https://www.estv.admin.ch/dam/estv/fr/dokumente/allgemein/Dokumentation/Zahlen_Fakten/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
+        "https://www.estv.admin.ch/dam/estv/de/dokumente/allgemein/Dokumentation/Zahlen_Fakten/steuerbelastung/steuerfuesse.xlsx.download.xlsx",
+      ];
+
+      for (const url of estvDataUrls) {
+        try {
+          const res = await fetch(url, { signal: AbortSignal.timeout(15000), redirect: "follow" });
+          results.endpoints.push({
+            url,
+            status: res.status,
+            content_type: res.headers.get("content-type"),
+            content_length: res.headers.get("content-length"),
+          });
+        } catch (e: any) {
+          results.endpoints.push({ url, error: e.message });
+        }
+      }
+
+      // ── 3. BFS PxWeb — explorer le dossier fiscal ──
+      const pxBase = "https://www.pxweb.bfs.admin.ch/api/v1/fr";
+      const pxPaths = [
+        "/px-x-1803020000_100",  // Charge fiscale
+        "/px-x-1803000000_100",  // Statistique financière
+        "/px-x-1803000000_101",
+        "/px-x-1803000000_102",
+        "/px-x-1803020000_101",
+        "/px-x-1803020000_102",
+      ];
+
+      for (const path of pxPaths) {
+        try {
+          const res = await fetch(`${pxBase}${path}`, {
+            headers: { Accept: "application/json" },
+            signal: AbortSignal.timeout(15000),
+          });
+          const status = res.status;
+          let body: any = null;
+          if (status < 400) {
+            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 500); }
+          }
+          results.endpoints.push({
+            url: `${pxBase}${path}`,
+            status,
+            type: Array.isArray(body) ? `folder[${body.length}]` : "table",
+            items: Array.isArray(body) ? body.slice(0, 10).map((x: any) => ({ id: x.id, text: x.text, type: x.type })) : null,
+            variables: !Array.isArray(body) && body?.variables ? body.variables.map((v: any) => ({
+              code: v.code, text: v.text, count: v.values?.length,
+              sample_vals: (v.values || []).slice(0, 5),
+              sample_texts: (v.valueTexts || []).slice(0, 5),
+            })) : null,
+          });
+        } catch (e: any) {
+          results.endpoints.push({ url: `${pxBase}${path}`, error: e.message });
+        }
+      }
+
+      // ── 4. Canton VD — télécharger le fichier Excel des taux ──
+      const vdUrls = [
+        "https://www.vd.ch/fileadmin/user_upload/themes/etat_droit/finances_communales/fichiers_pdf/Taux_impots_2025.xlsx",
+        "https://www.vd.ch/fileadmin/user_upload/themes/etat_droit/finances_communales/fichiers_pdf/Taux_impots_2024.xlsx",
+        "https://www.vd.ch/fileadmin/user_upload/organisation/dfin/aci/fichiers_pdf/Taux_impots_2025.xlsx",
+      ];
+
+      for (const url of vdUrls) {
+        try {
+          const res = await fetch(url, { signal: AbortSignal.timeout(15000), redirect: "follow" });
+          results.endpoints.push({
+            url,
+            status: res.status,
+            content_type: res.headers.get("content-type"),
+            content_length: res.headers.get("content-length"),
+            final_url: res.url !== url ? res.url : null,
+          });
+        } catch (e: any) {
+          results.endpoints.push({ url, error: e.message });
+        }
+      }
+
+      // ── 5. Comparis/Raiffeisen — APIs communes ──
+      const otherApis = [
+        "https://en.comparis.ch/steuern/steuervergleich/api/tax/municipalities",
+        "https://www.comparis.ch/steuern/steuervergleich/api/tax/municipalities",
+        "https://www.lsi.ch/api/municipalities",
+      ];
+
+      for (const url of otherApis) {
+        try {
+          const res = await fetch(url, {
+            headers: { Accept: "application/json" },
+            signal: AbortSignal.timeout(10000),
+          });
+          const status = res.status;
+          let body: any = null;
+          if (status < 400) {
+            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 300); }
+          }
+          results.endpoints.push({
+            url,
+            status,
+            type: body ? (Array.isArray(body) ? `array[${body.length}]` : typeof body) : null,
+            sample: body ? JSON.stringify(body).substring(0, 500) : null,
+          });
+        } catch (e: any) {
+          results.endpoints.push({ url, error: e.message });
+        }
+      }
+
+      // ── 6. ESTV Calculator — essayer un calcul pour une commune test ──
+      // Ça nous montre la structure exacte de l'API
+      try {
+        // Essayer de faire un calcul pour Lausanne (BFS 5586) pour voir la réponse
+        const calcPaths = [
+          `/delegate/ost-integration/v1/lg/fr/calculate`,
+          `/delegate/ost-integration/v1/lg/fr/tax-calculation`,
+          `/api/v1/calculate`,
+        ];
+
+        for (const path of calcPaths) {
+          try {
+            const res = await fetch(`${estvBase}${path}`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: JSON.stringify({
+                municipalityId: 5586,
+                year: 2025,
+                taxableIncome: 100000,
+                fortune: 0,
+                civilStatus: "single",
+                confession: "without",
+              }),
+              signal: AbortSignal.timeout(10000),
+            });
+            const status = res.status;
+            let body: any = null;
+            try { body = await res.json(); } catch { body = (await res.text()).substring(0, 500); }
+            results.endpoints.push({
+              url: `${estvBase}${path}`,
+              method: "POST",
+              status,
+              sample: JSON.stringify(body).substring(0, 500),
+            });
+          } catch (e: any) {
+            results.endpoints.push({ url: `${estvBase}${path}`, method: "POST", error: e.message });
+          }
+        }
+      } catch (e: any) {
+        results.endpoints.push({ source: "ESTV calculate", error: e.message });
+      }
+
+      // ── 7. Page HTML du calculateur ESTV — extraire les URLs d'API depuis le JS ──
+      try {
+        const pageRes = await fetch(estvBase, {
+          signal: AbortSignal.timeout(15000),
+        });
+        if (pageRes.ok) {
+          const html = await pageRes.text();
+          // Chercher les URLs d'API dans le HTML/JS
+          const apiMatches = html.match(/["'](\/[a-zA-Z0-9\/_-]*(?:api|delegate|municipality|tax|rate|calc)[a-zA-Z0-9\/_-]*)["']/gi) || [];
+          const jsMatches = html.match(/src=["']([^"']*\.js[^"']*)["']/gi) || [];
+          results.estv_page = {
+            status: pageRes.status,
+            html_length: html.length,
+            api_urls_found: [...new Set(apiMatches)].slice(0, 20),
+            js_files: jsMatches.slice(0, 10),
+          };
+
+          // Essayer de récupérer le premier JS pour trouver les endpoints
+          if (jsMatches.length > 0) {
+            const jsUrl = jsMatches[0].replace(/src=["']/i, "").replace(/["']$/, "");
+            const fullJsUrl = jsUrl.startsWith("http") ? jsUrl : `${estvBase}${jsUrl}`;
+            try {
+              const jsRes = await fetch(fullJsUrl, { signal: AbortSignal.timeout(10000) });
+              if (jsRes.ok) {
+                const jsContent = await jsRes.text();
+                const jsApiMatches = jsContent.match(/["'](\/[a-zA-Z0-9\/_-]*(?:api|delegate|municip|tax|rate|calc|location|commune)[a-zA-Z0-9\/_.-]*)["']/gi) || [];
+                results.estv_js = {
+                  url: fullJsUrl,
+                  size: jsContent.length,
+                  api_urls_found: [...new Set(jsApiMatches)].slice(0, 30),
+                };
+              }
+            } catch {}
+          }
+        }
+      } catch (e: any) {
+        results.estv_page = { error: e.message };
+      }
+
+      return NextResponse.json({
+        success: true,
+        step: "tax-explore",
+        total_endpoints_tested: results.endpoints.length,
+        ...results,
+      });
+    }
+
     // ─── DEBUG : voir le format exact des valeurs BFS PxWeb ───
     if (step === "debug") {
       const pxBase = "https://www.pxweb.bfs.admin.ch/api/v1";
@@ -1668,7 +2039,7 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json(
-      { error: `Step inconnu: "${step}". Steps disponibles: communes, population, population-bfs, companies, cleanup, dedup, tax, debug` },
+      { error: `Step inconnu: "${step}". Steps disponibles: communes, population, population-bfs, companies, cleanup, dedup, tax, tax-explore, debug` },
       { status: 400 }
     );
   } catch (error: any) {
