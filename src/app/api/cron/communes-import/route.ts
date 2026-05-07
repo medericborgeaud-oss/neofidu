@@ -718,6 +718,7 @@ async function enrichWithTax(): Promise<{
   };
 
   // Variantes de noms VD pour le matching (nom DB → nom dans le fichier)
+  // Inclut les anciennes communes fusionnées encore présentes en DB
   const VD_ALIASES: Record<string, string> = {
     "labbaye": "labbaye",
     "l'abbaye": "labbaye",
@@ -729,6 +730,23 @@ async function enrichWithTax(): Promise<{
     "chateau-doex": "chateau-doex",
     "blonay-saint-legier": "blonay - saint-legier",
     "blonay - saint-legier": "blonay - saint-legier",
+    // Anciennes communes fusionnées (nom DB → nom dans VD_2026)
+    "cully": "bourg-en-lavaux",
+    "riex": "bourg-en-lavaux",
+    "epesses": "bourg-en-lavaux",
+    "villette lavaux": "bourg-en-lavaux",
+    "grandvaux": "bourg-en-lavaux",
+    "blonay": "blonay - saint-legier",
+    "saint-legier-la chiesaz": "blonay - saint-legier",
+    "dommartin": "montilliez",
+    "pampigny": "hautemorges",
+    "reverolle": "hautemorges",
+    "montherod": "hautemorges",
+    "bioley-orjulaz": "jorat-menthue",
+    "essertes": "oron",
+    "forel-sur-lucens": "lucens",
+    "dompierre vd": "lucens",
+    "treytorrens payerne": "valbroye",
   };
 
   // Lookup VD coefficient by normalized name with fuzzy alias support
@@ -740,11 +758,20 @@ async function enrichWithTax(): Promise<{
     const aliasKey = VD_ALIASES[norm];
     if (aliasKey && VD_2026[aliasKey] !== undefined) return VD_2026[aliasKey];
     // Try without parentheses content: "Forel (Lavaux)" → "forel"
-    const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").trim();
+    const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
     if (noParens !== norm && VD_2026[noParens] !== undefined) return VD_2026[noParens];
-    // Try with parentheses content joined: "Forel (Lavaux)" → "forel lavaux"
+    // Try alias on stripped version too: "Dompierre (VD)" → "dompierre vd" → alias
     const joined = norm.replace(/[()]/g, " ").replace(/\s+/g, " ").trim();
-    if (joined !== norm && VD_2026[joined] !== undefined) return VD_2026[joined];
+    if (joined !== norm) {
+      if (VD_2026[joined] !== undefined) return VD_2026[joined];
+      const joinedAlias = VD_ALIASES[joined];
+      if (joinedAlias && VD_2026[joinedAlias] !== undefined) return VD_2026[joinedAlias];
+    }
+    // Try alias on stripped version: "Villette (Lavaux)" → "villette lavaux" → alias
+    if (noParens !== norm) {
+      const noParensAlias = VD_ALIASES[noParens];
+      if (noParensAlias && VD_2026[noParensAlias] !== undefined) return VD_2026[noParensAlias];
+    }
     return undefined;
   }
 
@@ -752,13 +779,13 @@ async function enrichWithTax(): Promise<{
   debugInfo.estv = "disabled - ESTV operation endpoints return 405 (browser-only access)";
 
   // Coefficients cantonaux de base (identiques pour toutes les communes du canton)
-  const CANTONAL_RATES: Record<string, { taux_canton: number; taux_eglise: number }> = {
-    VD: { taux_canton: 154.5, taux_eglise: 0 },    // VD: coefficient cantonal 2026
-    GE: { taux_canton: 100, taux_eglise: 0 },      // GE: centime additionnel cantonal (base rate)
-    FR: { taux_canton: 100, taux_eglise: 0 },      // FR: coefficient cantonal (base rate)
-    VS: { taux_canton: 100, taux_eglise: 0 },      // VS: coefficient cantonal (base rate)
-    NE: { taux_canton: 130.6, taux_eglise: 0 },    // NE: coefficient cantonal 2025
-    JU: { taux_canton: 100, taux_eglise: 0 },      // JU: coefficient cantonal (base rate)
+  const CANTONAL_RATES: Record<string, number> = {
+    VD: 154.5,    // VD: coefficient cantonal 2026
+    GE: 100,      // GE: centime additionnel cantonal (base rate)
+    FR: 100,      // FR: coefficient cantonal (base rate)
+    VS: 100,      // VS: coefficient cantonal (base rate)
+    NE: 130.6,    // NE: coefficient cantonal 2025
+    JU: 100,      // JU: coefficient cantonal (base rate)
   };
 
   // ═══════════════════════════════════════════════════════════════════
@@ -818,17 +845,34 @@ async function enrichWithTax(): Promise<{
     "zermatt":176,"zwischbergen":176,
   };
 
-  // Aliases VS pour matcher les noms en DB
+  // Aliases VS pour matcher les noms en DB (saint→st, fusions, suffixes)
   const VS_ALIASES: Record<string, string> = {
     "brig-glis": "brigglis",
     "saint-maurice": "st-maurice",
     "saint-leonard": "st-leonard",
     "saint-martin": "st-martin",
+    "saint-martin vs": "st-martin",
     "saint-gingolph": "st-gingolph",
     "val d'illiez": "val dilliez",
     "val-d'illiez": "val dilliez",
+    "val-dilliez": "val dilliez",
     "saint-niklaus": "st niklaus",
     "turtmann-unterems": "turtmann - unterems",
+    // Fusions VS — anciennes communes → commune fusionnée
+    "vissoie": "anniviers", "ayer": "anniviers", "chandolin": "anniviers",
+    "grimentz": "anniviers", "saint-jean": "anniviers", "saint-luc": "anniviers",
+    "miege": "noble-contree", "venthone": "noble-contree", "veyras": "noble-contree",
+    "chermignon": "crans-montana", "montana": "crans-montana",
+    "randogne": "crans-montana", "mollens vs": "crans-montana",
+    "bagnes": "val de bagnes", "volleges": "val de bagnes",
+    "oberwald": "goms", "obergesteln": "goms",
+    "morel": "morel-filet",
+    "erschmatt": "guttet-feschel",
+    "bourg-saint-pierre": "bourg-st-pierre",
+    "stalden vs": "stalden",
+    "wiler lotschen": "wiler",
+    "charrat": "charrat",  // exists but may need exact match
+    "mund": "mund",  // same — may be missing from data
   };
 
   // Lookup GE/VS coefficient by normalized name
@@ -837,12 +881,17 @@ async function enrichWithTax(): Promise<{
 
     if (canton === "GE") {
       if (GE_2026[norm] !== undefined) return GE_2026[norm];
-      // GE aliases
+      // GE aliases + strip "(GE)" suffix
       const geAliases: Record<string, string> = {
         "le grand-saconnex": "grand-saconnex",
+        "carouge ge": "carouge",
+        "corsier ge": "corsier",
       };
       const alias = geAliases[norm];
       if (alias && GE_2026[alias] !== undefined) return GE_2026[alias];
+      // Strip parentheses: "Carouge (GE)" → "carouge"
+      const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+      if (noParens !== norm && GE_2026[noParens] !== undefined) return GE_2026[noParens];
       return undefined;
     }
 
@@ -850,9 +899,16 @@ async function enrichWithTax(): Promise<{
       if (VS_2026[norm] !== undefined) return VS_2026[norm];
       const alias = VS_ALIASES[norm];
       if (alias && VS_2026[alias] !== undefined) return VS_2026[alias];
-      // Try removing parentheses
+      // Strip parentheses: "Mollens (VS)" → "mollens"
       const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
-      if (noParens !== norm && VS_2026[noParens] !== undefined) return VS_2026[noParens];
+      if (noParens !== norm) {
+        if (VS_2026[noParens] !== undefined) return VS_2026[noParens];
+        // Also try alias on stripped: "Mollens (VS)" → "mollens vs" → alias
+        const joinedAlias = VS_ALIASES[norm.replace(/[()]/g, " ").replace(/\s+/g, " ").trim()];
+        if (joinedAlias && VS_2026[joinedAlias] !== undefined) return VS_2026[joinedAlias];
+        const noParensAlias = VS_ALIASES[noParens];
+        if (noParensAlias && VS_2026[noParensAlias] !== undefined) return VS_2026[noParensAlias];
+      }
       return undefined;
     }
 
@@ -887,6 +943,32 @@ async function enrichWithTax(): Promise<{
     2338:83,
   };
 
+  // Fusions FR : code_ofs ancien → code_ofs nouveau (pour communes encore en DB)
+  const FR_MERGERS: Record<number, number> = {
+    2200:2239, 2217:2239,  // Grolley + Ponthaux → Grolley-Ponthaux
+    2012:2051,             // Delley → Delley-Portalban
+    2013:2053, 2014:2053,  // Domdidier + Dompierre → Belmont-Broye
+    2015:2054, 2004:2054,  // Estavayer-le-Lac + Bussy → Estavayer
+    2056:2016,             // Fétigny-Ménières → Fétigny
+    2061:2099, 2066:2099, 2103:2099, 2105:2099,  // → Siviriez
+    2072:2117, 2111:2117,  // Ecublens + Villaz-Saint-Pierre → Villaz
+    2089:2096,             // Montet → Romont
+    2101:2115,             // Torny-le-Grand → Torny
+    2104:2044, 2106:2044,  // Villangeaux + Villaranon → Surpierre
+    2107:2114, 2108:2114,  // Villargiroud + Villariaz → Villorsonnens
+    2116:2236, 2224:2236, 2225:2236, 2227:2236, 2229:2236,  // → Gibloux
+    2158:2163,             // Villars-sous-Mont → Val-de-Charmey
+    2171:2122,             // Arconciel → Pont-en-Ogoz
+    2185:2234, 2189:2234, 2223:2234,  // Corserey + Ependes + Le Glèbe → La Brillaz
+    2213:2238,             // Noréaz → Bois-d'Amont
+    2221:2237,             // Prez-vers-Noréaz → Prez
+    2222:2220,             // Rossens → Le Mouret
+    2243:2254,             // Barberêche → Courtepin
+    2259:2275, 2260:2275,  // Galmiz + Gempenach → Murten
+    2291:2306,             // Alterswil → Tafers
+    2310:2299,             // Zumholz → Plaffeien
+  };
+
   // ═══════════════════════════════════════════════════════════════════
   // NEUCHÂTEL 2026 — 24 communes (nom normalisé → coefficient)
   // Source : screenshot coefficients communaux 2026
@@ -901,14 +983,28 @@ async function enrichWithTax(): Promise<{
     "la grande beroche":63,"neuchatel":65,"le locle":69,"latena":68,
   };
 
-  // Aliases NE pour matcher les noms en DB
+  // Aliases NE pour matcher les noms en DB (fusions communales)
   const NE_ALIASES: Record<string, string> = {
-    "hauterive": "latena",
-    "hauterive (ne)": "latena",
-    "saint-blaise": "latena",
-    "enges": "latena",
-    "la tene": "latena",
+    // Laténa (2025): Hauterive + Saint-Blaise + Enges + La Tène + Thielle-Wavre
+    "hauterive": "latena", "hauterive ne": "latena", "saint-blaise": "latena",
+    "enges": "latena", "la tene": "latena", "thielle-wavre": "latena",
+    // Milvignes (2013): Auvernier + Bôle + Colombier
+    "auvernier": "milvignes", "bole": "milvignes", "colombier": "milvignes",
+    "colombier ne": "milvignes",
+    // La Grande Béroche (2018): Gorgier + Montalchez + Fresens + Vaumarcus + Saint-Aubin-Sauges + Bevaix
+    "gorgier": "la grande beroche", "montalchez": "la grande beroche",
+    "fresens": "la grande beroche", "vaumarcus": "la grande beroche",
+    "saint-aubin-sauges": "la grande beroche", "bevaix": "la grande beroche",
     "la grande-beroche": "la grande beroche",
+    // Neuchâtel (2021): + Corcelles-Cormondrèche + Peseux
+    "corcelles-cormondroche": "neuchatel", "corcelles-cormondrече": "neuchatel",
+    "peseux": "neuchatel",
+    // Val-de-Ruz (2013): + Cernier + Valangin
+    "cernier": "val-de-ruz", "valangin": "val-de-ruz",
+    // Le Locle (2021): + Les Brenets
+    "les brenets": "le locle",
+    // Cressier (NE) → strip suffix
+    "cressier ne": "cressier",
   };
 
   // ═══════════════════════════════════════════════════════════════════
@@ -936,10 +1032,21 @@ async function enrichWithTax(): Promise<{
     "porrentruy":205,"vendlincourt":230,
   };
 
-  // Aliases JU pour matcher les noms en DB
+  // Aliases JU pour matcher les noms en DB (suffixes, fusions)
   const JU_ALIASES: Record<string, string> = {
     "saint-brais": "st-brais",
-    "chatillon (ju)": "chatillon",
+    "chatillon ju": "chatillon",
+    // Suffixes (JU)
+    "le bemont ju": "le bemont",
+    "lajoux ju": "lajoux",
+    "les genevez ju": "le genevez",  // Les→Le + suffix
+    "les genevez": "le genevez",
+    // Anciennes communes fusionnées
+    "corban": "val terbi",
+    "damphreux": "damphreux-lugnez",
+    "damvant": "haute-ajoie",
+    "bonfol": "basse-allaine",
+    "beurnevesin": "basse-vendline",
   };
 
   // ═══════════════════════════════════════════════════════════════════
@@ -969,6 +1076,11 @@ async function enrichWithTax(): Promise<{
       if (coeff !== undefined) debugInfo.matched_vs = (debugInfo.matched_vs || 0) + 1;
     } else if (commune.canton === "FR") {
       coeff = FR_2025[commune.code_ofs];
+      // Si pas trouvé, chercher via les fusions (ancien code → nouveau code)
+      if (coeff === undefined) {
+        const newCode = FR_MERGERS[commune.code_ofs];
+        if (newCode) coeff = FR_2025[newCode];
+      }
       annee = 2025;
       if (coeff !== undefined) debugInfo.matched_fr = (debugInfo.matched_fr || 0) + 1;
     } else if (commune.canton === "NE") {
@@ -977,6 +1089,23 @@ async function enrichWithTax(): Promise<{
       if (coeff === undefined) {
         const alias = NE_ALIASES[norm];
         if (alias) coeff = NE_2026[alias];
+      }
+      // Strip "(NE)" suffix: "Cressier (NE)" → "cressier"
+      if (coeff === undefined) {
+        const noParens = norm.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+        if (noParens !== norm) {
+          coeff = NE_2026[noParens];
+          if (coeff === undefined) {
+            const alias2 = NE_ALIASES[noParens];
+            if (alias2) coeff = NE_2026[alias2];
+          }
+        }
+        // Also try joined: "Colombier (NE)" → "colombier ne"
+        const joined = norm.replace(/[()]/g, " ").replace(/\s+/g, " ").trim();
+        if (coeff === undefined && joined !== norm) {
+          const alias3 = NE_ALIASES[joined];
+          if (alias3) coeff = NE_2026[alias3];
+        }
       }
       if (coeff !== undefined) debugInfo.matched_ne = (debugInfo.matched_ne || 0) + 1;
     } else if (commune.canton === "JU") {
@@ -995,13 +1124,12 @@ async function enrichWithTax(): Promise<{
     }
 
     if (coeff !== undefined) {
-      const cantonRates = CANTONAL_RATES[commune.canton] || { taux_canton: null, taux_eglise: null };
+      const tauxCanton = CANTONAL_RATES[commune.canton] ?? null;
       taxUpdates.push({
         code: commune.code_ofs,
         data: {
           taux_commune: coeff,
-          taux_canton: cantonRates.taux_canton,
-          taux_eglise: cantonRates.taux_eglise,
+          taux_canton: tauxCanton,
           annee_fiscale: annee,
           updated_at: new Date().toISOString(),
         },
