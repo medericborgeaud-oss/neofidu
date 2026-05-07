@@ -74,6 +74,17 @@
       "source": "/guide",
       "destination": "/guide/deductions-fiscales",
       "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.neofidu.ch"
+        }
+      ],
+      "destination": "https://neofidu.ch/:path*",
+      "permanent": true
     }
   ]
 }
