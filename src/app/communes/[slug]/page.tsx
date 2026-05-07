@@ -1,5 +1,5 @@
 // src/app/communes/[slug]/page.tsx
-// Fiche individuelle d'une commune romande
+// Fiche individuelle d'une commune romande — optimisée SEO
 
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -43,12 +43,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parts = [popText, tauxText].filter(Boolean);
 
   return {
-    title: `${commune.nom} (${cantonName}) — Fiscalité, population | NeoFidu`,
-    description: `${commune.nom}, ${cantonName}. ${parts.join(", ")}. Comparez avec les communes voisines.`,
+    title: `Impôts à ${commune.nom} (${cantonName}) — Taux, coefficient fiscal | NeoFidu`,
+    description: `Impôts à ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Comparez la fiscalité avec les communes voisines.`,
     openGraph: {
-      title: `${commune.nom} (${cantonName}) | NeoFidu`,
-      description: `Fiche commune : ${parts.join(", ")}.`,
+      title: `Impôts à ${commune.nom} (${cantonName}) | NeoFidu`,
+      description: `Fiscalité de ${commune.nom} : ${parts.join(", ")}. Comparez avec les communes voisines.`,
     },
+  };
+}
+
+// JSON-LD structured data for better Google results
+function generateJsonLd(commune: any, cantonName: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "GovernmentOrganization",
+    name: `Commune de ${commune.nom}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: commune.nom,
+      addressRegion: cantonName,
+      postalCode: commune.code_postal || undefined,
+      addressCountry: "CH",
+    },
+    ...(commune.population && {
+      areaServed: {
+        "@type": "City",
+        name: commune.nom,
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: cantonName,
+        },
+      },
+    }),
   };
 }
 
@@ -78,6 +104,16 @@ export default async function CommunePage({ params }: Props) {
       ? "bg-red-100 text-red-700"
       : "bg-gray-100 text-gray-500";
 
+  // Texte d'attractivité fiscale
+  const attractiviteText =
+    commune.taux_commune === null
+      ? ""
+      : commune.taux_commune < 70
+      ? "Cette commune bénéficie d'un taux d'imposition particulièrement attractif."
+      : commune.taux_commune < 90
+      ? "Cette commune se situe dans la moyenne en termes de fiscalité."
+      : "Cette commune applique un taux d'imposition relativement élevé.";
+
   // CTA contextuel
   const ctaText = {
     text: `Vous habitez à ${commune.nom} ?`,
@@ -85,8 +121,36 @@ export default async function CommunePage({ params }: Props) {
     href: "/demande",
   };
 
+  // Paragraphe SEO descriptif
+  const districtText = commune.district ? ` dans le district de ${commune.district}` : "";
+  const popSeoText = commune.population
+    ? ` Avec ${commune.population.toLocaleString("fr-CH")} habitants`
+    : "";
+  const densiteSeoText = commune.densite
+    ? ` et une densité de ${Math.round(commune.densite)} hab./km²`
+    : "";
+  const tauxSeoText = commune.taux_commune
+    ? `. Le coefficient communal est de ${commune.taux_commune}%`
+    : "";
+  const tauxCantonSeoText = commune.taux_canton
+    ? ` et le taux cantonal de ${commune.taux_canton}%`
+    : "";
+  const anneeSeoText = commune.annee_fiscale
+    ? ` (année fiscale ${commune.annee_fiscale})`
+    : "";
+
+  const seoDescription = `${commune.nom} est une commune du canton de ${cantonName}${districtText}.${popSeoText}${densiteSeoText}${tauxSeoText}${tauxCantonSeoText}${anneeSeoText}. ${attractiviteText}`;
+
   return (
     <main className="min-h-screen bg-gray-50">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateJsonLd(commune, cantonName)),
+        }}
+      />
+
       <div className="max-w-3xl mx-auto px-4 py-8">
         {/* Back link */}
         <Link
@@ -114,14 +178,19 @@ export default async function CommunePage({ params }: Props) {
           </div>
 
           <div className="p-6">
-            {/* Commune name */}
+            {/* H1 optimisé SEO */}
             <h1 className="text-2xl font-semibold text-gray-900 mb-1">
-              {commune.nom}
+              Impôts à {commune.nom}
             </h1>
-            <p className="text-sm text-gray-500 mb-6">
+            <p className="text-sm text-gray-500 mb-4">
               {commune.district ? `${commune.district}, ` : ""}
               {cantonName}
               {commune.code_postal ? ` — ${commune.code_postal}` : ""}
+            </p>
+
+            {/* Paragraphe SEO descriptif */}
+            <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+              {seoDescription}
             </p>
 
             {/* ─── KPI Grid ─── */}
@@ -169,7 +238,7 @@ export default async function CommunePage({ params }: Props) {
             <div className="mb-6">
               <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-emerald-500" />
-                Fiscalité
+                Fiscalité de {commune.nom}
               </h2>
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -233,7 +302,7 @@ export default async function CommunePage({ params }: Props) {
             {(commune.loyer_median_m2 || commune.prix_achat_m2) && (
               <div className="mb-6">
                 <h2 className="text-sm font-semibold text-gray-700 mb-3">
-                  Immobilier
+                  Immobilier à {commune.nom}
                 </h2>
                 <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
                   {commune.loyer_median_m2 && (
@@ -269,7 +338,7 @@ export default async function CommunePage({ params }: Props) {
               <div className="mb-6">
                 <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
                   <Globe className="w-4 h-4 text-emerald-500" />
-                  Communes du même district
+                  Comparer les impôts : communes du même district
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {voisines.map((v: any) => (
