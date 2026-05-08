@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.neofidu.ch"),
+  metadataBase: new URL("https://neofidu.ch"),
   title: {
     default: "NeoFidu | Fiduciaire en Ligne Suisse",
     template: "%s | NeoFidu",
