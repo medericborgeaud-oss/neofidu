@@ -1,5 +1,5 @@
 // src/app/sitemap.ts
-// Sitemap avec pages communes + fix www → neofidu.ch
+// Sitemap dynamique avec pages communes + sociétés
 
 import { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
