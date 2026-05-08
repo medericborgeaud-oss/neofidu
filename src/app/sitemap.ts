@@ -1,3 +1,6 @@
+// src/app/sitemap.ts
+// Sitemap avec pages communes + fix www → neofidu.ch
+
 import { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
 import { createClient } from "@supabase/supabase-js";
@@ -41,7 +44,8 @@ export async function generateSitemaps() {
     .eq("is_active", true);
 
   const total = count || 0;
-  // Sitemap 0 = static pages + first batch of companies
+
+  // Sitemap 0 = static pages + communes + first batch of companies
   const numSitemaps = Math.max(1, Math.ceil(total / BATCH_SIZE));
 
   return Array.from({ length: numSitemaps }, (_, i) => ({ id: i }));
@@ -51,70 +55,105 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
   const currentDate = new Date();
 
   // ============================================
-  // STATIC PAGES — only in first sitemap (id=0)
+  // STATIC PAGES + COMMUNES — only in first sitemap (id=0)
   // ============================================
-  const staticPages: MetadataRoute.Sitemap = id === 0 ? [
-    // Homepage
-    createEntry("", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
-    // Tax request form
-    createEntry("/demande", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
-    createEntry("/demande/prolongation", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
-    // Contact
-    createEntry("/contact", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
-    // Pricing
-    createEntry("/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    // Swiss abroad
-    createEntry("/suisses-etranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    // Expats
-    createEntry("/expats", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
-    // Independants
-    createEntry("/independants", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    // Company creation
-    createEntry("/creation-entreprise", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    // Property management
-    createEntry("/gerance-immobiliere", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    // FAQ
-    createEntry("/faq", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
+  let staticPages: MetadataRoute.Sitemap = [];
+  let communePages: MetadataRoute.Sitemap = [];
 
-    // ── Simulators ──
-    createEntry("/simulateur", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    createEntry("/simulateur/impots", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
-    createEntry("/simulateur/3eme-pilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    createEntry("/simulateur/valeur-locative", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    createEntry("/simulateur/gain-immobilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    createEntry("/simulateur/carte-impots", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
-    createEntry("/simulateur/salaire-net", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
-    createEntry("/simulateur/baisse-loyer", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
-    createEntry("/simulateur/retraite", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.92 }),
+  if (id === 0) {
+    staticPages = [
+      // Homepage
+      createEntry("", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
 
-    // ── Guides ──
-    createEntry("/guide/deductions-fiscales", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+      // Tax request form
+      createEntry("/demande", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
+      createEntry("/demande/prolongation", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
 
-    // ── Cantons ──
-    createEntry("/cantons", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
-    ...["vaud", "geneve", "valais", "fribourg", "neuchatel", "jura"].map((canton) =>
-      createEntry(`/cantons/${canton}`, { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 })
-    ),
+      // Contact
+      createEntry("/contact", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
 
-    // ── Blog ──
-    createEntry("/blog", { lastModified: currentDate, changeFrequency: "daily", priority: 0.85 }),
-    ...blogArticles.map((article) =>
-      createEntry(`/blog/${article.slug}`, { lastModified: article.date, changeFrequency: "monthly", priority: 0.7 })
-    ),
+      // Pricing
+      createEntry("/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
 
-    // ── Observatoire main page ──
-    createEntry("/observatoire", { lastModified: currentDate, changeFrequency: "daily", priority: 0.9 }),
+      // Swiss abroad
+      createEntry("/suisses-etranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
 
-    // ── Legal ──
-    createEntry("/conditions-generales", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
-    createEntry("/politique-confidentialite", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
-    createEntry("/mentions-legales", { lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 }),
-  ] : [];
+      // Expats
+      createEntry("/expats", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
+
+      // Independants
+      createEntry("/independants", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+
+      // Company creation
+      createEntry("/creation-entreprise", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+
+      // Property management
+      createEntry("/gerance-immobiliere", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+
+      // FAQ
+      createEntry("/faq", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
+
+      // ── Simulators ──
+      createEntry("/simulateur", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+      createEntry("/simulateur/impots", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+      createEntry("/simulateur/3eme-pilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+      createEntry("/simulateur/valeur-locative", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+      createEntry("/simulateur/gain-immobilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+      createEntry("/simulateur/carte-impots", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
+      createEntry("/simulateur/salaire-net", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+      createEntry("/simulateur/baisse-loyer", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+      createEntry("/simulateur/retraite", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.92 }),
+
+      // ── Guides ──
+      createEntry("/guide/deductions-fiscales", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+
+      // ── Cantons ──
+      createEntry("/cantons", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
+      ...["vaud", "geneve", "valais", "fribourg", "neuchatel", "jura"].map((canton) =>
+        createEntry(`/cantons/${canton}`, { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 })
+      ),
+
+      // ── Blog ──
+      createEntry("/blog", { lastModified: currentDate, changeFrequency: "daily", priority: 0.85 }),
+      ...blogArticles.map((article) =>
+        createEntry(`/blog/${article.slug}`, { lastModified: article.date, changeFrequency: "monthly", priority: 0.7 })
+      ),
+
+      // ── Observatoire main page ──
+      createEntry("/observatoire", { lastModified: currentDate, changeFrequency: "daily", priority: 0.9 }),
+
+      // ── Communes main page ──
+      createEntry("/communes", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.9 }),
+
+      // ── Debt pages ──
+      createEntry("/dette-suisse", { lastModified: currentDate, changeFrequency: "daily", priority: 0.8 }),
+      createEntry("/swiss-debt", { lastModified: currentDate, changeFrequency: "daily", priority: 0.8 }),
+
+      // ── Legal ──
+      createEntry("/conditions-generales", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
+      createEntry("/politique-confidentialite", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
+      createEntry("/mentions-legales", { lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 }),
+    ];
+
+    // ── Commune individual pages (all ~759 in sitemap 0) ──
+    const { data: communes } = await supabase
+      .from("communes")
+      .select("slug, updated_at")
+      .order("slug", { ascending: true });
+
+    communePages = (communes || []).map((c) => ({
+      url: `${baseUrl}/communes/${c.slug}`,
+      lastModified: new Date(c.updated_at),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+  }
 
   // ============================================
   // COMPANY PAGES — batched across all sitemaps
   // ============================================
   const start = id * BATCH_SIZE;
+
   const { data: companies } = await supabase
     .from("companies")
     .select("slug, updated_at")
@@ -129,5 +168,5 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
     priority: 0.3,
   }));
 
-  return [...staticPages, ...companyPages];
+  return [...staticPages, ...communePages, ...companyPages];
 }
