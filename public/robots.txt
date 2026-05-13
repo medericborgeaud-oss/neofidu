@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Allow: /_next/static/
 
 Sitemap: https://neofidu.ch/sitemap.xml
