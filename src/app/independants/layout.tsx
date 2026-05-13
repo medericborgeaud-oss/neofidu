@@ -1,39 +1,39 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Comptabilité Indépendants & Freelances | Vaud, Genève, Valais",
+  title: "ComptabilitÃ© IndÃ©pendants & Freelances | Vaud, GenÃ¨ve, Valais",
   description:
-    "Fiduciaire digitale pour indépendants et freelances à Vaud, Genève et Valais. Comptabilité, déclaration d'impôts, TVA. Devis gratuit.",
+    "Fiduciaire digitale pour indÃ©pendants et freelances Ã  Vaud, GenÃ¨ve et Valais. ComptabilitÃ©, dÃ©claration d'impÃ´ts, TVA. Devis gratuit.",
   keywords: [
-    "comptabilité indépendant suisse",
+    "comptabilitÃ© indÃ©pendant suisse",
     "comptable freelance suisse",
-    "comptabilité freelance",
-    "fiduciaire indépendant",
-    "déclaration impôts indépendant",
-    "TVA indépendant suisse",
-    "création entreprise indépendant",
+    "comptabilitÃ© freelance",
+    "fiduciaire indÃ©pendant",
+    "dÃ©claration impÃ´ts indÃ©pendant",
+    "TVA indÃ©pendant suisse",
+    "crÃ©ation entreprise indÃ©pendant",
     "raison individuelle suisse",
-    "devenir indépendant suisse",
-    "freelance suisse comptabilité",
+    "devenir indÃ©pendant suisse",
+    "freelance suisse comptabilitÃ©",
     "auto-entrepreneur suisse",
-    "statut indépendant suisse",
-    "charges sociales indépendant",
-    "AVS indépendant",
+    "statut indÃ©pendant suisse",
+    "charges sociales indÃ©pendant",
+    "AVS indÃ©pendant",
     "comptable pour freelance vaud",
-    "comptable indépendant genève",
+    "comptable indÃ©pendant genÃ¨ve",
   ,
-    "comptable indépendant valais",
-    "comptabilité freelance vaud",
-    "comptabilité freelance genève",
-    "comptabilité freelance valais",
+    "comptable indÃ©pendant valais",
+    "comptabilitÃ© freelance vaud",
+    "comptabilitÃ© freelance genÃ¨ve",
+    "comptabilitÃ© freelance valais",
     "fiduciaire freelance vaud",
-    "fiduciaire indépendant valais",
-    "déclaration impôts freelance vaud",
-    "comptable freelance genève",
-    "indépendant freelance suisse romande"],
+    "fiduciaire indÃ©pendant valais",
+    "dÃ©claration impÃ´ts freelance vaud",
+    "comptable freelance genÃ¨ve",
+    "indÃ©pendant freelance suisse romande"],
   openGraph: {
-    title: "Comptabilité Indépendants & Freelances | Vaud · Genève · Valais | NeoFidu",
-    description: "Comptabilité pour indépendants à Vaud, Genève et Valais. Déclaration d'impôts, TVA, création entreprise. Devis gratuit en ligne.",
+    title: "ComptabilitÃ© IndÃ©pendants & Freelances | Vaud Â· GenÃ¨ve Â· Valais | NeoFidu",
+    description: "ComptabilitÃ© pour indÃ©pendants Ã  Vaud, GenÃ¨ve et Valais. DÃ©claration d'impÃ´ts, TVA, crÃ©ation entreprise. Devis gratuit en ligne.",
     url: "https://www.neofidu.ch/independants",
     type: "website",
     locale: "fr_CH",
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
 const independantsSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Comptabilité pour Indépendants - Neofidu",
-  "description": "Service de comptabilité et accompagnement fiscal pour indépendants et freelances en Suisse romande",
+  "name": "ComptabilitÃ© pour IndÃ©pendants - Neofidu",
+  "description": "Service de comptabilitÃ© et accompagnement fiscal pour indÃ©pendants et freelances en Suisse romande",
   "url": "https://www.neofidu.ch/independants",
   "provider": {
     "@type": "Organization",
@@ -57,7 +57,7 @@ const independantsSchema = {
   },
   "areaServed": [
     {"@type": "AdministrativeArea", "name": "Canton de Vaud", "@id": "https://www.wikidata.org/wiki/Q12771"},
-    {"@type": "AdministrativeArea", "name": "Canton de Genève", "@id": "https://www.wikidata.org/wiki/Q11917"},
+    {"@type": "AdministrativeArea", "name": "Canton de GenÃ¨ve", "@id": "https://www.wikidata.org/wiki/Q11917"},
     {"@type": "AdministrativeArea", "name": "Canton du Valais", "@id": "https://www.wikidata.org/wiki/Q834"},
     {"@type": "AdministrativeArea", "name": "Suisse romande"}
   ],
@@ -70,13 +70,13 @@ const independantsSchema = {
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Services pour indépendants",
+    "name": "Services pour indÃ©pendants",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Comptabilité annuelle indépendant"
+          "name": "ComptabilitÃ© annuelle indÃ©pendant"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -89,7 +89,7 @@ const independantsSchema = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Déclaration d'impôts indépendant"
+          "name": "DÃ©claration d'impÃ´ts indÃ©pendant"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -101,7 +101,7 @@ const independantsSchema = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Création entreprise (raison individuelle)"
+          "name": "CrÃ©ation entreprise (raison individuelle)"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -110,11 +110,6 @@ const independantsSchema = {
         }
       }
     ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "87"
   }
 };
 
@@ -124,26 +119,26 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Combien coûte un comptable pour indépendant en Suisse ?",
+      "name": "Combien coÃ»te un comptable pour indÃ©pendant en Suisse ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Chez Neofidu, la comptabilité pour indépendants démarre à CHF 500.- par an. Ce forfait inclut la tenue comptable, les déclarations TVA et le bouclement annuel. Le tarif exact dépend du volume de transactions."
+        "text": "Chez Neofidu, la comptabilitÃ© pour indÃ©pendants dÃ©marre Ã  CHF 500.- par an. Ce forfait inclut la tenue comptable, les dÃ©clarations TVA et le bouclement annuel. Le tarif exact dÃ©pend du volume de transactions."
       }
     },
     {
       "@type": "Question",
-      "name": "Quelles sont les obligations comptables d'un indépendant en Suisse ?",
+      "name": "Quelles sont les obligations comptables d'un indÃ©pendant en Suisse ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Un indépendant doit tenir une comptabilité simplifiée (recettes/dépenses) si son CA est inférieur à CHF 500'000. Au-delà, une comptabilité en partie double est obligatoire. La TVA est obligatoire dès CHF 100'000 de CA annuel."
+        "text": "Un indÃ©pendant doit tenir une comptabilitÃ© simplifiÃ©e (recettes/dÃ©penses) si son CA est infÃ©rieur Ã  CHF 500'000. Au-delÃ , une comptabilitÃ© en partie double est obligatoire. La TVA est obligatoire dÃ¨s CHF 100'000 de CA annuel."
       }
     },
     {
       "@type": "Question",
-      "name": "Comment créer son activité d'indépendant en Suisse ?",
+      "name": "Comment crÃ©er son activitÃ© d'indÃ©pendant en Suisse ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Pour devenir indépendant en Suisse : 1) S'affilier à une caisse AVS comme indépendant, 2) S'inscrire au Registre du Commerce si CA > CHF 100'000, 3) S'assujettir à la TVA si nécessaire. Neofidu vous accompagne dans toutes ces démarches."
+        "text": "Pour devenir indÃ©pendant en Suisse : 1) S'affilier Ã  une caisse AVS comme indÃ©pendant, 2) S'inscrire au Registre du Commerce si CA > CHF 100'000, 3) S'assujettir Ã  la TVA si nÃ©cessaire. Neofidu vous accompagne dans toutes ces dÃ©marches."
       }
     }
   ]
