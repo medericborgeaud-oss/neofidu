@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | NeoFidu",
   },
   description:
-    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 50, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
+    "Fiduciaire en ligne en Suisse romande. DÃ©claration d'impÃ´ts dÃ¨s CHF 50, comptabilitÃ©, gÃ©rance immobiliÃ¨re. Assistant IA fiscal gratuit.",
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   },
   keywords: [
     "fiduciaire en ligne",
-    "impôts Suisse",
-    "simulateur impôts",
-    "déclaration fiscale Suisse",
+    "impÃ´ts Suisse",
+    "simulateur impÃ´ts",
+    "dÃ©claration fiscale Suisse",
     "fiduciaire Suisse romande"
   ],
   authors: [{ name: "NeoFidu" }],
@@ -97,7 +97,7 @@ export default function RootLayout({
     legalName: "NeoFidu",
     alternateName: ["NeoFidu", "NeoFidu Fiduciaire", "NeoFidu Swiss Fiduciary"],
     description:
-      "Votre fiduciaire nouvelle génération en Suisse romande. Simplifiez votre gestion financière avec NeoFidu, la solution 100% en ligne pour particuliers, indépendants et PME. Spécialistes de la fiscalité et de la comptabilité.",
+      "Votre fiduciaire nouvelle gÃ©nÃ©ration en Suisse romande. Simplifiez votre gestion financiÃ¨re avec NeoFidu, la solution 100% en ligne pour particuliers, indÃ©pendants et PME. SpÃ©cialistes de la fiscalitÃ© et de la comptabilitÃ©.",
     "inLanguage": ["fr", "en"],
     "knowsLanguage": [
       { "@type": "Language", name: "French", alternateName: "fr" },
@@ -126,11 +126,11 @@ export default function RootLayout({
         contactType: "customer service",
         availableLanguage: ["French", "English"],
         areaServed: [
-          "Genève",
+          "GenÃ¨ve",
           "Vaud",
           "Valais",
           "Fribourg",
-          "Neuchâtel",
+          "NeuchÃ¢tel",
           "Jura",
         ],
         hoursAvailable: {
@@ -179,8 +179,8 @@ export default function RootLayout({
     areaServed: [
       { "@type": "AdministrativeArea", name: "Canton de Vaud", "@id": "https://www.wikidata.org/wiki/Q12771" },
       { "@type": "AdministrativeArea", name: "Canton du Valais", "@id": "https://www.wikidata.org/wiki/Q834" },
-      { "@type": "AdministrativeArea", name: "Canton de Genève", "@id": "https://www.wikidata.org/wiki/Q11917" },
-      { "@type": "AdministrativeArea", name: "Canton de Neuchâtel", "@id": "https://www.wikidata.org/wiki/Q12738" },
+      { "@type": "AdministrativeArea", name: "Canton de GenÃ¨ve", "@id": "https://www.wikidata.org/wiki/Q11917" },
+      { "@type": "AdministrativeArea", name: "Canton de NeuchÃ¢tel", "@id": "https://www.wikidata.org/wiki/Q12738" },
       { "@type": "AdministrativeArea", name: "Canton du Jura", "@id": "https://www.wikidata.org/wiki/Q12755" },
       { "@type": "AdministrativeArea", name: "Canton de Fribourg", "@id": "https://www.wikidata.org/wiki/Q12640" },
     ],
@@ -193,8 +193,8 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Déclaration d'impôts",
-            description: "Déclaration fiscale complète pour particuliers et indépendants",
+            name: "DÃ©claration d'impÃ´ts",
+            description: "DÃ©claration fiscale complÃ¨te pour particuliers et indÃ©pendants",
             provider: { "@id": "https://www.neofidu.ch/#organization" },
             serviceType: "Tax Preparation",
             areaServed: { "@type": "Country", name: "Switzerland" },
@@ -216,7 +216,7 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Comptabilité PME",
+            name: "ComptabilitÃ© PME",
             description: "Services comptables pour petites et moyennes entreprises",
             provider: { "@id": "https://www.neofidu.ch/#organization" },
             serviceType: "Accounting",
@@ -227,7 +227,7 @@ export default function RootLayout({
             "@type": "UnitPriceSpecification",
             price: "500",
             priceCurrency: "CHF",
-            unitText: "année",
+            unitText: "annÃ©e",
             valueAddedTaxIncluded: false,
           },
           url: "https://www.neofidu.ch/demande",
@@ -236,8 +236,8 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Gérance immobilière",
-            description: "Gestion locative complète pour propriétaires",
+            name: "GÃ©rance immobiliÃ¨re",
+            description: "Gestion locative complÃ¨te pour propriÃ©taires",
             provider: { "@id": "https://www.neofidu.ch/#organization" },
             serviceType: "Property Management",
             areaServed: ["Canton de Vaud", "Canton du Valais"],
@@ -274,25 +274,16 @@ export default function RootLayout({
       minValue: 1,
       maxValue: 10,
     },
-    slogan: "La fiduciaire réinventée",
+    slogan: "La fiduciaire rÃ©inventÃ©e",
     // Additional properties for Google Business
     isAccessibleForFree: false,
     publicAccess: false, // Online service, no physical visits
     amenityFeature: [
       { "@type": "LocationFeatureSpecification", name: "Service 100% en ligne", value: true },
       { "@type": "LocationFeatureSpecification", name: "Support en anglais", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Paiement sécurisé", value: true },{ "@type": "LocationFeatureSpecification", name: "Assistant fiscal IA 24/7", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Paiement sÃ©curisÃ©", value: true },{ "@type": "LocationFeatureSpecification", name: "Assistant fiscal IA 24/7", value: true },
 { "@type": "LocationFeatureSpecification", name: "AI Tax Assistant 24/7", value: true },
     ],
-    // Reviews placeholder - will help Google know you accept reviews
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: "1",
-      reviewCount: "1",
-    },
     // Action to request service
     potentialAction: {
       "@type": "OrderAction",
@@ -316,7 +307,7 @@ export default function RootLayout({
     name: "NeoFidu",
     url: "https://www.neofidu.ch",
     logo: "https://www.neofidu.ch/logo.svg",
-    description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts, comptabilité, gérance immobilière",
+    description: "Fiduciaire digitale en Suisse romande - DÃ©claration d'impÃ´ts, comptabilitÃ©, gÃ©rance immobiliÃ¨re",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Leysin",
@@ -342,7 +333,7 @@ export default function RootLayout({
     url: "https://www.neofidu.ch",
     name: "NeoFidu",
     alternateName: "NeoFidu",
-    description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts dès CHF 50",
+    description: "Fiduciaire digitale en Suisse romande - DÃ©claration d'impÃ´ts dÃ¨s CHF 50",
     publisher: {
       "@id": "https://www.neofidu.ch/#organization",
     },
@@ -363,94 +354,6 @@ export default function RootLayout({
     ],
   };
 
-  // Enhanced FAQ schema with more questions for Google
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Combien coûte une déclaration d'impôts chez NeoFidu ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Chez NeoFidu, la déclaration d'impôts commence à CHF 50 pour les cas simples (Basic), CHF 100 pour les situations avec propriété ou personnes à charge (Comfort), et CHF 150 pour les patrimoines diversifiés (Integral). Tous les prix incluent la TVA à 8.1%.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Dans quels cantons suisses NeoFidu est-il disponible ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "NeoFidu offre ses services dans 6 cantons de Suisse romande : Vaud, Valais, Genève, Neuchâtel, Jura et Fribourg. Notre service est 100% en ligne, accessible partout.",
-        },
-      },
-      {
-  "@type": "Question",
-  name: "NeoFidu dispose-t-il d'un assistant virtuel pour les questions fiscales ?",
-  acceptedAnswer: {
-    "@type": "Answer",
-    text: "Oui, NeoFidu intègre un assistant fiscal intelligent disponible 24h/24 sur toutes les pages. Il répond immédiatement à vos questions sur les impôts suisses, les tarifs, les délais et les démarches. Powered by intelligence artificielle, il est disponible en français et en anglais.",
-  },
-},
-{
-  "@type": "Question",
-  name: "Can I get instant answers to Swiss tax questions online?",
-  acceptedAnswer: {
-    "@type": "Answer",
-    text: "Yes! NeoFidu offers an AI-powered tax assistant available 24/7 directly on the website. Ask any question about Swiss tax returns, deadlines, prices or documents — and get an immediate answer in English or French.",
-  },
-},
-      {
-        "@type": "Question",
-        name: "Quel est le délai pour recevoir ma déclaration d'impôts ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Le délai standard est de 10 jours ouvrés. Des options express sont disponibles : Prioritaire (7 jours, +CHF 20) ou Express (48h, +CHF 120).",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "NeoFidu parle-t-il anglais ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Oui, NeoFidu offre un service complet en anglais pour les expatriés et résidents internationaux en Suisse. We speak English and can help you with your Swiss tax return!",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Comment fonctionne le service en ligne de NeoFidu ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "1) Remplissez notre formulaire en ligne, 2) Téléchargez vos documents (certificat de salaire, relevés bancaires), 3) Payez en ligne (Visa, Mastercard, PayPal, Klarna), 4) Recevez votre déclaration complétée par email. Tout se fait depuis votre smartphone ou ordinateur.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Quels sont les horaires de NeoFidu ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Nos bureaux sont ouverts du lundi au vendredi de 9h à 17h. Notre plateforme en ligne est accessible 24h/24 pour soumettre vos demandes.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "NeoFidu propose-t-il des services de comptabilité ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Oui, NeoFidu propose des services de comptabilité pour indépendants (dès CHF 500/an) et PME (dès CHF 1000/an), incluant la clôture annuelle, les décomptes TVA et le suivi comptable régulier.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Comment contacter NeoFidu ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Vous pouvez nous contacter par email à contact@neofidu.ch ou via notre formulaire de contact en ligne. Réponse rapide garantie.",
-        },
-      },
-    ],
-  };
-
   // BreadcrumbList for homepage
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -466,7 +369,7 @@ export default function RootLayout({
   };
 
   // Combine all schemas
-  const allSchemas = [localBusinessSchema, organizationSchema, webSiteSchema, faqSchema, breadcrumbSchema];
+  const allSchemas = [localBusinessSchema, organizationSchema, webSiteSchema, breadcrumbSchema];
 
   return (
     <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
