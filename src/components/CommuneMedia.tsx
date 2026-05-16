@@ -28,7 +28,7 @@ function latLngToTile(lat: number, lng: number, zoom: number): { x: number; y: n
   return { x, y };
 }
 
-function getStaticMapTiles(lat: number, lng: number, zoom: number = 12) {
+function getStaticMapTiles(lat: number, lng: number, zoom: number = 6) {
   const { x, y } = latLngToTile(lat, lng, zoom);
   const tiles: { url: string; dx: number; dy: number }[] = [];
   for (let dy = -1; dy <= 1; dy++) {
@@ -65,12 +65,12 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
           );
           if (wikiRes.ok) {
             const wikiData = await wikiRes.json();
-            if (wikiData.thumbnail?.source) {
+            if (wikiData.originalimage?.source || wikiData.thumbnail?.source) {
               const desc = (wikiData.description || "").toLowerCase();
               const isPlace = query.includes("(") || desc.includes("commune") || desc.includes("ville") || desc.includes("canton") || desc.includes("suisse") || desc.includes("district");
               if (isPlace || query.includes("(")) {
-                const hiRes = wikiData.thumbnail.source.replace(/\/\d+px-/, "/800px-");
-                setPhotoUrl(hiRes);
+                const imgUrl = wikiData.originalimage?.source || wikiData.thumbnail.source;
+                setPhotoUrl(imgUrl);
                 setPhotoAttribution("Wikimedia Commons");
                 setPhotoLoading(false);
                 return;
@@ -115,7 +115,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
     geocode();
   }, [city, canton, cantonName]);
 
-  const tiles = coords ? getStaticMapTiles(coords.lat, coords.lng, 12) : [];
+  const tiles = coords ? getStaticMapTiles(coords.lat, coords.lng, 6) : [];
 
   return (
     <div className="grid grid-cols-2 gap-3 mb-6">
