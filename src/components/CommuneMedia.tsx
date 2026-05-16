@@ -25,7 +25,6 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
   useEffect(() => {
     async function fetchPhoto() {
       try {
-        // Try "City (canton)" first for disambiguation
         const wikiRes = await fetch(
           `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(city + " (" + canton + ")")}`
         );
@@ -39,7 +38,6 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
             return;
           }
         }
-        // Fallback: try just city name
         const wikiRes2 = await fetch(
           `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(city)}`
         );
@@ -55,10 +53,8 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
       setPhotoLoading(false);
     }
 
-    // Geocode commune
     async function geocode() {
       try {
-        // Try geo.admin.ch first (Swiss federal API)
         const geoRes = await fetch(
           `https://api3.geo.admin.ch/rest/services/api/SearchServer?searchText=${encodeURIComponent(city)}&type=locations&limit=1`
         );
@@ -73,7 +69,6 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
           }
         }
       } catch {}
-      // Fallback: Nominatim
       try {
         const nomRes = await fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city + ", Switzerland")}&format=json&limit=1`
@@ -95,7 +90,6 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
   useEffect(() => {
     if (!coords || !mapRef.current || mapInstanceRef.current) return;
 
-    // Load Leaflet CSS
     if (!document.querySelector('link[href*="leaflet"]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
@@ -103,16 +97,15 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
       document.head.appendChild(link);
     }
 
-    // Load Leaflet JS
     function initMap() {
       if (!mapRef.current || mapInstanceRef.current) return;
       const L = (window as any).L;
       if (!L) return;
 
       const map = L.map(mapRef.current, {
-        zoomControl: true,
+        zoomControl: false,
         scrollWheelZoom: false,
-        dragging: true,
+        dragging: false,
         attributionControl: false,
       }).setView([coords.lat, coords.lng], 13);
 
@@ -121,17 +114,15 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
         maxZoom: 18,
       }).addTo(map);
 
-      // Custom teal marker
       const icon = L.divIcon({
-        html: '<div style="background:#0d9488;width:24px;height:24px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>',
-        iconSize: [24, 24],
-        iconAnchor: [12, 12],
+        html: '<div style="background:#0d9488;width:20px;height:20px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10],
         className: "",
       });
       L.marker([coords.lat, coords.lng], { icon }).addTo(map);
       mapInstanceRef.current = map;
 
-      // Force resize after render
       setTimeout(() => map.invalidateSize(), 200);
     }
 
@@ -153,9 +144,9 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
   }, [coords]);
 
   return (
-    <div>
+    <div className="grid grid-cols-2 gap-3 mb-6 rounded-lg overflow-hidden">
       {/* Photo section */}
-      <div className="relative h-[200px] bg-gray-100 overflow-hidden">
+      <div className="relative h-[200px] bg-gray-100 rounded-lg overflow-hidden">
         {photoUrl ? (
           <>
             <img
@@ -180,7 +171,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
       </div>
 
       {/* Map section */}
-      <div className="relative h-[250px] bg-gray-100">
+      <div className="relative h-[200px] bg-gray-100 rounded-lg overflow-hidden">
         {coords ? (
           <div ref={mapRef} className="w-full h-full" style={{ zIndex: 0 }} />
         ) : (
@@ -192,4 +183,4 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
       </div>
     </div>
   );
-          }
+}
