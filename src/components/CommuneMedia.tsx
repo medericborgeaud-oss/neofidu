@@ -20,16 +20,21 @@ const CANTON_FULL: Record<string, string> = {
   TG: "Thurgovie", ZG: "Zoug", SZ: "Schwyz", SH: "Schaffhouse",
 };
 
-function latLngToTile(lat: number, lng: number, zoom: number): { x: number; y: number } {
+function latLngToTileExact(lat: number, lng: number, zoom: number): { x: number; y: number; fx: number; fy: number } {
   const n = Math.pow(2, zoom);
-  const x = Math.floor((lng + 180) / 360 * n);
+  const xExact = (lng + 180) / 360 * n;
   const latRad = lat * Math.PI / 180;
-  const y = Math.floor((1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2 * n);
-  return { x, y };
+  const yExact = (1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2 * n;
+  return {
+    x: Math.floor(xExact),
+    y: Math.floor(yExact),
+    fx: xExact - Math.floor(xExact),
+    fy: yExact - Math.floor(yExact),
+  };
 }
 
 function getStaticMapTiles(lat: number, lng: number, zoom: number = 6) {
-  const { x, y } = latLngToTile(lat, lng, zoom);
+  const { x, y } = latLngToTileExact(lat, lng, zoom);
   const tiles: { url: string; dx: number; dy: number }[] = [];
   for (let dy = -1; dy <= 1; dy++) {
     for (let dx = -1; dx <= 1; dx++) {
@@ -115,7 +120,19 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
     geocode();
   }, [city, canton, cantonName]);
 
-  const tiles = coords ? getStaticMapTiles(coords.lat, coords.lng, 6) : [];
+  const zoom = 6;
+  const tiles = coords ? getStaticMapTiles(coords.lat, coords.lng, zoom) : [];
+
+  // Calculate pixel offset so the marker lands on the exact coordinates
+  let gridOffsetX = 0;
+  let gridOffsetY = 0;
+  if (coords) {
+    const { fx, fy } = latLngToTileExact(coords.lat, coords.lng, zoom);
+    const pxInGrid = (1 + fx) * 256;
+    const pyInGrid = (1 + fy) * 256;
+    gridOffsetX = pxInGrid - 384;
+    gridOffsetY = pyInGrid - 384;
+  }
 
   return (
     <div className="grid grid-cols-2 gap-3 mb-6">
@@ -154,7 +171,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
                 height: "768px",
                 top: "50%",
                 left: "50%",
-                transform: "translate(-50%, -50%)",
+                transform: `translate(calc(-50% - ${gridOffsetX}px), calc(-50% - ${gridOffsetY}px))`,
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 256px)",
                 gridTemplateRows: "repeat(3, 256px)",
