@@ -77,193 +77,190 @@ export default async function CompanyPage({ params }: Props) {
       />
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 py-8">
-        {/* Back link */}
-        <Link href="/observatoire" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 mb-6 transition-colors">
-          <ArrowLeft className="w-4 h-4" />
-          Retour à l&apos;observatoire
-        </Link>
+          {/* Back link */}
+          <Link href="/observatoire" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 mb-6 transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Retour à l&apos;observatoire
+          </Link>
 
-        {/* Main card */}
-        <Card className="overflow-hidden">
-          {/* Header */}
-          <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
-            <p className="text-xs text-gray-400">neofidu.ch/observatoire/{params.slug}</p>
-            <span className={`text-xs font-medium px-3 py-1 rounded-full ${badgeClass}`}>{formLabel}</span>
-          </div>
+          {/* Main card */}
+          <Card className="overflow-hidden">
+            {/* Header */}
+            <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
+              <p className="text-xs text-gray-400">neofidu.ch/observatoire/{params.slug}</p>
+              <span className={`text-xs font-medium px-3 py-1 rounded-full ${badgeClass}`}>{formLabel}</span>
+            </div>
 
-          <div className="p-6">
-            {/* Company name */}
-            <h1 className="text-2xl font-semibold text-gray-900 mb-1">{company.name}</h1>
-            <p className="text-sm text-gray-500 mb-6">{company.city}, {cantonName}</p>
+            <div className="p-6">
+              {/* Company name */}
+              <h1 className="text-2xl font-semibold text-gray-900 mb-1">{company.name}</h1>
+              <p className="text-sm text-gray-500 mb-6">{company.city}, {cantonName}</p>
 
-            {/* Info grid */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
-          </div>
-
-          {/* Commune photo + Map */}
-          <CommuneMedia city={company.city} canton={company.canton} />
-
-          <div className="p-6">
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
-                  <Building2 className="w-3 h-3" />Forme juridique
+              {/* Info grid */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                    <Building2 className="w-3 h-3" />Forme juridique
+                  </div>
+                  <p className="text-sm font-medium text-gray-900">{formLabel}</p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">{formLabel}</p>
-              </div>
 
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
-                  <MapPin className="w-3 h-3" />Siège
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                    <MapPin className="w-3 h-3" />Siège
+                  </div>
+                  <p className="text-sm font-medium text-gray-900">{company.city}, {company.canton}</p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">{company.city}, {company.canton}</p>
-              </div>
 
-              {company.ide_number && (
+                {company.ide_number && (
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
                     <Hash className="w-3 h-3" />N° IDE
                   </div>
                   <p className="text-sm font-medium text-gray-900">{company.ide_number}</p>
                 </div>
-              )}
+                )}
 
-              {company.capital && (
+                {company.capital && (
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
                     <Building2 className="w-3 h-3" />Capital
                   </div>
                   <p className="text-sm font-medium text-gray-900">{company.capital}</p>
                 </div>
-              )}
+                )}
 
-              {sectorLabel && (
+                {sectorLabel && (
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
                     <Tag className="w-3 h-3" />Secteur
                   </div>
                   <p className="text-sm font-medium text-gray-900">{sectorLabel}</p>
                 </div>
-              )}
-            </div>
-
-            {/* Purpose */}
-            {company.purpose && (
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                  <FileText className="w-3 h-3" />But social
-                </div>
-                <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3 leading-relaxed">
-                  {company.purpose}
-                </p>
+                )}
               </div>
-            )}
 
-            {/* Persons */}
-            {company.persons && company.persons.length > 0 && (
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-                  <Users className="w-3 h-3" />Personnes inscrites
+              {/* Commune photo + Map */}
+              <CommuneMedia city={company.city} canton={company.canton} />
+
+              {/* Purpose */}
+              {company.purpose && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                    <FileText className="w-3 h-3" />But social
+                  </div>
+                  <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3 leading-relaxed">
+                    {company.purpose}
+                  </p>
                 </div>
-                <div className="space-y-3">
-                  {company.persons.map((person: any, i: number) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-xs font-medium text-blue-700">
-                        {person.initials}
+              )}
+
+              {/* Persons */}
+              {company.persons && company.persons.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                    <Users className="w-3 h-3" />Personnes inscrites
+                  </div>
+                  <div className="space-y-3">
+                    {company.persons.map((person: any, i: number) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-xs font-medium text-blue-700">
+                          {person.initials}
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">{person.name}</p>
+                          <p className="text-xs text-gray-500">{person.role}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* FOSC History */}
+              {company.fosc_history && company.fosc_history.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                    <Clock className="w-3 h-3" />Historique FOSC
+                  </div>
+                  <div className="space-y-2">
+                    {company.fosc_history.map((entry: any, i: number) => (
+                      <div key={i} className="flex gap-3 text-sm">
+                        <span className="text-gray-400 w-20 flex-shrink-0">{entry.date}</span>
+                        <span className="text-gray-600">{entry.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Canton fiscal context */}
+              {fiscal && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                    <Landmark className="w-3 h-3" />Contexte fiscal — {cantonName}
+                  </div>
+                  <div className="bg-blue-50 rounded-lg p-4 space-y-2">
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <span className="text-gray-500">Taux imposition entreprise</span>
+                        <p className="font-medium text-gray-900">{fiscal.tauxEntreprise}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                        <p className="text-xs text-gray-500">{person.role}</p>
+                        <span className="text-gray-500">Capital minimum</span>
+                        <p className="font-medium text-gray-900">{fiscal.capitalMin}</p>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* FOSC History */}
-            {company.fosc_history && company.fosc_history.length > 0 && (
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-                  <Clock className="w-3 h-3" />Historique FOSC
-                </div>
-                <div className="space-y-2">
-                  {company.fosc_history.map((entry: any, i: number) => (
-                    <div key={i} className="flex gap-3 text-sm">
-                      <span className="text-gray-400 w-20 flex-shrink-0">{entry.date}</span>
-                      <span className="text-gray-600">{entry.text}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Canton fiscal context */}
-            {fiscal && (
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                  <Landmark className="w-3 h-3" />Contexte fiscal — {cantonName}
-                </div>
-                <div className="bg-blue-50 rounded-lg p-4 space-y-2">
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <span className="text-gray-500">Taux imposition entreprise</span>
-                      <p className="font-medium text-gray-900">{fiscal.tauxEntreprise}</p>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Capital minimum</span>
-                      <p className="font-medium text-gray-900">{fiscal.capitalMin}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Similar companies */}
-            {similarCompanies.length > 0 && (
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                  <TrendingUp className="w-3 h-3" />
-                  {sectorLabel
-                    ? `Autres entreprises en ${sectorLabel} — ${company.city}`
-                    : `Autres entreprises — ${company.city}`}
+              {/* Similar companies */}
+              {similarCompanies.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                    <TrendingUp className="w-3 h-3" />
+                    {sectorLabel
+                      ? `Autres entreprises en ${sectorLabel} — ${company.city}`
+                      : `Autres entreprises — ${company.city}`}
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    {similarCompanies.map((c) => (
+                      <Link
+                        key={c.slug}
+                        href={`/observatoire/${c.slug}`}
+                        className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors"
+                      >
+                        <p className="text-sm font-medium text-gray-900 truncate">{c.name}</p>
+                        <p className="text-xs text-gray-500">{c.city} · {FORM_LABELS[c.legal_form] || c.legal_form}</p>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {similarCompanies.map((c) => (
-                    <Link
-                      key={c.slug}
-                      href={`/observatoire/${c.slug}`}
-                      className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors"
-                    >
-                      <p className="text-sm font-medium text-gray-900 truncate">{c.name}</p>
-                      <p className="text-xs text-gray-500">{c.city} · {FORM_LABELS[c.legal_form] || c.legal_form}</p>
-                    </Link>
-                  ))}
+              )}
+
+              {/* Related Articles */}
+              <RelatedArticles canton={company.canton} legalForm={company.legal_form} city={company.city} />
+
+              {/* CTA */}
+              <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm text-emerald-800 font-medium">{ctaText.text}</p>
+                  <p className="text-sm text-emerald-600">{ctaText.offer}</p>
                 </div>
+                <Link href={ctaText.href}>
+                  <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">
+                    En savoir plus
+                  </Button>
+                </Link>
               </div>
-            )}
 
-            {/* CTA */}
-            {/* Related Articles */}
-            <RelatedArticles canton={company.canton} legalForm={company.legal_form} city={company.city} />
-
-            <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
-              <div>
-                <p className="text-sm text-emerald-800 font-medium">{ctaText.text}</p>
-                <p className="text-sm text-emerald-600">{ctaText.offer}</p>
-              </div>
-              <Link href={ctaText.href}>
-                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">
-                  En savoir plus
-                </Button>
-              </Link>
+              {/* Source */}
+              <p className="text-center text-xs text-gray-400 mt-4">
+                Source : Registre du commerce via Zefix / FOSC
+              </p>
             </div>
-
-            {/* Source */}
-            <p className="text-center text-xs text-gray-400 mt-4">
-              Source : Registre du commerce via Zefix / FOSC
-            </p>
-          </div>
-        </Card>
+          </Card>
         </div>
       </main>
     </>
