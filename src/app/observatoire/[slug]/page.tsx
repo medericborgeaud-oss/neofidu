@@ -7,6 +7,8 @@ import { getCompanyBySlug, getSimilarCompanies, CANTON_NAMES, FORM_LABELS, SECTO
 import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import CommuneMedia from "@/components/CommuneMedia";
+import RelatedArticles from "@/components/RelatedArticles";
 
 interface Props {
   params: { slug: string };
@@ -96,6 +98,12 @@ export default async function CompanyPage({ params }: Props) {
 
             {/* Info grid */}
             <div className="grid grid-cols-2 gap-3 mb-6">
+          </div>
+
+          {/* Commune photo + Map */}
+          <CommuneMedia city={company.city} canton={company.canton} />
+
+          <div className="p-6">
               <div className="bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
                   <Building2 className="w-3 h-3" />Forme juridique
@@ -235,6 +243,9 @@ export default async function CompanyPage({ params }: Props) {
             )}
 
             {/* CTA */}
+            {/* Related Articles */}
+            <RelatedArticles canton={company.canton} legalForm={company.legal_form} city={company.city} />
+
             <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
               <div>
                 <p className="text-sm text-emerald-800 font-medium">{ctaText.text}</p>
