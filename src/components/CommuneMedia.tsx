@@ -20,7 +20,7 @@ const CANTON_FULL: Record<string, string> = {
   TG: "Thurgovie", ZG: "Zoug", SZ: "Schwyz", SH: "Schaffhouse",
 };
 
-function latLngToTile(lat, lng, zoom) {
+function latLngToTile(lat: number, lng: number, zoom: number): { x: number; y: number } {
   const n = Math.pow(2, zoom);
   const x = Math.floor((lng + 180) / 360 * n);
   const latRad = lat * Math.PI / 180;
@@ -28,9 +28,9 @@ function latLngToTile(lat, lng, zoom) {
   return { x, y };
 }
 
-function getStaticMapTiles(lat, lng, zoom = 12) {
+function getStaticMapTiles(lat: number, lng: number, zoom: number = 12) {
   const { x, y } = latLngToTile(lat, lng, zoom);
-  const tiles = [];
+  const tiles: { url: string; dx: number; dy: number }[] = [];
   for (let dy = -1; dy <= 1; dy++) {
     for (let dx = -1; dx <= 1; dx++) {
       tiles.push({
@@ -77,7 +77,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
               }
             }
           }
-        } catch {}
+        } catch { /* skip */ }
       }
       setPhotoLoading(false);
     }
@@ -97,7 +97,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
             }
           }
         }
-      } catch {}
+      } catch { /* skip */ }
       try {
         const nomRes = await fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city + ", Switzerland")}&format=json&limit=1`
@@ -108,7 +108,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
             setCoords({ lat: parseFloat(nomData[0].lat), lng: parseFloat(nomData[0].lon) });
           }
         }
-      } catch {}
+      } catch { /* skip */ }
     }
 
     fetchPhoto();
@@ -127,7 +127,6 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
               src={photoUrl}
               alt={city}
               className="w-full h-full object-cover"
-              loading="lazy"
             />
             {photoAttribution && <p className="absolute bottom-2 right-3 text-white/60 text-[10px]">{photoAttribution}</p>}
           </>
@@ -167,7 +166,6 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
                   src={tile.url}
                   alt=""
                   className="w-[256px] h-[256px] block"
-                  loading="lazy"
                   draggable={false}
                 />
               ))}
