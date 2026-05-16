@@ -14,11 +14,22 @@ interface GeoResult {
 }
 
 const CANTON_FULL: Record<string, string> = {
-  VD: "Vaud", GE: "Genève", VS: "Valais", FR: "Fribourg", NE: "Neuchâtel", JU: "Jura",
-  BE: "Berne", ZH: "Zurich", LU: "Lucerne", BS: "Bâle-Ville", BL: "Bâle-Campagne",
+  VD: "Vaud", GE: "GenÃ¨ve", VS: "Valais", FR: "Fribourg", NE: "NeuchÃ¢tel", JU: "Jura",
+  BE: "Berne", ZH: "Zurich", LU: "Lucerne", BS: "BÃ¢le-Ville", BL: "BÃ¢le-Campagne",
   AG: "Argovie", SO: "Soleure", TI: "Tessin", SG: "Saint-Gall", GR: "Grisons",
   TG: "Thurgovie", ZG: "Zoug", SZ: "Schwyz", SH: "Schaffhouse",
 };
+
+const BAD_IMAGE_KEYWORDS = ["karte", "carte_", "map_", "blason", "wappen", "armoiries", "coat_of_arms", "flag_of", "drapeau", "logo", "banner", "montage", "collage", "mosaic"];
+
+function isGoodPhoto(url: string, width?: number, height?: number): boolean {
+  const lower = url.toLowerCase();
+  if (lower.endsWith(".svg")) return false;
+  if (BAD_IMAGE_KEYWORDS.some(kw => lower.includes(kw))) return false;
+  // Skip very tall images (likely portraits or collages)
+  if (width && height && height > width * 1.5) return false;
+  return true;
+}
 
 function latLngToTileExact(lat: number, lng: number, zoom: number): { x: number; y: number; fx: number; fy: number } {
   const n = Math.pow(2, zoom);
@@ -57,6 +68,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
 
   useEffect(() => {
     async function fetchPhoto() {
+      // Strategy 1: Wikipedia page summary
       const queries = [
         city + " (" + cantonName + ")",
         city + " (ville)",
@@ -70,12 +82,13 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
           );
           if (wikiRes.ok) {
             const wikiData = await wikiRes.json();
-            if (wikiData.originalimage?.source || wikiData.thumbnail?.source) {
+            if (wikiData.type === "disambiguation") continue;
+            const imgSrc = wikiData.originalimage?.source || wikiData.thumbnail?.source;
+            if (imgSrc && isGoodPhoto(imgSrc, wikiData.originalimage?.width, wikiData.originalimage?.height)) {
               const desc = (wikiData.description || "").toLowerCase();
               const isPlace = query.includes("(") || desc.includes("commune") || desc.includes("ville") || desc.includes("canton") || desc.includes("suisse") || desc.includes("district");
               if (isPlace || query.includes("(")) {
-                const imgUrl = wikiData.originalimage?.source || wikiData.thumbnail.source;
-                setPhotoUrl(imgUrl);
+                setPhotoUrl(imgSrc);
                 setPhotoAttribution("Wikimedia Commons");
                 setPhotoLoading(false);
                 return;
@@ -84,6 +97,41 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
           }
         } catch { /* skip */ }
       }
+
+      // Strategy 2: Wikimedia Commons search for actual photos
+      try {
+        const commonsRes = await fetch(
+          `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(city + " Switzerland")}&gsrnamespace=6&gsrlimit=10&prop=imageinfo&iiprop=url|size|mime&iiurlwidth=600&format=json&origin=*`
+        );
+        if (commonsRes.ok) {
+          const commonsData = await commonsRes.json();
+          const pages = commonsData.query?.pages;
+          if (pages) {
+            const candidates = Object.values(pages)
+              .filter((p: any) => {
+                const info = p.imageinfo?.[0];
+                if (!info) return false;
+                if (!info.mime?.startsWith("image/jpeg")) return false;
+                if (!isGoodPhoto(p.title || "", info.width, info.height)) return false;
+                if (info.width < 400) return false;
+                return true;
+              })
+              .sort((a: any, b: any) => {
+                const aRatio = a.imageinfo[0].width / a.imageinfo[0].height;
+                const bRatio = b.imageinfo[0].width / b.imageinfo[0].height;
+                return bRatio - aRatio;
+              });
+            if (candidates.length > 0) {
+              const best = (candidates[0] as any).imageinfo[0];
+              setPhotoUrl(best.thumburl || best.url);
+              setPhotoAttribution("Wikimedia Commons");
+              setPhotoLoading(false);
+              return;
+            }
+          }
+        }
+      } catch { /* skip */ }
+
       setPhotoLoading(false);
     }
 
@@ -123,7 +171,6 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
   const zoom = 6;
   const tiles = coords ? getStaticMapTiles(coords.lat, coords.lng, zoom) : [];
 
-  // Calculate pixel offset so the marker lands on the exact coordinates
   let gridOffsetX = 0;
   let gridOffsetY = 0;
   if (coords) {
