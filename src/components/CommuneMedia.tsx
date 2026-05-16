@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { MapPin } from "lucide-react";
 
 interface CommuneMediaProps {
@@ -18,10 +18,7 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
   const [photoLoading, setPhotoLoading] = useState(true);
   const [photoAttribution, setPhotoAttribution] = useState<string>("");
   const [coords, setCoords] = useState<GeoResult | null>(null);
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<any>(null);
 
-  // Fetch commune photo from Wikipedia
   useEffect(() => {
     async function fetchPhoto() {
       try {
@@ -86,65 +83,13 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
     geocode();
   }, [city, canton]);
 
-  // Initialize Leaflet map
-  useEffect(() => {
-    if (!coords || !mapRef.current || mapInstanceRef.current) return;
-
-    if (!document.querySelector('link[href*="leaflet"]')) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-      document.head.appendChild(link);
-    }
-
-    function initMap() {
-      if (!mapRef.current || mapInstanceRef.current) return;
-      const L = (window as any).L;
-      if (!L) return;
-
-      const map = L.map(mapRef.current, {
-        zoomControl: false,
-        scrollWheelZoom: false,
-        dragging: false,
-        attributionControl: false,
-      }).setView([coords.lat, coords.lng], 13);
-
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap",
-        maxZoom: 18,
-      }).addTo(map);
-
-      const icon = L.divIcon({
-        html: '<div style="background:#0d9488;width:20px;height:20px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>',
-        iconSize: [20, 20],
-        iconAnchor: [10, 10],
-        className: "",
-      });
-      L.marker([coords.lat, coords.lng], { icon }).addTo(map);
-      mapInstanceRef.current = map;
-
-      setTimeout(() => map.invalidateSize(), 200);
-    }
-
-    if ((window as any).L) {
-      initMap();
-    } else {
-      const script = document.createElement("script");
-      script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-      script.onload = initMap;
-      document.head.appendChild(script);
-    }
-
-    return () => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove();
-        mapInstanceRef.current = null;
-      }
-    };
-  }, [coords]);
+  // Build OpenStreetMap embed URL
+  const mapUrl = coords
+    ? `https://www.openstreetmap.org/export/embed.html?bbox=${coords.lng - 0.02},${coords.lat - 0.015},${coords.lng + 0.02},${coords.lat + 0.015}&layer=mapnik&marker=${coords.lat},${coords.lng}`
+    : null;
 
   return (
-    <div className="grid grid-cols-2 gap-3 mb-6 rounded-lg overflow-hidden">
+    <div className="grid grid-cols-2 gap-3 mb-6">
       {/* Photo section */}
       <div className="relative h-[200px] bg-gray-100 rounded-lg overflow-hidden">
         {photoUrl ? (
@@ -170,10 +115,15 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
         )}
       </div>
 
-      {/* Map section */}
+      {/* Map section - iframe embed (no JS dependency) */}
       <div className="relative h-[200px] bg-gray-100 rounded-lg overflow-hidden">
-        {coords ? (
-          <div ref={mapRef} className="w-full h-full" style={{ zIndex: 0 }} />
+        {mapUrl ? (
+          <iframe
+            src={mapUrl}
+            className="w-full h-full border-0"
+            loading="lazy"
+            title={`Carte de ${city}`}
+          />
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50">
             <MapPin className="w-6 h-6 text-gray-300 mb-1" />
