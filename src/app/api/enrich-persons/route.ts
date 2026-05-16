@@ -9,10 +9,12 @@ const supabase = createClient(
 const ZEFIX_API = "https://www.zefix.admin.ch/ZefixPublicREST/api/v1";
 const BATCH_SIZE = 10;
 const DELAY_MS = 500;
+const ZEFIX_USER = process.env.ZEFIX_USERNAME || "";
+const ZEFIX_PASS = process.env.ZEFIX_PASSWORD || "";
 
 // Normalize UID: "CHE-387.708.858" -> "CHE387708858"
 function normalizeUid(uid: string): string {
-  return uid.replace(/[-.s]/g, "");
+  return uid.replace(/[-.\s]/g, "");
 }
 
 // Extract persons from Zefix response
@@ -40,9 +42,14 @@ function extractPersons(zefixData: any): { name: string; role: string; initials:
 // Fetch one company from Zefix
 async function fetchZefix(uid: string): Promise<any | null> {
   const normalizedUid = normalizeUid(uid);
+  const authHeader = ZEFIX_USER && ZEFIX_PASS
+    ? `Basic ${Buffer.from(`${ZEFIX_USER}:${ZEFIX_PASS}`).toString("base64")}`
+    : "";
   try {
+    const headers: Record<string, string> = { Accept: "application/json" };
+    if (authHeader) headers["Authorization"] = authHeader;
     const resp = await fetch(`${ZEFIX_API}/company/uid/${normalizedUid}`, {
-      headers: { Accept: "application/json" },
+      headers,
       signal: AbortSignal.timeout(15000),
     });
     if (resp.status === 200) {
@@ -157,4 +164,4 @@ export async function POST(req: NextRequest) {
       Connection: "keep-alive",
     },
   });
-          }
+}
