@@ -15,15 +15,17 @@ interface GeoResult {
 
 export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
-  const [photoAttribution, setPhotoAttribution] = useState<string>("");
   const [photoLoading, setPhotoLoading] = useState(true);
+  const [photoAttribution, setPhotoAttribution] = useState<string>("");
   const [coords, setCoords] = useState<GeoResult | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
 
+  // Fetch commune photo from Wikipedia
   useEffect(() => {
     async function fetchPhoto() {
       try {
+        // Try "City (canton)" first for disambiguation
         const wikiRes = await fetch(
           `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(city + " (" + canton + ")")}`
         );
@@ -37,93 +39,137 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
             return;
           }
         }
+        // Fallback: try just city name
         const wikiRes2 = await fetch(
           `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(city)}`
         );
         if (wikiRes2.ok) {
           const wikiData2 = await wikiRes2.json();
           if (wikiData2.thumbnail?.source && wikiData2.description?.toLowerCase().includes("commune")) {
-            const hiRes = wikiData2.thumbnail.source.replace(/\/\d+px-/, "/800px-");
-            setPhotoUrl(hiRes);
+            const hiRes2 = wikiData2.thumbnail.source.replace(/\/\d+px-/, "/800px-");
+            setPhotoUrl(hiRes2);
             setPhotoAttribution("Wikimedia Commons");
-            setPhotoLoading(false);
-            return;
           }
         }
-        setPhotoLoading(false);
-      } catch {
-        setPhotoLoading(false);
-      }
+      } catch {}
+      setPhotoLoading(false);
     }
-    fetchPhoto();
-  }, [city, canton]);
 
-  useEffect(() => {
+    // Geocode commune
     async function geocode() {
       try {
-        const res = await fetch(
-          `https://api3.geo.admin.ch/rest/services/api/SearchServer?searchText=${encodeURIComponent(city)}&type=locations&limit=1&sr=4326`
+        // Try geo.admin.ch first (Swiss federal API)
+        const geoRes = await fetch(
+          `https://api3.geo.admin.ch/rest/services/api/SearchServer?searchText=${encodeURIComponent(city)}&type=locations&limit=1`
         );
-        if (res.ok) {
-          const data = await res.json();
-          if (data.results && data.results.length > 0) {
-            const attrs = data.results[0].attrs;
-            setCoords({ lat: attrs.lat, lng: attrs.lon });
+        if (geoRes.ok) {
+          const geoData = await geoRes.json();
+          if (geoData.results?.[0]?.attrs) {
+            const { lat, lon } = geoData.results[0].attrs;
+            if (lat && lon) {
+              setCoords({ lat, lng: lon });
+              return;
+            }
+          }
+        }
+      } catch {}
+      // Fallback: Nominatim
+      try {
+        const nomRes = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city + ", Switzerland")}&format=json&limit=1`
+        );
+        if (nomRes.ok) {
+          const nomData = await nomRes.json();
+          if (nomData[0]) {
+            setCoords({ lat: parseFloat(nomData[0].lat), lng: parseFloat(nomData[0].lon) });
           }
         }
       } catch {}
     }
-    geocode();
-  }, [city]);
 
+    fetchPhoto();
+    geocode();
+  }, [city, canton]);
+
+  // Initialize Leaflet map
   useEffect(() => {
     if (!coords || !mapRef.current || mapInstanceRef.current) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-    document.head.appendChild(link);
-    const script = document.createElement("script");
-    script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-    script.onload = () => {
+
+    // Load Leaflet CSS
+    if (!document.querySelector('link[href*="leaflet"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+      document.head.appendChild(link);
+    }
+
+    // Load Leaflet JS
+    function initMap() {
       if (!mapRef.current || mapInstanceRef.current) return;
       const L = (window as any).L;
+      if (!L) return;
+
       const map = L.map(mapRef.current, {
-        zoomControl: true, scrollWheelZoom: false, dragging: true, attributionControl: false,
+        zoomControl: true,
+        scrollWheelZoom: false,
+        dragging: true,
+        attributionControl: false,
       }).setView([coords.lat, coords.lng], 13);
+
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap", maxZoom: 18,
+        attribution: "&copy; OpenStreetMap",
+        maxZoom: 18,
       }).addTo(map);
-      const markerIcon = L.divIcon({
-        className: "custom-marker",
-        html: '<div style="width:28px;height:28px;background:#0d9488;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>',
-        iconSize: [28, 28], iconAnchor: [14, 28],
+
+      // Custom teal marker
+      const icon = L.divIcon({
+        html: '<div style="background:#0d9488;width:24px;height:24px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
+        className: "",
       });
-      L.marker([coords.lat, coords.lng], { icon: markerIcon }).addTo(map);
-      L.control.attribution({ prefix: false, position: "bottomright" })
-        .addAttribution('<a href="https://openstreetmap.org" target="_blank" rel="noopener" style="font-size:10px;color:#94a3b8;">OpenStreetMap</a>')
-        .addTo(map);
+      L.marker([coords.lat, coords.lng], { icon }).addTo(map);
       mapInstanceRef.current = map;
-      setTimeout(() => map.invalidateSize(), 100);
+
+      // Force resize after render
+      setTimeout(() => map.invalidateSize(), 200);
+    }
+
+    if ((window as any).L) {
+      initMap();
+    } else {
+      const script = document.createElement("script");
+      script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+      script.onload = initMap;
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
     };
-    document.head.appendChild(script);
-    return () => { if (mapInstanceRef.current) { mapInstanceRef.current.remove(); mapInstanceRef.current = null; } };
   }, [coords]);
 
   return (
-    <div className="grid grid-cols-2 border-b">
-      <div className="relative h-[200px] overflow-hidden bg-gray-100">
-        {photoLoading ? (
+    <div>
+      {/* Photo section */}
+      <div className="relative h-[200px] bg-gray-100 overflow-hidden">
+        {photoUrl ? (
+          <>
+            <img
+              src={photoUrl}
+              alt={city}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            {photoAttribution && <p className="absolute bottom-2 right-3 text-white/60 text-[10px]">{photoAttribution}</p>}
+          </>
+        ) : photoLoading ? (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-6 h-6 border-2 border-emerald-200 border-t-emerald-500 rounded-full animate-spin" />
           </div>
-        ) : photoUrl ? (
-          <>
-            <img src={photoUrl} alt={`Vue de ${city}, ${canton}`} className="w-full h-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-3">
-              <p className="text-white text-xs font-medium">{city}, {canton}</p>
-              {photoAttribution && <p className="text-white/60 text-[10px]">{photoAttribution}</p>}
-            </div>
-          </>
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
             <MapPin className="w-8 h-8 text-emerald-300 mb-2" />
@@ -132,15 +178,18 @@ export default function CommuneMedia({ city, canton }: CommuneMediaProps) {
           </div>
         )}
       </div>
-      <div className="relative h-[200px] bg-gray-100">
+
+      {/* Map section */}
+      <div className="relative h-[250px] bg-gray-100">
         {coords ? (
-          <div ref={mapRef} className="w-full h-full" />
+          <div ref={mapRef} className="w-full h-full" style={{ zIndex: 0 }} />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-6 h-6 border-2 border-emerald-200 border-t-emerald-500 rounded-full animate-spin" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50">
+            <MapPin className="w-6 h-6 text-gray-300 mb-1" />
+            <p className="text-xs text-gray-400">Carte non disponible</p>
           </div>
         )}
       </div>
     </div>
   );
-                                                                                  }
+          }
