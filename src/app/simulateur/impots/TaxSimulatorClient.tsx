@@ -663,7 +663,9 @@ export function TaxSimulatorClient() {
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">
-                {t("simulators.taxSimulator.communalTax")}
+                {calculateTaxes.communeName
+                  ? t("simulators.taxSimulator.communalTax").replace(/\s*\(moy\.\)\s*|\s*\(avg\.\)\s*/g, " ").trim()
+                  : t("simulators.taxSimulator.communalTax")}
                 {calculateTaxes.communeName && (
                   <span className="text-xs ml-1">({calculateTaxes.communeName})</span>
                 )}
