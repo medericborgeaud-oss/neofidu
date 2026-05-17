@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,9 +16,18 @@ import {
   Home,
   Briefcase,
   ArrowRight,
+  MapPin,
 } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+const ROMANDIE_CODES = ["VD", "GE", "VS", "FR", "NE", "JU"];
 
 const cantonTaxRates: Record<
   string,
@@ -99,6 +108,13 @@ interface SimulationResult {
   };
   netIncome: number;
   effectiveRate: number;
+  communeName?: string;
+}
+
+interface CommuneOption {
+  slug: string;
+  nom: string;
+  taux_commune: number | null;
 }
 
 export function TaxSimulatorClient() {
@@ -107,6 +123,7 @@ export function TaxSimulatorClient() {
   const [formData, setFormData] = useState({
     grossIncome: "",
     canton: "vaud",
+    commune: "",
     maritalStatus: "single",
     children: "0",
     hasProperty: false,
@@ -114,6 +131,36 @@ export function TaxSimulatorClient() {
     profession: "employee",
   });
   const [showResult, setShowResult] = useState(false);
+  const [communes, setCommunes] = useState<CommuneOption[]>([]);
+  const [loadingCommunes, setLoadingCommunes] = useState(false);
+
+  const selectedCantonCode = cantonTaxRates[formData.canton]?.code || "";
+  const isRomandie = ROMANDIE_CODES.includes(selectedCantonCode);
+
+  // Fetch communes when canton changes
+  useEffect(() => {
+    if (!isRomandie) {
+      setCommunes([]);
+      setFormData((prev) => ({ ...prev, commune: "" }));
+      return;
+    }
+
+    setLoadingCommunes(true);
+    supabase
+      .from("communes")
+      .select("slug, nom, taux_commune")
+      .eq("canton", selectedCantonCode)
+      .order("nom")
+      .then(({ data, error }) => {
+        if (error) {
+          console.error("Error fetching communes:", error);
+          setCommunes([]);
+        } else {
+          setCommunes(data || []);
+        }
+        setLoadingCommunes(false);
+      });
+  }, [formData.canton, isRomandie, selectedCantonCode]);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("fr-CH", {
@@ -168,7 +215,18 @@ export function TaxSimulatorClient() {
     }
 
     const cantonalTax = taxableIncome * canton.rate;
-    const communalTax = taxableIncome * canton.communeAvg;
+
+    // Use commune-specific coefficient if available, otherwise use canton average
+    const selectedCommune = communes.find((c) => c.slug === formData.commune);
+    let communalTax: number;
+    let communeName: string | undefined;
+
+    if (selectedCommune?.taux_commune) {
+      communalTax = cantonalTax * (selectedCommune.taux_commune / 100);
+      communeName = selectedCommune.nom;
+    } else {
+      communalTax = taxableIncome * canton.communeAvg;
+    }
 
     const totalTax = federalTax + cantonalTax + communalTax;
     const netIncome = income - totalTax;
@@ -193,8 +251,9 @@ export function TaxSimulatorClient() {
       },
       netIncome,
       effectiveRate,
+      communeName,
     };
-  }, [formData]);
+  }, [formData, communes]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -263,7 +322,7 @@ export function TaxSimulatorClient() {
                   <select
                     id="canton"
                     value={formData.canton}
-                    onChange={(e) => setFormData({ ...formData, canton: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, canton: e.target.value, commune: "" })}
                     className="w-full h-12 px-4 rounded-md border border-input bg-background text-base mt-2"
                   >
                     <optgroup label={t("simulators.taxSimulator.frenchSwitzerland")}>
@@ -296,6 +355,35 @@ export function TaxSimulatorClient() {
                     </optgroup>
                   </select>
                 </div>
+
+                {isRomandie && communes.length > 0 && (
+                  <div>
+                    <Label htmlFor="commune" className="text-base font-medium flex items-center gap-2">
+                      <MapPin className="w-4 h-4" />
+                      Commune de domicile
+                    </Label>
+                    <p className="text-sm text-muted-foreground mb-2">
+                      Optionnel — pour un calcul plus précis avec le coefficient communal
+                    </p>
+                    <select
+                      id="commune"
+                      value={formData.commune}
+                      onChange={(e) => setFormData({ ...formData, commune: e.target.value })}
+                      className="w-full h-12 px-4 rounded-md border border-input bg-background text-base mt-2"
+                    >
+                      <option value="">— Moyenne cantonale —</option>
+                      {communes.map((c) => (
+                        <option key={c.slug} value={c.slug}>
+                          {c.nom}{c.taux_commune ? ` (coeff. ${c.taux_commune})` : ""}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {isRomandie && loadingCommunes && (
+                  <p className="text-sm text-muted-foreground">Chargement des communes...</p>
+                )}
 
                 <div>
                   <Label className="text-base font-medium">{t("simulators.taxSimulator.professionalStatus")}</Label>
@@ -574,7 +662,12 @@ export function TaxSimulatorClient() {
               <span className="font-medium">{formatCurrency(calculateTaxes.taxes.cantonal)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">{t("simulators.taxSimulator.communalTax")}</span>
+              <span className="text-muted-foreground">
+                {t("simulators.taxSimulator.communalTax")}
+                {calculateTaxes.communeName && (
+                  <span className="text-xs ml-1">({calculateTaxes.communeName})</span>
+                )}
+              </span>
               <span className="font-medium">{formatCurrency(calculateTaxes.taxes.communal)}</span>
             </div>
             <div className="pt-3 border-t flex justify-between font-bold text-lg">
