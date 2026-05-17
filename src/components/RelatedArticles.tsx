@@ -9,35 +9,35 @@ interface RelatedArticlesProps {
 
 const ARTICLES: Record<string, { title: string; description: string; href: string; icon: string }[]> = {
   cantonVD: [
-    { title: "Coefficient d'impôt communal dans le canton de Vaud", description: "Comprendre le multiplicateur communal et son impact sur votre charge fiscale.", href: "/observatoire", icon: "calculator" },
-    { title: "Déclaration d'impôts à Vaud : guide complet", description: "Délais, déductions et optimisations fiscales pour les contribuables vaudois.", href: "/observatoire", icon: "receipt" },
+    { title: "Coefficient d'impôt communal dans le canton de Vaud", description: "Comprendre le multiplicateur communal et son impact sur votre charge fiscale.", href: "/cantons/vaud", icon: "calculator" },
+    { title: "Déclaration d'impôts à Vaud : guide complet", description: "Délais, déductions et optimisations fiscales pour les contribuables vaudois.", href: "/blog/delais-declaration-impots-2025-cantons", icon: "receipt" },
   ],
   cantonGE: [
-    { title: "Impôts à Genève : barèmes et particularités", description: "Tout savoir sur la fiscalité genevoise, le quasi-résident et le bouclier fiscal.", href: "/observatoire", icon: "calculator" },
-    { title: "Déclaration d'impôts à Genève", description: "Guide pratique pour remplir votre déclaration GeTax.", href: "/observatoire", icon: "receipt" },
+    { title: "Impôts à Genève : barèmes et particularités", description: "Tout savoir sur la fiscalité genevoise, le quasi-résident et le bouclier fiscal.", href: "/cantons/geneve", icon: "calculator" },
+    { title: "Déclaration d'impôts à Genève", description: "Guide pratique pour remplir votre déclaration GeTax.", href: "/blog/frontalier-quasi-resident-geneve-guide-2026", icon: "receipt" },
   ],
   cantonVS: [
-    { title: "Fiscalité en Valais : ce qu'il faut savoir", description: "Double barème cantonal et communal, déductions spécifiques au canton.", href: "/observatoire", icon: "calculator" },
+    { title: "Fiscalité en Valais : ce qu'il faut savoir", description: "Double barème cantonal et communal, déductions spécifiques au canton.", href: "/cantons/valais", icon: "calculator" },
   ],
   cantonFR: [
-    { title: "Déclaration d'impôts à Fribourg", description: "Utilisation de FriTax, délais et spécificités fribourgeoises.", href: "/observatoire", icon: "receipt" },
+    { title: "Déclaration d'impôts à Fribourg", description: "Utilisation de FriTax, délais et spécificités fribourgeoises.", href: "/cantons/fribourg", icon: "receipt" },
   ],
   cantonNE: [
-    { title: "Fiscalité à Neuchâtel", description: "Guide TaxMe NE et particularités neuchâteloises.", href: "/observatoire", icon: "receipt" },
+    { title: "Fiscalité à Neuchâtel", description: "Guide TaxMe NE et particularités neuchâteloises.", href: "/cantons/neuchatel", icon: "receipt" },
   ],
   cantonJU: [
-    { title: "Impôts dans le Jura", description: "JuraTax, déductions sociales et spécificités jurassiennes.", href: "/observatoire", icon: "receipt" },
+    { title: "Impôts dans le Jura", description: "JuraTax, déductions sociales et spécificités jurassiennes.", href: "/cantons/jura", icon: "receipt" },
   ],
   RI: [
-    { title: "Créer une entreprise individuelle en Suisse", description: "Obligations légales, inscription au RC et comptabilité pour indépendants.", href: "/observatoire", icon: "briefcase" },
-    { title: "Comptabilité pour indépendants : simplifiée ou partie double ?", description: "Quelle méthode comptable choisir selon votre chiffre d'affaires.", href: "/observatoire", icon: "scale" },
+    { title: "Créer une entreprise individuelle en Suisse", description: "Obligations légales, inscription au RC et comptabilité pour indépendants.", href: "/independants", icon: "briefcase" },
+    { title: "Comptabilité pour indépendants : simplifiée ou partie double ?", description: "Quelle méthode comptable choisir selon votre chiffre d'affaires.", href: "/blog/independant-suisse-retraite-prevoyance", icon: "scale" },
   ],
   Sarl: [
-    { title: "Créer et gérer une Sàrl en Suisse romande", description: "Capital, organes, obligations comptables et fiscales de la Sàrl.", href: "/observatoire", icon: "building" },
-    { title: "Comptabilité d'une Sàrl : obligations et bonnes pratiques", description: "Bouclement annuel, révision et déclaration fiscale pour votre société.", href: "/observatoire", icon: "briefcase" },
+    { title: "Créer et gérer une Sàrl en Suisse romande", description: "Capital, organes, obligations comptables et fiscales de la Sàrl.", href: "/creation-entreprise", icon: "building" },
+    { title: "Comptabilité d'une Sàrl : obligations et bonnes pratiques", description: "Bouclement annuel, révision et déclaration fiscale pour votre société.", href: "/blog/comptabilite-pme-erreurs-eviter", icon: "briefcase" },
   ],
   SA: [
-    { title: "Obligations comptables d'une SA en Suisse", description: "Révision, rapport annuel et spécificités de la société anonyme.", href: "/observatoire", icon: "building" },
+    { title: "Obligations comptables d'une SA en Suisse", description: "Révision, rapport annuel et spécificités de la société anonyme.", href: "/creation-entreprise", icon: "building" },
   ],
   generic: [
     { title: "Fiduciaire en ligne : pourquoi choisir NeoFidu ?", description: "Tarifs transparents, gestion digitale et expertise romande.", href: "/", icon: "filetext" },
