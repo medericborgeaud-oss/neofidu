@@ -14,7 +14,7 @@ const ARTICLES: Record<string, { title: string; description: string; href: strin
   ],
   cantonGE: [
     { title: "Impôts à Genève : barèmes et particularités", description: "Tout savoir sur la fiscalité genevoise, le quasi-résident et le bouclier fiscal.", href: "/cantons/geneve", icon: "calculator" },
-    { title: "Déclaration d'impôts à Genève", description: "Guide pratique pour remplir votre déclaration GeTax.", href: "/blog/frontalier-quasi-resident-geneve-guide-2026", icon: "receipt" },
+    { title: "Déclaration d'impôts à Genève", description: "Guide pratique pour remplir votre déclaration GeTax.", href: "/blog/declaration-impots-2025-guide-complet", icon: "receipt" },
   ],
   cantonVS: [
     { title: "Fiscalité en Valais : ce qu'il faut savoir", description: "Double barème cantonal et communal, déductions spécifiques au canton.", href: "/cantons/valais", icon: "calculator" },
