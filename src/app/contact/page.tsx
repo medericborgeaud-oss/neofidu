@@ -12,7 +12,6 @@ export default function ContactPage() {
       <main className="flex-1 pt-20">
         <BreadcrumbLight
           items={[
-            { label: "Accueil", href: "/" },
             { label: "Contact" },
           ]}
         />
