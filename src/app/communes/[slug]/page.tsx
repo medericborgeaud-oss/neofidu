@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import {
   getCommuneBySlug,
   getCommunesVoisines,
@@ -158,7 +160,9 @@ export default async function CommunePage({ params }: Props) {
   const seoDescription = `${commune.nom} est une commune du canton de ${cantonName}${districtText}.${popSeoText}${densiteSeoText}${tauxSeoText}${tauxCantonSeoText}${anneeSeoText}. ${attractiviteText}`;
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <>
+      <Header />
+      <main className="min-h-screen bg-gray-50 pt-24">
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
@@ -407,5 +411,7 @@ export default async function CommunePage({ params }: Props) {
         </Card>
       </div>
     </main>
+      <Footer />
+    </>
   );
 }
