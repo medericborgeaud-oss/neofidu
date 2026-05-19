@@ -957,7 +957,7 @@ export function TaxRequestForm() {
         const response = await fetch("/api/health");
         const health = await response.json();
 
-        if (!health.services?.cloudinary) {
+        if (!health.services?.storage) {
           setServicesHealthy(false);
           setHealthError("The document storage service is unavailable. Please try again later or contacter contact@neofidu.ch");
           console.error("❌ CRITICAL: Cloudinary not configured!", health);
