@@ -694,6 +694,10 @@ export function TaxSimulatorClient() {
         </Card>
       </div>
 
+      <p className="text-xs text-center text-muted-foreground italic max-w-2xl mx-auto">
+        * Cette simulation est une estimation indicative. Les impôts cantonaux et communaux réels sont calculés selon des barèmes progressifs propres à chaque canton. Pour un calcul précis adapté à votre situation, confiez votre déclaration à un professionnel.
+      </p>
+
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button variant="outline" onClick={resetSimulator} size="lg">
           {t("simulators.common.newSimulation")}
