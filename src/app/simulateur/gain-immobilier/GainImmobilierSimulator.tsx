@@ -25,78 +25,66 @@ import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { SimulatorCTA } from "@/components/SimulatorCTA";
 
-// IGI rates by canton and holding period (in years)
-// Rates decrease with longer holding periods
+// IGI rates by canton - direct rates per holding period (art. 72 LI VD, IBGI GE, etc.)
 const cantonIGIRates: Record<
   string,
-  { name: string; baseRate: number; reductions: { years: number; reduction: number }[] }
+  { name: string; rates: { years: number; rate: number }[] }
 > = {
   vaud: {
     name: "Vaud",
-    baseRate: 0.30,
-    reductions: [
-      { years: 2, reduction: 0.10 },
-      { years: 5, reduction: 0.20 },
-      { years: 10, reduction: 0.30 },
-      { years: 15, reduction: 0.40 },
-      { years: 20, reduction: 0.50 },
-      { years: 25, reduction: 0.60 },
+    rates: [
+      { years: 0, rate: 0.30 }, { years: 1, rate: 0.27 }, { years: 2, rate: 0.24 },
+      { years: 3, rate: 0.22 }, { years: 4, rate: 0.20 }, { years: 5, rate: 0.18 },
+      { years: 6, rate: 0.17 }, { years: 7, rate: 0.16 }, { years: 8, rate: 0.15 },
+      { years: 9, rate: 0.15 }, { years: 10, rate: 0.14 }, { years: 11, rate: 0.14 },
+      { years: 12, rate: 0.13 }, { years: 13, rate: 0.13 }, { years: 14, rate: 0.12 },
+      { years: 15, rate: 0.12 }, { years: 16, rate: 0.11 }, { years: 17, rate: 0.11 },
+      { years: 18, rate: 0.10 }, { years: 19, rate: 0.10 }, { years: 20, rate: 0.09 },
+      { years: 21, rate: 0.09 }, { years: 22, rate: 0.08 }, { years: 23, rate: 0.08 },
+      { years: 24, rate: 0.07 },
     ],
   },
   geneve: {
-    name: "Genève",
-    baseRate: 0.50,
-    reductions: [
-      { years: 2, reduction: 0.04 },
-      { years: 4, reduction: 0.08 },
-      { years: 6, reduction: 0.12 },
-      { years: 8, reduction: 0.16 },
-      { years: 10, reduction: 0.20 },
-      { years: 25, reduction: 0.50 },
+    name: "Gen\u00e8ve",
+    rates: [
+      { years: 0, rate: 0.50 }, { years: 2, rate: 0.40 }, { years: 4, rate: 0.30 },
+      { years: 6, rate: 0.20 }, { years: 8, rate: 0.15 }, { years: 10, rate: 0.10 },
+      { years: 25, rate: 0.02 },
     ],
   },
   valais: {
     name: "Valais",
-    baseRate: 0.25,
-    reductions: [
-      { years: 5, reduction: 0.10 },
-      { years: 10, reduction: 0.20 },
-      { years: 15, reduction: 0.30 },
-      { years: 20, reduction: 0.40 },
-      { years: 25, reduction: 0.50 },
+    rates: [
+      { years: 0, rate: 0.30 }, { years: 1, rate: 0.27 }, { years: 2, rate: 0.24 },
+      { years: 3, rate: 0.22 }, { years: 4, rate: 0.20 }, { years: 5, rate: 0.19 },
+      { years: 6, rate: 0.18 }, { years: 7, rate: 0.17 }, { years: 8, rate: 0.16 },
+      { years: 9, rate: 0.15 }, { years: 10, rate: 0.14 }, { years: 15, rate: 0.10 },
+      { years: 20, rate: 0.06 }, { years: 25, rate: 0.00 },
     ],
   },
   fribourg: {
     name: "Fribourg",
-    baseRate: 0.22,
-    reductions: [
-      { years: 5, reduction: 0.05 },
-      { years: 10, reduction: 0.15 },
-      { years: 15, reduction: 0.25 },
-      { years: 20, reduction: 0.35 },
-      { years: 25, reduction: 0.45 },
+    rates: [
+      { years: 0, rate: 0.40 }, { years: 1, rate: 0.352 }, { years: 2, rate: 0.32 },
+      { years: 3, rate: 0.29 }, { years: 4, rate: 0.27 }, { years: 5, rate: 0.25 },
+      { years: 7, rate: 0.22 }, { years: 10, rate: 0.19 }, { years: 15, rate: 0.16 },
+      { years: 20, rate: 0.13 }, { years: 25, rate: 0.10 },
     ],
   },
   neuchatel: {
-    name: "Neuchâtel",
-    baseRate: 0.28,
-    reductions: [
-      { years: 5, reduction: 0.10 },
-      { years: 10, reduction: 0.20 },
-      { years: 15, reduction: 0.30 },
-      { years: 20, reduction: 0.40 },
-      { years: 25, reduction: 0.50 },
+    name: "Neuch\u00e2tel",
+    rates: [
+      { years: 0, rate: 0.30 }, { years: 5, rate: 0.282 }, { years: 6, rate: 0.264 },
+      { years: 7, rate: 0.246 }, { years: 8, rate: 0.228 }, { years: 9, rate: 0.210 },
+      { years: 10, rate: 0.192 }, { years: 11, rate: 0.174 }, { years: 12, rate: 0.156 },
+      { years: 13, rate: 0.138 }, { years: 14, rate: 0.12 },
     ],
   },
   jura: {
     name: "Jura",
-    baseRate: 0.25,
-    reductions: [
-      { years: 5, reduction: 0.10 },
-      { years: 10, reduction: 0.20 },
-      { years: 15, reduction: 0.30 },
-      { years: 20, reduction: 0.40 },
-      { years: 25, reduction: 0.50 },
+    rates: [
+      { years: 0, rate: 0.25 }, { years: 5, rate: 0.20 }, { years: 10, rate: 0.15 },
+      { years: 15, rate: 0.12 }, { years: 20, rate: 0.08 }, { years: 25, rate: 0.05 },
     ],
   },
 };
@@ -151,16 +139,15 @@ export function GainImmobilierSimulator() {
     const grossGain = salePrice - purchasePrice;
     const netGain = grossGain - improvements - sellingCosts;
 
-    // Find the applicable reduction based on holding years
-    let reduction = 0;
-    for (const r of cantonData.reductions) {
+    // Find the applicable rate based on holding years (direct lookup)
+    let effectiveRate = cantonData.rates[0].rate;
+    for (const r of cantonData.rates) {
       if (holdingYears >= r.years) {
-        reduction = r.reduction;
+        effectiveRate = r.rate;
       }
     }
-
-    // Calculate effective rate (always computed, even if no gain)
-    const effectiveRate = Math.max(0, cantonData.baseRate - reduction);
+    const baseRate = cantonData.rates[0].rate;
+    const reduction = baseRate - effectiveRate;
 
     // If no taxable gain, return correct rates but zero tax
     if (netGain <= 0) {
@@ -172,7 +159,7 @@ export function GainImmobilierSimulator() {
         grossGain,
         netGain,
         holdingYears,
-        baseRate: cantonData.baseRate,
+        baseRate,
         reduction,
         effectiveRate,
         taxAmount: 0,
@@ -191,7 +178,7 @@ export function GainImmobilierSimulator() {
       grossGain,
       netGain,
       holdingYears,
-      baseRate: cantonData.baseRate,
+      baseRate,
       reduction,
       effectiveRate,
       taxAmount,
