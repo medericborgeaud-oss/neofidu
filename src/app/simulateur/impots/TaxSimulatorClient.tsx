@@ -65,16 +65,35 @@ const cantonTaxRates: Record<
 };
 
 const federalTaxBrackets = [
-  { min: 0, max: 17800, rate: 0 },
-  { min: 17800, max: 31600, rate: 0.0077 },
+  { min: 0, max: 14500, rate: 0 },
+  { min: 14500, max: 31600, rate: 0.0077 },
   { min: 31600, max: 41400, rate: 0.0088 },
   { min: 41400, max: 55200, rate: 0.0264 },
   { min: 55200, max: 72500, rate: 0.0297 },
-  { min: 72500, max: 78100, rate: 0.0561 },
+  { min: 72500, max: 78100, rate: 0.0594 },
   { min: 78100, max: 103600, rate: 0.066 },
   { min: 103600, max: 134600, rate: 0.088 },
   { min: 134600, max: 176000, rate: 0.11 },
-  { min: 176000, max: Infinity, rate: 0.115 },
+  { min: 176000, max: 755200, rate: 0.132 },
+  { min: 755200, max: Infinity, rate: 0.115 },
+];
+
+const federalTaxBracketsMarried = [
+  { min: 0, max: 28300, rate: 0 },
+  { min: 28300, max: 50900, rate: 0.01 },
+  { min: 50900, max: 58400, rate: 0.02 },
+  { min: 58400, max: 75300, rate: 0.03 },
+  { min: 75300, max: 90300, rate: 0.04 },
+  { min: 90300, max: 103400, rate: 0.05 },
+  { min: 103400, max: 114700, rate: 0.06 },
+  { min: 114700, max: 124200, rate: 0.07 },
+  { min: 124200, max: 131700, rate: 0.08 },
+  { min: 131700, max: 137300, rate: 0.09 },
+  { min: 137300, max: 141200, rate: 0.10 },
+  { min: 141200, max: 143100, rate: 0.11 },
+  { min: 143100, max: 145000, rate: 0.12 },
+  { min: 145000, max: 895900, rate: 0.13 },
+  { min: 895900, max: Infinity, rate: 0.115 },
 ];
 
 const DEDUCTIONS = {
@@ -197,21 +216,15 @@ export function TaxSimulatorClient() {
 
     let taxableIncome = Math.max(income - totalDeductions, 0);
 
-    if (isMarried) {
-      taxableIncome = taxableIncome * 0.5;
-    }
+    // Use dedicated married brackets instead of splitting method
+    const brackets = isMarried ? federalTaxBracketsMarried : federalTaxBrackets;
 
     let federalTax = 0;
-    for (const bracket of federalTaxBrackets) {
+    for (const bracket of brackets) {
       if (taxableIncome > bracket.min) {
         const taxableInBracket = Math.min(taxableIncome - bracket.min, bracket.max - bracket.min);
         federalTax += taxableInBracket * bracket.rate;
       }
-    }
-
-    if (isMarried) {
-      federalTax *= 2;
-      taxableIncome *= 2;
     }
 
     const cantonalTax = taxableIncome * canton.rate;
