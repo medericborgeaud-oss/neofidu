@@ -134,7 +134,7 @@ export function Pillar3aSimulatorEnhanced() {
 
     // Canton comparison
     const cantonComparison = Object.entries(cantonData).map(([key, data]) => {
-      const savings = contribution * yearsToRetirement * data.marginalRate;
+      const savings = contribution * yearsToRetirement * data.marginalRate * incomeAdj;
       const wTax = capital * data.withdrawalRate;
       return {
         canton: key,
