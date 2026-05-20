@@ -1,4 +1,4 @@
-// Donnees fiscales suisses par canton (taux approximatifs 2024)
+// Donnees fiscales suisses par canton (taux approximatifs 2025)
 export interface Canton {
   code: string;
   name: string;
@@ -48,41 +48,42 @@ export const socialContributions = {
     rate45to54: 7.5,
     rate55to65: 9.0,
   },
-  lppThreshold: 22050,
-  lppCoordination: 25725,
-  lppMaxInsuredSalary: 88200, // BVG maximum insured salary 2024
+  lppThreshold: 22680, // 2025
+  lppCoordination: 26460, // 2025
+  lppMaxInsuredSalary: 90720, // BVG maximum insured salary 2025
 };
 
+// Baremes IFD 2025 indexes (ESTV Form. 58c 2025)
 export const federalTaxBrackets = [
-  { min: 0, max: 14500, rate: 0 },
-  { min: 14500, max: 31600, rate: 0.77 },
-  { min: 31600, max: 41400, rate: 0.88 },
-  { min: 41400, max: 55200, rate: 2.64 },
-  { min: 55200, max: 72500, rate: 2.97 },
-  { min: 72500, max: 78100, rate: 5.94 },
-  { min: 78100, max: 103600, rate: 6.6 },
-  { min: 103600, max: 134600, rate: 8.8 },
-  { min: 134600, max: 176000, rate: 11.0 },
-  { min: 176000, max: 755200, rate: 13.2 },
-  { min: 755200, max: Number.POSITIVE_INFINITY, rate: 11.5 },
+  { min: 0, max: 18500, rate: 0 },
+  { min: 18500, max: 33200, rate: 0.77 },
+  { min: 33200, max: 43500, rate: 0.88 },
+  { min: 43500, max: 58100, rate: 2.64 },
+  { min: 58100, max: 76200, rate: 2.97 },
+  { min: 76200, max: 82100, rate: 5.94 },
+  { min: 82100, max: 108900, rate: 6.6 },
+  { min: 108900, max: 141600, rate: 8.8 },
+  { min: 141600, max: 185000, rate: 11.0 },
+  { min: 185000, max: 793400, rate: 13.2 },
+  { min: 793400, max: Number.POSITIVE_INFINITY, rate: 11.5 },
 ];
 
 export const federalTaxBracketsMarried = [
-  { min: 0, max: 28300, rate: 0 },
-  { min: 28300, max: 50900, rate: 1.0 },
-  { min: 50900, max: 58400, rate: 2.0 },
-  { min: 58400, max: 75300, rate: 3.0 },
-  { min: 75300, max: 90300, rate: 4.0 },
-  { min: 90300, max: 103400, rate: 5.0 },
-  { min: 103400, max: 114700, rate: 6.0 },
-  { min: 114700, max: 124200, rate: 7.0 },
-  { min: 124200, max: 131700, rate: 8.0 },
-  { min: 131700, max: 137300, rate: 9.0 },
-  { min: 137300, max: 141200, rate: 10.0 },
-  { min: 141200, max: 143100, rate: 11.0 },
-  { min: 143100, max: 145000, rate: 12.0 },
-  { min: 145000, max: 895900, rate: 13.0 },
-  { min: 895900, max: Number.POSITIVE_INFINITY, rate: 11.5 },
+  { min: 0, max: 29700, rate: 0 },
+  { min: 29700, max: 53400, rate: 1.0 },
+  { min: 53400, max: 61300, rate: 2.0 },
+  { min: 61300, max: 79100, rate: 3.0 },
+  { min: 79100, max: 94900, rate: 4.0 },
+  { min: 94900, max: 108600, rate: 5.0 },
+  { min: 108600, max: 120500, rate: 6.0 },
+  { min: 120500, max: 130500, rate: 7.0 },
+  { min: 130500, max: 138300, rate: 8.0 },
+  { min: 138300, max: 144200, rate: 9.0 },
+  { min: 144200, max: 148200, rate: 10.0 },
+  { min: 148200, max: 150300, rate: 11.0 },
+  { min: 150300, max: 152300, rate: 12.0 },
+  { min: 152300, max: 940900, rate: 13.0 },
+  { min: 940900, max: Number.POSITIVE_INFINITY, rate: 11.5 },
 ];
 
 export type MaritalStatus = "single" | "married";
@@ -164,7 +165,7 @@ export function calculateNetSalary(input: SalaryCalculationInput): SalaryCalcula
   const totalSocialContributions = avsAiApg + ac + aanp + lpp;
 
   let taxableIncome = grossSalary - totalSocialContributions;
-  const professionalDeduction = Math.min(grossSalary * 0.03, 4000);
+  const professionalDeduction = Math.min(Math.max(grossSalary * 0.03, 2000), 4000);
   taxableIncome -= professionalDeduction;
   const childDeduction = children * 6600;
   taxableIncome -= childDeduction;
