@@ -151,6 +151,18 @@ export function GainImmobilierSimulator() {
     const grossGain = salePrice - purchasePrice;
     const netGain = grossGain - improvements - sellingCosts;
 
+    // Find the applicable reduction based on holding years
+    let reduction = 0;
+    for (const r of cantonData.reductions) {
+      if (holdingYears >= r.years) {
+        reduction = r.reduction;
+      }
+    }
+
+    // Calculate effective rate (always computed, even if no gain)
+    const effectiveRate = Math.max(0, cantonData.baseRate - reduction);
+
+    // If no taxable gain, return correct rates but zero tax
     if (netGain <= 0) {
       return {
         salePrice,
@@ -161,23 +173,13 @@ export function GainImmobilierSimulator() {
         netGain,
         holdingYears,
         baseRate: cantonData.baseRate,
-        reduction: 0,
-        effectiveRate: 0,
+        reduction,
+        effectiveRate,
         taxAmount: 0,
         netProfit: netGain,
       };
     }
 
-    // Find the applicable reduction based on holding years
-    let reduction = 0;
-    for (const r of cantonData.reductions) {
-      if (holdingYears >= r.years) {
-        reduction = r.reduction;
-      }
-    }
-
-    // Exemption after 25+ years in some cantons
-    const effectiveRate = Math.max(0, cantonData.baseRate - reduction);
     const taxAmount = netGain * effectiveRate;
     const netProfit = netGain - taxAmount;
 
