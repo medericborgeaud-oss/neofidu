@@ -1,4 +1,4 @@
-// Données fiscales suisses par canton (taux approximatifs 2024)
+// Donnees fiscales suisses par canton (taux approximatifs 2024)
 export interface Canton {
   code: string;
   name: string;
@@ -8,7 +8,7 @@ export interface Canton {
 }
 
 export const cantons: Canton[] = [
-  { code: "ZH", name: "Zürich", nameFr: "Zurich", taxRate: 11.5, municipalMultiplier: 1.19 },
+  { code: "ZH", name: "Zurich", nameFr: "Zurich", taxRate: 11.5, municipalMultiplier: 1.19 },
   { code: "BE", name: "Bern", nameFr: "Berne", taxRate: 14.2, municipalMultiplier: 1.54 },
   { code: "LU", name: "Luzern", nameFr: "Lucerne", taxRate: 9.8, municipalMultiplier: 1.75 },
   { code: "UR", name: "Uri", nameFr: "Uri", taxRate: 10.5, municipalMultiplier: 1.00 },
@@ -19,27 +19,27 @@ export const cantons: Canton[] = [
   { code: "ZG", name: "Zug", nameFr: "Zoug", taxRate: 5.5, municipalMultiplier: 0.82 },
   { code: "FR", name: "Fribourg", nameFr: "Fribourg", taxRate: 13.8, municipalMultiplier: 1.00 },
   { code: "SO", name: "Solothurn", nameFr: "Soleure", taxRate: 12.5, municipalMultiplier: 1.20 },
-  { code: "BS", name: "Basel-Stadt", nameFr: "Bâle-Ville", taxRate: 14.0, municipalMultiplier: 1.00 },
-  { code: "BL", name: "Basel-Landschaft", nameFr: "Bâle-Campagne", taxRate: 12.8, municipalMultiplier: 1.00 },
+  { code: "BS", name: "Basel-Stadt", nameFr: "Bale-Ville", taxRate: 14.0, municipalMultiplier: 1.00 },
+  { code: "BL", name: "Basel-Landschaft", nameFr: "Bale-Campagne", taxRate: 12.8, municipalMultiplier: 1.00 },
   { code: "SH", name: "Schaffhausen", nameFr: "Schaffhouse", taxRate: 11.0, municipalMultiplier: 1.15 },
   { code: "AR", name: "Appenzell Ausserrhoden", nameFr: "Appenzell Rhodes-Ext.", taxRate: 11.5, municipalMultiplier: 1.00 },
   { code: "AI", name: "Appenzell Innerrhoden", nameFr: "Appenzell Rhodes-Int.", taxRate: 9.0, municipalMultiplier: 1.00 },
   { code: "SG", name: "St. Gallen", nameFr: "Saint-Gall", taxRate: 12.2, municipalMultiplier: 1.44 },
-  { code: "GR", name: "Graubünden", nameFr: "Grisons", taxRate: 11.8, municipalMultiplier: 1.00 },
+  { code: "GR", name: "Graubunden", nameFr: "Grisons", taxRate: 11.8, municipalMultiplier: 1.00 },
   { code: "AG", name: "Aargau", nameFr: "Argovie", taxRate: 10.5, municipalMultiplier: 1.15 },
   { code: "TG", name: "Thurgau", nameFr: "Thurgovie", taxRate: 10.8, municipalMultiplier: 1.17 },
   { code: "TI", name: "Ticino", nameFr: "Tessin", taxRate: 13.5, municipalMultiplier: 1.00 },
   { code: "VD", name: "Vaud", nameFr: "Vaud", taxRate: 14.5, municipalMultiplier: 1.54 },
   { code: "VS", name: "Valais", nameFr: "Valais", taxRate: 13.0, municipalMultiplier: 1.30 },
-  { code: "NE", name: "Neuchâtel", nameFr: "Neuchâtel", taxRate: 15.2, municipalMultiplier: 1.00 },
-  { code: "GE", name: "Genève", nameFr: "Genève", taxRate: 14.8, municipalMultiplier: 0.44 },
+  { code: "NE", name: "Neuchatel", nameFr: "Neuchatel", taxRate: 15.2, municipalMultiplier: 1.00 },
+  { code: "GE", name: "Geneve", nameFr: "Geneve", taxRate: 14.8, municipalMultiplier: 0.44 },
   { code: "JU", name: "Jura", nameFr: "Jura", taxRate: 15.0, municipalMultiplier: 1.00 },
 ];
 
 export const socialContributions = {
   avsAiApg: 5.3,
   ac: 1.1,
-  ac2: 0.5,
+  // AC2 solidarity contribution (0.5%) was abolished on 01.01.2023
   acThreshold: 148200,
   aanp: 1.5,
   lpp: {
@@ -50,6 +50,7 @@ export const socialContributions = {
   },
   lppThreshold: 22050,
   lppCoordination: 25725,
+  lppMaxInsuredSalary: 88200, // BVG maximum insured salary 2024
 };
 
 export const federalTaxBrackets = [
@@ -141,17 +142,21 @@ export function calculateNetSalary(input: SalaryCalculationInput): SalaryCalcula
   const { grossSalary, canton: cantonCode, maritalStatus, ageGroup, children } = input;
 
   const canton = cantons.find(c => c.code === cantonCode);
-  if (!canton) throw new Error(`Canton ${cantonCode} non trouvé`);
+  if (!canton) throw new Error(`Canton ${cantonCode} non trouve`);
 
   const avsAiApg = (grossSalary * socialContributions.avsAiApg) / 100;
+  // AC: 1.1% up to threshold only (AC2 solidarity was abolished 01.01.2023)
   const acBase = Math.min(grossSalary, socialContributions.acThreshold);
-  const acExcess = Math.max(0, grossSalary - socialContributions.acThreshold);
-  const ac = (acBase * socialContributions.ac) / 100 + (acExcess * socialContributions.ac2) / 100;
+  const ac = (acBase * socialContributions.ac) / 100;
   const aanp = (grossSalary * socialContributions.aanp) / 100;
 
   let lpp = 0;
   if (grossSalary > socialContributions.lppThreshold) {
-    const lppBase = grossSalary - socialContributions.lppCoordination;
+    // LPP base = salary minus coordination deduction, capped at BVG maximum
+    const lppBase = Math.min(
+      grossSalary - socialContributions.lppCoordination,
+      socialContributions.lppMaxInsuredSalary - socialContributions.lppCoordination
+    );
     const lppRate = getLppRate(ageGroup);
     lpp = Math.max(0, (lppBase * lppRate) / 100);
   }
