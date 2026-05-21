@@ -8,7 +8,6 @@ import {
   Calculator,
   Home,
   ArrowRight,
-  CreditCard,
 } from "lucide-react";
 
 export function Pricing() {
@@ -107,17 +106,12 @@ export function Pricing() {
             <ArrowRight className="w-5 h-5 ml-2" />
           </Link>
 
-          <div className="flex items-center justify-center gap-4 pt-2">
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <CreditCard className="w-4 h-4" />
-              <span>Visa / Mastercard</span>
-            </div>
-            <span className="text-gray-300">•</span>
-            <span className="text-sm text-gray-400">PayPal</span>
-            <span className="text-gray-300">•</span>
-            <span className="text-sm text-gray-400">Klarna</span>
-            <span className="text-gray-300">•</span>
-            <span className="text-sm text-gray-400">TWINT</span>
+          <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
+            <img src="/payment-logos/visa.svg" alt="Visa" className="h-6" />
+            <img src="/payment-logos/mastercard.svg" alt="Mastercard" className="h-6" />
+            <img src="/payment-logos/paypal.svg" alt="PayPal" className="h-5" />
+            <img src="/payment-logos/klarna.svg" alt="Klarna" className="h-5" />
+            <img src="/payment-logos/twint.svg" alt="TWINT" className="h-6" />
           </div>
         </div>
       </div>
