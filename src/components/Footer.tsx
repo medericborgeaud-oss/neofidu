@@ -381,63 +381,14 @@ export function Footer() {
           <p className="text-slate-500 text-sm">
             {isEnglish ? "Accepted payment methods:" : "Moyens de paiement acceptés :"}
           </p>
-          <div className="flex items-center gap-2 flex-wrap justify-center">
-            {/* Visa / Mastercard */}
-            <div className="inline-flex items-center gap-2 bg-slate-700 rounded-full px-3 py-1.5 text-sm">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-                <line x1="1" y1="10" x2="23" y2="10"/>
-              </svg>
-              <span className="text-slate-300 text-xs">Visa / Mastercard</span>
-            </div>
-            {/* PayPal */}
-            <div className="inline-flex items-center gap-1.5 bg-[#003087]/20 rounded-full px-3 py-1.5 text-sm">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#00457C]" fill="currentColor">
-                <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/>
-              </svg>
-              <span className="text-[#003087] font-medium text-xs">PayPal</span>
-            </div>
-            {/* Klarna */}
-            <div className="inline-flex items-center gap-1.5 bg-[#FFB3C7]/40 rounded-full px-3 py-1.5 text-sm">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#0A0B09]" fill="currentColor">
-                <path d="M4.592 2h14.816A2.592 2.592 0 0 1 22 4.592v14.816A2.592 2.592 0 0 1 19.408 22H4.592A2.592 2.592 0 0 1 2 19.408V4.592A2.592 2.592 0 0 1 4.592 2z"/>
-              </svg>
-              <span className="text-[#0A0B09] font-medium text-xs">Klarna</span>
-            </div>
-            {/* TWINT */}
-            <div className="inline-flex items-center gap-1.5 bg-white/20 rounded-full px-3 py-1.5 text-sm border border-slate-600">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="2" width="20" height="20" rx="4"/>
-                <path d="M7 10h10M12 7v10"/>
-              </svg>
-              <span className="text-slate-300 font-medium text-xs">TWINT</span>
-            </div>
+          <div className="flex items-center gap-3 flex-wrap justify-center">
+            <img src="/payment-logos/visa.svg" alt="Visa" className="h-7" />
+            <img src="/payment-logos/mastercard.svg" alt="Mastercard" className="h-7" />
+            <img src="/payment-logos/paypal.svg" alt="PayPal" className="h-6" />
+            <img src="/payment-logos/klarna.svg" alt="Klarna" className="h-6" />
+            <img src="/payment-logos/twint.svg" alt="TWINT" className="h-7" />
           </div>
         </div>
-
-        <Separator className="my-4 bg-slate-800" />
-
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-500 text-sm">
-            &copy; {new Date().getFullYear()} NeoFidu. {isEnglish ? "All rights reserved." : "Tous droits réservés."}
-          </p>
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 md:gap-6">
-            <Link href="/mentions-legales" className="text-slate-500 hover:text-slate-300 text-sm">
-              {isEnglish ? "Legal notice" : "Mentions légales"}
-            </Link>
-            <Link href="/conditions-generales" className="text-slate-500 hover:text-slate-300 text-sm">
-              {isEnglish ? "Terms of service" : "CGU"}
-            </Link>
-            <Link href="/conditions-generales#remboursements" className="text-slate-500 hover:text-slate-300 text-sm">
-              {isEnglish ? "Refund policy" : "Remboursements"}
-            </Link>
-            <Link href="/politique-confidentialite" className="text-slate-500 hover:text-slate-300 text-sm">
-              {isEnglish ? "Privacy policy" : "Vie privée"}
-            </Link>
-          </div>
-        </div>
-      </div>
     </footer>
   );
 }
