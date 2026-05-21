@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { TaxRequestForm } from "@/components/TaxRequestForm";
@@ -18,6 +18,14 @@ type ServiceType = "tax" | "accounting" | "property" | null;
 export default function DemandePage() {
   const { isEnglish } = useLanguage();
   const [serviceType, setServiceType] = useState<ServiceType>(null);
+
+  // Prevent browser scroll restoration on refresh — always start at top
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
 
   const t = {
     backToHome: isEnglish ? "Back to home" : "Retour à l'accueil",
