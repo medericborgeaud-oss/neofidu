@@ -53,6 +53,9 @@ function CheckoutForm({
     setIsProcessing(true);
     setMessage(null);
 
+    // Remove beforeunload handler to prevent scary dialog on redirect (e.g. TWINT)
+    window.onbeforeunload = null;
+
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       confirmParams: {
