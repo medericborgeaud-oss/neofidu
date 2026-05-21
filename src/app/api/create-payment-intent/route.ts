@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     if (!stripeInstance) {
       return NextResponse.json(
-        { error: "Stripe non configuré. Veuillez configurer les clés API Stripe." },
+        { error: "Stripe non configurÃ©. Veuillez configurer les clÃ©s API Stripe." },
         { status: 500 }
       );
     }
@@ -59,11 +59,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Créer le PaymentIntent pour carte bancaire
+    // CrÃ©er le PaymentIntent pour carte bancaire
     const paymentIntent = await stripeInstance.paymentIntents.create({
       amount: Math.round(amount), // Montant en centimes
       currency: currency.toLowerCase(),
-      payment_method_types: ["card"],
+      automatic_payment_methods: { enabled: true },
       receipt_email: customerEmail,
       description: description || "Prestation NeoFidu",
       metadata: {
@@ -73,31 +73,31 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Si c'est une déclaration fiscale, lier le PaymentIntent à la demande
+    // Si c'est une dÃ©claration fiscale, lier le PaymentIntent Ã  la demande
     if (metadata?.taxRequestReference) {
-      console.log("📋 Tentative de liaison PaymentIntent à la demande:", metadata.taxRequestReference);
+      console.log("ð Tentative de liaison PaymentIntent Ã  la demande:", metadata.taxRequestReference);
 
-      // Utiliser Supabase si configuré, sinon fallback sur le store en mémoire
+      // Utiliser Supabase si configurÃ©, sinon fallback sur le store en mÃ©moire
       if (isSupabaseConfigured()) {
         const taxRequest = await findSupabaseByRef(metadata.taxRequestReference);
         if (taxRequest) {
           const updated = await updateSupabasePayment(taxRequest.reference, paymentIntent.id);
           if (updated) {
-            console.log("✅ PaymentIntent lié à la demande fiscale (Supabase):", metadata.taxRequestReference, "->", paymentIntent.id);
+            console.log("â PaymentIntent liÃ© Ã  la demande fiscale (Supabase):", metadata.taxRequestReference, "->", paymentIntent.id);
           } else {
-            console.error("❌ Échec de la mise à jour du PaymentIntent dans Supabase");
+            console.error("â Ãchec de la mise Ã  jour du PaymentIntent dans Supabase");
           }
         } else {
-          console.warn("⚠️ Demande fiscale non trouvée dans Supabase:", metadata.taxRequestReference);
+          console.warn("â ï¸ Demande fiscale non trouvÃ©e dans Supabase:", metadata.taxRequestReference);
         }
       } else {
-        // Fallback: store en mémoire
+        // Fallback: store en mÃ©moire
         const taxRequest = findMemoryByRef(metadata.taxRequestReference);
         if (taxRequest) {
           updateMemoryPayment(taxRequest.reference, paymentIntent.id);
-          console.log("📋 PaymentIntent lié à la demande fiscale (mémoire):", metadata.taxRequestReference);
+          console.log("ð PaymentIntent liÃ© Ã  la demande fiscale (mÃ©moire):", metadata.taxRequestReference);
         } else {
-          console.warn("⚠️ Demande fiscale non trouvée en mémoire:", metadata.taxRequestReference);
+          console.warn("â ï¸ Demande fiscale non trouvÃ©e en mÃ©moire:", metadata.taxRequestReference);
         }
       }
     }
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
       paymentIntentId: paymentIntent.id,
     });
   } catch (error) {
-    console.error("Erreur création PaymentIntent:", error);
+    console.error("Erreur crÃ©ation PaymentIntent:", error);
 
     if (error instanceof Stripe.errors.StripeError) {
       return NextResponse.json(
@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: "Erreur lors de la création du paiement" },
+      { error: "Erreur lors de la crÃ©ation du paiement" },
       { status: 500 }
     );
   }
