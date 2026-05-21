@@ -397,7 +397,7 @@ export default function TarifsPage() {
         "name": "Quels moyens de paiement acceptez-vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal et Klarna (paiement en 3 fois sans frais)."
+          "text": "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT."
         }
       },
       {
@@ -482,8 +482,8 @@ export default function TarifsPage() {
             </p>
             <p className="text-muted-foreground text-sm mb-8">
               {isEnglish
-                ? "Fixed prices for tax returns · Personalized quote for accounting & property management. Payment in 3 installments available via Klarna."
-                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé pour la comptabilité & gérance. Paiement en 3 fois disponible via Klarna."}
+                ? "Fixed prices for tax returns · Personalized quote for accounting & property management. Payment in 3 installments available via Klarna. TWINT also accepted."
+                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé pour la comptabilité & gérance. Paiement en 3 fois disponible via Klarna. TWINT également accepté."}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
@@ -497,7 +497,7 @@ export default function TarifsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CreditCard className="w-5 h-5 text-primary" />
-                <span>{isEnglish ? "Visa, Mastercard, PayPal, Klarna" : "Visa, Mastercard, PayPal, Klarna"}</span>
+                <span>{isEnglish ? "Visa, Mastercard, PayPal, Klarna, TWINT" : "Visa, Mastercard, PayPal, Klarna, TWINT"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="w-5 h-5 text-primary" />
@@ -929,7 +929,7 @@ export default function TarifsPage() {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, and Klarna (pay in 3 installments, interest-free)."
+                    ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (pay in 3 installments, interest-free), and TWINT."
                     : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal et Klarna (paiement en 3 fois sans frais)."}
                 </p>
               </Card>

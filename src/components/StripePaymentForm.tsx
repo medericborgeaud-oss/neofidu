@@ -149,6 +149,14 @@ function CheckoutForm({
             </svg>
             <span className="text-[#0A0B09] font-medium">Klarna</span>
           </div>
+          {/* TWINT */}
+          <div className="inline-flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-1.5 text-xs border border-gray-200">
+            <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="2" width="20" height="20" rx="4"/>
+              <path d="M7 10h10M12 7v10"/>
+            </svg>
+            <span className="text-gray-700 font-medium">TWINT</span>
+          </div>
         </div>
         <div className="flex items-center justify-center gap-2 mt-3">
           <span className="text-xs text-muted-foreground opacity-50">Paiement sécurisé par Stripe</span>

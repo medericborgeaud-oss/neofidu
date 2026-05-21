@@ -98,7 +98,7 @@ const sectionsFr = [
       <p>Les tarifs applicables sont ceux affichés sur le site neofidu.ch au moment de la commande. Les prix sont indiqués en francs suisses (CHF), TVA incluse le cas échéant.</p>
 
       <h4>5.2 Modalités de paiement</h4>
-      <p>Le paiement s'effectue par carte bancaire (Visa, Mastercard), PayPal ou Klarna. Pour certaines prestations, un acompte peut être demandé avant le début des travaux.</p>
+      <p>Le paiement s'effectue par carte bancaire (Visa, Mastercard), PayPal, Klarna ou TWINT. Pour certaines prestations, un acompte peut être demandé avant le début des travaux.</p>
 
       <h4>5.3 Facturation</h4>
       <p>Les prestations récurrentes (comptabilité, gérance) font l'objet d'une facturation selon la fréquence choisie par le Client (mensuelle ou annuelle).</p>
@@ -351,7 +351,7 @@ const sectionsEn = [
       <p>Applicable rates are those displayed on the neofidu.ch website at the time of order. Prices are indicated in Swiss francs (CHF), VAT included where applicable.</p>
 
       <h4>5.2 Payment Methods</h4>
-      <p>Payment is made by credit card (Visa, Mastercard), PayPal or Klarna. For certain services, a deposit may be requested before work begins.</p>
+      <p>Payment is made by credit card (Visa, Mastercard), PayPal, Klarna or TWINT. For certain services, a deposit may be requested before work begins.</p>
 
       <h4>5.3 Billing</h4>
       <p>Recurring services (accounting, property management) are billed according to the frequency chosen by the Client (monthly or annual).</p>

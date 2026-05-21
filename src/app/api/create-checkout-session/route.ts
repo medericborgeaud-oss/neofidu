@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const session = await stripeInstance.checkout.sessions.create({
       // Let Stripe automatically show all enabled payment methods (Card, PayPal, Klarna, etc.)
       // These must be enabled in your Stripe Dashboard > Settings > Payment methods
-      payment_method_types: ["card", "paypal", "klarna"],
+      payment_method_types: ["card", "paypal", "klarna", "twint"],
       mode: "payment",
       customer_email: customerEmail,
       line_items: [{

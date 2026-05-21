@@ -97,7 +97,7 @@ const faqSchema = {
       name: "How do I pay for NeoFidu services?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We accept all major payment methods: Visa, Mastercard, PayPal, Klarna (pay later), and bank transfer. Payment is secure and processed through Stripe. You only pay after submitting your documents, and you'll receive your completed tax return once payment is confirmed.",
+        text: "We accept all major payment methods: Visa, Mastercard, PayPal, Klarna (pay later), TWINT, and bank transfer. Payment is secure and processed through Stripe. You only pay after submitting your documents, and you'll receive your completed tax return once payment is confirmed.",
       },
     },
     {

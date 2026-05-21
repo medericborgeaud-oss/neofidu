@@ -174,7 +174,7 @@ export default function RootLayout({
     openingHours: ["Mo-Fr 09:00-17:00"],
     priceRange: "CHF 50 - CHF 1000",
     currenciesAccepted: "CHF",
-    paymentAccepted: ["Credit Card", "Visa", "Mastercard", "PayPal", "Klarna", "Bank Transfer"],
+    paymentAccepted: ["Credit Card", "Visa", "Mastercard", "PayPal", "Klarna", "TWINT", "Bank Transfer"],
     // Area served - cantons
     areaServed: [
       { "@type": "AdministrativeArea", name: "Canton de Vaud", "@id": "https://www.wikidata.org/wiki/Q12771" },

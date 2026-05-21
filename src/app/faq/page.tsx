@@ -80,7 +80,7 @@ const faqItemsFR: FAQItem[] = [
   {
     category: "Honoraires",
     question: "Quelles options de règlement proposez-vous ?",
-    answer: "Les cartes Visa, Mastercard, PayPal et Klarna sont acceptés. Le paiement intervient après acceptation du devis et avant le lancement des travaux."
+    answer: "Les cartes Visa, Mastercard, PayPal, Klarna et TWINT sont acceptés. Le paiement intervient après acceptation du devis et avant le lancement des travaux."
   },
   {
     category: "Honoraires",
@@ -167,7 +167,7 @@ const faqItemsEN: FAQItem[] = [
   {
     category: "Pricing",
     question: "What payment options do you offer?",
-    answer: "Visa, Mastercard, PayPal and Klarna are accepted. Payment is made after quote acceptance and before work begins."
+    answer: "Visa, Mastercard, PayPal, Klarna and TWINT are accepted. Payment is made after quote acceptance and before work begins."
   },
   {
     category: "Pricing",

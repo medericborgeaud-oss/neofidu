@@ -43,7 +43,7 @@ export default function MentionsLegalesPage() {
     currencyValue: isEnglish ? "CHF (Swiss Francs)" : "CHF (Francs suisses)",
     vatIncluded: isEnglish ? ", VAT included where applicable." : ", TVA incluse le cas échéant.",
     paymentMethods: isEnglish ? "Accepted payment methods" : "Modes de paiement acceptés",
-    paymentCards: isEnglish ? "Credit cards (Visa, Mastercard), PayPal, Klarna" : "Cartes bancaires (Visa, Mastercard), PayPal, Klarna",
+    paymentCards: isEnglish ? "Credit cards (Visa, Mastercard), PayPal, Klarna, TWINT" : "Cartes bancaires (Visa, Mastercard), PayPal, Klarna, TWINT",
     paymentBank: isEnglish ? "Bank transfer (on request)" : "Virement bancaire (sur demande)",
     serviceArea: isEnglish ? "Service area" : "Zone de service",
     serviceAreaText: isEnglish

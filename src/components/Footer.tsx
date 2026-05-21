@@ -404,6 +404,14 @@ export function Footer() {
               </svg>
               <span className="text-[#0A0B09] font-medium text-xs">Klarna</span>
             </div>
+            {/* TWINT */}
+            <div className="inline-flex items-center gap-1.5 bg-white/20 rounded-full px-3 py-1.5 text-sm border border-slate-600">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="2" y="2" width="20" height="20" rx="4"/>
+                <path d="M7 10h10M12 7v10"/>
+              </svg>
+              <span className="text-slate-300 font-medium text-xs">TWINT</span>
+            </div>
           </div>
         </div>
 

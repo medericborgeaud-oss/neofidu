@@ -116,6 +116,8 @@ export function Pricing() {
             <span className="text-sm text-gray-400">PayPal</span>
             <span className="text-gray-300">•</span>
             <span className="text-sm text-gray-400">Klarna</span>
+            <span className="text-gray-300">•</span>
+            <span className="text-sm text-gray-400">TWINT</span>
           </div>
         </div>
       </div>
