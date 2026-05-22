@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Valais 2026",
   description:
-    "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité. Sion, Martigny, Sierre, Monthey. Dès CHF 50.-",
+    "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité. Sion, Martigny, Sierre, Monthey. Dès CHF 89.-",
   keywords: [
     // French - Valais
     "fiduciaire Valais",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Fiduciaire Valais - Tax Return & Accounting",
     description:
-      "Online fiduciary for Canton Valais. Tax returns, secondary residences, accounting. Sion, Martigny, Zermatt. From CHF 50.-",
+      "Online fiduciary for Canton Valais. Tax returns, secondary residences, accounting. Sion, Martigny, Zermatt. From CHF 89.-",
     url: "https://www.neofidu.ch/cantons/valais",
     type: "website",
     locale: "fr_CH",
@@ -48,7 +48,7 @@ const valaisSchema = {
   "description": "Fiduciaire en ligne pour le Valais : déclaration d'impôts, résidences secondaires, comptabilité",
   "url": "https://www.neofidu.ch/cantons/valais",
   "logo": "https://www.neofidu.ch/logo.svg",
-  "priceRange": "CHF 50 - CHF 500",
+  "priceRange": "CHF 89 - CHF 500",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Sion",
