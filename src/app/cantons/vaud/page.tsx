@@ -33,7 +33,7 @@ export default function VaudPage() {
       description: isEnglish
         ? "Complete tax return for employees, retirees and families in canton Vaud."
         : "Déclaration d'impôts complète pour salariés, retraités et familles dans le canton de Vaud.",
-      price: isEnglish ? "From CHF 50.-" : "Dès CHF 50.-"
+      price: isEnglish ? "From CHF 89.-" : "Dès CHF 89.-"
     },
     {
       icon: Briefcase,
@@ -63,7 +63,7 @@ export default function VaudPage() {
     },
     {
       date: isEnglish ? "September 30, 2026" : "30 septembre 2026",
-      description: isEnglish ? "Paid extension (CHF 50.-)" : "Prolongation payante (CHF 50.-)"
+      description: isEnglish ? "Paid extension (CHF 89.-)" : "Prolongation payante (CHF 89.-)"
     },
   ];
   const advantages = isEnglish ? [
@@ -84,7 +84,7 @@ export default function VaudPage() {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Vaud?",
-      answer: "The regular deadline is March 15, 2026 — one of the earliest in Switzerland. A free extension until June 30 is possible via VaudTax. A paid extension (CHF 50) until September 30 can also be requested."
+      answer: "The regular deadline is March 15, 2026 — one of the earliest in Switzerland. A free extension until June 30 is possible via VaudTax. A paid extension (CHF 89) until September 30 can also be requested."
     },
     {
       question: "How does the VaudTax software work?",
@@ -105,7 +105,7 @@ export default function VaudPage() {
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts dans le canton de Vaud ?",
-      answer: "Le délai ordinaire est le 15 mars 2026 — l'un des plus courts de Suisse. Une prolongation gratuite jusqu'au 30 juin est possible via VaudTax. Une prolongation payante (CHF 50.-) jusqu'au 30 septembre peut aussi être demandée."
+      answer: "Le délai ordinaire est le 15 mars 2026 — l'un des plus courts de Suisse. Une prolongation gratuite jusqu'au 30 juin est possible via VaudTax. Une prolongation payante (CHF 89.-) jusqu'au 30 septembre peut aussi être demandée."
     },
     {
       question: "Comment fonctionne le logiciel VaudTax ?",
