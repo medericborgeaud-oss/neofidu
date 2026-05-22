@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Déclaration d’impôts Vaud 2026",
   description:
-    "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts dès CHF 50, comptabilité PME. Lausanne, Aigle, Montreux. Devis gratuit.",
+    "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts dès CHF 89, comptabilité PME. Lausanne, Aigle, Montreux. Devis gratuit.",
   keywords: [
     // French - Vaud
     "fiduciaire Vaud",
@@ -49,7 +49,7 @@ const vaudSchema = {
   "description": "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts, comptabilité PME, indépendants",
   "url": "https://www.neofidu.ch/cantons/vaud",
   "logo": "https://www.neofidu.ch/logo.svg",
-  "priceRange": "CHF 50 - CHF 500",
+  "priceRange": "CHF 89 - CHF 500",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Lausanne",
