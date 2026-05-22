@@ -370,7 +370,7 @@ export default function SuissesEtrangerPage() {
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Users className="w-5 h-5 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium">{t("simulators.swissAbroadPage.supplementCouple")}</p>
-                    <p className="text-lg font-bold text-primary">+CHF 20.-</p>
+                    <p className="text-lg font-bold text-primary">+CHF 30.-</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Building className="w-5 h-5 text-primary mx-auto mb-2" />
@@ -380,12 +380,12 @@ export default function SuissesEtrangerPage() {
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Home className="w-5 h-5 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium">{t("simulators.swissAbroadPage.supplementProperty")}</p>
-                    <p className="text-lg font-bold text-primary">+CHF 89.-<span className="text-xs font-normal">/{isEnglish ? "property" : "bien"}</span></p>
+                    <p className="text-lg font-bold text-primary">+CHF 60.-<span className="text-xs font-normal">/{isEnglish ? "property" : "bien"}</span></p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Users className="w-5 h-5 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium">{t("simulators.swissAbroadPage.supplementChild")}</p>
-                    <p className="text-lg font-bold text-primary">+CHF 10.-<span className="text-xs font-normal">/{isEnglish ? "child" : "enfant"}</span></p>
+                    <p className="text-lg font-bold text-primary">+CHF 15.-<span className="text-xs font-normal">/{isEnglish ? "child" : "enfant"}</span></p>
                   </div>
                 </div>
               </div>
@@ -442,7 +442,7 @@ export default function SuissesEtrangerPage() {
                           {isEnglish ? "Priority (7 days)" : "Prioritaire (7 jours)"}
                         </span>
                         <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                          +CHF 20
+                          +CHF 30
                         </span>
                       </div>
                       <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border">
