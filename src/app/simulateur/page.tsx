@@ -22,7 +22,6 @@ import {
   Home,
   Briefcase,
   ArrowRight,
-  MapPin,
   TrendingUp,
   Percent,
 } from "lucide-react";
@@ -321,22 +320,6 @@ export default function SimulateurPage() {
                     </h3>
                     <p className="text-sm text-muted-foreground">
                       Calculez votre droit à la baisse de loyer selon le taux hypothécaire
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/simulateur/carte-impots">
-                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
-                  <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center mb-3">
-                      <MapPin className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                      Carte des Impôts
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Comparez les taux d'imposition par canton sur la carte
                     </p>
                   </CardContent>
                 </Card>
