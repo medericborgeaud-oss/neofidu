@@ -33,7 +33,7 @@ const faqSchema = {
       name: "How much does a tax return cost at NeoFidu?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "NeoFidu offers Swiss tax returns starting from CHF 50 (Basic for simple situations), CHF 100 (Comfort for property owners or families), and CHF 150 (Integral for complex portfolios). All prices include 8.1% VAT. The exact price is calculated instantly when you fill out our online form.",
+        text: "NeoFidu offers Swiss tax returns starting from CHF 89 (Basic for simple situations), CHF 149 (Comfort for property owners or families), and CHF 249 (Integral for complex portfolios). All prices include 8.1% VAT. The exact price is calculated instantly when you fill out our online form.",
       },
     },
     {
