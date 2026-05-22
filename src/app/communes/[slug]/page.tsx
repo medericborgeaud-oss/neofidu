@@ -135,7 +135,7 @@ export default async function CommunePage({ params }: Props) {
   // CTA contextuel
   const ctaText = {
     text: `Vous habitez à ${commune.nom} ?`,
-    offer: "Déclaration d'impôts dès CHF 50.—",
+    offer: "Déclaration d'impôts dès CHF 89.—",
     href: "/demande",
   };
 
