@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Tax Returns for Expats in Switzerland",
-  description: "Swiss tax returns for expats & foreigners in Switzerland. English service. Impôt à la source (quellensteuer), B/C permit holders. From CHF 50. Geneva, Lausanne, Zurich.",
+  description: "Swiss tax returns for expats & foreigners in Switzerland. English service. Impôt à la source (quellensteuer), B/C permit holders. From CHF 89. Geneva, Lausanne, Zurich.",
   keywords: [
     // High-priority expat keywords
     "expat tax return switzerland",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Tax Returns for Expats in Switzerland",
-    description: "English-speaking tax service for expats. B/C permits, international employees. From CHF 50.",
+    description: "English-speaking tax service for expats. B/C permits, international employees. From CHF 89.",
     type: "website",
     locale: "en_CH",
     siteName: "NeoFidu",
@@ -230,7 +230,7 @@ const expatFaqSchema = {
       name: "How much does it cost to file taxes for expats in Switzerland?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "At NeoFidu, expat tax returns start from CHF 50 for simple cases. More complex situations with property, investments, or international income range from CHF 100 to CHF 150. All prices are transparent with no hidden fees.",
+        text: "At NeoFidu, expat tax returns start from CHF 89 for simple cases. More complex situations with property, investments, or international income range from CHF 149 to CHF 249. All prices are transparent with no hidden fees.",
       },
     },
     {
