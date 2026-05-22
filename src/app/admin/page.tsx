@@ -2514,7 +2514,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                           <div className="flex items-center gap-2 mb-2">
                             <Globe className="w-4 h-4 text-amber-600" />
                             <span className="font-semibold text-amber-800">Suisse de l'étranger</span>
-                            <Badge className="bg-amber-100 text-amber-700 text-xs">+CHF 50.-</Badge>
+                            <Badge className="bg-amber-100 text-amber-700 text-xs">+CHF 60.-</Badge>
                           </div>
                           <div className="grid grid-cols-2 gap-2 text-sm">
                             <p className="text-amber-700">Pays de résidence</p>
