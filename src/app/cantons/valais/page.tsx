@@ -34,7 +34,7 @@ export default function ValaisPage() {
       description: isEnglish
         ? "Complete tax return for Valais residents, employees and families."
         : "Déclaration d'impôts complète pour résidents valaisans, salariés et familles.",
-      price: isEnglish ? "From CHF 50.-" : "Dès CHF 50.-"
+      price: isEnglish ? "From CHF 89.-" : "Dès CHF 89.-"
     },
     {
       icon: Home,
@@ -42,7 +42,7 @@ export default function ValaisPage() {
       description: isEnglish
         ? "Specific declaration for owners of chalets and apartments in resort areas."
         : "Déclaration spécifique pour propriétaires de chalets et appartements en station.",
-      price: isEnglish ? "From CHF 100.-" : "Dès CHF 100.-"
+      price: isEnglish ? "From CHF 149.-" : "Dès CHF 149.-"
     },
     {
       icon: Building2,
