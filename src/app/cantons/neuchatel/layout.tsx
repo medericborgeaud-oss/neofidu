@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Neuchâtel 2026",
-  description: "Fiduciaire en ligne pour le canton de Neuchâtel. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes. Dès CHF 50.",
+  description: "Fiduciaire en ligne pour le canton de Neuchâtel. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes. Dès CHF 89.",
   keywords: [
     "déclaration impôts Neuchâtel",
     "impôts La Chaux-de-Fonds",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Déclaration d'impôts Neuchâtel 2026",
     description:
-      "Expert fiduciaire pour votre déclaration d'impôts neuchâteloise. Spécialiste industrie horlogère. Dès CHF 50.-",
+      "Expert fiduciaire pour votre déclaration d'impôts neuchâteloise. Spécialiste industrie horlogère. Dès CHF 89.-",
     url: "https://www.neofidu.ch/cantons/neuchatel",
     type: "website",
     locale: "fr_CH",
