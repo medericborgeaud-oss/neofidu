@@ -364,7 +364,7 @@ export function CommunesDashboard({
             Vous habitez en Suisse romande ?
           </p>
           <p className="text-sm text-emerald-600">
-            Déclaration d&apos;impôts dès CHF 50.— | Comptabilité dès CHF
+            Déclaration d&apos;impôts dès CHF 89.— | Comptabilité dès CHF
             500.—/an
           </p>
         </div>
