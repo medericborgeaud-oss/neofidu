@@ -6,7 +6,6 @@ import { Footer } from "@/components/Footer";
 
 // Lazy load components below the fold for faster initial page load
 const Simulators = dynamic(() => import("@/components/Simulators").then(mod => ({ default: mod.Simulators })), { ssr: true });
-const SwissMapBanner = dynamic(() => import("@/components/SwissMapBanner").then(mod => ({ default: mod.SwissMapBanner })), { ssr: true });
 const Services = dynamic(() => import("@/components/Services").then(mod => ({ default: mod.Services })), { ssr: true });
 const Pricing = dynamic(() => import("@/components/Pricing").then(mod => ({ default: mod.Pricing })), { ssr: true });
 const About = dynamic(() => import("@/components/About").then(mod => ({ default: mod.About })), { ssr: true });
@@ -84,7 +83,6 @@ export default function Home() {
       <Simulators />
       <Services />
       <Pricing />
-      <SwissMapBanner />
       <About />
       <Contact />
       <Footer />
