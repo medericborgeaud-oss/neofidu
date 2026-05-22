@@ -14,7 +14,7 @@ const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ defa
 
 export const metadata: Metadata = {
   title: "Fiduciaire en Ligne Suisse | Déclaration d’impôts | NeoFidu",
- description: "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 50, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
+ description: "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 89, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
   keywords: [
     // Expat-specific keywords (high priority)
     "expat tax return switzerland",
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
     "fiduciaire Monthey",
   ],
   openGraph: {
-    title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 50",
-    description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 50. Service bilingue FR/EN.",
+    title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 89",
+    description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 89. Service bilingue FR/EN.",
     url: "https://www.neofidu.ch",
     type: "website",
     siteName: "NeoFidu",
