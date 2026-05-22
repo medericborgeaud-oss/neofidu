@@ -116,7 +116,7 @@ export default function BannersPage() {
                 Déclaration d&apos;impôts en ligne
               </div>
               <div className="text-white/70 text-xs mb-5">
-                Suisse romande • Dès CHF 50.-
+                Suisse romande • Dès CHF 89.-
               </div>
               <div className="bg-white text-teal-600 px-7 py-3 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg relative z-10">
                 Démarrer maintenant
@@ -301,7 +301,7 @@ export default function BannersPage() {
                     <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="20 6 9 17 4 12"/>
                     </svg>
-                    Dès CHF 50.-
+                    Dès CHF 89.-
                   </span>
                 </div>
                 <span className="bg-white text-teal-600 px-5 py-2.5 rounded-full font-bold text-sm shadow-lg">
@@ -370,7 +370,7 @@ export default function BannersPage() {
                 Démarrer →
               </span>
               <div className="text-white/60 text-[10px] mt-4">
-                Dès CHF 50.-
+                Dès CHF 89.-
               </div>
             </div>
           </div>
