@@ -33,7 +33,7 @@ export const translations = {
       cta2: "Découvrir nos services",
       badge1: "100% en ligne",
       badge2: "6 cantons",
-      badge3: "Dès CHF 50.-",
+      badge3: "Dès CHF 89.-",
     },
     // Services section
     services: {
@@ -734,7 +734,7 @@ export const translations = {
         pricingBadge: "Tarif Suisse de l'étranger",
         pricingIndividual: "Déclaration individuelle",
         pricingIndividualDesc: "Personne seule résidant à l'étranger",
-        pricingBase: "Base CHF 50.- + Supplément étranger CHF 50.-",
+        pricingBase: "Base CHF 89.- + Supplément étranger CHF 89.-",
         supplementsTitle: "Suppléments selon votre situation :",
         supplementCouple: "Couple",
         supplementSelfEmployed: "Indépendant",
@@ -802,7 +802,7 @@ export const translations = {
       cta2: "Discover our services",
       badge1: "100% online",
       badge2: "6 cantons",
-      badge3: "From CHF 50.-",
+      badge3: "From CHF 89.-",
     },
     // Services section
     services: {
@@ -1503,7 +1503,7 @@ export const translations = {
         pricingBadge: "Swiss abroad rate",
         pricingIndividual: "Individual declaration",
         pricingIndividualDesc: "Single person living abroad",
-        pricingBase: "Base CHF 50.- + Foreign supplement CHF 50.-",
+        pricingBase: "Base CHF 89.- + Foreign supplement CHF 89.-",
         supplementsTitle: "Supplements according to your situation:",
         supplementCouple: "Couple",
         supplementSelfEmployed: "Self-employed",
