@@ -32,7 +32,7 @@ export default function JuraPage() {
       description: isEnglish
         ? "Complete tax return for Jura residents, employees and families."
         : "Déclaration d'impôts complète pour résidents jurassiens, salariés et familles.",
-      price: isEnglish ? "From CHF 50.-" : "Dès CHF 50.-"
+      price: isEnglish ? "From CHF 89.-" : "Dès CHF 89.-"
     },
     {
       icon: Tractor,
@@ -40,7 +40,7 @@ export default function JuraPage() {
       description: isEnglish
         ? "Accounting and taxation adapted to Jura agricultural operations."
         : "Comptabilité et fiscalité adaptées aux exploitations agricoles jurassiennes.",
-      price: isEnglish ? "From CHF 150.-" : "Dès CHF 150.-"
+      price: isEnglish ? "From CHF 249.-" : "Dès CHF 249.-"
     },
     {
       icon: Building2,
