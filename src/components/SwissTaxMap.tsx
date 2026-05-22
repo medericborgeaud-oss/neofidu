@@ -149,14 +149,14 @@ export function SwissTaxMap() {
         <span className="text-sm text-muted-foreground">Impots eleves</span>
       </div>
 
-      <div className="relative">
+      <div className="flex flex-col lg:flex-row lg:items-start gap-4">
         {/* Carte centrée et agrandie */}
-        <div className="w-full max-w-4xl mx-auto bg-slate-50 rounded-xl p-4 md:p-6">
+        <div className="flex-1 min-w-0 bg-slate-50 rounded-xl p-4 md:p-6">
           <SwissMapSVG onCantonSelect={handleCantonSelect} />
         </div>
 
         {/* Card d'info - positionnée en overlay sur desktop */}
-        <Card className="w-full lg:w-80 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:mr-4 mt-4 lg:mt-0 shadow-xl">
+        <Card className="w-full lg:w-80 lg:shrink-0 shadow-xl">
           <CardContent className="p-6">
             {cantonInfo ? (
               <>
