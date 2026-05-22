@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Jura 2026",
-  description: "Fiduciaire en ligne pour le canton du Jura. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes diplômés. Dès CHF 50.",
+  description: "Fiduciaire en ligne pour le canton du Jura. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes diplômés. Dès CHF 89.",
   keywords: [
     "déclaration impôts Jura",
     "impôts Delémont",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Déclaration d'impôts Jura 2026",
     description:
-      "Expert fiduciaire pour votre déclaration d'impôts jurassienne. Spécialiste exploitations agricoles. Dès CHF 50.-",
+      "Expert fiduciaire pour votre déclaration d'impôts jurassienne. Spécialiste exploitations agricoles. Dès CHF 89.-",
     url: "https://www.neofidu.ch/cantons/jura",
     type: "website",
     locale: "fr_CH",
