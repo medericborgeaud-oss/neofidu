@@ -78,7 +78,7 @@ export default function ChatimontBannerPage() {
                   Déclaration d&apos;impôts 100% en ligne
                 </div>
                 <div className="text-white/70 text-sm">
-                  Fiduciaire digitale suisse • Dès CHF 50.- • Vaud, Valais, Genève, Fribourg
+                  Fiduciaire digitale suisse • Dès CHF 89.- • Vaud, Valais, Genève, Fribourg
                 </div>
               </div>
 
@@ -143,7 +143,7 @@ export default function ChatimontBannerPage() {
                   Déclaration d&apos;impôts en ligne
                 </div>
                 <div className="text-white/60 text-xs">
-                  Vaud • Valais • Genève • Fribourg — Dès CHF 50.-
+                  Vaud • Valais • Genève • Fribourg — Dès CHF 89.-
                 </div>
               </div>
 
@@ -198,7 +198,7 @@ export default function ChatimontBannerPage() {
                 <span className="text-gray-400 mx-2">•</span>
                 <span>Suisse romande</span>
                 <span className="text-gray-400 mx-2">•</span>
-                <span className="font-semibold" style={{ color: "#14b8a6" }}>Dès CHF 50.-</span>
+                <span className="font-semibold" style={{ color: "#14b8a6" }}>Dès CHF 89.-</span>
               </div>
 
               <div
@@ -276,7 +276,7 @@ export default function ChatimontBannerPage() {
                   color: "white",
                 }}
               >
-                Dès CHF 50.- →
+                Dès CHF 89.- →
               </div>
             </div>
           </div>
