@@ -63,10 +63,10 @@ export async function POST(request: NextRequest) {
       validationErrors.push("Numéro de contribuable manquant");
     }
 
-    // Validation du montant (minimum CHF 50)
+    // Validation du montant (minimum CHF 89)
     const amount = Number(body.amount);
-    if (isNaN(amount) || amount < 50) {
-      validationErrors.push("Montant invalide (minimum CHF 50)");
+    if (isNaN(amount) || amount < 89) {
+      validationErrors.push("Montant invalide (minimum CHF 89)");
     }
     if (amount > 10000) {
       validationErrors.push("Montant trop élevé (maximum CHF 10'000)");
