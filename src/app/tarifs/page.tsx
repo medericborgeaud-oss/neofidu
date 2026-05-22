@@ -32,7 +32,7 @@ const pricingData = {
       nameen: "Basic",
       description: "Dossiers sans complexité",
       descriptionen: "Simple cases",
-      price: "50",
+      price: "89",
       priceNote: "dès",
       features: [
         "Personne seule",
@@ -55,7 +55,7 @@ const pricingData = {
       nameen: "Comfort",
       description: "Formule plébiscitée",
       descriptionen: "Most popular",
-      price: "100",
+      price: "149",
       priceNote: "dès",
       features: [
         "Inclut la formule Basique",
@@ -80,7 +80,7 @@ const pricingData = {
       nameen: "Integral",
       description: "Patrimoine diversifié",
       descriptionen: "Diversified assets",
-      price: "150",
+      price: "249",
       priceNote: "dès",
       features: [
         "Inclut la formule Confort",
@@ -105,24 +105,24 @@ const pricingData = {
       nameen: "Swiss Abroad",
       description: "Déclaration depuis l'étranger",
       descriptionen: "Filing from abroad",
-      price: "100",
+      price: "149",
       priceNote: "dès",
       features: [
         "Déclaration fiscale complète",
-        "Couple: +CHF 20.-",
+        "Couple: +CHF 30.-",
         "Indépendant: +CHF 40.-",
-        "Bien immobilier: +CHF 50.-/bien",
-        "Enfant: +CHF 10.-/enfant",
+        "Bien immobilier: +CHF 60.-/bien",
+        "Enfant: +CHF 15.-/enfant",
 
-        "Actions (≥3): +CHF 20.-",],
+        "Actions (≥3): +CHF 30.-",],
       featuresen: [
         "Complete tax return",
-        "Couple: +CHF 20.-",
+        "Couple: +CHF 30.-",
         "Self-employed: +CHF 40.-",
-        "Property: +CHF 50.-/property",
-        "Child: +CHF 10.-/child",
+        "Property: +CHF 60.-/property",
+        "Child: +CHF 15.-/child",
 
-        "Securities (≥3): +CHF 20.-",],
+        "Securities (≥3): +CHF 30.-",],
       popular: false,
       isSwissAbroad: true,
     },
@@ -209,8 +209,8 @@ const comparisonData = [
   {
     feature: "Prix déclaration simple",
     featureen: "Simple tax return price",
-    neoFidu: "Dès CHF 50.-",
-    neoFiduen: "From CHF 50.-",
+    neoFidu: "Dès CHF 89.-",
+    neoFiduen: "From CHF 89.-",
     traditional: "CHF 150.- à 300.-",
     traditionalen: "CHF 150.- to 300.-",
   },
@@ -291,7 +291,7 @@ export default function TarifsPage() {
       "@type": "Offer",
       "price": "50",
       "priceCurrency": "CHF",
-      "priceRange": "CHF 50 - CHF 1490",
+      "priceRange": "CHF 89 - CHF 1490",
       "url": "https://www.neofidu.ch/tarifs"
     },
     "hasOfferCatalog": {
@@ -628,8 +628,8 @@ export default function TarifsPage() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {(isEnglish
-                        ? ["Couple: +CHF 20.-", "Child: +CHF 10.-/child", "Property: +CHF 50.-/bien", "Securities (≥3): +CHF 20.-"]
-                        : ["Couple: +CHF 20.-", "Enfant: +CHF 10.-/enfant", "Bien immobilier: +CHF 50.-/bien", "Actions (≥3): +CHF 20.-"]
+                        ? ["Couple: +CHF 30.-", "Child: +CHF 15.-/child", "Property: +CHF 60.-/bien", "Securities (≥3): +CHF 30.-"]
+                        : ["Couple: +CHF 30.-", "Enfant: +CHF 15.-/enfant", "Bien immobilier: +CHF 60.-/bien", "Actions (≥3): +CHF 30.-"]
                       ).map((item, idx) => (
                         <span key={idx} className="text-xs bg-white border border-primary/20 rounded-full px-3 py-1 text-primary font-medium">
                           {item}
@@ -669,7 +669,7 @@ export default function TarifsPage() {
                             {isEnglish ? "Priority (7 days)" : "Prioritaire (7 jours)"}
                           </span>
                           <Badge variant="secondary" className="bg-amber-100 text-amber-700 text-xs">
-                            +CHF 20
+                            +CHF 30
                           </Badge>
                         </div>
                         <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border">
