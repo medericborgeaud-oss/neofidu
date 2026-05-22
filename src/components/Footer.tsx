@@ -33,7 +33,6 @@ export function Footer() {
       { label: isEnglish ? "Net salary calculator" : "Simulateur salaire net", href: "/simulateur/salaire-net" },
       { label: isEnglish ? "Property tax simulator" : "Simulateur valeur locative", href: "/simulateur/valeur-locative" },
       { label: isEnglish ? "Real estate gain tax" : "Gain immobilier", href: "/simulateur/gain-immobilier" },
-      { label: isEnglish ? "Swiss tax map" : "Carte des impôts suisses", href: "/simulateur/carte-impots" },
       { label: isEnglish ? "Retirement simulator" : "Simulateur retraite", href: "/simulateur/retraite" },
       { label: isEnglish ? "Swiss debt clock" : "Compteur dette suisse", href: isEnglish ? "/swiss-debt" : "/dette-suisse" },
     ],
