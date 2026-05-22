@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Suisses à l'étranger 2026",
-  description: "Déclaration d'impôts pour les Suisses résidant à l'étranger. Gérez vos impôts suisses depuis n'importe où dans le monde. 100% en ligne. Dès CHF 100.-",
+  description: "Déclaration d'impôts pour les Suisses résidant à l'étranger. Gérez vos impôts suisses depuis n'importe où dans le monde. 100% en ligne. Dès CHF 149.-",
   keywords: [
     // French - primary audience
     "suisse de l'étranger impôts",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Déclaration d'impôts Suisses à l'étranger 2026",
-    description: "Gérez vos impôts suisses depuis l'étranger. Service 100% en ligne pour les expatriés suisses. Dès CHF 100.-",
+    description: "Gérez vos impôts suisses depuis l'étranger. Service 100% en ligne pour les expatriés suisses. Dès CHF 149.-",
     type: "website",
     locale: "fr_CH",
     siteName: "NeoFidu",
