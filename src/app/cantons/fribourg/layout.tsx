@@ -37,7 +37,7 @@ const fribourgSchema = {
   "description": "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité",
   "url": "https://www.neofidu.ch/cantons/fribourg",
   "logo": "https://www.neofidu.ch/logo.svg",
-  "priceRange": "CHF 50 - CHF 500",
+  "priceRange": "CHF 89 - CHF 500",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Fribourg",
