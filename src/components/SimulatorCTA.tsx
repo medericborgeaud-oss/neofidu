@@ -9,8 +9,8 @@ export function SimulatorCTA() {
   const { isEnglish } = useLanguage();
 
   const bullets = isEnglish
-    ? ["From CHF 50", "100% digital", "Certified specialists"]
-    : ["Dès CHF 50", "100% digital", "Spécialistes diplômés"];
+    ? ["From CHF 89", "100% digital", "Certified specialists"]
+    : ["Dès CHF 89", "100% digital", "Spécialistes diplômés"];
 
   return (
     <section className="bg-gradient-to-br from-primary via-teal-600 to-emerald-700 text-white py-16 mt-8">
