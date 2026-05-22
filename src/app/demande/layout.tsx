@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d’impôts en Ligne | Devis gratuit",
-  description: "Déposez votre demande de déclaration d’impôts en ligne en Suisse romande. Devis personnalisé immédiat. Dès CHF 50.",
+  description: "Déposez votre demande de déclaration d’impôts en ligne en Suisse romande. Devis personnalisé immédiat. Dès CHF 89.",
   keywords: [
     // Français - Principal
     "déclaration impôts en ligne suisse",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "tax help geneva english",
   ],
   openGraph: {
-    title: "Déclaration d'impôts en ligne | Dès CHF 50.- | Neofidu",
+    title: "Déclaration d'impôts en ligne | Dès CHF 89.- | Neofidu",
     description:
       "Service de déclaration d'impôts en ligne pour la Suisse romande. Particuliers, couples, indépendants. Devis gratuit en 2 minutes.",
     url: "https://www.neofidu.ch/demande",
@@ -86,7 +86,7 @@ const taxServiceSchema = {
   "description": "Service de déclaration d'impôts en ligne pour particuliers, couples et indépendants en Suisse romande. 100% digital, tarifs transparents.",
   "url": "https://www.neofidu.ch/demande",
   "logo": "https://www.neofidu.ch/logo.svg",
-  "priceRange": "CHF 50 - CHF 200",
+  "priceRange": "CHF 89 - CHF 200",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Crettaz 1",
@@ -170,7 +170,7 @@ const faqSchema = {
       "name": "Combien coûte une déclaration d'impôts chez Neofidu ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Les prix commencent à CHF 50.- pour la formule Basique (personne seule), CHF 100.- pour la formule Confort (famille, propriétaire), et CHF 150.- pour la formule Intégral (patrimoine diversifié). Devis gratuit en 2 minutes."
+        "text": "Les prix commencent à CHF 89.- pour la formule Basique (personne seule), CHF 149.- pour la formule Confort (famille, propriétaire), et CHF 249.- pour la formule Intégral (patrimoine diversifié). Devis gratuit en 2 minutes."
       }
     },
     {
