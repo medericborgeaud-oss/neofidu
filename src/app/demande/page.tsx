@@ -40,7 +40,7 @@ export default function DemandePage() {
     taxDesc: isEnglish
       ? "For individuals and self-employed. We prepare your declaration with all legal deductions."
       : "Pour particuliers et indépendants. Nous établissons votre déclaration avec toutes les déductions légales.",
-    taxPrice: isEnglish ? "From CHF 50.-" : "Dès CHF 50.-",
+    taxPrice: isEnglish ? "From CHF 89.-" : "Dès CHF 89.-",
     accountingTitle: isEnglish ? "Accounting" : "Comptabilité",
     accountingDesc: isEnglish
       ? "For self-employed and companies. Complete accounting management and financial statements."
