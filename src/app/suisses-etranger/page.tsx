@@ -358,7 +358,7 @@ export default function SuissesEtrangerPage() {
                   <p className="text-muted-foreground text-sm">{t("simulators.swissAbroadPage.pricingIndividualDesc")}</p>
                 </div>
                 <div className="text-center md:text-right">
-                  <p className="text-4xl font-bold text-primary">CHF 100.-</p>
+                  <p className="text-4xl font-bold text-primary">CHF 149.-</p>
                   <p className="text-sm text-muted-foreground">{t("simulators.swissAbroadPage.pricingBase")}</p>
                   <p className="text-xs text-primary font-medium mt-1">{isEnglish ? "VAT included" : "TTC"}</p>
                 </div>
@@ -380,7 +380,7 @@ export default function SuissesEtrangerPage() {
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Home className="w-5 h-5 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium">{t("simulators.swissAbroadPage.supplementProperty")}</p>
-                    <p className="text-lg font-bold text-primary">+CHF 50.-<span className="text-xs font-normal">/{isEnglish ? "property" : "bien"}</span></p>
+                    <p className="text-lg font-bold text-primary">+CHF 89.-<span className="text-xs font-normal">/{isEnglish ? "property" : "bien"}</span></p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Users className="w-5 h-5 text-primary mx-auto mb-2" />
@@ -400,7 +400,7 @@ export default function SuissesEtrangerPage() {
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="p-4 bg-white rounded-lg border">
                   <p className="font-medium text-sm mb-1">{t("simulators.swissAbroadPage.example1Title")}</p>
-                  <p className="text-2xl font-bold text-primary">CHF 100.-</p>
+                  <p className="text-2xl font-bold text-primary">CHF 149.-</p>
                   <p className="text-xs text-muted-foreground">{t("simulators.swissAbroadPage.example1Desc")}</p>
                 </div>
                 <div className="p-4 bg-white rounded-lg border">
