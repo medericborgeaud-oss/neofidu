@@ -38,7 +38,7 @@ export function Pricing() {
               Particuliers &amp; indépendants
             </p>
             <p className="text-3xl font-bold text-emerald-600 mb-1">
-              dès CHF 50.-
+              dès CHF 89.-
             </p>
             <p className="text-xs text-gray-400 mb-6">TTC • 3 formules disponibles</p>
             <Link href="/demande">
