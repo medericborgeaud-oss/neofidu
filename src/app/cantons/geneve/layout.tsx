@@ -38,7 +38,7 @@ const geneveSchema = {
   "url": "https://www.neofidu.ch/cantons/geneve",
   "logo": "https://www.neofidu.ch/logo.svg",
   "image": "https://www.neofidu.ch/og-image.svg",
-  "priceRange": "CHF 50 - CHF 500",
+  "priceRange": "CHF 89 - CHF 500",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Genève",
