@@ -29,7 +29,7 @@ export function generateCantonSchema(data: CantonSchemaData) {
       addressRegion: data.cantonNameFr,
       addressCountry: "CH",
     },
-    priceRange: "CHF 50 - CHF 1000",
+    priceRange: "CHF 89 - CHF 1000",
     currenciesAccepted: "CHF",
     paymentAccepted: "Credit Card (Visa, Mastercard)",
     areaServed: data.areaServed.map((city) => ({
