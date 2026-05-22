@@ -181,7 +181,7 @@ export function QuickActionsCTA() {
             {isEnglish ? "Tax return" : "Déclaration d'impôts"}
           </p>
           <p className="text-xs text-muted-foreground">
-            {isEnglish ? "From CHF 50.-" : "Dès CHF 50.-"}
+            {isEnglish ? "From CHF 89.-" : "Dès CHF 89.-"}
           </p>
         </Card>
       </Link>
