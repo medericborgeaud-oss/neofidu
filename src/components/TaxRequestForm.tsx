@@ -1640,21 +1640,21 @@ export function TaxRequestForm() {
 
   // Tous les prix sont TTC (chiffres ronds)
   const calculatePrice = () => {
-    let price = 50; // Prix de base TTC
+    let price = 89; // Prix de base TTC
     // {isEnglish ? "Swiss abroad supplement" : "Supplément Suisse de l'étranger"} (complexité accrue : double imposition, etc.)
-    if (formData.livesAbroad) price += 50;
+    if (formData.livesAbroad) price += 60;
     // {isEnglish ? "Couple supplement" : "Supplément couple"}
-    if (formData.familyStatus === "couple") price += 20;
+    if (formData.familyStatus === "couple") price += 30;
     // Supplément indépendant adulte 1
     if (formData.isIndependent) price += 40;
     // Supplément indépendant adulte 2 (conjoint)
     if (formData.familyStatus === "couple" && formData.isIndependent2) price += 40;
-    if (formData.hasChildren) price += 10 * formData.childrenCount;
-    if (formData.hasProperty && properties.length > 0) price += 50 * properties.length;
-    if (formData.hasStocks && formData.stocksCount >= 3) price += 20;
+    if (formData.hasChildren) price += 15 * formData.childrenCount;
+    if (formData.hasProperty && properties.length > 0) price += 60 * properties.length;
+    if (formData.hasStocks && formData.stocksCount >= 3) price += 30;
     if (formData.deliveryMethod === "post") price += 20;
     // Option téléphone supprimée
-    if (formData.deadline === "extended") price += 20;
+    if (formData.deadline === "extended") price += 30;
     if (formData.deadline === "express") price += 120;
     return price;
   };
@@ -2705,7 +2705,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                     <p className="text-sm text-amber-800 flex items-start gap-2">
                       <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
                       <span>
-                        {isEnglish ? <>A supplement of <strong>CHF 50.-</strong> applies to returns for Swiss abroad (managed abroad).</> : <>Un supplément de <strong>CHF 50.-</strong> s'applique aux déclarations pour Suisses de l'étranger (gestion à l'étranger).</>}
+                        {isEnglish ? <>A supplement of <strong>CHF 60.-</strong> applies to returns for Swiss abroad (managed abroad).</> : <>Un supplément de <strong>CHF 60.-</strong> s'applique aux déclarations pour Suisses de l'étranger (gestion à l'étranger).</>}
                       </span>
                     </p>
                   </div>
@@ -3864,7 +3864,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                     className="w-24 rounded-xl"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
-                    {isEnglish ? "CHF 20 supplement from 3 positions" : "Supplément de CHF 20 dès 3 positions"}
+                    {isEnglish ? "CHF 30 supplement from 3 positions" : "Supplément de CHF 30 dès 3 positions"}
                   </p>
                 </div>
               )}
