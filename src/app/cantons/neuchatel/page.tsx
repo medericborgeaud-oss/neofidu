@@ -32,7 +32,7 @@ export default function NeuchatelPage() {
       description: isEnglish
         ? "Complete tax return for Neuchâtel residents, employees and families."
         : "Déclaration d'impôts complète pour résidents neuchâtelois, salariés et familles.",
-      price: isEnglish ? "From CHF 50.-" : "Dès CHF 50.-"
+      price: isEnglish ? "From CHF 89.-" : "Dès CHF 89.-"
     },
     {
       icon: Watch,
