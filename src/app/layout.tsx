@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | NeoFidu",
   },
   description:
-    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 50, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
+    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 89, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -172,7 +172,7 @@ export default function RootLayout({
     ],
     // Text format for Google
     openingHours: ["Mo-Fr 09:00-17:00"],
-    priceRange: "CHF 50 - CHF 1000",
+    priceRange: "CHF 89 - CHF 1000",
     currenciesAccepted: "CHF",
     paymentAccepted: ["Credit Card", "Visa", "Mastercard", "PayPal", "Klarna", "TWINT", "Bank Transfer"],
     // Area served - cantons
@@ -333,7 +333,7 @@ export default function RootLayout({
     url: "https://www.neofidu.ch",
     name: "NeoFidu",
     alternateName: "NeoFidu",
-    description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts dès CHF 50",
+    description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts dès CHF 89",
     publisher: {
       "@id": "https://www.neofidu.ch/#organization",
     },
