@@ -5136,7 +5136,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {/* Info supplément */}
                 <div className="p-3 bg-primary/5 rounded-xl text-center">
                   <p className="text-sm text-muted-foreground">
-                   {isEnglish ? <>Supplement of <strong>CHF 50.-</strong> per property</> : <>Supplément de <strong>CHF 50.-</strong> par bien</>}
+                   {isEnglish ? <>Supplement of <strong>CHF 60.-</strong> per property</> : <>Supplément de <strong>CHF 60.-</strong> par bien</>}
                   </p>
                 </div>
               </div>
@@ -5822,12 +5822,12 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>{isEnglish ? "Declaration" : "Déclaration"} {formData.familyStatus === "couple" ? (isEnglish ? "joint" : "commune") : (isEnglish ? "individual" : "individuelle")}</span>
-                  <span>CHF 50.-</span>
+                  <span>CHF 60.-</span>
                 </div>
                 {formData.livesAbroad && (
                   <div className="flex justify-between">
                     <span>{isEnglish ? "Swiss abroad supplement" : "Supplément Suisse de l'étranger"}</span>
-                    <span>CHF 50.-</span>
+                    <span>CHF 60.-</span>
                   </div>
                 )}
                 {formData.familyStatus === "couple" && (
