@@ -31,7 +31,7 @@ export default function FribourgPage() {
       description: isEnglish
         ? "Complete tax return for Fribourg residents, employees and retirees."
         : "Déclaration d'impôts complète pour résidents fribourgeois, salariés et retraités.",
-      price: isEnglish ? "From CHF 50.-" : "Dès CHF 50.-"
+      price: isEnglish ? "From CHF 89.-" : "Dès CHF 89.-"
     },
     {
       icon: Building2,
