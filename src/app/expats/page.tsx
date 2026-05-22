@@ -48,7 +48,7 @@ export default function ExpatsPage() {
     },
     {
       icon: Calculator,
-      title: "From CHF 50",
+      title: "From CHF 89",
       description: "Transparent pricing. No hidden fees. Know the cost before you start.",
     },
   ];
@@ -130,7 +130,7 @@ export default function ExpatsPage() {
 
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               New to Switzerland? Confused by the tax system? We help foreigners and expats
-              file their Swiss tax returns in English. From CHF 50.
+              file their Swiss tax returns in English. From CHF 89.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -163,7 +163,7 @@ export default function ExpatsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-green-500" />
-                <span>From CHF 50 <span className="text-xs text-primary">(VAT incl.)</span></span>
+                <span>From CHF 89 <span className="text-xs text-primary">(VAT incl.)</span></span>
               </div>
             </div>
           </div>
@@ -303,7 +303,7 @@ export default function ExpatsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="rounded-full text-lg px-8">
               <Link href="/demande">
-                Start Now - From CHF 50 (VAT incl.)
+                Start Now - From CHF 89 (VAT incl.)
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
