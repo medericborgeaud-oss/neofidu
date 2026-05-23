@@ -107,11 +107,11 @@ export function Pricing() {
           </Link>
 
           <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
-            <img src="/payment-logos/visa.svg" alt="Visa" className="h-6" />
-            <img src="/payment-logos/mastercard.svg" alt="Mastercard" className="h-6" />
-            <img src="/payment-logos/paypal.svg" alt="PayPal" className="h-5" />
-            <img src="/payment-logos/klarna.svg" alt="Klarna" className="h-5" />
-            <img src="/payment-logos/twint.svg" alt="TWINT" className="h-6" />
+            <img src="/payment-logos/visa.svg" alt="Visa" className="h-8" />
+            <img src="/payment-logos/mastercard.svg" alt="Mastercard" className="h-8" />
+            <img src="/payment-logos/paypal.svg" alt="PayPal" className="h-7" />
+            <img src="/payment-logos/klarna.svg" alt="Klarna" className="h-7" />
+            <img src="/payment-logos/twint.svg" alt="TWINT" className="h-8" />
           </div>
         </div>
       </div>
