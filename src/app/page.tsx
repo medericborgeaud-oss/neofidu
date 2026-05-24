@@ -5,15 +5,13 @@ import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 
 // Lazy load components below the fold for faster initial page load
+const ProfileCards = dynamic(() => import("@/components/ProfileCards").then(mod => ({ default: mod.ProfileCards })), { ssr: true });
 const Simulators = dynamic(() => import("@/components/Simulators").then(mod => ({ default: mod.Simulators })), { ssr: true });
-const Services = dynamic(() => import("@/components/Services").then(mod => ({ default: mod.Services })), { ssr: true });
-const Pricing = dynamic(() => import("@/components/Pricing").then(mod => ({ default: mod.Pricing })), { ssr: true });
-const About = dynamic(() => import("@/components/About").then(mod => ({ default: mod.About })), { ssr: true });
-const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ default: mod.Contact })), { ssr: true });
+const TrustSection = dynamic(() => import("@/components/TrustSection").then(mod => ({ default: mod.TrustSection })), { ssr: true });
 
 export const metadata: Metadata = {
-  title: "Fiduciaire en Ligne Suisse | Déclaration d’impôts | NeoFidu",
- description: "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 89, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
+  title: "Fiduciaire en Ligne Suisse | Déclaration d'impôts | NeoFidu",
+  description: "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 89, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
   keywords: [
     // Expat-specific keywords (high priority)
     "expat tax return switzerland",
@@ -65,28 +63,23 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.neofidu.ch",
   },
-  // Vérification Google Search Console - À configurer avec le vrai code
-  // verification: {
-  //   google: "VOTRE_CODE_GOOGLE_SEARCH_CONSOLE",
-  // },
 };
 
+const faqSchema = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien co
+ute une déclaration d'impôts en Suisse ?","acceptedAnswer":{"@type":"Answer","text":"Chez NeoFidu, la déclaration d'impôts commence à CHF 89. Le prix varie selon la complexité de votre situation (revenus, indépendant, propriété…)."}},{"@type":"Question","name":"Puis-je faire ma déclaration d'impôts en ligne en Suisse ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Avec NeoFidu, vous envoyez vos documents depuis votre smartphone ou ordinateur. Nos spécialistes diplômés s'occupent du reste."}},{"@type":"Question","name":"NeoFidu s'adresse-t-il aux indépendants et freelances ?","acceptedAnswer":{"@type":"Answer","text":"Oui. NeoFidu accompagne les indépendants, freelances et PME pour leur déclaration d'impôts et leur comptabilité dès CHF 500/an."}},{"@type":"Question","name":"Dans quels cantons NeoFidu est-il disponible ?","acceptedAnswer":{"@type":"Answer","text":"NeoFidu couvre toute la Suisse romande : Genève, Vaud, Valais, Fribourg, Neuchâtel et Jura."}},{"@type":"Question","name":"Quels sont les délais pour la déclaration d'impôts ?","acceptedAnswer":{"@type":"Answer","text":"La date limite est généralement le 31 mars, avec prolongation possible selon le canton. NeoFidu vous aide à respecter ces échéances."}}]};
 
-const faqSchema = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien coûte une déclaration d'impôts en SuisseÂ ?","acceptedAnswer":{"@type":"Answer","text":"Chez NeoFidu, la déclaration d'impôts commence à CHFÂ 89. Le prix varie selon la complexité de votre situation (revenus, indépendant, propriété…)."}},{"@type":"Question","name":"Puis-je faire ma déclaration d'impôts en ligne en SuisseÂ ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Avec NeoFidu, vous envoyez vos documents depuis votre smartphone ou ordinateur. Nos spécialistes diplômés s'occupent du reste."}},{"@type":"Question","name":"NeoFidu s'adresse-t-il aux indépendants et freelancesÂ ?","acceptedAnswer":{"@type":"Answer","text":"Oui. NeoFidu accompagne les indépendants, freelances et PME pour leur déclaration d'impôts et leur comptabilité dès CHFÂ 500/an."}},{"@type":"Question","name":"Dans quels cantons NeoFidu est-il disponibleÂ ?","acceptedAnswer":{"@type":"Answer","text":"NeoFidu couvre toute la Suisse romandeÂ : Genève, Vaud, Valais, Fribourg, Neuchâtel et Jura."}},{"@type":"Question","name":"Quels sont les délais pour la déclaration d'impôtsÂ ?","acceptedAnswer":{"@type":"Answer","text":"La date limite est généralement le 31 mars, avec prolongation possible selon le canton. NeoFidu vous aide à respecter ces échéances."}}]};
 export default function Home() {
   return (
     <>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <Simulators />
-      <Services />
-      <Pricing />
-      <About />
-      <Contact />
-      <Footer />
-    </main>
+        <Header />
+        <Hero />
+        <ProfileCards />
+        <Simulators />
+        <TrustSection />
+        <Footer />
+      </main>
     </>
   );
 }
