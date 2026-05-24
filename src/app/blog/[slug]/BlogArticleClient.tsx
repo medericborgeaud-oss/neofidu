@@ -14,6 +14,52 @@ import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+// Contextual CTA mapping by article category
+const categoryCTA: Record<string, { title: string; description: string; link: string; linkLabel: string; simulator: { href: string; label: string } }> = {
+  fiscalite: {
+    title: "Optimisez votre fiscalité avec NeoFidu",
+    description: "Nos spécialistes diplômés prennent en charge votre déclaration d’impôts de A à Z. Résultat garanti, dès CHF 89.-",
+    link: "/demande",
+    linkLabel: "Déposer ma déclaration",
+    simulator: { href: "/simulateur/impots", label: "Simuler mes impôts gratuitement" },
+  },
+  comptabilite: {
+    title: "Confiez-nous votre comptabilité",
+    description: "Comptabilité complète pour indépendants et PME. Bouclement annuel, TVA, déclarations — on gère tout.",
+    link: "/independants",
+    linkLabel: "Découvrir nos offres",
+    simulator: { href: "/simulateur/salaire-net", label: "Calculer mon salaire net" },
+  },
+  entreprise: {
+    title: "Créez votre entreprise avec NeoFidu",
+    description: "De l’idée à l’inscription au RC : Sàrl, SA ou raison individuelle, nous vous accompagnons à chaque étape.",
+    link: "/creation-entreprise",
+    linkLabel: "Lancer mon projet",
+    simulator: { href: "/simulateur/impots", label: "Simuler la fiscalité de mon entreprise" },
+  },
+  expats: {
+    title: "Tax return made simple for expats",
+    description: "English-speaking tax specialists for permit B/C holders. We handle your Swiss tax return from start to finish.",
+    link: "/expats",
+    linkLabel: "Get started",
+    simulator: { href: "/simulateur/impots", label: "Estimate your Swiss taxes" },
+  },
+  immobilier: {
+    title: "Gérance immobilière professionnelle",
+    description: "Gestion locative, déclarations fiscales immobilières et optimisation de votre rendement — en Suisse romande.",
+    link: "/gerance-immobiliere",
+    linkLabel: "En savoir plus",
+    simulator: { href: "/simulateur/valeur-locative", label: "Simuler ma valeur locative" },
+  },
+  actualites: {
+    title: "Besoin d’accompagnement ?",
+    description: "Notre équipe est à votre disposition pour vous accompagner dans vos démarches fiscales et comptables.",
+    link: "/demande",
+    linkLabel: "Déposer une demande",
+    simulator: { href: "/simulateur/impots", label: "Simuler mes impôts" },
+  },
+};
+
 interface BlogArticleClientProps {
   article: BlogArticle;
   otherArticles: BlogArticle[];
@@ -150,20 +196,23 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50 mb-8">
-                <h3 className="text-xl font-bold mb-2">Besoin d'accompagnement ?</h3>
-                <p className="text-muted-foreground mb-6">
-                  Notre équipe est à votre disposition pour vous accompagner dans vos démarches fiscales et comptables.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild className="rounded-full">
-                    <Link href="/demande">Déposer une demande</Link>
-                  </Button>
-                  <Button asChild variant="outline" className="rounded-full">
-                    <Link href="/#contact">Nous contacter</Link>
-                  </Button>
-                </div>
-              </Card>
+              {(() => {
+                const cta = categoryCTA[article.category] || categoryCTA.actualites;
+                return (
+                  <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50 mb-8">
+                    <h3 className="text-xl font-bold mb-2">{cta.title}</h3>
+                    <p className="text-muted-foreground mb-6">{cta.description}</p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button asChild className="rounded-full">
+                        <Link href={cta.link}>{cta.linkLabel}</Link>
+                      </Button>
+                      <Button asChild variant="outline" className="rounded-full">
+                        <Link href={cta.simulator.href}>{cta.simulator.label}</Link>
+                      </Button>
+                    </div>
+                  </Card>
+                );
+              })()}
 
               {/* Quick links - expanded */}
               <div className="bg-secondary/30 rounded-xl p-6 mb-12">
