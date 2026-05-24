@@ -12,14 +12,16 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp, MapPin, Search } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp, MapPin, Search, Globe, Building2, BookOpen } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [ressourcesOpen, setRessourcesOpen] = useState(false);
+  const [particuliersOpen, setParticuliersOpen] = useState(false);
+  const [entreprisesOpen, setEntreprisesOpen] = useState(false);
+  const [outilsOpen, setOutilsOpen] = useState(false);
   const { t, locale, isEnglish } = useLanguage();
   const pathname = usePathname();
 
@@ -88,14 +90,30 @@ export function Header() {
       searchInputRef.current.focus();
     }
   }, [searchOpen]);
-  // Services dropdown items
-  const serviceItems = [
+
+  // Menu items — segmented by client profile
+  const particuliersItems = [
     {
       href: "/demande",
       label: isEnglish ? "Tax Return" : "Déclaration d'impôts",
       icon: FileText,
-      description: isEnglish ? "For individuals" : "Pour particuliers",
+      description: isEnglish ? "Personal tax filing" : "Remplir votre déclaration",
     },
+    {
+      href: "/expats",
+      label: isEnglish ? "Expats in Switzerland" : "Expatriés en Suisse",
+      icon: Globe,
+      description: isEnglish ? "Source tax & TOU" : "Impôt à la source & TOU",
+    },
+    {
+      href: "/guide/deductions-fiscales",
+      label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales",
+      icon: BookOpen,
+      description: isEnglish ? "All deductions explained" : "Toutes les déductions expliquées",
+    },
+  ];
+
+  const entreprisesItems = [
     {
       href: "/independants",
       label: isEnglish ? "Accounting" : "Comptabilité",
@@ -111,66 +129,50 @@ export function Header() {
     {
       href: "/gerance-immobiliere",
       label: isEnglish ? "Property Management" : "Gérance immobilière",
-      icon: Home,
+      icon: Building2,
       description: isEnglish ? "Vaud & Valais" : "Vaud & Valais",
     },
-    {
-      href: "/expats",
-      label: isEnglish ? "Expats" : "Expatriés",
-      icon: Users,
-      description: isEnglish ? "International clients" : "Clients internationaux",
-    },
   ];
-  const ressourcesItems = [
-    {
-      href: "/simulateur",
-      label: isEnglish ? "Simulators" : "Simulateurs",
-      icon: Calculator,
-      description: isEnglish ? "Tax, salary, 3rd pillar, retirement" : "Impôts, salaire, 3ème pilier, retraite",
-    },
-    {
-      href: "/guide/deductions-fiscales",
-      label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales",
-      icon: FileText,
-      description: isEnglish ? "All deductions explained" : "Toutes les déductions expliquées",
-    },
-    {
-      href: isEnglish ? "/swiss-debt" : "/dette-suisse",
-      label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse",
-      icon: TrendingUp,
-      description: isEnglish ? "Real-time federal debt tracker" : "Suivi en temps réel de la dette fédérale",
-    },
-    {
-      href: "simulateur/carte-impots",
-      label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse",
-      icon: ClipboardList,
-      description: isEnglish ? "Compare taxes by canton" : "Comparez les impôts par canton",
-    },
-    {
-      href: "/blog",
-      label: isEnglish ? "Blog" : "Blog",
-      icon: FileText,
-      description: isEnglish ? "News and tax advice" : "Actualités et conseils fiscaux",
-    },
-    {
-      href: "/observatoire",
-      label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
-      icon: TrendingUp,
-      description: isEnglish ? "New companies in real time" : "Créations d'entreprises en temps réel",
-    },
-    {
-      href: "/communes",
-      label: isEnglish ? "Communes" : "Communes romandes",
-      icon: MapPin,
-      description: isEnglish ? "Tax rates by municipality" : "Fiscalité par commune (VD, GE, VS, FR, NE, JU)",
-    },
-  ];
-  const navItems = [
-    { href: "/tarifs", label: t("header.pricing") },
 
-    { href: "/suivi", label: t("header.tracking"), isClient: true },
-    { href: "/contact", label: t("header.contact") },
+  const outilsItems = [
+    {
+      href: "/simulateur/impots",
+      label: isEnglish ? "Tax Simulator" : "Simulateur d'impôts",
+      icon: Calculator,
+      description: isEnglish ? "Estimate your taxes" : "Estimez vos impôts",
+    },
+    {
+      href: "/simulateur/salaire-net",
+      label: isEnglish ? "Net Salary Calculator" : "Calculateur salaire net",
+      icon: Calculator,
+      description: isEnglish ? "Gross to net" : "Du brut au net",
+    },
+    {
+      href: "/simulateur/3eme-pilier",
+      label: isEnglish ? "3rd Pillar Simulator" : "Simulateur 3ème pilier",
+      icon: TrendingUp,
+      description: isEnglish ? "Retirement savings" : "Épargne retraite",
+    },
+    {
+      href: "/simulateur/carte-impots",
+      label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse",
+      icon: MapPin,
+      description: isEnglish ? "Compare by municipality" : "Comparez par commune",
+    },
+    {
+      href: "/simulateur/baisse-loyer",
+      label: isEnglish ? "Rent Reduction" : "Baisse de loyer",
+      icon: Home,
+      description: isEnglish ? "Calculate your reduction" : "Calculez votre baisse",
+    },
+    {
+      href: "/simulateur/gain-immobilier",
+      label: isEnglish ? "Capital Gains Tax" : "Impôt gain immobilier",
+      icon: Home,
+      description: isEnglish ? "Property capital gains" : "Plus-value immobilière",
+    },
   ];
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -178,6 +180,7 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <>
       <header
@@ -204,18 +207,19 @@ export function Header() {
                 </span>
               </div>
             </Link>
+
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
-              {/* Services Dropdown */}
+            <nav className="hidden lg:flex items-center space-x-1">
+              {/* Particuliers Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-base font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
-                    {t("header.services")}
+                  <button className="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                    {isEnglish ? "Individuals" : "Particuliers"}
                     <ChevronDown className="w-4 h-4" />
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-64 p-2">
-                  {serviceItems.map((item) => (
+                  {particuliersItems.map((item) => (
                     <DropdownMenuItem key={item.href} asChild>
                       <Link
                         href={item.href}
@@ -234,23 +238,25 @@ export function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link
-                      href="/#services"
+                      href="/demande"
                       className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
                     >
-                      {isEnglish ? "View all services →" : "Voir tous les services →"}
+                      {isEnglish ? "Start my tax return →" : "Déposer ma déclaration →"}
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+
+              {/* Entreprises Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-base font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
-                    {isEnglish ? "Resources" : "Ressources"}
+                  <button className="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                    {isEnglish ? "Businesses" : "Entreprises"}
                     <ChevronDown className="w-4 h-4" />
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-64 p-2">
-                  {ressourcesItems.map((item) => (
+                  {entreprisesItems.map((item) => (
                     <DropdownMenuItem key={item.href} asChild>
                       <Link
                         href={item.href}
@@ -266,29 +272,79 @@ export function Header() {
                       </Link>
                     </DropdownMenuItem>
                   ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/independants"
+                      className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
+                    >
+                      {isEnglish ? "All business services →" : "Tous les services entreprise →"}
+                    </Link>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              {navItems.filter(item => !item.isClient).map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="px-4 py-2 rounded-full text-base font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              {/* Espace client separator */}
-              <span className="w-px h-5 bg-border mx-1" aria-hidden="true" />
-              {navItems.filter(item => item.isClient).map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-base font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all"
-                >
-                  <ClipboardList className="w-3.5 h-3.5" />
-                  {item.label}
-                </Link>
-              ))}
+
+              {/* Outils gratuits Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                    {isEnglish ? "Free Tools" : "Outils gratuits"}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-72 p-2">
+                  {outilsItems.map((item) => (
+                    <DropdownMenuItem key={item.href} asChild>
+                      <Link
+                        href={item.href}
+                        className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <item.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">{item.label}</p>
+                          <p className="text-xs text-muted-foreground">{item.description}</p>
+                        </div>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/simulateur"
+                      className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
+                    >
+                      {isEnglish ? "View all 8+ tools →" : "Voir les 8+ outils →"}
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Direct links */}
+              <Link
+                href="/blog"
+                className="px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/tarifs"
+                className="px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
+              >
+                {t("header.pricing")}
+              </Link>
+
+              {/* Suivi des demandes — small icon */}
+              <Link
+                href="/suivi"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all"
+                title={isEnglish ? "Track your request" : "Suivi des demandes"}
+              >
+                <ClipboardList className="w-3.5 h-3.5" />
+                {isEnglish ? "Tracking" : "Suivi"}
+              </Link>
+
               {/* Search button */}
               <button
                 onClick={() => setSearchOpen(true)}
@@ -300,13 +356,14 @@ export function Header() {
 
               <Button
                 asChild
-                className="ml-2 rounded-full px-6 text-base"
+                className="ml-2 rounded-full px-6 text-sm"
               >
                 <Link href="/demande">{t("header.cta")}</Link>
               </Button>
             </nav>
+
             {/* Mobile Menu */}
-            <div className="flex items-center gap-2 md:hidden">
+            <div className="flex items-center gap-2 lg:hidden">
               <LanguageSwitcher
                 variant="minimal"
                 className="text-foreground"
@@ -328,18 +385,19 @@ export function Header() {
                       <span className="text-2xl font-bold text-foreground">fidu</span>
                       <span className="text-sm text-muted-foreground">.ch</span>
                     </Link>
-                    {/* Mobile Services Section */}
+
+                    {/* Mobile Particuliers Section */}
                     <div className="border-b border-border pb-4">
                       <button
-                        onClick={() => setServicesOpen(!servicesOpen)}
+                        onClick={() => setParticuliersOpen(!particuliersOpen)}
                         className="flex items-center justify-between w-full text-lg font-medium text-foreground py-2"
                       >
-                        {t("header.services")}
-                        <ChevronDown className={`w-5 h-5 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+                        {isEnglish ? "Individuals" : "Particuliers"}
+                        <ChevronDown className={`w-5 h-5 transition-transform ${particuliersOpen ? "rotate-180" : ""}`} />
                       </button>
-                      {servicesOpen && (
+                      {particuliersOpen && (
                         <div className="mt-2 space-y-1 pl-2">
-                          {serviceItems.map((item) => (
+                          {particuliersItems.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
@@ -356,18 +414,19 @@ export function Header() {
                         </div>
                       )}
                     </div>
-                    {/* Mobile Ressources Section */}
+
+                    {/* Mobile Entreprises Section */}
                     <div className="border-b border-border pb-4">
                       <button
-                        onClick={() => setRessourcesOpen(!ressourcesOpen)}
+                        onClick={() => setEntreprisesOpen(!entreprisesOpen)}
                         className="flex items-center justify-between w-full text-lg font-medium text-foreground py-2"
                       >
-                        {isEnglish ? "Resources" : "Ressources"}
-                        <ChevronDown className={`w-5 h-5 transition-transform ${ressourcesOpen ? 'rotate-180' : ''}`} />
+                        {isEnglish ? "Businesses" : "Entreprises"}
+                        <ChevronDown className={`w-5 h-5 transition-transform ${entreprisesOpen ? "rotate-180" : ""}`} />
                       </button>
-                      {ressourcesOpen && (
-                        <div>
-                          {ressourcesItems.map((item) => (
+                      {entreprisesOpen && (
+                        <div className="mt-2 space-y-1 pl-2">
+                          {entreprisesItems.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
@@ -384,34 +443,82 @@ export function Header() {
                         </div>
                       )}
                     </div>
-                    {navItems.filter(item => !item.isClient).map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
+
+                    {/* Mobile Outils gratuits Section */}
+                    <div className="border-b border-border pb-4">
+                      <button
+                        onClick={() => setOutilsOpen(!outilsOpen)}
+                        className="flex items-center justify-between w-full text-lg font-medium text-foreground py-2"
                       >
-                        {item.label}
-                      </Link>
-                    ))}
+                        {isEnglish ? "Free Tools" : "Outils gratuits"}
+                        <ChevronDown className={`w-5 h-5 transition-transform ${outilsOpen ? "rotate-180" : ""}`} />
+                      </button>
+                      {outilsOpen && (
+                        <div className="mt-2 space-y-1 pl-2">
+                          {outilsItems.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center gap-3 py-3 text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              <item.icon className="w-5 h-5" />
+                              <div>
+                                <p className="font-medium text-foreground">{item.label}</p>
+                                <p className="text-xs">{item.description}</p>
+                              </div>
+                            </Link>
+                          ))}
+                          <Link
+                            href="/simulateur"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center gap-3 py-3 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+                          >
+                            {isEnglish ? "View all 8+ tools →" : "Voir les 8+ outils →"}
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Direct links */}
+                    <Link
+                      href="/blog"
+                      onClick={() => setIsOpen(false)}
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
+                    >
+                      Blog
+                    </Link>
+                    <Link
+                      href="/tarifs"
+                      onClick={() => setIsOpen(false)}
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
+                    >
+                      {t("header.pricing")}
+                    </Link>
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsOpen(false)}
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
+                    >
+                      Contact
+                    </Link>
+
                     {/* Espace client section */}
                     <div className="pt-3 mt-1 border-t border-border">
                       <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2 flex items-center gap-1.5">
                         <ClipboardList className="w-3.5 h-3.5" />
-                        Espace client
+                        {isEnglish ? "Client area" : "Espace client"}
                       </p>
-                      {navItems.filter(item => item.isClient).map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className="text-lg font-medium text-primary hover:text-primary/80 transition-colors py-2 border-b border-border flex items-center gap-2"
-                        >
-                          <ClipboardList className="w-4 h-4" />
-                          {item.label}
-                        </Link>
-                      ))}
+                      <Link
+                        href="/suivi"
+                        onClick={() => setIsOpen(false)}
+                        className="text-lg font-medium text-primary hover:text-primary/80 transition-colors py-2 border-b border-border flex items-center gap-2"
+                      >
+                        <ClipboardList className="w-4 h-4" />
+                        {isEnglish ? "Track my request" : "Suivi des demandes"}
+                      </Link>
                     </div>
+
                     <Button
                       asChild
                       className="w-full rounded-full mt-4"
