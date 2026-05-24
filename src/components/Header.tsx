@@ -54,8 +54,10 @@ export function Header() {
     { href: "/a-propos", label: isEnglish ? "About" : "À propos", category: "Informations" },
   ];
 
+  const normalize = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
   const filteredPages = searchQuery.length > 0
-    ? searchPages.filter(p => p.label.toLowerCase().includes(searchQuery.toLowerCase()))
+    ? searchPages.filter(p => normalize(p.label).includes(normalize(searchQuery)))
     : searchPages;
 
   const handleSearchSelect = useCallback((href: string) => {
