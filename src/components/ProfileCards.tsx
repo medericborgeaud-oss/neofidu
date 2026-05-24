@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { FileText, Calculator, Globe, Building2, ArrowRight } from "lucide-react";
+import { FileText, Calculator, Globe, Building2, ArrowRight, Users } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 
@@ -38,6 +38,15 @@ export function ProfileCards() {
           iconColor: "text-purple-600",
         },
         {
+          icon: Users,
+          title: "Swiss Abroad",
+          description: "Tax filing from abroad",
+          services: ["Tax return from abroad", "Double taxation", "Patrimony management"],
+          href: "/suisses-etranger",
+          color: "bg-teal-500/10",
+          iconColor: "text-teal-600",
+        },
+        {
           icon: Building2,
           title: "Property owner",
           description: "Property management, rental value, capital gains",
@@ -50,36 +59,45 @@ export function ProfileCards() {
     : [
         {
           icon: FileText,
-          title: "Particulier salarié",
-          description: "Déclaration, déductions, 3e pilier",
-          services: ["Déclaration dès CHF 89", "Optimisation des déductions", "Conseil 3e pilier"],
+          title: "Particulier salari\u00e9",
+          description: "D\u00e9claration, d\u00e9ductions, 3e pilier",
+          services: ["D\u00e9claration d\u00e8s CHF 89", "Optimisation des d\u00e9ductions", "Conseil 3e pilier"],
           href: "/demande",
           color: "bg-blue-500/10",
           iconColor: "text-blue-600",
         },
         {
           icon: Calculator,
-          title: "Indépendant / PME",
-          description: "Comptabilité, TVA, création d'entreprise",
-          services: ["Comptabilité dès CHF 500/an", "Déclarations TVA", "Création SÃ rl / SA"],
+          title: "Ind\u00e9pendant / PME",
+          description: "Comptabilit\u00e9, TVA, cr\u00e9ation d'entreprise",
+          services: ["Comptabilit\u00e9 d\u00e8s CHF 500/an", "D\u00e9clarations TVA", "Cr\u00e9ation S\u00e0rl / SA"],
           href: "/independants",
           color: "bg-emerald-500/10",
           iconColor: "text-emerald-600",
         },
         {
           icon: Globe,
-          title: "Expatrié en Suisse",
-          description: "Impôt Ã  la source, TOU, quasi-résident",
-          services: ["Rectification TOU", "Statut quasi-résident", "Service bilingue FR/EN"],
+          title: "Expatri\u00e9 en Suisse",
+          description: "Imp\u00f4t \u00e0 la source, TOU, quasi-r\u00e9sident",
+          services: ["Rectification TOU", "Statut quasi-r\u00e9sident", "Service bilingue FR/EN"],
           href: "/expats",
           color: "bg-purple-500/10",
           iconColor: "text-purple-600",
         },
         {
+          icon: Users,
+          title: "Suisses de l'\u00e9tranger",
+          description: "D\u00e9claration depuis l'\u00e9tranger",
+          services: ["D\u00e9claration depuis l'\u00e9tranger", "Double imposition", "Gestion du patrimoine"],
+          href: "/suisses-etranger",
+          color: "bg-teal-500/10",
+          iconColor: "text-teal-600",
+        },
+        {
           icon: Building2,
-          title: "Propriétaire immobilier",
-          description: "Gérance, valeur locative, gain immobilier",
-          services: ["Gérance immobilière", "Optimisation valeur locative", "Impôt sur le gain"],
+          title: "Propri\u00e9taire immobilier",
+          description: "G\u00e9rance, valeur locative, gain immobilier",
+          services: ["G\u00e9rance immobili\u00e8re", "Optimisation valeur locative", "Imp\u00f4t sur le gain"],
           href: "/gerance-immobiliere",
           color: "bg-orange-500/10",
           iconColor: "text-orange-600",
@@ -94,16 +112,16 @@ export function ProfileCards() {
             {isEnglish ? "YOUR SITUATION" : "VOTRE SITUATION"}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-3">
-            {isEnglish ? "You are..." : "Vous êtes..."}
+            {isEnglish ? "You are..." : "Vous \u00eates..."}
           </h2>
           <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
             {isEnglish
               ? "Select your profile and discover the services tailored to your needs."
-              : "Sélectionnez votre profil et découvrez les services adaptés Ã  vos besoins."}
+              : "S\u00e9lectionnez votre profil et d\u00e9couvrez les services adapt\u00e9s \u00e0 vos besoins."}
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
           {profiles.map((profile) => (
             <Link key={profile.href} href={profile.href}>
               <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group cursor-pointer">
@@ -121,7 +139,7 @@ export function ProfileCards() {
                 <ul className="space-y-2 mb-5">
                   {profile.services.map((service) => (
                     <li key={service} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="text-primary mt-0.5 flex-shrink-0">â¢</span>
+                      <span className="text-primary mt-0.5 flex-shrink-0">\u2022</span>
                       {service}
                     </li>
                   ))}
