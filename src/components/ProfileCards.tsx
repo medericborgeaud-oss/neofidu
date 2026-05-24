@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { FileText, Calculator, Globe, Building2, ArrowRight, Users } from "lucide-react";
+import { FileText, Calculator, Globe, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 
@@ -46,15 +46,6 @@ export function ProfileCards() {
           color: "bg-teal-500/10",
           iconColor: "text-teal-600",
         },
-        {
-          icon: Building2,
-          title: "Property owner",
-          description: "Property management, rental value, capital gains",
-          services: ["Property management", "Rental value optimization", "Capital gains tax"],
-          href: "/gerance-immobiliere",
-          color: "bg-orange-500/10",
-          iconColor: "text-orange-600",
-        },
       ]
     : [
         {
@@ -93,15 +84,6 @@ export function ProfileCards() {
           color: "bg-teal-500/10",
           iconColor: "text-teal-600",
         },
-        {
-          icon: Building2,
-          title: "Propri\u00e9taire immobilier",
-          description: "G\u00e9rance, valeur locative, gain immobilier",
-          services: ["G\u00e9rance immobili\u00e8re", "Optimisation valeur locative", "Imp\u00f4t sur le gain"],
-          href: "/gerance-immobiliere",
-          color: "bg-orange-500/10",
-          iconColor: "text-orange-600",
-        },
       ];
 
   return (
@@ -121,7 +103,7 @@ export function ProfileCards() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {profiles.map((profile) => (
             <Link key={profile.href} href={profile.href}>
               <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group cursor-pointer">
@@ -139,7 +121,7 @@ export function ProfileCards() {
                 <ul className="space-y-2 mb-5">
                   {profile.services.map((service) => (
                     <li key={service} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="text-primary mt-0.5 flex-shrink-0">\u2022</span>
+                      <span className="text-primary mt-0.5 flex-shrink-0">&bull;</span>
                       {service}
                     </li>
                   ))}
