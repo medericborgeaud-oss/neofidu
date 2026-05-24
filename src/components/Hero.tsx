@@ -23,7 +23,7 @@ export function Hero() {
 
   const subtitle = isEnglish
     ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
-    : "Envoyez votre déclaration d'impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l'étranger.";
+    : "Envoyez votre déclaration d’impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l’étranger.";
 
   const stats = isEnglish
     ? [
@@ -34,7 +34,7 @@ export function Hero() {
     : [
         { value: "24/7", label: "Disponibilité en ligne" },
         { value: "6", label: "Cantons desservis" },
-        { value: "10+", label: "Ans d'expérience" },
+        { value: "10+", label: "Ans d’expérience" },
       ];
 
   return (
@@ -110,7 +110,7 @@ export function Hero() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - simplified to 2 */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               asChild
@@ -128,39 +128,11 @@ export function Hero() {
               variant="outline"
               className="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 rounded-full px-8 py-6 text-lg font-semibold"
             >
-              <Link href="/tarifs">
-                {isEnglish ? "View our prices" : "Consulter nos prix"}
+              <Link href="/simulateur">
+                <Calculator className="mr-2 w-5 h-5" />
+                {isEnglish ? "Estimate my taxes for free" : "Simuler mes impôts gratuitement"}
               </Link>
             </Button>
-          </div>
-
-          {/* Simulator Link */}
-          <div className="mt-6 flex justify-center">
-            <Link
-              href="/simulateur"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
-            >
-              <Calculator className="w-5 h-5" />
-              <span className="text-sm md:text-base font-medium">
-                {isEnglish ? "Estimate your taxes with our free simulator" : "Estimez vos impôts avec notre simulateur gratuit"}
-              </span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          {/* Quasi-résident / TOU Notice */}
-          <div className="mt-6 flex justify-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-5 py-2.5 text-white/90 hover:bg-white/25 transition-colors group"
-            >
-              <Shield className="w-4 h-4 text-yellow-300" />
-              <span className="text-sm font-medium">
-                {isEnglish
-                  ? "Withholding tax / Quasi-resident? Contact us →"
-                  : "Impôt à la source / Quasi-résident ? Contactez-nous →"}
-              </span>
-            </Link>
           </div>
 
           {/* Trust indicators */}
