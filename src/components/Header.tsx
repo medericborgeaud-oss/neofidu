@@ -1,7 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -11,7 +12,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp, MapPin } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp, MapPin, Search } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 export function Header() {
@@ -21,6 +22,70 @@ export function Header() {
   const [ressourcesOpen, setRessourcesOpen] = useState(false);
   const { t, locale, isEnglish } = useLanguage();
   const pathname = usePathname();
+
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+
+  // Searchable pages
+  const searchPages = [
+    { href: "/simulateur/impots", label: isEnglish ? "Tax Simulator" : "Simulateur d'impôts", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/salaire-net", label: isEnglish ? "Net Salary Calculator" : "Calculateur salaire net", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/3eme-pilier", label: isEnglish ? "3rd Pillar Simulator" : "Simulateur 3ème pilier", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/valeur-locative", label: isEnglish ? "Rental Value Calculator" : "Calculateur valeur locative", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/carte-impots", label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/gain-immobilier", label: isEnglish ? "Capital Gains Tax" : "Impôt gain immobilier", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/simulateur-retraite", label: isEnglish ? "Retirement Simulator" : "Simulateur de retraite", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/baisse-loyer", label: isEnglish ? "Rent Reduction Calculator" : "Calculateur baisse de loyer", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/demande", label: isEnglish ? "Tax Return" : "Déclaration d'impôts", category: "Services" },
+    { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },
+    { href: "/creation-entreprise", label: isEnglish ? "Company Creation" : "Création d'entreprise", category: "Services" },
+    { href: "/gerance-immobiliere", label: isEnglish ? "Property Management" : "Gérance immobilière", category: "Services" },
+    { href: "/expats", label: "Expats", category: "Services" },
+    { href: "/tarifs", label: isEnglish ? "Pricing" : "Tarifs", category: "Informations" },
+    { href: "/blog", label: "Blog", category: "Informations" },
+    { href: "/contact", label: "Contact", category: "Informations" },
+    { href: "/observatoire", label: isEnglish ? "Company Observatory" : "Observatoire des entreprises", category: "Informations" },
+    { href: "/communes", label: isEnglish ? "Communes" : "Communes romandes", category: "Informations" },
+    { href: "/guide/deductions-fiscales", label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales", category: "Informations" },
+    { href: isEnglish ? "/swiss-debt" : "/dette-suisse", label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse", category: "Informations" },
+    { href: "/suivi", label: isEnglish ? "File Tracking" : "Suivi de dossier", category: "Informations" },
+    { href: "/a-propos", label: isEnglish ? "About" : "À propos", category: "Informations" },
+  ];
+
+  const filteredPages = searchQuery.length > 0
+    ? searchPages.filter(p => p.label.toLowerCase().includes(searchQuery.toLowerCase()))
+    : searchPages;
+
+  const handleSearchSelect = useCallback((href: string) => {
+    setSearchOpen(false);
+    setSearchQuery("");
+    router.push(href);
+  }, [router]);
+
+  // Cmd+K shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(prev => !prev);
+      }
+      if (e.key === "Escape") {
+        setSearchOpen(false);
+        setSearchQuery("");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Auto-focus search input
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchOpen]);
   // Services dropdown items
   const serviceItems = [
     {
@@ -222,6 +287,15 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
+              {/* Search button */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="p-2 rounded-full text-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                aria-label={isEnglish ? "Search" : "Rechercher"}
+              >
+                <Search className="w-5 h-5" />
+              </button>
+
               <Button
                 asChild
                 className="ml-2 rounded-full px-6 text-base"
@@ -350,6 +424,78 @@ export function Header() {
           </div>
         </div>
       </header>
+
+      {/* Search Overlay */}
+      {searchOpen && (
+        <div className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm" onClick={() => setSearchOpen(false)}>
+          <div
+            className="max-w-xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3 px-6 py-4 border-b">
+              <Search className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder={isEnglish ? "Search pages, tools, services..." : "Rechercher pages, outils, services..."}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && filteredPages.length > 0) {
+                    handleSearchSelect(filteredPages[0].href);
+                  }
+                }}
+                className="flex-1 text-lg outline-none bg-transparent placeholder:text-muted-foreground/60"
+              />
+              <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs font-mono text-muted-foreground bg-muted rounded border">
+                ESC
+              </kbd>
+            </div>
+            <div className="max-h-80 overflow-y-auto py-2">
+              {filteredPages.length === 0 ? (
+                <p className="px-6 py-8 text-center text-muted-foreground">
+                  {isEnglish ? "No results found" : "Aucun résultat"}
+                </p>
+              ) : (
+                Object.entries(
+                  filteredPages.reduce((acc, page) => {
+                    if (!acc[page.category]) acc[page.category] = [];
+                    acc[page.category].push(page);
+                    return acc;
+                  }, {} as Record<string, typeof searchPages>)
+                ).map(([category, pages]) => (
+                  <div key={category}>
+                    <p className="px-6 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      {category}
+                    </p>
+                    {pages.map((page) => (
+                      <button
+                        key={page.href}
+                        onClick={() => handleSearchSelect(page.href)}
+                        className="w-full text-left px-6 py-3 hover:bg-primary/5 transition-colors flex items-center justify-between group"
+                      >
+                        <span className="text-foreground group-hover:text-primary transition-colors">{page.label}</span>
+                        <span className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                          {isEnglish ? "Enter" : "Entrer"} ↵
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                ))
+              )}
+            </div>
+            <div className="px-6 py-3 border-t bg-muted/30 flex items-center justify-between text-xs text-muted-foreground">
+              <span>{isEnglish ? "Navigate with keyboard" : "Naviguer au clavier"}</span>
+              <div className="flex items-center gap-2">
+                <kbd className="px-1.5 py-0.5 bg-white rounded border text-[10px]">↵</kbd>
+                <span>{isEnglish ? "to select" : "pour ouvrir"}</span>
+                <kbd className="px-1.5 py-0.5 bg-white rounded border text-[10px] ml-2">ESC</kbd>
+                <span>{isEnglish ? "to close" : "pour fermer"}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
