@@ -50,36 +50,36 @@ export function ProfileCards() {
     : [
         {
           icon: FileText,
-          title: "Particulier salariÃ©",
-          description: "DÃ©claration, dÃ©ductions, 3e pilier",
-          services: ["DÃ©claration dÃ¨s CHF 89", "Optimisation des dÃ©ductions", "Conseil 3e pilier"],
+          title: "Particulier salarié",
+          description: "Déclaration, déductions, 3e pilier",
+          services: ["Déclaration dès CHF 89", "Optimisation des déductions", "Conseil 3e pilier"],
           href: "/demande",
           color: "bg-blue-500/10",
           iconColor: "text-blue-600",
         },
         {
           icon: Calculator,
-          title: "IndÃ©pendant / PME",
-          description: "ComptabilitÃ©, TVA, crÃ©ation d'entreprise",
-          services: ["ComptabilitÃ© dÃ¨s CHF 500/an", "DÃ©clarations TVA", "CrÃ©ation SÃ rl / SA"],
+          title: "Indépendant / PME",
+          description: "Comptabilité, TVA, création d'entreprise",
+          services: ["Comptabilité dès CHF 500/an", "Déclarations TVA", "Création SÃ rl / SA"],
           href: "/independants",
           color: "bg-emerald-500/10",
           iconColor: "text-emerald-600",
         },
         {
           icon: Globe,
-          title: "ExpatriÃ© en Suisse",
-          description: "ImpÃ´t Ã  la source, TOU, quasi-rÃ©sident",
-          services: ["Rectification TOU", "Statut quasi-rÃ©sident", "Service bilingue FR/EN"],
+          title: "Expatrié en Suisse",
+          description: "Impôt Ã  la source, TOU, quasi-résident",
+          services: ["Rectification TOU", "Statut quasi-résident", "Service bilingue FR/EN"],
           href: "/expats",
           color: "bg-purple-500/10",
           iconColor: "text-purple-600",
         },
         {
           icon: Building2,
-          title: "PropriÃ©taire immobilier",
-          description: "GÃ©rance, valeur locative, gain immobilier",
-          services: ["GÃ©rance immobiliÃ¨re", "Optimisation valeur locative", "ImpÃ´t sur le gain"],
+          title: "Propriétaire immobilier",
+          description: "Gérance, valeur locative, gain immobilier",
+          services: ["Gérance immobilière", "Optimisation valeur locative", "Impôt sur le gain"],
           href: "/gerance-immobiliere",
           color: "bg-orange-500/10",
           iconColor: "text-orange-600",
@@ -94,12 +94,12 @@ export function ProfileCards() {
             {isEnglish ? "YOUR SITUATION" : "VOTRE SITUATION"}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-3">
-            {isEnglish ? "You are..." : "Vous Ãªtes..."}
+            {isEnglish ? "You are..." : "Vous êtes..."}
           </h2>
           <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
             {isEnglish
               ? "Select your profile and discover the services tailored to your needs."
-              : "SÃ©lectionnez votre profil et dÃ©couvrez les services adaptÃ©s Ã  vos besoins."}
+              : "Sélectionnez votre profil et découvrez les services adaptés Ã  vos besoins."}
           </p>
         </div>
 
