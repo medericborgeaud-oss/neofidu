@@ -111,6 +111,12 @@ export function Header() {
       icon: BookOpen,
       description: isEnglish ? "All deductions explained" : "Toutes les déductions expliquées",
     },
+    {
+      href: "/suisses-etranger",
+      label: isEnglish ? "Swiss Abroad" : "Suisses de l'\u00e9tranger",
+      icon: Users,
+      description: isEnglish ? "Tax filing from abroad" : "D\u00e9claration depuis l'\u00e9tranger",
+    },
   ];
 
   const entreprisesItems = [
@@ -131,6 +137,12 @@ export function Header() {
       label: isEnglish ? "Property Management" : "Gérance immobilière",
       icon: Building2,
       description: isEnglish ? "Vaud & Valais" : "Vaud & Valais",
+    },
+    {
+      href: "/observatoire",
+      label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
+      icon: TrendingUp,
+      description: isEnglish ? "Market data & trends" : "Données et tendances du marché",
     },
   ];
 
@@ -170,6 +182,12 @@ export function Header() {
       label: isEnglish ? "Capital Gains Tax" : "Impôt gain immobilier",
       icon: Home,
       description: isEnglish ? "Property capital gains" : "Plus-value immobilière",
+    },
+    {
+      href: "/communes",
+      label: isEnglish ? "Commune Directory" : "Répertoire des communes",
+      icon: MapPin,
+      description: isEnglish ? "All Swiss Romand communes" : "Toutes les communes romandes",
     },
   ];
 
