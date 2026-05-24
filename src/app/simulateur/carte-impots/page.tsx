@@ -4,6 +4,8 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { Footer } from "@/components/Footer";
 import { CarteImpotsPageClient } from "./CarteImpotsPageClient";
 import { Zap } from "lucide-react";
+import { SimulatorCTA } from "@/components/SimulatorCTA";
+import { SimulatorInternalLinks } from "@/components/SimulatorInternalLinks";
 
 export const metadata: Metadata = {
   title: "Carte des Impôts Suisses 2026",
@@ -154,6 +156,8 @@ export default function CarteImpotsPage() {
               <CarteImpotsPageClient />
             </div>
           </section>
+                  <SimulatorCTA />
+          <SimulatorInternalLinks currentPage="carte-impots" />
         </main>
         <Footer />
       </div>
