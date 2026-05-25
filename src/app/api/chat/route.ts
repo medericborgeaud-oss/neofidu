@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+ mport { NextRequest, NextResponse } from "next/server";
 
 const SYSTEM_PROMPT = `Tu es l'assistant fiscal de NeoFidu, une fiduciaire 100% en ligne en Suisse romande. Tu aides les visiteurs avec leurs questions fiscales et les guides vers les bons services.
 
@@ -16,7 +16,6 @@ OPTIONS SUPPLÉMENTAIRES (s'ajoutent à la déclaration):
 - Couple: +CHF 30 | Enfant: +CHF 15/enfant
 - Bien immobilier: +CHF 60/bien | Actions (≥3): +CHF 30
 - Traitement prioritaire 7 jours: +CHF 30
-- Traitement express 48h: +CHF 120
 
 CANTONS COUVERTS: Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura
 
