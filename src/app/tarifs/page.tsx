@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -669,15 +669,6 @@ export default function TarifsPage() {
                             {isEnglish ? "Priority (7 days)" : "Prioritaire (7 jours)"}
                           </span>
                           <Badge variant="secondary" className="bg-amber-100 text-amber-700 text-xs">
-                            +CHF 120
-                          </Badge>
-                        </div>
-                        <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border">
-                          <Zap className="w-4 h-4 text-red-500" />
-                          <span className="text-sm font-medium">
-                            {isEnglish ? "Prioritaire (7j)" : "Prioritaire (7j)"}
-                          </span>
-                          <Badge variant="secondary" className="bg-red-100 text-red-700 text-xs">
                             +CHF 120
                           </Badge>
                         </div>
