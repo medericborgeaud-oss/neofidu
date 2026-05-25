@@ -423,8 +423,7 @@ function generatePDFDocument(request: TaxRequestForPDF): jsPDF {
                         request.options.deliveryMethod === "post" ? "Courrier postal" : "Électronique";
   drawRow("Mode de livraison", deliveryLabel);
   drawRow("Révision souhaitée", request.options.wantsReview ? "Oui" : "Non");
-  drawRow("Délai", request.options.deadline === "express" ? "Express (48h)" :
-                   request.options.deadline === "extended" ? "Prioritaire (7j)" : "Standard (10j)");
+  drawRow("Délai", request.options.deadline === "extended" ? "Prioritaire (7j)" : "Standard (10j)");
   if (request.options.comments) {
     y += 2;
     doc.setFontSize(9);
