@@ -43,7 +43,7 @@ const sectionsFr = [
       <p>Les délais de traitement sont les suivants :</p>
       <ul>
         <li><strong>Délai Standard :</strong> 10 jours ouvrables maximum après réception de tous les documents (inclus dans le tarif de base)</li>
-        <li><strong>Délai Prioritaire :</strong> 7 jours ouvrables maximum après réception de tous les documents (+CHF 20)</li>
+        <li><strong>Délai Prioritaire :</strong> 7 jours ouvrables maximum après réception de tous les documents (+CHF 120)</li>
         <li><strong>Délai Express :</strong> 48 heures ouvrables maximum après réception de tous les documents (+CHF 120)</li>
       </ul>
       <p>Ces délais peuvent être prolongés en cas de dossier particulièrement complexe ou de documents manquants. Le Client sera informé de tout retard prévisible.</p>
@@ -296,7 +296,7 @@ const sectionsEn = [
       <p>Processing times are as follows:</p>
       <ul>
         <li><strong>Standard Deadline:</strong> Maximum 10 business days after receipt of all documents (included in base rate)</li>
-        <li><strong>Priority Deadline:</strong> Maximum 7 business days after receipt of all documents (+CHF 20)</li>
+        <li><strong>Priority Deadline:</strong> Maximum 7 business days after receipt of all documents (+CHF 120)</li>
         <li><strong>Express Deadline:</strong> Maximum 48 business hours after receipt of all documents (+CHF 120)</li>
       </ul>
       <p>These deadlines may be extended in case of particularly complex files or missing documents. The Client will be informed of any foreseeable delay.</p>
