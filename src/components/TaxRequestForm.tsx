@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -1655,7 +1655,6 @@ export function TaxRequestForm() {
     if (formData.deliveryMethod === "post") price += 20;
     // Option téléphone supprimée
     if (formData.deadline === "extended") price += 30;
-    if (formData.deadline === "express") price += 120;
     return price;
   };
 
@@ -5273,19 +5272,6 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                     {isEnglish ? "Within 7 days (+CHF 20)" : "Sous 7 jours (+CHF 20)"}
                   </div>
                 </div>
-                <div
-                  onClick={() => updateForm("deadline", "express")}
-                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                    formData.deadline === "express"
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/30"
-                  }`}
-                >
-                  <div className="font-semibold">Express</div>
-                  <div className="text-sm text-muted-foreground">
-                    {isEnglish ? "Within 48h (+CHF 120)" : "Sous 48h (+CHF 120)"}
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -5876,12 +5862,6 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                   <div className="flex justify-between">
                     <span>{isEnglish ? "Priority processing" : "Délai prioritaire"}</span>
                     <span>CHF 20.-</span>
-                  </div>
-                )}
-                {formData.deadline === "express" && (
-                  <div className="flex justify-between">
-                    <span>{isEnglish ? "Express processing (48h)" : "Délai express (48h)"}</span>
-                    <span>CHF 120.-</span>
                   </div>
                 )}
                 <div className="border-t pt-2 mt-2">
