@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+mport type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Questions fréquentes — Impôts Suisse",
@@ -57,7 +57,7 @@ const faqSchema = {
       name: "How long does it take to complete my tax return?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Standard processing takes 10 business days. Need it faster? Choose Priority (7 days, +CHF 30) or Express (48 hours, +CHF 120). Once completed, you'll receive your tax return by email, ready to submit to the tax authorities.",
+        text: "Standard processing takes 10 business days. Need it faster? Choose Priority (7 days, +CHF 30). Once completed, you'll receive your tax return by email, ready to submit to the tax authorities.",
       },
     },
     {
