@@ -675,7 +675,7 @@ export default function TarifsPage() {
                         <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border">
                           <Zap className="w-4 h-4 text-red-500" />
                           <span className="text-sm font-medium">
-                            {isEnglish ? "Express (48h)" : "Express (48h)"}
+                            {isEnglish ? "Prioritaire (7j)" : "Prioritaire (7j)"}
                           </span>
                           <Badge variant="secondary" className="bg-red-100 text-red-700 text-xs">
                             +CHF 120
