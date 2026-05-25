@@ -186,7 +186,7 @@ const faqSchema = {
       "name": "Combien de temps prend le traitement ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Une fois tous les documents reçus, votre déclaration est traitée en 10 jours ouvrés (délai standard). Options express disponibles : Prioritaire (7 jours, +CHF 20) ou Express (48h, +CHF 120)."
+        "text": "Une fois tous les documents reçus, votre déclaration est traitée en 10 jours ouvrés (délai standard). Option prioritaire disponible (7 jours, +CHF 20)."
       }
     }
   ]
