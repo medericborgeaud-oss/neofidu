@@ -15,7 +15,7 @@ SERVICES ET TARIFS:
 OPTIONS SUPPLÉMENTAIRES (s'ajoutent à la déclaration):
 - Couple: +CHF 30 | Enfant: +CHF 15/enfant
 - Bien immobilier: +CHF 60/bien | Actions (≥3): +CHF 30
-- Traitement prioritaire 7 jours: +CHF 30
+- Traitement prioritaire 7 jours: +CHF 120
 
 CANTONS COUVERTS: Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura
 
