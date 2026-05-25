@@ -370,7 +370,7 @@ export default function SuissesEtrangerPage() {
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Users className="w-5 h-5 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium">{t("simulators.swissAbroadPage.supplementCouple")}</p>
-                    <p className="text-lg font-bold text-primary">+CHF 30.-</p>
+                    <p className="text-lg font-bold text-primary">+CHF 120.-</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Building className="w-5 h-5 text-primary mx-auto mb-2" />
@@ -432,8 +432,8 @@ export default function SuissesEtrangerPage() {
                     </h4>
                     <p className="text-muted-foreground text-sm mb-3">
                       {isEnglish
-                        ? "Speed up your tax declaration with our express options:"
-                        : "Accélérez le traitement de votre déclaration fiscale avec nos options express :"}
+                        ? "Speed up your tax declaration with our priority option:"
+                        : "Accélérez le traitement de votre déclaration fiscale avec notre option prioritaire :"}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border">
@@ -442,7 +442,7 @@ export default function SuissesEtrangerPage() {
                           {isEnglish ? "Priority (7 days)" : "Prioritaire (7 jours)"}
                         </span>
                         <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                          +CHF 30
+                          +CHF 120
                         </span>
                       </div>
                     </div>
