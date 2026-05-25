@@ -22,8 +22,8 @@ export function Hero() {
   const title3 = isEnglish ? "in French-speaking Switzerland" : "en Suisse romande";
 
   const subtitle = isEnglish
-    ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
-    : "Envoyez votre déclaration d’impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l’étranger.";
+    ? "Your tax return and accounting handled by certified specialists, directly from your smartphone. 6 cantons, rates from CHF 89."
+    : "Votre d\u00e9claration d\u2019imp\u00f4ts et comptabilit\u00e9 g\u00e9r\u00e9es par des sp\u00e9cialistes dipl\u00f4m\u00e9s, directement depuis votre smartphone. 6 cantons, tarifs d\u00e8s CHF 89.";
 
   const stats = isEnglish
     ? [
