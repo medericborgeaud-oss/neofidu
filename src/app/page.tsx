@@ -74,9 +74,15 @@ export default function Home() {
       <main className="min-h-screen">
         <Header />
         <Hero />
-        <ProfileCards />
-        <Simulators />
-        <TrustSection />
+        <section className="bg-gradient-to-b from-white to-emerald-50/40">
+            <ProfileCards />
+          </section>
+        <section className="bg-white">
+            <Simulators />
+          </section>
+        <section className="bg-gradient-to-b from-emerald-50/30 to-white">
+            <TrustSection />
+          </section>
         <Footer />
       </main>
     </>
