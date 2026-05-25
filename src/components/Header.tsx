@@ -333,7 +333,7 @@ export function Header() {
                       href="/simulateur"
                       className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
                     >
-                      {isEnglish ? "View all 8+ tools →" : "Voir les 8+ outils →"}
+                      {isEnglish ? "View all all tools →" : "Voir les tous les outils →"}
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -492,7 +492,7 @@ export function Header() {
                             onClick={() => setIsOpen(false)}
                             className="flex items-center gap-3 py-3 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
                           >
-                            {isEnglish ? "View all 8+ tools →" : "Voir les 8+ outils →"}
+                            {isEnglish ? "View all all tools →" : "Voir les tous les outils →"}
                           </Link>
                         </div>
                       )}
