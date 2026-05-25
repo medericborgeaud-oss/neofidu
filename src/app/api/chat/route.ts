@@ -1,4 +1,4 @@
- mport { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const SYSTEM_PROMPT = `Tu es l'assistant fiscal de NeoFidu, une fiduciaire 100% en ligne en Suisse romande. Tu aides les visiteurs avec leurs questions fiscales et les guides vers les bons services.
 
