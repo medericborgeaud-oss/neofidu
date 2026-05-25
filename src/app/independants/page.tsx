@@ -376,8 +376,8 @@ export default function IndependantsPage() {
                     </h4>
                     <p className="text-muted-foreground text-sm mb-3">
                       {isEnglish
-                        ? "Speed up your tax declaration with our express options:"
-                        : "Accélérez le traitement de votre déclaration fiscale avec nos options express :"}
+                        ? "Speed up your tax declaration with our priority option:"
+                        : "Accélérez le traitement de votre déclaration fiscale avec notre option prioritaire :"}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border">
@@ -386,7 +386,7 @@ export default function IndependantsPage() {
                           {isEnglish ? "Priority (7 days)" : "Prioritaire (7 jours)"}
                         </span>
                         <Badge variant="secondary" className="bg-amber-100 text-amber-700 text-xs">
-                          +CHF 20
+                          +CHF 120
                         </Badge>
                       </div>
                     </div>
