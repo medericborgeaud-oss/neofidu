@@ -45,8 +45,8 @@ const categoryCTA: Record<string, { title: string; description: string; link: st
     simulator: { href: "/simulateur/impots", label: "Estimate your Swiss taxes" },
   },
   immobilier: {
-    title: "Gérance immobilière professionnelle",
-    description: "Gestion locative, déclarations fiscales immobilières et optimisation de votre rendement — en Suisse romande.",
+    title: "Fiscalité immobilière simplifiée",
+    description: "Déclarations fiscales immobilières, valeur locative et optimisation de votre rendement — en Suisse romande.",
     link: "/entreprises",
     linkLabel: "En savoir plus",
     simulator: { href: "/simulateur/valeur-locative", label: "Simuler ma valeur locative" },
