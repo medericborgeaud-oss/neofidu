@@ -44,12 +44,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : "";
   const parts = [popText, tauxText].filter(Boolean);
 
+    const canonicalUrl = `https://www.neofidu.ch/communes/${params.slug}`;
+
   return {
     title: `Impôts à ${commune.nom} (${cantonName}) — Taux, coefficient fiscal | NeoFidu`,
     description: `Impôts à ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Comparez la fiscalité avec les communes voisines.`,
     openGraph: {
       title: `Impôts à ${commune.nom} (${cantonName}) | NeoFidu`,
       description: `Fiscalité de ${commune.nom} : ${parts.join(", ")}. Comparez avec les communes voisines.`,
+    },
+    alternates: {
+      canonical: canonicalUrl,
     },
   };
 }
