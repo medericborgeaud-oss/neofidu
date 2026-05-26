@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const formLabel = FORM_LABELS[company.legal_form] || company.legal_form;
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
 
-    const canonicalUrl = `https://www.neofidu.ch/observatoire/${params.slug}`;
+    const canonicalUrl = `https://neofidu.ch/observatoire/${params.slug}`;
 
   return {
     title: `${company.name} | Observatoire romand `,
@@ -73,7 +73,7 @@ export default async function CompanyPage({ params }: Props) {
     },
     ...(company.ide_number && { taxID: company.ide_number }),
     ...(company.purpose && { description: company.purpose.substring(0, 300) }),
-    url: `https://www.neofidu.ch/observatoire/${params.slug}`,
+    url: `https://neofidu.ch/observatoire/${params.slug}`,
   };
 
   return (
