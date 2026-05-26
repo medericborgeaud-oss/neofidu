@@ -482,8 +482,8 @@ export default function TarifsPage() {
             </p>
             <p className="text-muted-foreground text-sm mb-8">
               {isEnglish
-                ? "Fixed prices for tax returns · Personalized quote for accounting & property management. Payment in 3 installments available via Klarna. TWINT also accepted."
-                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé pour la comptabilité & gérance. Paiement en 3 fois disponible via Klarna. TWINT également accepté."}
+                ? "Fixed prices for tax returns · Personalized quote for accounting & corporate tax. Payment in 3 installments available via Klarna. TWINT also accepted."
+                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé pour la comptabilité & fiscalité entreprises. Paiement en 3 fois disponible via Klarna. TWINT également accepté."}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
@@ -519,8 +519,8 @@ export default function TarifsPage() {
             </h2>
             <p className="text-white/90 mb-4">
               {isEnglish
-                ? "No commitment. Personalized quote for accounting & property management."
-                : "Sans engagement. Devis personnalisé pour la comptabilité & gérance."}
+                ? "No commitment. Personalized quote for accounting & corporate tax."
+                : "Sans engagement. Devis personnalisé pour la comptabilité & fiscalité entreprises."}
             </p>
             <Link href="/demande">
               <Button
