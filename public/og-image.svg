@@ -37,7 +37,7 @@
     <circle cx="180" cy="-8" r="6" fill="#34D399"/>
     <text x="200" y="0">Comptabilité</text>
     <circle cx="410" cy="-8" r="6" fill="#34D399"/>
-    <text x="430" y="0">Gérance immobilière</text>
+    <text x="430" y="0">Solutions entreprises</text>
   </g>
   <!-- Cantons -->
   <text x="320" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="white" opacity="0.6">VD • VS • GE • NE • JU • FR</text>
