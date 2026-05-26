@@ -59,7 +59,7 @@ const services = [
     titleEn: "Tax return",
     description: "Déclaration fiscale optimisée pour indépendants. On maximise vos déductions.",
     descriptionEn: "Optimized tax return for self-employed. We maximize your deductions.",
-    price: "90",
+    price: "129",
     unit: "",
     features: [
       "Annexe activité indépendante",
