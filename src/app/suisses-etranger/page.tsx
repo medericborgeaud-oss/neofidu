@@ -596,7 +596,7 @@ export default function SuissesEtrangerPage() {
               {t("simulators.swissAbroadPage.contactSubtitle")}
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="flex justify-center mb-8">
               <Card className="p-6 bg-slate-800 border-slate-700">
                 <Mail className="w-8 h-8 text-primary mx-auto mb-3" />
                 <p className="font-semibold mb-1">{t("simulators.swissAbroadPage.email")}</p>
