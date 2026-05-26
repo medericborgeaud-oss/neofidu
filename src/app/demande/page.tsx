@@ -4,19 +4,20 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { TaxRequestForm } from "@/components/TaxRequestForm";
 import { AccountingRequestForm } from "@/components/AccountingRequestForm";
-import { PropertyRequestForm } from "@/components/PropertyRequestForm";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, FileText, Calculator, Home } from "lucide-react";
+import { ArrowLeft, FileText, Calculator, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { BreadcrumbLight } from "@/components/Breadcrumb";
 import { useLanguage } from "@/lib/language-context";
 
-type ServiceType = "tax" | "accounting" | "property" | null;
+type ServiceType = "tax" | "accounting" | "other" | null;
 
 export default function DemandePage() {
   const { isEnglish } = useLanguage();
+  const router = useRouter();
   const [serviceType, setServiceType] = useState<ServiceType>(null);
 
   // Prevent browser scroll restoration on refresh — always start at top
@@ -46,11 +47,9 @@ export default function DemandePage() {
       ? "For self-employed and companies. Complete accounting management and financial statements."
       : "Pour indépendants et entreprises. Gestion comptable complète et établissement de vos bilans.",
     accountingPrice: isEnglish ? "From CHF 500.-/year" : "Dès CHF 500.-/an",
-    propertyTitle: isEnglish ? "Property Management" : "Gérance immobilière",
-    propertyDesc: isEnglish
-      ? "For landlord owners. Complete management of your rental properties."
-      : "Pour propriétaires bailleurs. Gestion complète de vos biens locatifs.",
-    propertyPrice: isEnglish ? "From 5% of rents" : "Dès 5% des loyers",
+    otherTitle: isEnglish ? "Other request" : "Autre demande",
+    otherDesc: isEnglish ? "Company creation, real estate gains, consulting..." : "Création d'entreprise, gain immobilier, conseil...",
+      otherPrice: isEnglish ? "Free quote" : "Devis gratuit",
   };
 
   return (
@@ -106,18 +105,18 @@ export default function DemandePage() {
 
                 <Card
                   className="p-8 cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-amber-500 group relative"
-                  onClick={() => setServiceType("property")}
+                  onClick={() => router.push("/contact")}
                 >
                   <Badge className="absolute top-4 right-4 bg-amber-100 text-amber-700">
                     VD &amp; VS
                   </Badge>
                   <div className="text-center">
                     <div className="w-20 h-20 rounded-3xl bg-amber-500/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-500/20 transition-colors">
-                      <Home className="w-10 h-10 text-amber-600" />
+                      <MessageCircle className="w-10 h-10 text-amber-600" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-3">{t.propertyTitle}</h3>
-                    <p className="text-muted-foreground mb-6">{t.propertyDesc}</p>
-                    <div className="text-amber-600 font-semibold">{t.propertyPrice}</div>
+                    <h3 className="text-2xl font-bold mb-3">{t.otherTitle}</h3>
+                    <p className="text-muted-foreground mb-6">{t.otherDesc}</p>
+                    <div className="text-amber-600 font-semibold">{t.otherPrice}</div>
                   </div>
                 </Card>
               </div>
@@ -156,7 +155,7 @@ export default function DemandePage() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {t.changeService}
               </Button>
-              <PropertyRequestForm />
+              <div className="text-center py-12"><p className="text-lg text-gray-600">{isEnglish ? "Redirecting..." : "Redirection..."}</p></div>
             </div>
           )}
         </div>
