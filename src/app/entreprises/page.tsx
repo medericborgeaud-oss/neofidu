@@ -90,8 +90,8 @@ const advantages = [
     icon: Clock,
     title: "R\u00e9actif",
     titleEn: "Responsive",
-    description: "Interlocuteur d\u00e9di\u00e9 et r\u00e9ponse sous 24h.",
-    descriptionEn: "Dedicated contact and response within 24h.",
+    description: "Interlocuteur d\u00e9di\u00e9 et r\u00e9ponse rapide.",
+    descriptionEn: "Dedicated contact and fast response time.",
   },
   {
     icon: BadgeCheck,
@@ -283,7 +283,7 @@ export default function EntreprisesPage() {
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-white text-emerald-600 hover:bg-gray-50">
                 <Link href="/contact">
-                  {isEnglish ? "Create a company" : "Cr\u00e9er une entreprise"}
+                  {isEnglish ? "Request a quote" : "Cr\u00e9emander un devis"}
                 </Link>
               </Button>
             </div>
