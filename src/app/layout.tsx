@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | NeoFidu",
   },
   description:
-    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 89, comptabilité, gérance immobilière. Assistant IA fiscal gratuit.",
+    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 390.-, comptabilité et fiscalité des entreprises",
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -236,8 +236,8 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Gérance immobilière",
-            description: "Gestion locative complète pour propriétaires",
+            name: "Fiscalité entreprises",
+            description: "Déclarations fiscales et comptabilité pour Sàrl, SA et RI",
             provider: { "@id": "https://www.neofidu.ch/#organization" },
             serviceType: "Property Management",
             areaServed: ["Canton de Vaud", "Canton du Valais"],
@@ -307,7 +307,7 @@ export default function RootLayout({
     name: "NeoFidu",
     url: "https://www.neofidu.ch",
     logo: "https://www.neofidu.ch/logo.svg",
-    description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts, comptabilité, gérance immobilière",
+    description: "Fiduciaire digitale en Suisse romande - Déclarations fiscales, comptabilité et solutions entreprises",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Leysin",
