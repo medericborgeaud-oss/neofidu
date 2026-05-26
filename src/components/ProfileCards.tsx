@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { FileText, Calculator, Globe, Users, ArrowRight } from "lucide-react";
+import { FileText, Calculator, Globe, Users, ArrowRight, Building2 } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 
@@ -21,12 +21,21 @@ export function ProfileCards() {
         },
         {
           icon: Calculator,
-          title: "Freelancer / SME",
-          description: "Accounting, VAT, company creation",
-          services: ["Accounting from CHF 500/yr", "VAT returns", "LLC creation"],
+          title: "Freelancer",
+          description: "Tax return, bookkeeping, AVS",
+          services: ["Tax return from CHF 149", "Simplified bookkeeping", "AVS contributions"],
           href: "/independants",
           color: "bg-emerald-500/10",
           iconColor: "text-emerald-600",
+        },
+        {
+          icon: Building2,
+          title: "SME / Company",
+          description: "Accounting, VAT, company creation",
+          services: ["Accounting from CHF 500/yr", "VAT returns", "LLC creation"],
+          href: "/entreprises",
+          color: "bg-orange-500/10",
+          iconColor: "text-orange-600",
         },
         {
           icon: Globe,
@@ -50,36 +59,45 @@ export function ProfileCards() {
     : [
         {
           icon: FileText,
-          title: "Particulier salari\u00e9",
-          description: "D\u00e9claration, d\u00e9ductions, 3e pilier",
-          services: ["D\u00e9claration d\u00e8s CHF 89", "Optimisation des d\u00e9ductions", "Conseil 3e pilier"],
+          title: "Particulier salarié",
+          description: "Déclaration, déductions, 3e pilier",
+          services: ["Déclaration dès CHF 89", "Optimisation des déductions", "Conseil 3e pilier"],
           href: "/demande",
           color: "bg-blue-500/10",
           iconColor: "text-blue-600",
         },
         {
           icon: Calculator,
-          title: "Ind\u00e9pendant / PME",
-          description: "Comptabilit\u00e9, TVA, cr\u00e9ation d'entreprise",
-          services: ["Comptabilit\u00e9 d\u00e8s CHF 500/an", "D\u00e9clarations TVA", "Cr\u00e9ation S\u00e0rl / SA"],
+          title: "Indépendant",
+          description: "Déclaration, comptabilité, AVS",
+          services: ["Déclaration dès CHF 149", "Comptabilité simplifiée", "Cotisations AVS"],
           href: "/independants",
           color: "bg-emerald-500/10",
           iconColor: "text-emerald-600",
         },
         {
+          icon: Building2,
+          title: "PME / Société",
+          description: "Comptabilité, TVA, création d’entreprise",
+          services: ["Comptabilité dès CHF 500/an", "Déclarations TVA", "Création Sàrl / SA"],
+          href: "/entreprises",
+          color: "bg-orange-500/10",
+          iconColor: "text-orange-600",
+        },
+        {
           icon: Globe,
-          title: "Expatri\u00e9 en Suisse",
-          description: "Imp\u00f4t \u00e0 la source, TOU, quasi-r\u00e9sident",
-          services: ["Rectification TOU", "Statut quasi-r\u00e9sident", "Service bilingue FR/EN"],
+          title: "Expatrié en Suisse",
+          description: "Impôt à la source, TOU, quasi-résident",
+          services: ["Rectification TOU", "Statut quasi-résident", "Service bilingue FR/EN"],
           href: "/expats",
           color: "bg-purple-500/10",
           iconColor: "text-purple-600",
         },
         {
           icon: Users,
-          title: "Suisses de l'\u00e9tranger",
-          description: "D\u00e9claration depuis l'\u00e9tranger",
-          services: ["D\u00e9claration depuis l'\u00e9tranger", "Double imposition", "Gestion du patrimoine"],
+          title: "Suisses de l’étranger",
+          description: "Déclaration depuis l’étranger",
+          services: ["Déclaration depuis l’étranger", "Double imposition", "Gestion du patrimoine"],
           href: "/suisses-etranger",
           color: "bg-teal-500/10",
           iconColor: "text-teal-600",
@@ -94,42 +112,79 @@ export function ProfileCards() {
             {isEnglish ? "YOUR SITUATION" : "VOTRE SITUATION"}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-3">
-            {isEnglish ? "You are..." : "Vous \u00eates..."}
+            {isEnglish ? "You are..." : "Vous êtes..."}
           </h2>
           <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
             {isEnglish
               ? "Select your profile and discover the services tailored to your needs."
-              : "S\u00e9lectionnez votre profil et d\u00e9couvrez les services adapt\u00e9s \u00e0 vos besoins."}
+              : "Sélectionnez votre profil et découvrez les services adaptés à vos besoins."}
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {profiles.map((profile) => (
-            <Link key={profile.href} href={profile.href}>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {profiles.slice(0, 3).map((profile) => (
+            <Link key={profile.title} href={profile.href}>
               <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group cursor-pointer">
-                <div className={`w-14 h-14 rounded-2xl ${profile.color} flex items-center justify-center mb-5`}>
-                  <profile.icon className={`w-7 h-7 ${profile.iconColor}`} />
+                <div className="flex flex-col h-full">
+                  <div className={`p-3 rounded-xl w-fit mb-4 ${profile.color}`}>
+                    <profile.icon className={`h-6 w-6 ${profile.iconColor}`} />
+                  </div>
+
+                  <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">
+                    {profile.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {profile.description}
+                  </p>
+
+                  <ul className="space-y-2 mb-5">
+                    {profile.services.map((s) => (
+                      <li key={s} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className={`${profile.iconColor} mt-0.5 flex-shrink-0`}>•</span>
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <span className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all mt-auto">
+                    {isEnglish ? "Learn more" : "En savoir plus"}
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
 
-                <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">
-                  {profile.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {profile.description}
-                </p>
+        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto mt-6">
+          {profiles.slice(3, 5).map((profile) => (
+            <Link key={profile.title} href={profile.href}>
+              <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group cursor-pointer">
+                <div className="flex flex-col h-full">
+                  <div className={`p-3 rounded-xl w-fit mb-4 ${profile.color}`}>
+                    <profile.icon className={`h-6 w-6 ${profile.iconColor}`} />
+                  </div>
 
-                <ul className="space-y-2 mb-5">
-                  {profile.services.map((service) => (
-                    <li key={service} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="text-primary mt-0.5 flex-shrink-0">&bull;</span>
-                      {service}
-                    </li>
-                  ))}
-                </ul>
+                  <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">
+                    {profile.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {profile.description}
+                  </p>
 
-                <div className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all mt-auto">
-                  {isEnglish ? "Learn more" : "En savoir plus"}
-                  <ArrowRight className="w-4 h-4" />
+                  <ul className="space-y-2 mb-5">
+                    {profile.services.map((s) => (
+                      <li key={s} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className={`${profile.iconColor} mt-0.5 flex-shrink-0`}>•</span>
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <span className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all mt-auto">
+                    {isEnglish ? "Learn more" : "En savoir plus"}
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
               </Card>
             </Link>
