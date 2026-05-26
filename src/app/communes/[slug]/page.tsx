@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : "";
   const parts = [popText, tauxText].filter(Boolean);
 
-    const canonicalUrl = `https://www.neofidu.ch/communes/${params.slug}`;
+    const canonicalUrl = `https://neofidu.ch/communes/${params.slug}`;
 
   return {
     title: `Impôts à ${commune.nom} (${cantonName}) — Taux, coefficient fiscal`,
