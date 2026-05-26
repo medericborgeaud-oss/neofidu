@@ -47,7 +47,7 @@ const categoryCTA: Record<string, { title: string; description: string; link: st
   immobilier: {
     title: "Gérance immobilière professionnelle",
     description: "Gestion locative, déclarations fiscales immobilières et optimisation de votre rendement — en Suisse romande.",
-    link: "/gerance-immobiliere",
+    link: "/entreprises",
     linkLabel: "En savoir plus",
     simulator: { href: "/simulateur/valeur-locative", label: "Simuler ma valeur locative" },
   },
