@@ -3,7 +3,7 @@
 
 import { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@supabhase/supabase-js";
 
 const baseUrl = "https://neofidu.ch";
 const BATCH_SIZE = 2000;
@@ -88,7 +88,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
       createEntry("/creation-entreprise", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
 
       // Property management
-      createEntry("/gerance-immobiliere", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+      createEntry("/entreprises", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
 
       // FAQ
       createEntry("/faq", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
