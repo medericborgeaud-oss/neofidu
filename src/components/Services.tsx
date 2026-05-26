@@ -15,7 +15,7 @@ import {
   BarChart3,
   FileCheck,
   Rocket,
-  Home,
+  Building2,
   Key,
   Wrench,
   FileSpreadsheet
@@ -118,52 +118,41 @@ export function Services() {
         },
       ];
 
-  const propertyServices = isEnglish
+  const enterpriseServices = isEnglish
     ? [
         {
-          icon: Key,
-          title: "Rental Management",
-          description: "Tenant search, lease drafting, inventory and payment tracking.",
+          title: "Corporate Tax Filing",
+          description: "Annual tax returns for sole proprietorships, LLCs and corporations.",
+          icon: FileText,
         },
         {
-          icon: Wrench,
-          title: "Technical Monitoring",
-          description: "Coordination of maintenance work, claims management and liaison with contractors.",
+          title: "Business Accounting",
+          description: "Bookkeeping, financial statements and annual closings.",
+          icon: Calculator,
         },
         {
-          icon: FileSpreadsheet,
-          title: "Property Accounting",
-          description: "Expense statements, annual closing and financial reporting for owners.",
-        },
-        {
-          icon: Home,
-          title: "Wealth Advisory",
-          description: "Rental yield optimization and support for your real estate projects.",
+          title: "Company Formation",
+          description: "Assistance with business registration and legal setup.",
+          icon: Building2,
         },
       ]
     : [
         {
-          icon: Key,
-          title: "Gestion locative",
-          description: "Recherche de locataires, rédaction des baux, états des lieux et suivi des encaissements.",
+          title: "Fiscalité des entreprises",
+          description: "Déclarations fiscales pour raisons individuelles, Sàrl et SA.",
+          icon: FileText,
         },
         {
-          icon: Wrench,
-          title: "Suivi technique",
-          description: "Coordination des travaux d'entretien, gestion des sinistres et relation avec les artisans.",
+          title: "Comptabilité",
+          description: "Tenue de comptes, états financiers et bouclements annuels.",
+          icon: Calculator,
         },
         {
-          icon: FileSpreadsheet,
-          title: "Comptabilité immobilière",
-          description: "Décomptes de charges, bouclement annuel et reporting financier pour propriétaires.",
-        },
-        {
-          icon: Home,
-          title: "Conseil patrimonial",
-          description: "Optimisation du rendement locatif et accompagnement dans vos projets immobiliers.",
+          title: "Création d'entreprise",
+          description: "Accompagnement à l'inscription au RC et constitution juridique.",
+          icon: Building2,
         },
       ];
-
   const sectionTitle = isEnglish ? "OUR OFFER" : "Notre offre";
   const mainTitle1 = isEnglish ? "Comprehensive support for" : "Un accompagnement global pour";
   const mainTitle2 = isEnglish ? "your management" : "votre gestion";
@@ -177,8 +166,8 @@ export function Services() {
   const accountingTitle = isEnglish ? "Accounting Expertise" : "Expertise comptable";
   const accountingSubtitle = isEnglish ? "For entrepreneurs and companies" : "Pour les entrepreneurs et sociétés";
 
-  const propertyTitle = isEnglish ? "Property Management" : "Gérance immobilière";
-  const propertySubtitle = isEnglish ? "For owners and investors" : "Pour les propriétaires et investisseurs";
+  const enterpriseTitle = isEnglish ? "Enterprise Solutions" : "Solutions entreprises";
+  const enterpriseSubtitle = isEnglish ? "For businesses and entrepreneurs" : "Pour les entreprises et indépendants";
 
   return (
     <section id="services" className="py-20 md:py-32 bg-white content-auto">
@@ -276,7 +265,7 @@ export function Services() {
           </div>
         </div>
 
-        {/* Property Management Services */}
+        {/* Enterprise Services */}
         <div>
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
@@ -284,8 +273,8 @@ export function Services() {
             </div>
             <div className="flex items-center gap-3">
               <div>
-                <h3 className="text-2xl font-bold">{propertyTitle}</h3>
-                <p className="text-muted-foreground">{propertySubtitle}</p>
+                <h3 className="text-2xl font-bold">{enterpriseTitle}</h3>
+                <p className="text-muted-foreground">{enterpriseSubtitle}</p>
               </div>
               <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-200">
                 Vaud & Valais
@@ -294,7 +283,7 @@ export function Services() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {propertyServices.map((service) => (
+            {enterpriseServices.map((service) => (
               <Card
                 key={service.title}
                 className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-amber-500/20 bg-gradient-to-br from-white to-amber-50/50"
