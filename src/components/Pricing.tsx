@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import {
   FileText,
   Calculator,
-  Home,
+  Building2,
   ArrowRight,
 } from "lucide-react";
 
@@ -72,25 +72,26 @@ export function Pricing() {
             </Link>
           </Card>
 
-          {/* Gérance immobilière */}
-          <Card className="p-8 text-center hover:shadow-lg transition-shadow border-2 border-transparent hover:border-orange-100">
-            <div className="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mx-auto mb-5">
-              <Home className="w-7 h-7 text-orange-500" />
+          {/* Entreprises */}
+          <Card className="p-8 text-center hover:shadow-lg transition-shadow border-2 border-orange-100 bg-gradient-to-b from-orange-50/50 to-white">
+            <div className="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <Building2 className="w-7 h-7 text-orange-500" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Gérance immobilière
+            <h3 className="text-xl font-semibold text-gray-900 mb-1">
+              Entreprises
             </h3>
             <p className="text-gray-500 text-sm mb-4">
-              Vaud &amp; Valais
+              Sàrl, SA, RI
             </p>
             <p className="text-3xl font-bold text-orange-500 mb-1">
-              Sur devis
+              dès CHF 490.-
             </p>
-            <p className="text-xs text-gray-400 mb-6">Gestion locative &amp; technique</p>
-            <Link href="/contact">
+            <p className="text-gray-500 text-sm mb-6">
+              HT/an • Fiscalité & comptabilité
+            </p>
+            <Link href="/entreprises">
               <Button variant="outline" className="w-full border-orange-300 text-orange-600 hover:bg-orange-50">
-                Nous contacter
-                <ArrowRight className="w-4 h-4 ml-2" />
+                En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </Card>
