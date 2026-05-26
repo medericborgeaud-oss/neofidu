@@ -135,7 +135,7 @@ export default async function OGImage() {
             marginBottom: "30px",
           }}
         >
-          {["Fiscalité", "Comptabilité", "Gérance immobilière"].map((feature) => (
+          {["Fiscalité", "Comptabilité", "Solutions entreprises"].map((feature) => (
             <div
               key={feature}
               style={{
