@@ -43,7 +43,7 @@ export function Header() {
     { href: "/demande", label: isEnglish ? "Tax Return" : "Déclaration d'impôts", category: "Services" },
     { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },
     { href: "/creation-entreprise", label: isEnglish ? "Company Creation" : "Création d'entreprise", category: "Services" },
-    { href: "/gerance-immobiliere", label: isEnglish ? "Property Management" : "Gérance immobilière", category: "Services" },
+    { href: "/entreprises", label: isEnglish ? "Business Services" : "Services entreprises", category: "Services" },
     { href: "/expats", label: "Expats", category: "Services" },
     { href: "/tarifs", label: isEnglish ? "Pricing" : "Tarifs", category: "Informations" },
     { href: "/blog", label: "Blog", category: "Informations" },
@@ -133,10 +133,10 @@ export function Header() {
       description: isEnglish ? "LLC, AG, Sole prop." : "Sàrl, SA, RI",
     },
     {
-      href: "/gerance-immobiliere",
-      label: isEnglish ? "Property Management" : "Gérance immobilière",
+      href: "/entreprises",
+      label: isEnglish ? "Business Services" : "Services entreprises",
       icon: Building2,
-      description: isEnglish ? "Vaud & Valais" : "Vaud & Valais",
+      description: isEnglish ? "LLC, AG & corporate" : "Sàrl, SA & personnes morales",
     },
     {
       href: "/observatoire",
