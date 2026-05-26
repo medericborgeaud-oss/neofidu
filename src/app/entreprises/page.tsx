@@ -7,11 +7,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BreadcrumbLight } from "@/components/Breadcrumb";
 import {
-  Building2,
   Calculator,
-  Users,
   FileText,
-  Rocket,
   CheckCircle2,
   ArrowRight,
   Shield,
@@ -49,30 +46,6 @@ const services = [
     ],
   },
   {
-    icon: Users,
-    title: "Gestion des salaires",
-    titleEn: "Payroll Management",
-    description: "Fiches de salaire, d\u00e9clarations sociales (AVS, LPP, LAA), certificats de salaire et d\u00e9comptes annuels pour vos employ\u00e9s.",
-    descriptionEn: "Payslips, social declarations (AHV, BVG, UVG), salary certificates and annual statements for your employees.",
-    price: "30",
-    unit: "/employ\u00e9/mois",
-    unitEn: "/employee/month",
-    features: [
-      "Fiches de salaire mensuelles",
-      "D\u00e9clarations AVS/LPP/LAA",
-      "Certificats de salaire",
-      "D\u00e9comptes annuels",
-      "Gestion entr\u00e9es/sorties",
-    ],
-    featuresEn: [
-      "Monthly payslips",
-      "AHV/BVG/UVG declarations",
-      "Salary certificates",
-      "Annual statements",
-      "Entry/exit management",
-    ],
-  },
-  {
     icon: FileText,
     title: "D\u00e9claration fiscale PM",
     titleEn: "Corporate Tax Return",
@@ -95,55 +68,7 @@ const services = [
       "Tax optimization",
       "Follow-up with tax authority",
     ],
-  },
-  {
-    icon: Rocket,
-    title: "Cr\u00e9ation de S\u00e0rl",
-    titleEn: "LLC Formation",
-    description: "Cr\u00e9ation cl\u00e9 en main de votre S\u00e0rl. R\u00e9daction des statuts, inscription au Registre du Commerce, affiliation AVS/AI.",
-    descriptionEn: "Turnkey LLC formation. Drafting articles of association, Commercial Register entry, AHV/IV affiliation.",
-    price: "990",
-    unit: "",
-    unitEn: "",
-    features: [
-      "R\u00e9daction des statuts",
-      "Inscription Registre du Commerce",
-      "Affiliation AVS/AI",
-      "Conseil forme juridique",
-      "Accompagnement notaire",
-    ],
-    featuresEn: [
-      "Articles of association",
-      "Commercial Register entry",
-      "AHV/IV affiliation",
-      "Legal form advice",
-      "Notary support",
-    ],
-  },
-  {
-    icon: Building2,
-    title: "Cr\u00e9ation de SA",
-    titleEn: "AG Formation",
-    description: "Constitution compl\u00e8te de votre soci\u00e9t\u00e9 anonyme. Capital-actions, organisation, inscriptions officielles.",
-    descriptionEn: "Complete formation of your corporation. Share capital, organization, official registrations.",
-    price: "1\u2019490",
-    unit: "",
-    unitEn: "",
-    features: [
-      "R\u00e9daction des statuts",
-      "Capital-actions & organisation",
-      "Inscription Registre du Commerce",
-      "Affiliation AVS/AI",
-      "Conseil strat\u00e9gique",
-    ],
-    featuresEn: [
-      "Articles of association",
-      "Share capital & organization",
-      "Commercial Register entry",
-      "AHV/IV affiliation",
-      "Strategic advice",
-    ],
-  },
+  }
 ];
 
 const advantages = [
@@ -246,7 +171,7 @@ export default function EntreprisesPage() {
                   : "Que vous cr\u00e9iez votre entreprise ou g\u00e9riez vos op\u00e9rations quotidiennes, nous avons la solution adapt\u00e9e."}
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
@@ -356,8 +281,8 @@ export default function EntreprisesPage() {
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-white text-white hover:bg-white/10">
-                <Link href="/creation-entreprise">
+              <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-white text-emerald-600 hover:bg-gray-50">
+                <Link href="/contact">
                   {isEnglish ? "Create a company" : "Cr\u00e9er une entreprise"}
                 </Link>
               </Button>
