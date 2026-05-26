@@ -106,7 +106,7 @@ export function Contact() {
       ? {
           tax: "Tax declaration",
           accounting: "Accounting",
-          property: "Property management",
+          property: "Other request",
           taxAndAccounting: "Tax + Accounting",
           creation: "Company creation (SA/Sàrl)",
           other: "Other",
@@ -114,7 +114,7 @@ export function Contact() {
       : {
           tax: "Déclaration d'impôt",
           accounting: "Comptabilité",
-          property: "Gérance immobilière",
+          property: "Autre demande",
           taxAndAccounting: "Déclaration + Comptabilité",
           creation: "Création d'entreprise (SA/Sàrl)",
           other: "Autre",
@@ -279,7 +279,7 @@ export function Contact() {
                     <option value="">{t.selectService}</option>
                     <option value="Déclaration d'impôt">{t.services.tax}</option>
                     <option value="Comptabilité">{t.services.accounting}</option>
-                    <option value="Gérance immobilière">{t.services.property}</option>
+                    <option value="Autre demande">{t.services.property}</option>
                     <option value="Déclaration + Comptabilité">{t.services.taxAndAccounting}</option>
                     <option value="Création d'entreprise">{t.services.creation}</option>
                     <option value="Autre">{t.services.other}</option>
