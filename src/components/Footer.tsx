@@ -22,7 +22,7 @@ export function Footer() {
       { label: isEnglish ? "Our pricing" : "Nos tarifs", href: "/tarifs" },
       { label: isEnglish ? "Self-employed & Freelances" : "Indépendants & Freelances", href: "/independants" },
       { label: isEnglish ? "Company formation" : "Création d'entreprise", href: "/creation-entreprise" },
-      { label: isEnglish ? "Property management" : "Gérance immobilière", href: "/gerance-immobiliere" },
+      { label: isEnglish ? "Business services" : "Services entreprises", href: "/entreprises" },
       { label: isEnglish ? "Expats in Switzerland" : "Expatriés en Suisse", href: "/expats" },
       { label: isEnglish ? "Swiss citizens abroad" : "Suisses de l'étranger", href: "/suisses-etranger" },
     ],
