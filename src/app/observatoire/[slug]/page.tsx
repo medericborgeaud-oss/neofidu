@@ -23,9 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const formLabel = FORM_LABELS[company.legal_form] || company.legal_form;
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
 
+    const canonicalUrl = `https://www.neofidu.ch/observatoire/${params.slug}`;
+
   return {
-    title: `${company.name} | Observatoire romand | NeoFidu`,
+    title: `${company.name} | Observatoire romand `,
     description: `${company.name} — ${formLabel} à ${company.city} (${cantonName}). ${company.purpose?.substring(0, 120) || ""}`,
+      alternates: {
+      canonical: canonicalUrl,
+    },
   };
 }
 
