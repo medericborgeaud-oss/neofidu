@@ -1,4 +1,4 @@
-// src/components/CommunesDashboard.tsx
+/ src/components/CommunesDashboard.tsx
 "use client";
 
 import { useState } from "react";
@@ -89,7 +89,7 @@ export function CommunesDashboard({
           <div className="bg-gray-50 rounded-xl px-4 py-3">
             <p className="text-[10px] uppercase tracking-wide text-gray-400 flex items-center gap-1 mb-1"><Users className="w-3 h-3" /> Plus peuplee</p>
             <div className="flex items-center gap-2">
-              <CantonFlag canton={stats.plus_grande.canton || ""} size={18} />
+              <CantonFlag canton={stats.plus_grande.canton || ""} size={24} />
               <div>
                 <p className="text-sm font-semibold text-gray-900 truncate">{stats.plus_grande.nom}</p>
                 <p className="text-[10px] text-gray-400">{stats.plus_grande.population?.toLocaleString("fr-CH")} hab.</p>
@@ -101,7 +101,7 @@ export function CommunesDashboard({
           <div className="bg-gray-50 rounded-xl px-4 py-3">
             <p className="text-[10px] uppercase tracking-wide text-gray-400 flex items-center gap-1 mb-1"><MapPin className="w-3 h-3" /> Plus petite</p>
             <div className="flex items-center gap-2">
-              <CantonFlag canton={stats.plus_petite.canton || ""} size={18} />
+              <CantonFlag canton={stats.plus_petite.canton || ""} size={24} />
               <div>
                 <p className="text-sm font-semibold text-gray-900 truncate">{stats.plus_petite.nom}</p>
                 <p className="text-[10px] text-gray-400">{stats.plus_petite.population?.toLocaleString("fr-CH")} hab.</p>
@@ -141,7 +141,7 @@ export function CommunesDashboard({
               }`}
               title={cs ? `${cs.count} communes` : c}
             >
-              {canton !== c && <CantonFlag canton={c} size={16} />}
+              {canton !== c && <CantonFlag canton={c} size={20} />}
               {c}
             </Link>
           );
@@ -187,7 +187,7 @@ export function CommunesDashboard({
 
             {/* Flag + name */}
             <div className="flex items-center gap-2.5 flex-1 min-w-0">
-              <CantonFlag canton={commune.canton} size={22} />
+              <CantonFlag canton={commune.canton} size={28} />
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
                   <span className="text-sm font-medium text-gray-900 group-hover:text-emerald-700 truncate">{commune.nom}</span>
@@ -202,7 +202,7 @@ export function CommunesDashboard({
             {/* Coefficient */}
             <div className="w-16 text-right">
               {commune.taux_commune != null ? (
-                <span className="text-sm font-semibold text-gray-700">{commune.taux_commune}</span>
+                <span className="text-sm font-semibold text-gray-700">{commune.taux_commune}%</span>
               ) : (
                 <span className="text-xs text-gray-300">&mdash;</span>
               )}
