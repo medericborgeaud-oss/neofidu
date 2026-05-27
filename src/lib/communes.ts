@@ -164,11 +164,15 @@ export function formatDensite(densite: number | null): string {
 // —— Company count by commune ——
 
 export async function getCompanyCountByCommune(communeName: string, canton: string): Promise<number> {
-  const { count } = await supabase
-    .from("companies")
-    .select("id", { count: "exact", head: true })
-    .eq("is_active", true)
-    .ilike("city", communeName)
-    .eq("canton", canton);
-  return count || 0;
+  try {
+    const { count, error } = await supabase
+      .from("companies")
+      .select("id", { count: "exact", head: true })
+      .ilike("city", communeName)
+      .eq("canton", canton);
+    if (error) return 0;
+    return count || 0;
+  } catch {
+    return 0;
+  }
 }
