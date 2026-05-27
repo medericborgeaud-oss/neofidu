@@ -22,6 +22,7 @@ import {
   formatPopulation,
   formatTaux,
 } from "@/lib/communes";
+import { CantonFlag } from "@/components/CantonFlag";
 
 const CANTONS = ["VD", "GE", "VS", "FR", "NE", "JU"];
 
@@ -33,72 +34,6 @@ const CANTON_BADGE: Record<string, string> = {
   NE: "bg-teal-100 text-teal-700",
   JU: "bg-pink-100 text-pink-700",
 };
-
-function CantonFlag({ canton, size = 20 }: { canton: string; size?: number }) {
-  const h = Math.round(size * 0.7);
-  switch (canton) {
-    case "VD":
-      return (
-        <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`} className="flex-shrink-0 rounded-sm">
-          <rect width={size} height={h} fill="#fff"/>
-          <rect y={h / 2} width={size} height={h / 2} fill="#00843D"/>
-          <text x={size / 2} y={h * 0.38} textAnchor="middle" fontSize="5" fill="#00843D" fontWeight="bold">VD</text>
-        </svg>
-      );
-    case "GE":
-      return (
-        <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`} className="flex-shrink-0 rounded-sm">
-          <rect width={size / 2} height={h} fill="#FFD700"/>
-          <rect x={size / 2} width={size / 2} height={h} fill="#CE1126"/>
-        </svg>
-      );
-    case "VS":
-      return (
-        <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`} className="flex-shrink-0 rounded-sm">
-          <rect width={size / 2} height={h} fill="#CE1126"/>
-          <rect x={size / 2} width={size / 2} height={h} fill="#fff" stroke="#e5e7eb" strokeWidth="0.3"/>
-          <g fill="#fff"><circle cx={size * 0.18} cy={h * 0.3} r="1.3"/><circle cx={size * 0.35} cy={h * 0.3} r="1.3"/></g>
-          <g fill="#CE1126"><circle cx={size * 0.65} cy={h * 0.3} r="1.3"/><circle cx={size * 0.82} cy={h * 0.3} r="1.3"/></g>
-        </svg>
-      );
-    case "FR":
-      return (
-        <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`} className="flex-shrink-0 rounded-sm">
-          <rect width={size} height={h / 2} fill="#1a1a1a"/>
-          <rect y={h / 2} width={size} height={h / 2} fill="#fff" stroke="#e5e7eb" strokeWidth="0.3"/>
-        </svg>
-      );
-    case "NE":
-      return (
-        <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`} className="flex-shrink-0 rounded-sm">
-          <rect width={size} height={h / 3} fill="#00843D"/>
-          <rect y={h / 3} width={size} height={h / 3} fill="#fff"/>
-          <rect y={(h * 2) / 3} width={size} height={h / 3} fill="#CE1126"/>
-        </svg>
-      );
-    case "JU":
-      return (
-        <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`} className="flex-shrink-0 rounded-sm">
-          <rect width={size} height={h} fill="#fff" stroke="#e5e7eb" strokeWidth="0.3"/>
-          <rect y={h * 0.14} width={size} height={h * 0.22} fill="#CE1126"/>
-          <rect y={h * 0.56} width={size} height={h * 0.22} fill="#CE1126"/>
-        </svg>
-      );
-    default:
-      return (
-        <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`} className="flex-shrink-0 rounded-sm">
-          <rect width={size} height={h} fill="#e5e7eb"/>
-        </svg>
-      );
-  }
-}
-
-interface Props {
-  communes: Commune[];
-  total: number;
-  stats: CommunesStats;
-  initialFilters: CommuneFilters;
-}
 
 export function CommunesDashboard({
   communes,
