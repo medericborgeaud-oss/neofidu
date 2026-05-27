@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -11,6 +11,7 @@ import CommuneMedia from "@/components/CommuneMedia";
 import RelatedArticles from "@/components/RelatedArticles";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CantonFlag } from "@/components/CantonFlag";
 
 interface Props {
   params: { slug: string };
@@ -101,7 +102,10 @@ export default async function CompanyPage({ params }: Props) {
 
             <div className="p-6">
               {/* Company name */}
+            <div className="flex items-start justify-between">
               <h1 className="text-2xl font-semibold text-gray-900 mb-1">{company.name}</h1>
+              <CantonFlag canton={company.canton} size={28} />
+            </div>
               <p className="text-sm text-gray-500 mb-6">{company.city}, {cantonName}</p>
 
               {/* Info grid */}
