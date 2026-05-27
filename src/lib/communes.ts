@@ -159,3 +159,16 @@ export function formatDensite(densite: number | null): string {
   if (!densite) return "—";
   return `${Math.round(densite)} hab/km²`;
 }
+
+
+// —— Company count by commune ——
+
+export async function getCompanyCountByCommune(communeName: string, canton: string): Promise<number> {
+  const { count } = await supabase
+    .from("companies")
+    .select("id", { count: "exact", head: true })
+    .eq("is_active", true)
+    .ilike("city", communeName)
+    .eq("canton", canton);
+  return count || 0;
+}
