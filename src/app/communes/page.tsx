@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic"; // Pas de cache — données toujours fraîches
+export const revalidate = 3600; // Pas de cache — données toujours fraîches
 export default async function CommunesPage(props: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
