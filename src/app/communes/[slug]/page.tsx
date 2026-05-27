@@ -219,14 +219,11 @@ export default async function CommunePage({ params }: Props) {
   const tauxSeoText = commune.taux_commune
     ? `. Le coefficient communal est de ${commune.taux_commune}%`
     : "";
-  const tauxCantonSeoText = commune.taux_canton
-    ? ` et le taux cantonal de ${commune.taux_canton}%`
-    : "";
   const anneeSeoText = commune.annee_fiscale
     ? ` (annee fiscale ${commune.annee_fiscale})`
     : "";
 
-  const seoDescription = `${commune.nom} est une commune du canton de ${cantonName}${districtText}.${popSeoText}${densiteSeoText}${tauxSeoText}${tauxCantonSeoText}${anneeSeoText}. ${attractiviteText}`;
+  const seoDescription = `${commune.nom} est une commune du canton de ${cantonName}${districtText}.${popSeoText}${densiteSeoText}${tauxSeoText}${anneeSeoText}. ${attractiviteText}`;
 
   return (
     <>
@@ -294,10 +291,6 @@ export default async function CommunePage({ params }: Props) {
                     <div>
                       <p className="text-xs text-gray-400 mb-1">Coefficient communal</p>
                       <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_commune)}%</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-400 mb-1">Taux cantonal</p>
-                      <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_canton)}%</p>
                     </div>
                   </div>
                   {commune.annee_fiscale && (
@@ -515,7 +508,7 @@ export default async function CommunePage({ params }: Props) {
                     name: `Quel est le taux d'imposition a ${commune.nom} ?`,
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: `Le coefficient communal a ${commune.nom} est de ${formatTaux(commune.taux_commune)}% et le taux cantonal (${commune.canton}) est de ${formatTaux(commune.taux_canton)}%. Ces coefficients s'appliquent sur l'impot de base cantonal.`,
+                      text: `Le coefficient communal a ${commune.nom} est de ${formatTaux(commune.taux_commune)}%. Ces coefficients s'appliquent sur l'impot de base cantonal.`,
                     },
                   },
                   {
@@ -544,7 +537,7 @@ export default async function CommunePage({ params }: Props) {
               <div>
                 <h3 className="text-sm font-medium text-gray-800">Quel est le taux d&apos;imposition a {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  Le coefficient communal est de {formatTaux(commune.taux_commune)}% et le taux cantonal ({commune.canton}) est de {formatTaux(commune.taux_canton)}%.
+                  Le coefficient communal est de {formatTaux(commune.taux_commune)}%.
                   Ces coefficients s&apos;appliquent sur l&apos;impot de base cantonal (bareme progressif), et non directement sur votre revenu.
                 </p>
               </div>
