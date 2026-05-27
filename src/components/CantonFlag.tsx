@@ -6,21 +6,18 @@ interface Props {
 }
 
 const FLAG_URLS: Record<string, string> = {
-  GE: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_Canton_of_Geneva.svg/{w}px-Flag_of_Canton_of_Geneva.svg.png",
-  VD: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Flag_of_Canton_of_Vaud.svg/{w}px-Flag_of_Canton_of_Vaud.svg.png",
-  VS: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Flag_of_Canton_of_Valais.svg/{w}px-Flag_of_Canton_of_Valais.svg.png",
-  FR: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_Canton_of_Fribourg.svg/{w}px-Flag_of_Canton_of_Fribourg.svg.png",
-  NE: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Flag_of_Canton_of_Neuch%C3%A2tel.svg/{w}px-Flag_of_Canton_of_Neuch%C3%A2tel.svg.png",
-  JU: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Flag_of_Canton_of_Jura.svg/{w}px-Flag_of_Canton_of_Jura.svg.png",
+  GE: "https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_Canton_of_Geneva.svg",
+  VD: "https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Canton_of_Vaud.svg",
+  VS: "https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_Canton_of_Valais.svg",
+  FR: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_Canton_of_Fribourg.svg",
+  NE: "https://upload.wikimedia.org/wikipedia/commons/5/57/Flag_of_Canton_of_Neuch%C3%A2tel.svg",
+  JU: "https://upload.wikimedia.org/wikipedia/commons/7/74/Flag_of_Canton_of_Jura.svg",
 };
 
 export function CantonFlag({ canton, size = 28 }: Props) {
   const c = (canton || "").toUpperCase();
-  const template = FLAG_URLS[c];
-  if (!template) return null;
-
-  const px = Math.round(size * 2);
-  const src = template.replace("{w}", String(px));
+  const src = FLAG_URLS[c];
+  if (!src) return null;
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
