@@ -1,5 +1,5 @@
 // src/app/communes/[slug]/page.tsx
-// Fiche individuelle d'une commune romande — optimisée SEO
+// Fiche individuelle d'une commune romande â optimisee SEO
 
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -16,6 +16,9 @@ import {
   Calculator,
   HelpCircle,
   Landmark,
+  Train,
+  Car,
+  Bike,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -37,7 +40,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const commune = await getCommuneBySlug(params.slug);
-  if (!commune) return { title: "Commune non trouvée | NeoFidu" };
+  if (!commune) return { title: "Commune non trouvee | NeoFidu" };
 
   const companyCount = await getCompanyCountByCommune(commune.nom, commune.canton);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
@@ -49,14 +52,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : "";
   const parts = [popText, tauxText].filter(Boolean);
 
-    const canonicalUrl = `https://neofidu.ch/communes/${params.slug}`;
+  const canonicalUrl = `https://neofidu.ch/communes/${params.slug}`;
 
   return {
-    title: `Impôts à ${commune.nom} (${cantonName}) — Taux, coefficient fiscal`,
-    description: `Impôts à ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Comparez la fiscalité avec les communes voisines.`,
+    title: `Impots a ${commune.nom} (${cantonName}) -- Taux, coefficient fiscal`,
+    description: `Impots a ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Comparez la fiscalite avec les communes voisines.`,
     openGraph: {
-      title: `Impôts à ${commune.nom} (${cantonName})`,
-      description: `Fiscalité de ${commune.nom} : ${parts.join(", ")}. Comparez avec les communes voisines.`,
+      title: `Impots a ${commune.nom} (${cantonName})`,
+      description: `Fiscalite de ${commune.nom} : ${parts.join(", ")}. Comparez avec les communes voisines.`,
     },
     alternates: {
       canonical: canonicalUrl,
@@ -64,7 +67,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// JSON-LD structured data for better Google results
 function generateJsonLd(commune: any, cantonName: string) {
   return {
     "@context": "https://schema.org",
@@ -90,14 +92,69 @@ function generateJsonLd(commune: any, cantonName: string) {
   };
 }
 
-
-const CANTON_DEDUCTIONS: Record<string, { fraisRepas: string; transport: string; entretienImmo: string; troisPilier: string }> = {
-  VD: { fraisRepas: "CHF 15/jour", transport: "Max CHF 7'000", entretienImmo: "20% (<10 ans) ou 30% (>10 ans)", troisPilier: "CHF 7'258 (3a)" },
-  GE: { fraisRepas: "CHF 15/jour", transport: "Frais effectifs uniquement", entretienImmo: "Forfait ou effectifs", troisPilier: "CHF 7'258 (3a)" },
-  VS: { fraisRepas: "CHF 15/jour", transport: "AG/demi-tarif ou CHF 0.70/km", entretienImmo: "10% valeur fiscale", troisPilier: "CHF 7'258 (3a)" },
-  FR: { fraisRepas: "CHF 15/jour", transport: "Max CHF 6'600", entretienImmo: "10% (<10 ans) ou 20% (>10 ans)", troisPilier: "CHF 7'258 (3a)" },
-  NE: { fraisRepas: "CHF 15/jour", transport: "CHF 0.70/km, max CHF 6'000", entretienImmo: "20% ou effectifs", troisPilier: "CHF 7'258 (3a)" },
-  JU: { fraisRepas: "CHF 15/jour", transport: "Frais effectifs", entretienImmo: "Forfait ou effectifs", troisPilier: "CHF 7'258 (3a)" },
+const CANTON_DEDUCTIONS: Record<string, {
+  fraisRepas: string;
+  transportTrain: string;
+  transportVoiture: string;
+  transportVelo: string;
+  transportPlafond: string;
+  entretienImmo: string;
+  troisPilier: string;
+}> = {
+  VD: {
+    fraisRepas: "CHF 15/jour",
+    transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
+    transportVoiture: "CHF 0.70/km (distance domicile-travail)",
+    transportVelo: "CHF 700/an",
+    transportPlafond: "Max CHF 7â000/an (tous modes confondus)",
+    entretienImmo: "20% (<10 ans) ou 30% (>10 ans) de la valeur locative",
+    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+  },
+  GE: {
+    fraisRepas: "CHF 15/jour",
+    transportTrain: "Frais effectifs (abonnement TPG, CFF)",
+    transportVoiture: "Frais effectifs justifies uniquement (pas de forfait km)",
+    transportVelo: "Non deductible",
+    transportPlafond: "Pas de plafond fixe (frais effectifs)",
+    entretienImmo: "Forfait 10% ou frais effectifs",
+    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+  },
+  VS: {
+    fraisRepas: "CHF 15/jour",
+    transportTrain: "AG, demi-tarif ou abonnement de parcours",
+    transportVoiture: "CHF 0.70/km",
+    transportVelo: "Forfait admis",
+    transportPlafond: "Pas de plafond cantonal specifique",
+    entretienImmo: "10% de la valeur fiscale",
+    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+  },
+  FR: {
+    fraisRepas: "CHF 15/jour",
+    transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
+    transportVoiture: "CHF 0.70/km",
+    transportVelo: "CHF 700/an",
+    transportPlafond: "Max CHF 6â600/an",
+    entretienImmo: "10% (<10 ans) ou 20% (>10 ans)",
+    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+  },
+  NE: {
+    fraisRepas: "CHF 15/jour",
+    transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
+    transportVoiture: "CHF 0.70/km",
+    transportVelo: "CHF 700/an",
+    transportPlafond: "Max CHF 6â000/an",
+    entretienImmo: "20% ou frais effectifs",
+    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+  },
+  JU: {
+    fraisRepas: "CHF 15/jour",
+    transportTrain: "Frais effectifs (abonnement)",
+    transportVoiture: "CHF 0.70/km",
+    transportVelo: "Admis sur justificatif",
+    transportPlafond: "Pas de plafond fixe",
+    entretienImmo: "Forfait 10% ou frais effectifs",
+    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+  },
 };
 
 export default async function CommunePage({ params }: Props) {
@@ -108,23 +165,17 @@ export default async function CommunePage({ params }: Props) {
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
   const companyCount = await getCompanyCountByCommune(commune.nom, commune.canton);
 
-  // Seuils d'attractivité par canton (basés sur les fourchettes réelles)
-  // Chaque canton a ses propres plages : [seuil_bas, médiane]
-  // En dessous du seuil_bas = attractif (emerald)
-  // Entre seuil_bas et médiane = moyen (amber)
-  // Au-dessus de la médiane = élevé pour ce canton (red)
   const CANTON_THRESHOLDS: Record<string, { low: number; mid: number }> = {
-    VD: { low: 54, mid: 65 },   // fourchette ~46-83
-    GE: { low: 35, mid: 44 },   // fourchette ~25-51
-    VS: { low: 120, mid: 135 }, // fourchette ~110-176
-    FR: { low: 50, mid: 70 },   // fourchette ~32-100
-    NE: { low: 68, mid: 72 },   // fourchette ~63-79
-    JU: { low: 155, mid: 175 }, // fourchette ~130-235
+    VD: { low: 54, mid: 65 },
+    GE: { low: 35, mid: 44 },
+    VS: { low: 120, mid: 135 },
+    FR: { low: 50, mid: 70 },
+    NE: { low: 68, mid: 72 },
+    JU: { low: 155, mid: 175 },
   };
 
   const thresholds = CANTON_THRESHOLDS[commune.canton] || { low: 70, mid: 90 };
 
-  // Calcul du taux "attractivité" relatif au canton
   const tauxColor =
     commune.taux_commune === null
       ? "gray"
@@ -143,30 +194,27 @@ export default async function CommunePage({ params }: Props) {
       ? "bg-red-100 text-red-700"
       : "bg-gray-100 text-gray-500";
 
-  // Texte d'attractivité fiscale relatif au canton
   const attractiviteText =
     commune.taux_commune === null
       ? ""
       : tauxColor === "emerald"
-      ? `Par rapport aux autres communes ${cantonName.toLowerCase() === "valais" ? "valaisannes" : cantonName.toLowerCase() === "vaud" ? "vaudoises" : cantonName.toLowerCase() === "genève" ? "genevoises" : cantonName.toLowerCase() === "fribourg" ? "fribourgeoises" : cantonName.toLowerCase() === "neuchâtel" ? "neuchâteloises" : "jurassiennes"}, ${commune.nom} bénéficie d'un coefficient communal particulièrement attractif.`
+      ? `Par rapport aux autres communes ${cantonName.toLowerCase() === "valais" ? "valaisannes" : cantonName.toLowerCase() === "vaud" ? "vaudoises" : cantonName.toLowerCase() === "geneve" ? "genevoises" : cantonName.toLowerCase() === "fribourg" ? "fribourgeoises" : cantonName.toLowerCase() === "neuchatel" ? "neuchateloises" : "jurassiennes"}, ${commune.nom} beneficie d'un coefficient communal particulierement attractif.`
       : tauxColor === "amber"
       ? `Le coefficient communal de ${commune.nom} se situe dans la moyenne des communes du canton de ${cantonName}.`
-      : `Par rapport aux autres communes du canton de ${cantonName}, ${commune.nom} applique un coefficient communal relativement élevé.`;
+      : `Par rapport aux autres communes du canton de ${cantonName}, ${commune.nom} applique un coefficient communal relativement eleve.`;
 
-  // CTA contextuel
   const ctaText = {
-    text: `Vous habitez à ${commune.nom} ?`,
-    offer: "Déclaration d'impôts dès CHF 89.—",
+    text: `Vous habitez a ${commune.nom} ?`,
+    offer: "Declaration d'impots des CHF 89.--",
     href: "/demande",
   };
 
-  // Paragraphe SEO descriptif
   const districtText = commune.district ? ` dans le district de ${commune.district}` : "";
   const popSeoText = commune.population
     ? ` Avec ${commune.population.toLocaleString("fr-CH")} habitants`
     : "";
   const densiteSeoText = commune.densite
-    ? ` et une densité de ${Math.round(commune.densite)} hab./km²`
+    ? ` et une densite de ${Math.round(commune.densite)} hab./km2`
     : "";
   const tauxSeoText = commune.taux_commune
     ? `. Le coefficient communal est de ${commune.taux_commune}%`
@@ -175,7 +223,7 @@ export default async function CommunePage({ params }: Props) {
     ? ` et le taux cantonal de ${commune.taux_canton}%`
     : "";
   const anneeSeoText = commune.annee_fiscale
-    ? ` (année fiscale ${commune.annee_fiscale})`
+    ? ` (annee fiscale ${commune.annee_fiscale})`
     : "";
 
   const seoDescription = `${commune.nom} est une commune du canton de ${cantonName}${districtText}.${popSeoText}${densiteSeoText}${tauxSeoText}${tauxCantonSeoText}${anneeSeoText}. ${attractiviteText}`;
@@ -184,298 +232,204 @@ export default async function CommunePage({ params }: Props) {
     <>
       <Header />
       <main className="min-h-screen bg-gray-50 pt-24">
-      {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateJsonLd(commune, cantonName)),
-        }}
-      />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateJsonLd(commune, cantonName)),
+          }}
+        />
 
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        {/* Back link */}
-        <Link
-          href="/communes"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 mb-6 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Retour aux communes
-        </Link>
+        <div className="max-w-3xl mx-auto px-4 py-8">
+          <Link
+            href="/communes"
+            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 mb-6 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Retour aux communes
+          </Link>
 
-        {/* Main card */}
-        <Card className="overflow-hidden mb-6">
-          {/* Header */}
-          <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
-            <p className="text-xs text-gray-400">
-              neofidu.ch/communes/{params.slug}
-            </p>
-            {commune.taux_commune !== null && (
-              <span
-                className={`text-xs font-medium px-3 py-1 rounded-full ${tauxBadgeClass}`}
-              >
-                Coeff. {commune.taux_commune}
-              </span>
-            )}
-          </div>
-
-          <div className="p-6">
-            {/* H1 optimisé SEO */}
-            <h1 className="text-2xl font-semibold text-gray-900 mb-1">
-              Impôts à {commune.nom}
-            </h1>
-            <p className="text-sm text-gray-500 mb-4">
-              {commune.district ? `${commune.district}, ` : ""}
-              {cantonName}
-              {commune.code_postal ? ` — ${commune.code_postal}` : ""}
-            </p>
-
-            {/* Paragraphe SEO descriptif */}
-            <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-              {seoDescription}
-            </p>
-
-            {/* ─── KPI Grid ─── */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
-              {/* Population */}
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
-                  <Users className="w-3 h-3" />
-                  Population
-                </div>
-                <p className="text-sm font-medium text-gray-900">
-                  {commune.population
-                    ? commune.population.toLocaleString("fr-CH")
-                    : "—"}
-                </p>
-              </div>
-
-              {/* Densité */}
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
-                  <Ruler className="w-3 h-3" />
-                  Densité
-                </div>
-                <p className="text-sm font-medium text-gray-900">
-                  {formatDensite(commune.densite)}
-                </p>
-              </div>
-
-              {/* Superficie */}
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
-                  <MapPin className="w-3 h-3" />
-                  Superficie
-                </div>
-                <p className="text-sm font-medium text-gray-900">
-                  {commune.superficie_km2
-                    ? `${commune.superficie_km2.toFixed(1)} km²`
-                    : "—"}
-                </p>
-              </div>
-
+          <Card className="overflow-hidden mb-6">
+            <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
+              <p className="text-xs text-gray-400">neofidu.ch/communes/{params.slug}</p>
+              {commune.taux_commune !== null && (
+                <span className={`text-xs font-medium px-3 py-1 rounded-full ${tauxBadgeClass}`}>
+                  Coeff. {commune.taux_commune}
+                </span>
+              )}
             </div>
 
-            {/* ─── Fiscalité ─── */}
-            <div className="mb-6">
-              <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                <TrendingDown className="w-4 h-4 text-emerald-500" />
-                Fiscalité de {commune.nom}
-              </h2>
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-xs text-gray-400 mb-1">
-                      Coefficient communal
-                    </p>
-                    <p className="text-lg font-semibold text-gray-900">
-                      {formatTaux(commune.taux_commune)}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-400 mb-1">
-                      Taux cantonal
-                    </p>
-                    <p className="text-lg font-semibold text-gray-900">
-                      {formatTaux(commune.taux_canton)}
-                    </p>
-                  </div>
+            <div className="p-6">
+              <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+                Impots a {commune.nom}
+              </h1>
+              <p className="text-sm text-gray-500 mb-4">
+                {commune.district ? `${commune.district}, ` : ""}{cantonName}{commune.code_postal ? ` -- ${commune.code_postal}` : ""}
+              </p>
+
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">{seoDescription}</p>
+
+              {/* KPI Grid */}
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Users className="w-3 h-3" /> Population</div>
+                  <p className="text-sm font-medium text-gray-900">{commune.population ? commune.population.toLocaleString("fr-CH") : "--"}</p>
                 </div>
-                {commune.annee_fiscale && (
-                  <p className="text-xs text-gray-400 mt-3">
-                    Année fiscale : {commune.annee_fiscale}
-                  </p>
-                )}
-                {commune.taux_commune === null && (
-                  <p className="text-xs text-gray-400 mt-2 italic">
-                    Les taux d&apos;imposition seront ajoutés prochainement.
-                  </p>
-                )}
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Ruler className="w-3 h-3" /> Densite</div>
+                  <p className="text-sm font-medium text-gray-900">{formatDensite(commune.densite)}</p>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><MapPin className="w-3 h-3" /> Superficie</div>
+                  <p className="text-sm font-medium text-gray-900">{commune.superficie_km2 ? `${commune.superficie_km2.toFixed(1)} km2` : "--"}</p>
+                </div>
               </div>
-            </div>
 
-
-            {/* ─── Économie ─── */}
-            {commune.secteur_dominant && (
+              {/* Fiscalite */}
               <div className="mb-6">
                 <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                  <Building2 className="w-4 h-4 text-emerald-500" />
-                  Économie
+                  <TrendingDown className="w-4 h-4 text-emerald-500" /> Fiscalite de {commune.nom}
                 </h2>
                 <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
-                    Secteur dominant :{" "}
-                    <span className="font-medium text-gray-900 capitalize">
-                      {commune.secteur_dominant}
-                    </span>
-                  </p>
-                  <Link
-                    href={`/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
-                    className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 mt-3"
-                  >
-                    Voir les entreprises de {commune.nom}
-                    <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </div>
-              </div>
-            )}
-
-            {/* ─── Immobilier ─── */}
-            {(commune.loyer_median_m2 || commune.prix_achat_m2) && (
-              <div className="mb-6">
-                <h2 className="text-sm font-semibold text-gray-700 mb-3">
-                  Immobilier à {commune.nom}
-                </h2>
-                <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
-                  {commune.loyer_median_m2 && (
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-xs text-gray-400 mb-1">
-                        Loyer médian au m²
-                      </p>
-                      <p className="text-lg font-semibold text-gray-900">
-                        CHF {commune.loyer_median_m2.toFixed(0)}/m²
-                      </p>
-                      <p className="text-xs text-gray-400">
-                        Prix mensuel moyen au mètre carré pour un appartement
-                      </p>
+                      <p className="text-xs text-gray-400 mb-1">Coefficient communal</p>
+                      <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_commune)}</p>
                     </div>
+                    <div>
+                      <p className="text-xs text-gray-400 mb-1">Taux cantonal</p>
+                      <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_canton)}</p>
+                    </div>
+                  </div>
+                  {commune.annee_fiscale && (
+                    <p className="text-xs text-gray-400 mt-3">Annee fiscale : {commune.annee_fiscale}</p>
                   )}
-                  {commune.prix_achat_m2 && (
-                    <div>
-                      <p className="text-xs text-gray-400 mb-1">
-                        Prix achat au m²
-                      </p>
-                      <p className="text-lg font-semibold text-gray-900">
-                        CHF{" "}
-                        {commune.prix_achat_m2.toLocaleString("fr-CH")}/m²
-                      </p>
-                    </div>
+                  {commune.taux_commune === null && (
+                    <p className="text-xs text-gray-400 mt-2 italic">Les taux d&apos;imposition seront ajoutes prochainement.</p>
                   )}
                 </div>
               </div>
-            )}
 
-            {/* ─── Communes voisines ─── */}
-            {voisines.length > 0 && (
-              <div className="mb-6">
-                <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-emerald-500" />
-                  Comparer les impôts : communes du même district
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {voisines.map((v: any) => (
+              {/* Economie */}
+              {commune.secteur_dominant && (
+                <div className="mb-6">
+                  <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-emerald-500" /> Economie
+                  </h2>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <p className="text-sm text-gray-600">
+                      Secteur dominant : <span className="font-medium text-gray-900 capitalize">{commune.secteur_dominant}</span>
+                    </p>
                     <Link
-                      key={v.slug}
-                      href={`/communes/${v.slug}`}
-                      className="bg-gray-50 rounded-lg p-3 hover:bg-emerald-50 transition-colors group"
+                      href={`/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
+                      className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 mt-3"
                     >
-                      <p className="text-sm font-medium text-gray-900 group-hover:text-emerald-700 truncate">
-                        {v.nom}
-                      </p>
-                      <div className="flex items-center gap-3 mt-1">
-                        {v.population && (
-                          <span className="text-xs text-gray-400">
-                            {formatPopulation(v.population)} hab.
-                          </span>
-                        )}
-                        {v.taux_commune && (
-                          <span className="text-xs text-gray-400">
-                            Coeff. {v.taux_commune}
-                          </span>
-                        )}
-                      </div>
+                      Voir les entreprises de {commune.nom} <ArrowRight className="w-3 h-3" />
                     </Link>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* ─── CTA ─── */}
-            <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
-              <div>
-                <p className="text-sm text-emerald-800 font-medium">
-                  {ctaText.text}
-                </p>
-                <p className="text-sm text-emerald-600">{ctaText.offer}</p>
+              {/* Immobilier */}
+              {(commune.loyer_median_m2 || commune.prix_achat_m2) && (
+                <div className="mb-6">
+                  <h2 className="text-sm font-semibold text-gray-700 mb-3">Immobilier a {commune.nom}</h2>
+                  <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+                    {commune.loyer_median_m2 && (
+                      <div>
+                        <p className="text-xs text-gray-400 mb-1">Loyer median au m2</p>
+                        <p className="text-lg font-semibold text-gray-900">CHF {commune.loyer_median_m2.toFixed(0)}/m2</p>
+                        <p className="text-xs text-gray-400">Prix mensuel moyen au metre carre pour un appartement</p>
+                      </div>
+                    )}
+                    {commune.prix_achat_m2 && (
+                      <div>
+                        <p className="text-xs text-gray-400 mb-1">Prix achat au m2</p>
+                        <p className="text-lg font-semibold text-gray-900">CHF {commune.prix_achat_m2.toLocaleString("fr-CH")}/m2</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Communes voisines */}
+              {voisines.length > 0 && (
+                <div className="mb-6">
+                  <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                    <Globe className="w-4 h-4 text-emerald-500" /> Comparer les impots : communes du meme district
+                  </h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {voisines.map((v: any) => (
+                      <Link key={v.slug} href={`/communes/${v.slug}`} className="bg-gray-50 rounded-lg p-3 hover:bg-emerald-50 transition-colors group">
+                        <p className="text-sm font-medium text-gray-900 group-hover:text-emerald-700 truncate">{v.nom}</p>
+                        <div className="flex items-center gap-3 mt-1">
+                          {v.population && <span className="text-xs text-gray-400">{formatPopulation(v.population)} hab.</span>}
+                          {v.taux_commune && <span className="text-xs text-gray-400">Coeff. {v.taux_commune}</span>}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* CTA */}
+              <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm text-emerald-800 font-medium">{ctaText.text}</p>
+                  <p className="text-sm text-emerald-600">{ctaText.offer}</p>
+                </div>
+                <Link href={ctaText.href}>
+                  <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">En savoir plus</Button>
+                </Link>
               </div>
-              <Link href={ctaText.href}>
-                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">
-                  En savoir plus
-                </Button>
-              </Link>
+
+              <p className="text-center text-xs text-gray-400 mt-4">Source : OFS / LINDAS -- Code commune {commune.code_ofs}</p>
             </div>
+          </Card>
+        </div>
 
-            {/* Source */}
-            <p className="text-center text-xs text-gray-400 mt-4">
-              Source : OFS / LINDAS — Code commune {commune.code_ofs}
-            </p>
-          </div>
-        </Card>
-      </div>
-    
-        {/* Section: Exemple de calcul fiscal */}
+        {/* Section: Estimation fiscale (CORRECTED - no wrong calculation) */}
         <section className="max-w-4xl mx-auto px-4 py-6">
           <Card className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Calculator className="h-5 w-5 text-blue-600" />
-              <h2 className="text-lg font-semibold text-gray-900">
-                Exemple de calcul fiscal
-              </h2>
+              <h2 className="text-lg font-semibold text-gray-900">Estimation fiscale a {commune.nom}</h2>
             </div>
             <p className="text-sm text-gray-600 mb-4">
-              Pour un revenu imposable de CHF 80&apos;000, voici une estimation de la charge fiscale dans cette commune :
+              Le coefficient communal et le taux cantonal determinent votre charge fiscale.
+              Ces coefficients sont appliques sur l&apos;impot de base cantonal (bareme progressif), et non directement sur le revenu.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="bg-gray-50 rounded-lg p-4 text-center">
-                <p className="text-xs text-gray-500 mb-1">Taux communal</p>
+                <p className="text-xs text-gray-500 mb-1">Coefficient communal</p>
                 <p className="text-xl font-bold text-gray-900">{formatTaux(commune.taux_commune)}</p>
               </div>
               <div className="bg-gray-50 rounded-lg p-4 text-center">
                 <p className="text-xs text-gray-500 mb-1">Taux cantonal ({commune.canton})</p>
                 <p className="text-xl font-bold text-gray-900">{formatTaux(commune.taux_canton)}</p>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4 text-center">
-                <p className="text-xs text-gray-500 mb-1">Charge totale approximative</p>
-                <p className="text-xl font-bold text-blue-700">
-                  ~CHF {(commune.taux_commune != null && commune.taux_canton != null) ? Math.round(80000 * (commune.taux_commune + commune.taux_canton) / 100).toLocaleString("fr-CH") : "N/A"}
-                </p>
+            </div>
+            <div className="bg-emerald-50 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-medium text-emerald-800">Calculez votre impot exact</p>
+                <p className="text-xs text-emerald-600">Simulateur gratuit avec les taux de {commune.nom}</p>
               </div>
+              <Link href={`/simulateur-impots?commune=${encodeURIComponent(commune.slug || "")}`}>
+                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Simuler mes impots</Button>
+              </Link>
             </div>
             <p className="text-xs text-gray-400 mt-3">
-              Estimation indicative pour une personne seule sans enfant.{" "}
-              <Link href="/simulateur-impots" className="text-blue-600 underline">Simulateur fiscal NeoFidu</Link>
+              En Suisse, l&apos;impot est calcule en appliquant ces coefficients sur un bareme progressif cantonal, pas directement sur le revenu.{" "}
+              <Link href="/simulateur-impots" className="text-blue-600 underline">En savoir plus</Link>
             </p>
           </Card>
         </section>
 
-
-        {/* Section: Entreprises et Economie */}
+        {/* Section: Tissu economique */}
         <section className="max-w-4xl mx-auto px-4 py-6">
           <Card className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Landmark className="h-5 w-5 text-green-600" />
-              <h2 className="text-lg font-semibold text-gray-900">
-                Tissu economique
-              </h2>
+              <h2 className="text-lg font-semibold text-gray-900">Tissu economique</h2>
             </div>
             {companyCount > 0 ? (
               <div>
@@ -488,28 +442,21 @@ export default async function CommunePage({ params }: Props) {
                 </Link>
               </div>
             ) : (
-              <p className="text-sm text-gray-500">
-                Aucune entreprise enregistree dans notre base pour cette commune.
-              </p>
+              <p className="text-sm text-gray-500">Aucune entreprise enregistree dans notre base pour cette commune.</p>
             )}
             {commune.secteur_dominant && (
-              <p className="text-sm text-gray-600 mt-3">
-                Secteur dominant : <span className="font-medium">{commune.secteur_dominant}</span>
-              </p>
+              <p className="text-sm text-gray-600 mt-3">Secteur dominant : <span className="font-medium">{commune.secteur_dominant}</span></p>
             )}
           </Card>
         </section>
 
-
-        {/* Section: Deductions fiscales cantonales */}
+        {/* Section: Deductions fiscales cantonales (ENRICHED with transport details) */}
         {CANTON_DEDUCTIONS[commune.canton] && (
           <section className="max-w-4xl mx-auto px-4 py-6">
             <Card className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <HelpCircle className="h-5 w-5 text-purple-600" />
-                <h2 className="text-lg font-semibold text-gray-900">
-                  Principales deductions fiscales ({commune.canton})
-                </h2>
+                <h2 className="text-lg font-semibold text-gray-900">Principales deductions fiscales ({commune.canton})</h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -524,9 +471,26 @@ export default async function CommunePage({ params }: Props) {
                       <td className="py-2">Frais de repas</td>
                       <td className="py-2">{CANTON_DEDUCTIONS[commune.canton].fraisRepas}</td>
                     </tr>
+                    <tr className="border-b bg-gray-50/50">
+                      <td className="py-2 font-medium text-gray-700" colSpan={2}>
+                        Frais de transport domicile-travail
+                      </td>
+                    </tr>
                     <tr className="border-b">
-                      <td className="py-2">Frais de transport</td>
-                      <td className="py-2">{CANTON_DEDUCTIONS[commune.canton].transport}</td>
+                      <td className="py-2 pl-4 flex items-center gap-2"><Train className="w-3.5 h-3.5 text-blue-500" /> Train / transports publics</td>
+                      <td className="py-2">{CANTON_DEDUCTIONS[commune.canton].transportTrain}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 pl-4 flex items-center gap-2"><Car className="w-3.5 h-3.5 text-gray-500" /> Voiture</td>
+                      <td className="py-2">{CANTON_DEDUCTIONS[commune.canton].transportVoiture}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 pl-4 flex items-center gap-2"><Bike className="w-3.5 h-3.5 text-green-500" /> Velo</td>
+                      <td className="py-2">{CANTON_DEDUCTIONS[commune.canton].transportVelo}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 pl-4 text-gray-500 text-xs">Plafond transport</td>
+                      <td className="py-2 text-xs text-gray-500">{CANTON_DEDUCTIONS[commune.canton].transportPlafond}</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-2">Entretien immobilier</td>
@@ -541,14 +505,11 @@ export default async function CommunePage({ params }: Props) {
               </div>
               <p className="text-xs text-gray-400 mt-3">
                 Montants indicatifs pour l&apos;annee fiscale en cours.{" "}
-                <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-blue-600 underline">
-                  Page canton {commune.canton}
-                </Link>
+                <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-blue-600 underline">Page canton {commune.canton}</Link>
               </p>
             </Card>
           </section>
         )}
-
 
         {/* Section: FAQ structuree avec schema.org */}
         <section className="max-w-4xl mx-auto px-4 py-6">
@@ -564,7 +525,7 @@ export default async function CommunePage({ params }: Props) {
                     name: `Quel est le taux d'imposition a ${commune.nom} ?`,
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: `Le taux communal a ${commune.nom} est de ${formatTaux(commune.taux_commune)} et le taux cantonal (${commune.canton}) est de ${formatTaux(commune.taux_canton)}.`,
+                      text: `Le coefficient communal a ${commune.nom} est de ${formatTaux(commune.taux_commune)} et le taux cantonal (${commune.canton}) est de ${formatTaux(commune.taux_canton)}. Ces coefficients s'appliquent sur l'impot de base cantonal.`,
                     },
                   },
                   {
@@ -588,35 +549,26 @@ export default async function CommunePage({ params }: Props) {
             }}
           />
           <Card className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
-              Questions frequentes
-            </h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Questions frequentes</h2>
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-medium text-gray-800">
-                  Quel est le taux d&apos;imposition a {commune.nom} ?
-                </h3>
+                <h3 className="text-sm font-medium text-gray-800">Quel est le taux d&apos;imposition a {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  Le taux communal est de {formatTaux(commune.taux_commune)} et le taux cantonal ({commune.canton}) est de {formatTaux(commune.taux_canton)}.
+                  Le coefficient communal est de {formatTaux(commune.taux_commune)} et le taux cantonal ({commune.canton}) est de {formatTaux(commune.taux_canton)}.
+                  Ces coefficients s&apos;appliquent sur l&apos;impot de base cantonal (bareme progressif), et non directement sur votre revenu.
                 </p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-800">
-                  Combien d&apos;habitants compte {commune.nom} ?
-                </h3>
+                <h3 className="text-sm font-medium text-gray-800">Combien d&apos;habitants compte {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  {commune.nom} compte {formatPopulation(commune.population)} habitants
-                  {commune.superficie_km2 ? `, sur une superficie de ${commune.superficie_km2} km` : ""}.
+                  {commune.nom} compte {formatPopulation(commune.population)} habitants{commune.superficie_km2 ? `, sur une superficie de ${commune.superficie_km2} km2` : ""}.
                 </p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-800">
-                  Comment faire sa declaration d&apos;impots a {commune.nom} ?
-                </h3>
+                <h3 className="text-sm font-medium text-gray-800">Comment faire sa declaration d&apos;impots a {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
                   Les habitants de {commune.nom} peuvent confier leur declaration fiscale a{" "}
-                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>,
-                  fiduciaire en ligne suisse, des CHF 149.
+                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, fiduciaire en ligne suisse, des CHF 149.
                 </p>
               </div>
             </div>
@@ -626,25 +578,15 @@ export default async function CommunePage({ params }: Props) {
         {/* Maillage interne */}
         <section className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex flex-wrap gap-2">
-            <Link href="/simulateur-impots" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">
-              Simulateur fiscal
-            </Link>
-            <Link href="/simulateur-salaire" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">
-              Simulateur de salaire
-            </Link>
-            <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">
-              Canton {commune.canton}
-            </Link>
-            <Link href="/communes" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">
-              Toutes les communes
-            </Link>
-            <Link href="/particuliers" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">
-              Declaration fiscale
-            </Link>
+            <Link href="/simulateur-impots" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Simulateur fiscal</Link>
+            <Link href="/simulateur-salaire" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Simulateur de salaire</Link>
+            <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
+            <Link href="/communes" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Toutes les communes</Link>
+            <Link href="/particuliers" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Declaration fiscale</Link>
           </div>
         </section>
 
-</main>
+      </main>
       <Footer />
     </>
   );
