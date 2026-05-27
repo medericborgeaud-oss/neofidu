@@ -106,6 +106,7 @@ export default async function CommunePage({ params }: Props) {
 
   const voisines = await getCommunesVoisines(params.slug);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
+  const companyCount = await getCompanyCountByCommune(commune.nom, commune.canton);
 
   // Seuils d'attractivité par canton (basés sur les fourchettes réelles)
   // Chaque canton a ses propres plages : [seuil_bas, médiane]
@@ -455,7 +456,7 @@ export default async function CommunePage({ params }: Props) {
               <div className="bg-blue-50 rounded-lg p-4 text-center">
                 <p className="text-xs text-gray-500 mb-1">Charge totale approximative</p>
                 <p className="text-xl font-bold text-blue-700">
-                  ~CHF {Math.round(80000 * (commune.taux_commune + commune.taux_canton) / 100).toLocaleString("fr-CH")}
+                  ~CHF {(commune.taux_commune != null && commune.taux_canton != null) ? Math.round(80000 * (commune.taux_commune + commune.taux_canton) / 100).toLocaleString("fr-CH") : "N/A"}
                 </p>
               </div>
             </div>
