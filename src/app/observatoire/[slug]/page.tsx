@@ -104,7 +104,7 @@ export default async function CompanyPage({ params }: Props) {
               {/* Company name */}
             <div className="flex items-start justify-between">
               <h1 className="text-2xl font-semibold text-gray-900 mb-1">{company.name}</h1>
-              <CantonFlag canton={company.canton}size={56}} />
+              <CantonFlag canton={company.canton} size={56} />
             </div>
               <p className="text-sm text-gray-500 mb-6">{company.city}, {cantonName}</p>
 
