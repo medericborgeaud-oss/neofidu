@@ -1,5 +1,5 @@
 // src/app/communes/[slug]/page.tsx
-// Fiche individuelle d'une commune romande â optimisee SEO
+// Fiche individuelle d'une commune romande -- optimisee SEO
 
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -106,9 +106,9 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
     transportVoiture: "CHF 0.70/km (distance domicile-travail)",
     transportVelo: "CHF 700/an",
-    transportPlafond: "Max CHF 7â000/an (tous modes confondus)",
+    transportPlafond: "Max CHF 7'000/an (tous modes confondus)",
     entretienImmo: "20% (<10 ans) ou 30% (>10 ans) de la valeur locative",
-    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
   },
   GE: {
     fraisRepas: "CHF 15/jour",
@@ -117,7 +117,7 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportVelo: "Non deductible",
     transportPlafond: "Pas de plafond fixe (frais effectifs)",
     entretienImmo: "Forfait 10% ou frais effectifs",
-    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
   },
   VS: {
     fraisRepas: "CHF 15/jour",
@@ -126,25 +126,25 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportVelo: "Forfait admis",
     transportPlafond: "Pas de plafond cantonal specifique",
     entretienImmo: "10% de la valeur fiscale",
-    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
   },
   FR: {
     fraisRepas: "CHF 15/jour",
     transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
     transportVoiture: "CHF 0.70/km",
     transportVelo: "CHF 700/an",
-    transportPlafond: "Max CHF 6â600/an",
+    transportPlafond: "Max CHF 6'600/an",
     entretienImmo: "10% (<10 ans) ou 20% (>10 ans)",
-    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
   },
   NE: {
     fraisRepas: "CHF 15/jour",
     transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
     transportVoiture: "CHF 0.70/km",
     transportVelo: "CHF 700/an",
-    transportPlafond: "Max CHF 6â000/an",
+    transportPlafond: "Max CHF 6'000/an",
     entretienImmo: "20% ou frais effectifs",
-    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
   },
   JU: {
     fraisRepas: "CHF 15/jour",
@@ -153,7 +153,7 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportVelo: "Admis sur justificatif",
     transportPlafond: "Pas de plafond fixe",
     entretienImmo: "Forfait 10% ou frais effectifs",
-    troisPilier: "CHF 7â258 (3a salarie) / CHF 36â288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
   },
 };
 
@@ -253,7 +253,7 @@ export default async function CommunePage({ params }: Props) {
               <p className="text-xs text-gray-400">neofidu.ch/communes/{params.slug}</p>
               {commune.taux_commune !== null && (
                 <span className={`text-xs font-medium px-3 py-1 rounded-full ${tauxBadgeClass}`}>
-                  Coeff. {commune.taux_commune}
+                  Coeff. {commune.taux_commune}%
                 </span>
               )}
             </div>
@@ -293,11 +293,11 @@ export default async function CommunePage({ params }: Props) {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-xs text-gray-400 mb-1">Coefficient communal</p>
-                      <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_commune)}</p>
+                      <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_commune)}%</p>
                     </div>
                     <div>
                       <p className="text-xs text-gray-400 mb-1">Taux cantonal</p>
-                      <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_canton)}</p>
+                      <p className="text-lg font-semibold text-gray-900">{formatTaux(commune.taux_canton)}%</p>
                     </div>
                   </div>
                   {commune.annee_fiscale && (
@@ -363,7 +363,7 @@ export default async function CommunePage({ params }: Props) {
                         <p className="text-sm font-medium text-gray-900 group-hover:text-emerald-700 truncate">{v.nom}</p>
                         <div className="flex items-center gap-3 mt-1">
                           {v.population && <span className="text-xs text-gray-400">{formatPopulation(v.population)} hab.</span>}
-                          {v.taux_commune && <span className="text-xs text-gray-400">Coeff. {v.taux_commune}</span>}
+                          {v.taux_commune && <span className="text-xs text-gray-400">Coeff. {v.taux_commune}%</span>}
                         </div>
                       </Link>
                     ))}
@@ -395,19 +395,9 @@ export default async function CommunePage({ params }: Props) {
               <h2 className="text-lg font-semibold text-gray-900">Estimation fiscale a {commune.nom}</h2>
             </div>
             <p className="text-sm text-gray-600 mb-4">
-              Le coefficient communal et le taux cantonal determinent votre charge fiscale.
-              Ces coefficients sont appliques sur l&apos;impot de base cantonal (bareme progressif), et non directement sur le revenu.
+              En Suisse, l&apos;impot est calcule en appliquant un coefficient communal et un taux cantonal sur un bareme progressif.
+              Le montant exact depend de votre revenu, de votre situation familiale et des deductions applicables.
             </p>
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
-                <p className="text-xs text-gray-500 mb-1">Coefficient communal</p>
-                <p className="text-xl font-bold text-gray-900">{formatTaux(commune.taux_commune)}</p>
-              </div>
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
-                <p className="text-xs text-gray-500 mb-1">Taux cantonal ({commune.canton})</p>
-                <p className="text-xl font-bold text-gray-900">{formatTaux(commune.taux_canton)}</p>
-              </div>
-            </div>
             <div className="bg-emerald-50 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-medium text-emerald-800">Calculez votre impot exact</p>
@@ -525,7 +515,7 @@ export default async function CommunePage({ params }: Props) {
                     name: `Quel est le taux d'imposition a ${commune.nom} ?`,
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: `Le coefficient communal a ${commune.nom} est de ${formatTaux(commune.taux_commune)} et le taux cantonal (${commune.canton}) est de ${formatTaux(commune.taux_canton)}. Ces coefficients s'appliquent sur l'impot de base cantonal.`,
+                      text: `Le coefficient communal a ${commune.nom} est de ${formatTaux(commune.taux_commune)}% et le taux cantonal (${commune.canton}) est de ${formatTaux(commune.taux_canton)}%. Ces coefficients s'appliquent sur l'impot de base cantonal.`,
                     },
                   },
                   {
@@ -554,7 +544,7 @@ export default async function CommunePage({ params }: Props) {
               <div>
                 <h3 className="text-sm font-medium text-gray-800">Quel est le taux d&apos;imposition a {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  Le coefficient communal est de {formatTaux(commune.taux_commune)} et le taux cantonal ({commune.canton}) est de {formatTaux(commune.taux_canton)}.
+                  Le coefficient communal est de {formatTaux(commune.taux_commune)}% et le taux cantonal ({commune.canton}) est de {formatTaux(commune.taux_canton)}%.
                   Ces coefficients s&apos;appliquent sur l&apos;impot de base cantonal (bareme progressif), et non directement sur votre revenu.
                 </p>
               </div>
