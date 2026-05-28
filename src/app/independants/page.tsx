@@ -43,13 +43,11 @@ const services = [
     features: [
       "Saisie des factures et dépenses",
       "Rapprochement bancaire",
-      "Tableau de bord mensuel",
       "Conseils d'optimisation",
     ],
     featuresEn: [
       "Invoice and expense entry",
       "Bank reconciliation",
-      "Monthly dashboard",
       "Optimization advice",
     ],
   },
@@ -109,7 +107,6 @@ const creationServices = [
       "Affiliation AVS/AI",
       "Inscription RC (si nécessaire)",
       "Conseil assurances",
-      "Accompagnement 1er mois",
     ],
   },
   {
