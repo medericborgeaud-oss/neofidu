@@ -11,11 +11,11 @@ export function Hero() {
 
   const features = isEnglish
     ? ["From your smartphone", "Transparent pricing", "Certified specialists"]
-    : ["Depuis votre smartphone", "Tarifs affichÃ©s", "SpÃ©cialistes diplÃ´mÃ©s"];
+    : ["Depuis votre smartphone", "Tarifs affichés", "Spécialistes diplômés"];
 
   const tagline = isEnglish
     ? "New generation fiduciary in French-speaking Switzerland"
-    : "Fiduciaire nouvelle gÃ©nÃ©ration en Romandie";
+    : "Fiduciaire nouvelle génération en Romandie";
 
   const title1 = isEnglish ? "Your online" : "Votre fiduciaire";
   const title2 = isEnglish ? "fiduciary" : "en ligne";
@@ -23,7 +23,7 @@ export function Hero() {
 
   const subtitle = isEnglish
     ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
-    : "Envoyez votre dÃ©claration dâimpÃ´ts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indÃ©pendants, sociÃ©tÃ©s et Suisses de lâÃ©tranger.";
+    : "Envoyez votre déclaration d’impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l’étranger.";
 
   const stats = isEnglish
     ? [
@@ -32,9 +32,9 @@ export function Hero() {
         { value: "10+", label: "Years of experience" },
       ]
     : [
-        { value: "24/7", label: "DisponibilitÃ© en ligne" },
+        { value: "24/7", label: "Disponibilité en ligne" },
         { value: "6", label: "Cantons desservis" },
-        { value: "10+", label: "Ans dâexpÃ©rience" },
+        { value: "10+", label: "Ans d’expérience" },
       ];
 
   return (
@@ -118,7 +118,7 @@ export function Hero() {
               className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-black/10 group"
             >
               <Link href="/demande">
-                {isEnglish ? "Submit a request" : "DÃ©poser une demande"}
+                {isEnglish ? "Submit a request" : "Déposer une demande"}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -130,7 +130,7 @@ export function Hero() {
             >
               <Link href="/simulateur">
                 <Calculator className="mr-2 w-5 h-5" />
-                {isEnglish ? "Estimate my taxes for free" : "Simuler mes impÃ´ts gratuitement"}
+                {isEnglish ? "Estimate my taxes for free" : "Simuler mes impôts gratuitement"}
               </Link>
             </Button>
           </div>
@@ -162,7 +162,7 @@ export function Hero() {
                     <text x="20" y="24" textAnchor="middle" fill="white" fontSize="13" fontWeight="700" fontFamily="Arial, sans-serif">VD</text>
                   </svg>
                 )},
-                { code: "GE", name: isEnglish ? "Geneva" : "GenÃ¨ve", flag: (
+                { code: "GE", name: isEnglish ? "Geneva" : "Genève", flag: (
                   <svg viewBox="0 0 40 40" className="w-full h-full">
                     <rect width="20" height="40" fill="#CE1126"/>
                     <rect x="20" width="20" height="40" fill="#FCD116"/>
@@ -185,7 +185,7 @@ export function Hero() {
                     <rect x="20" width="20" height="40" fill="#FFFFFF"/>
                   </svg>
                 )},
-                { code: "NE", name: isEnglish ? "NeuchÃ¢tel" : "NeuchÃ¢tel", flag: (
+                { code: "NE", name: isEnglish ? "Neuchâtel" : "Neuchâtel", flag: (
                   <svg viewBox="0 0 40 40" className="w-full h-full">
                     <rect width="40" height="20" fill="#00843D"/>
                     <rect y="20" width="40" height="20" fill="#CE1126"/>
