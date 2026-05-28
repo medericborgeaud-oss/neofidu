@@ -67,7 +67,6 @@ const companyTypes = [
       "Affiliation AVS/AI",
       "Inscription RC (si nécessaire)",
       "Conseil assurances",
-      "Accompagnement 1er mois",
     ],
   },
   {
@@ -102,8 +101,6 @@ const companyTypes = [
       "Coordination notaire",
       "Inscription au RC",
       "Affiliation caisses sociales",
-      "Déclaration TVA si nécessaire",
-      "Accompagnement 3 mois",
     ],
   },
   {
@@ -137,9 +134,6 @@ const companyTypes = [
       "Coordination notaire",
       "Inscription au RC",
       "Affiliations sociales",
-      "Déclaration TVA",
-      "Conseil gouvernance",
-      "Accompagnement 6 mois",
     ],
   },
 ];
