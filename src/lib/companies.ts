@@ -140,6 +140,12 @@ export async function getCompanyBySlug(slug: string): Promise<Company | null> {
   return data as Company;
 }
 
+export async function getRandomCompanies(limit = 20): Promise<Company[]> {
+    const { data, error } = await supabase.rpc("random_companies", { num: limit });
+    if (error) throw error;
+    return (data as Company[]) || [];
+}
+
 export async function getStats(): Promise<CompanyStats> {
   const [statsRes, cantonRes, formRes] = await Promise.all([
     supabase.rpc("total_stats"),
