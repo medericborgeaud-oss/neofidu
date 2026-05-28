@@ -206,11 +206,10 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
           {/* Left: Company list */}
           <div className={hasFilters ? "" : "lg:col-span-3"}>
             <p className="text-sm font-medium text-gray-900 mb-3">
-              {hasFilters ? (
-                <>{totalCompanies.toLocaleString("fr-CH")} résultats</>
-              ) : (
-                {isRandomSelection ? "Entreprises en Suisse romande" : `${totalCompanies.toLocaleString("fr-CH")} résultats`}
-              )}
+              {isRandomSelection && !hasFilters
+                ? "Entreprises en Suisse romande"
+                : <>{totalCompanies.toLocaleString("fr-CH")} résultats</>
+              }
             </p>
 
             {companies.length === 0 && hasFilters ? (
