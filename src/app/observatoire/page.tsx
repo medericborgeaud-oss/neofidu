@@ -29,11 +29,11 @@ export default async function ObservatoirePage({
   const secteur = (params.secteur as string) || "";
   const page = parseInt((params.page as string) || "1", 10);
 
-  const hasFilters = !!(q || canton || forme || secteur || page > 1);
+  const hasFilters = !!(q || canton || forme || secteur || params.page);
 
   const [companiesData, stats, sectorDistribution] = await Promise.all([
     hasFilters
-      ? getCompanies({ search: q, canton, legal_form: forme, sector: secteur, page, per_page: 20 })
+      ? getCompanies({ search: q, canton, legal_form: forme, sector: secteur, page, limit: 20 })
       : getRandomCompanies(20).then((companies) => ({ companies, total: 0 })),
     getStats(),
     getSectorDistribution(),
