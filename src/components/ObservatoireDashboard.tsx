@@ -254,8 +254,18 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
               </div>
             )}
 
-            {/* Pagination */}
-            {totalPages > 1 && (
+            {/* Pagination or Browse All */}
+            {isRandomSelection ? (
+              <div className="text-center mt-6">
+                <Link
+                  href="/observatoire?page=1"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium border border-emerald-200 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors"
+                >
+                  Voir les {totalCompanies.toLocaleString("fr-CH")} entreprises
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            ) : totalPages > 1 ? (
               <div className="flex items-center justify-center gap-2 mt-6">
                 {currentPage > 1 && (
                   <Link
@@ -277,7 +287,7 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
                   </Link>
                 )}
               </div>
-            )}
+            ) : null}
           </div>
 
           {/* Right: Sidebar (2/5) — hidden when filters active */}
