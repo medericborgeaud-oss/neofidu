@@ -9,7 +9,7 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Observatoire romand des entreprises | NeoFidu",
   description:
-    "Toutes les entreprises actives en Suisse romande. Recherchez par canton, forme juridique ou secteur d’activité.",
+    "Toutes les entreprises actives en Suisse romande. Recherchez par canton, forme juridique ou secteur d\u2019activit\u00e9.",
   openGraph: {
     title: "Observatoire romand des entreprises | NeoFidu",
     description:
@@ -23,18 +23,18 @@ export default async function ObservatoirePage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const params = await searchParams;
-  const search = (params.search as string) || "";
+  const q = (params.q as string) || "";
   const canton = (params.canton as string) || "";
-  const legal_form = (params.legal_form as string) || "";
-  const sector = (params.sector as string) || "";
+  const forme = (params.forme as string) || "";
+  const secteur = (params.secteur as string) || "";
   const page = parseInt((params.page as string) || "1", 10);
 
-  const hasFilters = !!(search || canton || legal_form || sector || page > 1);
+  const hasFilters = !!(q || canton || forme || secteur || page > 1);
 
   const [companiesData, stats, sectorDistribution] = await Promise.all([
     hasFilters
-      ? getCompanies({ search, canton, legal_form, sector, page, per_page: 20 })
-      : getRandomCompanies(20).then((companies) => ({ companies, total: companies.length })),
+      ? getCompanies({ search: q, canton, legal_form: forme, sector: secteur, page, per_page: 20 })
+      : getRandomCompanies(20).then((companies) => ({ companies, total: 0 })),
     getStats(),
     getSectorDistribution(),
   ]);
@@ -44,8 +44,9 @@ export default async function ObservatoirePage({
       <Header />
       <ObservatoireDashboard
         companies={companiesData.companies}
-        totalCompanies={companiesData.total}
+        totalCompanies={hasFilters ? companiesData.total : stats.total}
         stats={stats}
+        initialFilters={hasFilters ? { search: q, canton, legal_form: forme, sector: secteur, page } : undefined}
         sectorDistribution={sectorDistribution}
         isRandomSelection={!hasFilters}
       />
