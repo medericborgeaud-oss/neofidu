@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Calculator, Shield, CheckCircle2, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
+import { CantonFlag } from "@/components/CantonFlag";
 
 export function Hero() {
   const { t, isEnglish } = useLanguage();
@@ -154,55 +155,18 @@ export function Hero() {
             </div>
 
             {/* Canton flags */}
-            <div className="flex justify-center gap-5 md:gap-7 mt-6">
-              {[
-                { code: "VD", name: isEnglish ? "Vaud" : "Vaud", flag: (
-                  <svg viewBox="0 0 40 40" className="w-full h-full">
-                    <rect width="40" height="40" fill="#00843D"/>
-                    <text x="20" y="24" textAnchor="middle" fill="white" fontSize="13" fontWeight="700" fontFamily="Arial, sans-serif">VD</text>
-                  </svg>
-                )},
-                { code: "GE", name: isEnglish ? "Geneva" : "Genève", flag: (
-                  <svg viewBox="0 0 40 40" className="w-full h-full">
-                    <rect width="20" height="40" fill="#CE1126"/>
-                    <rect x="20" width="20" height="40" fill="#FCD116"/>
-                    <rect x="15" y="10" width="10" height="14" fill="#CE1126" rx="1"/>
-                    <rect x="17" y="6" width="6" height="4" fill="#FCD116"/>
-                  </svg>
-                )},
-                { code: "VS", name: isEnglish ? "Valais" : "Valais", flag: (
-                  <svg viewBox="0 0 40 40" className="w-full h-full">
-                    <rect width="40" height="20" fill="#CE1126"/>
-                    <rect y="20" width="40" height="20" fill="#FFFFFF"/>
-                    <g transform="translate(8,8)">
-                      <polygon points="12,0 15,8 24,8 17,13 19,22 12,17 5,22 7,13 0,8 9,8" fill="#CE1126" transform="scale(0.55) translate(10,2)"/>
-                    </g>
-                  </svg>
-                )},
-                { code: "FR", name: isEnglish ? "Fribourg" : "Fribourg", flag: (
-                  <svg viewBox="0 0 40 40" className="w-full h-full">
-                    <rect width="20" height="40" fill="#000000"/>
-                    <rect x="20" width="20" height="40" fill="#FFFFFF"/>
-                  </svg>
-                )},
-                { code: "NE", name: isEnglish ? "Neuchâtel" : "Neuchâtel", flag: (
-                  <svg viewBox="0 0 40 40" className="w-full h-full">
-                    <rect width="40" height="20" fill="#00843D"/>
-                    <rect y="20" width="40" height="20" fill="#CE1126"/>
-                    <circle cx="20" cy="20" r="5" fill="#FFFFFF"/>
-                  </svg>
-                )},
-                { code: "JU", name: "Jura", flag: (
-                  <svg viewBox="0 0 40 40" className="w-full h-full">
-                    <rect width="40" height="40" fill="#FFFFFF"/>
-                    <rect width="20" height="20" fill="#CE1126"/>
-                    <rect x="20" y="20" width="20" height="20" fill="#CE1126"/>
-                  </svg>
-                )},
-              ].map((canton) => (
+            <div className="flex justify-center gap-4 md:gap-6 mt-6">
+              {([
+                { code: "VD", name: isEnglish ? "Vaud" : "Vaud" },
+                { code: "GE", name: isEnglish ? "Geneva" : "Genève" },
+                { code: "VS", name: isEnglish ? "Valais" : "Valais" },
+                { code: "FR", name: isEnglish ? "Fribourg" : "Fribourg" },
+                { code: "NE", name: "Neuchâtel" },
+                { code: "JU", name: "Jura" },
+              ] as const).map((canton) => (
                 <div key={canton.code} className="flex flex-col items-center gap-1.5">
-                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0">
-                    {canton.flag}
+                  <div className="border border-white/20 rounded-sm overflow-hidden shadow-sm">
+                    <CantonFlag canton={canton.code} size={36} />
                   </div>
                   <span className="text-white/60 text-[10px] md:text-xs">{canton.name}</span>
                 </div>
