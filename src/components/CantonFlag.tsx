@@ -27,8 +27,8 @@ export function CantonFlag({ canton, size = 28 }: Props) {
       width={size}
       height={Math.round(size * 0.82)}
       style={{
-        border: "1px solid #d1d5db",
-        borderRadius: 2,
+        
+        
         objectFit: "contain",
       }}
       loading="lazy"
