@@ -1,7 +1,7 @@
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 import { Metadata } from "next";
-import { getCompanies, getStats, getSectorDistribution } from "@/lib/companies";
+import { getCompanies, getStats, getSectorDistribution, getRandomCompanies } from "@/lib/companies";
 import { ObservatoireDashboard } from "@/components/ObservatoireDashboard";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -9,7 +9,7 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Observatoire romand des entreprises | NeoFidu",
   description:
-    "Toutes les entreprises actives en Suisse romande. Recherchez par canton, forme juridique ou secteur d'activité.",
+    "Toutes les entreprises actives en Suisse romande. Recherchez par canton, forme juridique ou secteur d’activité.",
   openGraph: {
     title: "Observatoire romand des entreprises | NeoFidu",
     description:
@@ -17,21 +17,24 @@ export const metadata: Metadata = {
   },
 };
 
-
-export default async function ObservatoirePage(props: {
-  searchParams: { [key: string]: string | string[] | undefined };
+export default async function ObservatoirePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const searchParams = props.searchParams || {};
-  const filters = {
-    search: (searchParams.q as string) || "",
-    canton: (searchParams.canton as string) || "",
-    legal_form: (searchParams.forme as string) || "",
-    sector: (searchParams.secteur as string) || "",
-    page: parseInt((searchParams.page as string) || "1"),
-  };
+  const params = await searchParams;
+  const search = (params.search as string) || "";
+  const canton = (params.canton as string) || "";
+  const legal_form = (params.legal_form as string) || "";
+  const sector = (params.sector as string) || "";
+  const page = parseInt((params.page as string) || "1", 10);
 
-  const [{ companies, total }, stats, sectorDistribution] = await Promise.all([
-    getCompanies(filters),
+  const hasFilters = !!(search || canton || legal_form || sector || page > 1);
+
+  const [companiesData, stats, sectorDistribution] = await Promise.all([
+    hasFilters
+      ? getCompanies({ search, canton, legal_form, sector, page, per_page: 20 })
+      : getRandomCompanies(20).then((companies) => ({ companies, total: companies.length })),
     getStats(),
     getSectorDistribution(),
   ]);
@@ -39,15 +42,13 @@ export default async function ObservatoirePage(props: {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white pt-24">
-        <ObservatoireDashboard
-          companies={companies}
-          total={total}
-          stats={stats}
-          initialFilters={filters}
-          sectorDistribution={sectorDistribution}
-        />
-      </main>
+      <ObservatoireDashboard
+        companies={companiesData.companies}
+        totalCompanies={companiesData.total}
+        stats={stats}
+        sectorDistribution={sectorDistribution}
+        isRandomSelection={!hasFilters}
+      />
       <Footer />
     </>
   );
