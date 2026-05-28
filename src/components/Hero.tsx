@@ -11,19 +11,19 @@ export function Hero() {
 
   const features = isEnglish
     ? ["From your smartphone", "Transparent pricing", "Certified specialists"]
-    : ["Depuis votre smartphone", "Tarifs affichés", "Spécialistes diplômés"];
+    : ["Depuis votre smartphone", "Tarifs affichÃ©s", "SpÃ©cialistes diplÃ´mÃ©s"];
 
   const tagline = isEnglish
     ? "New generation fiduciary in French-speaking Switzerland"
-    : "Fiduciaire nouvelle génération en Romandie";
+    : "Fiduciaire nouvelle gÃ©nÃ©ration en Romandie";
 
   const title1 = isEnglish ? "Your online" : "Votre fiduciaire";
   const title2 = isEnglish ? "fiduciary" : "en ligne";
   const title3 = isEnglish ? "in French-speaking Switzerland" : "en Suisse romande";
 
   const subtitle = isEnglish
-    ? "Your tax return and accounting handled by certified specialists, directly from your smartphone. 6 cantons, rates from CHF 89."
-    : "Votre d\u00e9claration d\u2019imp\u00f4ts et comptabilit\u00e9 g\u00e9r\u00e9es par des sp\u00e9cialistes dipl\u00f4m\u00e9s, directement depuis votre smartphone. 6 cantons, tarifs d\u00e8s CHF 89.";
+    ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
+    : "Envoyez votre dÃ©claration dâimpÃ´ts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indÃ©pendants, sociÃ©tÃ©s et Suisses de lâÃ©tranger.";
 
   const stats = isEnglish
     ? [
@@ -32,9 +32,9 @@ export function Hero() {
         { value: "10+", label: "Years of experience" },
       ]
     : [
-        { value: "24/7", label: "Disponibilité en ligne" },
+        { value: "24/7", label: "DisponibilitÃ© en ligne" },
         { value: "6", label: "Cantons desservis" },
-        { value: "10+", label: "Ans d’expérience" },
+        { value: "10+", label: "Ans dâexpÃ©rience" },
       ];
 
   return (
@@ -118,7 +118,7 @@ export function Hero() {
               className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-black/10 group"
             >
               <Link href="/demande">
-                {isEnglish ? "Submit a request" : "Déposer une demande"}
+                {isEnglish ? "Submit a request" : "DÃ©poser une demande"}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -130,7 +130,7 @@ export function Hero() {
             >
               <Link href="/simulateur">
                 <Calculator className="mr-2 w-5 h-5" />
-                {isEnglish ? "Estimate my taxes for free" : "Simuler mes impôts gratuitement"}
+                {isEnglish ? "Estimate my taxes for free" : "Simuler mes impÃ´ts gratuitement"}
               </Link>
             </Button>
           </div>
@@ -150,6 +150,62 @@ export function Hero() {
                     <div className="w-px h-12 bg-white/20" />
                   )}
                 </React.Fragment>
+              ))}
+            </div>
+
+            {/* Canton flags */}
+            <div className="flex justify-center gap-5 md:gap-7 mt-6">
+              {[
+                { code: "VD", name: isEnglish ? "Vaud" : "Vaud", flag: (
+                  <svg viewBox="0 0 40 40" className="w-full h-full">
+                    <rect width="40" height="40" fill="#00843D"/>
+                    <text x="20" y="24" textAnchor="middle" fill="white" fontSize="13" fontWeight="700" fontFamily="Arial, sans-serif">VD</text>
+                  </svg>
+                )},
+                { code: "GE", name: isEnglish ? "Geneva" : "GenÃ¨ve", flag: (
+                  <svg viewBox="0 0 40 40" className="w-full h-full">
+                    <rect width="20" height="40" fill="#CE1126"/>
+                    <rect x="20" width="20" height="40" fill="#FCD116"/>
+                    <rect x="15" y="10" width="10" height="14" fill="#CE1126" rx="1"/>
+                    <rect x="17" y="6" width="6" height="4" fill="#FCD116"/>
+                  </svg>
+                )},
+                { code: "VS", name: isEnglish ? "Valais" : "Valais", flag: (
+                  <svg viewBox="0 0 40 40" className="w-full h-full">
+                    <rect width="40" height="20" fill="#CE1126"/>
+                    <rect y="20" width="40" height="20" fill="#FFFFFF"/>
+                    <g transform="translate(8,8)">
+                      <polygon points="12,0 15,8 24,8 17,13 19,22 12,17 5,22 7,13 0,8 9,8" fill="#CE1126" transform="scale(0.55) translate(10,2)"/>
+                    </g>
+                  </svg>
+                )},
+                { code: "FR", name: isEnglish ? "Fribourg" : "Fribourg", flag: (
+                  <svg viewBox="0 0 40 40" className="w-full h-full">
+                    <rect width="20" height="40" fill="#000000"/>
+                    <rect x="20" width="20" height="40" fill="#FFFFFF"/>
+                  </svg>
+                )},
+                { code: "NE", name: isEnglish ? "NeuchÃ¢tel" : "NeuchÃ¢tel", flag: (
+                  <svg viewBox="0 0 40 40" className="w-full h-full">
+                    <rect width="40" height="20" fill="#00843D"/>
+                    <rect y="20" width="40" height="20" fill="#CE1126"/>
+                    <circle cx="20" cy="20" r="5" fill="#FFFFFF"/>
+                  </svg>
+                )},
+                { code: "JU", name: "Jura", flag: (
+                  <svg viewBox="0 0 40 40" className="w-full h-full">
+                    <rect width="40" height="40" fill="#FFFFFF"/>
+                    <rect width="20" height="20" fill="#CE1126"/>
+                    <rect x="20" y="20" width="20" height="20" fill="#CE1126"/>
+                  </svg>
+                )},
+              ].map((canton) => (
+                <div key={canton.code} className="flex flex-col items-center gap-1.5">
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0">
+                    {canton.flag}
+                  </div>
+                  <span className="text-white/60 text-[10px] md:text-xs">{canton.name}</span>
+                </div>
               ))}
             </div>
           </div>
