@@ -12,18 +12,18 @@ const SECTORS = [
   { value: "tech", label: "Informatique" },
   { value: "conseil", label: "Conseil" },
   { value: "commerce", label: "Commerce" },
-  { value: "sante", label: "Santé" },
+  { value: "sante", label: "SantÃ©" },
   { value: "construction", label: "Construction" },
   { value: "restauration", label: "Restauration" },
   { value: "immobilier", label: "Immobilier" },
   { value: "transport", label: "Transport" },
-  { value: "education", label: "Éducation" },
+  { value: "education", label: "Ãducation" },
   { value: "finance", label: "Finance" },
   { value: "industrie", label: "Industrie" },
   { value: "agriculture", label: "Agriculture" },
   { value: "art_culture", label: "Art & Culture" },
   { value: "nettoyage", label: "Nettoyage" },
-  { value: "beaute", label: "Beauté" },
+  { value: "beaute", label: "BeautÃ©" },
 ];
 
 const BADGE_CLASSES: Record<string, string> = {
@@ -62,17 +62,18 @@ const SECTOR_COLORS: Record<string, string> = {
 
 interface Props {
   companies: Company[];
-  total: number;
+  totalCompanies: number;
   stats: CompanyStats;
-  initialFilters: CompanyFilters;
+  initialFilters?: CompanyFilters;
   sectorDistribution: SectorDistribution[];
+  isRandomSelection?: boolean;
 }
 
-export function ObservatoireDashboard({ companies, total, stats, initialFilters, sectorDistribution }: Props) {
-  const [search, setSearch] = useState(initialFilters.search || "");
-  const [canton, setCanton] = useState(initialFilters.canton || "");
-  const [form, setForm] = useState(initialFilters.legal_form || "");
-  const [sector, setSector] = useState(initialFilters.sector || "");
+export function ObservatoireDashboard({ companies, totalCompanies, stats, initialFilters, sectorDistribution, isRandomSelection }: Props) {
+  const [search, setSearch] = useState((initialFilters?.search || '') || "");
+  const [canton, setCanton] = useState((initialFilters?.canton || '') || "");
+  const [form, setForm] = useState((initialFilters?.legal_form || '') || "");
+  const [sector, setSector] = useState((initialFilters?.sector || '') || "");
 
   const hasFilters = search || canton || form || sector;
 
@@ -106,14 +107,14 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
 
   const maxCanton = stats.byCantonSorted.length > 0 ? stats.byCantonSorted[0].count : 1;
   const totalSectors = sectorDistribution.reduce((a, b) => a + b.count, 0);
-  const currentPage = initialFilters.page || 1;
-  const totalPages = Math.ceil(total / 20);
+  const currentPage = initialFilters?.page || 1;
+  const totalPages = Math.ceil(totalCompanies / 20);
 
   return (
     <section className="py-8 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* ─── Header + Search ─── */}
+        {/* âââ Header + Search âââ */}
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-gray-900">
             Observatoire romand des entreprises
@@ -199,23 +200,23 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
           </div>
         )}
 
-        {/* ─── Main layout: Results + Sidebar ─── */}
+        {/* âââ Main layout: Results + Sidebar âââ */}
         <div className={`grid grid-cols-1 ${hasFilters ? "" : "lg:grid-cols-5"} gap-6`}>
 
           {/* Left: Company list */}
           <div className={hasFilters ? "" : "lg:col-span-3"}>
             <p className="text-sm font-medium text-gray-900 mb-3">
               {hasFilters ? (
-                <>{total.toLocaleString("fr-CH")} résultats</>
+                <>{totalCompanies.toLocaleString("fr-CH")} rÃ©sultats</>
               ) : (
-                <>Dernières entreprises enregistrées</>
+                {isRandomSelection ? "Entreprises en Suisse romande" : `${totalCompanies.toLocaleString("fr-CH")} résultats`}
               )}
             </p>
 
             {companies.length === 0 && hasFilters ? (
               <div className="text-center py-16 border border-dashed border-gray-200 rounded-lg">
                 <Building2 className="w-8 h-8 text-gray-300 mx-auto mb-3" />
-                <p className="text-gray-500 text-sm mb-2">Aucun résultat pour ces filtres.</p>
+                <p className="text-gray-500 text-sm mb-2">Aucun rÃ©sultat pour ces filtres.</p>
                 <Link href="/observatoire" className="text-sm text-emerald-600 hover:text-emerald-700">
                   Effacer les filtres
                 </Link>
@@ -225,13 +226,12 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                 {companies.map((c) => (
                   <Link key={c.id} href={`/observatoire/${c.slug}`}>
                     <div className="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:border-emerald-300 transition-colors cursor-pointer">
-                      <div
-                        className="w-2 h-2 rounded-full flex-shrink-0"
-                        style={{
-                          backgroundColor:
-                            c.legal_form === "SA" ? "#9FE1CB" : c.legal_form === "Sarl" ? "#5DCAA5" : "#1D9E75",
-                        }}
-                      />
+                      <span className="inline-flex items-center justify-center text-[10px] font-bold rounded px-1.5 py-0.5 flex-shrink-0" style={{
+                          backgroundColor: c.canton === "VD" ? "#E8F5E9" : c.canton === "GE" ? "#FFF3E0" : c.canton === "VS" ? "#E3F2FD" : c.canton === "FR" ? "#F3E5F5" : c.canton === "NE" ? "#FFF9C4" : c.canton === "JU" ? "#FCE4EC" : "#F5F5F5",
+                          color: c.canton === "VD" ? "#2E7D32" : c.canton === "GE" ? "#E65100" : c.canton === "VS" ? "#1565C0" : c.canton === "FR" ? "#6A1B9A" : c.canton === "NE" ? "#F57F17" : c.canton === "JU" ? "#C62828" : "#616161",
+                        }}>
+                          {c.canton}
+                        </span>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {c.name}
@@ -245,7 +245,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                           )}
                         </p>
                         <p className="text-xs text-gray-500 truncate">
-                          {c.purpose?.split(",")[0] || ""} — {c.city}, {c.canton}
+                          {c.purpose?.split(",")[0] || ""} â {c.city}, {c.canton}
                         </p>
                       </div>
                       <ArrowRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
@@ -263,7 +263,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
                     href={buildUrl() + (buildUrl().includes("?") ? "&" : "?") + `page=${currentPage - 1}`}
                     className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg hover:bg-gray-50"
                   >
-                    Précédent
+                    PrÃ©cÃ©dent
                   </Link>
                 )}
                 <span className="text-sm text-gray-500">
@@ -281,7 +281,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
             )}
           </div>
 
-          {/* Right: Sidebar (2/5) — hidden when filters active */}
+          {/* Right: Sidebar (2/5) â hidden when filters active */}
           {!hasFilters && <div className="lg:col-span-2 space-y-4">
 
             {/* Canton ranking */}
@@ -314,7 +314,7 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
               <div className="border border-gray-100 rounded-xl p-4">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-sm font-medium text-gray-900">Par secteur</h3>
-                  <span className="text-xs text-gray-400">{totalSectors.toLocaleString("fr-CH")} classifiées</span>
+                  <span className="text-xs text-gray-400">{totalSectors.toLocaleString("fr-CH")} classifiÃ©es</span>
                 </div>
                 <div className="space-y-2">
                   {sectorDistribution.slice(0, 15).map(({ sector: s, count }) => {
@@ -353,14 +353,14 @@ export function ObservatoireDashboard({ companies, total, stats, initialFilters,
         {/* Footer CTA */}
         <div className="text-center space-y-3 pt-8 mt-8 border-t border-gray-100">
           <p className="text-xs text-gray-400">
-            Données Zefix / FOSC &middot; Classification IA par secteur &middot; Propulsé par{" "}
+            DonnÃ©es Zefix / FOSC &middot; Classification IA par secteur &middot; PropulsÃ© par{" "}
             <Link href="/" className="text-emerald-600 hover:text-emerald-700 font-medium">
               NeoFidu
             </Link>
           </p>
           <Link href="/demande">
             <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
-              Vous créez votre entreprise ? On s&apos;occupe de tout dès CHF 500.-
+              Vous crÃ©ez votre entreprise ? On s&apos;occupe de tout dÃ¨s CHF 500.-
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
