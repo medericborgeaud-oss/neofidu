@@ -165,7 +165,7 @@ export function Hero() {
                 { code: "JU", name: "Jura" },
               ] as const).map((canton) => (
                 <div key={canton.code} className="flex flex-col items-center gap-1.5">
-                  <div className="border border-white/20 rounded-sm overflow-hidden shadow-sm">
+                  <div className="rounded-sm overflow-hidden">
                     <CantonFlag canton={canton.code} size={36} />
                   </div>
                   <span className="text-white/60 text-[10px] md:text-xs">{canton.name}</span>
