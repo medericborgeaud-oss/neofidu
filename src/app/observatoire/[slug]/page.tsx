@@ -57,7 +57,7 @@ export default async function CompanyPage({ params }: Props) {
 
   const ctaText =
     company.legal_form === "RI"
-      ? { text: "Vous êtes aussi indépendant ?", offer: "Déclaration d'impôts dès CHF 89.-", href: "/demande" }
+      ? { text: "Vous êtes aussi indépendant ?", offer: "Déclaration d'impôts dès CHF 129.-", href: "/demande" }
       : company.legal_form === "Sarl"
       ? { text: "Besoin d'un fiduciaire pour votre Sàrl ?", offer: "Comptabilité dès CHF 500.-/an", href: "/demande" }
       : { text: "Votre SA mérite un accompagnement pro.", offer: "Comptabilité dès CHF 500.-/an", href: "/demande" };
