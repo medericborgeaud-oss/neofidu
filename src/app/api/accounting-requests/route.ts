@@ -141,7 +141,7 @@ function getAccountingRequestAdminHtml(data: AccountingRequestData, reference: s
             ${servicesHtml || '<li>Aucun service spécifié</li>'}
           </ul>
           <p style="margin: 12px 0 0; color: #1e40af;">
-            <strong>Fréquence de facturation:</strong> ${data.billingFrequency === 'monthly' ? 'Mensuelle' : 'Annuelle (-10%)'}
+            <strong>Fréquence de facturation:</strong> ${data.billingFrequency === 'monthly' ? 'Mensuelle' : 'Annuelle'}
           </p>
         </div>
 
