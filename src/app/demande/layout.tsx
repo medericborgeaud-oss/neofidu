@@ -112,8 +112,8 @@ const taxServiceSchema = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Déclaration Basique",
-          "description": "Pour personne seule ou en ménage avec situation standard"
+          "name": "Déclaration d'impôts à la carte",
+          "description": "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +40, titres +30"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -122,34 +122,6 @@ const taxServiceSchema = {
           "minPrice": "89"
         }
       },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Déclaration Confort",
-          "description": "Pour familles, propriétaires, dépenses professionnelles"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "149",
-          "priceCurrency": "CHF",
-          "minPrice": "149"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Déclaration Intégral",
-          "description": "Patrimoine diversifié, titres et placements, revenus multiples"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "249",
-          "priceCurrency": "CHF",
-          "minPrice": "249"
-        }
-      }
     ]
   },
   "aggregateRating": {
@@ -170,7 +142,7 @@ const faqSchema = {
       "name": "Combien coûte une déclaration d'impôts chez Neofidu ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Les prix commencent à CHF 89.- pour la formule Basique (personne seule), CHF 149.- pour la formule Confort (famille, propriétaire), et CHF 249.- pour la formule Intégral (patrimoine diversifié). Devis gratuit en 2 minutes."
+        "text": "Les prix commencent dès CHF 89 pour une déclaration à la carte (personne seule, situation standard). Suppléments: couple +CHF 30, enfant +CHF 15, immobilier +CHF 60, indépendant +CHF 40, titres +CHF 30. Devis gratuit en 2 minutes."
       }
     },
     {
