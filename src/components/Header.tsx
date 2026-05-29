@@ -44,6 +44,7 @@ export function Header() {
     { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },
     { href: "/creation-entreprise", label: isEnglish ? "Company Creation" : "Création d'entreprise", category: "Services" },
     { href: "/entreprises", label: isEnglish ? "SMEs & Corporations" : "PME & Sociétés", category: "Services" },
+    { href: "/associations-fondations", label: isEnglish ? "Associations & Foundations" : "Associations & Fondations", category: "Services" },
     { href: "/expats", label: "Expats", category: "Services" },
     { href: "/tarifs", label: isEnglish ? "Pricing" : "Tarifs", category: "Informations" },
     { href: "/blog", label: "Blog", category: "Informations" },
@@ -143,6 +144,12 @@ export function Header() {
       label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
       icon: TrendingUp,
       description: isEnglish ? "Market data & trends" : "Données et tendances du marché",
+    },
+    {
+      href: "/associations-fondations",
+      label: isEnglish ? "Associations & Foundations" : "Associations & Fondations",
+      icon: Users,
+      description: isEnglish ? "Accounting & tax for non-profits" : "Comptabilité & fiscalité associative",
     },
   ];
 
