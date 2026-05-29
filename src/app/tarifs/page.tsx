@@ -176,7 +176,7 @@ const pricingData = {
         "Strategic tax advice",
         "Dedicated contact",
       ],
-      popular: true,
+      popular: false,
     },
     {
       name: "Création d'entreprise",
