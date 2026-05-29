@@ -30,16 +30,16 @@ const pricingData = {
     {
       name: "Basique",
       nameen: "Basic",
-      description: "Dossiers sans complexité",
+      description: "Dossiers sans complexitÃ©",
       descriptionen: "Simple cases",
       price: "89",
-      priceNote: "dès",
+      priceNote: "dÃ¨s",
       features: [
         "Personne seule",
         "Attestation(s) de revenus",
-        "Relevé(s) de compte",
+        "RelevÃ©(s) de compte",
         "Abattements usuels",
-        "Traitement standard (10 jours ouvrés)",
+        "Traitement standard (10 jours ouvrÃ©s)",
       ],
       featuresen: [
         "Single person",
@@ -53,17 +53,17 @@ const pricingData = {
     {
       name: "Confort",
       nameen: "Comfort",
-      description: "Formule plébiscitée",
+      description: "Formule plÃ©biscitÃ©e",
       descriptionen: "Most popular",
       price: "149",
-      priceNote: "dès",
+      priceNote: "dÃ¨s",
       features: [
         "Inclut la formule Basique",
         "Charge(s) de famille",
-        "Un logement en propriété",
-        "Dépenses professionnelles",
-        "Traitement standard (10 jours ouvrés)",
-        "Assistance dédiée",
+        "Un logement en propriÃ©tÃ©",
+        "DÃ©penses professionnelles",
+        "Traitement standard (10 jours ouvrÃ©s)",
+        "Assistance dÃ©diÃ©e",
       ],
       featuresen: [
         "Includes Basic plan",
@@ -76,19 +76,19 @@ const pricingData = {
       popular: true,
     },
     {
-      name: "Intégral",
+      name: "IntÃ©gral",
       nameen: "Integral",
-      description: "Patrimoine diversifié",
+      description: "Patrimoine diversifiÃ©",
       descriptionen: "Diversified assets",
       price: "249",
-      priceNote: "dès",
+      priceNote: "dÃ¨s",
       features: [
         "Inclut la formule Confort",
-        "Patrimoine immobilier étendu",
+        "Patrimoine immobilier Ã©tendu",
         "Titres et placements",
         "Sources de revenus multiples",
-        "Traitement standard (10 jours ouvrés)",
-        "Accompagnement personnalisé",
+        "Traitement standard (10 jours ouvrÃ©s)",
+        "Accompagnement personnalisÃ©",
       ],
       featuresen: [
         "Includes Comfort plan",
@@ -101,20 +101,20 @@ const pricingData = {
       popular: false,
     },
     {
-      name: "Suisses de l'étranger",
+      name: "Suisses de l'Ã©tranger",
       nameen: "Swiss Abroad",
-      description: "Déclaration depuis l'étranger",
+      description: "DÃ©claration depuis l'Ã©tranger",
       descriptionen: "Filing from abroad",
       price: "149",
-      priceNote: "dès",
+      priceNote: "dÃ¨s",
       features: [
-        "Déclaration fiscale complète",
+        "DÃ©claration fiscale complÃ¨te",
         "Couple: +CHF 30.-",
-        "Indépendant: +CHF 40.-",
+        "IndÃ©pendant: +CHF 40.-",
         "Bien immobilier: +CHF 60.-/bien",
         "Enfant: +CHF 15.-/enfant",
 
-        "Actions (≥3): +CHF 30.-",],
+        "Actions (â¥3): +CHF 30.-",],
       featuresen: [
         "Complete tax return",
         "Couple: +CHF 30.-",
@@ -122,23 +122,23 @@ const pricingData = {
         "Property: +CHF 60.-/property",
         "Child: +CHF 15.-/child",
 
-        "Securities (≥3): +CHF 30.-",],
+        "Securities (â¥3): +CHF 30.-",],
       popular: false,
       isSwissAbroad: true,
     },
   ],
   entreprises: [
     {
-      name: "Indépendant",
+      name: "IndÃ©pendant",
       nameen: "Self-employed",
       description: "Raison individuelle, freelance",
       descriptionen: "Sole proprietorship, freelance",
       price: "500",
-      priceNote: "dès",
+      priceNote: "dÃ¨s",
       unit: "/an",
       features: [
-        "Tenue de comptabilité complète",
-        "Déclarations TVA (si assujetti)",
+        "Tenue de comptabilitÃ© complÃ¨te",
+        "DÃ©clarations TVA (si assujetti)",
         "Bouclement annuel",
         "Rapprochement bancaire",
         "Assistance par email",
@@ -155,18 +155,18 @@ const pricingData = {
     {
       name: "PME",
       nameen: "SME",
-      description: "Sàrl, SA jusqu'à 10 employés",
+      description: "SÃ rl, SA jusqu'Ã  10 employÃ©s",
       descriptionen: "LLC, AG up to 10 employees",
       price: "300",
-      priceNote: "dès",
+      priceNote: "dÃ¨s",
       unit: "/mois",
       features: [
-        "Comptabilité complète",
+        "ComptabilitÃ© complÃ¨te",
         "Gestion des salaires",
-        "Déclarations TVA & sociales",
-        "États financiers annuels",
-        "Conseil stratégique fiscal",
-        "Interlocuteur dédié",
+        "DÃ©clarations TVA & sociales",
+        "Ãtats financiers annuels",
+        "Conseil stratÃ©gique fiscal",
+        "Interlocuteur dÃ©diÃ©",
       ],
       featuresen: [
         "Complete accounting",
@@ -179,16 +179,16 @@ const pricingData = {
       popular: true,
     },
     {
-      name: "Création d'entreprise",
+      name: "CrÃ©ation d'entreprise",
       nameen: "Company formation",
-      description: "RI, Sàrl ou SA clé en main",
+      description: "RI, SÃ rl ou SA clÃ© en main",
       descriptionen: "Sole prop., LLC or AG turnkey",
       price: "290",
-      priceNote: "dès",
+      priceNote: "dÃ¨s",
       features: [
-        "Raison individuelle: dès CHF 290.-",
-        "Sàrl: dès CHF 990.-",
-        "SA: dès CHF 1'490.-",
+        "Raison individuelle: dÃ¨s CHF 290.-",
+        "SÃ rl: dÃ¨s CHF 990.-",
+        "SA: dÃ¨s CHF 1'490.-",
         "Inscription Registre du Commerce",
         "Affiliation AVS/AI",
         "Conseil forme juridique",
@@ -207,17 +207,17 @@ const pricingData = {
 };
 const comparisonData = [
   {
-    feature: "Prix déclaration simple",
+    feature: "Prix dÃ©claration simple",
     featureen: "Simple tax return price",
-    neoFidu: "Dès CHF 89.-",
+    neoFidu: "DÃ¨s CHF 89.-",
     neoFiduen: "From CHF 89.-",
-    traditional: "CHF 150.- à 300.-",
+    traditional: "CHF 150.- Ã  300.-",
     traditionalen: "CHF 150.- to 300.-",
   },
   {
-    feature: "Délai de traitement",
+    feature: "DÃ©lai de traitement",
     featureen: "Processing time",
-    neoFidu: "10 jours ouvrés",
+    neoFidu: "10 jours ouvrÃ©s",
     neoFiduen: "10 business days",
     traditional: "2-4 semaines",
     traditionalen: "2-4 weeks",
@@ -241,7 +241,7 @@ const comparisonData = [
   {
     feature: "Transparence prix",
     featureen: "Price transparency",
-    neoFidu: "Prix fixes affichés",
+    neoFidu: "Prix fixes affichÃ©s",
     neoFiduen: "Fixed displayed prices",
     traditional: "Tarif horaire variable",
     traditionalen: "Variable hourly rate",
@@ -251,17 +251,17 @@ const comparisonData = [
     featureen: "File tracking",
     neoFidu: "Espace client en ligne",
     neoFiduen: "Online client portal",
-    traditional: "Par téléphone/email",
+    traditional: "Par tÃ©lÃ©phone/email",
     traditionalen: "By phone/email",
   },
 ];
 
 const cantons = [
-  { name: "Genève", nameen: "Geneva", slug: "geneve", rate: "~44%" },
+  { name: "GenÃ¨ve", nameen: "Geneva", slug: "geneve", rate: "~44%" },
   { name: "Vaud", nameen: "Vaud", slug: "vaud", rate: "~41%" },
   { name: "Valais", nameen: "Valais", slug: "valais", rate: "~30%" },
   { name: "Fribourg", nameen: "Fribourg", slug: "fribourg", rate: "~36%" },
-  { name: "Neuchâtel", nameen: "Neuchâtel", slug: "neuchatel", rate: "~38%" },
+  { name: "NeuchÃ¢tel", nameen: "NeuchÃ¢tel", slug: "neuchatel", rate: "~38%" },
   { name: "Jura", nameen: "Jura", slug: "jura", rate: "~37%" },
 ];
 
@@ -302,8 +302,8 @@ export default function TarifsPage() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Déclaration Basique",
-            "description": "Déclaration fiscale pour personne seule ou en ménage avec situation standard"
+            "name": "DÃ©claration Basique",
+            "description": "DÃ©claration fiscale pour personne seule ou en mÃ©nage avec situation standard"
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -316,8 +316,8 @@ export default function TarifsPage() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Déclaration Confort",
-            "description": "Déclaration fiscale pour famille, propriétaire ou dépenses professionnelles"
+            "name": "DÃ©claration Confort",
+            "description": "DÃ©claration fiscale pour famille, propriÃ©taire ou dÃ©penses professionnelles"
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -330,8 +330,8 @@ export default function TarifsPage() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Déclaration Intégral",
-            "description": "Déclaration fiscale pour patrimoine diversifié et revenus multiples"
+            "name": "DÃ©claration IntÃ©gral",
+            "description": "DÃ©claration fiscale pour patrimoine diversifiÃ© et revenus multiples"
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -344,8 +344,8 @@ export default function TarifsPage() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Comptabilité PME",
-            "description": "Comptabilité complète pour Sàrl et SA jusqu'à 10 employés"
+            "name": "ComptabilitÃ© PME",
+            "description": "ComptabilitÃ© complÃ¨te pour SÃ rl et SA jusqu'Ã  10 employÃ©s"
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -359,8 +359,8 @@ export default function TarifsPage() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Création d'entreprise",
-            "description": "Constitution RI dès CHF 290.-, Sàrl dès CHF 990.-, SA dès CHF 1'490.-"
+            "name": "CrÃ©ation d'entreprise",
+            "description": "Constitution RI dÃ¨s CHF 290.-, SÃ rl dÃ¨s CHF 990.-, SA dÃ¨s CHF 1'490.-"
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -378,18 +378,18 @@ export default function TarifsPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Ces prix sont-ils définitifs ?",
+        "name": "Ces prix sont-ils dÃ©finitifs ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Les prix affichés sont des prix de départ. Le devis final dépend de la complexité de votre situation. Nous fournissons toujours un devis détaillé avant de commencer."
+          "text": "Les prix affichÃ©s sont des prix de dÃ©part. Le devis final dÃ©pend de la complexitÃ© de votre situation. Nous fournissons toujours un devis dÃ©taillÃ© avant de commencer."
         }
       },
       {
         "@type": "Question",
-        "name": "Comment obtenir un devis personnalisé ?",
+        "name": "Comment obtenir un devis personnalisÃ© ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email, sans aucun engagement."
+          "text": "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis dÃ©taillÃ© par email, sans aucun engagement."
         }
       },
       {
@@ -397,7 +397,7 @@ export default function TarifsPage() {
         "name": "Quels moyens de paiement acceptez-vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT."
+          "text": "Nous acceptons les virements bancaires, les cartes de crÃ©dit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT."
         }
       },
       {
@@ -405,7 +405,7 @@ export default function TarifsPage() {
         "name": "Les tarifs varient-ils selon le canton ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nos tarifs de base sont identiques pour tous les cantons romands (Genève, Vaud, Valais, Fribourg, Neuchâtel, Jura). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence."
+          "text": "Nos tarifs de base sont identiques pour tous les cantons romands (GenÃ¨ve, Vaud, Valais, Fribourg, NeuchÃ¢tel, Jura). Le prix final dÃ©pend uniquement de la complexitÃ© de votre dossier, pas de votre canton de rÃ©sidence."
         }
       },
       {
@@ -413,15 +413,15 @@ export default function TarifsPage() {
         "name": "Le prix inclut-il les cryptomonnaies ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. Demandez un devis pour une estimation précise."
+          "text": "La dÃ©claration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nÃ©cessiter un supplÃ©ment selon le nombre de transactions et de plateformes utilisÃ©es. Demandez un devis pour une estimation prÃ©cise."
         }
       },
       {
         "@type": "Question",
-        "name": "Que se passe-t-il si mon dossier est plus complexe que prévu ?",
+        "name": "Que se passe-t-il si mon dossier est plus complexe que prÃ©vu ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable."
+          "text": "Si des Ã©lÃ©ments supplÃ©mentaires apparaissent aprÃ¨s le devis initial, nous vous contactons pour un devis rÃ©visÃ© avant de continuer. Aucun supplÃ©ment n'est facturÃ© sans votre accord prÃ©alable."
         }
       },
       {
@@ -429,7 +429,7 @@ export default function TarifsPage() {
         "name": "Proposez-vous le paiement en plusieurs fois ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."
+          "text": "Oui, grÃ¢ce Ã  Klarna vous pouvez rÃ©gler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."
         }
       }
     ]
@@ -477,19 +477,19 @@ export default function TarifsPage() {
             </h1>
             <p className="text-muted-foreground text-lg mb-4">
               {isEnglish
-                ? "No surprises, no hidden fees. Clear prices for all our fiduciary services — tax returns, accounting, and company formation in Geneva, Vaud, Valais, Fribourg, Neuchâtel, and Jura."
-                : "Pas de surprise, pas de frais cachés. Des prix clairs pour tous nos services fiduciaires — déclarations d'impôts, comptabilité et création d'entreprise à Genève, Vaud, Valais, Fribourg, Neuchâtel et Jura."}
+                ? "No surprises, no hidden fees. Clear prices for all our fiduciary services â tax returns, accounting, and company formation in Geneva, Vaud, Valais, Fribourg, NeuchÃ¢tel, and Jura."
+                : "Pas de surprise, pas de frais cachÃ©s. Des prix clairs pour tous nos services fiduciaires â dÃ©clarations d'impÃ´ts, comptabilitÃ© et crÃ©ation d'entreprise Ã  GenÃ¨ve, Vaud, Valais, Fribourg, NeuchÃ¢tel et Jura."}
             </p>
             <p className="text-muted-foreground text-sm mb-8">
               {isEnglish
-                ? "Fixed prices for tax returns · Personalized quote for accounting & corporate tax. Payment in 3 installments available via Klarna. TWINT also accepted."
-                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé pour la comptabilité & fiscalité entreprises. Paiement en 3 fois disponible via Klarna. TWINT également accepté."}
+                ? "Fixed prices for tax returns Â· Personalized quote for accounting & corporate tax. Payment in 3 installments available via Klarna. TWINT also accepted."
+                : "Prix fixes pour les dÃ©clarations d'impÃ´ts Â· Devis personnalisÃ© pour la comptabilitÃ© & fiscalitÃ© entreprises. Paiement en 3 fois disponible via Klarna. TWINT Ã©galement acceptÃ©."}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-primary" />
-                <span>{isEnglish ? "Fixed prices for tax returns" : "Tarifs fixes déclarations"}</span>
+                <span>{isEnglish ? "Fixed prices for tax returns" : "Tarifs fixes dÃ©clarations"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
@@ -514,13 +514,13 @@ export default function TarifsPage() {
           >
             <h2 className="text-xl md:text-2xl font-bold mb-2">
               {isEnglish
-                ? "Tax returns: fixed prices displayed — Accounting: free quote"
-                : "Déclarations : tarifs fixes affichés — Comptabilité : devis gratuit"}
+                ? "Tax returns: fixed prices displayed â Accounting: free quote"
+                : "DÃ©clarations : tarifs fixes affichÃ©s â ComptabilitÃ© : devis gratuit"}
             </h2>
             <p className="text-white/90 mb-4">
               {isEnglish
                 ? "No commitment. Personalized quote for accounting & corporate tax."
-                : "Sans engagement. Devis personnalisé pour la comptabilité & fiscalité entreprises."}
+                : "Sans engagement. Devis personnalisÃ© pour la comptabilitÃ© & fiscalitÃ© entreprises."}
             </p>
             <Link href="/demande">
               <Button
@@ -550,32 +550,32 @@ export default function TarifsPage() {
                 <p className="text-muted-foreground">
                   {isEnglish
                     ? "Tax returns & personal tax optimization"
-                    : "Déclarations d'impôts & optimisation fiscale personnelle"}
+                    : "DÃ©clarations d'impÃ´ts & optimisation fiscale personnelle"}
                 </p>
               </div>
             </div>
             <p className="text-muted-foreground text-sm mb-8 max-w-3xl">
               {isEnglish
                 ? "Our individual plans cover all tax situations in French-speaking Switzerland: single or married, homeowner or tenant, salaried or self-employed. Each plan includes preparation, optimization of deductions, and electronic filing to your cantonal tax office."
-                : "Nos formules particuliers couvrent toutes les situations fiscales en Suisse romande : célibataire ou marié, propriétaire ou locataire, salarié ou indépendant. Chaque formule inclut la préparation, l'optimisation des déductions et le dépôt électronique auprès de votre administration fiscale cantonale."}
+                : "Nos formules particuliers couvrent toutes les situations fiscales en Suisse romande : cÃ©libataire ou mariÃ©, propriÃ©taire ou locataire, salariÃ© ou indÃ©pendant. Chaque formule inclut la prÃ©paration, l'optimisation des dÃ©ductions et le dÃ©pÃ´t Ã©lectronique auprÃ¨s de votre administration fiscale cantonale."}
             </p>
             <div className="max-w-4xl mx-auto">
               <Card className="border-2 border-primary shadow-lg overflow-hidden">
                 <div className="bg-gradient-to-r from-primary to-emerald-600 p-6 text-white text-center">
                   <h3 className="text-2xl font-bold mb-1">
-                    {isEnglish ? "Tax return" : "D\u00e9claration d\u2019imp\u00f4ts"}
+                    {isEnglish ? "Tax return" : "Déclaration d’impôts"}
                   </h3>
                   <p className="text-white/80 text-sm">
-                    {isEnglish ? "\u00c0 la carte pricing \u2014 pay only for what applies to you" : "Tarif \u00e0 la carte \u2014 payez uniquement ce qui vous concerne"}
+                    {isEnglish ? "À la carte pricing — pay only for what applies to you" : "Tarif à la carte — payez uniquement ce qui vous concerne"}
                   </p>
                 </div>
                 <div className="p-8">
                   {/* Prix de base */}
                   <div className="text-center mb-8">
-                    <span className="text-sm text-muted-foreground">d\u00e8s</span>
+                    <span className="text-sm text-muted-foreground">dès</span>
                     <span className="text-5xl font-bold text-primary ml-2">CHF 89.-</span>
                     <p className="text-sm text-muted-foreground mt-2">
-                      {isEnglish ? "Single person \u00b7 Standard situation" : "Personne seule \u00b7 Situation standard"}
+                      {isEnglish ? "Single person · Standard situation" : "Personne seule · Situation standard"}
                     </p>
                   </div>
 
@@ -587,7 +587,7 @@ export default function TarifsPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {(isEnglish
                         ? ["Income certificate(s)", "Bank statement(s)", "Standard deductions & optimization", "Electronic filing", "Processing in 10 business days", "Dedicated support"]
-                        : ["Attestation(s) de revenus", "Relev\u00e9(s) de compte", "D\u00e9ductions et optimisation fiscale", "D\u00e9p\u00f4t \u00e9lectronique", "Traitement en 10 jours ouvr\u00e9s", "Assistance d\u00e9di\u00e9e"]
+                        : ["Attestation(s) de revenus", "Relevé(s) de compte", "Déductions et optimisation fiscale", "Dépôt électronique", "Traitement en 10 jours ouvrés", "Assistance dédiée"]
                       ).map((item, i) => (
                         <div key={i} className="flex items-center gap-2">
                           <Check className="w-4 h-4 text-primary shrink-0" />
@@ -597,7 +597,7 @@ export default function TarifsPage() {
                     </div>
                   </div>
 
-                  {/* Suppl\u00e9ments */}
+                  {/* Suppléments */}
                   <div className="mb-8">
                     <p className="font-semibold mb-4 text-sm">
                       {isEnglish ? "Add according to your situation:" : "Ajoutez selon votre situation :"}
@@ -609,16 +609,16 @@ export default function TarifsPage() {
                             { label: "Per child", price: "+CHF 15.-" },
                             { label: "Per property owned", price: "+CHF 60.-" },
                             { label: "Self-employed income", price: "+CHF 40.-" },
-                            { label: "Securities (\u22653 positions)", price: "+CHF 30.-" },
+                            { label: "Securities (≥3 positions)", price: "+CHF 30.-" },
                             { label: "Professional expenses", price: "+CHF 20.-" },
                           ]
                         : [
-                            { label: "Couple / mari\u00e9", price: "+CHF 30.-" },
+                            { label: "Couple / marié", price: "+CHF 30.-" },
                             { label: "Par enfant", price: "+CHF 15.-" },
                             { label: "Par bien immobilier", price: "+CHF 60.-" },
-                            { label: "Revenu ind\u00e9pendant", price: "+CHF 40.-" },
-                            { label: "Actions (\u22653 positions)", price: "+CHF 30.-" },
-                            { label: "D\u00e9penses professionnelles", price: "+CHF 20.-" },
+                            { label: "Revenu indépendant", price: "+CHF 40.-" },
+                            { label: "Actions (≥3 positions)", price: "+CHF 30.-" },
+                            { label: "Dépenses professionnelles", price: "+CHF 20.-" },
                           ]
                       ).map((item, i) => (
                         <div key={i} className="flex items-center justify-between border rounded-lg px-4 py-3 bg-white hover:border-primary/40 transition-colors">
@@ -636,8 +636,8 @@ export default function TarifsPage() {
                     </p>
                     <p className="text-sm text-muted-foreground">
                       {isEnglish
-                        ? "A married couple with 2 children and one property: CHF 89 + 30 + 30 + 60 = CHF 209.-"
-                        : "Un couple mari\u00e9, 2 enfants, un bien immobilier : CHF 89 + 30 + 30 + 60 = CHF 209.-"}
+                        ? "A married couple, 2 children, one property: CHF 89 + 30 + (2×15) + 60 = CHF 209.-"
+                        : "Un couple marié, 2 enfants, un bien immobilier : CHF 89 + 30 + (2×15) + 60 = CHF 209.-"}
                     </p>
                   </div>
 
@@ -677,7 +677,7 @@ export default function TarifsPage() {
                       <p className="text-muted-foreground text-sm mb-3">
                         {isEnglish
                           ? "Need your tax return processed faster? Choose our priority option:"
-                          : "Accélérez le traitement de votre déclaration fiscale avec notre option prioritaire :"}
+                          : "AccÃ©lÃ©rez le traitement de votre dÃ©claration fiscale avec notre option prioritaire :"}
                       </p>
                       <div className="flex flex-wrap gap-3">
                         <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border">
@@ -693,7 +693,7 @@ export default function TarifsPage() {
                       <p className="text-xs text-muted-foreground mt-3">
                         {isEnglish
                           ? "Select your preferred option during checkout. Processing time starts after all documents are received."
-                          : "Sélectionnez votre option lors de la commande. Le délai débute après réception de tous les documents."}
+                          : "SÃ©lectionnez votre option lors de la commande. Le dÃ©lai dÃ©bute aprÃ¨s rÃ©ception de tous les documents."}
                       </p>
                     </div>
                   </div>
@@ -719,14 +719,14 @@ export default function TarifsPage() {
                 <p className="text-muted-foreground">
                   {isEnglish
                     ? "Accounting, payroll & company formation"
-                    : "Comptabilité, salaires & création d'entreprise"}
+                    : "ComptabilitÃ©, salaires & crÃ©ation d'entreprise"}
                 </p>
               </div>
             </div>
             <p className="text-muted-foreground text-sm mb-8 max-w-3xl">
               {isEnglish
-                ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements — all handled digitally with a dedicated advisor."
-                : "Que vous soyez freelance, dirigeant d'une PME ou en train de créer votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilité aux déclarations TVA, en passant par la gestion des salaires et les états financiers annuels — le tout géré en ligne avec un conseiller dédié."}
+                ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements â all handled digitally with a dedicated advisor."
+                : "Que vous soyez freelance, dirigeant d'une PME ou en train de crÃ©er votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilitÃ© aux dÃ©clarations TVA, en passant par la gestion des salaires et les Ã©tats financiers annuels â le tout gÃ©rÃ© en ligne avec un conseiller dÃ©diÃ©."}
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               {pricingData.entreprises.map((plan, index) => (
@@ -741,7 +741,7 @@ export default function TarifsPage() {
                   {plan.popular && (
                     <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-medium px-3 py-1 rounded-bl-lg">
                       <Star className="w-3 h-3 inline mr-1" />
-                      {isEnglish ? "Recommended" : "Recommandé"}
+                      {isEnglish ? "Recommended" : "RecommandÃ©"}
                     </div>
                   )}
                   <div className="p-6">
@@ -774,7 +774,7 @@ export default function TarifsPage() {
                         )
                       )}
                     </ul>
-                    <Link href={plan.name === "Création d'entreprise" ? "/creation-entreprise#contact-creation" : "/demande"}>
+                    <Link href={plan.name === "CrÃ©ation d'entreprise" ? "/creation-entreprise#contact-creation" : "/demande"}>
                       <Button
                         className={`w-full ${
                           plan.popular
@@ -805,13 +805,13 @@ export default function TarifsPage() {
                 <h2 className="text-2xl md:text-3xl font-bold">
                   {isEnglish
                     ? "Same prices, all cantons in French-speaking Switzerland"
-                    : "Mêmes tarifs, tous les cantons romands"}
+                    : "MÃªmes tarifs, tous les cantons romands"}
                 </h2>
               </div>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {isEnglish
                   ? "Our pricing is the same regardless of your canton. However, each canton has its own tax rates and specific deductions. Discover our dedicated guides for each canton."
-                  : "Nos tarifs sont identiques quel que soit votre canton. Cependant, chaque canton a ses propres taux d'imposition et déductions spécifiques. Découvrez nos guides dédiés pour chaque canton."}
+                  : "Nos tarifs sont identiques quel que soit votre canton. Cependant, chaque canton a ses propres taux d'imposition et dÃ©ductions spÃ©cifiques. DÃ©couvrez nos guides dÃ©diÃ©s pour chaque canton."}
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
@@ -887,8 +887,8 @@ export default function TarifsPage() {
             </div>
             <p className="text-center text-muted-foreground text-sm mt-6 max-w-2xl mx-auto">
               {isEnglish
-                ? "NeoFidu combines the expertise of a traditional fiduciary with the efficiency and transparency of a 100% digital platform. No appointment needed, no hidden costs — just professional tax services at fair prices."
-                : "NeoFidu combine l'expertise d'une fiduciaire traditionnelle avec l'efficacité et la transparence d'une plateforme 100% digitale. Pas de rendez-vous nécessaire, pas de coûts cachés — simplement des services fiscaux professionnels à des prix justes."}
+                ? "NeoFidu combines the expertise of a traditional fiduciary with the efficiency and transparency of a 100% digital platform. No appointment needed, no hidden costs â just professional tax services at fair prices."
+                : "NeoFidu combine l'expertise d'une fiduciaire traditionnelle avec l'efficacitÃ© et la transparence d'une plateforme 100% digitale. Pas de rendez-vous nÃ©cessaire, pas de coÃ»ts cachÃ©s â simplement des services fiscaux professionnels Ã  des prix justes."}
             </p>
           </motion.section>
           {/* FAQ Section */}
@@ -901,7 +901,7 @@ export default function TarifsPage() {
             <div className="flex items-center justify-center gap-3 mb-8">
               <HelpCircle className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-bold text-center">
-                {isEnglish ? "Pricing FAQ" : "Questions fréquentes sur nos tarifs"}
+                {isEnglish ? "Pricing FAQ" : "Questions frÃ©quentes sur nos tarifs"}
               </h2>
             </div>
             <div className="space-y-4">
@@ -909,24 +909,24 @@ export default function TarifsPage() {
                 <h3 className="font-semibold mb-2">
                   {isEnglish
                     ? "Are these prices final?"
-                    : "Ces prix sont-ils définitifs ?"}
+                    : "Ces prix sont-ils dÃ©finitifs ?"}
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? "The prices shown are starting prices. The final quote depends on the complexity of your situation. We always provide a detailed quote before starting."
-                    : "Les prix affichés sont des prix de départ. Le devis final dépend de la complexité de votre situation. Nous fournissons toujours un devis détaillé avant de commencer."}
+                    : "Les prix affichÃ©s sont des prix de dÃ©part. Le devis final dÃ©pend de la complexitÃ© de votre situation. Nous fournissons toujours un devis dÃ©taillÃ© avant de commencer."}
                 </p>
               </Card>
               <Card className="p-6">
                 <h3 className="font-semibold mb-2">
                   {isEnglish
                     ? "How to get a personalized quote?"
-                    : "Comment obtenir un devis personnalisé ?"}
+                    : "Comment obtenir un devis personnalisÃ© ?"}
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? "Fill out our online form in 2 minutes. You will receive a detailed quote by email, without any commitment."
-                    : "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email, sans aucun engagement."}
+                    : "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis dÃ©taillÃ© par email, sans aucun engagement."}
                 </p>
               </Card>
               <Card className="p-6">
@@ -938,7 +938,7 @@ export default function TarifsPage() {
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (pay in 3 installments, interest-free), and TWINT."
-                    : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal et Klarna (paiement en 3 fois sans frais)."}
+                    : "Nous acceptons les virements bancaires, les cartes de crÃ©dit (Visa, Mastercard), PayPal et Klarna (paiement en 3 fois sans frais)."}
                 </p>
               </Card>
               <Card className="p-6">
@@ -950,7 +950,7 @@ export default function TarifsPage() {
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? "Yes, with Klarna you can pay in 3 interest-free installments. This option is available for all individual and business plans."
-                    : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."}
+                    : "Oui, grÃ¢ce Ã  Klarna vous pouvez rÃ©gler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."}
                 </p>
               </Card>
               <Card className="p-6">
@@ -961,8 +961,8 @@ export default function TarifsPage() {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? <>Our base prices are the same for all cantons in French-speaking Switzerland (<Link href="/cantons/geneve" className="text-primary hover:underline">Geneva</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">Neuchâtel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). The final price depends solely on the complexity of your file, not your canton of residence.</>
-                    : <>Nos tarifs de base sont identiques pour tous les cantons romands (<Link href="/cantons/geneve" className="text-primary hover:underline">Genève</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">Neuchâtel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence.</>}
+                    ? <>Our base prices are the same for all cantons in French-speaking Switzerland (<Link href="/cantons/geneve" className="text-primary hover:underline">Geneva</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">NeuchÃ¢tel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). The final price depends solely on the complexity of your file, not your canton of residence.</>
+                    : <>Nos tarifs de base sont identiques pour tous les cantons romands (<Link href="/cantons/geneve" className="text-primary hover:underline">GenÃ¨ve</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">NeuchÃ¢tel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). Le prix final dÃ©pend uniquement de la complexitÃ© de votre dossier, pas de votre canton de rÃ©sidence.</>}
                 </p>
               </Card>
               <Card className="p-6">
@@ -974,19 +974,19 @@ export default function TarifsPage() {
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? <>Declaring cryptocurrencies (Bitcoin, Ethereum, etc.) may require a supplement depending on the number of transactions and platforms used. <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline">Read our complete guide on crypto tax declaration in Switzerland</Link> and request a quote for an accurate estimate.</>
-                    : <>La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline">Consultez notre guide complet sur la déclaration crypto en Suisse</Link> et demandez un devis pour une estimation précise.</>}
+                    : <>La dÃ©claration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nÃ©cessiter un supplÃ©ment selon le nombre de transactions et de plateformes utilisÃ©es. <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline">Consultez notre guide complet sur la dÃ©claration crypto en Suisse</Link> et demandez un devis pour une estimation prÃ©cise.</>}
                 </p>
               </Card>
               <Card className="p-6">
                 <h3 className="font-semibold mb-2">
                   {isEnglish
                     ? "What if my file is more complex than expected?"
-                    : "Que se passe-t-il si mon dossier est plus complexe que prévu ?"}
+                    : "Que se passe-t-il si mon dossier est plus complexe que prÃ©vu ?"}
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? "If additional elements appear after the initial quote, we contact you for a revised quote before continuing. No supplement is charged without your prior agreement."
-                    : "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable."}
+                    : "Si des Ã©lÃ©ments supplÃ©mentaires apparaissent aprÃ¨s le devis initial, nous vous contactons pour un devis rÃ©visÃ© avant de continuer. Aucun supplÃ©ment n'est facturÃ© sans votre accord prÃ©alable."}
                 </p>
               </Card>
               <Card className="p-6">
@@ -998,7 +998,7 @@ export default function TarifsPage() {
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? "Your satisfaction is our priority. Refund possible only before the start of processing."
-                    : "Votre satisfaction est notre priorité. Remboursement possible uniquement avant le début du traitement."}
+                    : "Votre satisfaction est notre prioritÃ©. Remboursement possible uniquement avant le dÃ©but du traitement."}
                 </p>
               </Card>
             </div>
@@ -1013,7 +1013,7 @@ export default function TarifsPage() {
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               {isEnglish
                 ? "Ready to save time and money?"
-                : "Prêt à gagner du temps et de l'argent ?"}
+                : "PrÃªt Ã  gagner du temps et de l'argent ?"}
             </h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               {isEnglish
