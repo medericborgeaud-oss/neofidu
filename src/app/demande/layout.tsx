@@ -117,9 +117,9 @@ const taxServiceSchema = {
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
-          "price": "50",
+          "price": "89",
           "priceCurrency": "CHF",
-          "minPrice": "50"
+          "minPrice": "89"
         }
       },
       {
@@ -131,9 +131,9 @@ const taxServiceSchema = {
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
-          "price": "100",
+          "price": "149",
           "priceCurrency": "CHF",
-          "minPrice": "100"
+          "minPrice": "149"
         }
       },
       {
@@ -145,9 +145,9 @@ const taxServiceSchema = {
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
-          "price": "150",
+          "price": "249",
           "priceCurrency": "CHF",
-          "minPrice": "150"
+          "minPrice": "249"
         }
       }
     ]
