@@ -289,7 +289,7 @@ export default function TarifsPage() {
     },
     "offers": {
       "@type": "Offer",
-      "price": "50",
+      "price": "89",
       "priceCurrency": "CHF",
       "priceRange": "CHF 89 - CHF 1490",
       "url": "https://www.neofidu.ch/tarifs"
@@ -307,9 +307,9 @@ export default function TarifsPage() {
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
-            "price": "50",
+            "price": "89",
             "priceCurrency": "CHF",
-            "minPrice": "50"
+            "minPrice": "89"
           }
         },
         {
@@ -321,9 +321,9 @@ export default function TarifsPage() {
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
-            "price": "100",
+            "price": "149",
             "priceCurrency": "CHF",
-            "minPrice": "100"
+            "minPrice": "149"
           }
         },
         {
@@ -335,9 +335,9 @@ export default function TarifsPage() {
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
-            "price": "150",
+            "price": "249",
             "priceCurrency": "CHF",
-            "minPrice": "150"
+            "minPrice": "249"
           }
         },
         {
@@ -610,7 +610,6 @@ export default function TarifsPage() {
                             { label: "Per property owned", price: "+CHF 60.-" },
                             { label: "Self-employed income", price: "+CHF 40.-" },
                             { label: "Securities (≥3 positions)", price: "+CHF 30.-" },
-                            { label: "Professional expenses", price: "+CHF 20.-" },
                           ]
                         : [
                             { label: "Couple / marié", price: "+CHF 30.-" },
@@ -618,7 +617,6 @@ export default function TarifsPage() {
                             { label: "Par bien immobilier", price: "+CHF 60.-" },
                             { label: "Revenu indépendant", price: "+CHF 40.-" },
                             { label: "Actions (≥3 positions)", price: "+CHF 30.-" },
-                            { label: "Dépenses professionnelles", price: "+CHF 20.-" },
                           ]
                       ).map((item, i) => (
                         <div key={i} className="flex items-center justify-between border rounded-lg px-4 py-3 bg-white hover:border-primary/40 transition-colors">
