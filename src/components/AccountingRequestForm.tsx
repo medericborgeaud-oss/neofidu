@@ -234,7 +234,7 @@ export function AccountingRequestForm() {
     billingFrequency: isEnglish ? "Billing frequency" : "Fréquence de facturation",
     monthly: isEnglish ? "Monthly" : "Mensuelle",
     monthlyDesc: isEnglish ? "Billed each month" : "Facturation chaque mois",
-    annual: isEnglish ? "Annual (-10%)" : "Annuelle (-10%)",
+    annual: isEnglish ? "Annual" : "Annuelle",
     annualDesc: isEnglish ? "Billed once a year" : "Facturation une fois par an",
     comments: isEnglish ? "Comments or specific needs" : "Commentaires ou besoins spécifiques",
 
