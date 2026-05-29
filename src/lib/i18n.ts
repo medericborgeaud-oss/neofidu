@@ -97,7 +97,7 @@ export const translations = {
         basic: {
           name: "Basique",
           description: "Dossiers sans complexité",
-          features: ["Personne seule ou en ménage", "Attestation(s) de revenus", "Relevé(s) de compte", "Abattements usuels", "Traitement sous 10 jours"],
+          features: ["Personne seule ou en ménage", "Attestation(s) de revenus", "Relevé(s) de compte", "Abattements usuels", "Traitement sous 14 jours"],
         },
         comfort: {
           name: "Confort",
@@ -866,7 +866,7 @@ export const translations = {
         basic: {
           name: "Basic",
           description: "Simple cases",
-          features: ["Single person or household", "Income certificate(s)", "Bank statement(s)", "Standard deductions", "Processing within 10 days"],
+          features: ["Single person or household", "Income certificate(s)", "Bank statement(s)", "Standard deductions", "Processing within 14 days"],
         },
         comfort: {
           name: "Comfort",
