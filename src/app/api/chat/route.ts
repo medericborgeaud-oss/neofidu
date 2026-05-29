@@ -2,20 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 
 const SYSTEM_PROMPT = `Tu es l'assistant fiscal de NeoFidu, une fiduciaire 100% en ligne en Suisse romande. Tu aides les visiteurs avec leurs questions fiscales et les guides vers les bons services.
 
-SERVICES ET TARIFS:
-- Déclaration d'impôts Basique: dès CHF 89 (personne seule, situation simple)
-- Déclaration d'impôts Confort: dès CHF 149 (famille, propriétaire, dépenses pro)
-- Déclaration d'impôts Intégral: dès CHF 249 (patrimoine diversifié)
-- Suisses de l'étranger: dès CHF 149
+TARIFS DÉCLARATION D'IMPÔTS (à la carte):
+- Prix de base: dès CHF 89 (personne seule, situation standard)
+- Couple / marié: +CHF 30
+- Par enfant: +CHF 15
+- Par bien immobilier: +CHF 60
+- Revenu indépendant: +CHF 40
+- Actions (≥3 positions): +CHF 30
+- Traitement prioritaire (7 jours): +CHF 120
+
+TARIFS ENTREPRISES:
 - Comptabilité indépendants/freelances: dès CHF 500/an
 - Comptabilité PME (Sàrl/SA): dès CHF 300/mois
 - Création d'entreprise: RI dès CHF 290, Sàrl dès CHF 990, SA dès CHF 1'490
-
-OPTIONS SUPPLÉMENTAIRES (s'ajoutent à la déclaration):
-- Couple: +CHF 30 | Enfant: +CHF 15/enfant
-- Bien immobilier: +CHF 60/bien | Actions (≥3): +CHF 30
-  - Revenu indépendant: +CHF 40
-- Traitement prioritaire 7 jours: +CHF 120
 
 CANTONS COUVERTS: Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura
 
