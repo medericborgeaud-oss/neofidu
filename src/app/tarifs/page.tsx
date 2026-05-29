@@ -938,7 +938,7 @@ export default function TarifsPage() {
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
                     ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (pay in 3 installments, interest-free), and TWINT."
-                    : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal et Klarna (paiement en 3 fois sans frais)."}
+                    : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT."}
                 </p>
               </Card>
               <Card className="p-6">
