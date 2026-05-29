@@ -39,14 +39,14 @@ const pricingData = {
         "Attestation(s) de revenus",
         "Relevé(s) de compte",
         "Abattements usuels",
-        "Traitement standard (10 jours ouvrés)",
+        "Traitement standard (14 jours ouvrés)",
       ],
       featuresen: [
         "Single person",
         "Income certificate(s)",
         "Bank statement(s)",
         "Standard deductions",
-        "Standard processing (10 business days)",
+        "Standard processing (14 business days)",
       ],
       popular: false,
     },
@@ -62,7 +62,7 @@ const pricingData = {
         "Charge(s) de famille",
         "Un logement en propriété",
         "Dépenses professionnelles",
-        "Traitement standard (10 jours ouvrés)",
+        "Traitement standard (14 jours ouvrés)",
         "Assistance dédiée",
       ],
       featuresen: [
@@ -70,7 +70,7 @@ const pricingData = {
         "Dependents",
         "One owned property",
         "Professional expenses",
-        "Standard processing (10 business days)",
+        "Standard processing (14 business days)",
         "Dedicated support",
       ],
       popular: true,
@@ -87,7 +87,7 @@ const pricingData = {
         "Patrimoine immobilier étendu",
         "Titres et placements",
         "Sources de revenus multiples",
-        "Traitement standard (10 jours ouvrés)",
+        "Traitement standard (14 jours ouvrés)",
         "Accompagnement personnalisé",
       ],
       featuresen: [
@@ -95,7 +95,7 @@ const pricingData = {
         "Extended real estate",
         "Securities and investments",
         "Multiple income sources",
-        "Standard processing (10 business days)",
+        "Standard processing (14 business days)",
         "Personalized guidance",
       ],
       popular: false,
@@ -217,8 +217,8 @@ const comparisonData = [
   {
     feature: "Délai de traitement",
     featureen: "Processing time",
-    neoFidu: "10 jours ouvrés",
-    neoFiduen: "10 business days",
+    neoFidu: "14 jours ouvrés",
+    neoFiduen: "14 business days",
     traditional: "2-4 semaines",
     traditionalen: "2-4 weeks",
   },
@@ -586,8 +586,8 @@ export default function TarifsPage() {
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {(isEnglish
-                        ? ["Income certificate(s)", "Bank statement(s)", "Standard deductions & optimization", "Electronic filing", "Processing in 10 business days", "Dedicated support"]
-                        : ["Attestation(s) de revenus", "Relevé(s) de compte", "Déductions et optimisation fiscale", "Dépôt électronique", "Traitement en 10 jours ouvrés", "Assistance dédiée"]
+                        ? ["Income certificate(s)", "Bank statement(s)", "Standard deductions & optimization", "Electronic filing", "Processing in 14 business days", "Dedicated support"]
+                        : ["Attestation(s) de revenus", "Relevé(s) de compte", "Déductions et optimisation fiscale", "Dépôt électronique", "Traitement en 14 jours ouvrés", "Assistance dédiée"]
                       ).map((item, i) => (
                         <div key={i} className="flex items-center gap-2">
                           <Check className="w-4 h-4 text-primary shrink-0" />
