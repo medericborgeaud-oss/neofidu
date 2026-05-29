@@ -448,8 +448,8 @@ export default function SuissesEtrangerPage() {
                     </div>
                     <p className="text-xs text-muted-foreground mt-3">
                       {isEnglish
-                        ? "Standard processing: 10 business days. Select your option during checkout."
-                        : "Traitement standard : 10 jours ouvrés. Sélectionnez votre option lors de la commande."}
+                        ? "Standard processing: 14 business days. Select your option during checkout."
+                        : "Traitement standard : 14 jours ouvrés. Sélectionnez votre option lors de la commande."}
                     </p>
                   </div>
                 </div>
