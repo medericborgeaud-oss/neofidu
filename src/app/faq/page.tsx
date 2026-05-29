@@ -28,7 +28,7 @@ const faqItemsFR: FAQItem[] = [
   {
     category: "Fiscalité",
     question: "Combien de temps dure le traitement de mon dossier ?",
-    answer: "Le délai habituel avoisine les deux semaines ouvrées. Une option accélérée permet d'obtenir un rendu sous 72 heures moyennant un supplément tarifaire."
+    answer: "Le délai standard est de 14 jours ouvrés après réception de tous les documents. L'option prioritaire permet un traitement en 7 jours ouvrés moyennant un supplément."
   },
   {
     category: "Fiscalité",
@@ -115,7 +115,7 @@ const faqItemsEN: FAQItem[] = [
   {
     category: "Taxation",
     question: "How long does it take to process my file?",
-    answer: "The standard processing time is approximately two business weeks. An express option allows delivery within 72 hours for an additional fee."
+    answer: "The standard processing time is 14 business days after receipt of all documents. The priority option allows processing within 7 business days for an additional fee."
   },
   {
     category: "Taxation",
