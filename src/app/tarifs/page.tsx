@@ -559,87 +559,104 @@ export default function TarifsPage() {
                 ? "Our individual plans cover all tax situations in French-speaking Switzerland: single or married, homeowner or tenant, salaried or self-employed. Each plan includes preparation, optimization of deductions, and electronic filing to your cantonal tax office."
                 : "Nos formules particuliers couvrent toutes les situations fiscales en Suisse romande : célibataire ou marié, propriétaire ou locataire, salarié ou indépendant. Chaque formule inclut la préparation, l'optimisation des déductions et le dépôt électronique auprès de votre administration fiscale cantonale."}
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {pricingData.particuliers.map((plan, index) => (
-                <Card
-                  key={index}
-                  className={`relative overflow-hidden ${
-                    plan.popular
-                      ? "border-2 border-primary shadow-xl"
-                      : "border"
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute top-0 right-0 bg-primary text-white text-xs font-medium px-3 py-1 rounded-bl-lg">
-                      <Star className="w-3 h-3 inline mr-1" />
-                      {isEnglish ? "Most popular" : "Le plus populaire"}
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-1">
-                      {isEnglish ? plan.nameen : plan.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {isEnglish ? plan.descriptionen : plan.description}
+            <div className="max-w-4xl mx-auto">
+              <Card className="border-2 border-primary shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-r from-primary to-emerald-600 p-6 text-white text-center">
+                  <h3 className="text-2xl font-bold mb-1">
+                    {isEnglish ? "Tax return" : "D\u00e9claration d\u2019imp\u00f4ts"}
+                  </h3>
+                  <p className="text-white/80 text-sm">
+                    {isEnglish ? "\u00c0 la carte pricing \u2014 pay only for what applies to you" : "Tarif \u00e0 la carte \u2014 payez uniquement ce qui vous concerne"}
+                  </p>
+                </div>
+                <div className="p-8">
+                  {/* Prix de base */}
+                  <div className="text-center mb-8">
+                    <span className="text-sm text-muted-foreground">d\u00e8s</span>
+                    <span className="text-5xl font-bold text-primary ml-2">CHF 89.-</span>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      {isEnglish ? "Single person \u00b7 Standard situation" : "Personne seule \u00b7 Situation standard"}
                     </p>
-                    <div className="mb-6">
-                      <span className="text-sm text-muted-foreground">
-                        {plan.priceNote}
-                      </span>
-                      <span className="text-4xl font-bold text-primary ml-1">
-                        CHF {plan.price}.-
-                      </span>
-                    </div>
-                    <ul className="space-y-3 mb-6">
-                      {(isEnglish ? plan.featuresen : plan.features).map(
-                        (feature, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                            <span className="text-sm">{feature}</span>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                    <Link href="/demande">
-                      <Button
-                        className={`w-full ${
-                          plan.popular ? "" : "variant-outline"
-                        }`}
-                        variant={plan.popular ? "default" : "outline"}
-                      >
-                        {isEnglish ? "Get started" : "Commencer"}
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
                   </div>
-                </Card>
-              ))}
-            </div>
-            {/* Additional Options Box */}
-            <div className="mt-8 max-w-3xl mx-auto">
-              <Card className="border-2 border-dashed border-primary/20 bg-primary/5">
-                <div className="p-5 flex flex-col sm:flex-row items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Calculator className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-sm mb-2">
-                      {isEnglish ? "Additional options — apply to all plans" : "Options supplémentaires — valables pour toutes les formules"}
+
+                  {/* Inclus */}
+                  <div className="mb-8 bg-secondary/30 rounded-xl p-5">
+                    <p className="font-semibold mb-3 text-sm">
+                      {isEnglish ? "Included in the base price:" : "Inclus dans le tarif de base :"}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {(isEnglish
-                        ? ["Couple: +CHF 30.-", "Child: +CHF 15.-/child", "Property: +CHF 60.-/bien", "Securities (≥3): +CHF 30.-"]
-                        : ["Couple: +CHF 30.-", "Enfant: +CHF 15.-/enfant", "Bien immobilier: +CHF 60.-/bien", "Actions (≥3): +CHF 30.-"]
-                      ).map((item, idx) => (
-                        <span key={idx} className="text-xs bg-white border border-primary/20 rounded-full px-3 py-1 text-primary font-medium">
-                          {item}
-                        </span>
+                        ? ["Income certificate(s)", "Bank statement(s)", "Standard deductions & optimization", "Electronic filing", "Processing in 10 business days", "Dedicated support"]
+                        : ["Attestation(s) de revenus", "Relev\u00e9(s) de compte", "D\u00e9ductions et optimisation fiscale", "D\u00e9p\u00f4t \u00e9lectronique", "Traitement en 10 jours ouvr\u00e9s", "Assistance d\u00e9di\u00e9e"]
+                      ).map((item, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <Check className="w-4 h-4 text-primary shrink-0" />
+                          <span className="text-sm">{item}</span>
+                        </div>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Suppl\u00e9ments */}
+                  <div className="mb-8">
+                    <p className="font-semibold mb-4 text-sm">
+                      {isEnglish ? "Add according to your situation:" : "Ajoutez selon votre situation :"}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {(isEnglish
+                        ? [
+                            { label: "Couple / married", price: "+CHF 30.-" },
+                            { label: "Per child", price: "+CHF 15.-" },
+                            { label: "Per property owned", price: "+CHF 60.-" },
+                            { label: "Self-employed income", price: "+CHF 40.-" },
+                            { label: "Securities (\u22653 positions)", price: "+CHF 30.-" },
+                            { label: "Professional expenses", price: "+CHF 20.-" },
+                          ]
+                        : [
+                            { label: "Couple / mari\u00e9", price: "+CHF 30.-" },
+                            { label: "Par enfant", price: "+CHF 15.-" },
+                            { label: "Par bien immobilier", price: "+CHF 60.-" },
+                            { label: "Revenu ind\u00e9pendant", price: "+CHF 40.-" },
+                            { label: "Actions (\u22653 positions)", price: "+CHF 30.-" },
+                            { label: "D\u00e9penses professionnelles", price: "+CHF 20.-" },
+                          ]
+                      ).map((item, i) => (
+                        <div key={i} className="flex items-center justify-between border rounded-lg px-4 py-3 bg-white hover:border-primary/40 transition-colors">
+                          <span className="text-sm font-medium">{item.label}</span>
+                          <span className="text-sm font-bold text-primary whitespace-nowrap ml-3">{item.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Exemple */}
+                  <div className="mb-8 border-2 border-dashed border-primary/20 rounded-xl p-5 bg-primary/5">
+                    <p className="font-semibold text-sm mb-2">
+                      {isEnglish ? "Example:" : "Exemple :"}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {isEnglish
+                        ? "A married couple with 2 children and one property: CHF 89 + 30 + 30 + 60 = CHF 209.-"
+                        : "Un couple mari\u00e9, 2 enfants, un bien immobilier : CHF 89 + 30 + 30 + 60 = CHF 209.-"}
+                    </p>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="text-center">
+                    <Link href="/demande">
+                      <Button size="lg" className="px-8">
+                        {isEnglish ? "Get my quote" : "Obtenir mon devis"}
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </Button>
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-3">
+                      {isEnglish ? "Free quote, no commitment" : "Devis gratuit, sans engagement"}
+                    </p>
                   </div>
                 </div>
               </Card>
             </div>
+
             {/* Option Prioritaire Info Box */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
