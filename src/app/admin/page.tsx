@@ -2410,7 +2410,7 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                             <div className="mt-3 pt-3 border-t border-purple-200">
                               <p className="text-purple-700 text-sm">Fréquence</p>
                               <p className="font-medium text-purple-900">
-                                {selectedRequest.billingFrequency === "monthly" ? "Mensuelle" : "Annuelle (-10%)"}
+                                {selectedRequest.billingFrequency === "monthly" ? "Mensuelle" : "Annuelle"}
                               </p>
                             </div>
                           )}
