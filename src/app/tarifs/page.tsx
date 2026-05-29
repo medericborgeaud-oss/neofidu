@@ -302,42 +302,14 @@ export default function TarifsPage() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Déclaration Basique",
-            "description": "Déclaration fiscale pour personne seule ou en ménage avec situation standard"
+            "name": "Déclaration d'impôts à la carte",
+            "description": "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +40, titres +30"
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
             "price": "89",
             "priceCurrency": "CHF",
             "minPrice": "89"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Déclaration Confort",
-            "description": "Déclaration fiscale pour famille, propriétaire ou dépenses professionnelles"
-          },
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "149",
-            "priceCurrency": "CHF",
-            "minPrice": "149"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Déclaration Intégral",
-            "description": "Déclaration fiscale pour patrimoine diversifié et revenus multiples"
-          },
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "249",
-            "priceCurrency": "CHF",
-            "minPrice": "249"
           }
         },
         {
