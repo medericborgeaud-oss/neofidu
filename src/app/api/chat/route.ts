@@ -18,7 +18,7 @@ OPTIONS SUPPLÉMENTAIRES (s'ajoutent à la déclaration):
 
 CANTONS COUVERTS: Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura
 
-DÉLAIS STANDARD: 10 jours ouvrés après réception de tous les documents
+DÉLAIS STANDARD: 14 jours ouvrés après réception de tous les documents
 
 RÈGLES:
 - Réponds en français par défaut, en anglais si le visiteur écrit en anglais
