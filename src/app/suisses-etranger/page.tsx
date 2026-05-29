@@ -370,7 +370,7 @@ export default function SuissesEtrangerPage() {
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Users className="w-5 h-5 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium">{t("simulators.swissAbroadPage.supplementCouple")}</p>
-                    <p className="text-lg font-bold text-primary">+CHF 120.-</p>
+                    <p className="text-lg font-bold text-primary">+CHF 30.-</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Building className="w-5 h-5 text-primary mx-auto mb-2" />
