@@ -39,7 +39,7 @@ export default function ExpatsPage() {
     {
       icon: Clock,
       title: "Fast & Simple",
-      description: "Submit your documents online. We handle everything within 10 business days.",
+      description: "Submit your documents online. We handle everything within 14 business days.",
     },
     {
       icon: Shield,
