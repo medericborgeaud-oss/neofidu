@@ -154,7 +154,7 @@ export default function ParticuliersPage() {
     },
     {
       q: "Combien de temps cela prend-il ?",
-      a: "Une fois tous vos documents reçus, votre déclaration est généralement complétée en 5 à 10 jours ouvrables. En période de pointe (février-mars), cela peut prendre jusqu'à 15 jours.",
+      a: "Une fois tous vos documents reçus, votre déclaration est généralement complétée en 14 jours ouvrés. En période de pointe (février-mars), cela peut prendre jusqu'à 15 jours.",
     },
     {
       q: "Quels cantons couvrez-vous ?",
@@ -277,7 +277,7 @@ export default function ParticuliersPage() {
                 {
                   icon: Clock,
                   title: "Rapidité",
-                  desc: "Votre déclaration complétée en 5-10 jours ouvrables. Prolongations gérées.",
+                  desc: "Votre déclaration complétée en 14 jours ouvrés. Prolongations gérées.",
                 },
               ].map((feature, i) => (
                 <div
