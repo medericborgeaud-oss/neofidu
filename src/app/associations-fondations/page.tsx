@@ -31,14 +31,14 @@ import { motion } from "framer-motion";
 const services = [
   {
     icon: Calculator,
-    title: "ComptabilitÃ© annuelle",
+    title: "Comptabilité annuelle",
     titleEn: "Annual Accounting",
     description:
-      "Tenue des comptes, bouclement annuel et prÃ©paration des comptes selon les normes Swiss GAAP RPC 21.",
+      "Tenue des comptes, bouclement annuel et préparation des comptes selon les normes Swiss GAAP RPC 21.",
     descriptionEn:
       "Bookkeeping, annual closing and preparation of accounts according to Swiss GAAP FER 21 standards.",
     features: [
-      "Tenue de comptabilitÃ©",
+      "Tenue de comptabilité",
       "Bouclement annuel",
       "Comptes selon Swiss GAAP RPC 21",
       "Rapprochement bancaire",
@@ -52,16 +52,16 @@ const services = [
   },
   {
     icon: FileText,
-    title: "DÃ©claration fiscale",
+    title: "Déclaration fiscale",
     titleEn: "Tax Return",
     description:
-      "DÃ©claration dâimpÃ´t annuelle, demande et suivi dâexonÃ©ration fiscale pour utilitÃ© publique.",
+      "Déclaration d’impôt annuelle, demande et suivi d’exonération fiscale pour utilité publique.",
     descriptionEn:
       "Annual tax return, application and monitoring of tax exemption for public utility.",
     features: [
-      "DÃ©claration dâimpÃ´t annuelle",
-      "Demande dâexonÃ©ration fiscale",
-      "Suivi avec lâautoritÃ© fiscale",
+      "Déclaration d’impôt annuelle",
+      "Demande d’exonération fiscale",
+      "Suivi avec l’autorité fiscale",
       "Optimisation fiscale",
     ],
     featuresEn: [
@@ -73,16 +73,16 @@ const services = [
   },
   {
     icon: ShieldCheck,
-    title: "Organe de rÃ©vision",
+    title: "Organe de révision",
     titleEn: "Audit Body",
     description:
-      "Rapports pour lâorgane de rÃ©vision, contrÃ´le restreint et prÃ©paration de lâassemblÃ©e gÃ©nÃ©rale.",
+      "Rapports pour l’organe de révision, contrôle restreint et préparation de l’assemblée générale.",
     descriptionEn:
       "Reports for the audit body, limited audit and preparation of the general assembly.",
     features: [
-      "ContrÃ´le restreint",
-      "Rapports de rÃ©vision",
-      "PrÃ©paration AG",
+      "Contrôle restreint",
+      "Rapports de révision",
+      "Préparation AG",
       "Conseil en gouvernance",
     ],
     featuresEn: [
@@ -97,13 +97,13 @@ const services = [
     title: "Conseil TVA",
     titleEn: "VAT Advisory",
     description:
-      "Assujettissement TVA associatif, mÃ©thode des taux de la dette fiscale nette, dÃ©comptes trimestriels.",
+      "Assujettissement TVA associatif, méthode des taux de la dette fiscale nette, décomptes trimestriels.",
     descriptionEn:
       "Non-profit VAT liability, flat tax rate method, quarterly VAT returns.",
     features: [
       "Assujettissement TVA",
-      "MÃ©thode taux dette fiscale nette",
-      "DÃ©comptes trimestriels",
+      "Méthode taux dette fiscale nette",
+      "Décomptes trimestriels",
       "Optimisation TVA",
     ],
     featuresEn: [
@@ -119,7 +119,7 @@ const associationTypes = [
   "Clubs sportifs et culturels",
   "Associations caritatives",
   "Associations professionnelles",
-  "ONG et associations dâentraide",
+  "ONG et associations d’entraide",
 ];
 const associationTypesEn = [
   "Sports and cultural clubs",
@@ -128,10 +128,10 @@ const associationTypesEn = [
   "NGOs and mutual aid organizations",
 ];
 const fondationTypes = [
-  "Fondations dâutilitÃ© publique",
+  "Fondations d’utilité publique",
   "Fondations de famille",
-  "Fondations dâentreprise",
-  "Fondations ecclÃ©siastiques",
+  "Fondations d’entreprise",
+  "Fondations ecclésiastiques",
 ];
 const fondationTypesEn = [
   "Public utility foundations",
@@ -145,33 +145,33 @@ const advantages = [
     icon: Zap,
     title: "100% en ligne",
     titleEn: "100% online",
-    description: "Tout se fait Ã  distance. Pas besoin de vous dÃ©placer.",
+    description: "Tout se fait à distance. Pas besoin de vous déplacer.",
     descriptionEn: "Everything is done remotely. No need to travel.",
   },
   {
     icon: Shield,
-    title: "DonnÃ©es sÃ©curisÃ©es",
+    title: "Données sécurisées",
     titleEn: "Secure data",
-    description: "Chiffrement SSL 256-bit et conformitÃ© LPD/RGPD.",
+    description: "Chiffrement SSL 256-bit et conformité LPD/RGPD.",
     descriptionEn: "SSL 256-bit encryption and LPD/GDPR compliance.",
   },
   {
     icon: Clock,
-    title: "RÃ©actif",
+    title: "Réactif",
     titleEn: "Responsive",
-    description: "Interlocuteur dÃ©diÃ© et rÃ©ponse sous 24h par email.",
+    description: "Interlocuteur dédié et réponse sous 24h par email.",
     descriptionEn: "Dedicated contact and email response within 24h.",
   },
   {
     icon: BadgeCheck,
-    title: "Expert certifiÃ©",
+    title: "Expert certifié",
     titleEn: "Certified expert",
-    description: "SpÃ©cialiste en fiscalitÃ© et comptabilitÃ© suisse.",
+    description: "Spécialiste en fiscalité et comptabilité suisse.",
     descriptionEn: "Specialist in Swiss taxation and accounting.",
   },
 ];
 
-const cantons = ["Vaud", "GenÃ¨ve", "Valais", "Fribourg", "NeuchÃ¢tel", "Jura"];
+const cantons = ["Vaud", "Genève", "Valais", "Fribourg", "Neuchâtel", "Jura"];
 
 export default function AssociationsFondationsPage() {
   const { t, isEnglish } = useLanguage();
@@ -213,11 +213,11 @@ export default function AssociationsFondationsPage() {
   };
 
   const servicePills = [
-    { key: "comptabilite", label: isEnglish ? "Accounting" : "ComptabilitÃ©" },
-    { key: "fiscalite", label: isEnglish ? "Tax" : "FiscalitÃ©" },
+    { key: "comptabilite", label: isEnglish ? "Accounting" : "Comptabilité" },
+    { key: "fiscalite", label: isEnglish ? "Tax" : "Fiscalité" },
     { key: "tva", label: "TVA" },
-    { key: "revision", label: isEnglish ? "Audit" : "RÃ©vision" },
-    { key: "creation", label: isEnglish ? "Creation" : "CrÃ©ation" },
+    { key: "revision", label: isEnglish ? "Audit" : "Révision" },
+    { key: "creation", label: isEnglish ? "Creation" : "Création" },
   ];
 
   return (
@@ -250,7 +250,7 @@ export default function AssociationsFondationsPage() {
               >
                 {isEnglish
                   ? "Accounting & Tax for Associations and Foundations"
-                  : "ComptabilitÃ© et fiscalitÃ© pour associations et fondations"}
+                  : "Comptabilité et fiscalité pour associations et fondations"}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -260,7 +260,7 @@ export default function AssociationsFondationsPage() {
               >
                 {isEnglish
                   ? "Your online fiduciary specialized in supporting non-profit organizations in French-speaking Switzerland. Tailored pricing, dedicated expertise."
-                  : "Votre fiduciaire en ligne spÃ©cialisÃ©e dans lâaccompagnement des organisations Ã  but non lucratif en Suisse romande. Tarifs adaptÃ©s, expertise dÃ©diÃ©e."}
+                  : "Votre fiduciaire en ligne spécialisée dans l’accompagnement des organisations à but non lucratif en Suisse romande. Tarifs adaptés, expertise dédiée."}
               </motion.p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -282,7 +282,7 @@ export default function AssociationsFondationsPage() {
                 >
                   <Link href="mailto:contact@neofidu.ch">
                     <Mail className="mr-2 w-4 h-4" />
-                    {isEnglish ? "Write to us" : "Nous Ã©crire"}
+                    {isEnglish ? "Write to us" : "Nous écrire"}
                   </Link>
                 </Button>
               </div>
@@ -301,7 +301,7 @@ export default function AssociationsFondationsPage() {
           <div className="text-center py-8">
             <p className="text-3xl font-bold text-primary">100%</p>
             <p className="text-sm text-muted-foreground mt-1">
-              {isEnglish ? "Online, no travel" : "En ligne, sans dÃ©placement"}
+              {isEnglish ? "Online, no travel" : "En ligne, sans déplacement"}
             </p>
           </div>
         </section>
@@ -316,7 +316,7 @@ export default function AssociationsFondationsPage() {
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {isEnglish
                   ? "Comprehensive support tailored to the specific needs of non-profit organizations."
-                  : "Un accompagnement complet adaptÃ© aux besoins spÃ©cifiques des organisations Ã  but non lucratif."}
+                  : "Un accompagnement complet adapté aux besoins spécifiques des organisations à but non lucratif."}
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -370,7 +370,7 @@ export default function AssociationsFondationsPage() {
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {isEnglish
                   ? "Whether you are a small local association or a public utility foundation."
-                  : "Que vous soyez une petite association locale ou une fondation dâutilitÃ© publique."}
+                  : "Que vous soyez une petite association locale ou une fondation d’utilité publique."}
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -430,7 +430,7 @@ export default function AssociationsFondationsPage() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                {isEnglish ? "Why choose NeoFidu?" : "Pourquoi choisir NeoFiduÂ ?"}
+                {isEnglish ? "Why choose NeoFidu?" : "Pourquoi choisir NeoFidu ?"}
               </h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -469,14 +469,14 @@ export default function AssociationsFondationsPage() {
                 <p className="text-white/80">
                   {isEnglish
                     ? "Describe your organization and your needs. We will get back to you within 24h by email."
-                    : "DÃ©crivez-nous votre organisation et vos besoins. Nous vous recontactons sous 24h par email."}
+                    : "Décrivez-nous votre organisation et vos besoins. Nous vous recontactons sous 24h par email."}
                 </p>
               </div>
               {isSuccess ? (
                 <Card className="p-8 text-center bg-white/10 border-white/20 backdrop-blur-sm">
                   <CheckCircle2 className="w-16 h-16 text-white mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-white mb-2">
-                    {isEnglish ? "Request sent!" : "Demande envoyÃ©eÂ !"}
+                    {isEnglish ? "Request sent!" : "Demande envoyée !"}
                   </h3>
                   <p className="text-white/80">
                     {isEnglish
@@ -490,21 +490,21 @@ export default function AssociationsFondationsPage() {
                     <div className="grid md:grid-cols-2 gap-4 mb-4">
                       <div>
                         <label className="text-sm text-white/70 mb-2 block">
-                          {isEnglish ? "Organization name" : "Nom de lâorganisation"}
+                          {isEnglish ? "Organization name" : "Nom de l’organisation"}
                         </label>
                         <Input
                           value={formData.orgName}
                           onChange={(e) =>
                             setFormData({ ...formData, orgName: e.target.value })
                           }
-                          placeholder={isEnglish ? "e.g. Association XYZ" : "ExÂ : Association XYZ"}
+                          placeholder={isEnglish ? "e.g. Association XYZ" : "Ex : Association XYZ"}
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/40"
                           required
                         />
                       </div>
                       <div>
                         <label className="text-sm text-white/70 mb-2 block">
-                          {isEnglish ? "Organization type" : "Type dâorganisation"}
+                          {isEnglish ? "Organization type" : "Type d’organisation"}
                         </label>
                         <select
                           value={formData.orgType}
@@ -559,7 +559,7 @@ export default function AssociationsFondationsPage() {
                     </div>
                     <div className="mb-4">
                       <label className="text-sm text-white/70 mb-2 block">
-                        {isEnglish ? "Desired services" : "Services souhaitÃ©s"}
+                        {isEnglish ? "Desired services" : "Services souhaités"}
                       </label>
                       <div className="flex flex-wrap gap-2">
                         {servicePills.map((pill) => (
@@ -580,7 +580,7 @@ export default function AssociationsFondationsPage() {
                     </div>
                     <div className="mb-6">
                       <label className="text-sm text-white/70 mb-2 block">
-                        {isEnglish ? "Describe your needs" : "DÃ©crivez vos besoins"}
+                        {isEnglish ? "Describe your needs" : "Décrivez vos besoins"}
                       </label>
                       <textarea
                         value={formData.message}
@@ -590,7 +590,7 @@ export default function AssociationsFondationsPage() {
                         placeholder={
                           isEnglish
                             ? "Approximate annual budget, number of members, specific needs..."
-                            : "Budget annuel approximatif, nombre de membres, besoins spÃ©cifiques..."
+                            : "Budget annuel approximatif, nombre de membres, besoins spécifiques..."
                         }
                         className="w-full min-h-[100px] px-3 py-2 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm resize-y"
                       />
@@ -620,13 +620,13 @@ export default function AssociationsFondationsPage() {
           <p className="text-muted-foreground mb-2">
             {isEnglish
               ? "Questions? Also check our services for"
-              : "Des questionsÂ ? Consultez aussi nos services pour"}
+              : "Des questions ? Consultez aussi nos services pour"}
           </p>
           <div className="flex items-center justify-center gap-4">
             <Link href="/demande" className="text-primary font-medium hover:underline">
               {isEnglish ? "Individuals" : "Particuliers"}
             </Link>
-            <span className="text-muted-foreground">{"Â·"}</span>
+            <span className="text-muted-foreground">{"·"}</span>
             <Link href="/entreprises" className="text-primary font-medium hover:underline">
               {isEnglish ? "Businesses" : "Entreprises"}
             </Link>
