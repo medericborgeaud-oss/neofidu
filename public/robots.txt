@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Allow: /_next/static/
-
+User-agent: MJ12bot
+Disallow: /observatoire/
 Sitemap: https://neofidu.ch/sitemap.xml
