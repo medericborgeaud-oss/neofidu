@@ -1,4 +1,4 @@
-h"use client";
+"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -225,7 +225,7 @@ export default function AssociationsFondationsPage() {
       <Header />
       <main className="min-h-screen pt-20">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary/5 py-20 lg:py-28">
+        <section className="relhative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary/5 py-20 lg:py-28">
           <div className="container mx-auto px-4">
             <BreadcrumbLight
               items={[
