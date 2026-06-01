@@ -1,6 +1,6 @@
 // src/app/sitemap.ts
 // Sitemap dynamique avec pages communes + sociétés
-
+export const dynamic = "force-dynamic";
 import { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
 import { createClient } from "@supabase/supabase-js";
