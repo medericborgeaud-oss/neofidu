@@ -1,4 +1,4 @@
-"use client";
+h"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -225,10 +225,8 @@ export default function AssociationsFondationsPage() {
       <Header />
       <main className="min-h-screen pt-20">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-hero py-20 lg:py-28">
-          <div className="absolute top-[-80px] right-[-60px] w-[240px] h-[240px] bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-[-60px] left-[-40px] w-[180px] h-[180px] bg-white/5 rounded-full blur-2xl" />
-          <div className="container mx-auto px-4 relative z-10">
+        <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary/5 py-20 lg:py-28">
+          <div className="container mx-auto px-4">
             <BreadcrumbLight
               items={[
                 { label: isEnglish ? "Home" : "Accueil", href: "/" },
@@ -239,14 +237,14 @@ export default function AssociationsFondationsPage() {
             <div className="max-w-3xl mx-auto text-center mt-8">
               <Badge
                 variant="outline"
-                className="mb-6 text-white/90 border-white/25 bg-white/10 px-4 py-1.5"
+                className="mb-6 text-primary border-primary/30 px-4 py-1.5"
               >
                 {isEnglish ? "Associations & Foundations" : "Associations & Fondations"}
               </Badge>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-4xl lg:text-5xl font-bold text-white mb-6"
+                className="text-4xl lg:text-5xl font-bold text-foreground mb-6"
               >
                 {isEnglish
                   ? "Accounting & Tax for Associations and Foundations"
@@ -256,7 +254,7 @@ export default function AssociationsFondationsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-lg text-white/80 mb-8 max-w-2xl mx-auto"
+                className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
               >
                 {isEnglish
                   ? "Your online fiduciary specialized in supporting non-profit organizations in French-speaking Switzerland. Tailored pricing, dedicated expertise."
@@ -267,7 +265,7 @@ export default function AssociationsFondationsPage() {
                   asChild
                   size="lg"
                   variant="secondary"
-                  className="rounded-full px-8 bg-white text-primary hover:bg-white/90"
+                  className="rounded-full px-8"
                 >
                   <Link href="#devis">
                     <ArrowDown className="mr-2 w-4 h-4" />
@@ -278,7 +276,7 @@ export default function AssociationsFondationsPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="rounded-full px-8 border-white/30 text-white hover:bg-white/10"
+                  className="rounded-full px-8"
                 >
                   <Link href="mailto:contact@neofidu.ch">
                     <Mail className="mr-2 w-4 h-4" />
