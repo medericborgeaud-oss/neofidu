@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // ISR: regenerate every 5 min
 
 import { Metadata } from "next";
 import { getCompanies, getStats, getSectorDistribution, getRandomCompanies } from "@/lib/companies";
