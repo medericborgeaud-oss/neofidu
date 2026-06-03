@@ -117,6 +117,7 @@ const FREQ_COLORS: Record<string, string> = {
   "Trimestriel": "bg-green-100 text-green-700",
   "Conditionnel": "bg-red-100 text-red-700",
   "Permanent": "bg-purple-100 text-purple-700",
+  "Conseillé": "bg-orange-100 text-orange-700",
 };
 
 interface ObligationItem {
@@ -133,6 +134,7 @@ function generateObligations(form: string): ObligationItem[] {
       { icon: "🏦", title: "Compte bancaire", description: "Compte professionnel dédié", frequency: "Création" },
       { icon: "👥", title: "Affiliation AVS", description: "Caisse de compensation", frequency: "Création" },
       { icon: "🗂️", title: "Archivage comptable", description: "Conservation 10 ans (CO)", frequency: "Permanent" },
+      { icon: "🛡️", title: "Assurances", description: "RC pro, APG, IJM", frequency: "Conseillé" },
       { icon: "📊", title: "Comptabilité", description: "Recettes / dépenses", frequency: "Annuel" },
       { icon: "📄", title: "Déclaration fiscale", description: "Personne physique", frequency: "Annuel" },
       { icon: "💰", title: "Cotisations sociales", description: "AVS/AI/APG ~10.6%", frequency: "Trimestriel" },
@@ -330,7 +332,7 @@ export default async function CompanyPage({ params }: Props) {
 
               {/* Purpose */}
               {company.purpose && (
-                <div className="mb-6">
+                <div className="mb-10">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
                     <FileText className="w-4 h-4" />But social
                   </div>
@@ -342,7 +344,7 @@ export default async function CompanyPage({ params }: Props) {
 
               {/* Persons */}
               {company.persons && company.persons.length > 0 && (
-                <div className="mb-6">
+                <div className="mb-10">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                     <Users className="w-4 h-4" />Personnes inscrites
                   </div>
@@ -364,7 +366,7 @@ export default async function CompanyPage({ params }: Props) {
 
               {/* FOSC History */}
               {company.fosc_history && company.fosc_history.length > 0 && (
-                <div className="mb-6">
+                <div className="mb-10">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                     <Clock className="w-4 h-4" />Historique FOSC
                   </div>
@@ -381,7 +383,7 @@ export default async function CompanyPage({ params }: Props) {
 
               {/* Canton fiscal context */}
               {fiscal && (
-                <div className="mb-6">
+                <div className="mb-10">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
                     <Landmark className="w-4 h-4" />Contexte fiscal — {cantonName}
                   </div>
@@ -402,7 +404,7 @@ export default async function CompanyPage({ params }: Props) {
 
               {/* Similar companies */}
               {similarCompanies.length > 0 && (
-                <div className="mb-6">
+                <div className="mb-10">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
                     <TrendingUp className="w-4 h-4" />
                     {sectorLabel
@@ -425,7 +427,7 @@ export default async function CompanyPage({ params }: Props) {
               )}
 
               {/* Obligations légales */}
-              <div className="mb-6">
+              <div className="mb-10">
                 <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                   <Shield className="w-4 h-4" />Obligations légales
                   <span className={`ml-1 text-xs font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{formLabel}</span>
@@ -454,7 +456,7 @@ export default async function CompanyPage({ params }: Props) {
               </div>
 
               {/* FAQ */}
-              <div className="mb-6">
+              <div className="mb-10">
                 <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                   <HelpCircle className="w-4 h-4" />Questions fréquentes
                 </div>
