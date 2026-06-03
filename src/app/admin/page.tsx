@@ -101,6 +101,7 @@ interface TaxRequest {
     lastName: string;
     birthDate?: string;
     maritalStatus?: string;
+    maritalStatusDate?: string;
     residenceStatus?: string;
     firstName2?: string;
     lastName2?: string;
@@ -120,6 +121,7 @@ interface TaxRequest {
     taxYear: number;
     taxpayerNumber?: string;
     declarationCode?: string;
+    chapterNumber?: string;
     clientType: string;
     familyStatus?: string;
     isIndependent?: boolean;
@@ -2303,6 +2305,12 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                       <p className="font-medium">{formatDate(selectedRequest.customer.birthDate)}</p>
                       <p className="text-muted-foreground">État civil</p>
                       <p className="font-medium">{getMaritalStatusLabel(selectedRequest.customer.maritalStatus)}</p>
+                      {selectedRequest.customer.maritalStatusDate && (
+                        <>
+                          <p className="text-muted-foreground">Date état civil</p>
+                          <p className="font-medium">{formatDate(selectedRequest.customer.maritalStatusDate)}</p>
+                        </>
+                      )}
                       <p className="text-muted-foreground">Statut de résidence</p>
                       <p className="font-medium">{getResidenceStatusLabel(selectedRequest.customer.residenceStatus)}</p>
                       {selectedRequest.customer.birthDate2 && (
@@ -2505,6 +2513,12 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                         <>
                           <p className="text-muted-foreground">Code déclaration</p>
                           <p className="font-medium font-mono">{selectedRequest.fiscal.declarationCode}</p>
+                        </>
+                      )}
+                      {selectedRequest.fiscal.chapterNumber && (
+                        <>
+                          <p className="text-muted-foreground">N° de chapitre</p>
+                          <p className="font-medium font-mono">{selectedRequest.fiscal.chapterNumber}</p>
                         </>
                       )}
 
