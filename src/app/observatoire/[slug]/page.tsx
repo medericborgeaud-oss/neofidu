@@ -134,7 +134,6 @@ function generateObligations(form: string): ObligationItem[] {
       { icon: "🏦", title: "Compte bancaire", description: "Compte professionnel dédié", frequency: "Création" },
       { icon: "👥", title: "Affiliation AVS", description: "Caisse de compensation", frequency: "Création" },
       { icon: "🗂️", title: "Archivage comptable", description: "Conservation 10 ans (CO)", frequency: "Permanent" },
-      { icon: "🛡️", title: "Assurances", description: "RC pro, APG, IJM", frequency: "Conseillé" },
       { icon: "📊", title: "Comptabilité", description: "Recettes / dépenses", frequency: "Annuel" },
       { icon: "📄", title: "Déclaration fiscale", description: "Personne physique", frequency: "Annuel" },
       { icon: "💰", title: "Cotisations sociales", description: "AVS/AI/APG ~10.6%", frequency: "Trimestriel" },
@@ -453,6 +452,16 @@ export default async function CompanyPage({ params }: Props) {
                     )
                   )}
                 </div>
+                {formLabel === "RI" && (
+                  <div className="mt-4 p-4 bg-orange-50 border border-orange-200 rounded-lg flex items-center gap-3">
+                    <span className="text-2xl">🛡️</span>
+                    <div className="flex-1">
+                      <p className="font-medium text-orange-800">Assurances — Fortement conseillé</p>
+                      <p className="text-sm text-orange-600">RC professionnelle, APG, IJM (indemnités journalières maladie)</p>
+                    </div>
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-700">Conseillé</span>
+                  </div>
+                )}
               </div>
 
               {/* FAQ */}
