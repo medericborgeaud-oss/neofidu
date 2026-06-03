@@ -785,6 +785,7 @@ export function TaxRequestForm() {
     lastName: "",
     birthDate: "",
     maritalStatus: "",
+    maritalStatusDate: "",
     firstName2: "",
     lastName2: "",
     birthDate2: "",
@@ -794,6 +795,7 @@ export function TaxRequestForm() {
     taxYear: new Date().getFullYear() - 1, // {isEnglish ? "Tax year" : "Année fiscale"} (année précédente par défaut)
     taxpayerNumber: "",
     declarationCode: "",
+    chapterNumber: "",
     street: "",
     npa: "",
     city: "",
@@ -1688,6 +1690,9 @@ export function TaxRequestForm() {
       // Validation du code de déclaration
       if (!formData.declarationCode || formData.declarationCode.length < 4) return false;
 
+      // Validation du numéro de chapitre (Fribourg uniquement)
+      if (formData.canton === "FR" && !formData.chapterNumber) return false;
+
       // Validation de la date de naissance
       const birthDateValidation = validateBirthDate(formData.birthDate);
       if (!birthDateValidation.valid) return false;
@@ -1860,6 +1865,7 @@ export function TaxRequestForm() {
         lastName: formData.lastName,
         birthDate: formData.birthDate,
         maritalStatus: formData.maritalStatus,
+        maritalStatusDate: formData.maritalStatusDate || undefined,
         firstName2: formData.clientType === "couple" ? formData.firstName2 : undefined,
         lastName2: formData.clientType === "couple" ? formData.lastName2 : undefined,
         birthDate2: formData.clientType === "couple" ? formData.birthDate2 : undefined,
@@ -1880,6 +1886,7 @@ export function TaxRequestForm() {
         taxYear: formData.taxYear,
         taxpayerNumber: formData.taxpayerNumber,
         declarationCode: formData.declarationCode,
+        chapterNumber: formData.canton === "FR" ? formData.chapterNumber : undefined,
         clientType: formData.clientType,
         familyStatus: formData.familyStatus,
         isIndependent: formData.isIndependent,
@@ -2962,6 +2969,25 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               </div>
             </div>
 
+            {/* Numéro de chapitre - Fribourg uniquement */}
+            {formData.canton === "FR" && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium mb-2">
+                  {isEnglish ? "Chapter number" : "N° de chapitre"} <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder={isEnglish ? "Ex: 12345" : "Ex: 12345"}
+                  value={formData.chapterNumber}
+                  onChange={(e) => updateForm("chapterNumber", e.target.value)}
+                  className="rounded-xl border-amber-300 max-w-xs"
+                />
+                <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                  <Info className="w-3 h-3" />
+                  {isEnglish ? "Chapter number from the cover page of your tax return" : "Numéro de chapitre sur la page de garde de votre déclaration"}
+                </p>
+              </div>
+            )}
+
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2">
@@ -3096,6 +3122,27 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                   </p>
                 )}
               </div>
+
+
+              {/* Date de changement d'état civil */}
+              {formData.maritalStatus && formData.maritalStatus !== "single" && (
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    {isEnglish
+                      ? `Date of ${formData.maritalStatus === "married" ? "marriage" : formData.maritalStatus === "divorced" ? "divorce" : formData.maritalStatus === "widowed" ? "spouse's death" : formData.maritalStatus === "separated" ? "separation" : formData.maritalStatus === "partnership" ? "partnership registration" : "status change"}`
+                      : `Date ${formData.maritalStatus === "married" ? "du mariage" : formData.maritalStatus === "divorced" ? "du divorce" : formData.maritalStatus === "widowed" ? "du décès du conjoint" : formData.maritalStatus === "separated" ? "de la séparation" : formData.maritalStatus === "partnership" ? "de l'enregistrement du partenariat" : "du changement"}`}
+                  </label>
+                  <Input
+                    type="date"
+                    value={formData.maritalStatusDate}
+                    onChange={(e) => updateForm("maritalStatusDate", e.target.value)}
+                    className="rounded-xl"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {isEnglish ? "Leave empty if you don't remember the exact date" : "Laissez vide si vous ne connaissez pas la date exacte"}
+                  </p>
+                </div>
+              )}
 
               {/* Second adulte pour les couples */}
               {formData.clientType === "couple" && (
