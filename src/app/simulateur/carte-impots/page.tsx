@@ -35,16 +35,16 @@ export const metadata: Metadata = {
     title: "Swiss Tax Map 2026 | Compare All 26 Cantons",
     description:
       "Interactive map comparing tax rates of 26 Swiss cantons. From Zug (5.1%) to Geneva (14.8%), find the ideal canton to optimize your tax situation.",
-    url: "https://www.neofidu.ch/simulateur/carte-impots",
+    url: "https://neofidu.ch/simulateur/carte-impots",
     type: "website",
     siteName: "NeoFidu",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur/carte-impots",
+    canonical: "https://neofidu.ch/simulateur/carte-impots",
     languages: {
-      "fr-CH": "https://www.neofidu.ch/simulateur/carte-impots",
-      "en": "https://www.neofidu.ch/simulateur/carte-impots",
+      "fr-CH": "https://neofidu.ch/simulateur/carte-impots",
+      "en": "https://neofidu.ch/simulateur/carte-impots",
     },
   },
   robots: {
@@ -67,7 +67,7 @@ export default function CarteImpotsPage() {
     "@type": "WebApplication",
     name: "Swiss Tax Map - NeoFidu",
     description: "Interactive map comparing tax rates of 26 Swiss cantons. Visualize tax differences from Zug to Geneva.",
-    url: "https://www.neofidu.ch/simulateur/carte-impots",
+    url: "https://neofidu.ch/simulateur/carte-impots",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     offers: {
@@ -78,7 +78,7 @@ export default function CarteImpotsPage() {
     provider: {
       "@type": "Organization",
       name: "NeoFidu",
-      url: "https://www.neofidu.ch",
+      url: "https://neofidu.ch",
     },
   };
 
@@ -109,15 +109,15 @@ export default function CarteImpotsPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.neofidu.ch" },
-      { "@type": "ListItem", position: 2, name: "Simulators", item: "https://www.neofidu.ch/simulateur" },
-      { "@type": "ListItem", position: 3, name: "Tax Map", item: "https://www.neofidu.ch/simulateur/carte-impots" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://neofidu.ch" },
+      { "@type": "ListItem", position: 2, name: "Simulators", item: "https://neofidu.ch/simulateur" },
+      { "@type": "ListItem", position: 3, name: "Tax Map", item: "https://neofidu.ch/simulateur/carte-impots" },
     ],
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Carte des Impôts Suisses 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://www.neofidu.ch/simulateur/carte-impots","description":"Comparez les taux d'imposition des 26 cantons suisses sur une carte interactive.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://www.neofidu.ch"}}` }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Carte des Impôts Suisses 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://neofidu.ch/simulateur/carte-impots","description":"Comparez les taux d'imposition des 26 cantons suisses sur une carte interactive.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://neofidu.ch"}}` }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "FAQ - Swiss Tax Questions",
     description: "Answers about Swiss taxes and accounting. We speak English!",
-    url: "https://www.neofidu.ch/faq",
-    images: [{ url: "https://www.neofidu.ch/og-image.svg", width: 1200, height: 630 }],
+    url: "https://neofidu.ch/faq",
+    images: [{ url: "https://neofidu.ch/og-image.svg", width: 1200, height: 630 }],
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/faq",
+    canonical: "https://neofidu.ch/faq",
   },
 };
 

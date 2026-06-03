@@ -31,10 +31,10 @@ export const metadata: Metadata = {
       "Calculate Swiss taxes, Pillar 3a savings, rental value. 100% free, no registration. | Simulateurs fiscaux suisses gratuits.",
     type: "website",
     locale: "fr_CH",
-    images: [{ url: "https://www.neofidu.ch/og-image.svg", width: 1200, height: 630 }],
+    images: [{ url: "https://neofidu.ch/og-image.svg", width: 1200, height: 630 }],
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur",
+    canonical: "https://neofidu.ch/simulateur",
   },
 };
 

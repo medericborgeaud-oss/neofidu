@@ -34,12 +34,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Comptabilité Indépendants & Freelances | Vaud · Genève · Valais | NeoFidu",
     description: "Comptabilité pour indépendants à Vaud, Genève et Valais. Déclaration d'impôts, TVA, création entreprise. Devis gratuit en ligne.",
-    url: "https://www.neofidu.ch/independants",
+    url: "https://neofidu.ch/independants",
     type: "website",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/independants",
+    canonical: "https://neofidu.ch/independants",
   },
 };
 
@@ -49,11 +49,11 @@ const independantsSchema = {
   "@type": "Service",
   "name": "Comptabilité pour Indépendants - Neofidu",
   "description": "Service de comptabilité et accompagnement fiscal pour indépendants et freelances en Suisse romande",
-  "url": "https://www.neofidu.ch/independants",
+  "url": "https://neofidu.ch/independants",
   "provider": {
     "@type": "Organization",
     "name": "Neofidu",
-    "url": "https://www.neofidu.ch"
+    "url": "https://neofidu.ch"
   },
   "areaServed": [
     {"@type": "AdministrativeArea", "name": "Canton de Vaud", "@id": "https://www.wikidata.org/wiki/Q12771"},
@@ -66,7 +66,7 @@ const independantsSchema = {
     "price": "90",
     "priceCurrency": "CHF",
     "priceRange": "CHF 90 - CHF 500",
-    "url": "https://www.neofidu.ch/independants"
+    "url": "https://neofidu.ch/independants"
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",

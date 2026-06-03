@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     description:
       "Actualités fiscales et conseils comptables en Suisse romande. Guides pratiques sur les impôts et la TVA.",
     type: "website",
-    url: "https://www.neofidu.ch/blog",
+    url: "https://neofidu.ch/blog",
     siteName: "",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/blog",
+    canonical: "https://neofidu.ch/blog",
   },
 };
 
@@ -38,11 +38,11 @@ export default function BlogLayout({
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Blog NeoFidu - Fiscalité et comptabilité en Suisse",
-    url: "https://www.neofidu.ch/blog",
+    url: "https://neofidu.ch/blog",
     itemListElement: publishedArticles.map((article, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `https://www.neofidu.ch/blog/${article.slug}`,
+      url: `https://neofidu.ch/blog/${article.slug}`,
       name: article.title,
     })),
   };

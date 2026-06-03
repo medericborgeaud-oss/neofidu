@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     title: "Fiduciaire Fribourg - Déclaration d'impôts & comptabilité en ligne",
     description:
       "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité. Service 100% digital.",
-    url: "https://www.neofidu.ch/cantons/fribourg",
+    url: "https://neofidu.ch/cantons/fribourg",
     type: "website",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/cantons/fribourg",
+    canonical: "https://neofidu.ch/cantons/fribourg",
   },
 };
 
@@ -35,8 +35,8 @@ const fribourgSchema = {
   "@type": "ProfessionalService",
   "name": "NeoFidu - Fiduciaire Fribourg",
   "description": "Fiduciaire en ligne pour Fribourg : déclaration d'impôts, calcul du 3ème pilier, comptabilité",
-  "url": "https://www.neofidu.ch/cantons/fribourg",
-  "logo": "https://www.neofidu.ch/logo.svg",
+  "url": "https://neofidu.ch/cantons/fribourg",
+  "logo": "https://neofidu.ch/logo.svg",
   "priceRange": "CHF 89 - CHF 500",
   "address": {
     "@type": "PostalAddress",

@@ -275,8 +275,8 @@ export default function TarifsPage() {
     "provider": {
       "@type": "Organization",
       "name": "NeoFidu",
-      "url": "https://www.neofidu.ch",
-      "logo": "https://www.neofidu.ch/logo.svg",
+      "url": "https://neofidu.ch",
+      "logo": "https://neofidu.ch/logo.svg",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "CH",
@@ -292,7 +292,7 @@ export default function TarifsPage() {
       "price": "89",
       "priceCurrency": "CHF",
       "priceRange": "CHF 89 - CHF 1490",
-      "url": "https://www.neofidu.ch/tarifs"
+      "url": "https://neofidu.ch/tarifs"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",

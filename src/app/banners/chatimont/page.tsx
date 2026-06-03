@@ -330,7 +330,7 @@ export default function ChatimontBannerPage() {
           </p>
           <pre className="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto">
 {`<!-- Bannière partenaire NeoFidu -->
-<a href="https://www.neofidu.ch?ref=chatimont"
+<a href="https://neofidu.ch?ref=chatimont"
    target="_blank"
    rel="noopener"
    style="display: block; text-align: center; margin: 20px auto;">

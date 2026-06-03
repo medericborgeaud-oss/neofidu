@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     title: "Tarifs fiduciaire en ligne Suisse — Prix clairs et transparents",
     description:
       "Découvrez nos tarifs pour la déclaration d'impôts, la comptabilité et les services fiduciaires en Suisse romande. Devis gratuit.",
-    url: "https://www.neofidu.ch/tarifs",
+    url: "https://neofidu.ch/tarifs",
     type: "website",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/tarifs",
+    canonical: "https://neofidu.ch/tarifs",
   },
 };
 

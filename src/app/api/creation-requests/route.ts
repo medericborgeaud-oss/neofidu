@@ -221,7 +221,7 @@ export async function POST(request: NextRequest) {
 
             <p style="font-size: 16px; color: #334155;">
               En attendant, n'hésitez pas à consulter notre
-              <a href="https://www.neofidu.ch/creation-entreprise" style="color: #7c3aed;">guide complet sur la création d'entreprise</a>.
+              <a href="https://neofidu.ch/creation-entreprise" style="color: #7c3aed;">guide complet sur la création d'entreprise</a>.
             </p>
 
             <p style="font-size: 16px; color: #334155; margin-bottom: 0;">

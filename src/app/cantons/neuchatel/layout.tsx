@@ -19,12 +19,12 @@ export const metadata: Metadata = {
     title: "Déclaration d'impôts Neuchâtel 2026",
     description:
       "Expert fiduciaire pour votre déclaration d'impôts neuchâteloise. Spécialiste industrie horlogère. Dès CHF 89.-",
-    url: "https://www.neofidu.ch/cantons/neuchatel",
+    url: "https://neofidu.ch/cantons/neuchatel",
     type: "website",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/cantons/neuchatel",
+    canonical: "https://neofidu.ch/cantons/neuchatel",
   },
 };
 

@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     description:
       "Calculez vos impôts en Suisse romande en quelques clics. Outil gratuit, résultat immédiat pour Vaud, Genève, Fribourg, Valais et Neuchâtel.",
     type: "website",
-    url: "https://www.neofidu.ch/simulateur/impots",
+    url: "https://neofidu.ch/simulateur/impots",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur/impots",
+    canonical: "https://neofidu.ch/simulateur/impots",
   },
 };
 
@@ -43,7 +43,7 @@ export default function SimulateurImpotsPage() {
     "@type": "WebApplication",
     "name": "Simulateur d'impôts Suisse 2026 - Neofidu",
     "description": "Calculez vos impôts en Suisse romande en quelques clics. Outil gratuit, résultat immédiat pour Vaud, Genève, Fribourg, Valais et Neuchâtel.",
-    "url": "https://www.neofidu.ch/simulateur/impots",
+    "url": "https://neofidu.ch/simulateur/impots",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -57,7 +57,7 @@ export default function SimulateurImpotsPage() {
     "provider": {
       "@type": "Organization",
       "name": "Neofidu",
-      "url": "https://www.neofidu.ch"
+      "url": "https://neofidu.ch"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -110,7 +110,7 @@ export default function SimulateurImpotsPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur d'impôts Suisse 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://www.neofidu.ch/simulateur/impots","description":"Calculez vos impôts suisses gratuitement en 30 secondes. Valable pour tous les cantons 2026.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://www.neofidu.ch"}}` }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur d'impôts Suisse 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://neofidu.ch/simulateur/impots","description":"Calculez vos impôts suisses gratuitement en 30 secondes. Valable pour tous les cantons 2026.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://neofidu.ch"}}` }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}

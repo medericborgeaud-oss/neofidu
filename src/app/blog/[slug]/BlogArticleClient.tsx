@@ -71,7 +71,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
   const categoryInfo = blogCategories[article.category];
 
   const handleShare = async () => {
-    const url = `https://www.neofidu.ch/blog/${article.slug}`;
+    const url = `https://neofidu.ch/blog/${article.slug}`;
 
     if (navigator.share) {
       try {

@@ -32,10 +32,10 @@ export const metadata: Metadata = {
     description:
       "Calculez votre salaire net en Suisse. Estimation instantanée pour tous les 26 cantons suisses. Aucune inscription requise.",
     type: "website",
-    url: "https://www.neofidu.ch/simulateur/salaire-net",
+    url: "https://neofidu.ch/simulateur/salaire-net",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur/salaire-net",
+    canonical: "https://neofidu.ch/simulateur/salaire-net",
   },
 };
 
@@ -116,7 +116,7 @@ export default function SalaireNetPage() {
     name: "Simulateur Salaire Net Suisse - NeoFidu",
     description:
       "Calculez votre salaire net en Suisse par canton avec notre simulateur gratuit",
-    url: "https://www.neofidu.ch/simulateur/salaire-net",
+    url: "https://neofidu.ch/simulateur/salaire-net",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     offers: {
@@ -127,7 +127,7 @@ export default function SalaireNetPage() {
     provider: {
       "@type": "Organization",
       name: "NeoFidu",
-      url: "https://www.neofidu.ch",
+      url: "https://neofidu.ch",
     },
   };
 
@@ -146,7 +146,7 @@ export default function SalaireNetPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur Salaire Net Suisse 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://www.neofidu.ch/simulateur/salaire-net","description":"Calculez votre salaire net en Suisse selon votre canton, situation familiale et classe d'impôt à la source.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://www.neofidu.ch"}}` }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur Salaire Net Suisse 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://neofidu.ch/simulateur/salaire-net","description":"Calculez votre salaire net en Suisse selon votre canton, situation familiale et classe d'impôt à la source.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://neofidu.ch"}}` }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

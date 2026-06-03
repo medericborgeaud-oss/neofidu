@@ -253,7 +253,7 @@ export async function POST(request: NextRequest) {
 
           <div style="margin-top: 30px; padding: 20px; background: #1f2937; border-radius: 8px; text-align: center;">
             <p style="color: white; margin: 0 0 15px 0;">Reçu le ${formatDate(submittedAt)}</p>
-            <a href="https://www.neofidu.ch/admin" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+            <a href="https://neofidu.ch/admin" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
               Voir dans le Dashboard
             </a>
           </div>

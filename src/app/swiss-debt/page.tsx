@@ -12,8 +12,8 @@ const DESC =
   "Track Switzerland's federal debt in real time. Revenue, expenses " +
   "and deficit per second based on the 2026 federal budget published " +
   "by the Federal Finance Administration (FFA).";
-const URL = "https://www.neofidu.ch/swiss-debt";
-const OG_IMAGE = "https://www.neofidu.ch/og/dette-suisse.png";
+const URL = "https://neofidu.ch/swiss-debt";
+const OG_IMAGE = "https://neofidu.ch/og/dette-suisse.png";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: URL,
     languages: {
-      "fr-CH": "https://www.neofidu.ch/dette-suisse",
+      "fr-CH": "https://neofidu.ch/dette-suisse",
       "en": URL,
     },
   },
@@ -77,7 +77,7 @@ function JsonLd() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.neofidu.ch",
+        item: "https://neofidu.ch",
       },
       {
         "@type": "ListItem",
@@ -98,7 +98,7 @@ function JsonLd() {
     isPartOf: {
       "@type": "WebSite",
       name: "NeoFidu",
-      url: "https://www.neofidu.ch",
+      url: "https://neofidu.ch",
     },
     about: {
       "@type": "Thing",

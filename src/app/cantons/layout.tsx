@@ -20,15 +20,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Fiduciaire par canton — Vaud, Genève, Valais, Fribourg | NeoFidu",
     description: "Fiduciaire digitale spécialisée pour chaque canton de Suisse romande.",
-    url: "https://www.neofidu.ch/cantons",
+    url: "https://neofidu.ch/cantons",
     type: "website",
-    images: [{ url: "https://www.neofidu.ch/og-image.svg", width: 1200, height: 630 }],
+    images: [{ url: "https://neofidu.ch/og-image.svg", width: 1200, height: 630 }],
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/cantons",
+    canonical: "https://neofidu.ch/cantons",
     languages: {
-      "fr-CH": "https://www.neofidu.ch/cantons",
-      "x-default": "https://www.neofidu.ch/cantons",
+      "fr-CH": "https://neofidu.ch/cantons",
+      "x-default": "https://neofidu.ch/cantons",
     },
   },
 };

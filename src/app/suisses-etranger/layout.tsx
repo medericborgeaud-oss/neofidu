@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CH",
     siteName: "NeoFidu",
-    url: "https://www.neofidu.ch/suisses-etranger",
+    url: "https://neofidu.ch/suisses-etranger",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/suisses-etranger",
+    canonical: "https://neofidu.ch/suisses-etranger",
   },
   robots: {
     index: true,

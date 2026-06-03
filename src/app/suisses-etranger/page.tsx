@@ -112,17 +112,17 @@ export default function SuissesEtrangerPage() {
   "provider": {
     "@type": "AccountingService",
     "name": "NeoFidu",
-    "url": "https://www.neofidu.ch"
+    "url": "https://neofidu.ch"
   },
   "serviceType": "Tax Filing Service",
   "areaServed": {
     "@type": "Country",
     "name": "Switzerland"
   },
-  "url": "https://www.neofidu.ch/suisses-etranger",
+  "url": "https://neofidu.ch/suisses-etranger",
   "offers": {
     "@type": "Offer",
-    "url": "https://www.neofidu.ch/tarifs"
+    "url": "https://neofidu.ch/tarifs"
   }
 }) }}
       />

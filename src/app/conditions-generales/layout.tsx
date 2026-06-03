@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CGU",
     description: "Conditions générales d'utilisation des services NeoFidu.",
-    url: "https://www.neofidu.ch/conditions-generales",
+    url: "https://neofidu.ch/conditions-generales",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/conditions-generales",
+    canonical: "https://neofidu.ch/conditions-generales",
   },
   robots: {
     index: true,

@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     title: "Calculateur Retraite Suisse | NeoFidu",
     description:
       "Combien toucherez-vous à la retraite ? Simulez votre AVS, 2ème et 3ème pilier en 30 secondes.",
-    url: "https://www.neofidu.ch/simulateur/retraite",
+    url: "https://neofidu.ch/simulateur/retraite",
     type: "website",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur/retraite",
+    canonical: "https://neofidu.ch/simulateur/retraite",
   },
 };
 
@@ -42,7 +42,7 @@ const simulateurSchema = {
   operatingSystem: "All",
   description:
     "Estimez votre revenu mensuel à la retraite en Suisse : AVS, 2ème pilier (LPP) et 3ème pilier.",
-  url: "https://www.neofidu.ch/simulateur/retraite",
+  url: "https://neofidu.ch/simulateur/retraite",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -51,7 +51,7 @@ const simulateurSchema = {
   provider: {
     "@type": "Organization",
     name: "NeoFidu",
-    url: "https://www.neofidu.ch",
+    url: "https://neofidu.ch",
   },
 };
 

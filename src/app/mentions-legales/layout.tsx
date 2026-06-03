@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "NeoFidu",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/mentions-legales",
+    canonical: "https://neofidu.ch/mentions-legales",
   },
 };
 

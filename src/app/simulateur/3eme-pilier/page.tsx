@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     description:
       "Calculez vos économies d'impôts avec le 3ème pilier. Plafond 2026 : CHF 7'258. Résultat instantané et gratuit.",
     type: "website",
-    url: "https://www.neofidu.ch/simulateur/3eme-pilier",
+    url: "https://neofidu.ch/simulateur/3eme-pilier",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur/3eme-pilier",
+    canonical: "https://neofidu.ch/simulateur/3eme-pilier",
   },
 };
 

@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     title: "Simulateur Impôt Gain Immobilier | Calcul IGI par Canton",
     description:
       "Calculez l'impôt sur le gain immobilier lors de la vente de votre bien. Taux par canton et durée de détention.",
-    url: "https://www.neofidu.ch/simulateur/gain-immobilier",
+    url: "https://neofidu.ch/simulateur/gain-immobilier",
     type: "website",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur/gain-immobilier",
+    canonical: "https://neofidu.ch/simulateur/gain-immobilier",
   },
 };
 
@@ -26,7 +26,7 @@ const structuredData = {
   name: "Simulateur Impôt Gain Immobilier Suisse",
   description:
     "Calculateur gratuit pour estimer l'impôt sur le gain immobilier (IGI) lors de la vente d'un bien en Suisse, par canton et durée de détention.",
-  url: "https://www.neofidu.ch/simulateur/gain-immobilier",
+  url: "https://neofidu.ch/simulateur/gain-immobilier",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   offers: {
@@ -37,7 +37,7 @@ const structuredData = {
   provider: {
     "@type": "Organization",
     name: "NeoFidu",
-    url: "https://www.neofidu.ch",
+    url: "https://neofidu.ch",
   },
 };
 
@@ -83,7 +83,7 @@ const faqStructuredData = {
 export default function GainImmobilierPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur Gain Immobilier 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://www.neofidu.ch/simulateur/gain-immobilier","description":"Calculez l'impôt sur le gain immobilier lors d'une vente de bien immobilier en Suisse.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://www.neofidu.ch"}}` }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur Gain Immobilier 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://neofidu.ch/simulateur/gain-immobilier","description":"Calculez l'impôt sur le gain immobilier lors d'une vente de bien immobilier en Suisse.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://neofidu.ch"}}` }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

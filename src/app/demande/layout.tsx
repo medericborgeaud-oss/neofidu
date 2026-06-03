@@ -45,13 +45,13 @@ export const metadata: Metadata = {
     title: "Déclaration d'impôts en ligne | Dès CHF 89.- | Neofidu",
     description:
       "Service de déclaration d'impôts en ligne pour la Suisse romande. Particuliers, couples, indépendants. Devis gratuit en 2 minutes.",
-    url: "https://www.neofidu.ch/demande",
+    url: "https://neofidu.ch/demande",
     siteName: "Neofidu",
     type: "website",
     locale: "fr_CH",
     images: [
       {
-        url: "https://www.neofidu.ch/og-demande.png",
+        url: "https://neofidu.ch/og-demande.png",
         width: 1200,
         height: 630,
         alt: "Déclaration d'impôts en ligne Neofidu",
@@ -59,10 +59,10 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/demande",
+    canonical: "https://neofidu.ch/demande",
     languages: {
-      "fr-CH": "https://www.neofidu.ch/demande",
-      "en": "https://www.neofidu.ch/demande",
+      "fr-CH": "https://neofidu.ch/demande",
+      "en": "https://neofidu.ch/demande",
     },
   },
   robots: {
@@ -84,8 +84,8 @@ const taxServiceSchema = {
   "@type": "ProfessionalService",
   "name": "Neofidu - Déclaration d'impôts en ligne",
   "description": "Service de déclaration d'impôts en ligne pour particuliers, couples et indépendants en Suisse romande. 100% digital, tarifs transparents.",
-  "url": "https://www.neofidu.ch/demande",
-  "logo": "https://www.neofidu.ch/logo.svg",
+  "url": "https://neofidu.ch/demande",
+  "logo": "https://neofidu.ch/logo.svg",
   "priceRange": "CHF 89 - CHF 200",
   "address": {
     "@type": "PostalAddress",
@@ -172,13 +172,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Accueil",
-      "item": "https://www.neofidu.ch"
+      "item": "https://neofidu.ch"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Déclaration d'impôts",
-      "item": "https://www.neofidu.ch/demande"
+      "item": "https://neofidu.ch/demande"
     }
   ]
 };

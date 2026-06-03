@@ -700,7 +700,7 @@ function getTaxSummaryHtml(data: TaxSummaryData): string {
                     </p>
                   </td>
                   <td style="text-align: right;">
-                    <a href="https://www.neofidu.ch/admin" style="color: #10b981; text-decoration: none; font-size: 14px;">
+                    <a href="https://neofidu.ch/admin" style="color: #10b981; text-decoration: none; font-size: 14px;">
                       Accéder au dashboard →
                     </a>
                   </td>
@@ -907,7 +907,7 @@ function getPaymentConfirmationHtml(data: EmailData): string {
                     <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.5;">
                       ${t.trackDesc} <strong>${data.reference}</strong>.
                     </p>
-                    <a href="https://www.neofidu.ch/suivi" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                    <a href="https://neofidu.ch/suivi" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
                       ${t.trackButton} →
                     </a>
                   </td>
@@ -1034,7 +1034,7 @@ function getRequestConfirmationHtml(data: EmailData): string {
                     <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.5;">
                       ${t.trackDesc}
                     </p>
-                    <a href="https://www.neofidu.ch/suivi" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                    <a href="https://neofidu.ch/suivi" style="display: inline-block; background: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
                       ${t.trackButton} →
                     </a>
                   </td>
@@ -1128,7 +1128,7 @@ function getAdminNotificationHtml(data: EmailData): string {
           </tr>
         </table>
         <p style="margin-top: 20px;">
-          <a href="https://www.neofidu.ch/admin" style="background: #0d9488; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+          <a href="https://neofidu.ch/admin" style="background: #0d9488; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
             Voir le tableau de bord
           </a>
         </p>
@@ -1356,7 +1356,7 @@ function getNewRequestNotificationHtml(data: EmailData & { customerEmail?: strin
           </tr>
         </table>
         <p style="margin-top: 24px; text-align: center;">
-          <a href="https://www.neofidu.ch/admin" style="background: #1f2937; color: white; padding: 12px 24px; text-decoration: none; border-radius: 9999px; font-weight: 600;">
+          <a href="https://neofidu.ch/admin" style="background: #1f2937; color: white; padding: 12px 24px; text-decoration: none; border-radius: 9999px; font-weight: 600;">
             Voir dans le dashboard
           </a>
         </p>

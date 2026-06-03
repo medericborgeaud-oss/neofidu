@@ -55,13 +55,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NeoFidu | Déclaration d'impôts Suisse dès CHF 89",
     description: "Fiduciaire digitale en Suisse romande. Déclaration d'impôts dès CHF 89. Service bilingue FR/EN.",
-    url: "https://www.neofidu.ch",
+    url: "https://neofidu.ch",
     type: "website",
     siteName: "NeoFidu",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch",
+    canonical: "https://neofidu.ch",
   },
 };
 

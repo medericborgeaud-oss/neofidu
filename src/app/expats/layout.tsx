@@ -88,15 +88,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_CH",
     siteName: "NeoFidu",
-    url: "https://www.neofidu.ch/expats",
+    url: "https://neofidu.ch/expats",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/expats",
+    canonical: "https://neofidu.ch/expats",
     languages: {
-      "en": "https://www.neofidu.ch/expats",
-      "fr": "https://www.neofidu.ch/expats",
-      "fr-CH": "https://www.neofidu.ch/expats",
-      "x-default": "https://www.neofidu.ch/expats",
+      "en": "https://neofidu.ch/expats",
+      "fr": "https://neofidu.ch/expats",
+      "fr-CH": "https://neofidu.ch/expats",
+      "x-default": "https://neofidu.ch/expats",
     },
   },
   robots: {
@@ -116,13 +116,13 @@ export const metadata: Metadata = {
 const expatServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "https://www.neofidu.ch/expats#service",
+  "@id": "https://neofidu.ch/expats#service",
   name: "Swiss Tax Returns for Expats",
   alternateName: ["Expat Tax Service Switzerland", "Tax Filing for Foreigners"],
   description: "Professional tax return service for expats and foreigners in Switzerland. English-speaking service, all permit types (B, C, L, G). 100% online.",
   provider: {
     "@type": "Organization",
-    "@id": "https://www.neofidu.ch/#organization",
+    "@id": "https://neofidu.ch/#organization",
     name: "NeoFidu",
   },
   serviceType: "Tax Return Preparation",
@@ -252,13 +252,13 @@ const expatBreadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.neofidu.ch",
+      item: "https://neofidu.ch",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Tax Returns for Expats",
-      item: "https://www.neofidu.ch/expats",
+      item: "https://neofidu.ch/expats",
     },
   ],
 };

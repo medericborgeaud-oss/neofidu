@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     description:
       "Will you be a winner or loser after the elimination of imputed rental value? Simulate the impact on your taxes.",
     type: "website",
-    url: "https://www.neofidu.ch/simulateur/valeur-locative",
+    url: "https://neofidu.ch/simulateur/valeur-locative",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/simulateur/valeur-locative",
+    canonical: "https://neofidu.ch/simulateur/valeur-locative",
   },
 };
 
@@ -39,7 +39,7 @@ export default function SimulateurValeurLocativePage() {
     name: "Imputed Rental Value Simulator - NeoFidu",
     description:
       "Free calculator to estimate the impact of the elimination of imputed rental value on your property taxes.",
-    url: "https://www.neofidu.ch/simulateur/valeur-locative",
+    url: "https://neofidu.ch/simulateur/valeur-locative",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     offers: {
@@ -51,7 +51,7 @@ export default function SimulateurValeurLocativePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur Valeur Locative 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://www.neofidu.ch/simulateur/valeur-locative","description":"Estimez la valeur locative de votre bien immobilier en Suisse et calculez son impact fiscal.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://www.neofidu.ch"}}` }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simulateur Valeur Locative 2026","applicationCategory":"FinanceApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"url":"https://neofidu.ch/simulateur/valeur-locative","description":"Estimez la valeur locative de votre bien immobilier en Suisse et calculez son impact fiscal.","provider":{"@type":"Organization","name":"NeoFidu","url":"https://neofidu.ch"}}` }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

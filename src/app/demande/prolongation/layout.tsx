@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Prolongation délai déclaration d'impôts 2025 | NeoFidu",
     description: "Obtenez une prolongation de délai pour votre déclaration d'impôts 2025. CHF 20.- TTC. Cantons VD, GE, VS, NE, FR, JU.",
-    url: "https://www.neofidu.ch/demande/prolongation",
+    url: "https://neofidu.ch/demande/prolongation",
     siteName: "NeoFidu",
     locale: "fr_CH",
     type: "website",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/demande/prolongation",
+    canonical: "https://neofidu.ch/demande/prolongation",
   },
 };
 

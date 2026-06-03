@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Suivi de demande",
     description: "Suivez l'avancement de votre dossier fiscal en temps réel.",
-    url: "https://www.neofidu.ch/suivi",
+    url: "https://neofidu.ch/suivi",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/suivi",
+    canonical: "https://neofidu.ch/suivi",
   },
   robots: {
     index: false,

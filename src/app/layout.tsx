@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CH",
 
-    url: "https://www.neofidu.ch",
+    url: "https://neofidu.ch",
     siteName: "NeoFidu",
     title: "NeoFidu | Swiss Tax Returns & Accounting",
     description:
@@ -72,12 +72,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.neofidu.ch",
+    canonical: "https://neofidu.ch",
     languages: {
-      "fr-CH": "https://www.neofidu.ch",
-      "en": "https://www.neofidu.ch",
-      "en-CH": "https://www.neofidu.ch",
-      "x-default": "https://www.neofidu.ch",
+      "fr-CH": "https://neofidu.ch",
+      "en": "https://neofidu.ch",
+      "en-CH": "https://neofidu.ch",
+      "x-default": "https://neofidu.ch",
     },
   },
   category: "Finance",
@@ -92,7 +92,7 @@ export default function RootLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "FinancialService", "AccountingService", "ProfessionalService"],
-    "@id": "https://www.neofidu.ch/#organization",
+    "@id": "https://neofidu.ch/#organization",
     name: "NeoFidu",
     legalName: "NeoFidu",
     alternateName: ["NeoFidu", "NeoFidu Fiduciaire", "NeoFidu Swiss Fiduciary"],
@@ -104,17 +104,17 @@ export default function RootLayout({
       { "@type": "Language", name: "English", alternateName: "en" },
       { "@type": "Language", name: "German", alternateName: "de" },
     ],
-    url: "https://www.neofidu.ch",
+    url: "https://neofidu.ch",
     logo: {
       "@type": "ImageObject",
-      url: "https://www.neofidu.ch/logo.svg",
+      url: "https://neofidu.ch/logo.svg",
       width: 200,
       height: 60,
       caption: "NeoFidu Logo",
     },
     image: [
-      "https://www.neofidu.ch/og-image.svg",
-      "https://www.neofidu.ch/logo.svg",
+      "https://neofidu.ch/og-image.svg",
+      "https://neofidu.ch/logo.svg",
     ],
     telephone: "+41786913912",
     email: "contact@neofidu.ch",
@@ -195,7 +195,7 @@ export default function RootLayout({
             "@type": "Service",
             name: "Déclaration d'impôts",
             description: "Déclaration fiscale complète pour particuliers et indépendants",
-            provider: { "@id": "https://www.neofidu.ch/#organization" },
+            provider: { "@id": "https://neofidu.ch/#organization" },
             serviceType: "Tax Preparation",
             areaServed: { "@type": "Country", name: "Switzerland" },
           },
@@ -210,7 +210,7 @@ export default function RootLayout({
             valueAddedTaxIncluded: true,
           },
           availability: "https://schema.org/InStock",
-          url: "https://www.neofidu.ch/demande",
+          url: "https://neofidu.ch/demande",
         },
         {
           "@type": "Offer",
@@ -218,7 +218,7 @@ export default function RootLayout({
             "@type": "Service",
             name: "Comptabilité PME",
             description: "Services comptables pour petites et moyennes entreprises",
-            provider: { "@id": "https://www.neofidu.ch/#organization" },
+            provider: { "@id": "https://neofidu.ch/#organization" },
             serviceType: "Accounting",
           },
           price: "500",
@@ -230,7 +230,7 @@ export default function RootLayout({
             unitText: "année",
             valueAddedTaxIncluded: false,
           },
-          url: "https://www.neofidu.ch/demande",
+          url: "https://neofidu.ch/demande",
         },
         {
           "@type": "Offer",
@@ -238,7 +238,7 @@ export default function RootLayout({
             "@type": "Service",
             name: "Fiscalité entreprises",
             description: "Déclarations fiscales et comptabilité pour Sàrl, SA et RI",
-            provider: { "@id": "https://www.neofidu.ch/#organization" },
+            provider: { "@id": "https://neofidu.ch/#organization" },
             serviceType: "Property Management",
             areaServed: ["Canton de Vaud", "Canton du Valais"],
           },
@@ -249,14 +249,14 @@ export default function RootLayout({
             unitText: "% des loyers bruts",
             valueAddedTaxIncluded: false,
           },
-          url: "https://www.neofidu.ch/demande",
+          url: "https://neofidu.ch/demande",
         },
       ],
     },
     // Social profiles and identifiers
     sameAs: [
       "https://www.linkedin.com/company/neofidu",
-      "https://www.neofidu.ch",
+      "https://neofidu.ch",
     ],
     // Business details
     foundingDate: "2015",
@@ -289,7 +289,7 @@ export default function RootLayout({
       "@type": "OrderAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://www.neofidu.ch/demande",
+        urlTemplate: "https://neofidu.ch/demande",
         actionPlatform: [
           "http://schema.org/DesktopWebPlatform",
           "http://schema.org/MobileWebPlatform",
@@ -303,10 +303,10 @@ export default function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://www.neofidu.ch/#org",
+    "@id": "https://neofidu.ch/#org",
     name: "NeoFidu",
-    url: "https://www.neofidu.ch",
-    logo: "https://www.neofidu.ch/logo.svg",
+    url: "https://neofidu.ch",
+    logo: "https://neofidu.ch/logo.svg",
     description: "Fiduciaire digitale en Suisse romande - Déclarations fiscales, comptabilité et solutions entreprises",
     address: {
       "@type": "PostalAddress",
@@ -329,13 +329,13 @@ export default function RootLayout({
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://www.neofidu.ch/#website",
-    url: "https://www.neofidu.ch",
+    "@id": "https://neofidu.ch/#website",
+    url: "https://neofidu.ch",
     name: "NeoFidu",
     alternateName: "NeoFidu",
     description: "Fiduciaire digitale en Suisse romande - Déclaration d'impôts dès CHF 89",
     publisher: {
-      "@id": "https://www.neofidu.ch/#organization",
+      "@id": "https://neofidu.ch/#organization",
     },
     inLanguage: ["fr-CH", "en"],
     potentialAction: [
@@ -343,13 +343,13 @@ export default function RootLayout({
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: "https://www.neofidu.ch/blog?q={search_term_string}",
+          urlTemplate: "https://neofidu.ch/blog?q={search_term_string}",
         },
         "query-input": "required name=search_term_string",
       },
       {
         "@type": "ReadAction",
-        target: "https://www.neofidu.ch",
+        target: "https://neofidu.ch",
       },
     ],
   };
@@ -363,7 +363,7 @@ export default function RootLayout({
         "@type": "ListItem",
         position: 1,
         name: "Accueil",
-        item: "https://www.neofidu.ch",
+        item: "https://neofidu.ch",
       },
     ],
   };
@@ -375,8 +375,8 @@ export default function RootLayout({
     <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* Hreflang for FR/EN bilingual content */}
-        <link rel="alternate" hreflang="fr-CH" href="https://www.neofidu.ch" />
-        <link rel="alternate" hreflang="x-default" href="https://www.neofidu.ch" />
+        <link rel="alternate" hreflang="fr-CH" href="https://neofidu.ch" />
+        <link rel="alternate" hreflang="x-default" href="https://neofidu.ch" />
 
         {/* Favicon - ensure proper reference */}
         <link rel="icon" href="/favicon.ico" sizes="32x32" />

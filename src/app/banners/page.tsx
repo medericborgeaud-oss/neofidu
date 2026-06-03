@@ -393,12 +393,12 @@ export default function BannersPage() {
               Enregistrez l&apos;image en format <code className="bg-gray-100 px-2 py-0.5 rounded text-teal-600 text-sm">PNG</code> ou <code className="bg-gray-100 px-2 py-0.5 rounded text-teal-600 text-sm">JPG</code>
             </li>
             <li>
-              Ajoutez un <strong>lien</strong> vers <code className="bg-gray-100 px-2 py-0.5 rounded text-teal-600 text-sm">https://www.neofidu.ch</code> sur l&apos;image
+              Ajoutez un <strong>lien</strong> vers <code className="bg-gray-100 px-2 py-0.5 rounded text-teal-600 text-sm">https://neofidu.ch</code> sur l&apos;image
             </li>
             <li>
               Code HTML exemple:
               <pre className="bg-gray-100 p-3 rounded-lg mt-2 text-xs overflow-x-auto">
-{`<a href="https://www.neofidu.ch" target="_blank" rel="noopener">
+{`<a href="https://neofidu.ch" target="_blank" rel="noopener">
   <img src="banner-neofidu.png" alt="NeoFidu - Déclaration d'impôts en ligne" />
 </a>`}
               </pre>

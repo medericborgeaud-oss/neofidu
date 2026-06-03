@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     description:
       "Contactez notre équipe. We speak English!",
     type: "website",
-    url: "https://www.neofidu.ch/contact",
+    url: "https://neofidu.ch/contact",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/contact",
+    canonical: "https://neofidu.ch/contact",
   },
 };
 

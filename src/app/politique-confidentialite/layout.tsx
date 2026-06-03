@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Confidentialité",
     description: "Protection des données personnelles chez NeoFidu.",
-    url: "https://www.neofidu.ch/politique-confidentialite",
+    url: "https://neofidu.ch/politique-confidentialite",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/politique-confidentialite",
+    canonical: "https://neofidu.ch/politique-confidentialite",
   },
   robots: {
     index: true,

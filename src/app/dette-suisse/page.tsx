@@ -12,8 +12,8 @@ const DESC =
   "Suivez en temps réel l'évolution de la dette fédérale suisse. " +
   "Recettes, dépenses et déficit par seconde selon le budget 2026 " +
   "de l'Administration fédérale des finances (AFF).";
-const URL = "https://www.neofidu.ch/dette-suisse";
-const OG_IMAGE = "https://www.neofidu.ch/og/dette-suisse.png";
+const URL = "https://neofidu.ch/dette-suisse";
+const OG_IMAGE = "https://neofidu.ch/og/dette-suisse.png";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -80,7 +80,7 @@ function JsonLd() {
         "@type": "ListItem",
         position: 1,
         name: "Accueil",
-        item: "https://www.neofidu.ch",
+        item: "https://neofidu.ch",
       },
       {
         "@type": "ListItem",
@@ -101,7 +101,7 @@ function JsonLd() {
     isPartOf: {
       "@type": "WebSite",
       name: "NeoFidu",
-      url: "https://www.neofidu.ch",
+      url: "https://neofidu.ch",
     },
     about: {
       "@type": "Thing",

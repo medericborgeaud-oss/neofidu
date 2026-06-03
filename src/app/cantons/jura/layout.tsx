@@ -19,12 +19,12 @@ export const metadata: Metadata = {
     title: "Déclaration d'impôts Jura 2026",
     description:
       "Expert fiduciaire pour votre déclaration d'impôts jurassienne. Spécialiste exploitations agricoles. Dès CHF 89.-",
-    url: "https://www.neofidu.ch/cantons/jura",
+    url: "https://neofidu.ch/cantons/jura",
     type: "website",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/cantons/jura",
+    canonical: "https://neofidu.ch/cantons/jura",
   },
 };
 

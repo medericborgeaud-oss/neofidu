@@ -60,9 +60,9 @@ export async function generateMetadata({
       title: article.title,
       description: article.excerpt,
       type: "article",
-      url: `https://www.neofidu.ch/blog/${article.slug}`,
+      url: `https://neofidu.ch/blog/${article.slug}`,
       siteName: "NeoFidu",
-      images: [{ url: `https://www.neofidu.ch/blog/${article.slug}/opengraph-image`, width: 1200, height: 630, alt: article.title }],
+      images: [{ url: `https://neofidu.ch/blog/${article.slug}/opengraph-image`, width: 1200, height: 630, alt: article.title }],
       publishedTime: article.date,
       authors: ["NeoFidu"],
       section: categoryInfo.name,
@@ -70,7 +70,7 @@ export async function generateMetadata({
       locale: "fr_CH",
     },
     alternates: {
-      canonical: `https://www.neofidu.ch/blog/${article.slug}`,
+      canonical: `https://neofidu.ch/blog/${article.slug}`,
     },
   };
 }
@@ -92,7 +92,7 @@ function generateArticleJsonLd(article: BlogArticle) {
     description: article.excerpt,
     image: {
       "@type": "ImageObject",
-      url: `https://www.neofidu.ch/blog/${article.slug}/opengraph-image`,
+      url: `https://neofidu.ch/blog/${article.slug}/opengraph-image`,
       width: 1200,
       height: 630,
     },
@@ -136,25 +136,25 @@ function generateBreadcrumbJsonLd(article: BlogArticle) {
         "@type": "ListItem",
         position: 1,
         name: "Accueil",
-        item: "https://www.neofidu.ch",
+        item: "https://neofidu.ch",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://www.neofidu.ch/blog",
+        item: "https://neofidu.ch/blog",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: categoryInfo.name,
-        item: `https://www.neofidu.ch/blog?category=${article.category}`,
+        item: `https://neofidu.ch/blog?category=${article.category}`,
       },
       {
         "@type": "ListItem",
         position: 4,
         name: article.title,
-        item: `https://www.neofidu.ch/blog/${article.slug}`,
+        item: `https://neofidu.ch/blog/${article.slug}`,
       },
     ],
   };

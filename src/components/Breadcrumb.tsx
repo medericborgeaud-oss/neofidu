@@ -23,13 +23,13 @@ export function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
         "@type": "ListItem",
         position: 1,
         name: "Accueil",
-        item: "https://www.neofidu.ch",
+        item: "https://neofidu.ch",
       },
       ...items.map((item, index) => ({
         "@type": "ListItem",
         position: index + 2,
         name: item.label,
-        ...(item.href ? { item: `https://www.neofidu.ch${item.href}` } : {}),
+        ...(item.href ? { item: `https://neofidu.ch${item.href}` } : {}),
       })),
     ],
   };
@@ -93,13 +93,13 @@ export function BreadcrumbLight({ items, className = "" }: BreadcrumbProps) {
         "@type": "ListItem",
         position: 1,
         name: "Accueil",
-        item: "https://www.neofidu.ch",
+        item: "https://neofidu.ch",
       },
       ...items.map((item, index) => ({
         "@type": "ListItem",
         position: index + 2,
         name: item.label,
-        ...(item.href ? { item: `https://www.neofidu.ch${item.href}` } : {}),
+        ...(item.href ? { item: `https://neofidu.ch${item.href}` } : {}),
       })),
     ],
   };

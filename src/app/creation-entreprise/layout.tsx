@@ -49,13 +49,13 @@ export const metadata: Metadata = {
     title: "Création d'entreprise en Suisse | SA, Sàrl, Raison individuelle | NeoFidu",
     description:
       "Accompagnement complet pour créer votre entreprise en Suisse. Raison individuelle dès CHF 290.-, Sàrl dès CHF 990.-, SA dès CHF 1'490.-. Premier échange gratuit.",
-    url: "https://www.neofidu.ch/creation-entreprise",
+    url: "https://neofidu.ch/creation-entreprise",
     siteName: "NeoFidu",
     type: "website",
     locale: "fr_CH",
     images: [
       {
-        url: "https://www.neofidu.ch/og-creation-entreprise.png",
+        url: "https://neofidu.ch/og-creation-entreprise.png",
         width: 1200,
         height: 630,
         alt: "Création d'entreprise en Suisse avec NeoFidu",
@@ -63,10 +63,10 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/creation-entreprise",
+    canonical: "https://neofidu.ch/creation-entreprise",
     languages: {
-      "fr-CH": "https://www.neofidu.ch/creation-entreprise",
-      "en": "https://www.neofidu.ch/creation-entreprise",
+      "fr-CH": "https://neofidu.ch/creation-entreprise",
+      "en": "https://neofidu.ch/creation-entreprise",
     },
   },
   robots: {
@@ -88,9 +88,9 @@ const creationSchema = {
   "@type": "ProfessionalService",
   "name": "NeoFidu - Création d'entreprise en Suisse",
   "description": "Service de création d'entreprise en Suisse : accompagnement complet pour SA, Sàrl et raison individuelle. Inscription au registre du commerce, rédaction des statuts, affiliation AVS.",
-  "url": "https://www.neofidu.ch/creation-entreprise",
-  "logo": "https://www.neofidu.ch/logo.svg",
-  "image": "https://www.neofidu.ch/og-creation-entreprise.png",
+  "url": "https://neofidu.ch/creation-entreprise",
+  "logo": "https://neofidu.ch/logo.svg",
+  "image": "https://neofidu.ch/og-creation-entreprise.png",
   "priceRange": "CHF 290 - CHF 1490",
   "address": {
     "@type": "PostalAddress",
@@ -118,7 +118,7 @@ const creationSchema = {
     "price": "290",
     "priceCurrency": "CHF",
     "priceRange": "CHF 290 - CHF 1490",
-    "url": "https://www.neofidu.ch/creation-entreprise"
+    "url": "https://neofidu.ch/creation-entreprise"
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -237,13 +237,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Accueil",
-      "item": "https://www.neofidu.ch"
+      "item": "https://neofidu.ch"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Création d'entreprise",
-      "item": "https://www.neofidu.ch/creation-entreprise"
+      "item": "https://neofidu.ch/creation-entreprise"
     }
   ]
 };

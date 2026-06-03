@@ -32,12 +32,12 @@ export const metadata: Metadata = {
     title: "Fiduciaire Vaud - Tax Return & Accounting",
     description:
       "Online fiduciary for Canton Vaud. Tax returns, SME accounting, freelancers. Lausanne, Aigle, Bex, Montreux. Free quote.",
-    url: "https://www.neofidu.ch/cantons/vaud",
+    url: "https://neofidu.ch/cantons/vaud",
     type: "website",
     locale: "fr_CH",
   },
   alternates: {
-    canonical: "https://www.neofidu.ch/cantons/vaud",
+    canonical: "https://neofidu.ch/cantons/vaud",
   },
 };
 
@@ -47,8 +47,8 @@ const vaudSchema = {
   "@type": "ProfessionalService",
   "name": "NeoFidu - Fiduciaire Vaud",
   "description": "Fiduciaire digitale pour le canton de Vaud : déclaration d'impôts, comptabilité PME, indépendants",
-  "url": "https://www.neofidu.ch/cantons/vaud",
-  "logo": "https://www.neofidu.ch/logo.svg",
+  "url": "https://neofidu.ch/cantons/vaud",
+  "logo": "https://neofidu.ch/logo.svg",
   "priceRange": "CHF 89 - CHF 500",
   "address": {
     "@type": "PostalAddress",

@@ -973,7 +973,7 @@ export async function PATCH(request: NextRequest) {
                     <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.5;">
                       Rendez-vous sur notre page de suivi et entrez votre référence <strong>${requestReference}</strong> pour voir l'avancement de votre dossier.
                     </p>
-                    <a href="https://www.neofidu.ch/suivi" style="display: inline-block; background: #10B981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                    <a href="https://neofidu.ch/suivi" style="display: inline-block; background: #10B981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
                       Suivre ma demande →
                     </a>
                   </div>
