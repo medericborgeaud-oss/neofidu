@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCompanyBySlug, getSimilarCompanies, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS, CANTON_FISCAL, type Company } from "@/lib/companies";
-import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark, HelpCircle } from "lucide-react";
+import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark, HelpCircle, Shield } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CommuneMedia from "@/components/CommuneMedia";
@@ -108,6 +108,61 @@ function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
   return faq;
 }
 
+// ─── Obligations légales ───
+
+const FREQ_COLORS: Record<string, string> = {
+  "Création": "bg-amber-100 text-amber-700",
+  "Annuel": "bg-blue-100 text-blue-700",
+  "Mensuel": "bg-green-100 text-green-700",
+  "Trimestriel": "bg-green-100 text-green-700",
+  "Conditionnel": "bg-red-100 text-red-700",
+};
+
+interface ObligationItem {
+  icon: string;
+  title: string;
+  description: string;
+  frequency: string;
+}
+
+function generateObligations(form: string): ObligationItem[] {
+  if (form === "RI") {
+    return [
+      { icon: "📋", title: "Inscription RC", description: "Si CA > CHF 100'000", frequency: "Création" },
+      { icon: "🏦", title: "Compte bancaire", description: "Compte professionnel dédié", frequency: "Création" },
+      { icon: "👥", title: "Affiliation AVS", description: "Caisse de compensation", frequency: "Création" },
+      { icon: "🛡️", title: "Assurances", description: "RC pro, APG, IJM", frequency: "Création" },
+      { icon: "📊", title: "Comptabilité", description: "Recettes / dépenses", frequency: "Annuel" },
+      { icon: "📄", title: "Déclaration fiscale", description: "Personne physique", frequency: "Annuel" },
+      { icon: "💰", title: "Cotisations sociales", description: "AVS/AI/APG ~10.6%", frequency: "Trimestriel" },
+      { icon: "🏷️", title: "TVA", description: "Si CA > CHF 100'000", frequency: "Conditionnel" },
+    ];
+  }
+  if (form === "Sarl") {
+    return [
+      { icon: "📋", title: "Registre du commerce", description: "Inscription + FOSC", frequency: "Création" },
+      { icon: "⚖️", title: "Acte notarié", description: "Statuts + PV constitutive", frequency: "Création" },
+      { icon: "🏦", title: "Capital CHF 20'000", description: "100% libéré", frequency: "Création" },
+      { icon: "📊", title: "Comptabilité", description: "Bilan + résultat + annexe", frequency: "Annuel" },
+      { icon: "📄", title: "Déclaration fiscale", description: "Bénéfice + capital", frequency: "Annuel" },
+      { icon: "👥", title: "Assemblée associés", description: "Min. 1x/an", frequency: "Annuel" },
+      { icon: "💰", title: "Cotisations sociales", description: "AVS, LPP, LAA, AC", frequency: "Mensuel" },
+      { icon: "🔍", title: "Organe de révision", description: "Opting-out possible", frequency: "Conditionnel" },
+    ];
+  }
+  // SA
+  return [
+    { icon: "📋", title: "Registre du commerce", description: "Inscription + FOSC", frequency: "Création" },
+    { icon: "⚖️", title: "Acte notarié", description: "Statuts + PV constitutive", frequency: "Création" },
+    { icon: "🏦", title: "Capital CHF 100'000", description: "Min. 50'000 libéré", frequency: "Création" },
+    { icon: "📊", title: "Comptabilité", description: "Bilan + résultat + annexe", frequency: "Annuel" },
+    { icon: "📄", title: "Déclaration fiscale", description: "Bénéfice + capital", frequency: "Annuel" },
+    { icon: "👥", title: "Assemblée générale", description: "Min. 1x/an + CA", frequency: "Annuel" },
+    { icon: "💰", title: "Cotisations sociales", description: "AVS, LPP, LAA, AC", frequency: "Mensuel" },
+    { icon: "🔍", title: "Organe de révision", description: "Opting-out < 10 EPT", frequency: "Conditionnel" },
+  ];
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const company = await getCompanyBySlug(params.slug);
   if (!company) return { title: "Entreprise non trouvée | NeoFidu" };
@@ -139,6 +194,8 @@ export default async function CompanyPage({ params }: Props) {
   const sectorLabel = company.sector ? (SECTOR_LABELS[company.sector] || company.sector) : null;
   const fiscal = CANTON_FISCAL[company.canton];
   const faqItems = generateCompanyFAQ(company, cantonName);
+  const obligations = generateObligations(company.legal_form);
+  const obligationGrid: (ObligationItem | null)[] = [...obligations.slice(0, 4), null, ...obligations.slice(4)];
 
   const badgeClass =
     company.legal_form === "RI"
@@ -365,6 +422,35 @@ export default async function CompanyPage({ params }: Props) {
                   </div>
                 </div>
               )}
+
+              {/* Obligations légales */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                  <Shield className="w-3 h-3" />Obligations légales
+                  <span className={`ml-1 text-xs font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{formLabel}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {obligationGrid.map((o, i) =>
+                    o === null ? (
+                      <div key="hub" className="flex items-center justify-center">
+                        <div className="w-28 h-28 rounded-full bg-emerald-50 border-2 border-emerald-100 flex flex-col items-center justify-center">
+                          <span className="text-lg font-bold text-emerald-600">{formLabel}</span>
+                          <span className="text-xs text-gray-500">{obligations.length} obligations</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div key={i} className="bg-gray-50 border border-gray-100 rounded-xl p-4 text-center">
+                        <div className="text-2xl mb-2">{o.icon}</div>
+                        <p className="text-sm font-medium text-gray-900">{o.title}</p>
+                        <p className="text-xs text-gray-500 mt-1">{o.description}</p>
+                        <span className={`inline-block mt-2 text-xs font-medium px-2 py-0.5 rounded-full ${FREQ_COLORS[o.frequency] || "bg-gray-100 text-gray-600"}`}>
+                          {o.frequency}
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
 
               {/* FAQ */}
               <div className="mb-6">
