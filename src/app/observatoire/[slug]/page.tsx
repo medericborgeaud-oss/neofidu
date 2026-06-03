@@ -431,20 +431,20 @@ export default async function CompanyPage({ params }: Props) {
                   <Shield className="w-4 h-4" />Obligations légales
                   <span className={`ml-1 text-xs font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{formLabel}</span>
                 </div>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
                   {obligationGrid.map((o, i) =>
                     o === null ? (
-                      <div key="hub" className="flex items-center justify-center">
+                      <div key="hub" className="hidden md:flex items-center justify-center">
                         <div className="w-28 h-28 rounded-full bg-emerald-50 border-2 border-emerald-100 flex flex-col items-center justify-center">
                           <span className="text-lg font-bold text-emerald-600">{formLabel}</span>
                           <span className="text-xs text-gray-500">{obligations.length} obligations</span>
                         </div>
                       </div>
                     ) : (
-                      <div key={i} className="bg-gray-50 border border-gray-100 rounded-xl p-4 text-center">
-                        <div className="text-2xl mb-2">{o.icon}</div>
-                        <p className="text-sm font-medium text-gray-900">{o.title}</p>
-                        <p className="text-xs text-gray-500 mt-1">{o.description}</p>
+                      <div key={i} className="bg-gray-50 border border-gray-100 rounded-xl p-2.5 md:p-4 text-center">
+                        <div className="text-xl md:text-2xl mb-1 md:mb-2">{o.icon}</div>
+                        <p className="text-xs md:text-sm font-medium text-gray-900 leading-tight">{o.title}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 mt-0.5 md:mt-1 line-clamp-2">{o.description}</p>
                         <span className={`inline-block mt-2 text-xs font-medium px-2 py-0.5 rounded-full ${FREQ_COLORS[o.frequency] || "bg-gray-100 text-gray-600"}`}>
                           {o.frequency}
                         </span>
