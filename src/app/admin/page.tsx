@@ -101,7 +101,8 @@ interface TaxRequest {
     lastName: string;
     birthDate?: string;
     maritalStatus?: string;
-    maritalStatusDate?: string;
+    maritalStatusDate?: string;    religion?: string;
+
     residenceStatus?: string;
     firstName2?: string;
     lastName2?: string;
@@ -121,7 +122,8 @@ interface TaxRequest {
     taxYear: number;
     taxpayerNumber?: string;
     declarationCode?: string;
-    chapterNumber?: string;
+    chapterNumber?: string;    religion2?: string;
+
     clientType: string;
     familyStatus?: string;
     isIndependent?: boolean;
@@ -2311,6 +2313,12 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                           <p className="font-medium">{formatDate(selectedRequest.customer.maritalStatusDate)}</p>
                         </>
                       )}
+                      {selectedRequest.customer.religion && (
+                        <>
+                          <p className="text-muted-foreground">Confession</p>
+                          <p className="font-medium">{selectedRequest.customer.religion}</p>
+                        </>
+                      )}
                       <p className="text-muted-foreground">Statut de résidence</p>
                       <p className="font-medium">{getResidenceStatusLabel(selectedRequest.customer.residenceStatus)}</p>
                       {selectedRequest.customer.birthDate2 && (
@@ -2519,6 +2527,12 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                         <>
                           <p className="text-muted-foreground">N° de chapitre</p>
                           <p className="font-medium font-mono">{selectedRequest.fiscal.chapterNumber}</p>
+                        </>
+                      )}
+                      {selectedRequest.customer.religion2 && (
+                        <>
+                          <p className="text-muted-foreground">Confession conjoint</p>
+                          <p className="font-medium">{selectedRequest.customer.religion2}</p>
                         </>
                       )}
 
