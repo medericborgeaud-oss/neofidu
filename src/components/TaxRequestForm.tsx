@@ -128,9 +128,9 @@ const cantonCodeInfo: Record<string, { label: string; labelEn: string; placehold
     sourceEn: "Form received for JuraTax",
   },
   FR: {
-    label: "Code d'accès + Code de contrôle",
-    labelEn: "Access code + Control code",
-    placeholder: "Ex: ABC123 / 456789",
+    label: "Code de contrôle",
+    labelEn: "Control code",
+    placeholder: "Ex: 123456",
     source: "Page de garde de la déclaration papier",
     sourceEn: "Cover page of the paper tax return",
   },
@@ -786,6 +786,7 @@ export function TaxRequestForm() {
     birthDate: "",
     maritalStatus: "",
     maritalStatusDate: "",
+    religion: "",
     firstName2: "",
     lastName2: "",
     birthDate2: "",
@@ -796,6 +797,7 @@ export function TaxRequestForm() {
     taxpayerNumber: "",
     declarationCode: "",
     chapterNumber: "",
+    religion2: "",
     street: "",
     npa: "",
     city: "",
@@ -1866,6 +1868,7 @@ export function TaxRequestForm() {
         birthDate: formData.birthDate,
         maritalStatus: formData.maritalStatus,
         maritalStatusDate: formData.maritalStatusDate || undefined,
+      religion: formData.canton === "FR" ? formData.religion : undefined,
         firstName2: formData.clientType === "couple" ? formData.firstName2 : undefined,
         lastName2: formData.clientType === "couple" ? formData.lastName2 : undefined,
         birthDate2: formData.clientType === "couple" ? formData.birthDate2 : undefined,
@@ -1887,6 +1890,7 @@ export function TaxRequestForm() {
         taxpayerNumber: formData.taxpayerNumber,
         declarationCode: formData.declarationCode,
         chapterNumber: formData.canton === "FR" ? formData.chapterNumber : undefined,
+      religion2: formData.canton === "FR" ? formData.religion2 : undefined,
         clientType: formData.clientType,
         familyStatus: formData.familyStatus,
         isIndependent: formData.isIndependent,
@@ -2599,6 +2603,26 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               </div>
             )}
 
+            {/* Confession - Fribourg uniquement */}
+            {formData.canton === "FR" && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium mb-2">
+                  {isEnglish ? "Religion / Confession" : "Confession"} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={formData.religion}
+                  onChange={(e) => updateForm("religion", e.target.value)}
+                  className="w-full rounded-xl border border-amber-300 p-2 max-w-xs bg-white"
+                >
+                  <option value="">{isEnglish ? "Select..." : "Choisir..."}</option>
+                  <option value="catholique">Catholique romaine</option>
+                  <option value="protestante">Protestante (réformée évangélique)</option>
+                  <option value="catholique-chretienne">Catholique chrétienne</option>
+                  <option value="sans-confession">Sans confession / Autre</option>
+                </select>
+              </div>
+            )}
+
             {/* Section Suisses de l'étranger */}
             <div className={`mt-8 p-5 bg-gradient-to-r from-blue-50 to-teal-50 border-2 ${formData.livesAbroad ? 'border-primary' : 'border-blue-200'} rounded-xl`}>
               <div className="flex items-start gap-4">
@@ -3220,6 +3244,25 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
     </p>
   )}
 </div>
+                  {/* Confession conjoint - Fribourg */}
+                  {formData.canton === "FR" && (
+                    <div>
+                      <label className="block text-sm font-medium mb-2">
+                        {isEnglish ? "Partner's religion" : "Confession du conjoint"}
+                      </label>
+                      <select
+                        value={formData.religion2}
+                        onChange={(e) => updateForm("religion2", e.target.value)}
+                        className="w-full rounded-xl border border-amber-300 p-2 bg-white"
+                      >
+                        <option value="">{isEnglish ? "Select..." : "Choisir..."}</option>
+                        <option value="catholique">Catholique romaine</option>
+                        <option value="protestante">Protestante (réformée évangélique)</option>
+                        <option value="catholique-chretienne">Catholique chrétienne</option>
+                        <option value="sans-confession">Sans confession / Autre</option>
+                      </select>
+                    </div>
+                  )}
 
 
 
