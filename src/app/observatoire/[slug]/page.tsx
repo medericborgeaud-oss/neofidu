@@ -42,7 +42,6 @@ function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
     const p = company.purpose.length > 200 ? company.purpose.substring(0, 200) + "…" : company.purpose;
     a1 += ` Son but social est : ${p}`;
   }
-  if (company.creation_date) a1 += ` L'entreprise a été fondée le ${company.creation_date}.`;
   if (company.ide_number) a1 += ` Son numéro IDE est ${company.ide_number}.`;
   faq.push({ question: `Qu’est-ce que ${company.name} ?`, answer: a1 });
 
