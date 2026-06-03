@@ -3,8 +3,8 @@ export const revalidate = 3600;
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCompanyBySlug, getSimilarCompanies, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS, CANTON_FISCAL } from "@/lib/companies";
-import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark } from "lucide-react";
+import { getCompanyBySlug, getSimilarCompanies, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS, CANTON_FISCAL, type Company } from "@/lib/companies";
+import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark, HelpCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CommuneMedia from "@/components/CommuneMedia";
@@ -15,6 +15,98 @@ import { CantonFlag } from "@/components/CantonFlag";
 
 interface Props {
   params: { slug: string };
+}
+
+// ─── FAQ dynamique ───
+
+const FORM_LONG: Record<string, string> = {
+  RI: "raison individuelle (RI)",
+  Sarl: "société à responsabilité limitée (Sàrl)",
+  SA: "société anonyme (SA)",
+};
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
+  const faq: FAQItem[] = [];
+  const form = company.legal_form;
+  const formLong = FORM_LONG[form] || form;
+  const fiscal = CANTON_FISCAL[company.canton];
+
+  // Q1 : Présentation de l'entreprise
+  let a1 = `${company.name} est une ${formLong} inscrite au registre du commerce du canton de ${cantonName}, basée à ${company.city}.`;
+  if (company.purpose) {
+    const p = company.purpose.length > 200 ? company.purpose.substring(0, 200) + "…" : company.purpose;
+    a1 += ` Son but social est : ${p}`;
+  }
+  if (company.creation_date) a1 += ` L'entreprise a été fondée le ${company.creation_date}.`;
+  if (company.ide_number) a1 += ` Son numéro IDE est ${company.ide_number}.`;
+  faq.push({ question: `Qu’est-ce que ${company.name} ?`, answer: a1 });
+
+  // Q2 : Explication de la forme juridique
+  if (form === "RI") {
+    faq.push({
+      question: "Qu’est-ce qu’une raison individuelle (RI) en Suisse ?",
+      answer: "Une raison individuelle est la forme juridique la plus simple en Suisse. L’entrepreneur exerce son activité en son nom propre, sans capital minimum requis. La responsabilité est illimitée : l’entrepreneur répond de ses dettes professionnelles sur sa fortune personnelle. L’inscription au registre du commerce est obligatoire lorsque le chiffre d’affaires annuel dépasse CHF 100’000.",
+    });
+  } else if (form === "Sarl") {
+    faq.push({
+      question: "Qu’est-ce qu’une Sàrl en Suisse ?",
+      answer: "Une société à responsabilité limitée (Sàrl) est une société de capitaux nécessitant un capital social minimum de CHF 20’000, entièrement libéré à la fondation. Les associés ne sont responsables qu’à hauteur de leurs parts sociales. La Sàrl est la forme juridique la plus populaire en Suisse romande pour les PME, car elle combine protection du patrimoine personnel et souplesse de gestion.",
+    });
+  } else if (form === "SA") {
+    faq.push({
+      question: "Qu’est-ce qu’une SA en Suisse ?",
+      answer: "Une société anonyme (SA) est une société de capitaux dont le capital-actions minimum est de CHF 100’000, dont au moins CHF 50’000 doivent être libérés à la fondation. Les actionnaires ne sont responsables qu’à hauteur de leur apport. La SA doit désigner un organe de révision, sauf en cas d’opting-out pour les sociétés de moins de 10 emplois à plein temps.",
+    });
+  }
+
+  // Q3 : Obligations fiscales par canton
+  if (fiscal) {
+    if (form === "RI") {
+      faq.push({
+        question: `Quelles sont les obligations fiscales d’un indépendant dans le canton de ${cantonName} ?`,
+        answer: `En tant qu’indépendant dans le canton de ${cantonName}, les revenus de l’activité sont déclarés dans la déclaration d’impôts personnelle (personne physique). Les cotisations sociales AVS/AI/APG représentent environ 10,6 % du revenu net de l’activité. Une comptabilité simplifiée (recettes/dépenses) est suffisante sous CHF 500’000 de chiffre d’affaires. ${fiscal.particularite}`,
+      });
+    } else {
+      faq.push({
+        question: `Quel est le taux d’imposition des entreprises dans le canton de ${cantonName} ?`,
+        answer: `Dans le canton de ${cantonName}, le taux d’imposition effectif des bénéfices des personnes morales est d’environ ${fiscal.tauxEntreprise}. ${fiscal.particularite} L’entreprise doit tenir une comptabilité complète (bilan, compte de résultat, annexe) et déposer ses comptes annuels.`,
+      });
+    }
+  }
+
+  // Q4 : Vérification au registre du commerce
+  let a4 = "Toute entreprise inscrite au registre du commerce suisse est vérifiable gratuitement via le portail Zefix (zefix.ch), géré par la Confédération.";
+  if (company.ide_number) a4 += ` ${company.name} est identifiable par son numéro IDE : ${company.ide_number}.`;
+  a4 += " Les mutations (changements de siège, de capital, de direction) sont publiées dans la Feuille officielle suisse du commerce (FOSC).";
+  faq.push({
+    question: `Comment vérifier l’inscription de ${company.name} au registre du commerce ?`,
+    answer: a4,
+  });
+
+  // Q5 : Comment créer une entreprise similaire
+  if (form === "RI") {
+    faq.push({
+      question: `Comment devenir indépendant dans le canton de ${cantonName} ?`,
+      answer: `Pour créer une raison individuelle dans le canton de ${cantonName}, il suffit de s’inscrire au registre du commerce (obligatoire dès CHF 100’000 de chiffre d’affaires annuel). Le coût d’inscription est d’environ CHF 120 à 200. Vous devrez ensuite vous affilier à une caisse de compensation AVS, souscrire les assurances nécessaires (RC professionnelle, perte de gain) et ouvrir un compte bancaire professionnel. Un fiduciaire comme NeoFidu peut vous accompagner dans ces démarches administratives.`,
+    });
+  } else if (form === "Sarl") {
+    faq.push({
+      question: `Comment créer une Sàrl dans le canton de ${cantonName} ?`,
+      answer: `Pour fonder une Sàrl dans le canton de ${cantonName}, vous devez disposer d’un capital social de CHF 20’000 (entièrement libéré), rédiger des statuts et passer devant un notaire pour l’acte de fondation. Le capital doit être déposé sur un compte de consignation bancaire. Comptez environ CHF 2’000 à 4’000 pour les frais de fondation (notaire, registre du commerce, publication FOSC). Un fiduciaire comme NeoFidu peut vous accompagner dans toutes ces démarches.`,
+    });
+  } else if (form === "SA") {
+    faq.push({
+      question: `Comment créer une SA dans le canton de ${cantonName} ?`,
+      answer: `Pour fonder une SA dans le canton de ${cantonName}, un capital-actions de CHF 100’000 est requis, dont au moins CHF 50’000 doivent être libérés. L’acte constitutif doit être établi par un notaire. Comptez environ CHF 3’000 à 6’000 pour les frais de fondation (notaire, registre du commerce, publication FOSC). Un fiduciaire comme NeoFidu peut vous accompagner dans toutes ces démarches.`,
+    });
+  }
+
+  return faq;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -47,6 +139,7 @@ export default async function CompanyPage({ params }: Props) {
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
   const sectorLabel = company.sector ? (SECTOR_LABELS[company.sector] || company.sector) : null;
   const fiscal = CANTON_FISCAL[company.canton];
+  const faqItems = generateCompanyFAQ(company, cantonName);
 
   const badgeClass =
     company.legal_form === "RI"
@@ -64,17 +157,40 @@ export default async function CompanyPage({ params }: Props) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: company.name,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: company.city,
-      addressRegion: cantonName,
-      addressCountry: "CH",
-    },
-    ...(company.ide_number && { taxID: company.ide_number }),
-    ...(company.purpose && { description: company.purpose.substring(0, 300) }),
-    url: `https://neofidu.ch/observatoire/${params.slug}`,
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: company.name,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: company.city,
+          addressRegion: cantonName,
+          addressCountry: "CH",
+        },
+        ...(company.ide_number && { taxID: company.ide_number }),
+        ...(company.purpose && { description: company.purpose.substring(0, 300) }),
+        url: `https://neofidu.ch/observatoire/${params.slug}`,
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: "https://neofidu.ch" },
+          { "@type": "ListItem", position: 2, name: "Observatoire", item: "https://neofidu.ch/observatoire" },
+          { "@type": "ListItem", position: 3, name: company.name },
+        ],
+      },
+    ],
   };
 
   return (
@@ -250,6 +366,25 @@ export default async function CompanyPage({ params }: Props) {
                   </div>
                 </div>
               )}
+
+              {/* FAQ */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                  <HelpCircle className="w-3 h-3" />Questions fréquentes
+                </div>
+                <div className="bg-gray-50 rounded-lg divide-y divide-gray-200">
+                  {faqItems.map((item, i) => (
+                    <details key={i} className="group">
+                      <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-medium text-gray-900 hover:text-emerald-600 [&::-webkit-details-marker]:hidden">
+                        <span>{item.question}</span>
+                        <span className="ml-4 flex-shrink-0 text-gray-400 text-lg leading-none group-open:hidden">+</span>
+                        <span className="ml-4 flex-shrink-0 text-gray-400 text-lg leading-none hidden group-open:inline">&minus;</span>
+                      </summary>
+                      <p className="px-4 pb-3 text-sm text-gray-600 leading-relaxed">{item.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
 
               {/* Related Articles */}
               <RelatedArticles canton={company.canton} legalForm={company.legal_form} city={company.city} />
