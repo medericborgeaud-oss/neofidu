@@ -2603,25 +2603,6 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               </div>
             )}
 
-            {/* Confession - Fribourg uniquement */}
-            {formData.canton === "FR" && (
-              <div className="mt-4">
-                <label className="block text-sm font-medium mb-2">
-                  {isEnglish ? "Religion / Confession" : "Confession"} <span className="text-red-500">*</span>
-                </label>
-                <select
-                  value={formData.religion}
-                  onChange={(e) => updateForm("religion", e.target.value)}
-                  className="w-full rounded-xl border border-amber-300 p-2 max-w-xs bg-white"
-                >
-                  <option value="">{isEnglish ? "Select..." : "Choisir..."}</option>
-                  <option value="catholique">Catholique romaine</option>
-                  <option value="protestante">Protestante (réformée évangélique)</option>
-                  <option value="catholique-chretienne">Catholique chrétienne</option>
-                  <option value="sans-confession">Sans confession / Autre</option>
-                </select>
-              </div>
-            )}
 
             {/* Section Suisses de l'étranger */}
             <div className={`mt-8 p-5 bg-gradient-to-r from-blue-50 to-teal-50 border-2 ${formData.livesAbroad ? 'border-primary' : 'border-blue-200'} rounded-xl`}>
@@ -3168,6 +3149,25 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 </div>
               )}
 
+              {/* Confession - Fribourg uniquement */}
+              {formData.canton === "FR" && (
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    {isEnglish ? "Religion / Confession" : "Confession"} <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={formData.religion}
+                    onChange={(e) => updateForm("religion", e.target.value)}
+                    className="w-full rounded-xl border border-amber-300 p-2 max-w-xs bg-white"
+                  >
+                    <option value="">{isEnglish ? "Select..." : "Choisir..."}</option>
+                    <option value="catholique">Catholique romaine</option>
+                    <option value="protestante">Protestante (réformée évangélique)</option>
+                    <option value="catholique-chretienne">Catholique chrétienne</option>
+                    <option value="sans-confession">Sans confession / Autre</option>
+                  </select>
+                </div>
+              )}
               {/* Second adulte pour les couples */}
               {formData.clientType === "couple" && (
                 <>
