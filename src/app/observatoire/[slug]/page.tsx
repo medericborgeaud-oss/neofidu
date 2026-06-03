@@ -116,6 +116,7 @@ const FREQ_COLORS: Record<string, string> = {
   "Mensuel": "bg-green-100 text-green-700",
   "Trimestriel": "bg-green-100 text-green-700",
   "Conditionnel": "bg-red-100 text-red-700",
+  "Permanent": "bg-purple-100 text-purple-700",
 };
 
 interface ObligationItem {
@@ -131,7 +132,7 @@ function generateObligations(form: string): ObligationItem[] {
       { icon: "📋", title: "Inscription RC", description: "Si CA > CHF 100'000", frequency: "Création" },
       { icon: "🏦", title: "Compte bancaire", description: "Compte professionnel dédié", frequency: "Création" },
       { icon: "👥", title: "Affiliation AVS", description: "Caisse de compensation", frequency: "Création" },
-      { icon: "🛡️", title: "Assurances", description: "RC pro, APG, IJM", frequency: "Création" },
+      { icon: "🗂️", title: "Archivage comptable", description: "Conservation 10 ans (CO)", frequency: "Permanent" },
       { icon: "📊", title: "Comptabilité", description: "Recettes / dépenses", frequency: "Annuel" },
       { icon: "📄", title: "Déclaration fiscale", description: "Personne physique", frequency: "Annuel" },
       { icon: "💰", title: "Cotisations sociales", description: "AVS/AI/APG ~10.6%", frequency: "Trimestriel" },
@@ -330,8 +331,8 @@ export default async function CompanyPage({ params }: Props) {
               {/* Purpose */}
               {company.purpose && (
                 <div className="mb-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                    <FileText className="w-3 h-3" />But social
+                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                    <FileText className="w-4 h-4" />But social
                   </div>
                   <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3 leading-relaxed">
                     {company.purpose}
@@ -342,8 +343,8 @@ export default async function CompanyPage({ params }: Props) {
               {/* Persons */}
               {company.persons && company.persons.length > 0 && (
                 <div className="mb-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-                    <Users className="w-3 h-3" />Personnes inscrites
+                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+                    <Users className="w-4 h-4" />Personnes inscrites
                   </div>
                   <div className="space-y-3">
                     {company.persons.map((person: any, i: number) => (
@@ -364,8 +365,8 @@ export default async function CompanyPage({ params }: Props) {
               {/* FOSC History */}
               {company.fosc_history && company.fosc_history.length > 0 && (
                 <div className="mb-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-                    <Clock className="w-3 h-3" />Historique FOSC
+                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+                    <Clock className="w-4 h-4" />Historique FOSC
                   </div>
                   <div className="space-y-2">
                     {company.fosc_history.map((entry: any, i: number) => (
@@ -381,8 +382,8 @@ export default async function CompanyPage({ params }: Props) {
               {/* Canton fiscal context */}
               {fiscal && (
                 <div className="mb-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                    <Landmark className="w-3 h-3" />Contexte fiscal — {cantonName}
+                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                    <Landmark className="w-4 h-4" />Contexte fiscal — {cantonName}
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4 space-y-2">
                     <div className="grid grid-cols-2 gap-3 text-sm">
@@ -402,8 +403,8 @@ export default async function CompanyPage({ params }: Props) {
               {/* Similar companies */}
               {similarCompanies.length > 0 && (
                 <div className="mb-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                    <TrendingUp className="w-3 h-3" />
+                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                    <TrendingUp className="w-4 h-4" />
                     {sectorLabel
                       ? `Autres entreprises en ${sectorLabel} — ${company.city}`
                       : `Autres entreprises — ${company.city}`}
@@ -425,8 +426,8 @@ export default async function CompanyPage({ params }: Props) {
 
               {/* Obligations légales */}
               <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-                  <Shield className="w-3 h-3" />Obligations légales
+                <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+                  <Shield className="w-4 h-4" />Obligations légales
                   <span className={`ml-1 text-xs font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{formLabel}</span>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
@@ -454,8 +455,8 @@ export default async function CompanyPage({ params }: Props) {
 
               {/* FAQ */}
               <div className="mb-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-                  <HelpCircle className="w-3 h-3" />Questions fréquentes
+                <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+                  <HelpCircle className="w-4 h-4" />Questions fréquentes
                 </div>
                 <div className="bg-gray-50 rounded-lg divide-y divide-gray-200">
                   {faqItems.map((item, i) => (
