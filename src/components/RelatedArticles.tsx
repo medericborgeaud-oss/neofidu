@@ -81,8 +81,8 @@ export default function RelatedArticles({ canton, legalForm, city }: RelatedArti
   if (articles.length === 0) return null;
 
   return (
-    <div className="mb-6">
-      <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+    <div className="mb-14">
+      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
         <FileText className="w-3 h-3" />
         Articles liés
       </div>
