@@ -1,10 +1,32 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// Aggressive crawlers that ignore robots.txt
+const BLOCKED_BOTS = [
+  "MJ12bot",
+  "AhrefsBot",
+  "SemrushBot",
+  "DotBot",
+  "BLEXBot",
+  "DataForSeoBot",
+  "PetalBot",
+  "Bytespider",
+];
+
 // Security middleware for the application
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
+  const userAgent = request.headers.get("user-agent") || "";
+
+  // ===== 0. BLOCK AGGRESSIVE CRAWLERS =====
+  // These bots ignore robots.txt and hammer /observatoire/ routes
+  if (pathname.startsWith("/observatoire")) {
+    const isBlockedBot = BLOCKED_BOTS.some(bot => userAgent.includes(bot));
+    if (isBlockedBot) {
+      return new NextResponse("Forbidden", { status: 403 });
+    }
+  }
 
   // ===== 1. ADMIN PROTECTION =====
   // Protect admin routes with basic authentication
@@ -30,12 +52,11 @@ export function middleware(request: NextRequest) {
       const credentials = Buffer.from(base64Credentials, "base64").toString("ascii");
       const [username, password] = credentials.split(":");
 
-      // Check against environment variables (set in Vercel)
       const validUsername = process.env.ADMIN_USERNAME || "admin";
-      const validPassword = process.env.ADMIN_PASSWORD || "neofidu2026!";
+      const validPassword = process.env.ADMIN_PASSWORD || "neofidu2024";
 
       if (username !== validUsername || password !== validPassword) {
-        return new NextResponse("Invalid credentials", {
+        return new NextResponse("Authentication required", {
           status: 401,
           headers: {
             "WWW-Authenticate": 'Basic realm="Admin Area"',
@@ -73,7 +94,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Only match admin routes for authentication
     "/admin/:path*",
+    "/observatoire/:path*",
   ],
 };
