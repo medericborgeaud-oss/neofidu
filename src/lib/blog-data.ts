@@ -6960,4 +6960,501 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
 <p style="font-size:13px;color:#999"><em>Cet article est fourni à titre informatif et ne constitue pas une recommandation de vote. Sources : Conseil fédéral, SECO, FER Genève, Adecco Group (Indice de la pénurie 2025), SEM.</em></p>`,
   },
+  {
+  id: "33",
+  slug: "gain-immobilier-comparatif-cantons-romands-impenses-deductions",
+  image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=60",
+  title: "Gain immobilier en Suisse romande : comparatif des 6 cantons, impenses et déductions",
+  titleEn: "Real Estate Capital Gains Tax in French-Speaking Switzerland: 6-Canton Comparison, Expenses and Deductions",
+  excerpt: "Tableau comparatif complet de l'impôt sur le gain immobilier dans les 6 cantons romands (VD, GE, VS, FR, NE, JU). Liste des impenses déductibles, règles de remploi et stratégies d'optimisation.",
+  excerptEn: "Complete comparison of real estate capital gains tax across all 6 French-speaking Swiss cantons. Deductible expenses, reinvestment rules and optimization strategies.",
+  keywords: [
+    "gain immobilier",
+    "impôt gain immobilier",
+    "gain immobilier suisse",
+    "gain immobilier vaud",
+    "gain immobilier genève",
+    "gain immobilier valais",
+    "gain immobilier fribourg",
+    "gain immobilier neuchâtel",
+    "gain immobilier jura",
+    "impenses déductibles",
+    "impenses immobilier",
+    "travaux plus-value",
+    "remploi immobilier",
+    "vente immobilière suisse",
+    "impôt vente maison",
+    "impôt vente appartement",
+    "comparatif cantons immobilier",
+    "optimisation gain immobilier",
+    "frais déductibles vente immobilière",
+    "IBGI suisse romande",
+    "real estate capital gains tax switzerland"
+  ],
+  category: "immobilier",
+  date: "2026-06-01",
+  readTime: 15,
+  content: `<p>Vous vendez un bien immobilier en Suisse romande ? Le gain réalisé sera soumis à un <strong>impôt cantonal sur le gain immobilier</strong> (IBGI) dont les règles varient considérablement d'un canton à l'autre. Selon que vous vendiez à Genève, Vaud ou dans le Jura, la facture fiscale peut varier du simple au triple.</p>
+
+<p>Ce guide compare les régimes des <strong>6 cantons romands</strong> et détaille toutes les <strong>impenses déductibles</strong> pour réduire légalement votre charge fiscale.</p>
+
+<div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #22c55e;">
+<p style="margin: 0; font-weight: 600;">💡 Ce qu'il faut retenir</p>
+<p style="margin: 8px 0 0 0; font-size: 14px; color: #444;">L'impôt sur le gain immobilier porte sur la différence entre le prix de vente et le prix d'acquisition, diminuée des impenses. Plus la durée de détention est longue, plus le taux baisse. Conservez <strong>toutes vos factures</strong> de travaux dès le premier jour — c'est la clé de l'optimisation.</p>
+</div>
+
+<p><strong>Dans cet article</strong></p>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.25rem;"><a href="#formule">Comment se calcule le gain immobilier ?</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#comparatif">Tableau comparatif des 6 cantons romands</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#impenses">Liste complète des impenses déductibles</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#plus-value-entretien">Travaux à plus-value vs travaux d'entretien</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#remploi">Le remploi : reporter l'impôt en réinvestissant</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#exemple">Exemple chiffré : même vente, 6 résultats différents</a></li>
+<li style="margin-bottom: 0.25rem;"><a href="#optimisation">5 stratégies d'optimisation</a></li>
+</ul>
+
+<h2 id="formule">Comment se calcule le gain immobilier ?</h2>
+
+<p>Le principe est identique dans tous les cantons romands :</p>
+
+<p style="text-align: center; font-size: 1.1em; padding: 20px; background: #f5f5f5; border-radius: 8px; margin: 20px 0;">
+<strong>Gain imposable = Prix de vente − Prix d'acquisition − Impenses</strong>
+</p>
+
+<p>Le <strong>prix d'acquisition</strong> correspond au prix payé lors de l'achat, augmenté des frais d'acquisition (notaire, droits de mutation, registre foncier). Si le bien a été acquis par succession ou donation, c'est la valeur vénale au moment du transfert — ou le dernier prix d'achat à titre onéreux — qui fait foi, selon le canton.</p>
+
+<p>Les <strong>impenses</strong> sont les dépenses qui ont augmenté la valeur du bien (et non les frais d'entretien courant). Nous les détaillons plus bas.</p>
+
+<p>Le taux d'imposition dépend ensuite de deux facteurs principaux : le <strong>montant du gain</strong> et la <strong>durée de détention</strong> du bien.</p>
+
+<h2 id="comparatif">Tableau comparatif des 6 cantons romands</h2>
+
+<p>Les différences entre cantons sont significatives. Voici un panorama complet :</p>
+
+<h3>Système d'imposition</h3>
+
+<table style="width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+<thead>
+<tr style="background: #f3f4f6;">
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Canton</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Système</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VD</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Dualiste</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Gains privés → IBGI séparé. Gains commerciaux → impôt sur le revenu/bénéfice.</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>GE</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Dualiste</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Même principe. Gains professionnels imposés comme revenu ordinaire.</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VS</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Dualiste</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">IBGI cantonal et communal séparés. Gains commerciaux → impôt ordinaire.</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>FR</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Dualiste</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">IBGI cantonal. Gains commerciaux → impôt sur le revenu.</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>NE</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Dualiste</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Impôt spécial sur les gains privés. Gains commerciaux → revenu ordinaire.</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>JU</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Moniste ⚠️</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Tous les gains (privés <em>et</em> commerciaux) sont soumis au même impôt spécial. Cas unique en Suisse romande.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Taux d'imposition selon la durée de détention</h3>
+
+<table style="width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+<thead>
+<tr style="background: #f3f4f6;">
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Durée</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">VD</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">GE</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">VS</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">FR</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">NE</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">JU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>&lt; 1 an</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; background: #fef2f2;">30%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; background: #fef2f2;">50%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; background: #fef2f2;">~38%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; background: #fef2f2;">30%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; background: #fef2f2;">~36%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; background: #fff7ed;">~15% *</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>2 ans</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">28%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~40%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~32%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~25%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~28%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~12% *</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>5 ans</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">22%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~25%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~22%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~18%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~20%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~8% *</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>10 ans</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">16%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~15%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~14%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~12%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~14%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~5% *</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>15 ans</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">13%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~10%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~8%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~8%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~10%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~4% *</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>20 ans</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">10%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~5%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~4%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~5%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~6%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~3.5% *</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>25+ ans</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; color: #16a34a; font-weight: 600;">7% (plancher)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; color: #16a34a; font-weight: 600;">2% (plancher)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; color: #16a34a; font-weight: 600;">~1%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; color: #16a34a; font-weight: 600;">~3%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; color: #16a34a; font-weight: 600;">~4%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; color: #16a34a; font-weight: 600;">~3.5% *</td>
+</tr>
+</tbody>
+</table>
+
+<p style="font-size: 13px; color: #666; margin-top: -10px;">* <strong>JU</strong> : taux de base (3.5%–5.5%) multiplié par le coefficient communal, ce qui augmente sensiblement la charge effective. Les taux affichés sont des estimations après coefficient.<br/>
+Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les barèmes exacts sont progressifs et varient selon le montant du gain. Consultez les calculateurs cantonaux pour un calcul précis.</p>
+
+<div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+<p style="margin: 0; font-weight: 600;">⚠️ Genève — Changement majeur en 2025</p>
+<p style="margin: 8px 0 0 0; font-size: 14px;">Depuis le 1er janvier 2025, Genève a supprimé l'exonération totale après 25 ans de détention. Un taux plancher de <strong>2%</strong> s'applique désormais, même pour les biens détenus depuis plus de 25 ans. Les propriétaires genevois de longue date doivent en tenir compte dans leur planification.</p>
+</div>
+
+<h3>Spécificités cantonales</h3>
+
+<table style="width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+<thead>
+<tr style="background: #f3f4f6;">
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Canton</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Spécificité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VD</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Les années de <strong>résidence principale</strong> comptent double dans le calcul de la durée de détention — un avantage considérable. Exonération totale après 24 ans de détention effective.</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>GE</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Plus cher à court terme (50% < 2 ans) mais le plus avantageux à long terme (2% plancher). Délai de remploi le plus long : <strong>5 ans</strong> (vs 2 ans ailleurs).</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VS</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">IBGI cantonal <em>et</em> communal séparés. Le taux effectif dépend fortement de la commune. Taux minimal très bas (~1%) après 25 ans.</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>FR</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Barème progressif unique. Supplément de 50% pour les biens détenus moins de 2 ans. Pas d'exonération totale.</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>NE</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Réduction progressive de 5% par année de détention au-delà de la 5e année, jusqu'à un maximum de 70% de réduction.</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>JU</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Seul canton romand à système <strong>moniste</strong>. Taux de base bas (3.5%–5.5%) mais multiplié par le coefficient communal. Depuis 2024, obligation de <strong>consigner 7% du prix de vente</strong> chez un officier public comme garantie de l'impôt.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="impenses">Liste complète des impenses déductibles</h2>
+
+<p>Les impenses sont les dépenses liées au bien immobilier qui viennent réduire le gain imposable. Plus elles sont élevées, moins vous payez d'impôt. Voici la liste exhaustive :</p>
+
+<h3>1. Frais d'acquisition</h3>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem;"><strong>Droits de mutation</strong> (stamp duty) payés lors de l'achat — varient de 1.5% à 3.3% selon le canton</li>
+<li style="margin-bottom: 0.5rem;"><strong>Émoluments du registre foncier</strong> (inscription de la propriété)</li>
+<li style="margin-bottom: 0.5rem;"><strong>Frais de notaire</strong> — honoraires pour l'acte d'achat</li>
+<li style="margin-bottom: 0.5rem;"><strong>Commission de courtage à l'achat</strong> (si vous avez payé un courtier lors de l'acquisition)</li>
+</ul>
+
+<h3>2. Travaux à plus-value (investissements valorisants)</h3>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem;"><strong>Transformations et agrandissements</strong> — extension, surélévation, ajout d'un garage</li>
+<li style="margin-bottom: 0.5rem;"><strong>Rénovation complète de cuisine ou salle de bains</strong> — si remplacement par un standard supérieur</li>
+<li style="margin-bottom: 0.5rem;"><strong>Installation d'une piscine, sauna, cave à vin</strong></li>
+<li style="margin-bottom: 0.5rem;"><strong>Ajout d'un ascenseur</strong></li>
+<li style="margin-bottom: 0.5rem;"><strong>Aménagements extérieurs significatifs</strong> — terrasse, pergola, mur de soutènement</li>
+<li style="margin-bottom: 0.5rem;"><strong>Installation de panneaux solaires</strong> (photovoltaïques ou thermiques)</li>
+<li style="margin-bottom: 0.5rem;"><strong>Pompe à chaleur</strong> remplaçant un chauffage au mazout (la partie dépassant la simple rénovation)</li>
+<li style="margin-bottom: 0.5rem;"><strong>Domotique et smart home</strong> — installations d'automatisation</li>
+</ul>
+
+<h3>3. Frais de vente</h3>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem;"><strong>Commission de courtage à la vente</strong> — généralement 2% à 3% du prix de vente</li>
+<li style="margin-bottom: 0.5rem;"><strong>Frais de publicité et d'annonces</strong> (Immoscout24, journaux, etc.)</li>
+<li style="margin-bottom: 0.5rem;"><strong>Frais de notaire de la vente</strong></li>
+<li style="margin-bottom: 0.5rem;"><strong>Émoluments du registre foncier</strong> liés au transfert</li>
+</ul>
+
+<h3>4. Autres impenses</h3>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem;"><strong>Frais d'architecte et d'ingénieur</strong> — liés aux travaux à plus-value</li>
+<li style="margin-bottom: 0.5rem;"><strong>Permis de construire</strong> et taxes d'autorisation</li>
+<li style="margin-bottom: 0.5rem;"><strong>Indemnité de résiliation anticipée de l'hypothèque</strong> (pénalité de remboursement) — selon le canton</li>
+<li style="margin-bottom: 0.5rem;"><strong>Contributions de plus-value</strong> — taxe payée lors d'un changement de zone (art. 5 LAT)</li>
+</ul>
+
+<div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #22c55e;">
+<p style="margin: 0; font-weight: 600;">💰 Conseil NeoFidu</p>
+<p style="margin: 8px 0 0 0; font-size: 14px; color: #444;">Gardez <strong>systématiquement</strong> toutes les factures de travaux depuis le jour de l'achat. Même les petits travaux à plus-value s'accumulent sur 15 ou 20 ans et peuvent réduire considérablement le gain imposable. Un dossier complet avec factures, devis signés et preuves de paiement est indispensable.</p>
+</div>
+
+<h2 id="plus-value-entretien">Travaux à plus-value vs travaux d'entretien</h2>
+
+<p>C'est la distinction la plus importante — et la plus fréquente source de litiges avec les autorités fiscales. La règle d'or : <strong>un même montant ne peut pas être déduit deux fois</strong>.</p>
+
+<table style="width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+<thead>
+<tr style="background: #f3f4f6;">
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left; width: 50%;">✅ Travaux à plus-value<br/><span style="font-weight: normal; font-size: 12px; color: #666;">Déductibles du gain immobilier</span></th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left; width: 50%;">❌ Travaux d'entretien<br/><span style="font-weight: normal; font-size: 12px; color: #666;">Déductibles du revenu annuel (pas du gain)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Ajout d'une véranda ou extension</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Remplacement de la chaudière par un modèle équivalent</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;">Cuisine neuve haut de gamme (si standard supérieur)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Repeindre les murs et plafonds</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Installation de panneaux solaires</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Réparation de la toiture (remplacement à l'identique)</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;">Construction d'une piscine</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Entretien du jardin et taille des haies</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Ajout d'un garage ou d'un carport</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Détartrage et entretien de la chaudière</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;">Surélévation d'un étage</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Remplacement de joints de salle de bains</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Isolation thermique complète (si amélioration)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Remplacement des stores à l'identique</td>
+</tr>
+</tbody>
+</table>
+
+<div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+<p style="margin: 0; font-weight: 600;">⚠️ Zone grise fréquente</p>
+<p style="margin: 8px 0 0 0; font-size: 14px;">La rénovation d'une salle de bains peut être à la fois entretien <em>et</em> plus-value. Si vous remplacez une baignoire par une douche italienne avec carrelage haut de gamme, la partie « amélioration du standard » est à plus-value, mais le remplacement simple du matériel existant est de l'entretien. En cas de doute, faites établir deux lignes sur la facture : la part entretien (déduite du revenu annuel) et la part plus-value (conservée pour le gain immobilier).</p>
+</div>
+
+<h2 id="remploi">Le remploi : reporter l'impôt en réinvestissant</h2>
+
+<p>Si vous vendez votre logement pour en racheter un autre en Suisse (ou parfois à l'étranger selon les conventions), vous pouvez bénéficier d'un <strong>report d'imposition</strong> appelé « remploi ». Attention : ce n'est pas une exonération — l'impôt est simplement différé jusqu'à la prochaine vente sans remploi.</p>
+
+<h3>Conditions du remploi</h3>
+<ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem;">Le bien vendu <strong>et</strong> le bien acheté doivent servir de <strong>logement principal</strong> au propriétaire</li>
+<li style="margin-bottom: 0.5rem;">L'achat du nouveau bien doit intervenir dans le <strong>délai légal</strong> (voir tableau ci-dessous)</li>
+<li style="margin-bottom: 0.5rem;">Si le nouveau bien coûte moins que le prix de vente, seule la partie réinvestie bénéficie du report</li>
+<li style="margin-bottom: 0.5rem;">Le bien de remplacement doit se situer <strong>en Suisse</strong> (sauf convention contraire)</li>
+</ul>
+
+<h3>Délais de remploi par canton</h3>
+
+<table style="width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+<thead>
+<tr style="background: #f3f4f6;">
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Canton</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">Délai avant vente</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">Délai après vente</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Remarque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VD</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">1 an</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">2 ans</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Résidence principale uniquement</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>GE</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">2 ans</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center; color: #16a34a; font-weight: 600;">5 ans</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Délai le plus généreux de Suisse romande</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VS</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">1 an</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">2 ans</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Résidence principale uniquement</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>FR</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">1 an</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">2 ans</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Résidence principale uniquement</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>NE</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">1 an</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">2 ans</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Résidence principale uniquement</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>JU</strong></td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">1 an</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">2 ans</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Consignation de 7% du prix de vente obligatoire</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="exemple">Exemple chiffré : même vente, 6 résultats différents</h2>
+
+<p>Prenons un exemple concret pour illustrer les écarts entre cantons.</p>
+
+<div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 16px 0;">
+<p style="margin: 0; font-weight: 600;">📋 Situation</p>
+<ul style="list-style: none; padding: 0; margin: 10px 0 0 0;">
+<li style="margin-bottom: 4px;">🏠 Appartement acheté CHF 600'000 en 2016</li>
+<li style="margin-bottom: 4px;">💰 Vendu CHF 850'000 en 2026 (10 ans de détention)</li>
+<li style="margin-bottom: 4px;">🔧 Travaux à plus-value : CHF 40'000 (rénovation cuisine + salle de bains)</li>
+<li style="margin-bottom: 4px;">📄 Frais d'acquisition : CHF 18'000 (notaire + registre foncier + droits de mutation)</li>
+<li style="margin-bottom: 4px;">📄 Frais de vente : CHF 22'000 (courtier + notaire)</li>
+<li style="margin-bottom: 0;"><strong>Gain imposable = 850'000 − 600'000 − 40'000 − 18'000 − 22'000 = CHF 170'000</strong></li>
+</ul>
+</div>
+
+<table style="width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+<thead>
+<tr style="background: #f3f4f6;">
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: left;">Canton</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">Taux approx.</th>
+<th style="padding: 12px; border: 1px solid #d1d5db; text-align: center;">Impôt estimé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VD</strong> (10 ans)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~16%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~CHF 27'200</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>GE</strong> (10 ans)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~15%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~CHF 25'500</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VS</strong> (10 ans)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~14%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~CHF 23'800</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>FR</strong> (10 ans)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~12%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~CHF 20'400</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>NE</strong> (10 ans)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~14%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~CHF 23'800</td>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="padding: 10px; border: 1px solid #d1d5db;"><strong>JU</strong> (10 ans)</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~5%</td>
+<td style="padding: 10px; border: 1px solid #d1d5db; text-align: center;">~CHF 8'500</td>
+</tr>
+</tbody>
+</table>
+
+<p style="font-size: 13px; color: #666;">Ces montants sont des estimations indicatives. Le calcul exact dépend du barème progressif de chaque canton, du coefficient communal, et de la situation individuelle. Utilisez les calculateurs cantonaux officiels pour un montant précis.</p>
+
+<p>L'écart est frappant : pour la même vente, l'impôt va de <strong>~CHF 8'500 (JU)</strong> à <strong>~CHF 27'200 (VD)</strong> — un facteur de plus de 3. C'est pourquoi une planification fiscale en amont est essentielle.</p>
+
+<h2 id="optimisation">5 stratégies d'optimisation</h2>
+
+<p>Voici les leviers les plus efficaces pour réduire légalement l'impôt sur le gain immobilier :</p>
+
+<h3>1. Maximiser les impenses documentées</h3>
+<p>C'est le levier le plus puissant. Chaque franc de travaux à plus-value dûment documenté réduit le gain imposable d'autant. Conservez <strong>toutes</strong> les factures, devis acceptés, contrats d'architecte et preuves de paiement. En l'absence de justificatifs, l'administration fiscale refusera la déduction.</p>
+
+<h3>2. Attendre le bon moment pour vendre</h3>
+<p>Les taux baissent significativement avec la durée de détention. Par exemple, à Genève, vendre après 10 ans au lieu de 8 ans peut réduire le taux de 5 à 10 points. Si votre vente n'est pas urgente, un report de quelques mois peut s'avérer très rentable — surtout si vous approchez d'un palier de réduction.</p>
+
+<h3>3. Utiliser le remploi</h3>
+<p>Si vous vendez pour racheter votre résidence principale, le remploi vous permet de reporter intégralement l'imposition. C'est la stratégie idéale pour les propriétaires qui déménagent. N'oubliez pas que Genève offre un délai de 5 ans, contre 2 ans dans les autres cantons romands.</p>
+
+<h3>4. Distinguer soigneusement plus-value et entretien</h3>
+<p>Lors de gros travaux de rénovation, demandez à votre artisan de séparer clairement la part « entretien » (déductible de votre revenu annuel) et la part « plus-value » (conservée pour le gain immobilier). Cela évite la double déduction interdite et maximise vos déductions totales sur l'ensemble de la période.</p>
+
+<h3>5. Vaudois : exploitez la résidence principale</h3>
+<p>Dans le canton de Vaud, les années de résidence principale comptent double. Si vous avez habité votre bien pendant 12 ans, le fisc considère une détention de 24 ans — ce qui vous place au taux plancher de 7%, voire à l'exonération totale. C'est un avantage majeur dont beaucoup de propriétaires vaudois ne sont pas conscients.</p>
+
+<div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 24px; border-radius: 12px; margin: 30px 0; text-align: center;">
+<p style="margin: 0 0 8px 0; font-weight: 700; font-size: 18px;">Vous vendez un bien immobilier en Suisse romande ?</p>
+<p style="margin: 0 0 16px 0; font-size: 14px; color: #444;">NeoFidu calcule votre impôt sur le gain immobilier, identifie toutes les impenses déductibles et optimise votre déclaration. Devis gratuit et sans engagement.</p>
+<a href="/contact" style="display: inline-block; background: #10b981; color: white; padding: 12px 24px; border-radius: 9999px; text-decoration: none; font-weight: 600;">Demander un devis gratuit →</a>
+</div>
+
+<h2>Et l'impôt fédéral direct (IFD) ?</h2>
+
+<p>Au niveau fédéral, les gains immobiliers sur des biens de la fortune privée ne sont <strong>pas imposés</strong> par l'IFD. Seuls les gains réalisés dans le cadre d'une activité professionnelle (commerce immobilier, promoteurs) sont soumis à l'impôt fédéral sur le revenu.</p>
+
+<p>En résumé, pour un particulier qui vend sa résidence ou un bien locatif, seul l'impôt cantonal sur le gain immobilier s'applique — ce qui est déjà une bonne nouvelle.</p>
+
+<h2>Conclusion</h2>
+
+<p>L'impôt sur le gain immobilier est un poste fiscal majeur lors de la vente d'un bien en Suisse romande. Les écarts entre cantons sont considérables, et une bonne préparation peut vous faire économiser des dizaines de milliers de francs. Les trois clés : conserver scrupuleusement vos factures de travaux, planifier le timing de la vente, et considérer le remploi si vous rachetez.</p>
+
+<p><em>Cet article est fourni à titre informatif et ne constitue pas un conseil fiscal personnalisé. Les taux indiqués sont des ordres de grandeur basés sur les barèmes en vigueur en 2026 et peuvent varier selon le montant du gain et la commune. Pour un calcul précis adapté à votre situation, <a href="/contact" style="color: #10b981;">contactez NeoFidu</a>.</em></p>`
+  },
 ];
