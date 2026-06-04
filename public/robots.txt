@@ -1,6 +1,36 @@
 User-agent: *
 Allow: /
 Allow: /_next/static/
+Disallow: /admin/
+Disallow: /api/
+
+# Block aggressive SEO crawlers site-wide
 User-agent: MJ12bot
-Disallow: /observatoire/
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Rate-limit Internet Archive
+User-agent: ia_archiver
+Crawl-delay: 30
+
 Sitemap: https://neofidu.ch/sitemap.xml
