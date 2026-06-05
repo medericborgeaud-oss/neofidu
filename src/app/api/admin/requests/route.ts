@@ -889,7 +889,7 @@ export async function PATCH(request: NextRequest) {
         pending: "En attente de paiement",
         paid: "Payée",
         in_progress: "En cours de traitement",
-        completed: "Terminée",
+        completed: "Envoyée",
         delivered: "Livrée",
         // Statuts demandes comptabilité / gérance immobilière
         received: "Reçue",
@@ -902,7 +902,7 @@ export async function PATCH(request: NextRequest) {
         pending: "Votre demande est en attente de paiement.",
         paid: "Votre paiement a été confirmé. Nous allons commencer le traitement de votre dossier.",
         in_progress: "Notre équipe travaille actuellement sur votre déclaration d'impôts.",
-        completed: "Votre déclaration d'impôts est terminée et prête à être envoyée.",
+        completed: "Votre déclaration d'impôts a été finalisée et envoyée à l'administration fiscale. Nos experts l'ont préparée en veillant à prendre en compte toutes les déductions auxquelles vous avez droit, afin de réduire au maximum votre facture fiscale.",
         delivered: "Votre déclaration d'impôts a été envoyée. Merci de votre confiance !",
         // Messages pour demandes comptabilité / gérance
         received: "Votre demande a bien été reçue. Un conseiller vous contactera rapidement.",
@@ -966,6 +966,17 @@ export async function PATCH(request: NextRequest) {
                   </ul>
                   ` : ""}
 
+                  ${status === "completed" ? `
+                  <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 20px; margin: 24px 0;">
+                    <p style="margin: 0 0 16px; color: #065f46; font-size: 16px; font-weight: 600;">
+                      📋 Les prochaines étapes
+                    </p>
+                    <p style="margin: 0 0 12px; color: #1f2937; font-size: 14px; line-height: 1.6;"><strong>1. Conservez</strong> une copie de votre déclaration (votre conseiller NeoFidu vous la transmet séparément).</p>
+                    <p style="margin: 0 0 12px; color: #1f2937; font-size: 14px; line-height: 1.6;"><strong>2. Patientez</strong> : l'administration fiscale traitera votre dossier et vous adressera votre <strong>décision de taxation</strong> (bordereau) dans les mois à venir.</p>
+                    <p style="margin: 0 0 12px; color: #1f2937; font-size: 14px; line-height: 1.6;"><strong>3. Vérifiez le bordereau</strong> attentivement à sa réception. En cas de désaccord, vous disposez de <strong>30 jours</strong> pour faire réclamation — nous vous accompagnons.</p>
+                    <p style="margin: 0; color: #1f2937; font-size: 14px; line-height: 1.6;"><strong>4. Réglez</strong> le montant dû selon les modalités indiquées sur le bordereau.</p>
+                  </div>
+                  ` : `
                   <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 20px; margin: 24px 0;">
                     <p style="margin: 0 0 12px; color: #065f46; font-size: 16px; font-weight: 600;">
                       📍 Suivre votre demande
@@ -977,10 +988,13 @@ export async function PATCH(request: NextRequest) {
                       Suivre ma demande →
                     </a>
                   </div>
+                  `}
 
                   <p>Cordialement,<br><strong>L'équipe NeoFidu</strong></p>
                 </div>
                 <div class="footer">
+                  <p>Une question ? Écrivez-nous à <a href="mailto:contact@neofidu.ch" style="color: #059669; text-decoration: none;">contact@neofidu.ch</a></p>
+                  <p style="font-size: 12px; color: #9ca3af;">Ceci est un message automatique, merci de ne pas y répondre.</p>
                   <p>© 2026 NeoFidu - Fiduciaire digitale en Suisse romande</p>
                 </div>
               </div>
