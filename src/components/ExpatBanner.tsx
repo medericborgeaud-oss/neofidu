@@ -36,7 +36,7 @@ export function ExpatBanner() {
     }
 
     // FR page with dedicated EN version → navigate to EN version
-    if (hasEnVersion) {
+    if (hasEnVersion && !isEnglish) {
       setLocale("en");
       router.push("/en" + pathname);
       return;
