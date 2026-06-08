@@ -274,7 +274,7 @@ export default async function CompanyPageEN({ params }: Props) {
             Back to observatory
           </Link>
           <Link href={`/observatoire/${params.slug}`} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
-            FR | <span className="font-semibold text-gray-700">EN</span>
+            Français
           </Link>
         </div>
 
