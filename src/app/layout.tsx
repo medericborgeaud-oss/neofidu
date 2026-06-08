@@ -389,6 +389,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://js.stripe.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://upload.wikimedia.org" />
 
         {/* Structured data */}
         {allSchemas.map((schema, index) => (
