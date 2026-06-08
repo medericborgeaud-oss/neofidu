@@ -196,10 +196,10 @@ export default async function CompanyPage({ params }: Props) {
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
   const sectorLabel = company.sector ? (SECTOR_LABELS[company.sector] || company.sector) : null;
   const fiscal = CANTON_FISCAL[company.canton];
-  // Estimation fiscale exemple (CHF 20'000 bénéfice net)
+  // Estimation fiscale exemple (CHF 30'000 bénéfice net)
   const tauxPct = fiscal ? parseFloat(fiscal.tauxEntreprise) : 0;
-  const exIFD = Math.round(20000 * 0.085);
-  const exCantComm = Math.round(20000 * Math.max(tauxPct - 8.5, 0) / 100);
+  const exIFD = Math.round(30000 * 0.085);
+  const exCantComm = Math.round(30000 * Math.max(tauxPct - 8.5, 0) / 100);
   const totalCoeff = (communeData?.taux_canton ?? 1) + (communeData?.taux_commune ?? 1);
   const exCanton = communeData?.taux_canton ? Math.round(exCantComm * communeData.taux_canton / totalCoeff) : exCantComm;
   const exCommune = communeData?.taux_commune ? Math.round(exCantComm * communeData.taux_commune / totalCoeff) : 0;
@@ -428,7 +428,7 @@ export default async function CompanyPage({ params }: Props) {
 
                   {/* Exemple chiffré */}
                   <div className="border-t border-blue-100 pt-3">
-                    <p className="text-sm font-medium text-gray-700 mb-2">Estimation sur un bénéfice net de CHF 20&apos;000</p>
+                    <p className="text-sm font-medium text-gray-700 mb-2">Estimation sur un bénéfice net de CHF 30&apos;000</p>
                     <div className="grid grid-cols-3 gap-2 text-sm">
                       <div className="bg-white/60 rounded p-2 text-center">
                         <p className="text-xs text-gray-400">IFD (fédéral)</p>
