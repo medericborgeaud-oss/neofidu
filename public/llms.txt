@@ -1,0 +1,49 @@
+# NeoFidu
+
+> NeoFidu is a Swiss online fiduciary (fiduciaire en ligne) serving French-speaking Switzerland. We provide tax return preparation, company incorporation, and accounting services for individuals and businesses across 6 cantons: Vaud (VD), Geneva (GE), Valais (VS), Fribourg (FR), Neuchatel (NE), and Jura (JU).
+
+Key information:
+
+- NeoFidu operates exclusively in French-speaking Switzerland (Suisse romande)
+- Tax returns start from CHF 89 for individuals, CHF 149 with optimization
+- Company creation services from CHF 490
+- All services are delivered online with certified Swiss fiduciary experts
+- The site is primarily in French, with English versions available for company and municipality pages
+
+## Services
+
+- [Tax returns for individuals](https://neofidu.ch/particuliers): Personal tax return preparation with cantonal expertise (VD, GE, VS, FR, NE, JU)
+- [Services for businesses](https://neofidu.ch/entreprises): Company creation, accounting, VAT registration, and corporate tax returns
+- [Services for associations and foundations](https://neofidu.ch/associations-fondations): Specialized services for non-profit organizations
+- [Pricing](https://neofidu.ch/tarifs): Transparent pricing for all services
+- [Submit a request](https://neofidu.ch/demande): Online form to request a quote or service
+
+## Free Tools
+
+- [Tax simulator](https://neofidu.ch/simulateur-impots): Calculate your taxes by canton and municipality with real municipal coefficients
+- [Salary simulator](https://neofidu.ch/simulateur-salaire): Gross-to-net salary calculator with Swiss social contributions (AVS, AI, APG, AC, LPP)
+- [Company Observatory](https://neofidu.ch/observatoire): Database of 200,000+ companies in French-speaking Switzerland with sector classification, legal form, and headquarters data
+- [Municipality database](https://neofidu.ch/communes): 670 municipalities across 6 cantons with tax coefficients, population, density, real estate prices, and neighboring municipality comparisons
+
+## Canton Pages
+
+- [Vaud (VD)](https://neofidu.ch/cantons/vd): Tax information for canton Vaud
+- [Geneva (GE)](https://neofidu.ch/cantons/ge): Tax information for canton Geneva
+- [Valais (VS)](https://neofidu.ch/cantons/vs): Tax information for canton Valais
+- [Fribourg (FR)](https://neofidu.ch/cantons/fr): Tax information for canton Fribourg
+- [Neuchatel (NE)](https://neofidu.ch/cantons/ne): Tax information for canton Neuchatel
+- [Jura (JU)](https://neofidu.ch/cantons/ju): Tax information for canton Jura
+
+## Blog
+
+- [Blog](https://neofidu.ch/blog): Articles on Swiss taxation, company creation, accounting, and financial planning in French-speaking Switzerland
+
+## English Pages
+
+- [Company pages (EN)](https://neofidu.ch/en/observatoire/): English version of individual company pages from the Observatory
+- [Municipality pages (EN)](https://neofidu.ch/en/communes/): English version of municipality pages with tax rates and local data
+
+## Optional
+
+- [Homepage](https://neofidu.ch): Main landing page with overview of all services
+- [Request tracking](https://neofidu.ch/suivi): Track the status of your tax return or service request
