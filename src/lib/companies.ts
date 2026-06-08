@@ -267,10 +267,10 @@ export const CANTON_FISCAL: Record<string, {
 export async function getCommuneForCompany(
   city: string,
   canton: string
-): Promise<{ nom: string; slug: string; taux_commune: number | null; annee_fiscale: number | null } | null> {
+): Promise<{ nom: string; slug: string; taux_commune: number | null; taux_canton: number | null; annee_fiscale: number | null } | null> {
   const { data, error } = await supabase
     .from("communes")
-    .select("nom, slug, taux_commune, annee_fiscale")
+    .select("nom, slug, taux_commune, taux_canton, annee_fiscale")
     .eq("canton", canton)
     .ilike("nom", city)
     .single();
