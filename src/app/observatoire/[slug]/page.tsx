@@ -36,7 +36,7 @@ function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
   const formLong = FORM_LONG[form] || form;
   const fiscal = CANTON_FISCAL[company.canton];
 
-  // Q1
+  // Q1 : Présentation de l'entreprise
   let a1 = `${company.name} est une ${formLong} inscrite au registre du commerce du canton de ${cantonName}, basée à ${company.city}.`;
   if (company.purpose) {
     const p = company.purpose.length > 200 ? company.purpose.substring(0, 200) + "…" : company.purpose;
@@ -45,7 +45,7 @@ function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
   if (company.ide_number) a1 += ` Son numéro IDE est ${company.ide_number}.`;
   faq.push({ question: `Qu'est-ce que ${company.name} ?`, answer: a1 });
 
-  // Q2
+  // Q2 : Explication de la forme juridique
   if (form === "RI") {
     faq.push({
       question: "Qu'est-ce qu'une raison individuelle (RI) en Suisse ?",
@@ -63,7 +63,7 @@ function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
     });
   }
 
-  // Q3
+  // Q3 : Obligations fiscales par canton
   if (fiscal) {
     if (form === "RI") {
       faq.push({
@@ -87,7 +87,7 @@ function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
     answer: a4,
   });
 
-  // Q5
+  // Q5 : Comment créer une entreprise similaire
   if (form === "RI") {
     faq.push({
       question: `Comment devenir indépendant dans le canton de ${cantonName} ?`,
@@ -106,7 +106,7 @@ function generateCompanyFAQ(company: Company, cantonName: string): FAQItem[] {
   }
 
   return faq;
-        }
+}
 
 // ─── Obligations légales ───
 
@@ -196,6 +196,11 @@ export default async function CompanyPage({ params }: Props) {
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
   const sectorLabel = company.sector ? (SECTOR_LABELS[company.sector] || company.sector) : null;
   const fiscal = CANTON_FISCAL[company.canton];
+  // Estimation fiscale exemple (CHF 20'000 bénéfice net)
+  const tauxPct = fiscal ? parseFloat(fiscal.tauxEntreprise) : 0;
+  const exIFD = Math.round(20000 * 0.085);
+  const exCantComm = Math.round(20000 * Math.max(tauxPct - 8.5, 0) / 100);
+  const exTotal = exIFD + exCantComm;
   const faqItems = generateCompanyFAQ(company, cantonName);
   const obligations = generateObligations(company.legal_form);
   const obligationGrid: (ObligationItem | null)[] = [...obligations.slice(0, 4), null, ...obligations.slice(4)];
@@ -404,7 +409,7 @@ export default async function CompanyPage({ params }: Props) {
                       <div className="grid grid-cols-2 gap-3 text-sm">
                         <div>
                           <span className="text-gray-500">Coefficient communal ({communeData.nom})</span>
-                          <p className="font-medium text-gray-900 text-lg">{communeData.taux_commune.toFixed(1)}</p>
+                          <p className="font-medium text-gray-900">{communeData.taux_commune.toFixed(1)}</p>
                         </div>
                         <div className="flex items-end">
                           <Link
@@ -415,12 +420,33 @@ export default async function CompanyPage({ params }: Props) {
                           </Link>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                        Ce coefficient multiplie l&apos;impôt cantonal de base. Plus il est bas, moins la charge fiscale communale est élevée.
-                        {communeData.annee_fiscale && ` Données ${communeData.annee_fiscale}.`}
-                      </p>
                     </div>
                   )}
+
+                  {/* Exemple chiffré */}
+                  <div className="border-t border-blue-100 pt-3">
+                    <p className="text-sm font-medium text-gray-700 mb-2">Estimation sur un bénéfice net de CHF 20&apos;000</p>
+                    <div className="grid grid-cols-3 gap-2 text-sm">
+                      <div className="bg-white/60 rounded p-2 text-center">
+                        <p className="text-xs text-gray-400">IFD (fédéral)</p>
+                        <p className="font-medium text-gray-900">CHF {exIFD.toLocaleString("de-CH")}</p>
+                        <p className="text-xs text-gray-400">8.5%</p>
+                      </div>
+                      <div className="bg-white/60 rounded p-2 text-center">
+                        <p className="text-xs text-gray-400">Canton + commune</p>
+                        <p className="font-medium text-gray-900">~CHF {exCantComm.toLocaleString("de-CH")}</p>
+                        <p className="text-xs text-gray-400">~{(tauxPct - 8.5).toFixed(1)}%</p>
+                      </div>
+                      <div className="bg-white/60 rounded p-2 text-center">
+                        <p className="text-xs text-gray-400">Total estimé</p>
+                        <p className="font-medium text-emerald-700">~CHF {exTotal.toLocaleString("de-CH")}</p>
+                        <p className="text-xs text-gray-400">~{tauxPct}%</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                      Estimation indicative.{communeData?.taux_commune && ` Coefficient communal de ${communeData.nom} : ${communeData.taux_commune.toFixed(1)}.`}{communeData?.annee_fiscale && ` Données ${communeData.annee_fiscale}.`} Les montants réels dépendent de la situation de l&apos;entreprise.
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
