@@ -200,6 +200,9 @@ export default async function CompanyPage({ params }: Props) {
   const tauxPct = fiscal ? parseFloat(fiscal.tauxEntreprise) : 0;
   const exIFD = Math.round(20000 * 0.085);
   const exCantComm = Math.round(20000 * Math.max(tauxPct - 8.5, 0) / 100);
+  const totalCoeff = (communeData?.taux_canton ?? 1) + (communeData?.taux_commune ?? 1);
+  const exCanton = communeData?.taux_canton ? Math.round(exCantComm * communeData.taux_canton / totalCoeff) : exCantComm;
+  const exCommune = communeData?.taux_commune ? Math.round(exCantComm * communeData.taux_commune / totalCoeff) : 0;
   const exTotal = exIFD + exCantComm;
   const faqItems = generateCompanyFAQ(company, cantonName);
   const obligations = generateObligations(company.legal_form);
@@ -433,15 +436,20 @@ export default async function CompanyPage({ params }: Props) {
                         <p className="text-xs text-gray-400">8.5%</p>
                       </div>
                       <div className="bg-white/60 rounded p-2 text-center">
-                        <p className="text-xs text-gray-400">Canton + commune</p>
-                        <p className="font-medium text-gray-900">~CHF {exCantComm.toLocaleString("de-CH")}</p>
-                        <p className="text-xs text-gray-400">~{(tauxPct - 8.5).toFixed(1)}%</p>
+                        <p className="text-xs text-gray-400">Canton</p>
+                        <p className="font-medium text-gray-900">~CHF {exCanton.toLocaleString("de-CH")}</p>
+                        {communeData?.taux_canton && <p className="text-xs text-gray-400">coeff. {communeData.taux_canton.toFixed(1)}</p>}
                       </div>
                       <div className="bg-white/60 rounded p-2 text-center">
-                        <p className="text-xs text-gray-400">Total estimé</p>
-                        <p className="font-medium text-emerald-700">~CHF {exTotal.toLocaleString("de-CH")}</p>
-                        <p className="text-xs text-gray-400">~{tauxPct}%</p>
+                        <p className="text-xs text-gray-400">Commune</p>
+                        <p className="font-medium text-gray-900">~CHF {exCommune.toLocaleString("de-CH")}</p>
+                        {communeData?.taux_commune && <p className="text-xs text-gray-400">coeff. {communeData.taux_commune.toFixed(1)}</p>}
                       </div>
+                    </div>
+                    <div className="mt-2 bg-emerald-50/80 rounded p-2 text-center">
+                      <p className="text-xs text-gray-400">Total estimé</p>
+                      <p className="font-medium text-emerald-700">~CHF {exTotal.toLocaleString("de-CH")}</p>
+                      <p className="text-xs text-gray-400">~{tauxPct}%</p>
                     </div>
                     <p className="text-xs text-gray-400 mt-2 leading-relaxed">
                       Estimation indicative.{communeData?.taux_commune && ` Coefficient communal de ${communeData.nom} : ${communeData.taux_commune.toFixed(1)}.`}{communeData?.annee_fiscale && ` Données ${communeData.annee_fiscale}.`} Les montants réels dépendent de la situation de l&apos;entreprise.
