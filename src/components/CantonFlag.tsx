@@ -3,6 +3,7 @@
 interface Props {
   canton: string;
   size?: number;
+  eager?: boolean;
 }
 
 const FLAG_URLS: Record<string, string> = {
@@ -14,7 +15,7 @@ const FLAG_URLS: Record<string, string> = {
   JU: "https://upload.wikimedia.org/wikipedia/commons/7/74/Flag_of_Canton_of_Jura.svg",
 };
 
-export function CantonFlag({ canton, size = 28 }: Props) {
+export function CantonFlag({ canton, size = 28, eager = false }: Props) {
   const c = (canton || "").toUpperCase();
   const src = FLAG_URLS[c];
   if (!src) return null;
@@ -31,7 +32,8 @@ export function CantonFlag({ canton, size = 28 }: Props) {
         borderRadius: 4,
         objectFit: "contain",
       }}
-      loading="lazy"
+      loading={eager ? "eager" : "lazy"}
+      {...(eager ? { fetchPriority: "low" as const } : {})}
     />
   );
 }
