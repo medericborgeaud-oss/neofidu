@@ -269,11 +269,16 @@ export default async function CompanyPage({ params }: Props) {
       <Header />
       <main className="min-h-screen bg-gray-50 pt-24">
         <div className="max-w-3xl mx-auto px-4 py-8">
-        {/* Back link */}
-        <Link href="/observatoire" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 mb-6 transition-colors">
-          <ArrowLeft className="w-4 h-4" />
-          Retour à l&apos;observatoire
-        </Link>
+        {/* Back link + language switch */}
+        <div className="flex items-center justify-between mb-6">
+          <Link href="/observatoire" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Retour à l&apos;observatoire
+          </Link>
+          <Link href={`/en/observatoire/${params.slug}`} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+            English
+          </Link>
+        </div>
 
         {/* Main card */}
         <Card className="overflow-hidden">
