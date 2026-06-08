@@ -393,7 +393,7 @@ export default async function CompanyPage({ params }: Props) {
             {fiscal && (
               <div className="mb-14">
                 <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <Landmark className="w-4 h-4" />Contexte fiscal — {cantonName}
+                  <Landmark className="w-4 h-4" />Contexte fiscal — {company.city} ({cantonName})
                 </div>
                 <div className="bg-blue-50 rounded-lg p-4 space-y-3">
                   <div className="grid grid-cols-2 gap-3 text-sm">
