@@ -6,32 +6,19 @@ interface Props {
   eager?: boolean;
 }
 
-const FLAG_URLS: Record<string, string> = {
-  GE: "https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_Canton_of_Geneva.svg",
-  VD: "https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Canton_of_Vaud.svg",
-  VS: "https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_Canton_of_Valais.svg",
-  FR: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_Canton_of_Fribourg.svg",
-  NE: "https://upload.wikimedia.org/wikipedia/commons/5/57/Flag_of_Canton_of_Neuch%C3%A2tel.svg",
-  JU: "https://upload.wikimedia.org/wikipedia/commons/7/74/Flag_of_Canton_of_Jura.svg",
-};
+const FLAG_CODES = ["GE", "VD", "VS", "FR", "NE", "JU"];
 
 export function CantonFlag({ canton, size = 28, eager = false }: Props) {
   const c = (canton || "").toUpperCase();
-  const src = FLAG_URLS[c];
-  if (!src) return null;
-
+  if (!FLAG_CODES.includes(c)) return null;
+  const src = `/flags/${c.toLowerCase()}.svg`;
   return (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
       alt={`Drapeau ${c}`}
       width={size}
       height={Math.round(size * 0.82)}
-      style={{
-        border: "1px solid #e5e7eb",
-        borderRadius: 4,
-        objectFit: "contain",
-      }}
+      style={{ border: "1px solid #e5e7eb", borderRadius: 4, objectFit: "contain" }}
       loading={eager ? "eager" : "lazy"}
       {...(eager ? { fetchPriority: "low" as const } : {})}
     />
