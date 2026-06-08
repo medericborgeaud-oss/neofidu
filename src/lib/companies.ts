@@ -4,7 +4,6 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-
 // ─── Types ───
 
 export interface Company {
@@ -137,9 +136,9 @@ export async function getCompanyBySlug(slug: string): Promise<Company | null> {
 }
 
 export async function getRandomCompanies(limit = 20): Promise<Company[]> {
-    const { data, error } = await supabase.rpc("random_companies", { num: limit });
-    if (error) throw error;
-    return (data as Company[]) || [];
+  const { data, error } = await supabase.rpc("random_companies", { num: limit });
+  if (error) throw error;
+  return (data as Company[]) || [];
 }
 
 export async function getStats(): Promise<CompanyStats> {
@@ -187,7 +186,6 @@ export async function getSimilarCompanies(
   sector: string | null,
   limit = 6
 ): Promise<Pick<Company, "name" | "slug" | "legal_form" | "city">[]> {
-  // Priority 1: same sector + same city
   if (sector) {
     const { data } = await supabase
       .from("companies")
@@ -201,7 +199,6 @@ export async function getSimilarCompanies(
     if (data && data.length >= 3) return data;
   }
 
-  // Priority 2: same sector + same canton
   if (sector) {
     const { data } = await supabase
       .from("companies")
@@ -214,7 +211,6 @@ export async function getSimilarCompanies(
     if (data && data.length >= 3) return data;
   }
 
-  // Fallback: same city
   const { data } = await supabase
     .from("companies")
     .select("name, slug, legal_form, city")
@@ -265,6 +261,23 @@ export const CANTON_FISCAL: Record<string, {
     particularite: "Taux attractif pour les PME",
   },
 };
+
+// ─── Commune fiscal data for company pages ───
+
+export async function getCommuneForCompany(
+  city: string,
+  canton: string
+): Promise<{ nom: string; slug: string; taux_commune: number | null; annee_fiscale: number | null } | null> {
+  const { data, error } = await supabase
+    .from("communes")
+    .select("nom, slug, taux_commune, annee_fiscale")
+    .eq("canton", canton)
+    .ilike("nom", city)
+    .single();
+
+  if (error) return null;
+  return data;
+}
 
 export function generateSlug(name: string): string {
   return name
