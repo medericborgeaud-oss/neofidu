@@ -236,7 +236,7 @@ export const CANTON_FISCAL: Record<string, {
     particularite: "Exonérations possibles pour les start-ups innovantes",
   },
   GE: {
-    tauxEntreprise: "14%",
+    tauxEntreprise: "14.7%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
     particularite: "Place financière internationale, accès aux talents frontaliers",
   },
@@ -256,9 +256,9 @@ export const CANTON_FISCAL: Record<string, {
     particularite: "Baisse progressive de la fiscalité des entreprises",
   },
   JU: {
-    tauxEntreprise: "12%",
+    tauxEntreprise: "16%",
     capitalMin: "CHF 20'000 (Sàrl) / CHF 100'000 (SA)",
-    particularite: "Taux attractif pour les PME",
+    particularite: "Canton avec un potentiel de développement économique",
   },
 };
 
