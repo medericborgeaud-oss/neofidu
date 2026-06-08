@@ -3,7 +3,8 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import { GoogleAnalytics, GoogleTagManagerNoScript } from "@/components/GoogleAnalytics";
-import { ChatBot } from "@/components/ChatBot";
+import dynamic from "next/dynamic";
+const ChatBot = dynamic(() => import("@/components/ChatBot").then(m => m.ChatBot), { ssr: false });
 const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
