@@ -239,13 +239,18 @@ export default async function CommunePage({ params }: Props) {
         />
 
         <div className="max-w-3xl mx-auto px-4 py-8">
-          <Link
-            href="/communes"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 mb-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Retour aux communes
-          </Link>
+          <div className="flex items-center justify-between mb-6">
+            <Link
+              href="/communes"
+              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Retour aux communes
+            </Link>
+            <Link href={`/en/communes/${params.slug}`} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+              English
+            </Link>
+          </div>
 
           <Card className="overflow-hidden mb-6">
             <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
