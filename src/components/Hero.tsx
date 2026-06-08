@@ -166,7 +166,7 @@ export function Hero() {
               ] as const).map((canton) => (
                 <div key={canton.code} className="flex flex-col items-center gap-1.5">
                   <div className="overflow-hidden">
-                    <CantonFlag canton={canton.code} size={36} />
+                    <CantonFlag canton={canton.code} size={36} eager />
                   </div>
                   <span className="text-white/60 text-[10px] md:text-xs">{canton.name}</span>
                 </div>
