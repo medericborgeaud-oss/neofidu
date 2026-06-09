@@ -1,31 +1,24 @@
 "use client";
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Calculator, Shield, CheckCircle2, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 import { CantonFlag } from "@/components/CantonFlag";
-
 export function Hero() {
   const { t, isEnglish } = useLanguage();
-
   const features = isEnglish
     ? ["From your smartphone", "Transparent pricing", "Certified specialists"]
     : ["Depuis votre smartphone", "Tarifs affichés", "Spécialistes diplômés"];
-
   const tagline = isEnglish
     ? "New generation fiduciary in French-speaking Switzerland"
     : "Fiduciaire nouvelle génération en Romandie";
-
   const title1 = isEnglish ? "Your online" : "Votre fiduciaire";
   const title2 = isEnglish ? "fiduciary" : "en ligne";
   const title3 = isEnglish ? "in French-speaking Switzerland" : "en Suisse romande";
-
   const subtitle = isEnglish
     ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
-    : "Envoyez votre déclaration d’impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l’étranger.";
-
+    : "Envoyez votre déclaration d'impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l'étranger.";
   const stats = isEnglish
     ? [
         { value: "24/7", label: "Online availability" },
@@ -35,9 +28,8 @@ export function Hero() {
     : [
         { value: "24/7", label: "Disponibilité en ligne" },
         { value: "6", label: "Cantons desservis" },
-        { value: "10+", label: "Ans d’expérience" },
+        { value: "10+", label: "Ans d'expérience" },
       ];
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-8">
       {/* Background decorations */}
@@ -46,7 +38,6 @@ export function Hero() {
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-400/5 rounded-full blur-3xl" />
       </div>
-
       {/* Floating icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-32 left-10 md:left-20 animate-float opacity-20">
@@ -59,7 +50,6 @@ export function Hero() {
           <Shield className="w-12 h-12 md:w-16 md:h-16 text-white" />
         </div>
       </div>
-
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center">
@@ -70,7 +60,6 @@ export function Hero() {
               {tagline}
             </span>
           </div>
-
           {/* Main heading */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             {title1}{" "}
@@ -88,12 +77,10 @@ export function Hero() {
             {" "}
             {title3}
           </h1>
-
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
             {subtitle}
           </p>
-
           {/* Features list */}
           <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-10">
             {features.map((feature, index) => (
@@ -110,7 +97,6 @@ export function Hero() {
               </div>
             ))}
           </div>
-
           {/* CTA Buttons - simplified to 2 */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -135,7 +121,6 @@ export function Hero() {
               </Link>
             </Button>
           </div>
-
           {/* Trust indicators */}
           <div className="mt-16 pt-8 border-t border-white/10 pb-20">
             <div className="flex justify-center gap-8 md:gap-12 items-center">
@@ -153,7 +138,6 @@ export function Hero() {
                 </React.Fragment>
               ))}
             </div>
-
             {/* Canton flags */}
             <div className="flex justify-center gap-4 md:gap-6 mt-6">
               {([
@@ -166,7 +150,7 @@ export function Hero() {
               ] as const).map((canton) => (
                 <div key={canton.code} className="flex flex-col items-center gap-1.5">
                   <div className="overflow-hidden">
-                    <CantonFlag canton={canton.code} size={36} eager />
+                    <CantonFlag canton={canton.code} size={36} eager showBorder={false} />
                   </div>
                   <span className="text-white/60 text-[10px] md:text-xs">{canton.name}</span>
                 </div>
@@ -175,7 +159,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-
       {/* Bottom wave */}
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
         <svg viewBox="0 0 1440 80" fill="none" className="w-full">
