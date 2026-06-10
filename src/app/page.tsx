@@ -11,7 +11,7 @@ const TrustSection = dynamic(() => import("@/components/TrustSection").then(mod 
 
 export const metadata: Metadata = {
   title: "Fiduciaire en Ligne Suisse | Déclaration d'impôts | NeoFidu",
-  description: "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 390, comptabilité et fiscalité des entreprises. Assistant IA fiscal gratuit.",
+  description: "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 89, comptabilité et fiscalité des entreprises. Assistant IA fiscal gratuit.",
   keywords: [
     // Expat-specific keywords (high priority)
     "expat tax return switzerland",
