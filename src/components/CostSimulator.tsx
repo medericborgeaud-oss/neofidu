@@ -17,9 +17,9 @@ const PRICING: Record<string, {
   tvaSurcharge: [number, number];
   fiscalCost: [number, number];
 }> = {
-  RI:   { base: [800, 1200],   empCost: [0, 0],       txPer50: [200, 350],   tvaSurcharge: [400, 650],   fiscalCost: [250, 450] },
-  Sarl: { base: [1400, 2200],  empCost: [250, 450],   txPer50: [250, 450],   tvaSurcharge: [450, 750],   fiscalCost: [450, 750] },
-  SA:   { base: [2200, 3500],  empCost: [350, 650],   txPer50: [350, 550],   tvaSurcharge: [550, 950],   fiscalCost: [650, 1100] },
+  RI:   { base: [1300, 1700],   empCost: [0, 0],       txPer50: [200, 350],   tvaSurcharge: [400, 650],   fiscalCost: [250, 450] },
+  Sarl: { base: [1900, 2700],  empCost: [250, 450],   txPer50: [250, 450],   tvaSurcharge: [450, 750],   fiscalCost: [450, 750] },
+  SA:   { base: [2700, 4000],  empCost: [350, 650],   txPer50: [350, 550],   tvaSurcharge: [550, 950],   fiscalCost: [650, 1100] },
 };
 
 function formatCHF(n: number): string {
@@ -82,7 +82,7 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
       <div className="mb-4">
         <label className="text-xs text-gray-500 block mb-1">Forme juridique</label>
         <div className="text-sm font-medium text-emerald-700 bg-emerald-50 rounded-md px-3 py-1.5 inline-block">
-          {formLabel} <span className="text-xs text-gray-400 font-normal">· pré-rempli</span>
+          {formLabel}
         </div>
       </div>
 
