@@ -3,7 +3,7 @@ export const revalidate = 3600;
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCompanyBySlug, getSimilarCompanies, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS, CANTON_FISCAL } from "@/lib/companies";
+import { getCompanyBySlug, getSimilarCompanies, getCommuneForCompany, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS, CANTON_FISCAL } from "@/lib/companies";
 import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import CommuneMedia from "@/components/CommuneMedia";
@@ -36,14 +36,16 @@ export default async function CompanyPage({ params }: Props) {
   const company = await getCompanyBySlug(params.slug);
   if (!company) notFound();
 
-  const [similarCompanies] = await Promise.all([
+  const [similarCompanies, communeData] = await Promise.all([
     getSimilarCompanies(params.slug, company.canton, company.city, company.sector),
+    getCommuneForCompany(company.city, company.canton),
   ]);
 
   const formLabel = FORM_LABELS[company.legal_form] || company.legal_form;
   const cantonName = CANTON_NAMES[company.canton] || company.canton;
   const sectorLabel = company.sector ? (SECTOR_LABELS[company.sector] || company.sector) : null;
   const fiscal = CANTON_FISCAL[company.canton];
+  const formShort = company.legal_form === "Sarl" ? "Sàrl" : company.legal_form;
 
   const badgeClass =
     company.legal_form === "RI"
@@ -86,20 +88,11 @@ export default async function CompanyPage({ params }: Props) {
           </Link>
 
           {/* === TWO-COLUMN LAYOUT === */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 items-stretch">
 
             {/* ====== LEFT COLUMN — Content ====== */}
             <div className="space-y-4">
               <Card className="overflow-hidden">
-                {/* Header bar */}
-                <div className="bg-gray-50 px-6 py-3 border-b flex items-center justify-between">
-                  <p className="text-xs text-gray-400">
-                    neofidu.ch/observatoire/{params.slug}
-                  </p>
-                  <span className={`text-xs font-medium px-3 py-1 rounded-full ${badgeClass}`}>
-                    {formLabel}
-                  </span>
-                </div>
 
                 <div className="p-6">
                   {/* Company name + canton flag */}
@@ -116,20 +109,20 @@ export default async function CompanyPage({ params }: Props) {
                   {/* Info grid */}
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     <div className="bg-gray-50 rounded-lg p-3">
-                      <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-1">
                         <Building2 className="w-3 h-3" />Forme juridique
                       </div>
                       <p className="text-sm font-medium text-gray-900">{formLabel}</p>
                     </div>
                     <div className="bg-gray-50 rounded-lg p-3">
-                      <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-1">
                         <MapPin className="w-3 h-3" />Si&egrave;ge
                       </div>
                       <p className="text-sm font-medium text-gray-900">{company.city}, {company.canton}</p>
                     </div>
                     {company.ide_number && (
                       <div className="bg-gray-50 rounded-lg p-3">
-                        <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-1">
                           <Hash className="w-3 h-3" />N&deg; IDE
                         </div>
                         <p className="text-sm font-medium text-gray-900">{company.ide_number}</p>
@@ -137,7 +130,7 @@ export default async function CompanyPage({ params }: Props) {
                     )}
                     {company.capital && (
                       <div className="bg-gray-50 rounded-lg p-3">
-                        <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-1">
                           <Building2 className="w-3 h-3" />Capital
                         </div>
                         <p className="text-sm font-medium text-gray-900">{company.capital}</p>
@@ -145,7 +138,7 @@ export default async function CompanyPage({ params }: Props) {
                     )}
                     {sectorLabel && (
                       <div className="bg-gray-50 rounded-lg p-3">
-                        <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-1">
                           <Tag className="w-3 h-3" />Secteur
                         </div>
                         <p className="text-sm font-medium text-gray-900">{sectorLabel}</p>
@@ -155,13 +148,15 @@ export default async function CompanyPage({ params }: Props) {
                 </div>
 
                 {/* Commune photo + Map */}
-                <CommuneMedia city={company.city} canton={company.canton} />
+                <div className="px-6">
+                  <CommuneMedia city={company.city} canton={company.canton} />
+                </div>
 
                 <div className="p-6">
                   {/* Purpose */}
                   {company.purpose && (
                     <div className="mb-6">
-                      <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
                         <FileText className="w-3 h-3" />But social
                       </div>
                       <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3 leading-relaxed">
@@ -173,10 +168,10 @@ export default async function CompanyPage({ params }: Props) {
                   {/* Canton fiscal context */}
                   {fiscal && (
                     <div className="mb-6">
-                      <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
                         <Landmark className="w-3 h-3" />Contexte fiscal &mdash; {cantonName}
                       </div>
-                      <div className="bg-blue-50 rounded-lg p-4 space-y-2">
+                      <div className="bg-blue-50 rounded-lg p-4 space-y-3">
                         <div className="grid grid-cols-2 gap-3 text-sm">
                           <div>
                             <span className="text-gray-500">Taux imposition entreprise</span>
@@ -187,6 +182,14 @@ export default async function CompanyPage({ params }: Props) {
                             <p className="font-medium text-gray-900">{fiscal.capitalMin}</p>
                           </div>
                         </div>
+                        <p className="text-sm text-gray-600">{fiscal.particularite}</p>
+                        <div className="bg-white/60 rounded-lg p-3 mt-1">
+                          <p className="text-xs font-medium text-gray-700 mb-1">Simulation rapide &mdash; b\u00e9n\u00e9fice net CHF 25&apos;000</p>
+                          <p className="text-lg font-bold text-emerald-700">
+                            ~CHF {Math.round(25000 * parseFloat(fiscal.tauxEntreprise) / 100).toLocaleString("fr-CH")}&nbsp;
+                            <span className="text-xs font-normal text-gray-500">d&apos;imp\u00f4t estim\u00e9</span>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -194,7 +197,7 @@ export default async function CompanyPage({ params }: Props) {
                   {/* Persons (if data exists) */}
                   {company.persons && company.persons.length > 0 && (
                     <div className="mb-6">
-                      <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                         <Users className="w-3 h-3" />Personnes inscrites
                       </div>
                       <div className="space-y-3">
@@ -216,7 +219,7 @@ export default async function CompanyPage({ params }: Props) {
                   {/* FOSC History (if data exists) */}
                   {company.fosc_history && company.fosc_history.length > 0 && (
                     <div className="mb-6">
-                      <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                         <Clock className="w-3 h-3" />Historique FOSC
                       </div>
                       <div className="space-y-2">
@@ -243,7 +246,7 @@ export default async function CompanyPage({ params }: Props) {
 
             {/* ====== RIGHT COLUMN — Sticky sidebar ====== */}
             <div className="hidden lg:block">
-              <div className="sticky top-28 space-y-4">
+              <div className="sticky top-28 space-y-4 flex flex-col">
 
                 {/* Cost Simulator */}
                 <CostSimulator
@@ -254,37 +257,6 @@ export default async function CompanyPage({ params }: Props) {
 
                 {/* Similar companies */}
                 {similarCompanies.length > 0 && (
-                  <Card className="p-4">
-                    <div className="flex items-center gap-2 text-xs font-medium text-gray-700 mb-3">
-                      <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
-                      {sectorLabel
-                        ? `${sectorLabel} — ${company.city}`
-                        : `Entreprises — ${company.city}`}
-                    </div>
-                    <div className="space-y-1">
-                      {similarCompanies.slice(0, 5).map((c) => (
-                        <Link
-                          key={c.slug}
-                          href={`/observatoire/${c.slug}`}
-                          className="block text-xs text-emerald-600 hover:text-emerald-700 py-1.5 border-b border-gray-50 last:border-0 transition-colors"
-                        >
-                          {c.name}
-                          <span className="text-gray-400 ml-1">· {c.city}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </Card>
-                )}
-
-                {/* Articles liés compact */}
-                <Card className="p-4">
-                  <RelatedArticles
-                    canton={company.canton}
-                    legalForm={company.legal_form}
-                    city={company.city}
-                    compact
-                  />
-                </Card>
 
               </div>
             </div>
@@ -304,7 +276,7 @@ export default async function CompanyPage({ params }: Props) {
                   <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
                   {sectorLabel
                     ? `${sectorLabel} — ${company.city}`
-                    : `Entreprises — ${company.city}`}
+                    : `Autres ${formShort} \u00e0 ${company.city}`}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {similarCompanies.slice(0, 6).map((c) => (
