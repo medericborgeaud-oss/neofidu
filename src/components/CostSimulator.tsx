@@ -161,10 +161,10 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
       {/* CTA */}
       <div className="bg-emerald-500 rounded-lg p-4 text-center">
         <p className="text-[15px] font-medium text-white mb-1">
-          NeoFidu peut faire moins cher.
+          Pourquoi payer le prix du marché ?
         </p>
         <p className="text-xs text-emerald-100 mb-3">
-          Fiduciaire 100% digitale.
+          100% digital = des coûts maîtrisés.
         </p>
         <Link
           href={devisUrl}
