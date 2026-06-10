@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCompanyBySlug, getSimilarCompanies, getCommuneForCompany, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS, CANTON_FISCAL } from "@/lib/companies";
-import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark } from "lucide-react";
+import { ArrowLeft, Building2, MapPin, Hash, FileText, Users, Clock, Tag, TrendingUp, Landmark, Pencil } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import CommuneMedia from "@/components/CommuneMedia";
 import RelatedArticles from "@/components/RelatedArticles";
@@ -236,6 +236,19 @@ export default async function CompanyPage({ params }: Props) {
                   {/* Related Articles */}
                   <RelatedArticles canton={company.canton} legalForm={company.legal_form} city={company.city} />
 
+                  {/* Owner contact */}
+                  <div className="bg-gray-100 rounded-lg p-3 flex items-center gap-3 mt-6">
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 border border-gray-200">
+                      <Pencil className="w-3.5 h-3.5 text-gray-400" />
+                    </div>
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      Vous êtes le propriétaire de cette entreprise et souhaitez modifier ou ajouter des informations ?{" "}
+                      <Link href={`/demande?entreprise=${encodeURIComponent(company.name)}&type=modification`} className="text-blue-600 font-medium hover:underline">
+                        Contactez-nous ici &rarr;
+                      </Link>
+                    </p>
+                  </div>
+
                   {/* Source */}
                   <p className="text-center text-xs text-gray-400 mt-4">
                     Source : Registre du commerce via Zefix / FOSC
@@ -271,7 +284,7 @@ export default async function CompanyPage({ params }: Props) {
                           href={`/observatoire/${c.slug}`}
                           className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors"
                         >
-                          <p className="text-sm font-medium text-gray-900 truncate">{c.name}</p>
+                          <p className="text-sm font-medium text-gray-900 leading-tight line-clamp-2">{c.name}</p>
                           <p className="text-xs text-gray-500">{c.city} &middot; {FORM_LABELS[c.legal_form] || c.legal_form}</p>
                         </Link>
                       ))}
@@ -306,7 +319,7 @@ export default async function CompanyPage({ params }: Props) {
                       href={`/observatoire/${c.slug}`}
                       className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors"
                     >
-                      <p className="text-sm font-medium text-gray-900 truncate">{c.name}</p>
+                      <p className="text-sm font-medium text-gray-900 leading-tight line-clamp-2">{c.name}</p>
                       <p className="text-xs text-gray-500">{c.city} · {FORM_LABELS[c.legal_form] || c.legal_form}</p>
                     </Link>
                   ))}
