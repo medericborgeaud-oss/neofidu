@@ -5,42 +5,119 @@ interface RelatedArticlesProps {
   canton: string;
   legalForm: string;
   city: string;
+  compact?: boolean;
 }
 
-const ARTICLES: Record<string, { title: string; description: string; href: string; icon: string }[]> = {
+// Articles database — mapped by context
+const ARTICLES = {
+  // Canton-specific
   cantonVD: [
-    { title: "Coefficient d’impôt communal dans le canton de Vaud", description: "Comprendre le multiplicateur communal et son impact sur votre charge fiscale.", href: "/cantons/vaud", icon: "calculator" },
-    { title: "Délais de déclaration d’impôts 2025 par canton", description: "Dates limites, prolongations et conseils pour chaque canton romand.", href: "/blog/delais-declaration-impots-2025-cantons", icon: "receipt" },
+    {
+      title: "Coefficient d'impôt communal dans le canton de Vaud",
+      description: "Comprendre le multiplicateur communal et son impact sur votre charge fiscale.",
+      href: "/blog/coefficient-impot-communal-vaud",
+      icon: "calculator",
+    },
+    {
+      title: "Déclaration d'impôts à Vaud : guide complet",
+      description: "Délais, déductions et optimisations fiscales pour les contribuables vaudois.",
+      href: "/vaud",
+      icon: "receipt",
+    },
   ],
   cantonGE: [
-    { title: "Impôts à Genève : barèmes et particularités", description: "Tout savoir sur la fiscalité genevoise, le quasi-résident et le bouclier fiscal.", href: "/cantons/geneve", icon: "calculator" },
-    { title: "Déclaration d’impôts 2025 : guide complet", description: "Tout ce qu’il faut savoir pour remplir votre déclaration en Suisse.", href: "/blog/declaration-impots-2025-guide-complet", icon: "receipt" },
+    {
+      title: "Impôts à Genève : barèmes et particularités",
+      description: "Tout savoir sur la fiscalité genevoise, le quasi-résident et le bouclier fiscal.",
+      href: "/geneve",
+      icon: "calculator",
+    },
+    {
+      title: "Déclaration d'impôts à Genève",
+      description: "Guide pratique pour remplir votre déclaration GeTax.",
+      href: "/geneve",
+      icon: "receipt",
+    },
   ],
   cantonVS: [
-    { title: "Fiscalité en Valais : ce qu’il faut savoir", description: "Double barème cantonal et communal, déductions spécifiques au canton.", href: "/cantons/valais", icon: "calculator" },
+    {
+      title: "Fiscalité en Valais : ce qu'il faut savoir",
+      description: "Double barème cantonal et communal, déductions spécifiques au canton.",
+      href: "/valais",
+      icon: "calculator",
+    },
   ],
   cantonFR: [
-    { title: "Déclaration d’impôts à Fribourg", description: "Utilisation de FriTax, délais et spécificités fribourgeoises.", href: "/cantons/fribourg", icon: "receipt" },
+    {
+      title: "Déclaration d'impôts à Fribourg",
+      description: "Utilisation de FriTax, délais et spécificités fribourgeoises.",
+      href: "/fribourg",
+      icon: "receipt",
+    },
   ],
   cantonNE: [
-    { title: "Fiscalité à Neuchâtel", description: "Guide TaxMe NE et particularités neuchâteloises.", href: "/cantons/neuchatel", icon: "receipt" },
+    {
+      title: "Fiscalité à Neuchâtel",
+      description: "Guide TaxMe NE et particularités neuchâteloises.",
+      href: "/neuchatel",
+      icon: "receipt",
+    },
   ],
   cantonJU: [
-    { title: "Impôts dans le Jura", description: "JuraTax, déductions sociales et spécificités jurassiennes.", href: "/cantons/jura", icon: "receipt" },
+    {
+      title: "Impôts dans le Jura",
+      description: "JuraTax, déductions sociales et spécificités jurassiennes.",
+      href: "/jura",
+      icon: "receipt",
+    },
   ],
+
+  // Legal form specific
   RI: [
-    { title: "Comptabilité pour indépendants et freelances", description: "Gestion comptable, déclaration fiscale et services dédiés aux indépendants.", href: "/independants", icon: "briefcase" },
-    { title: "Indépendant : préparer sa retraite et sa prévoyance", description: "AVS, LPP facultative et 3e pilier : sécurisez votre avenir en Suisse.", href: "/blog/independant-suisse-retraite-prevoyance", icon: "scale" },
+    {
+      title: "Créer une entreprise individuelle en Suisse",
+      description: "Obligations légales, inscription au RC et comptabilité pour indépendants.",
+      href: "/independants",
+      icon: "briefcase",
+    },
+    {
+      title: "Comptabilité pour indépendants : simplifiée ou partie double ?",
+      description: "Quelle méthode comptable choisir selon votre chiffre d'affaires.",
+      href: "/independants",
+      icon: "scale",
+    },
   ],
   Sarl: [
-    { title: "Créer et gérer une Sàrl en Suisse romande", description: "Capital, organes, obligations comptables et fiscales de la Sàrl.", href: "/creation-entreprise", icon: "building" },
-    { title: "Comptabilité PME : les erreurs qui coûtent cher", description: "Bouclement, TVA, amortissements : évitez les 10 erreurs les plus courantes.", href: "/blog/comptabilite-pme-erreurs-eviter", icon: "briefcase" },
+    {
+      title: "Créer et gérer une Sàrl en Suisse romande",
+      description: "Capital, organes, obligations comptables et fiscales de la Sàrl.",
+      href: "/sarl",
+      icon: "building",
+    },
+    {
+      title: "Comptabilité d'une Sàrl : obligations et bonnes pratiques",
+      description: "Bouclement annuel, révision et déclaration fiscale pour votre société.",
+      href: "/sarl",
+      icon: "briefcase",
+    },
   ],
   SA: [
-    { title: "Créer une SA en Suisse", description: "Guide complet pour la création de votre société anonyme en Suisse romande.", href: "/creation-entreprise", icon: "building" },
+    {
+      title: "Obligations comptables d'une SA en Suisse",
+      description: "Révision, rapport annuel et spécificités de la société anonyme.",
+      href: "/sa",
+      icon: "building",
+    },
   ],
+
+  // Generic (always shown)
   generic: [
-    { title: "Fiduciaire en ligne : pourquoi choisir NeoFidu ?", description: "Tarifs transparents, gestion digitale et expertise romande.", href: "/", icon: "filetext" },
+    {
+      title: "Fiduciaire en ligne : pourquoi choisir NeoFidu ?",
+      description: "Tarifs transparents, gestion digitale et expertise romande.",
+      href: "/",
+      icon: "filetext",
+    },
   ],
 };
 
@@ -53,6 +130,15 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   filetext: <FileText className="w-5 h-5" />,
 };
 
+const ICON_MAP_SM: Record<string, React.ReactNode> = {
+  calculator: <Calculator className="w-4 h-4" />,
+  receipt: <Receipt className="w-4 h-4" />,
+  briefcase: <Briefcase className="w-4 h-4" />,
+  scale: <Scale className="w-4 h-4" />,
+  building: <Building2 className="w-4 h-4" />,
+  filetext: <FileText className="w-4 h-4" />,
+};
+
 const ICON_COLORS: Record<string, string> = {
   calculator: "bg-violet-50 text-violet-600",
   receipt: "bg-amber-50 text-amber-600",
@@ -62,27 +148,70 @@ const ICON_COLORS: Record<string, string> = {
   filetext: "bg-teal-50 text-teal-600",
 };
 
-function getArticlesForCompany(canton: string, legalForm: string) {
+function getArticlesForCompany(canton: string, legalForm: string): typeof ARTICLES.generic {
   const articles: typeof ARTICLES.generic = [];
-  const cantonKey = `canton${canton}`;
-  if (ARTICLES[cantonKey]) articles.push(...ARTICLES[cantonKey]);
-  if (ARTICLES[legalForm]) articles.push(...ARTICLES[legalForm]);
+
+  // Canton articles
+  const cantonKey = `canton${canton}` as keyof typeof ARTICLES;
+  if (ARTICLES[cantonKey]) {
+    articles.push(...(ARTICLES[cantonKey] as typeof ARTICLES.generic));
+  }
+
+  // Legal form articles
+  const formKey = legalForm as keyof typeof ARTICLES;
+  if (ARTICLES[formKey]) {
+    articles.push(...(ARTICLES[formKey] as typeof ARTICLES.generic));
+  }
+
+  // Always add one generic article
   articles.push(...ARTICLES.generic);
+
+  // Deduplicate by href and limit to 3
   const seen = new Set<string>();
   return articles.filter((a) => {
-    if (seen.has(a.title)) return false;
-    seen.add(a.title);
+    if (seen.has(a.href)) return false;
+    seen.add(a.href);
     return true;
   }).slice(0, 3);
 }
 
-export default function RelatedArticles({ canton, legalForm, city }: RelatedArticlesProps) {
+export default function RelatedArticles({ canton, legalForm, city, compact = false }: RelatedArticlesProps) {
   const articles = getArticlesForCompany(canton, legalForm);
+
   if (articles.length === 0) return null;
 
+  // Compact version for sidebar
+  if (compact) {
+    return (
+      <div>
+        <div className="flex items-center gap-2 text-xs font-medium text-gray-700 mb-3">
+          <FileText className="w-3.5 h-3.5 text-emerald-500" />
+          Articles liés
+        </div>
+        <div className="space-y-0">
+          {articles.map((article, i) => (
+            <Link
+              key={i}
+              href={article.href}
+              className="flex items-center gap-2.5 py-2 border-b border-gray-50 last:border-0 hover:text-emerald-600 transition-colors group"
+            >
+              <div className={`flex-shrink-0 w-7 h-7 rounded-md flex items-center justify-center ${ICON_COLORS[article.icon] || "bg-gray-50 text-gray-500"}`}>
+                {ICON_MAP_SM[article.icon] || <FileText className="w-4 h-4" />}
+              </div>
+              <p className="text-xs font-medium text-gray-700 group-hover:text-emerald-600 truncate transition-colors flex-1 min-w-0">
+                {article.title}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Full version for main content
   return (
-    <div className="mb-14">
-      <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+    <div className="mb-6">
+      <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
         <FileText className="w-3 h-3" />
         Articles liés
       </div>
