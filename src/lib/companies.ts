@@ -78,7 +78,7 @@ export const CANTON_NAMES: Record<string, string> = {
 };
 
 export const FORM_LABELS: Record<string, string> = {
-  RI: "RI",
+  RI: "Raison individuelle",
   Sarl: "Sàrl",
   SA: "SA",
 };
