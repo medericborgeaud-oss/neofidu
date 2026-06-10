@@ -198,7 +198,7 @@ export default function RelatedArticles({ canton, legalForm, city, compact = fal
               <div className={`flex-shrink-0 w-7 h-7 rounded-md flex items-center justify-center ${ICON_COLORS[article.icon] || "bg-gray-50 text-gray-500"}`}>
                 {ICON_MAP_SM[article.icon] || <FileText className="w-4 h-4" />}
               </div>
-              <p className="text-xs font-medium text-gray-700 group-hover:text-emerald-600 truncate transition-colors flex-1 min-w-0">
+              <p className="text-xs font-medium text-gray-700 group-hover:text-emerald-600 transition-colors flex-1 min-w-0 leading-snug">
                 {article.title}
               </p>
             </Link>
