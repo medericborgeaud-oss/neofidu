@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Search, X, ArrowRight, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CantonFlag } from "@/components/CantonFlag";
 import { Company, CompanyStats, CompanyFilters, SectorDistribution, CANTON_NAMES, FORM_LABELS, SECTOR_LABELS } from "@/lib/companies";
 
 const CANTONS = ["VD", "GE", "VS", "FR", "NE", "JU"];
@@ -225,12 +226,7 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
                 {companies.map((c) => (
                   <Link key={c.id} href={`/observatoire/${c.slug}`}>
                     <div className="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:border-emerald-300 transition-colors cursor-pointer">
-                      <span className="inline-flex items-center justify-center text-[10px] font-bold rounded px-1.5 py-0.5 flex-shrink-0" style={{
-                          backgroundColor: c.canton === "VD" ? "#E8F5E9" : c.canton === "GE" ? "#FFF3E0" : c.canton === "VS" ? "#E3F2FD" : c.canton === "FR" ? "#F3E5F5" : c.canton === "NE" ? "#FFF9C4" : c.canton === "JU" ? "#FCE4EC" : "#F5F5F5",
-                          color: c.canton === "VD" ? "#2E7D32" : c.canton === "GE" ? "#E65100" : c.canton === "VS" ? "#1565C0" : c.canton === "FR" ? "#6A1B9A" : c.canton === "NE" ? "#F57F17" : c.canton === "JU" ? "#C62828" : "#616161",
-                        }}>
-                          {c.canton}
-                        </span>
+                      <CantonFlag canton={c.canton} size={20} showBorder={false} />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {c.name}
