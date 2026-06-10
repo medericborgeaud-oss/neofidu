@@ -17,9 +17,9 @@ const PRICING: Record<string, {
   tvaSurcharge: [number, number];
   fiscalCost: [number, number];
 }> = {
-  RI:   { base: [1200, 1800],  empCost: [0, 0],       txPer50: [500, 800],   tvaSurcharge: [800, 1400],  fiscalCost: [450, 700] },
-  Sarl: { base: [2400, 3600],  empCost: [600, 1200],   txPer50: [600, 1000],  tvaSurcharge: [900, 1600],  fiscalCost: [900, 1600] },
-  SA:   { base: [3500, 5500],  empCost: [700, 1400],   txPer50: [700, 1100],  tvaSurcharge: [1000, 1800], fiscalCost: [1200, 2200] },
+  RI:   { base: [800, 1200],   empCost: [0, 0],       txPer50: [200, 350],   tvaSurcharge: [400, 650],   fiscalCost: [250, 450] },
+  Sarl: { base: [1400, 2200],  empCost: [250, 450],   txPer50: [250, 450],   tvaSurcharge: [450, 750],   fiscalCost: [450, 750] },
+  SA:   { base: [2200, 3500],  empCost: [350, 650],   txPer50: [350, 550],   tvaSurcharge: [550, 950],   fiscalCost: [650, 1100] },
 };
 
 function formatCHF(n: number): string {
@@ -53,6 +53,7 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
       high += p.fiscalCost[1];
     }
 
+    // Arrondir aux centaines
     low = Math.round(low / 100) * 100;
     high = Math.round(high / 100) * 100;
 
@@ -160,7 +161,7 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
       {/* CTA */}
       <div className="bg-emerald-500 rounded-lg p-4 text-center">
         <p className="text-[15px] font-medium text-white mb-1">
-          NeoFidu peut faire mieux.
+          NeoFidu peut faire moins cher.
         </p>
         <p className="text-xs text-emerald-100 mb-3">
           Fiduciaire 100% digitale.
