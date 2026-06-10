@@ -184,10 +184,10 @@ export default async function CompanyPage({ params }: Props) {
                         </div>
                         <p className="text-sm text-gray-600">{fiscal.particularite}</p>
                         <div className="bg-white/60 rounded-lg p-3 mt-1">
-                          <p className="text-xs font-medium text-gray-700 mb-1">Simulation rapide &mdash; b\u00e9n\u00e9fice net CHF 25&apos;000</p>
+                          <p className="text-xs font-medium text-gray-700 mb-1">Simulation rapide &mdash; bénéfice net CHF 25&apos;000</p>
                           <p className="text-lg font-bold text-emerald-700">
                             ~CHF {Math.round(25000 * parseFloat(fiscal.tauxEntreprise) / 100).toLocaleString("fr-CH")}&nbsp;
-                            <span className="text-xs font-normal text-gray-500">d&apos;imp\u00f4t estim\u00e9</span>
+                            <span className="text-xs font-normal text-gray-500">d&apos;impôt estimé</span>
                           </p>
                         </div>
                       </div>
@@ -257,6 +257,27 @@ export default async function CompanyPage({ params }: Props) {
 
                 {/* Similar companies */}
                 {similarCompanies.length > 0 && (
+                  <Card className="p-4">
+                    <div className="flex items-center gap-2 text-xs font-medium text-gray-700 mb-3">
+                      <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
+                      {sectorLabel
+                        ? `Autres ${formShort} en ${sectorLabel} à ${company.city}`
+                        : `Autres ${formShort} à ${company.city}`}
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      {similarCompanies.slice(0, 6).map((c) => (
+                        <Link
+                          key={c.slug}
+                          href={`/observatoire/${c.slug}`}
+                          className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors"
+                        >
+                          <p className="text-sm font-medium text-gray-900 truncate">{c.name}</p>
+                          <p className="text-xs text-gray-500">{c.city} &middot; {FORM_LABELS[c.legal_form] || c.legal_form}</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </Card>
+                )}
 
               </div>
             </div>
@@ -275,8 +296,8 @@ export default async function CompanyPage({ params }: Props) {
                 <div className="flex items-center gap-2 text-xs font-medium text-gray-700 mb-3">
                   <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
                   {sectorLabel
-                    ? `${sectorLabel} — ${company.city}`
-                    : `Autres ${formShort} \u00e0 ${company.city}`}
+                    ? `Autres ${formShort} en ${sectorLabel} à ${company.city}`
+                    : `Autres ${formShort} à ${company.city}`}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {similarCompanies.slice(0, 6).map((c) => (
