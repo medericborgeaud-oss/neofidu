@@ -332,19 +332,20 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
                         href={buildUrl({ sector: s })}
                         className="flex items-center gap-2 group"
                       >
-                        <span className="text-xs text-gray-600 w-36 text-right truncate flex-shrink-0">{sectorLabel}</span>
-                        <div className="flex-1 h-5 bg-gray-50 rounded overflow-hidden">
-                          <div
-                            className="h-full rounded flex items-center px-2 transition-all group-hover:opacity-80"
-                            style={{
-                              width: `${barWidth}%`,
-                              backgroundColor: SECTOR_COLORS[s] || "#9FE1CB",
-                            }}
-                          >
-                            <span className="text-[11px] font-medium text-white whitespace-nowrap drop-shadow-sm">
-                              {count.toLocaleString("fr-CH")}
-                            </span>
+                        <span className="text-xs text-gray-600 w-28 text-right truncate flex-shrink-0">{sectorLabel}</span>
+                        <div className="flex-1 flex items-center gap-2">
+                          <div className="flex-1 h-5 bg-gray-50 rounded overflow-hidden">
+                            <div
+                              className="h-full rounded transition-all group-hover:opacity-80"
+                              style={{
+                                width: `${barWidth}%`,
+                                backgroundColor: SECTOR_COLORS[s] || "#9FE1CB",
+                              }}
+                            />
                           </div>
+                          <span className="text-[11px] font-bold tabular-nums min-w-[3.5rem] text-right" style={{ color: SECTOR_COLORS[s] || "#9CA3AF" }}>
+                            {count.toLocaleString("fr-CH")}
+                          </span>
                         </div>
                       </Link>
                     );
