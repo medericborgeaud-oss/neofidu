@@ -226,7 +226,7 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
                 {companies.map((c) => (
                   <Link key={c.id} href={`/observatoire/${c.slug}`}>
                     <div className="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:border-emerald-300 transition-colors cursor-pointer">
-                      <CantonFlag canton={c.canton} size={20} showBorder={false} />
+                      <CantonFlag canton={c.canton} size={20} showBorder={true} />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {c.name}
