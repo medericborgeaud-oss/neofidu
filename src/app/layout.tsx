@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | NeoFidu",
   },
   description:
-    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 390.-, comptabilité et fiscalité des entreprises",
+    "Fiduciaire en ligne en Suisse romande. Déclaration d'impôts dès CHF 89.-, comptabilité et fiscalité des entreprises",
   manifest: "/site.webmanifest",
   icons: {
     icon: [
