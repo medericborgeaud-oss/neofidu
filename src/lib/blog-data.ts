@@ -303,8 +303,8 @@ export const blogArticles: BlogArticle[] = [
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=60",
     title: "Baisse de loyer 2026 : taux de référence",
     titleEn: "Rent Reduction in Switzerland 2026: How to Request a Decrease Based on Reference Rate",
-    excerpt: "Taux de référence à 1.75% : faites baisser votre loyer en Suisse. Calcul de la réduction, modèle de lettre et procédure étape par étape.",
-    excerptEn: "Complete guide to requesting a rent reduction in Switzerland. Reference rate 1.75%, reduction calculation, letter template, deadlines and procedure.",
+    excerpt: "Taux de référence à 1.25% : faites baisser votre loyer en Suisse. Calcul de la réduction, modèle de lettre et procédure étape par étape.",
+    excerptEn: "Complete guide to requesting a rent reduction in Switzerland. Reference rate 1.25%, reduction calculation, letter template, deadlines and procedure.",
     keywords: [
       "baisse de loyer",
       "baisse loyer suisse",
@@ -334,7 +334,7 @@ export const blogArticles: BlogArticle[] = [
 <p>Vous payez peut-être trop cher de loyer sans le savoir. En Suisse, votre loyer est directement lié au <strong>taux de référence hypothécaire</strong> — et quand ce taux baisse, vous avez le droit de demander une réduction. Bonne nouvelle : on vous explique tout dans ce guide pratique.</p>
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #22c55e;">
-<p style="margin: 0; font-weight: 600;">📊 Taux de référence actuel : 1.75% (mars 2026)</p>
+<p style="margin: 0; font-weight: 600;">📊 Taux de référence actuel : 1.25% (juin 2026)</p>
 <p style="margin: 8px 0 0 0; font-size: 14px; color: #666;">Utilisez notre <a href="/simulateur/baisse-loyer" style="color: #16a34a; font-weight: 500;">calculateur de baisse de loyer</a> pour estimer votre réduction en 30 secondes.</p>
 </div>
 
@@ -357,12 +357,12 @@ export const blogArticles: BlogArticle[] = [
 <li style="margin-bottom: 0.25rem;">Quand il <strong>monte</strong> → le propriétaire peut augmenter votre loyer</li>
 </ul>
 
-<p>Actuellement, on est à <strong>1.75%</strong> depuis décembre 2023. Pour rappel, il était descendu jusqu'à 1.25% pendant la période Covid.</p>
+<p>Actuellement, on est à <strong>1.25%</strong> depuis septembre 2025. Pour rappel, il était descendu jusqu'à 1.25% pendant la période Covid.</p>
 
 <h2 id="qui-peut-demander"><strong>Est-ce que j'ai droit à une baisse ?</strong></p>
 <p>Oui, si ces deux conditions sont remplies :</p>
 <ol>
-<li style="margin-bottom: 0.25rem;">Le taux actuel (1.75%) est <strong>plus bas</strong> que celui qui était en vigueur quand vous avez signé votre bail ou reçu votre dernière modification de loyer</li>
+<li style="margin-bottom: 0.25rem;">Le taux actuel (1.25%) est <strong>plus bas</strong> que celui qui était en vigueur quand vous avez signé votre bail ou reçu votre dernière modification de loyer</li>
 <li style="margin-bottom: 0.25rem;">Votre bail n'a pas de clause d'indexation ou de loyer échelonné (c'est rare, vérifiez quand même)</li>
 </ol>
 
@@ -400,8 +400,8 @@ export const blogArticles: BlogArticle[] = [
 <p><strong>Votre situation :</strong></p>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
 <li style="margin-bottom: 0.25rem;">Loyer actuel : CHF 1'800/mois</li>
-<li style="margin-bottom: 0.25rem;">Taux quand vous avez emménagé (2012) : 2.25%</li>
-<li style="margin-bottom: 0.25rem;">Taux actuel : 1.75%</li>
+<li style="margin-bottom: 0.25rem;">Taux quand vous avez emménagé (2024) : 1.75%</li>
+<li style="margin-bottom: 0.25rem;">Taux actuel : 1.25%</li>
 <li style="margin-bottom: 0.25rem;">Différence : 0.50% (2 paliers)</li>
 </ul>
 <p><strong>Résultat :</strong></p>
@@ -444,7 +444,7 @@ Madame, Monsieur,
 
 Je me permets de solliciter une baisse de mon loyer conformément au droit du bail suisse.
 
-Lors de la signature de mon bail, le taux de référence hypothécaire était de [X]%. Ce taux est aujourd'hui de 1.75%, soit une baisse de [X - 1.75]%.
+Lors de la signature de mon bail, le taux de référence hypothécaire était de [X]%. Ce taux est aujourd'hui de 1.25%, soit une baisse de [X - 1.25]%.
 
 Selon les calculs officiels, cette baisse me donne droit à une réduction de loyer d'environ [Y]%.
 
@@ -486,7 +486,7 @@ Meilleures salutations,
 </tr>
 </thead>
 <tbody>
-<tr><td style="padding: 10px; border: 1px solid #e2e8f0;">Décembre 2023 - aujourd'hui</td><td style="padding: 10px; text-align: right; border: 1px solid #e2e8f0;"><strong>1.75%</strong></td></tr>
+<tr><td style="padding: 10px; border: 1px solid #e2e8f0;">Septembre 2025 - aujourd'hui</td><td style="padding: 10px; text-align: right; border: 1px solid #e2e8f0;"><strong>1.25%</strong></td></tr>
 <tr><td style="padding: 10px; border: 1px solid #e2e8f0;">Mars 2020 - Novembre 2023</td><td style="padding: 10px; text-align: right; border: 1px solid #e2e8f0;">1.25% - 1.50%</td></tr>
 <tr><td style="padding: 10px; border: 1px solid #e2e8f0;">Juin 2017 - Février 2020</td><td style="padding: 10px; text-align: right; border: 1px solid #e2e8f0;">1.50%</td></tr>
 <tr><td style="padding: 10px; border: 1px solid #e2e8f0;">Juin 2015 - Mai 2017</td><td style="padding: 10px; text-align: right; border: 1px solid #e2e8f0;">1.75%</td></tr>
