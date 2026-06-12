@@ -8,7 +8,7 @@ import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export const metadata: Metadata = {
   title: "Calculateur Baisse de Loyer 2026",
-  description: "Calculez gratuitement si vous pouvez demander une baisse de loyer en Suisse. Simulateur basé sur le taux de référence hypothécaire actuel (1.75%). Vaud, Genève, Valais, Fribourg.",
+  description: "Calculez gratuitement si vous pouvez demander une baisse de loyer en Suisse. Simulateur basé sur le taux de référence hypothécaire actuel (1.25%). Vaud, Genève, Valais, Fribourg.",
   keywords: [
     "baisse de loyer",
     "calculateur loyer suisse",
@@ -69,7 +69,7 @@ const faqSchema = {
       "name": "Quel est le taux de référence hypothécaire actuel en Suisse ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Le taux de référence hypothécaire est actuellement de 1.75% en Suisse (mars 2026). Ce taux est publié par l'Office fédéral du logement et sert de base pour les ajustements de loyer."
+        "text": "Le taux de référence hypothécaire est actuellement de 1.25% en Suisse (juin 2026). Ce taux est publié par l'Office fédéral du logement et sert de base pour les ajustements de loyer."
       }
     },
     {
@@ -85,7 +85,7 @@ const faqSchema = {
       "name": "De combien peut baisser mon loyer ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Chaque baisse de 0.25% du taux de référence permet théoriquement une réduction de loyer d'environ 2.91%. Par exemple, si le taux passe de 2% à 1.75%, vous pouvez demander une baisse d'environ 2.91% sur votre loyer."
+        "text": "Chaque baisse de 0.25% du taux de référence permet théoriquement une réduction de loyer d'environ 2.91%. Par exemple, si le taux passe de 1.50% à 1.25%, vous pouvez demander une baisse d'environ 2.91% sur votre loyer."
       }
     },
     {
