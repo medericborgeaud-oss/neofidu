@@ -54,20 +54,20 @@ export const blogArticles: BlogArticle[] = [
     titleEn: "End of crypto anonymity: Switzerland shares your data with 74 countries from 2026",
     excerpt: "Dès 2026, les plateformes crypto suisses transmettent vos données au fisc, partagées avec 74 pays en 2027. Qui est concerné, et comment se mettre en règle avant qu'il ne soit trop tard.",
     excerptEn: "From 2026, Swiss crypto platforms report client data, shared with 74 countries in 2027. Who is affected and how to get compliant.",
-    content: `<p>L'époque où l'on pouvait garder ses cryptos « sous le radar » du fisc est terminée. La Suisse a adopté l'<strong>échange automatique de renseignements sur les cryptoactifs</strong>, calqué sur le standard CARF de l'OCDE. Concrètement : dès 2026, les plateformes crypto suisses collectent vos données fiscales, et dès 2027 la Suisse les partagera avec <strong>74 pays partenaires</strong>, dont toute l'Union européenne et le Royaume-Uni.</p>
-<p>Si vous détenez du Bitcoin, de l'Ethereum ou tout autre cryptoactif, ce changement vous concerne directement — surtout si vous ne les avez jamais déclarés.</p>
+    content: `<p style="margin:0 0 18px;line-height:1.75;">L'époque où l'on pouvait garder ses cryptos « sous le radar » du fisc est terminée. La Suisse a adopté l'<strong>échange automatique de renseignements sur les cryptoactifs</strong>, calqué sur le standard CARF de l'OCDE. Concrètement : dès 2026, les plateformes crypto suisses collectent vos données fiscales, et dès 2027 la Suisse les partagera avec <strong>74 pays partenaires</strong>, dont toute l'Union européenne et le Royaume-Uni.</p>
+<p style="margin:0 0 18px;line-height:1.75;">Si vous détenez du Bitcoin, de l'Ethereum ou tout autre cryptoactif, ce changement vous concerne directement — surtout si vous ne les avez jamais déclarés.</p>
 <div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:16px;margin:24px 0;font-weight:600;">📅 À retenir : entrée en vigueur du cadre au 1er janvier 2026 · collecte des données dès 2026 · premier échange international en 2027.</div>
-<h2>Ce qui change vraiment en 2026</h2>
-<p>Jusqu'ici, le fisc suisse ne recevait <strong>aucune information automatique</strong> sur les avoirs crypto. Vous deviez les déclarer vous-même au titre de la fortune, mais aucune plateforme ne transmettait spontanément vos soldes. Ce système reposait sur la confiance ; il bascule vers la <strong>transparence automatique</strong>.</p>
-<p>Les prestataires de services crypto suisses devront identifier leurs clients et déclarer leurs avoirs à l'Administration fédérale des contributions, qui transmettra ces données aux pays de résidence des clients — et recevra en retour les informations sur les Suisses détenant des cryptos à l'étranger.</p>
-<h2>Quelles données sont transmises ?</h2>
-<ul>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Ce qui change vraiment en 2026</h2>
+<p style="margin:0 0 18px;line-height:1.75;">Jusqu'ici, le fisc suisse ne recevait <strong>aucune information automatique</strong> sur les avoirs crypto. Vous deviez les déclarer vous-même au titre de la fortune, mais aucune plateforme ne transmettait spontanément vos soldes. Ce système reposait sur la confiance ; il bascule vers la <strong>transparence automatique</strong>.</p>
+<p style="margin:0 0 18px;line-height:1.75;">Les prestataires de services crypto suisses devront identifier leurs clients et déclarer leurs avoirs à l'Administration fédérale des contributions, qui transmettra ces données aux pays de résidence des clients — et recevra en retour les informations sur les Suisses détenant des cryptos à l'étranger.</p>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Quelles données sont transmises ?</h2>
+<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;">
 <li><strong>Identité complète</strong> : nom, adresse, juridiction de résidence</li>
 <li><strong>Numéro d'identification fiscale</strong></li>
 <li><strong>Soldes détenus</strong> et <strong>montants des transactions</strong> (achats, ventes, échanges, transferts)</li>
 </ul>
-<p>Seuls les pays respectant eux-mêmes le standard CARF de l'OCDE recevront ces données. L'échange est réciproque.</p>
-<h2>Êtes-vous concerné ?</h2>
+<p style="margin:0 0 18px;line-height:1.75;">Seuls les pays respectant eux-mêmes le standard CARF de l'OCDE recevront ces données. L'échange est réciproque.</p>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Êtes-vous concerné ?</h2>
 <table style="width:100%;border-collapse:collapse;margin:16px 0;">
 <thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Profil</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Concerné ?</th></tr></thead>
 <tbody>
@@ -76,32 +76,32 @@ export const blogArticles: BlogArticle[] = [
 <tr><td style="padding:8px;border:1px solid #e2e8f0;">Self-custody (Ledger, wallet privé)</td><td style="padding:8px;border:1px solid #e2e8f0;">Indirectement — tout passage par une plateforme est tracé</td></tr>
 </tbody>
 </table>
-<p>Le self-custody n'est pas un moyen d'échapper au fisc : dès que vous achetez ou revendez via une plateforme régulée, ce point d'entrée ou de sortie est déclaré.</p>
-<h2>Le calendrier</h2>
-<ul>
+<p style="margin:0 0 18px;line-height:1.75;">Le self-custody n'est pas un moyen d'échapper au fisc : dès que vous achetez ou revendez via une plateforme régulée, ce point d'entrée ou de sortie est déclaré.</p>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Le calendrier</h2>
+<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;">
 <li><strong>1er janvier 2026</strong> : entrée en vigueur, début de la collecte.</li>
 <li><strong>2026</strong> : première année de collecte complète.</li>
 <li><strong>2027</strong> : premier échange automatique des données 2026 avec les 74 États partenaires.</li>
 </ul>
-<p>La fenêtre pour se mettre en règle proprement, c'est maintenant. <em>(La liste définitive des États partenaires reste soumise à l'approbation du Parlement ; le principe et le calendrier sont actés.)</em></p>
-<h2>Rappel : comment les cryptos sont imposées en Suisse</h2>
-<ul>
+<p style="margin:0 0 18px;line-height:1.75;">La fenêtre pour se mettre en règle proprement, c'est maintenant. <em>(La liste définitive des États partenaires reste soumise à l'approbation du Parlement ; le principe et le calendrier sont actés.)</em></p>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Rappel : comment les cryptos sont imposées en Suisse</h2>
+<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;">
 <li><strong>Impôt sur la fortune (oui)</strong> : vos cryptos sont déclarées à leur valeur au 31 décembre.</li>
 <li><strong>Gains en capital (non, sauf exception)</strong> : les plus-values privées sont en principe exonérées, comme pour les actions — sauf si vous êtes qualifié de commerçant professionnel de titres.</li>
 <li><strong>Revenus (oui)</strong> : staking, mining, lending et airdrops sont imposés comme du revenu.</li>
 </ul>
-<p>Pour le détail, voyez notre <a href="https://neofidu.ch/blog/declarer-cryptomonnaies-suisse-guide-2026">guide pour déclarer ses cryptomonnaies en Suisse</a>.</p>
-<h2>Le vrai risque si vous n'avez jamais déclaré</h2>
-<p>À partir de 2027, l'information arrive seule sur le bureau de l'administration. En cas d'écart avec vos déclarations passées, vous vous exposez à un <strong>rappel d'impôt</strong> (jusqu'à 10 ans en arrière, avec intérêts), une <strong>amende pour soustraction</strong> (de 1/3 à 3 fois le montant soustrait), voire des sanctions pénales dans les cas graves. Voir notre article sur les <a href="https://neofidu.ch/blog/consequences-fraude-fiscale-suisse-amendes-penalites">conséquences de la fraude fiscale en Suisse</a>.</p>
-<h2>Que faire maintenant</h2>
-<ul>
+<p style="margin:0 0 18px;line-height:1.75;">Pour le détail, voyez notre <a href="https://neofidu.ch/blog/declarer-cryptomonnaies-suisse-guide-2026">guide pour déclarer ses cryptomonnaies en Suisse</a>.</p>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Le vrai risque si vous n'avez jamais déclaré</h2>
+<p style="margin:0 0 18px;line-height:1.75;">À partir de 2027, l'information arrive seule sur le bureau de l'administration. En cas d'écart avec vos déclarations passées, vous vous exposez à un <strong>rappel d'impôt</strong> (jusqu'à 10 ans en arrière, avec intérêts), une <strong>amende pour soustraction</strong> (de 1/3 à 3 fois le montant soustrait), voire des sanctions pénales dans les cas graves. Voir notre article sur les <a href="https://neofidu.ch/blog/consequences-fraude-fiscale-suisse-amendes-penalites">conséquences de la fraude fiscale en Suisse</a>.</p>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Que faire maintenant</h2>
+<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;">
 <li><strong>Faites l'inventaire</strong> de vos avoirs et exportez l'historique de vos transactions.</li>
 <li><strong>Régularisez le passé</strong> avec la dénonciation spontanée non punissable : une fois dans votre vie, vous déclarez spontanément sans amende (seulement rappel d'impôt + intérêts), à condition d'agir avant que le fisc ne découvre l'omission. L'échange de 2027 referme cette fenêtre.</li>
 <li><strong>Déclarez correctement dès cette année</strong> : fortune au 31.12 et revenus éventuels.</li>
 <li><strong>Faites-vous accompagner</strong> si la situation est complexe (multiples plateformes, DeFi, NFT, trading fréquent, transfrontalier).</li>
 </ul>
-<h2>Frontaliers et Suisses de l'étranger</h2>
-<p>Si vous êtes frontalier ou expatrié, vos données crypto peuvent circuler dans les deux sens entre la Suisse et votre pays de résidence (la France et toute l'UE font partie des partenaires). Une déclaration cohérente des deux côtés devient indispensable.</p>
+<h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Frontaliers et Suisses de l'étranger</h2>
+<p style="margin:0 0 18px;line-height:1.75;">Si vous êtes frontalier ou expatrié, vos données crypto peuvent circuler dans les deux sens entre la Suisse et votre pays de résidence (la France et toute l'UE font partie des partenaires). Une déclaration cohérente des deux côtés devient indispensable.</p>
 <div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:16px;margin:24px 0;"><strong>Besoin d'y voir clair dans votre situation crypto ?</strong> NeoFidu vous accompagne pour déclarer, régulariser et optimiser vos cryptoactifs en Suisse romande. <a href="https://neofidu.ch/demande">Déposez une demande</a> ou <a href="https://neofidu.ch/contact">contactez-nous</a>.</div>
 <p style="color:#64748b;font-size:0.9em;"><em>Cet article est fourni à titre informatif et ne constitue pas un conseil fiscal individualisé.</em></p>`,
     category: "actualites",
