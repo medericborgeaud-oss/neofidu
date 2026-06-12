@@ -19,6 +19,8 @@ import { useLanguage } from "@/lib/language-context";
 
 // Historical reference rates
 const referenceRates = [
+  { date: "2025-09-01", rate: 1.25, label: "Sept 2025" },
+  { date: "2025-03-01", rate: 1.50, label: "Mars 2025" },
   { date: "2024-12-01", rate: 1.75, label: "Décembre 2024" },
   { date: "2023-12-01", rate: 1.75, label: "Décembre 2023" },
   { date: "2023-06-01", rate: 1.50, label: "Juin 2023" },
@@ -33,8 +35,8 @@ const referenceRates = [
   { date: "2008-12-01", rate: 3.50, label: "Déc 2008" },
 ];
 
-const CURRENT_RATE = 1.75;
-const CURRENT_RATE_DATE = "Mars 2026";
+const CURRENT_RATE = 1.25;
+const CURRENT_RATE_DATE = "Juin 2026";
 
 function calculateReduction(oldRate: number, newRate: number): number {
   if (newRate >= oldRate) return 0;
@@ -220,7 +222,7 @@ export function BaiseLoyerCalculator() {
               <h2 className="text-2xl font-bold mb-6">Tout savoir sur la baisse de loyer en Suisse</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>Le <strong>taux de référence hypothécaire</strong> est publié par l'Office fédéral du logement. Il sert de base pour les ajustements de loyer en Suisse.</p>
-                <p>Chaque baisse de <strong>0.25%</strong> du taux permet une réduction d'environ <strong>2.91%</strong> du loyer. Par exemple, un passage de 2% à 1.75% justifie une baisse de 2.91%.</p>
+                <p>Chaque baisse de <strong>0.25%</strong> du taux permet une réduction d'environ <strong>2.91%</strong> du loyer. Par exemple, un passage de 1.50% à 1.25% justifie une baisse de 2.91%.</p>
                 <p>Tout locataire en Suisse (Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura) peut demander une baisse si le taux actuel est inférieur au taux lors de la dernière fixation de loyer.</p>
                 <h3 className="text-lg font-semibold text-foreground pt-4">Historique des taux</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
