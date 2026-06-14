@@ -74,7 +74,7 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
       <div className="flex items-start gap-2 mb-4">
         <Calculator className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
         <h3 className="text-sm font-medium text-emerald-700 leading-snug">
-          Combien coûte la comptabilité de {companyName} ?
+          Combien coûte la comptabilité pour une {formLabel} de cette taille ?
         </h3>
       </div>
 
@@ -157,6 +157,8 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
         </p>
         <p className="text-[11px] text-gray-400 mt-1">{services}</p>
       </div>
+
+      <p className="text-[11px] text-gray-400 text-center mb-4">Estimation générique à titre indicatif, basée sur des hypothèses ajustables.</p>
 
       {/* CTA */}
       <div className="bg-emerald-500 rounded-lg p-4 text-center">
