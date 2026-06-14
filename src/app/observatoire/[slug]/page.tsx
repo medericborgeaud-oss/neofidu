@@ -184,10 +184,10 @@ export default async function CompanyPage({ params }: Props) {
                         </div>
                         <p className="text-sm text-gray-600">{fiscal.particularite}</p>
                         <div className="bg-white/60 rounded-lg p-3 mt-1">
-                          <p className="text-xs font-bold text-gray-700 mb-1">Simulation rapide &mdash; bénéfice net CHF 25&apos;000</p>
+                          <p className="text-xs font-bold text-gray-700 mb-1">Exemple générique &mdash; bénéfice net CHF 25&apos;000</p>
                           <p className="text-lg font-bold text-emerald-700">
                             ~CHF {Math.round(25000 * parseFloat(fiscal.tauxEntreprise) / 100).toLocaleString("fr-CH")}&nbsp;
-                            <span className="text-xs font-normal text-gray-500">d&apos;impôt estimé</span>
+                            <span className="text-xs font-normal text-gray-500">d&apos;impôt estimé (chiffre illustratif générique)</span>
                           </p>
                         </div>
                       </div>
@@ -242,7 +242,7 @@ export default async function CompanyPage({ params }: Props) {
                       <Pencil className="w-3.5 h-3.5 text-gray-400" />
                     </div>
                     <p className="text-xs text-gray-500 leading-relaxed">
-                      Vous êtes le propriétaire de cette entreprise et souhaitez modifier ou ajouter des informations ?{" "}
+                      Vous êtes le propriétaire de cette entreprise et souhaitez modifier, ajouter ou demander le retrait de cette fiche ?{" "}
                       <Link href="/contact" className="text-blue-600 font-medium hover:underline">
                         Contactez-nous ici &rarr;
                       </Link>
