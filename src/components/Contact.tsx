@@ -71,11 +71,11 @@ export function Contact() {
   // Translations
   const t = {
     tagline: isEnglish ? "LET'S DISCUSS YOUR PROJECT" : "Parlons de votre projet",
-    title1: isEnglish ? "Request a" : "Sollicitez un",
-    title2: isEnglish ? "free quote" : "devis sans frais",
+    title1: isEnglish ? "A question or" : "Une question ou",
+    title2: isEnglish ? "a free quote?" : "un devis gratuit ?",
     description: isEnglish
-      ? "Complete this form and receive a detailed proposal. No obligation on your part."
-      : "Complétez ce formulaire et recevez une proposition chiffrée. Aucune obligation de votre part.",
+      ? "A quick question or a quote request? Complete this form and our team replies quickly. No obligation."
+      : "Une simple question ou une demande de devis ? Complétez ce formulaire, nous vous répondons rapidement. Sans engagement.",
     email: "Email",
     address: isEnglish ? "Address" : "Adresse",
     hours: isEnglish ? "Hours" : "Horaires",
