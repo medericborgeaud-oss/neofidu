@@ -242,7 +242,7 @@ export default async function CompanyPage({ params }: Props) {
                       <Pencil className="w-3.5 h-3.5 text-gray-400" />
                     </div>
                     <p className="text-xs text-gray-500 leading-relaxed">
-                      Vous êtes le propriétaire de cette entreprise et souhaitez modifier, ajouter ou demander le retrait de cette fiche ?{" "}
+                      Les informations de cette fiche sont reprises du registre du commerce suisse (Zefix / FOSC), une source publique officielle, et publiées à titre informatif. Vous êtes le propriétaire de cette entreprise et souhaitez modifier, ajouter ou demander le retrait de cette fiche ?{" "}
                       <Link href="/contact" className="text-blue-600 font-medium hover:underline">
                         Contactez-nous ici &rarr;
                       </Link>
