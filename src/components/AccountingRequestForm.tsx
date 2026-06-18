@@ -533,6 +533,8 @@ export function AccountingRequestForm() {
 
   return (
     <div>
+      <div className="mb-6 rounded-xl bg-primary/5 border border-primary/20 p-4 text-sm text-muted-foreground">💡 Vous venez pour un <strong>second avis</strong> ? Indiquez-le dans le message et joignez votre facture de fiduciaire actuelle — on vous prépare un comparatif gratuit.</div>
+
       {/* Progress */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
