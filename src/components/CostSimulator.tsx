@@ -172,7 +172,7 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
           href={devisUrl}
           className="inline-block bg-white/10 border-2 border-white text-white font-semibold text-sm px-6 py-2 rounded-lg hover:bg-white/20 transition-colors"
         >
-          Devis gratuit
+          Devis gratuit ou second avis
         </Link>
       </div>
     </div>
