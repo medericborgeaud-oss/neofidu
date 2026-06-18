@@ -267,6 +267,7 @@ export default async function CompanyPage({ params }: Props) {
                   legalForm={company.legal_form}
                   formLabel={formLabel}
                 />
+              <div className="mt-4 text-center"><Link href="/second-avis?utm_source=observatoire" className="inline-flex items-center gap-1 text-primary font-medium hover:underline">Vous payez peut-être trop cher ? Recevez un second avis gratuit →</Link></div>
 
                 {/* Similar companies */}
                 {similarCompanies.length > 0 && (
@@ -304,6 +305,7 @@ export default async function CompanyPage({ params }: Props) {
               legalForm={company.legal_form}
               formLabel={formLabel}
             />
+              <div className="mt-4 text-center"><Link href="/second-avis?utm_source=observatoire" className="inline-flex items-center gap-1 text-primary font-medium hover:underline">Vous payez peut-être trop cher ? Recevez un second avis gratuit →</Link></div>
             {similarCompanies.length > 0 && (
               <Card className="p-4">
                 <div className="flex items-center gap-2 text-xs font-bold text-gray-700 mb-3">
