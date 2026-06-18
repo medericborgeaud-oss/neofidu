@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BreadcrumbLight } from "@/components/Breadcrumb";
+import Link from "next/link";
 import {
   FileSearch, Clock, ShieldCheck, CheckCircle2, ArrowRight, Scale, Lock,
 } from "lucide-react";
@@ -43,7 +44,7 @@ export default function SecondAvisPage() {
             <p className="text-sm font-semibold text-primary tracking-wide uppercase mb-3">Comptabilité entreprise</p>
             <h1 className="text-3xl md:text-5xl font-bold mb-5">Payez-vous trop cher votre <span className="text-gradient">fiduciaire</span> ?</h1>
             <p className="text-lg text-muted-foreground mb-8">Envoyez-nous votre dernière facture. En 48 h, on vous dit en toute transparence si vous pourriez payer moins — sans engagement, et sans changer si vous êtes déjà au bon prix.</p>
-            <a href="mailto:contact@neofidu.ch?subject=Demande%20de%20second%20avis%20gratuit&body=Bonjour%2C%0A%0AJe%20souhaite%20un%20second%20avis%20sur%20ma%20facture%20de%20fiduciaire%20(merci%20de%20la%20joindre%20en%20pi%C3%A8ce%20jointe%20%C3%A0%20cet%20email).%0A%0AForme%20juridique%20%3A%20%0AEmploy%C3%A9s%20%3A%20%0AAssujetti%20%C3%A0%20la%20TVA%20(oui%2Fnon)%20%3A%20%0A%0AMerci%20!" className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-8 py-4 font-medium hover:opacity-90 transition">Demander un second avis gratuit <ArrowRight className="w-4 h-4" /></a>
+            <Link href="/demande?type=comptabilite" className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-8 py-4 font-medium hover:opacity-90 transition">Demander un second avis gratuit <ArrowRight className="w-4 h-4" /></Link>
             <p className="text-xs text-muted-foreground mt-3">Gratuit · Confidentiel · Réponse sous 48 h · Sans engagement</p>
           </section>
 
@@ -108,7 +109,7 @@ export default function SecondAvisPage() {
               <ShieldCheck className="w-12 h-12 text-primary mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-2">En 48 h, sachez si vous payez trop cher.</h2>
               <p className="text-muted-foreground mb-6">Joignez votre dernière facture de fiduciaire, on s'occupe du reste.</p>
-              <a href="mailto:contact@neofidu.ch?subject=Demande%20de%20second%20avis%20gratuit&body=Bonjour%2C%0A%0AJe%20souhaite%20un%20second%20avis%20sur%20ma%20facture%20de%20fiduciaire%20(merci%20de%20la%20joindre%20en%20pi%C3%A8ce%20jointe%20%C3%A0%20cet%20email).%0A%0AForme%20juridique%20%3A%20%0AEmploy%C3%A9s%20%3A%20%0AAssujetti%20%C3%A0%20la%20TVA%20(oui%2Fnon)%20%3A%20%0A%0AMerci%20!" className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-8 py-4 font-medium hover:opacity-90 transition">Demander un second avis gratuit <ArrowRight className="w-4 h-4" /></a>
+              <Link href="/demande?type=comptabilite" className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-8 py-4 font-medium hover:opacity-90 transition">Demander un second avis gratuit <ArrowRight className="w-4 h-4" /></Link>
               <p className="text-xs text-muted-foreground mt-3">Gratuit · Confidentiel · Sans engagement</p>
             </div>
           </section>
