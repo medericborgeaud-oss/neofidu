@@ -46,7 +46,7 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
   },
 };
 
-export const blogArticles: BlogArticle[
+export const blogArticles: BlogArticle[] = [
   {
     id: "101",
     slug: "raison-individuelle-ou-sarl-quand-creer-structure",
@@ -61,7 +61,7 @@ export const blogArticles: BlogArticle[
     keywords: ["raison individuelle ou sàrl","créer entreprise suisse","quel statut juridique","seuil TVA 100000","passer en sàrl","indépendant suisse romande","RI vs Sàrl","créer sa structure","chiffre d'affaires entreprise suisse"],
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
   },
-] = [
+
   {
     id: "100",
     slug: "echange-automatique-crypto-suisse-2026-fin-anonymat",
