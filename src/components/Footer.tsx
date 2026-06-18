@@ -23,6 +23,7 @@ export function Footer() {
       { label: isEnglish ? "Self-employed & Freelances" : "Indépendants & Freelances", href: "/independants" },
       { label: isEnglish ? "Company formation" : "Création d'entreprise", href: "/creation-entreprise" },
       { label: isEnglish ? "Business services" : "Services entreprises", href: "/entreprises" },
+    { label: isEnglish ? "Free second opinion" : "Second avis gratuit", href: "/second-avis" },
       { label: isEnglish ? "Associations & Foundations" : "Associations & Fondations", href: "/associations-fondations" },
       { label: isEnglish ? "Expats in Switzerland" : "Expatriés en Suisse", href: "/expats" },
       { label: isEnglish ? "Swiss citizens abroad" : "Suisses de l'étranger", href: "/suisses-etranger" },
