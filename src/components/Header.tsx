@@ -43,7 +43,7 @@ export function Header() {
     { href: "/demande", label: isEnglish ? "Tax Return" : "Déclaration d'impôts", category: "Services" },
     { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },
     { href: "/creation-entreprise", label: isEnglish ? "Company Creation" : "Création d'entreprise", category: "Services" },
-    { href: "/entreprises", label: isEnglish ? "SMEs & Corporations" : "PME & Sociétés", category: "Services" },
+    { href: "/entreprises", label: isEnglish ? "SMEs & Corporations" : "PME & Sociétés", category: "Services" }, { href: "/second-avis", label: isEnglish ? "Free second opinion" : "Second avis gratuit", category: "Services" },
     { href: "/associations-fondations", label: isEnglish ? "Associations & Foundations" : "Associations & Fondations", category: "Services" },
     { href: "/expats", label: "Expats", category: "Services" },
     { href: "/tarifs", label: isEnglish ? "Pricing" : "Tarifs", category: "Informations" },
@@ -138,7 +138,7 @@ export function Header() {
       label: isEnglish ? "SMEs & Corporations" : "PME & Sociétés",
       icon: Building2,
       description: isEnglish ? "Accounting, payroll & tax" : "Comptabilité, salaires & fiscalité",
-    },
+    }, { href: "/second-avis", label: isEnglish ? "Free second opinion" : "Second avis gratuit", category: "Services" },
     {
       href: "/observatoire",
       label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
