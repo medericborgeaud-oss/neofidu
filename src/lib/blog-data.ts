@@ -7536,3 +7536,4 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 <p><em>Cet article est fourni à titre informatif et ne constitue pas un conseil fiscal personnalisé. Les taux indiqués sont des ordres de grandeur basés sur les barèmes en vigueur en 2026 et peuvent varier selon le montant du gain et la commune. Pour un calcul précis adapté à votre situation, <a href="/contact" style="color: #10b981;">contactez NeoFidu</a>.</em></p>`
   },
 ];
+
