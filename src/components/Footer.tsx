@@ -318,7 +318,7 @@ export function Footer() {
           </p>
           <div className="flex flex-wrap gap-4 text-sm">
             <a
-              href="https://www.estv.admin.ch/estv/fr/accueil.html"
+              href="https://www.estv.admin.ch/fr"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-primary transition-colors"
