@@ -62,9 +62,9 @@ export function TrustSection() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <div className="flex items-center gap-4 mb-4">
                 <img
-                  src="/mederic-borgeaud-avatar.jpg"
+                  src="/mederic-borgeaud-avatar.png"
                   alt="Médéric Borgeaud"
-                  className="w-44 h-44 rounded-full object-cover border-2 border-primary/20 shadow-sm shrink-0"
+                  className="w-44 h-44 rounded-full object-cover shrink-0"
                 />
                 <div>
                   <p className="font-semibold text-foreground">Médéric Borgeaud</p>
