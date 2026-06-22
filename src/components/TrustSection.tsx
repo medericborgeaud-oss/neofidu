@@ -51,8 +51,8 @@ export function TrustSection() {
             </h2>
             <p className="text-base text-muted-foreground mt-4 max-w-2xl mx-auto">
               {isEnglish
-                ? "NeoFidu is the 100% online fiduciary of French-speaking Switzerland: tax returns, accounting, VAT and company formation — quality support at transparent prices, for individuals, the self-employed and companies."
-                : "NeoFidu est la fiduciaire 100% en ligne de Suisse romande : déclarations d'impôts, comptabilité, TVA et création d'entreprise — un accompagnement de qualité à prix transparent, pour les particuliers, les indépendants et les sociétés."}
+                ? "NeoFidu is the 100% online fiduciary of French-speaking Switzerland: tax returns, accounting, VAT and company formation. Quality support at transparent prices, for individuals, the self-employed and companies."
+                : "NeoFidu est la fiduciaire 100% en ligne de Suisse romande : déclarations d'impôts, comptabilité, TVA et création d'entreprise. Un accompagnement de qualité à prix transparent, pour les particuliers, les indépendants et les sociétés."}
             </p>
           </div>
 
