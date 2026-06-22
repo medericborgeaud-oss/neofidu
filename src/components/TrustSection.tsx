@@ -61,11 +61,10 @@ export function TrustSection() {
             {/* Left: Founder */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <div className="flex items-center gap-4 mb-4">
-                <div
-                  role="img"
-                  aria-label="Médéric Borgeaud"
-                  className="w-40 h-40 rounded-full border-2 border-primary/20 bg-no-repeat shrink-0"
-                  style={{ backgroundImage: "url('/mederic-borgeaud.jpg')", backgroundSize: "127%", backgroundPosition: "46% 19%" }}
+                <img
+                  src="/mederic-borgeaud-avatar.jpg"
+                  alt="Médéric Borgeaud"
+                  className="w-44 h-44 rounded-full object-cover border-2 border-primary/20 shadow-sm shrink-0"
                 />
                 <div>
                   <p className="font-semibold text-foreground">Médéric Borgeaud</p>
