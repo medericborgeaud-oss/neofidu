@@ -41,12 +41,12 @@ const CANTONS = [
 ];
 
 const TAX_BARS = [
-  { code: "VS", name: "Valais", rate: 12.03, best: true },
-  { code: "NE", name: "Neuchâtel", rate: 13.57, best: false },
-  { code: "FR", name: "Fribourg", rate: 13.87, best: false },
-  { code: "VD", name: "Vaud", rate: 14.0, best: false },
-  { code: "GE", name: "Genève", rate: 14.7, best: false },
-  { code: "JU", name: "Jura", rate: 16.0, best: false },
+  { code: "VS", name: "Valais", rate: 12.03, best: true, slug: "valais" },
+  { code: "NE", name: "Neuchâtel", rate: 13.57, best: false, slug: "neuchatel" },
+  { code: "FR", name: "Fribourg", rate: 13.87, best: false, slug: "fribourg" },
+  { code: "VD", name: "Vaud", rate: 14.0, best: false, slug: "vaud" },
+  { code: "GE", name: "Genève", rate: 14.7, best: false, slug: "geneve" },
+  { code: "JU", name: "Jura", rate: 16.0, best: false, slug: "jura" },
 ];
 
 const COMMUNES = [
@@ -83,7 +83,7 @@ export default function ObservatoirePage() {
     <>
       <Header />
       <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
-        <div className="container mx-auto px-4 pt-28 pb-20">
+        <div className="max-w-6xl mx-auto px-4 pt-28 pb-20">
           {/* HERO */}
           <section className="mb-10">
             <p className="text-sm font-semibold text-primary tracking-wide uppercase mb-3">
@@ -92,7 +92,7 @@ export default function ObservatoirePage() {
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
               L&apos;Observatoire romand des <span className="text-gradient">entreprises</span>
             </h1>
-            <div className="bg-white rounded-2xl border shadow-sm p-6 max-w-4xl">
+            <div className="bg-white rounded-2xl border shadow-sm p-6">
               <div className="flex flex-wrap items-end gap-x-5 gap-y-1 mb-5">
                 <div className="text-4xl md:text-5xl font-bold text-primary leading-none">{nf(TOTAL)}</div>
                 <div className="text-muted-foreground pb-1">
@@ -136,7 +136,7 @@ export default function ObservatoirePage() {
               </p>
               <div className="space-y-2 mb-6 max-w-2xl">
                 {TAX_BARS.map((t) => (
-                  <div key={t.code} className="flex items-center gap-3">
+                  <Link key={t.code} href={`/cantons/${t.slug}`} className="flex items-center gap-3 hover:opacity-80 transition">
                     <span className="w-8 text-sm font-medium">{t.code}</span>
                     <span className="hidden sm:block w-24 text-sm text-muted-foreground">{t.name}</span>
                     <span className="flex-1 h-4 rounded-full bg-white overflow-hidden">
@@ -145,26 +145,26 @@ export default function ObservatoirePage() {
                     <span className="w-20 text-right text-sm font-medium">
                       {t.rate.toFixed(2).replace(".", ",")} %{t.best ? " ✓" : ""}
                     </span>
-                  </div>
+                  </Link>
                 ))}
               </div>
               <div className="bg-white rounded-xl border p-5 flex flex-wrap items-center gap-4 justify-between">
                 <div className="flex-1 min-w-[220px]">
                   <div className="font-semibold">Payez-vous le bon prix pour votre comptabilité ?</div>
-                  <div className="text-sm text-muted-foreground">Envoyez votre dernière facture de fiduciaire — en 48 h, on vous dit si vous pouvez payer moins, sans engagement.</div>
+                  <div className="text-sm text-muted-foreground">Envoyez votre dernière facture de fiduciaire — on vous dit si vous pouvez payer moins, sans engagement.</div>
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <Link href="/demande?type=comptabilite" className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-6 py-3 font-medium hover:opacity-90 transition">
                     Second avis gratuit <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <span className="text-xs text-muted-foreground text-center">Gratuit · Confidentiel · Sous 48 h</span>
+                  <span className="text-xs text-muted-foreground text-center">Gratuit · Confidentiel · Sans engagement</span>
                 </div>
               </div>
             </div>
           </section>
 
           {/* CARTE + CLASSEMENT */}
-          <section className="grid lg:grid-cols-2 gap-6 mb-12">
+          <section className="grid lg:grid-cols-2 gap-6 mb-12 items-start">
             <div className="bg-white rounded-2xl border p-5 shadow-sm">
               <h2 className="text-lg font-semibold mb-1">Densité par canton</h2>
               <p className="text-sm text-muted-foreground mb-4">
@@ -225,28 +225,6 @@ export default function ObservatoirePage() {
                 <Link key={c.slug} href={`/communes/${c.slug}`} className="flex items-center justify-between bg-white rounded-xl border px-4 py-3 shadow-sm hover:border-primary/30 transition">
                   <span className="text-primary font-medium">{c.name}</span>
                   <span className="text-sm text-muted-foreground">{nf(c.count)}</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* CANTONS EN DÉTAIL */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-1">Les cantons en détail</h2>
-            <p className="text-muted-foreground mb-5">
-              Entreprises (raisons individuelles comprises), impôt sur le bénéfice 2026 et accès à la fiscalité de chaque canton.
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {CANTONS.map((c) => (
-                <Link key={c.code} href={`/cantons/${c.slug}`} className="bg-white rounded-2xl border p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition group">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> {c.name}</span>
-                    <span className="text-sm text-muted-foreground">{nf(c.count)}</span>
-                  </div>
-                  <div className="text-sm mb-3">Impôt sur le bénéfice : <strong>{c.tax}</strong></div>
-                  <span className="text-sm text-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Fiscalité {c.name} <ArrowRight className="w-4 h-4" />
-                  </span>
                 </Link>
               ))}
             </div>
