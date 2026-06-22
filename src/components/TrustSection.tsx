@@ -64,7 +64,7 @@ export function TrustSection() {
                 <img
                   src="/mederic-borgeaud.jpg"
                   alt="Médéric Borgeaud"
-                  className="w-32 h-32 rounded-full object-cover border-2 border-primary/20"
+                  className="w-32 h-32 rounded-full object-cover object-top border-2 border-primary/20"
                 />
                 <div>
                   <p className="font-semibold text-foreground">Médéric Borgeaud</p>
