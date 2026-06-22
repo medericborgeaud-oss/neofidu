@@ -49,6 +49,11 @@ export function TrustSection() {
               {isEnglish ? "The fiduciary " : "La fiduciaire "}
               <span className="text-gradient">{isEnglish ? "reinvented" : "réinventée"}</span>
             </h2>
+            <p className="text-base text-muted-foreground mt-4 max-w-2xl mx-auto">
+              {isEnglish
+                ? "NeoFidu is the 100% online fiduciary of French-speaking Switzerland: tax returns, accounting, VAT, payroll and company formation — quality support at transparent prices, for individuals, the self-employed and companies."
+                : "NeoFidu est la fiduciaire 100% en ligne de Suisse romande : déclarations d'impôts, comptabilité, TVA, salaires et création d'entreprise — un accompagnement de qualité à prix transparent, pour les particuliers, les indépendants et les sociétés."}
+            </p>
           </div>
 
           {/* Founder quote + pillars */}
@@ -59,7 +64,7 @@ export function TrustSection() {
                 <img
                   src="/mederic-borgeaud.jpg"
                   alt="Médéric Borgeaud"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-primary/20"
+                  className="w-24 h-24 rounded-full object-cover border-2 border-primary/20"
                 />
                 <div>
                   <p className="font-semibold text-foreground">Médéric Borgeaud</p>
