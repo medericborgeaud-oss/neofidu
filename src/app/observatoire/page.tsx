@@ -50,18 +50,18 @@ const TAX_BARS = [
 ];
 
 const COMMUNES = [
-  { name: "Genève", count: 23595, slug: "geneve-ge" },
-  { name: "Lausanne", count: 9259, slug: "lausanne-vd" },
-  { name: "Sion", count: 3812, slug: "sion-vs" },
-  { name: "Fribourg", count: 3125, slug: "fribourg-fr" },
-  { name: "Neuchâtel", count: 2927, slug: "neuchatel-ne" },
-  { name: "Carouge", count: 2590, slug: "carouge-ge" },
-  { name: "Nyon", count: 1973, slug: "nyon-vd" },
-  { name: "Martigny", count: 1952, slug: "martigny-vs" },
-  { name: "La Chaux-de-Fonds", count: 1830, slug: "la-chaux-de-fonds-ne" },
-  { name: "Montreux", count: 1680, slug: "montreux-vd" },
-  { name: "Lancy", count: 1658, slug: "lancy-ge" },
-  { name: "Vernier", count: 1599, slug: "vernier-ge" },
+  { name: "Genève", count: 32565, slug: "geneve-ge" },
+  { name: "Lausanne", count: 13704, slug: "lausanne-vd" },
+  { name: "Sion", count: 5208, slug: "sion-vs" },
+  { name: "Fribourg", count: 4644, slug: "fribourg-fr" },
+  { name: "Neuchâtel", count: 4286, slug: "neuchatel-ne" },
+  { name: "Carouge", count: 3691, slug: "carouge-ge" },
+  { name: "Nyon", count: 2893, slug: "nyon-vd" },
+  { name: "Martigny", count: 2711, slug: "martigny-vs" },
+  { name: "La Chaux-de-Fonds", count: 2709, slug: "la-chaux-de-fonds-ne" },
+  { name: "Lancy", count: 2578, slug: "lancy-ge" },
+  { name: "Montreux", count: 2512, slug: "montreux-vd" },
+  { name: "Vernier", count: 2462, slug: "vernier-ge" },
 ];
 
 export const metadata: Metadata = {
@@ -218,7 +218,7 @@ export default function ObservatoirePage() {
           <section className="mb-12">
             <h2 className="text-2xl font-bold mb-1">Top communes par nombre d&apos;entreprises</h2>
             <p className="text-muted-foreground mb-5">
-              Communes romandes comptant le plus de sociétés inscrites (hors raisons individuelles) — cliquez pour ouvrir la page de la commune.
+              Communes romandes comptant le plus d&apos;entreprises inscrites (raisons individuelles comprises) — cliquez pour ouvrir la page de la commune.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {COMMUNES.map((c) => (
