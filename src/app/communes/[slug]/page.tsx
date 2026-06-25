@@ -34,17 +34,26 @@ import {
   formatTaux,
   formatDensite,
   getCompanyCountByCommune,
+  getAllCommuneSlugs,
 } from "@/lib/communes";
 
 interface Props {
   params: { slug: string };
 }
 
+// ISR : pages pre-generees et regenerees en arriere-plan (les donnees communes changent rarement).
+// Evite le rendu SSR a froid (qui prenait jusqu'a ~12 s sur les grandes communes).
+export const revalidate = 86400; // 24 h
+
+export async function generateStaticParams() {
+  const slugs = await getAllCommuneSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const commune = await getCommuneBySlug(params.slug);
   if (!commune) return { title: "Commune non trouvee | NeoFidu" };
 
-  const companyCount = await getCompanyCountByCommune(commune.nom, commune.canton);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
   const popText = commune.population
     ? `${commune.population.toLocaleString("fr-CH")} habitants`
@@ -165,7 +174,12 @@ export default async function CommunePage({ params }: Props) {
 
   const voisines = await getCommunesVoisines(params.slug);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
-  const companyCount = await getCompanyCountByCommune(commune.nom, commune.canton);
+  // Utilise la valeur pre-calculee de la table communes ; ne retombe sur le
+  // comptage live (couteux) que si la colonne est absente.
+  const companyCount =
+    typeof commune.nb_entreprises === "number"
+      ? commune.nb_entreprises
+      : await getCompanyCountByCommune(commune.nom, commune.canton);
 
   const CANTON_THRESHOLDS: Record<string, { low: number; mid: number }> = {
     VD: { low: 54, mid: 65 },
