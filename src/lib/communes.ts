@@ -94,6 +94,18 @@ export async function getCommunes(filters: CommuneFilters = {}) {
   return { communes: (data as Commune[]) || [], total: count || 0 };
 }
 
+export async function getAllCommuneSlugs(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from("communes")
+    .select("slug")
+    .order("slug", { ascending: true });
+  if (error) {
+    console.error("[communes] getAllCommuneSlugs error:", error);
+    return [];
+  }
+  return (data || []).map((c: { slug: string }) => c.slug);
+}
+
 export async function getCommuneBySlug(slug: string): Promise<Commune | null> {
   const { data, error } = await supabase
     .from("communes")
