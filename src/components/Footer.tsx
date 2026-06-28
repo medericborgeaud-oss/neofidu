@@ -50,7 +50,6 @@ export function Footer() {
       { label: isEnglish ? "Fiscal news" : "Actualités fiscales", href: "/blog" },
       { label: isEnglish ? "Help center" : "FAQ", href: "/faq" },
       { label: isEnglish ? "Track request" : "Suivre ma demande", href: "/suivi" },
-      { label: isEnglish ? "Extension request" : "Demande de prolongation", href: "/demande/prolongation" },
       { label: isEnglish ? "Contact us" : "Contact", href: "/contact" },
       { label: isEnglish ? "Business observatory" : "Observatoire des entreprises", href: "/observatoire" },
       { label: isEnglish ? "Municipalities" : "Communes romandes", href: "/communes" },
