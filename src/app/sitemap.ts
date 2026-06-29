@@ -44,7 +44,6 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
   const staticPages: MetadataRoute.Sitemap = [
     createEntry("", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
     createEntry("/demande", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
-    createEntry("/demande/prolongation", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
     createEntry("/contact", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
     createEntry("/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/suisses-etranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
