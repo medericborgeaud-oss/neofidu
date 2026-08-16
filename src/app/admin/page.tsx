@@ -122,6 +122,7 @@ interface TaxRequest {
     taxYear: number;
     taxpayerNumber?: string;
     declarationCode?: string;
+    vstaxPassword?: string;
     chapterNumber?: string;    religion2?: string;
 
     clientType: string;
@@ -2521,6 +2522,12 @@ CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);`}
                         <>
                           <p className="text-muted-foreground">Code déclaration</p>
                           <p className="font-medium font-mono">{selectedRequest.fiscal.declarationCode}</p>
+                        </>
+                      )}
+                      {selectedRequest.fiscal.vstaxPassword && (
+                        <>
+                          <p className="text-muted-foreground">Mot de passe VSTax</p>
+                          <p className="font-medium font-mono">{selectedRequest.fiscal.vstaxPassword}</p>
                         </>
                       )}
                       {selectedRequest.fiscal.chapterNumber && (
