@@ -54,6 +54,7 @@ export interface TaxRequestDB {
     taxYear: number;
     taxpayerNumber?: string;
     declarationCode?: string;
+    vstaxPassword?: string;
     clientType: string;
     familyStatus?: string;
     isIndependent?: boolean;
