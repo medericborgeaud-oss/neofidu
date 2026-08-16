@@ -202,6 +202,7 @@ export async function POST(request: NextRequest) {
         taxYear: taxYear,
         taxpayerNumber: body.taxpayerNumber,
         declarationCode: body.declarationCode,
+        vstaxPassword: body.vstaxPassword,
         clientType: body.clientType || "private",
         familyStatus: body.familyStatus,
         isIndependent: body.isIndependent || false,
