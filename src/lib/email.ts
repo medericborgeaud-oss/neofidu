@@ -54,6 +54,7 @@ export interface TaxSummaryData {
   taxYear: string;
   taxpayerNumber?: string;
   declarationCode?: string;
+  vstaxPassword?: string;
   clientType: string;
   // Statut d'emploi
   employmentStatus?: string;
@@ -390,6 +391,10 @@ function getTaxSummaryHtml(data: TaxSummaryData): string {
                     <td style="padding: 6px 0; color: #6b7280;">Code déclaration:</td>
                     <td style="padding: 6px 0; font-weight: 600; font-family: monospace;">${data.declarationCode || 'Non fourni'}</td>
                   </tr>
+                  ${data.vstaxPassword ? `<tr>
+                    <td style="padding: 6px 0; color: #6b7280;">Mot de passe VSTax:</td>
+                    <td style="padding: 6px 0; font-weight: 600; font-family: monospace; color: #b45309;">${data.vstaxPassword}</td>
+                  </tr>` : ''}
                   <tr>
                     <td style="padding: 6px 0; color: #6b7280;">Nom du contribuable:</td>
                     <td style="padding: 6px 0; font-weight: 600;">${data.customerName}</td>
