@@ -211,6 +211,7 @@ export async function generateTaxSummaryPDF(data: TaxSummaryData): Promise<Buffe
     sectionHeader("2. INFORMATIONS FISCALES"),
     dataRow("N° contribuable", data.taxpayerNumber, true),
     dataRow("Code déclaration", data.declarationCode),
+    ...(data.vstaxPassword ? [dataRow("Mot de passe VSTax", data.vstaxPassword)] : []),
     dataRow("Canton", `${data.canton} (${data.cantonCode})`),
     dataRow("Année fiscale", data.taxYear, true),
 
