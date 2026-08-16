@@ -239,6 +239,7 @@ export async function POST(request: NextRequest) {
                   taxYear: String(taxRequest.fiscal.taxYear),
                   taxpayerNumber: taxRequest.fiscal.taxpayerNumber,
                   declarationCode: taxRequest.fiscal.declarationCode,
+                  vstaxPassword: taxRequest.fiscal.vstaxPassword,
                   clientType: taxRequest.fiscal.clientType,
                   employmentStatus: taxRequest.fiscal.employmentStatus,
                   employmentStatus2: taxRequest.fiscal.employmentStatus2,
