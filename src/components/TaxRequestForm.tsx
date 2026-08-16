@@ -100,11 +100,11 @@ const cantonCodeInfo: Record<string, { label: string; labelEn: string; placehold
     sourceEn: "Find this number on your tax letter",
   },
   VS: {
-    label: "Numéro de contrôle",
-    labelEn: "Control number",
+    label: "Numéro de dossier",
+    labelEn: "File number",
     placeholder: "Ex: 123456789",
-    source: "Reçu avec le courrier fiscal de début d'année",
-    sourceEn: "Received with your annual tax letter",
+    source: "En haut à gauche de la déclaration, sous l'écusson du canton",
+    sourceEn: "Top-left of your tax return, below the cantonal coat of arms",
   },
   GE: {
     label: "Code déclaration",
@@ -797,6 +797,7 @@ export function TaxRequestForm() {
     taxpayerNumber: "",
     declarationCode: "",
     chapterNumber: "",
+    vstaxPassword: "",
     religion2: "",
     street: "",
     npa: "",
@@ -1692,6 +1693,9 @@ export function TaxRequestForm() {
       // Validation du code de déclaration
       if (!formData.declarationCode || formData.declarationCode.length < 4) return false;
 
+      // Mot de passe VSTax obligatoire pour le Valais (transmission en ligne)
+      if (formData.canton === "VS" && (!formData.vstaxPassword || formData.vstaxPassword.trim().length < 8)) return false;
+
       // Validation du numéro de chapitre (Fribourg uniquement)
       if (formData.canton === "FR" && !formData.chapterNumber) return false;
 
@@ -1889,6 +1893,7 @@ export function TaxRequestForm() {
         taxYear: formData.taxYear,
         taxpayerNumber: formData.taxpayerNumber,
         declarationCode: formData.declarationCode,
+        vstaxPassword: formData.canton === "VS" ? formData.vstaxPassword : undefined,
         chapterNumber: formData.canton === "FR" ? formData.chapterNumber : undefined,
       religion2: formData.canton === "FR" ? formData.religion2 : undefined,
         clientType: formData.clientType,
@@ -2353,6 +2358,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
         taxYear: new Date().getFullYear() - 1,
         taxpayerNumber: "",
         declarationCode: "",
+        vstaxPassword: "",
         street: "",
         npa: "",
         city: "",
@@ -2989,6 +2995,25 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
                   <Info className="w-3 h-3" />
                   {isEnglish ? "Chapter number from the cover page of your tax return" : "Numéro de chapitre sur la page de garde de votre déclaration"}
+                </p>
+              </div>
+            )}
+
+            {/* Mot de passe VSTax - Valais uniquement */}
+            {formData.canton === "VS" && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium mb-2">
+                  {isEnglish ? "VSTax password" : "Mot de passe VSTax"} <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder={isEnglish ? "10 characters (case-sensitive)" : "10 caractères (sensible à la casse)"}
+                  value={formData.vstaxPassword}
+                  onChange={(e) => updateForm("vstaxPassword", e.target.value)}
+                  className="rounded-xl border-amber-300 max-w-xs"
+                />
+                <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                  <Info className="w-3 h-3" />
+                  {isEnglish ? "10-character password (letters and numbers) printed on your tax return \u2014 required to file online" : "Mot de passe de 10 caractères (lettres et chiffres) imprimé sur votre déclaration \u2014 nécessaire pour l'envoi en ligne"}
                 </p>
               </div>
             )}
