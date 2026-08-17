@@ -1872,7 +1872,7 @@ export function TaxRequestForm() {
         birthDate: formData.birthDate,
         maritalStatus: formData.maritalStatus,
         maritalStatusDate: formData.maritalStatusDate || undefined,
-      religion: formData.canton === "FR" ? formData.religion : undefined,
+      religion: (formData.canton === "FR" || formData.canton === "JU") ? formData.religion : undefined,
         firstName2: formData.clientType === "couple" ? formData.firstName2 : undefined,
         lastName2: formData.clientType === "couple" ? formData.lastName2 : undefined,
         birthDate2: formData.clientType === "couple" ? formData.birthDate2 : undefined,
@@ -1895,7 +1895,7 @@ export function TaxRequestForm() {
         declarationCode: formData.declarationCode,
         vstaxPassword: formData.canton === "VS" ? formData.vstaxPassword : undefined,
         chapterNumber: formData.canton === "FR" ? formData.chapterNumber : undefined,
-      religion2: formData.canton === "FR" ? formData.religion2 : undefined,
+      religion2: (formData.canton === "FR" || formData.canton === "JU") ? formData.religion2 : undefined,
         clientType: formData.clientType,
         familyStatus: formData.familyStatus,
         isIndependent: formData.isIndependent,
@@ -3174,8 +3174,8 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 </div>
               )}
 
-              {/* Confession - Fribourg uniquement */}
-              {formData.canton === "FR" && (
+              {/* Confession - Fribourg et Jura */}
+              {(formData.canton === "FR" || formData.canton === "JU") && (
                 <div>
                   <label className="block text-sm font-medium mb-2">
                     {isEnglish ? "Religion / Confession" : "Confession"} <span className="text-red-500">*</span>
@@ -3186,10 +3186,21 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                     className="w-full rounded-xl border border-amber-300 p-2 max-w-xs bg-white"
                   >
                     <option value="">{isEnglish ? "Select..." : "Choisir..."}</option>
-                    <option value="catholique">Catholique romaine</option>
-                    <option value="protestante">Protestante (réformée évangélique)</option>
-                    <option value="catholique-chretienne">Catholique chrétienne</option>
-                    <option value="sans-confession">Sans confession / Autre</option>
+                    {formData.canton === "JU" ? (
+                      <>
+                        <option value="Sans confession">{isEnglish ? "No religion" : "Sans confession"}</option>
+                        <option value="Catholique">{isEnglish ? "Catholic" : "Catholique"}</option>
+                        <option value="Réformé">{isEnglish ? "Reformed" : "Réformé"}</option>
+                        <option value="Autre">{isEnglish ? "Other" : "Autre"}</option>
+                      </>
+                    ) : (
+                      <>
+                        <option value="catholique">Catholique romaine</option>
+                        <option value="protestante">Protestante (réformée évangélique)</option>
+                        <option value="catholique-chretienne">Catholique chrétienne</option>
+                        <option value="sans-confession">Sans confession / Autre</option>
+                      </>
+                    )}
                   </select>
                 </div>
               )}
@@ -3269,8 +3280,8 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
     </p>
   )}
 </div>
-                  {/* Confession conjoint - Fribourg */}
-                  {formData.canton === "FR" && (
+                  {/* Confession conjoint - Fribourg et Jura */}
+                  {(formData.canton === "FR" || formData.canton === "JU") && (
                     <div>
                       <label className="block text-sm font-medium mb-2">
                         {isEnglish ? "Partner's religion" : "Confession du conjoint"}
@@ -3281,10 +3292,21 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                         className="w-full rounded-xl border border-amber-300 p-2 bg-white"
                       >
                         <option value="">{isEnglish ? "Select..." : "Choisir..."}</option>
-                        <option value="catholique">Catholique romaine</option>
-                        <option value="protestante">Protestante (réformée évangélique)</option>
-                        <option value="catholique-chretienne">Catholique chrétienne</option>
-                        <option value="sans-confession">Sans confession / Autre</option>
+                        {formData.canton === "JU" ? (
+                          <>
+                            <option value="Sans confession">{isEnglish ? "No religion" : "Sans confession"}</option>
+                            <option value="Catholique">{isEnglish ? "Catholic" : "Catholique"}</option>
+                            <option value="Réformé">{isEnglish ? "Reformed" : "Réformé"}</option>
+                            <option value="Autre">{isEnglish ? "Other" : "Autre"}</option>
+                          </>
+                        ) : (
+                          <>
+                            <option value="catholique">Catholique romaine</option>
+                            <option value="protestante">Protestante (réformée évangélique)</option>
+                            <option value="catholique-chretienne">Catholique chrétienne</option>
+                            <option value="sans-confession">Sans confession / Autre</option>
+                          </>
+                        )}
                       </select>
                     </div>
                   )}
