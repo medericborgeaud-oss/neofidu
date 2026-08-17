@@ -184,6 +184,8 @@ export async function POST(request: NextRequest) {
         firstName2: body.firstName2,
         lastName2: body.lastName2,
         birthDate2: body.birthDate2,
+        religion: body.religion,
+        religion2: body.religion2,
         email: email || "",
         phone: body.phone,
         address: {
