@@ -493,6 +493,148 @@ export const countryPages: CountryPage[] = [
       },
     ],
   },
+  {
+    slug: "espagne",
+    country: "Espagne",
+    countryEn: "Spain",
+    countryEmoji: "🇪🇸",
+    metaTitle: "Suisses en Espagne : impôts & fiscalité en Suisse romande",
+    metaTitleEn: "Swiss citizens in Spain: taxes & Swiss filing",
+    metaDescription:
+      "Vous êtes Suisse en Espagne ? Rente AVS, retrait 2e/3e pilier, timing du départ, bien en Suisse : NeoFidu gère votre fiscalité romande, en ligne et en français.",
+    metaDescriptionEn:
+      "Swiss living in Spain? AVS pension, 2nd/3rd pillar withdrawal, departure timing, Swiss property: NeoFidu handles your Romandy tax matters online.",
+    h1: "Suisses en Espagne : votre fiscalité et vos obligations en Suisse romande",
+    h1En: "Swiss citizens in Spain: your taxes and obligations in French-speaking Switzerland",
+    swissPopulation: "≈ 28 200 Suisses en Espagne (OFS, 2025)",
+    swissPopulationEn: "≈ 28,200 Swiss citizens in Spain (FSO, 2025)",
+    lastUpdated: "2026-08-17",
+    keywords: [
+      "suisse en espagne impôts",
+      "retraité suisse espagne fiscalité",
+      "convention double imposition suisse espagne",
+      "retrait 2e pilier espagne remboursement",
+      "rente AVS espagne imposition",
+      "résidence fiscale suisse espagne",
+    ],
+    relatedCountries: ["france", "belgique"],
+    infographic: {
+      leftTitle: "Imposé en Suisse",
+      leftTitleEn: "Taxed in Switzerland",
+      rightTitle: "Imposé en Espagne",
+      rightTitleEn: "Taxed in Spain",
+      leftItems: [
+        { fr: "Bien immobilier en Suisse", en: "Swiss real estate" },
+        { fr: "Prestations 2e / 3e pilier", en: "2nd / 3rd pillar benefits" },
+        { fr: "Certains revenus suisses", en: "Certain Swiss-source income" },
+      ],
+      rightItems: [
+        { fr: "Salaire et revenus espagnols", en: "Spanish salary & income" },
+        { fr: "Rente AVS (1er pilier)", en: "AVS pension (1st pillar)" },
+        { fr: "Revenu mondial", en: "Worldwide income" },
+      ],
+      calloutMain: "2e et 3e pilier : imposé à la source en Suisse, puis remboursé",
+      calloutMainEn: "2nd & 3rd pillar: taxed at source in Switzerland, then refunded",
+      calloutSub: "La convention CH-Espagne attribue l'imposition au pays de résidence",
+      calloutSubEn: "The CH-Spain treaty assigns taxation to the country of residence",
+    },
+    intro:
+      `<p style="margin:0 0 18px;line-height:1.75;">L'Espagne est l'une des destinations préférées des Suisses romands, en particulier à la retraite : environ <strong>28 200 Suisses</strong> y vivent, de la Costa Blanca à Barcelone. S'installer au soleil ne met pas fin à vos liens fiscaux avec la Suisse, surtout si vous gardez un bien immobilier ou touchez des prestations de prévoyance. Et le <strong>moment de votre départ</strong> peut changer beaucoup de choses. NeoFidu vous accompagne, en français et 100 % à distance.</p>`,
+    introEn:
+      `<p style="margin:0 0 18px;line-height:1.75;">Spain is one of the favourite destinations for French-speaking Swiss, especially in retirement: around <strong>28,200 Swiss citizens</strong> live there, from the Costa Blanca to Barcelona. Moving to the sun does not end your tax ties with Switzerland, especially if you keep property or receive pension benefits. And the <strong>timing of your departure</strong> can change a lot. NeoFidu supports you, in French and 100% remotely.</p>`,
+    sections: [
+      {
+        title: "Où êtes-vous imposé : en Espagne ou en Suisse ?",
+        titleEn: "Where are you taxed: in Spain or in Switzerland?",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Résident fiscal en Espagne (en général dès que vous y passez plus de 183 jours par an), vous y êtes imposé sur votre revenu mondial. La <strong>convention de double imposition entre la Suisse et l'Espagne</strong> évite que les mêmes revenus soient taxés deux fois. Certains éléments restent toutefois rattachés à la Suisse, notamment votre immobilier et votre prévoyance.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">As a Spanish tax resident (generally once you spend more than 183 days a year there), you are taxed on your worldwide income. The <strong>Switzerland-Spain double taxation treaty</strong> avoids the same income being taxed twice. Some items nonetheless remain linked to Switzerland, notably your real estate and pension savings.</p>`,
+      },
+      {
+        title: "Ce qui reste imposable en Suisse",
+        titleEn: "What remains taxable in Switzerland",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Même résident en Espagne, vous conservez des obligations en Suisse dans plusieurs cas :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Bien immobilier en Suisse</strong> : il reste imposable en Suisse (revenu ou valeur locative, et fortune). Une déclaration cantonale reste nécessaire.</li><li><strong>Revenus de source suisse</strong> : certaines rentes, participations ou activités conservées en Suisse.</li><li><strong>Prestations de prévoyance</strong> : voir la section ci-dessous.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>À retenir :</strong> l'immobilier suisse s'impose toujours en Suisse, quel que soit votre pays de résidence.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Even as a Spanish resident, you keep Swiss obligations in several cases:</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Property in Switzerland</strong>: it stays taxable in Switzerland (rental or imputed rental value, and wealth). A cantonal return is still required.</li><li><strong>Swiss-source income</strong>: certain pensions, holdings or activities kept in Switzerland.</li><li><strong>Pension benefits</strong>: see the section below.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Key point:</strong> Swiss real estate is always taxed in Switzerland, whatever your country of residence.</div>`,
+      },
+      {
+        title: "Prévoyance et timing du départ (le point clé)",
+        titleEn: "Pension savings and departure timing (the key point)",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Pour un futur retraité en Espagne, le calendrier du retrait de prévoyance est décisif :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Rente AVS (1er pilier)</strong> : la Suisse ne prélève pas d'impôt à la source ; l'imposition revient en principe à l'Espagne.</li><li><strong>Retrait du 2e ou 3e pilier en capital</strong> : toujours imposé à la source en Suisse, prélevé par le canton de la fondation.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Bonne nouvelle :</strong> comme la convention CH-Espagne attribue l'imposition au pays de résidence, l'impôt à la source suisse est <strong>remboursable sur demande</strong>, avec une attestation de résidence fiscale espagnole. Mais attention : selon que vous retirez votre capital <strong>avant ou après</strong> être devenu résident espagnol, le traitement diffère. Un calcul en amont peut éviter une imposition défavorable.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">For a future retiree in Spain, the timing of the pension withdrawal is decisive:</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>AVS pension (1st pillar)</strong>: Switzerland does not levy source tax; taxation is in principle in Spain.</li><li><strong>2nd or 3rd pillar lump-sum withdrawal</strong>: always taxed at source in Switzerland, levied by the canton of the foundation.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Good news:</strong> because the CH-Spain treaty assigns taxation to the country of residence, the Swiss source tax is <strong>refundable on request</strong>, with a Spanish tax-residence certificate. But note: whether you withdraw your capital <strong>before or after</strong> becoming a Spanish resident changes the treatment. A prior calculation can avoid unfavourable taxation.</div>`,
+      },
+      {
+        title: "Vos obligations déclaratives en Suisse romande",
+        titleEn: "Your filing obligations in French-speaking Switzerland",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Selon votre situation, vous pouvez encore devoir déposer une déclaration dans votre canton (VD, GE, VS, FR, NE ou JU), typiquement si vous y détenez un bien immobilier. NeoFidu identifie ce que vous devez déclarer, prépare votre déclaration cantonale et gère les échanges avec l'administration, entièrement à distance.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Depending on your situation, you may still need to file a return in your canton (VD, GE, VS, FR, NE or JU), typically if you hold property there. NeoFidu identifies what you must declare, prepares your cantonal return and handles all exchanges with the administration, entirely remotely.</p>`,
+      },
+    ],
+    profiles: [
+      {
+        label: "Retraité sur la côte",
+        labelEn: "Retiree on the coast",
+        description: "Rentes AVS/LPP et retrait de piliers : nous clarifions l'imposition et récupérons l'impôt à la source suisse.",
+        descriptionEn: "AVS/LPP pensions and pillar withdrawals: we clarify taxation and recover the Swiss source tax.",
+      },
+      {
+        label: "Sur le point de partir",
+        labelEn: "About to leave",
+        description: "Le timing du retrait est crucial : nous calculons le meilleur moment pour retirer vos 2e/3e piliers.",
+        descriptionEn: "Withdrawal timing is crucial: we calculate the best moment to withdraw your 2nd/3rd pillars.",
+      },
+      {
+        label: "Propriétaire d'un bien en Suisse",
+        labelEn: "Owner of a Swiss property",
+        description: "Un bien resté en Suisse reste imposable en Suisse : nous gérons votre déclaration cantonale à distance.",
+        descriptionEn: "A property kept in Switzerland stays taxable in Switzerland: we handle your cantonal return remotely.",
+      },
+      {
+        label: "Actif installé en Espagne",
+        labelEn: "Working in Spain",
+        description: "Vous avez quitté la Suisse pour le travail : nous faisons le point sur vos derniers liens fiscaux et vos piliers.",
+        descriptionEn: "You left Switzerland for work: we review your remaining tax ties and your pension pillars.",
+      },
+    ],
+    faq: [
+      {
+        question: "Je vis en Espagne, dois-je encore faire une déclaration d'impôt en Suisse ?",
+        questionEn: "I live in Spain, do I still need to file a Swiss tax return?",
+        answer: "Oui si vous conservez un bien immobilier ou des revenus de source suisse dans un canton romand ; sinon, en principe non. Nous faisons le point sur votre cas.",
+        answerEn: "Yes if you keep a property or Swiss-source income in a Romandy canton; otherwise, in principle no. We review your specific case.",
+      },
+      {
+        question: "Faut-il retirer son 2e pilier avant ou après s'installer en Espagne ?",
+        questionEn: "Should I withdraw my 2nd pillar before or after moving to Spain?",
+        answer: "Cela dépend de votre situation : le moment du retrait change le traitement fiscal entre la Suisse et l'Espagne. Un calcul préalable permet souvent d'économiser. NeoFidu compare les scénarios pour vous.",
+        answerEn: "It depends on your situation: the timing of the withdrawal changes the tax treatment between Switzerland and Spain. A prior calculation often saves money. NeoFidu compares the scenarios for you.",
+      },
+      {
+        question: "Mon 2e pilier retiré en capital a été imposé à la source en Suisse : puis-je le récupérer depuis l'Espagne ?",
+        questionEn: "My 2nd pillar lump sum was taxed in Switzerland, can I recover it from Spain?",
+        answer: "Oui dans la plupart des cas : la convention CH-Espagne attribue l'imposition au pays de résidence, l'impôt à la source suisse est donc remboursable sur demande avec une attestation de résidence fiscale espagnole.",
+        answerEn: "Yes in most cases: the CH-Spain treaty assigns taxation to the country of residence, so the Swiss source tax is refundable on request with a Spanish tax-residence certificate.",
+      },
+      {
+        question: "Ma rente AVS est-elle imposée en Suisse quand je vis en Espagne ?",
+        questionEn: "Is my AVS pension taxed in Switzerland while I live in Spain?",
+        answer: "La Suisse ne prélève pas d'impôt à la source sur l'AVS ; l'imposition revient en principe à l'Espagne.",
+        answerEn: "Switzerland does not levy source tax on AVS; taxation is in principle in Spain.",
+      },
+      {
+        question: "NeoFidu peut-il gérer ma déclaration à distance depuis l'Espagne ?",
+        questionEn: "Can NeoFidu handle my return remotely from Spain?",
+        answer: "Oui, tout se fait 100 % en ligne et en français, sans que vous ayez à vous déplacer.",
+        answerEn: "Yes, everything is done 100% online, without you having to travel.",
+      },
+    ],
+  },
 ];
 
 export function getCountryPage(slug: string): CountryPage | undefined {
