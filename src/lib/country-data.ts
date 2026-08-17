@@ -351,6 +351,148 @@ export const countryPages: CountryPage[] = [
       },
     ],
   },
+  {
+    slug: "belgique",
+    country: "Belgique",
+    countryEn: "Belgium",
+    countryEmoji: "🇧🇪",
+    metaTitle: "Suisses en Belgique : impôts & fiscalité en Suisse romande",
+    metaTitleEn: "Swiss citizens in Belgium: taxes & Swiss filing",
+    metaDescription:
+      "Vous êtes Suisse en Belgique ? Rente AVS, retrait 2e/3e pilier, bien immobilier en Suisse, déclaration cantonale : NeoFidu gère votre fiscalité romande, en ligne.",
+    metaDescriptionEn:
+      "Swiss living in Belgium? AVS pension, 2nd/3rd pillar withdrawal, Swiss property, cantonal return: NeoFidu handles your Romandy tax matters, online.",
+    h1: "Suisses en Belgique : votre fiscalité et vos obligations en Suisse romande",
+    h1En: "Swiss citizens in Belgium: your taxes and obligations in French-speaking Switzerland",
+    swissPopulation: "Communauté suisse établie en Belgique (OFS)",
+    swissPopulationEn: "Swiss community established in Belgium (FSO)",
+    lastUpdated: "2026-08-17",
+    keywords: [
+      "suisse en belgique impôts",
+      "déclaration impôt suisse belgique",
+      "convention double imposition suisse belgique",
+      "retrait 2e pilier belgique remboursement",
+      "rente AVS belgique imposition",
+      "fiscalité suisse expatrié bruxelles",
+    ],
+    relatedCountries: ["france", "canada"],
+    infographic: {
+      leftTitle: "Imposé en Suisse",
+      leftTitleEn: "Taxed in Switzerland",
+      rightTitle: "Imposé en Belgique",
+      rightTitleEn: "Taxed in Belgium",
+      leftItems: [
+        { fr: "Bien immobilier en Suisse", en: "Swiss real estate" },
+        { fr: "Prestations 2e / 3e pilier", en: "2nd / 3rd pillar benefits" },
+        { fr: "Certains revenus suisses", en: "Certain Swiss-source income" },
+      ],
+      rightItems: [
+        { fr: "Salaire et revenus belges", en: "Belgian salary & income" },
+        { fr: "Rente AVS (1er pilier)", en: "AVS pension (1st pillar)" },
+        { fr: "Revenu mondial", en: "Worldwide income" },
+      ],
+      calloutMain: "2e et 3e pilier : imposé à la source en Suisse, puis remboursé",
+      calloutMainEn: "2nd & 3rd pillar: taxed at source in Switzerland, then refunded",
+      calloutSub: "La convention CH-Belgique attribue l'imposition au pays de résidence",
+      calloutSubEn: "The CH-Belgium treaty assigns taxation to the country of residence",
+    },
+    intro:
+      `<p style="margin:0 0 18px;line-height:1.75;">De Bruxelles à la Wallonie, une communauté suisse durable vit en Belgique, souvent francophone et proche de la Suisse romande. Que vous y travailliez pour une institution européenne ou que vous y soyez retraité, votre installation ne met pas toujours fin à vos liens fiscaux avec votre canton d'origine, surtout si vous avez gardé un bien immobilier ou une prévoyance. NeoFidu vous accompagne, en français et 100 % à distance.</p>`,
+    introEn:
+      `<p style="margin:0 0 18px;line-height:1.75;">From Brussels to Wallonia, a lasting Swiss community lives in Belgium, often French-speaking and close to French-speaking Switzerland. Whether you work for a European institution or are retired there, moving does not always end your tax ties with your home canton, especially if you kept property or pension savings. NeoFidu supports you, in French and 100% remotely.</p>`,
+    sections: [
+      {
+        title: "Où êtes-vous imposé : en Belgique ou en Suisse ?",
+        titleEn: "Where are you taxed: in Belgium or in Switzerland?",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Résident en Belgique, vous y êtes en principe imposé sur votre revenu mondial. La <strong>convention de double imposition entre la Suisse et la Belgique</strong> répartit les droits d'imposition pour éviter que les mêmes revenus soient taxés deux fois. Certains éléments restent toutefois rattachés à la Suisse, et c'est là que se joue votre situation.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">As a Belgian resident, you are in principle taxed there on your worldwide income. The <strong>Switzerland-Belgium double taxation treaty</strong> allocates taxing rights to avoid the same income being taxed twice. Some items nonetheless remain linked to Switzerland, and that is where your situation is decided.</p>`,
+      },
+      {
+        title: "Ce qui reste imposable en Suisse",
+        titleEn: "What remains taxable in Switzerland",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Même résident en Belgique, vous conservez des obligations en Suisse dans plusieurs cas :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Bien immobilier en Suisse</strong> : il reste imposable en Suisse (revenu ou valeur locative, et fortune). Une déclaration cantonale reste nécessaire.</li><li><strong>Revenus de source suisse</strong> : certaines rentes, participations ou activités conservées en Suisse.</li><li><strong>Prestations de prévoyance</strong> : voir la section ci-dessous.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>À retenir :</strong> l'immobilier suisse s'impose toujours en Suisse, quel que soit votre pays de résidence.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Even as a Belgian resident, you keep Swiss obligations in several cases:</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Property in Switzerland</strong>: it stays taxable in Switzerland (rental or imputed rental value, and wealth). A cantonal return is still required.</li><li><strong>Swiss-source income</strong>: certain pensions, holdings or activities kept in Switzerland.</li><li><strong>Pension benefits</strong>: see the section below.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Key point:</strong> Swiss real estate is always taxed in Switzerland, whatever your country of residence.</div>`,
+      },
+      {
+        title: "Vos rentes et votre prévoyance (AVS, 2e et 3e pilier)",
+        titleEn: "Your pensions and retirement savings (AVS, 2nd and 3rd pillar)",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Point clé pour un Suisse en Belgique :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Rente AVS (1er pilier)</strong> : la Suisse ne prélève pas d'impôt à la source ; l'imposition revient en principe à la Belgique.</li><li><strong>Retrait du 2e ou 3e pilier A en capital</strong> : toujours soumis à l'impôt à la source en Suisse, prélevé par le canton de la fondation.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Bonne nouvelle :</strong> comme la convention CH-Belgique attribue l'imposition au pays de résidence, l'impôt à la source suisse est <strong>remboursable sur demande</strong>, avec une attestation de résidence fiscale belge adressée au canton concerné. NeoFidu s'occupe de la démarche.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Key point for a Swiss citizen in Belgium:</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>AVS pension (1st pillar)</strong>: Switzerland does not levy source tax; taxation is in principle in Belgium.</li><li><strong>2nd or 3rd pillar lump-sum withdrawal</strong>: always subject to Swiss source tax, levied by the canton of the foundation.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Good news:</strong> because the CH-Belgium treaty assigns taxation to the country of residence, the Swiss source tax is <strong>refundable on request</strong>, with a Belgian tax-residence certificate sent to the relevant canton. NeoFidu handles the process.</div>`,
+      },
+      {
+        title: "Vos obligations déclaratives en Suisse romande",
+        titleEn: "Your filing obligations in French-speaking Switzerland",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Selon votre situation, vous pouvez encore devoir déposer une déclaration dans votre canton (VD, GE, VS, FR, NE ou JU), typiquement si vous y détenez un bien immobilier. NeoFidu identifie ce que vous devez déclarer, prépare votre déclaration cantonale et gère les échanges avec l'administration, entièrement à distance.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Depending on your situation, you may still need to file a return in your canton (VD, GE, VS, FR, NE or JU), typically if you hold property there. NeoFidu identifies what you must declare, prepares your cantonal return and handles all exchanges with the administration, entirely remotely.</p>`,
+      },
+    ],
+    profiles: [
+      {
+        label: "Fonctionnaire européen à Bruxelles",
+        labelEn: "EU staff in Brussels",
+        description: "Situation souvent particulière (statut fiscal spécifique) : nous faisons le point sur vos liens fiscaux suisses restants.",
+        descriptionEn: "Often a specific tax status: we review your remaining Swiss tax ties.",
+      },
+      {
+        label: "Retraité en Belgique",
+        labelEn: "Retiree in Belgium",
+        description: "Rentes et retrait de piliers : nous clarifions l'imposition et récupérons l'impôt à la source suisse.",
+        descriptionEn: "Pensions and pillar withdrawals: we clarify taxation and recover the Swiss source tax.",
+      },
+      {
+        label: "Propriétaire d'un bien en Suisse",
+        labelEn: "Owner of a Swiss property",
+        description: "Un bien resté en Suisse reste imposable en Suisse : nous gérons votre déclaration cantonale à distance.",
+        descriptionEn: "A property kept in Switzerland stays taxable in Switzerland: we handle your cantonal return remotely.",
+      },
+      {
+        label: "Sur le point de partir",
+        labelEn: "About to leave",
+        description: "Avant le départ : nous optimisons le retrait de vos 2e/3e piliers et anticipons le remboursement.",
+        descriptionEn: "Before leaving: we optimise your 2nd/3rd pillar withdrawal and plan the refund.",
+      },
+    ],
+    faq: [
+      {
+        question: "Je vis en Belgique, dois-je encore faire une déclaration d'impôt en Suisse ?",
+        questionEn: "I live in Belgium, do I still need to file a Swiss tax return?",
+        answer: "Oui si vous conservez un bien immobilier ou des revenus de source suisse dans un canton romand ; sinon, en principe non. Nous faisons le point sur votre cas.",
+        answerEn: "Yes if you keep a property or Swiss-source income in a Romandy canton; otherwise, in principle no. We review your specific case.",
+      },
+      {
+        question: "Mon 2e pilier retiré en capital a été imposé à la source en Suisse : puis-je le récupérer depuis la Belgique ?",
+        questionEn: "My 2nd pillar lump sum was taxed in Switzerland, can I recover it from Belgium?",
+        answer: "Oui dans la plupart des cas : la convention CH-Belgique attribue l'imposition au pays de résidence, l'impôt à la source suisse est donc remboursable sur demande avec une attestation de résidence fiscale belge.",
+        answerEn: "Yes in most cases: the CH-Belgium treaty assigns taxation to the country of residence, so the Swiss source tax is refundable on request with a Belgian tax-residence certificate.",
+      },
+      {
+        question: "Ma rente AVS est-elle imposée en Suisse quand je vis en Belgique ?",
+        questionEn: "Is my AVS pension taxed in Switzerland while I live in Belgium?",
+        answer: "La Suisse ne prélève pas d'impôt à la source sur l'AVS ; l'imposition revient en principe à la Belgique.",
+        answerEn: "Switzerland does not levy source tax on AVS; taxation is in principle in Belgium.",
+      },
+      {
+        question: "Je possède un logement en Suisse mais je vis en Belgique : où est-il imposé ?",
+        questionEn: "I own a home in Switzerland but live in Belgium, where is it taxed?",
+        answer: "L'immobilier situé en Suisse reste imposable en Suisse. Une déclaration cantonale est nécessaire ; nous la préparons pour vous.",
+        answerEn: "Real estate located in Switzerland stays taxable in Switzerland. A cantonal return is required; we prepare it for you.",
+      },
+      {
+        question: "NeoFidu peut-il gérer ma déclaration à distance depuis la Belgique ?",
+        questionEn: "Can NeoFidu handle my return remotely from Belgium?",
+        answer: "Oui, tout se fait 100 % en ligne et en français, sans que vous ayez à vous déplacer.",
+        answerEn: "Yes, everything is done 100% online, without you having to travel.",
+      },
+    ],
+  },
 ];
 
 export function getCountryPage(slug: string): CountryPage | undefined {

@@ -18,6 +18,15 @@ function SwissFlag() {
 }
 
 function CountryFlag({ slug }: { slug: string }) {
+  if (slug === "belgique") {
+    return (
+      <svg width="120" height="80" viewBox="0 0 3 2" role="img" aria-label="Belgique">
+        <rect width="1" height="2" fill="#000000" />
+        <rect x="1" width="1" height="2" fill="#FAE042" />
+        <rect x="2" width="1" height="2" fill="#ED2939" />
+      </svg>
+    );
+  }
   if (slug === "france") {
     return (
       <svg width="120" height="80" viewBox="0 0 3 2" role="img" aria-label="France">
