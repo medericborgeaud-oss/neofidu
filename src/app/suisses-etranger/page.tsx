@@ -196,7 +196,7 @@ export default function SuissesEtrangerPage() {
               {isEnglish ? "Detailed tax guidance based on your country of residence." : "Un accompagnement fiscal détaillé selon votre pays de résidence."}
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             <Link href="/suisses-de-letranger/canada" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
               <span>Canada</span>
               <span className="text-primary">→</span>
@@ -207,6 +207,10 @@ export default function SuissesEtrangerPage() {
             </Link>
             <Link href="/suisses-de-letranger/belgique" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
               <span>Belgique</span>
+              <span className="text-primary">→</span>
+            </Link>
+            <Link href="/suisses-de-letranger/espagne" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
+              <span>Espagne</span>
               <span className="text-primary">→</span>
             </Link>
           </div>
@@ -650,4 +654,4 @@ export default function SuissesEtrangerPage() {
     </main>
     </>
   );
-}
+                           }
