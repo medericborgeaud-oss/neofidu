@@ -74,7 +74,7 @@ export default function CountryPageClient({ page }: { page: CountryPage }) {
               <span className="text-foreground">{isEnglish ? page.countryEn : page.country}</span>
             </nav>
 
-            <div className="flex items-end gap-4 mb-5">
+            <div className="flex items-center justify-between mb-6">
               <svg width="72" height="72" viewBox="0 0 32 32" role="img" aria-label={isEnglish ? "Switzerland" : "Suisse"}>
                 <rect width="32" height="32" fill="#D52B1E" />
                 <rect x="13" y="6" width="6" height="20" fill="#ffffff" />
@@ -218,4 +218,4 @@ export default function CountryPageClient({ page }: { page: CountryPage }) {
       <Footer />
     </>
   );
-    }
+                }
