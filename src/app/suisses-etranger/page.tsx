@@ -186,6 +186,29 @@ export default function SuissesEtrangerPage() {
       </section>
 
       {/* Stats Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              {isEnglish ? "Guides by country" : "Nos guides par pays"}
+            </h2>
+            <p className="text-muted-foreground">
+              {isEnglish ? "Detailed tax guidance based on your country of residence." : "Un accompagnement fiscal détaillé selon votre pays de résidence."}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <Link href="/suisses-de-letranger/canada" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
+              <span>Canada</span>
+              <span className="text-primary">→</span>
+            </Link>
+            <Link href="/suisses-de-letranger/france" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
+              <span>France</span>
+              <span className="text-primary">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="py-12 bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -623,4 +646,4 @@ export default function SuissesEtrangerPage() {
     </main>
     </>
   );
-}
+          }
