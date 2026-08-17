@@ -74,8 +74,21 @@ export default function CountryPageClient({ page }: { page: CountryPage }) {
               <span className="text-foreground">{isEnglish ? page.countryEn : page.country}</span>
             </nav>
 
+            <div className="flex items-center gap-3 mb-5">
+              <svg width="44" height="44" viewBox="0 0 44 44" role="img" aria-label={isEnglish ? "Switzerland" : "Suisse"}>
+                <rect width="44" height="44" rx="8" fill="#0d9488" />
+                <rect x="19" y="10" width="6" height="24" fill="#ffffff" />
+                <rect x="10" y="19" width="24" height="6" fill="#ffffff" />
+              </svg>
+              <svg width="44" height="44" viewBox="0 0 44 44" role="img" aria-label="Canada">
+                <rect width="44" height="44" rx="8" fill="#0d9488" />
+                <g transform="translate(22 23) scale(0.058) translate(-256 -256)" fill="#ffffff">
+                  <path d="M383.8 351.7c26.4-14.3 49.6-30.5 74.8-46.9-5.9-2.7-11.8-5.4-17.7-8.1-3.6-1.6-6.7-3.4-5.6-8.5 2.3-10.7 4.4-21.5 6.6-32.2-11.6 2.7-22.2 5.2-32.9 7.6-6.9 1.5-10.4-.7-11.3-7.4-.9-6.2-2-12.4-3.2-19.3-9.8 10.6-19.1 20.6-28.4 30.6-6.5 7-12.4 4.5-13.1-4.6-1.9-24.7-3.9-49.4-5.9-74.1-.1-1.4-.5-2.8-.9-5.1-7.2 4.2-13.9 8-20.5 12-6.7 4-9.6 2.9-11.6-4.6-6.4-24.1-13-48.1-19.5-72.2-.4-1.5-1-2.9-1.8-5.3-6.5 11.3-12.5 21.7-18.4 32.1-4.9 8.6-10.7 8.6-15.6 0-5.9-10.4-11.9-20.8-18.4-32.1-.8 2.4-1.4 3.8-1.8 5.3-6.5 24.1-13.1 48.1-19.5 72.2-2 7.5-4.9 8.6-11.6 4.6-6.6-4-13.3-7.8-20.5-12-.4 2.3-.8 3.7-.9 5.1-2 24.7-4 49.4-5.9 74.1-.7 9.1-6.6 11.6-13.1 4.6-9.3-10-18.6-20-28.4-30.6-1.2 6.9-2.3 13.1-3.2 19.3-.9 6.7-4.4 8.9-11.3 7.4-10.7-2.4-21.3-4.9-32.9-7.6 2.2 10.7 4.3 21.5 6.6 32.2 1.1 5.1-2 6.9-5.6 8.5-5.9 2.7-11.8 5.4-17.7 8.1 25.2 16.4 48.4 32.6 74.8 46.9 9.7 5.3 12.9 10.9 8.9 21.2-2.1 5.4-3.4 11.1-5.4 17.7 24.3-5.2 47.3-10.1 70.3-15 .3 8.9.4 17.3 1 25.7.4 5.9 3.5 8.4 9.4 8.3 8.4-.1 16.7 0 25.9 0-2.1 24.6-4.1 48.3-6.1 72 .1 0 3.4.1 6.6.1 3.2 0 6.5-.1 6.6-.1-2-23.7-4-47.4-6.1-72 9.2 0 17.5-.1 25.9 0 5.9.1 9-2.4 9.4-8.3.6-8.4.7-16.8 1-25.7 23 4.9 46 9.8 70.3 15-2-6.6-3.3-12.3-5.4-17.7-4-10.3-.8-15.9 8.9-21.2z" />
+                </g>
+              </svg>
+            </div>
+
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary text-sm font-medium px-3 py-1 mb-4">
-              <span>{page.countryEmoji}</span>
               <span>{pop}</span>
             </div>
 
@@ -178,8 +191,8 @@ export default function CountryPageClient({ page }: { page: CountryPage }) {
               </h2>
               <p className="opacity-90 mb-6">
                 {isEnglish
-                  ? "Free quote, no commitment — 100% online."
-                  : "Devis gratuit, sans engagement — 100 % en ligne."}
+                  ? "Free quote, no commitment - 100% online."
+                  : "Devis gratuit, sans engagement - 100 % en ligne."}
               </p>
               <Link
                 href="/demande"
@@ -203,4 +216,4 @@ export default function CountryPageClient({ page }: { page: CountryPage }) {
       <Footer />
     </>
   );
-}
+                    }
