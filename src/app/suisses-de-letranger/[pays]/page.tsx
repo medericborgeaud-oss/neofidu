@@ -69,7 +69,7 @@ export default async function Page({
         "@type": "ListItem",
         position: 2,
         name: "Suisses de l'étranger",
-        item: "https://neofidu.ch/suisses-de-letranger",
+        item: "https://neofidu.ch/suisses-etranger",
       },
       {
         "@type": "ListItem",

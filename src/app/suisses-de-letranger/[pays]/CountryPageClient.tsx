@@ -103,7 +103,9 @@ export default function CountryPageClient({ page }: { page: CountryPage }) {
                 {isEnglish ? "Home" : "Accueil"}
               </Link>
               <span className="mx-2">›</span>
-              <span>{isEnglish ? "Swiss citizens abroad" : "Suisses de l'étranger"}</span>
+              <Link href="/suisses-etranger" className="hover:text-primary">
+                {isEnglish ? "Swiss citizens abroad" : "Suisses de l'étranger"}
+              </Link>
               <span className="mx-2">›</span>
               <span className="text-foreground">{isEnglish ? page.countryEn : page.country}</span>
             </nav>
