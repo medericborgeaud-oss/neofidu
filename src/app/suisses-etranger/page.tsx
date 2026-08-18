@@ -213,6 +213,10 @@ export default function SuissesEtrangerPage() {
               <span>Espagne</span>
               <span className="text-primary">→</span>
             </Link>
+            <Link href="/suisses-de-letranger/portugal" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
+              <span>Portugal</span>
+              <span className="text-primary">→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -654,4 +658,4 @@ export default function SuissesEtrangerPage() {
     </main>
     </>
   );
-                           }
+            }
