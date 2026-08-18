@@ -635,6 +635,148 @@ export const countryPages: CountryPage[] = [
       },
     ],
   },
+  {
+    slug: "portugal",
+    country: "Portugal",
+    countryEn: "Portugal",
+    countryEmoji: "🇵🇹",
+    metaTitle: "Suisses au Portugal : impôts & fiscalité en Suisse romande",
+    metaTitleEn: "Swiss citizens in Portugal: taxes & Swiss filing",
+    metaDescription:
+      "Vous êtes Suisse au Portugal ? Fin du régime RNH, rente AVS, retrait 2e/3e pilier, bien en Suisse : NeoFidu gère votre fiscalité romande, en ligne et en français.",
+    metaDescriptionEn:
+      "Swiss living in Portugal? End of the NHR regime, AVS pension, 2nd/3rd pillar withdrawal, Swiss property: NeoFidu handles your Romandy tax matters online.",
+    h1: "Suisses au Portugal : votre fiscalité et vos obligations en Suisse romande",
+    h1En: "Swiss citizens in Portugal: your taxes and obligations in French-speaking Switzerland",
+    swissPopulation: "Communauté suisse établie au Portugal (OFS)",
+    swissPopulationEn: "Swiss community established in Portugal (FSO)",
+    lastUpdated: "2026-08-17",
+    keywords: [
+      "suisse au portugal impôts",
+      "retraité suisse portugal fiscalité",
+      "fin régime RNH portugal 2024",
+      "convention double imposition suisse portugal",
+      "retrait 2e pilier portugal remboursement",
+      "rente AVS portugal imposition",
+    ],
+    relatedCountries: ["espagne", "france"],
+    infographic: {
+      leftTitle: "Imposé en Suisse",
+      leftTitleEn: "Taxed in Switzerland",
+      rightTitle: "Imposé au Portugal",
+      rightTitleEn: "Taxed in Portugal",
+      leftItems: [
+        { fr: "Bien immobilier en Suisse", en: "Swiss real estate" },
+        { fr: "Prestations 2e / 3e pilier", en: "2nd / 3rd pillar benefits" },
+        { fr: "Certains revenus suisses", en: "Certain Swiss-source income" },
+      ],
+      rightItems: [
+        { fr: "Salaire et revenus portugais", en: "Portuguese salary & income" },
+        { fr: "Rente AVS (1er pilier)", en: "AVS pension (1st pillar)" },
+        { fr: "Revenu mondial", en: "Worldwide income" },
+      ],
+      calloutMain: "2e et 3e pilier : imposé à la source en Suisse, puis remboursé",
+      calloutMainEn: "2nd & 3rd pillar: taxed at source in Switzerland, then refunded",
+      calloutSub: "La convention CH-Portugal attribue l'imposition au pays de résidence",
+      calloutSubEn: "The CH-Portugal treaty assigns taxation to the country of residence",
+    },
+    intro:
+      `<p style="margin:0 0 18px;line-height:1.75;">Longtemps réputé comme un paradis fiscal pour les retraités, le Portugal a beaucoup changé : le régime « Résident Non Habituel » (RNH) a été supprimé pour les nouveaux arrivants. Il reste une destination très appréciée des Suisses romands, mais la fiscalité mérite désormais un examen attentif, surtout si vous conservez un bien ou une prévoyance en Suisse. NeoFidu vous accompagne, en français et 100 % à distance.</p>`,
+    introEn:
+      `<p style="margin:0 0 18px;line-height:1.75;">Long known as a tax haven for retirees, Portugal has changed a lot: the "Non-Habitual Resident" (NHR) regime has been abolished for new arrivals. It remains a very popular destination for French-speaking Swiss, but the tax situation now deserves careful review, especially if you keep property or pension savings in Switzerland. NeoFidu supports you, in French and 100% remotely.</p>`,
+    sections: [
+      {
+        title: "Où êtes-vous imposé : au Portugal ou en Suisse ?",
+        titleEn: "Where are you taxed: in Portugal or in Switzerland?",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Résident fiscal au Portugal, vous y êtes imposé sur votre revenu mondial. La <strong>convention de double imposition entre la Suisse et le Portugal</strong> répartit les droits d'imposition pour éviter une double taxation. Certains éléments restent toutefois rattachés à la Suisse, notamment votre immobilier et votre prévoyance.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">As a Portuguese tax resident, you are taxed there on your worldwide income. The <strong>Switzerland-Portugal double taxation treaty</strong> allocates taxing rights to avoid double taxation. Some items nonetheless remain linked to Switzerland, notably your real estate and pension savings.</p>`,
+      },
+      {
+        title: "La fin de l'avantage RNH (depuis 2024)",
+        titleEn: "The end of the NHR advantage (since 2024)",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">C'est le changement le plus important. Le régime <strong>Résident Non Habituel (RNH)</strong>, qui permettait aux retraités étrangers de bénéficier d'une imposition très faible sur leurs pensions, a été <strong>fermé aux nouveaux arrivants dès 2024</strong>.</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Les <strong>nouveaux résidents</strong> sont désormais imposés au barème portugais ordinaire (progressif, jusqu'à ~48 %).</li><li>Les personnes <strong>déjà au bénéfice du RNH</strong> conservent leurs avantages jusqu'à la fin de leur période de 10 ans.</li><li>Un nouveau régime (IFICI) existe depuis 2025, mais il vise des profils qualifiés spécifiques, pas les retraités.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>À retenir :</strong> ne vous fiez pas aux anciens articles qui présentent encore le Portugal comme un eldorado fiscal. Un calcul actualisé est indispensable avant de partir.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">This is the most important change. The <strong>Non-Habitual Resident (NHR)</strong> regime, which let foreign retirees enjoy very low taxation on their pensions, was <strong>closed to new arrivals from 2024</strong>.</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>New residents</strong> are now taxed under ordinary Portuguese rates (progressive, up to ~48%).</li><li>People <strong>already benefiting from NHR</strong> keep their advantages until the end of their 10-year period.</li><li>A new regime (IFICI) exists from 2025, but it targets specific qualified profiles, not retirees.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Key point:</strong> do not rely on old articles that still present Portugal as a tax haven. An up-to-date calculation is essential before you move.</div>`,
+      },
+      {
+        title: "Ce qui reste imposable en Suisse",
+        titleEn: "What remains taxable in Switzerland",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Même résident au Portugal, vous conservez des obligations en Suisse dans plusieurs cas :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Bien immobilier en Suisse</strong> : il reste imposable en Suisse (revenu ou valeur locative, et fortune). Une déclaration cantonale reste nécessaire.</li><li><strong>Revenus de source suisse</strong> : certaines rentes, participations ou activités conservées en Suisse.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>À retenir :</strong> l'immobilier suisse s'impose toujours en Suisse, quel que soit votre pays de résidence.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Even as a Portuguese resident, you keep Swiss obligations in several cases:</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Property in Switzerland</strong>: it stays taxable in Switzerland (rental or imputed rental value, and wealth). A cantonal return is still required.</li><li><strong>Swiss-source income</strong>: certain pensions, holdings or activities kept in Switzerland.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Key point:</strong> Swiss real estate is always taxed in Switzerland, whatever your country of residence.</div>`,
+      },
+      {
+        title: "Vos rentes et votre prévoyance (AVS, 2e et 3e pilier)",
+        titleEn: "Your pensions and retirement savings (AVS, 2nd and 3rd pillar)",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Point clé pour un Suisse au Portugal :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Rente AVS (1er pilier)</strong> : la Suisse ne prélève pas d'impôt à la source ; l'imposition revient en principe au Portugal.</li><li><strong>Retrait du 2e ou 3e pilier en capital</strong> : toujours imposé à la source en Suisse, prélevé par le canton de la fondation.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Bonne nouvelle :</strong> comme la convention CH-Portugal attribue l'imposition au pays de résidence, l'impôt à la source suisse est <strong>remboursable sur demande</strong>, avec une attestation de résidence fiscale portugaise. Le moment du retrait, combiné à la fin du RNH, mérite un calcul précis.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Key point for a Swiss citizen in Portugal:</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>AVS pension (1st pillar)</strong>: Switzerland does not levy source tax; taxation is in principle in Portugal.</li><li><strong>2nd or 3rd pillar lump-sum withdrawal</strong>: always taxed at source in Switzerland, levied by the canton of the foundation.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Good news:</strong> because the CH-Portugal treaty assigns taxation to the country of residence, the Swiss source tax is <strong>refundable on request</strong>, with a Portuguese tax-residence certificate. The timing of the withdrawal, combined with the end of NHR, deserves a precise calculation.</div>`,
+      },
+    ],
+    profiles: [
+      {
+        label: "Retraité au Portugal",
+        labelEn: "Retiree in Portugal",
+        description: "Avec la fin du RNH, l'imposition a changé : nous recalculons votre situation et récupérons l'impôt à la source suisse.",
+        descriptionEn: "With the end of NHR, taxation has changed: we recalculate your situation and recover the Swiss source tax.",
+      },
+      {
+        label: "Sur le point de partir",
+        labelEn: "About to leave",
+        description: "Nous comparons les scénarios (timing du retrait des piliers, fin du RNH) pour éviter les mauvaises surprises.",
+        descriptionEn: "We compare scenarios (pillar withdrawal timing, end of NHR) to avoid unpleasant surprises.",
+      },
+      {
+        label: "Propriétaire d'un bien en Suisse",
+        labelEn: "Owner of a Swiss property",
+        description: "Un bien resté en Suisse reste imposable en Suisse : nous gérons votre déclaration cantonale à distance.",
+        descriptionEn: "A property kept in Switzerland stays taxable in Switzerland: we handle your cantonal return remotely.",
+      },
+      {
+        label: "Actif installé au Portugal",
+        labelEn: "Working in Portugal",
+        description: "Vous avez quitté la Suisse pour le travail : nous faisons le point sur vos derniers liens fiscaux et vos piliers.",
+        descriptionEn: "You left Switzerland for work: we review your remaining tax ties and your pension pillars.",
+      },
+    ],
+    faq: [
+      {
+        question: "Le Portugal est-il encore un paradis fiscal pour les retraités suisses ?",
+        questionEn: "Is Portugal still a tax haven for Swiss retirees?",
+        answer: "Non, plus pour les nouveaux arrivants : le régime RNH a été fermé en 2024. Les nouveaux résidents sont imposés au barème portugais ordinaire. Un calcul actualisé est indispensable avant de partir.",
+        answerEn: "No, not for new arrivals: the NHR regime was closed in 2024. New residents are taxed under ordinary Portuguese rates. An up-to-date calculation is essential before moving.",
+      },
+      {
+        question: "Je vis au Portugal, dois-je encore faire une déclaration d'impôt en Suisse ?",
+        questionEn: "I live in Portugal, do I still need to file a Swiss tax return?",
+        answer: "Oui si vous conservez un bien immobilier ou des revenus de source suisse dans un canton romand ; sinon, en principe non. Nous faisons le point sur votre cas.",
+        answerEn: "Yes if you keep a property or Swiss-source income in a Romandy canton; otherwise, in principle no. We review your specific case.",
+      },
+      {
+        question: "Mon 2e pilier retiré en capital a été imposé à la source en Suisse : puis-je le récupérer depuis le Portugal ?",
+        questionEn: "My 2nd pillar lump sum was taxed in Switzerland, can I recover it from Portugal?",
+        answer: "Oui dans la plupart des cas : la convention CH-Portugal attribue l'imposition au pays de résidence, l'impôt à la source suisse est donc remboursable sur demande avec une attestation de résidence fiscale portugaise.",
+        answerEn: "Yes in most cases: the CH-Portugal treaty assigns taxation to the country of residence, so the Swiss source tax is refundable on request with a Portuguese tax-residence certificate.",
+      },
+      {
+        question: "Ma rente AVS est-elle imposée en Suisse quand je vis au Portugal ?",
+        questionEn: "Is my AVS pension taxed in Switzerland while I live in Portugal?",
+        answer: "La Suisse ne prélève pas d'impôt à la source sur l'AVS ; l'imposition revient en principe au Portugal.",
+        answerEn: "Switzerland does not levy source tax on AVS; taxation is in principle in Portugal.",
+      },
+      {
+        question: "NeoFidu peut-il gérer ma déclaration à distance depuis le Portugal ?",
+        questionEn: "Can NeoFidu handle my return remotely from Portugal?",
+        answer: "Oui, tout se fait 100 % en ligne et en français, sans que vous ayez à vous déplacer.",
+        answerEn: "Yes, everything is done 100% online, without you having to travel.",
+      },
+    ],
+  },
 ];
 
 export function getCountryPage(slug: string): CountryPage | undefined {
