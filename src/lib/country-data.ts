@@ -777,6 +777,142 @@ export const countryPages: CountryPage[] = [
       },
     ],
   },
+  {
+    slug: "autres-pays",
+    country: "Autres pays",
+    countryEn: "Other countries",
+    countryEmoji: "🌍",
+    metaTitle: "Suisses de l'étranger : autres pays | fiscalité en Suisse romande",
+    metaTitleEn: "Swiss citizens abroad: other countries | Swiss (Romandy) tax",
+    metaDescription:
+      "Votre pays n'est pas listé ? La Suisse a des conventions fiscales avec près de 100 pays. NeoFidu gère votre déclaration romande et vos piliers, où que vous soyez.",
+    metaDescriptionEn:
+      "Your country isn't listed? Switzerland has tax treaties with nearly 100 countries. NeoFidu handles your Romandy return and pension pillars, wherever you live.",
+    h1: "Suisses de l'étranger : votre fiscalité romande, où que vous soyez",
+    h1En: "Swiss citizens abroad: your Romandy taxes, wherever you live",
+    swissPopulation: "≈ 100 conventions fiscales signées par la Suisse",
+    swissPopulationEn: "≈ 100 tax treaties signed by Switzerland",
+    lastUpdated: "2026-08-17",
+    keywords: [
+      "suisse de l'étranger impôts",
+      "déclaration impôt suisse depuis l'étranger",
+      "convention double imposition suisse",
+      "retrait 2e pilier étranger remboursement",
+      "rente AVS étranger imposition",
+      "fiscalité expatrié suisse romand",
+    ],
+    relatedCountries: ["france", "canada", "espagne"],
+    infographic: {
+      leftTitle: "Imposé en Suisse",
+      leftTitleEn: "Taxed in Switzerland",
+      rightTitle: "Imposé dans votre pays",
+      rightTitleEn: "Taxed in your country",
+      leftItems: [
+        { fr: "Bien immobilier en Suisse", en: "Swiss real estate" },
+        { fr: "Prestations 2e / 3e pilier", en: "2nd / 3rd pillar benefits" },
+        { fr: "Certains revenus suisses", en: "Certain Swiss-source income" },
+      ],
+      rightItems: [
+        { fr: "Salaire et revenus locaux", en: "Local salary & income" },
+        { fr: "Rente AVS (1er pilier)", en: "AVS pension (1st pillar)" },
+        { fr: "Revenu mondial", en: "Worldwide income" },
+      ],
+      calloutMain: "2e et 3e pilier : imposé à la source en Suisse, souvent remboursable",
+      calloutMainEn: "2nd & 3rd pillar: taxed at source in Switzerland, often refundable",
+      calloutSub: "Selon la convention entre la Suisse et votre pays de résidence",
+      calloutSubEn: "Depending on the treaty between Switzerland and your country of residence",
+    },
+    intro:
+      `<p style="margin:0 0 18px;line-height:1.75;">Votre pays de résidence ne figure pas encore dans nos guides détaillés ? Ce n'est pas un problème. La Suisse a conclu des <strong>conventions de double imposition avec près de 100 pays</strong>, et les grands principes sont souvent les mêmes : votre immobilier suisse reste imposable en Suisse, vos piliers de prévoyance suivent des règles spécifiques, et votre canton d'origine peut encore attendre une déclaration. NeoFidu gère votre fiscalité romande <strong>où que vous viviez</strong>, en français et 100 % à distance.</p>`,
+    introEn:
+      `<p style="margin:0 0 18px;line-height:1.75;">Your country of residence isn't in our detailed guides yet? That's not a problem. Switzerland has <strong>double taxation treaties with nearly 100 countries</strong>, and the main principles are often the same: your Swiss real estate stays taxable in Switzerland, your pension pillars follow specific rules, and your home canton may still expect a return. NeoFidu handles your Romandy taxes <strong>wherever you live</strong>, in French and 100% remotely.</p>`,
+    sections: [
+      {
+        title: "Le principe : où êtes-vous imposé ?",
+        titleEn: "The principle: where are you taxed?",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">En règle générale, votre pays de résidence vous impose sur votre revenu mondial. La convention de double imposition entre la Suisse et ce pays répartit ensuite les droits d'imposition pour éviter que les mêmes revenus soient taxés deux fois. Le détail dépend de la convention concernée, mais plusieurs éléments reviennent presque partout, ci-dessous.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">As a rule, your country of residence taxes you on your worldwide income. The double taxation treaty between Switzerland and that country then allocates taxing rights to avoid the same income being taxed twice. The details depend on the specific treaty, but several elements recur almost everywhere, below.</p>`,
+      },
+      {
+        title: "Ce qui reste (presque toujours) imposable en Suisse",
+        titleEn: "What (almost always) remains taxable in Switzerland",
+        content:
+          `<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Bien immobilier en Suisse</strong> : quasi universellement imposable en Suisse (déclaration cantonale nécessaire).</li><li><strong>Revenus de source suisse</strong> : certaines rentes, participations ou activités conservées en Suisse.</li><li><strong>Prestations de prévoyance en capital</strong> : imposées à la source en Suisse (voir ci-dessous).</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>À retenir :</strong> l'immobilier suisse s'impose en Suisse, quel que soit votre pays de résidence.</div>`,
+        contentEn:
+          `<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Property in Switzerland</strong>: almost universally taxable in Switzerland (cantonal return required).</li><li><strong>Swiss-source income</strong>: certain pensions, holdings or activities kept in Switzerland.</li><li><strong>Lump-sum pension benefits</strong>: taxed at source in Switzerland (see below).</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Key point:</strong> Swiss real estate is taxed in Switzerland, whatever your country of residence.</div>`,
+      },
+      {
+        title: "Vos rentes et votre prévoyance",
+        titleEn: "Your pensions and retirement savings",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">La <strong>rente AVS</strong> n'est pas soumise à l'impôt à la source suisse ; son imposition revient en général à votre pays de résidence. Le <strong>retrait du 2e ou 3e pilier en capital</strong> est toujours imposé à la source en Suisse.</p><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Bon à savoir :</strong> si la convention avec votre pays attribue l'imposition à la résidence, l'impôt à la source suisse est <strong>remboursable sur demande</strong>. C'est le cas de nombreux pays. NeoFidu vérifie la convention applicable et s'occupe de la démarche.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">The <strong>AVS pension</strong> is not subject to Swiss source tax; taxation generally goes to your country of residence. The <strong>2nd or 3rd pillar lump-sum withdrawal</strong> is always taxed at source in Switzerland.</p><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>Good to know:</strong> if the treaty with your country assigns taxation to residence, the Swiss source tax is <strong>refundable on request</strong>. This is the case for many countries. NeoFidu checks the applicable treaty and handles the process.</div>`,
+      },
+      {
+        title: "Votre pays n'est pas listé ? Parlons-en",
+        titleEn: "Your country isn't listed? Let's talk",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Nous accompagnons les Suisses de l'étranger <strong>dans tous les pays</strong>, y compris ceux qui n'ont pas encore leur guide dédié. Décrivez-nous votre situation (pays, bien en Suisse, prévoyance) et nous vous dirons précisément ce qui vous concerne, avant tout engagement.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">We support Swiss citizens abroad <strong>in every country</strong>, including those without a dedicated guide yet. Tell us your situation (country, Swiss property, pension) and we will tell you exactly what applies to you, before any commitment.</p>`,
+      },
+    ],
+    profiles: [
+      {
+        label: "Retraité à l'étranger",
+        labelEn: "Retiree abroad",
+        description: "Rentes et retrait de piliers : nous clarifions l'imposition et récupérons l'impôt à la source suisse quand c'est possible.",
+        descriptionEn: "Pensions and pillar withdrawals: we clarify taxation and recover the Swiss source tax where possible.",
+      },
+      {
+        label: "Propriétaire d'un bien en Suisse",
+        labelEn: "Owner of a Swiss property",
+        description: "Un bien resté en Suisse reste imposable en Suisse : nous gérons votre déclaration cantonale à distance.",
+        descriptionEn: "A property kept in Switzerland stays taxable in Switzerland: we handle your cantonal return remotely.",
+      },
+      {
+        label: "Actif installé à l'étranger",
+        labelEn: "Working abroad",
+        description: "Nous faisons le point sur vos derniers liens fiscaux suisses et sur votre prévoyance.",
+        descriptionEn: "We review your remaining Swiss tax ties and your pension planning.",
+      },
+      {
+        label: "Sur le point de partir",
+        labelEn: "About to leave",
+        description: "Nous anticipons le retrait de vos piliers et les démarches de remboursement selon votre destination.",
+        descriptionEn: "We plan your pillar withdrawal and refund steps according to your destination.",
+      },
+    ],
+    faq: [
+      {
+        question: "Mon pays n'est pas dans vos guides : pouvez-vous quand même m'aider ?",
+        questionEn: "My country isn't in your guides: can you still help me?",
+        answer: "Oui. Nous accompagnons les Suisses de l'étranger dans tous les pays. Nous vérifions la convention applicable et gérons votre déclaration romande, où que vous viviez.",
+        answerEn: "Yes. We support Swiss citizens abroad in every country. We check the applicable treaty and handle your Romandy return, wherever you live.",
+      },
+      {
+        question: "Je vis à l'étranger, dois-je encore faire une déclaration d'impôt en Suisse ?",
+        questionEn: "I live abroad, do I still need to file a Swiss tax return?",
+        answer: "Oui si vous conservez un bien immobilier ou des revenus de source suisse dans un canton romand ; sinon, en principe non. Nous faisons le point sur votre cas.",
+        answerEn: "Yes if you keep a property or Swiss-source income in a Romandy canton; otherwise, in principle no. We review your specific case.",
+      },
+      {
+        question: "Puis-je récupérer l'impôt à la source prélevé sur mon 2e pilier ?",
+        questionEn: "Can I recover the source tax withheld on my 2nd pillar?",
+        answer: "Souvent oui : si la convention entre la Suisse et votre pays attribue l'imposition à la résidence, l'impôt à la source est remboursable sur demande. Nous vérifions et nous en occupons.",
+        answerEn: "Often yes: if the treaty between Switzerland and your country assigns taxation to residence, the source tax is refundable on request. We check and handle it.",
+      },
+      {
+        question: "NeoFidu peut-il gérer ma déclaration à distance ?",
+        questionEn: "Can NeoFidu handle my return remotely?",
+        answer: "Oui, tout se fait 100 % en ligne et en français, sans que vous ayez à vous déplacer.",
+        answerEn: "Yes, everything is done 100% online, without you having to travel.",
+      },
+    ],
+  },
 ];
 
 export function getCountryPage(slug: string): CountryPage | undefined {
