@@ -778,6 +778,182 @@ export const countryPages: CountryPage[] = [
     ],
   },
   {
+    slug: "royaume-uni",
+    country: "Royaume-Uni",
+    countryEn: "United Kingdom",
+    countryEmoji: "🇬🇧",
+    metaTitle: "Suisses au Royaume-Uni : impôts & fiscalité en Suisse romande",
+    metaTitleEn: "Swiss citizens in the UK: taxes & Swiss filing",
+    metaDescription:
+      "Vous êtes Suisse au Royaume-Uni ? Fin du régime non-dom (2025), rente AVS, retrait 2e/3e pilier, bien en Suisse : NeoFidu gère votre fiscalité romande, en ligne.",
+    metaDescriptionEn:
+      "Swiss living in the UK? End of the non-dom regime (2025), AVS pension, 2nd/3rd pillar withdrawal, Swiss property: NeoFidu handles your Romandy tax matters online.",
+    h1: "Suisses au Royaume-Uni : votre fiscalité et vos obligations en Suisse romande",
+    h1En: "Swiss citizens in the UK: your taxes and obligations in French-speaking Switzerland",
+    swissPopulation: "≈ 41 400 Suisses au Royaume-Uni (OFS, 2025)",
+    swissPopulationEn: "≈ 41,400 Swiss citizens in the UK (FSO, 2025)",
+    lastUpdated: "2026-08-17",
+    keywords: [
+      "suisse au royaume-uni impôts",
+      "suisse à londres fiscalité",
+      "fin régime non-dom 2025",
+      "convention double imposition suisse royaume-uni",
+      "retrait 2e pilier UK remboursement",
+      "rente AVS royaume-uni imposition",
+    ],
+    relatedCountries: ["etats-unis", "france"],
+    infographic: {
+      leftTitle: "Imposé en Suisse",
+      leftTitleEn: "Taxed in Switzerland",
+      rightTitle: "Imposé au Royaume-Uni",
+      rightTitleEn: "Taxed in the UK",
+      leftItems: [
+        { fr: "Bien immobilier en Suisse", en: "Swiss real estate" },
+        { fr: "Prestations 2e / 3e pilier", en: "2nd / 3rd pillar benefits" },
+        { fr: "Certains revenus suisses", en: "Certain Swiss-source income" },
+      ],
+      rightItems: [
+        { fr: "Salaire et revenus britanniques", en: "UK salary & income" },
+        { fr: "Rente AVS (1er pilier)", en: "AVS pension (1st pillar)" },
+        { fr: "Revenu mondial", en: "Worldwide income" },
+      ],
+      calloutMain: "2e et 3e pilier : imposé à la source en Suisse, puis remboursé",
+      calloutMainEn: "2nd & 3rd pillar: taxed at source in Switzerland, then refunded",
+      calloutSub: "La convention CH-Royaume-Uni attribue l'imposition au pays de résidence",
+      calloutSubEn: "The CH-UK treaty assigns taxation to the country of residence",
+    },
+    intro:
+      `<p style="margin:0 0 18px;line-height:1.75;">Environ <strong>41 400 Suisses vivent au Royaume-Uni</strong>, une grande partie à Londres. La fiscalité britannique a connu un changement majeur en 2025 avec la fin du régime « non-dom ». Si vous gardez un bien ou une prévoyance en Suisse, votre canton d'origine peut encore attendre une déclaration. NeoFidu gère votre fiscalité romande, en français et 100 % à distance.</p>`,
+    introEn:
+      `<p style="margin:0 0 18px;line-height:1.75;">Around <strong>41,400 Swiss citizens live in the UK</strong>, many in London. UK taxation saw a major change in 2025 with the end of the "non-dom" regime. If you keep property or pension savings in Switzerland, your home canton may still expect a return. NeoFidu handles your Romandy taxes, in French and 100% remotely.</p>`,
+    sections: [
+      {
+        title: "Où êtes-vous imposé : au Royaume-Uni ou en Suisse ?",
+        titleEn: "Where are you taxed: in the UK or in Switzerland?",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Résident fiscal au Royaume-Uni, vous y êtes imposé sur votre revenu mondial. La <strong>convention de double imposition entre la Suisse et le Royaume-Uni</strong> répartit les droits d'imposition pour éviter une double taxation. Votre immobilier suisse et votre prévoyance restent toutefois rattachés à la Suisse.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">As a UK tax resident, you are taxed there on your worldwide income. The <strong>Switzerland-UK double taxation treaty</strong> allocates taxing rights to avoid double taxation. Your Swiss real estate and pension savings nonetheless remain linked to Switzerland.</p>`,
+      },
+      {
+        title: "La fin du régime « non-dom » (2025)",
+        titleEn: "The end of the non-dom regime (2025)",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Depuis avril 2025, le Royaume-Uni a <strong>supprimé le statut « non-dom »</strong> (remittance basis) et l'a remplacé par un régime fondé sur la résidence. Les nouveaux arrivants bénéficient d'une exonération temporaire de leurs revenus étrangers durant leurs premières années, puis sont imposés sur leur revenu mondial.</p><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>À retenir :</strong> ce changement modifie l'intérêt du Royaume-Uni pour les nouveaux résidents fortunés. Un point sur votre situation avant ou après votre installation est vivement conseillé.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">Since April 2025, the UK has <strong>abolished the "non-dom" status</strong> (remittance basis) and replaced it with a residence-based regime. New arrivals get a temporary exemption on their foreign income during their first years, then are taxed on their worldwide income.</p><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Key point:</strong> this change alters the UK's appeal for wealthy new residents. A review of your situation before or after moving is strongly recommended.</div>`,
+      },
+      {
+        title: "Vos rentes, votre prévoyance et votre bien en Suisse",
+        titleEn: "Your pensions, savings and Swiss property",
+        content:
+          `<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Bien immobilier en Suisse</strong> : reste imposable en Suisse (déclaration cantonale nécessaire).</li><li><strong>Rente AVS</strong> : pas d'impôt à la source suisse ; imposition en principe au Royaume-Uni.</li><li><strong>Retrait 2e/3e pilier en capital</strong> : imposé à la source en Suisse, mais <strong>remboursable sur demande</strong> si la convention attribue l'imposition au Royaume-Uni.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>NeoFidu</strong> vérifie la convention applicable, prépare votre déclaration cantonale et gère la demande de remboursement, entièrement à distance.</div>`,
+        contentEn:
+          `<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Property in Switzerland</strong>: stays taxable in Switzerland (cantonal return required).</li><li><strong>AVS pension</strong>: no Swiss source tax; taxation in principle in the UK.</li><li><strong>2nd/3rd pillar lump sum</strong>: taxed at source in Switzerland, but <strong>refundable on request</strong> if the treaty assigns taxation to the UK.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>NeoFidu</strong> checks the applicable treaty, prepares your cantonal return and handles the refund request, entirely remotely.</div>`,
+      },
+    ],
+    profiles: [
+      { label: "Actif installé à Londres", labelEn: "Working in London", description: "Nous faisons le point sur vos liens fiscaux suisses restants et votre prévoyance.", descriptionEn: "We review your remaining Swiss tax ties and your pension planning." },
+      { label: "Nouveau résident (ex non-dom)", labelEn: "New resident (ex non-dom)", description: "Le régime a changé en 2025 : nous clarifions ce que cela implique côté suisse.", descriptionEn: "The regime changed in 2025: we clarify what it means on the Swiss side." },
+      { label: "Propriétaire d'un bien en Suisse", labelEn: "Owner of a Swiss property", description: "Un bien resté en Suisse reste imposable en Suisse : nous gérons votre déclaration cantonale.", descriptionEn: "A property kept in Switzerland stays taxable in Switzerland: we handle your cantonal return." },
+      { label: "Sur le point de partir", labelEn: "About to leave", description: "Nous anticipons le retrait de vos piliers et les démarches de remboursement.", descriptionEn: "We plan your pillar withdrawal and refund steps." },
+    ],
+    faq: [
+      { question: "Le régime non-dom existe-t-il encore au Royaume-Uni ?", questionEn: "Does the non-dom regime still exist in the UK?", answer: "Non, il a été supprimé en avril 2025 et remplacé par un régime basé sur la résidence. Les nouveaux arrivants bénéficient d'une exonération temporaire de leurs revenus étrangers.", answerEn: "No, it was abolished in April 2025 and replaced by a residence-based regime. New arrivals get a temporary exemption on their foreign income." },
+      { question: "Je vis au Royaume-Uni, dois-je encore déclarer en Suisse ?", questionEn: "I live in the UK, do I still need to file in Switzerland?", answer: "Oui si vous conservez un bien immobilier ou des revenus de source suisse dans un canton romand ; sinon, en principe non. Nous faisons le point sur votre cas.", answerEn: "Yes if you keep a property or Swiss-source income in a Romandy canton; otherwise, in principle no. We review your case." },
+      { question: "Puis-je récupérer l'impôt à la source sur mon 2e pilier depuis le Royaume-Uni ?", questionEn: "Can I recover the source tax on my 2nd pillar from the UK?", answer: "Oui dans la plupart des cas : si la convention attribue l'imposition à la résidence, l'impôt à la source suisse est remboursable sur demande avec une attestation de résidence fiscale britannique.", answerEn: "Yes in most cases: if the treaty assigns taxation to residence, the Swiss source tax is refundable on request with a UK tax-residence certificate." },
+      { question: "NeoFidu peut-il gérer ma déclaration à distance depuis le Royaume-Uni ?", questionEn: "Can NeoFidu handle my return remotely from the UK?", answer: "Oui, tout se fait 100 % en ligne et en français.", answerEn: "Yes, everything is done 100% online, in French." },
+    ],
+  },
+  {
+    slug: "etats-unis",
+    country: "États-Unis",
+    countryEn: "United States",
+    countryEmoji: "🇺🇸",
+    metaTitle: "Suisses aux États-Unis : impôts, FATCA & fiscalité romande",
+    metaTitleEn: "Swiss citizens in the USA: taxes, FATCA & Swiss filing",
+    metaDescription:
+      "Vous êtes Suisse aux États-Unis ? FATCA, double nationalité, rente AVS, retrait 2e/3e pilier, bien en Suisse : NeoFidu gère votre fiscalité romande, en ligne.",
+    metaDescriptionEn:
+      "Swiss living in the USA? FATCA, dual citizenship, AVS pension, 2nd/3rd pillar withdrawal, Swiss property: NeoFidu handles your Romandy tax matters online.",
+    h1: "Suisses aux États-Unis : votre fiscalité et vos obligations en Suisse romande",
+    h1En: "Swiss citizens in the USA: your taxes and obligations in French-speaking Switzerland",
+    swissPopulation: "≈ 85 900 Suisses aux États-Unis (OFS, 2025)",
+    swissPopulationEn: "≈ 85,900 Swiss citizens in the USA (FSO, 2025)",
+    lastUpdated: "2026-08-17",
+    keywords: [
+      "suisse aux états-unis impôts",
+      "FATCA suisse",
+      "double nationalité suisse américain impôts",
+      "convention double imposition suisse états-unis",
+      "retrait 2e pilier USA imposition",
+      "rente AVS états-unis imposition",
+    ],
+    relatedCountries: ["royaume-uni", "canada"],
+    infographic: {
+      leftTitle: "Imposé en Suisse",
+      leftTitleEn: "Taxed in Switzerland",
+      rightTitle: "Imposé aux États-Unis",
+      rightTitleEn: "Taxed in the USA",
+      leftItems: [
+        { fr: "Bien immobilier en Suisse", en: "Swiss real estate" },
+        { fr: "Prestations 2e / 3e pilier", en: "2nd / 3rd pillar benefits" },
+        { fr: "Certains revenus suisses", en: "Certain Swiss-source income" },
+      ],
+      rightItems: [
+        { fr: "Salaire et revenus américains", en: "US salary & income" },
+        { fr: "Rente AVS (1er pilier)", en: "AVS pension (1st pillar)" },
+        { fr: "Revenu mondial", en: "Worldwide income" },
+      ],
+      calloutMain: "2e et 3e pilier : imposé à la source en Suisse, souvent remboursable",
+      calloutMainEn: "2nd & 3rd pillar: taxed at source in Switzerland, often refundable",
+      calloutSub: "Selon la convention CH-USA ; attention à la double nationalité",
+      calloutSubEn: "Under the CH-US treaty; watch out for dual citizenship",
+    },
+    intro:
+      `<p style="margin:0 0 18px;line-height:1.75;">Avec près de <strong>85 900 personnes</strong>, les États-Unis abritent la plus grande communauté suisse hors d'Europe. C'est aussi la juridiction la plus complexe : entre <strong>FATCA</strong> (vos comptes suisses déclarés au fisc américain) et l'imposition fondée sur la citoyenneté, mieux vaut être bien accompagné. NeoFidu gère votre fiscalité romande et coordonne avec votre situation américaine, en français et à distance.</p>`,
+    introEn:
+      `<p style="margin:0 0 18px;line-height:1.75;">With nearly <strong>85,900 people</strong>, the USA hosts the largest Swiss community outside Europe. It is also the most complex jurisdiction: between <strong>FATCA</strong> (your Swiss accounts reported to the US tax authorities) and citizenship-based taxation, good guidance is essential. NeoFidu handles your Romandy taxes and coordinates with your US situation, in French and remotely.</p>`,
+    sections: [
+      {
+        title: "Où êtes-vous imposé : aux États-Unis ou en Suisse ?",
+        titleEn: "Where are you taxed: in the USA or in Switzerland?",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">Résident aux États-Unis, vous y êtes imposé sur votre revenu mondial. La <strong>convention de double imposition entre la Suisse et les États-Unis</strong> évite une double taxation.</p><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Point crucial :</strong> les États-Unis imposent leurs <strong>citoyens et détenteurs de green card</strong> sur leur revenu mondial, où qu'ils vivent. Si vous êtes double national suisse-américain, votre situation exige une coordination fine entre les deux pays.</div>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">As a US resident, you are taxed there on your worldwide income. The <strong>Switzerland-US double taxation treaty</strong> avoids double taxation.</p><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:16px;margin:22px 0;"><strong>Crucial point:</strong> the USA taxes its <strong>citizens and green card holders</strong> on their worldwide income, wherever they live. If you are a Swiss-US dual national, your situation requires careful coordination between the two countries.</div>`,
+      },
+      {
+        title: "FATCA : la transparence bancaire",
+        titleEn: "FATCA: banking transparency",
+        content:
+          `<p style="margin:0 0 18px;line-height:1.75;">En vigueur entre la Suisse et les États-Unis depuis 2014, <strong>FATCA</strong> oblige les banques suisses à transmettre au fisc américain les informations sur les comptes détenus par des personnes américaines. Concrètement, vos avoirs en Suisse ne sont pas invisibles : une déclaration cohérente des deux côtés est indispensable.</p>`,
+        contentEn:
+          `<p style="margin:0 0 18px;line-height:1.75;">In force between Switzerland and the USA since 2014, <strong>FATCA</strong> requires Swiss banks to report to the US tax authorities information on accounts held by US persons. In practice, your Swiss assets are not invisible: consistent reporting on both sides is essential.</p>`,
+      },
+      {
+        title: "Vos rentes, votre prévoyance et votre bien en Suisse",
+        titleEn: "Your pensions, savings and Swiss property",
+        content:
+          `<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Bien immobilier en Suisse</strong> : reste imposable en Suisse (déclaration cantonale nécessaire).</li><li><strong>Rente AVS</strong> : pas d'impôt à la source suisse ; imposition en principe aux États-Unis.</li><li><strong>Retrait 2e/3e pilier en capital</strong> : imposé à la source en Suisse, souvent remboursable ; le traitement américain de la prévoyance suisse est toutefois technique.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>NeoFidu</strong> prend en charge votre déclaration cantonale suisse et la demande de remboursement, et vous oriente pour la coordination avec votre déclaration américaine.</div>`,
+        contentEn:
+          `<ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Property in Switzerland</strong>: stays taxable in Switzerland (cantonal return required).</li><li><strong>AVS pension</strong>: no Swiss source tax; taxation in principle in the USA.</li><li><strong>2nd/3rd pillar lump sum</strong>: taxed at source in Switzerland, often refundable; the US treatment of Swiss pensions is, however, technical.</li></ul><div style="background:hsl(var(--accent));border-left:4px solid hsl(var(--primary));border-radius:8px;padding:18px;margin:24px 0;"><strong>NeoFidu</strong> handles your Swiss cantonal return and the refund request, and guides you on coordination with your US filing.</div>`,
+      },
+    ],
+    profiles: [
+      { label: "Double national suisse-américain", labelEn: "Swiss-American dual national", description: "Situation complexe (imposition US sur la citoyenneté) : nous gérons le volet suisse et coordonnons avec votre conseil américain.", descriptionEn: "Complex situation (US citizenship-based tax): we handle the Swiss side and coordinate with your US adviser." },
+      { label: "Expatrié aux États-Unis", labelEn: "Expat in the USA", description: "Nous faisons le point sur vos liens fiscaux suisses et FATCA.", descriptionEn: "We review your Swiss tax ties and FATCA." },
+      { label: "Propriétaire d'un bien en Suisse", labelEn: "Owner of a Swiss property", description: "Un bien resté en Suisse reste imposable en Suisse : nous gérons votre déclaration cantonale.", descriptionEn: "A property kept in Switzerland stays taxable in Switzerland: we handle your cantonal return." },
+      { label: "Sur le point de partir", labelEn: "About to leave", description: "Nous anticipons le retrait de vos piliers avant votre installation aux États-Unis.", descriptionEn: "We plan your pillar withdrawal before you move to the USA." },
+    ],
+    faq: [
+      { question: "Je suis double national suisse-américain : ma situation est-elle particulière ?", questionEn: "I'm a Swiss-US dual national: is my situation special?", answer: "Oui. Les États-Unis imposent leurs citoyens sur leur revenu mondial, où qu'ils vivent. Votre cas exige une coordination entre les deux pays ; nous gérons le volet suisse.", answerEn: "Yes. The USA taxes its citizens on their worldwide income, wherever they live. Your case requires coordination between the two countries; we handle the Swiss side." },
+      { question: "Qu'est-ce que FATCA change pour moi ?", questionEn: "What does FATCA change for me?", answer: "Vos comptes suisses peuvent être communiqués au fisc américain. Une déclaration cohérente des deux côtés est indispensable pour éviter les problèmes.", answerEn: "Your Swiss accounts may be reported to the US tax authorities. Consistent reporting on both sides is essential to avoid problems." },
+      { question: "Puis-je récupérer l'impôt à la source sur mon 2e pilier depuis les États-Unis ?", questionEn: "Can I recover the source tax on my 2nd pillar from the USA?", answer: "Souvent oui, si la convention attribue l'imposition à la résidence. Le traitement américain étant technique, nous vérifions au cas par cas.", answerEn: "Often yes, if the treaty assigns taxation to residence. As the US treatment is technical, we check case by case." },
+      { question: "NeoFidu peut-il gérer ma déclaration suisse à distance depuis les États-Unis ?", questionEn: "Can NeoFidu handle my Swiss return remotely from the USA?", answer: "Oui, tout le volet suisse se fait 100 % en ligne et en français.", answerEn: "Yes, the entire Swiss side is done 100% online, in French." },
+    ],
+  },
+  {
     slug: "autres-pays",
     country: "Autres pays",
     countryEn: "Other countries",

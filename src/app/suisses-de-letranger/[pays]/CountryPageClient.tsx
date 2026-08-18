@@ -18,6 +18,43 @@ function SwissFlag() {
 }
 
 function CountryFlag({ slug }: { slug: string }) {
+  if (slug === "royaume-uni") {
+    return (
+      <svg width="120" height="60" viewBox="0 0 60 30" role="img" aria-label="Royaume-Uni">
+        <clipPath id="ukFlag">
+          <rect width="60" height="30" />
+        </clipPath>
+        <g clipPath="url(#ukFlag)">
+          <rect width="60" height="30" fill="#012169" />
+          <path d="M0,0 L60,30 M60,0 L0,30" fill="none" stroke="#ffffff" strokeWidth="6" />
+          <path d="M0,0 L60,30 M60,0 L0,30" fill="none" stroke="#C8102E" strokeWidth="4" />
+          <rect x="25" width="10" height="30" fill="#ffffff" />
+          <rect y="10" width="60" height="10" fill="#ffffff" />
+          <rect x="27" width="6" height="30" fill="#C8102E" />
+          <rect y="12" width="60" height="6" fill="#C8102E" />
+        </g>
+      </svg>
+    );
+  }
+  if (slug === "etats-unis") {
+    return (
+      <svg width="120" height="63" viewBox="0 0 38 20" role="img" aria-label="États-Unis">
+        <rect width="38" height="20" fill="#B22234" />
+        {[1, 3, 5, 7, 9, 11].map((i) => (
+          <rect key={i} y={i * 1.538} width="38" height="1.538" fill="#ffffff" />
+        ))}
+        <rect width="15.2" height="10.77" fill="#3C3B6E" />
+        {[1.3, 3.0, 4.7, 6.4, 8.1, 9.5].flatMap((y, ri) =>
+          [1.6, 4.5, 7.4, 10.3, 13.2].map((x, ci) => {
+            const cx = x + (ri % 2 ? 1.45 : 0);
+            return cx < 14.5 ? (
+              <circle key={`${ri}-${ci}`} cx={cx} cy={y} r={0.5} fill="#ffffff" />
+            ) : null;
+          })
+        )}
+      </svg>
+    );
+  }
   if (slug === "autres-pays") {
     return (
       <svg width="80" height="80" viewBox="0 0 24 24" role="img" aria-label="Autres pays" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5">
