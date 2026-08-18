@@ -217,6 +217,18 @@ export default function SuissesEtrangerPage() {
               <span>Portugal</span>
               <span className="text-primary">→</span>
             </Link>
+            <Link href="/suisses-de-letranger/royaume-uni" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
+              <span>Royaume-Uni</span>
+              <span className="text-primary">→</span>
+            </Link>
+            <Link href="/suisses-de-letranger/etats-unis" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
+              <span>États-Unis</span>
+              <span className="text-primary">→</span>
+            </Link>
+            <Link href="/suisses-de-letranger/autres-pays" className="rounded-xl border border-border p-6 bg-white hover:border-primary transition font-semibold text-foreground flex items-center justify-between">
+              <span>Autres pays</span>
+              <span className="text-primary">→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -658,4 +670,4 @@ export default function SuissesEtrangerPage() {
     </main>
     </>
   );
-            }
+                          }
