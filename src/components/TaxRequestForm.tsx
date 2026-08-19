@@ -902,6 +902,7 @@ export function TaxRequestForm() {
     hasSoldStocks: false,
     soldStocksDetails: "",
     deliveryMethod: "email",
+    studentAvsDiscount: false,
     wantsReview: false,
     deadline: "standard",
     comments: "",
@@ -1660,6 +1661,8 @@ export function TaxRequestForm() {
     if (formData.deliveryMethod === "post") price += 20;
     // Option téléphone supprimée
     if (formData.deadline === "extended") price += 120;
+    // Rabais étudiant / rentier AVS-AI
+    if (formData.studentAvsDiscount) price = Math.max(0, price - 20);
     return price;
   };
 
@@ -2036,6 +2039,7 @@ export function TaxRequestForm() {
         workplaces: allWorkplaces,
         // Options
         deliveryMethod: formData.deliveryMethod,
+        studentAvsDiscount: formData.studentAvsDiscount,
         wantsReview: formData.wantsReview,
         deadline: formData.deadline,
         comments: formData.comments,
@@ -5412,6 +5416,33 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               </div>
             </div>
 
+            {/* Rabais étudiant / rentier AVS-AI */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                {isEnglish ? "Reduced rate" : "Tarif réduit"}
+              </label>
+              <div
+                onClick={() => updateForm("studentAvsDiscount", !formData.studentAvsDiscount)}
+                className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-start gap-3 ${
+                  formData.studentAvsDiscount
+                    ? "border-primary bg-primary/5"
+                    : "border-border hover:border-primary/30"
+                }`}
+              >
+                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 mt-0.5 text-white text-xs ${formData.studentAvsDiscount ? "bg-primary border-primary" : "border-muted-foreground"}`}>
+                  {formData.studentAvsDiscount ? "✓" : ""}
+                </div>
+                <div>
+                  <div className="font-semibold">
+                    {isEnglish ? "Student or AVS/AI pension recipient (−CHF 20)" : "Étudiant ou rentier AVS/AI (−CHF 20)"}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {isEnglish ? "A proof (student card or AVS/AI decision) may be requested." : "Un justificatif (carte d'étudiant ou décision AVS/AI) pourra être demandé."}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Commentaires */}
             <div>
               <label className="block text-sm font-medium mb-2">
@@ -6001,6 +6032,12 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                     <span>CHF 120.-</span>
                   </div>
                 )}
+                {formData.studentAvsDiscount && (
+                  <div className="flex justify-between text-primary">
+                    <span>{isEnglish ? "Student / AVS-AI discount" : "Rabais étudiant / AVS-AI"}</span>
+                    <span>- CHF 20.-</span>
+                  </div>
+                )}
                 <div className="border-t pt-2 mt-2">
                   <div className="flex justify-between text-xs text-muted-foreground">
                     <span>{isEnglish ? "Amount excl. VAT" : "Montant HT"}</span>
@@ -6048,6 +6085,9 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 <div className="text-right">
                   <p className="text-2xl font-bold text-primary">CHF {calculatePrice().toFixed(2)}</p>
                   <p className="text-xs text-muted-foreground">{isEnglish ? "incl. VAT" : "TTC"}</p>
+                  {formData.studentAvsDiscount && (
+                    <p className="text-xs text-primary font-medium">{isEnglish ? "incl. −CHF 20 discount" : "rabais −CHF 20 inclus"}</p>
+                  )}
                 </div>
               </div>
             </div>
