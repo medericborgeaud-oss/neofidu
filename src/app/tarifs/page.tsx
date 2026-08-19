@@ -403,6 +403,14 @@ export default function TarifsPage() {
           "@type": "Answer",
           "text": "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Proposez-vous un rabais pour les étudiants ou les rentiers AVS/AI ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Les étudiants et les rentiers AVS/AI bénéficient de CHF 20.- de rabais sur leur déclaration d'impôts. Il suffit de cocher la case lors de la commande ; un justificatif (carte d'étudiant ou décision AVS/AI) pourra être demandé."
+        }
       }
     ]
   };
@@ -670,6 +678,36 @@ export default function TarifsPage() {
                 </div>
               </Card>
             </motion.div>
+            {/* Rabais etudiants & rentiers AVS/AI */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.28 }}
+              className="mt-6 max-w-3xl mx-auto"
+            >
+              <Card className="overflow-hidden border-2 border-primary/40 bg-gradient-to-r from-primary/5 via-white to-emerald-50/50">
+                <div className="p-6">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center flex-shrink-0">
+                      <BadgeCheck className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <h4 className="font-bold text-lg">
+                          {isEnglish ? "Students & AVS/AI pensioners" : "Étudiants & rentiers AVS/AI"}
+                        </h4>
+                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20">-CHF 20</Badge>
+                      </div>
+                      <p className="text-muted-foreground text-sm">
+                        {isEnglish
+                          ? "Are you a student or an AVS/AI pension recipient? Get CHF 20 off your tax return. Simply tick the box when ordering. A proof (student card or AVS/AI decision) may be requested."
+                          : "Vous êtes étudiant ou rentier AVS/AI ? Bénéficiez de CHF 20.- de rabais sur votre déclaration d'impôts. Cochez simplement la case lors de la commande. Un justificatif (carte d'étudiant ou décision AVS/AI) pourra être demandé."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
           </motion.section>
           {/* Entreprises Section */}
           <motion.section
@@ -921,6 +959,18 @@ export default function TarifsPage() {
                   {isEnglish
                     ? "Yes, with Klarna you can pay in 3 interest-free installments. This option is available for all individual and business plans."
                     : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."}
+                </p>
+              </Card>
+              <Card className="p-6">
+                <h3 className="font-semibold mb-2">
+                  {isEnglish
+                    ? "Do you offer discounts for students or pensioners?"
+                    : "Proposez-vous un rabais pour les étudiants ou les rentiers AVS/AI ?"}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {isEnglish
+                    ? "Yes. Students and AVS/AI pension recipients get CHF 20 off their tax return. Just tick the box when ordering; a proof (student card or AVS/AI decision) may be requested."
+                    : "Oui. Les étudiants et les rentiers AVS/AI bénéficient de CHF 20.- de rabais sur leur déclaration d'impôts. Il suffit de cocher la case lors de la commande ; un justificatif (carte d'étudiant ou décision AVS/AI) pourra être demandé."}
                 </p>
               </Card>
               <Card className="p-6">
