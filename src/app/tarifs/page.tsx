@@ -457,8 +457,8 @@ export default function TarifsPage() {
             </h1>
             <p className="text-muted-foreground text-lg mb-4">
               {isEnglish
-                ? "No surprises, no hidden fees. Clear prices for all our fiduciary services — tax returns, accounting, and company formation in Geneva, Vaud, Valais, Fribourg, Neuchâtel, and Jura."
-                : "Pas de surprise, pas de frais cachés. Des prix clairs pour tous nos services fiduciaires — déclarations d'impôts, comptabilité et création d'entreprise à Genève, Vaud, Valais, Fribourg, Neuchâtel et Jura."}
+                ? "No surprises, no hidden fees. Clear prices for all our fiduciary services - tax returns, accounting, and company formation in Geneva, Vaud, Valais, Fribourg, Neuchâtel, and Jura."
+                : "Pas de surprise, pas de frais cachés. Des prix clairs pour tous nos services fiduciaires - déclarations d'impôts, comptabilité et création d'entreprise à Genève, Vaud, Valais, Fribourg, Neuchâtel et Jura."}
             </p>
             <p className="text-muted-foreground text-sm mb-8">
               {isEnglish
@@ -494,8 +494,8 @@ export default function TarifsPage() {
           >
             <h2 className="text-xl md:text-2xl font-bold mb-2">
               {isEnglish
-                ? "Tax returns: fixed prices displayed — Accounting: free quote"
-                : "Déclarations : tarifs fixes affichés — Comptabilité : devis gratuit"}
+                ? "Tax returns: fixed prices displayed - Accounting: free quote"
+                : "Déclarations : tarifs fixes affichés - Comptabilité : devis gratuit"}
             </h2>
             <p className="text-white/90 mb-4">
               {isEnglish
@@ -519,7 +519,7 @@ export default function TarifsPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mb-20"
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-4 max-w-4xl mx-auto">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                 <Users className="w-6 h-6 text-primary" />
               </div>
@@ -534,7 +534,7 @@ export default function TarifsPage() {
                 </p>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm mb-8 max-w-3xl">
+            <p className="text-muted-foreground text-sm mb-8 max-w-4xl mx-auto">
               {isEnglish
                 ? "Our individual plans cover all tax situations in French-speaking Switzerland: single or married, homeowner or tenant, salaried or self-employed. Each plan includes preparation, optimization of deductions, and electronic filing to your cantonal tax office."
                 : "Nos formules particuliers couvrent toutes les situations fiscales en Suisse romande : célibataire ou marié, propriétaire ou locataire, salarié ou indépendant. Chaque formule inclut la préparation, l'optimisation des déductions et le dépôt électronique auprès de votre administration fiscale cantonale."}
@@ -546,7 +546,7 @@ export default function TarifsPage() {
                     {isEnglish ? "Tax return" : "Déclaration d’impôts"}
                   </h3>
                   <p className="text-white/80 text-sm">
-                    {isEnglish ? "À la carte pricing — pay only for what applies to you" : "Tarif à la carte — payez uniquement ce qui vous concerne"}
+                    {isEnglish ? "À la carte pricing - pay only for what applies to you" : "Tarif à la carte - payez uniquement ce qui vous concerne"}
                   </p>
                 </div>
                 <div className="p-8">
@@ -733,8 +733,8 @@ export default function TarifsPage() {
             </div>
             <p className="text-muted-foreground text-sm mb-8 max-w-3xl">
               {isEnglish
-                ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements — all handled digitally with a dedicated advisor."
-                : "Que vous soyez freelance, dirigeant d'une PME ou en train de créer votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilité aux déclarations TVA, en passant par la gestion des salaires et les états financiers annuels — le tout géré en ligne avec un conseiller dédié."}
+                ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements - all handled digitally with a dedicated advisor."
+                : "Que vous soyez freelance, dirigeant d'une PME ou en train de créer votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilité aux déclarations TVA, en passant par la gestion des salaires et les états financiers annuels - le tout géré en ligne avec un conseiller dédié."}
             </p>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl">
               {pricingData.entreprises.map((plan, index) => (
@@ -895,8 +895,8 @@ export default function TarifsPage() {
             </div>
             <p className="text-center text-muted-foreground text-sm mt-6 max-w-2xl mx-auto">
               {isEnglish
-                ? "NeoFidu combines the expertise of a traditional fiduciary with the efficiency and transparency of a 100% digital platform. No appointment needed, no hidden costs — just professional tax services at fair prices."
-                : "NeoFidu combine l'expertise d'une fiduciaire traditionnelle avec l'efficacité et la transparence d'une plateforme 100% digitale. Pas de rendez-vous nécessaire, pas de coûts cachés — simplement des services fiscaux professionnels à des prix justes."}
+                ? "NeoFidu combines the expertise of a traditional fiduciary with the efficiency and transparency of a 100% digital platform. No appointment needed, no hidden costs - just professional tax services at fair prices."
+                : "NeoFidu combine l'expertise d'une fiduciaire traditionnelle avec l'efficacité et la transparence d'une plateforme 100% digitale. Pas de rendez-vous nécessaire, pas de coûts cachés - simplement des services fiscaux professionnels à des prix justes."}
             </p>
           </motion.section>
           {/* FAQ Section */}
