@@ -539,7 +539,7 @@ export default function TarifsPage() {
                 ? "Our individual plans cover all tax situations in French-speaking Switzerland: single or married, homeowner or tenant, salaried or self-employed. Each plan includes preparation, optimization of deductions, and electronic filing to your cantonal tax office."
                 : "Nos formules particuliers couvrent toutes les situations fiscales en Suisse romande : célibataire ou marié, propriétaire ou locataire, salarié ou indépendant. Chaque formule inclut la préparation, l'optimisation des déductions et le dépôt électronique auprès de votre administration fiscale cantonale."}
             </p>
-            <div className="max-w-5xl">
+            <div className="max-w-4xl mx-auto">
               <Card className="border-2 border-primary shadow-lg overflow-hidden">
                 <div className="bg-gradient-to-r from-primary to-emerald-600 p-6 text-white text-center">
                   <h3 className="text-2xl font-bold mb-1">
@@ -640,7 +640,7 @@ export default function TarifsPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="mt-10 max-w-5xl"
+              className="mt-10 max-w-4xl mx-auto"
             >
               <Card className="overflow-hidden border-2 border-dashed border-primary/30 bg-gradient-to-r from-primary/5 via-white to-emerald-50/50">
                 <div className="p-6">
@@ -683,7 +683,7 @@ export default function TarifsPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.28 }}
-              className="mt-6 max-w-3xl mx-auto"
+              className="mt-6 max-w-4xl mx-auto"
             >
               <Card className="overflow-hidden border-2 border-primary/40 bg-gradient-to-r from-primary/5 via-white to-emerald-50/50">
                 <div className="p-6">
@@ -716,7 +716,7 @@ export default function TarifsPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mb-20"
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-4 max-w-4xl mx-auto">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-emerald-600" />
               </div>
@@ -731,12 +731,12 @@ export default function TarifsPage() {
                 </p>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm mb-8 max-w-3xl">
+            <p className="text-muted-foreground text-sm mb-8 max-w-4xl mx-auto">
               {isEnglish
                 ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements - all handled digitally with a dedicated advisor."
                 : "Que vous soyez freelance, dirigeant d'une PME ou en train de créer votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilité aux déclarations TVA, en passant par la gestion des salaires et les états financiers annuels - le tout géré en ligne avec un conseiller dédié."}
             </p>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl">
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {pricingData.entreprises.map((plan, index) => (
                 <Card
                   key={index}
