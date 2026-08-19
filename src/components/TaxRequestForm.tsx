@@ -5419,7 +5419,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
             {/* Rabais étudiant / rentier AVS-AI */}
             <div>
               <label className="block text-sm font-medium mb-2">
-                {isEnglish ? "Reduced rate" : "Tarif réduit"}
+                {isEnglish ? "Are you a student or AVS/AI pension recipient?" : "Êtes-vous étudiant ou rentier AVS/AI ?"}
               </label>
               <div
                 onClick={() => updateForm("studentAvsDiscount", !formData.studentAvsDiscount)}
@@ -5444,7 +5444,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
             </div>
 
             {/* Commentaires */}
-            <div>
+            <div className="pt-8">
               <label className="block text-sm font-medium mb-2">
                 {isEnglish ? "Comments or special instructions" : "Commentaires ou instructions particulières"}
               </label>
