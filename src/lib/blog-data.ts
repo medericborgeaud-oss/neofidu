@@ -47,6 +47,80 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 };
 
 export const blogArticles: BlogArticle[] = [
+  {
+    id: "103",
+    slug: "credit-vendeur-suisse-guide",
+    title: "Le crédit-vendeur en Suisse : guide pour entreprises et particuliers",
+    titleEn: "Seller financing (vendor loan) in Switzerland: a guide",
+    excerpt: "Ce que c'est, comment l'appliquer, ses implications fiscales suisses (intérêts admis AFC, liquidation partielle indirecte, gains immobiliers), ses avantages et ses risques, pour les cessions d'entreprise comme pour les ventes privées.",
+    excerptEn: "What it is, how to apply it, its Swiss tax implications, advantages and risks, for business transfers and private sales alike.",
+    content: `<p>Le crédit-vendeur est un outil de financement encore trop peu connu, alors qu'il joue un rôle central dans de nombreuses transmissions de PME et dans certaines ventes immobilières en Suisse. Il permet de conclure une opération que le seul financement bancaire ne suffirait pas à boucler, tout en envoyant un signal de confiance fort entre les parties. Encore faut-il bien comprendre son fonctionnement et surtout ses conséquences fiscales, qui peuvent réserver de mauvaises surprises.</p>
+<br/>
+<h3><strong>Qu'est-ce que le crédit-vendeur ?</strong></h3>
+<br/>
+<p>Le crédit-vendeur (aussi appelé prêt-vendeur ou, en anglais, vendor loan) est un prêt que le vendeur accorde à l'acheteur pour financer une partie du prix de vente. Concrètement, l'acheteur ne paie pas la totalité du prix au comptant : une fraction reste due au vendeur et sera remboursée par tranches sur une période déterminée, en principe avec intérêts. Le vendeur joue donc, pour une partie du prix, le rôle qu'aurait joué une banque. On le rencontre surtout dans deux situations : la transmission d'une entreprise (rachat de PME, succession, transmission familiale) et, plus rarement, la vente d'un bien immobilier entre particuliers.</p>
+<br/>
+<h3><strong>Dans quels cas l'utilise-t-on ?</strong></h3>
+<br/>
+<p>Dans une transmission d'entreprise, le crédit-vendeur complète les autres financements. Un montage typique combine environ <strong>30 % de fonds propres</strong> du repreneur, <strong>60 à 70 % de crédit bancaire</strong>, et le solde en crédit-vendeur. Ce dernier représente en général <strong>10 à 30 % du prix</strong>, remboursable sur 1 à 5 ans, et il est presque toujours de rang subordonné (remboursé après la banque en cas de difficulté).</p>
+<br/>
+<p>Il est particulièrement utile lorsque l'acheteur n'a pas la totalité des fonds, lorsque la valeur de l'entreprise dépend de sa performance future, ou lorsque le vendeur veut faciliter la reprise par un employé, un proche ou un tiers de confiance. Dans l'immobilier, le mécanisme est identique : le vendeur accepte un paiement différé d'une partie du prix, ce qui reste rare en Suisse mais peut débloquer une vente familiale ou entre particuliers.</p>
+<br/>
+<h3><strong>Comment le mettre en place</strong></h3>
+<br/>
+<p>Le crédit-vendeur repose sur un <strong>contrat de prêt écrit</strong>, distinct du contrat de vente, qui précise au minimum : le montant, la durée, le taux d'intérêt, le plan d'amortissement (remboursements réguliers ou in fine), le rang (subordonné ou non), les garanties et les conséquences en cas de défaut.</p>
+<br/>
+<p>Les garanties sont essentielles pour le vendeur : nantissement des actions ou parts cédées (un gage direct sur ce qu'il vient de vendre), cautionnement d'un tiers, nantissement d'autres actifs, ou cédule hypothécaire pour une vente immobilière. Lorsque l'acheteur emprunte aussi à la banque, celle-ci exige en principe une convention de subordination qui place le crédit-vendeur derrière la dette bancaire.</p>
+<br/>
+<h3><strong>Les implications fiscales en Suisse</strong></h3>
+<br/>
+<p>C'est le point le plus important, et celui où l'accompagnement d'un professionnel prend tout son sens.</p>
+<br/>
+<p><strong>Un taux d'intérêt défendable.</strong> Les intérêts doivent correspondre à des conditions de marché. L'Administration fédérale des contributions (AFC) publie chaque année des taux admis fiscalement, utiles surtout dans les transmissions familiales ou entre proches. Pour 2026, sur les prêts en francs suisses accordés par des personnes proches, l'AFC admet jusqu'à <strong>3,5 % pour la part jusqu'à un million</strong> et <strong>1,5 % au-delà</strong> ; le taux minimum lorsqu'une société prête à ses actionnaires est de <strong>0,75 %</strong>. Un taux hors de ces limites peut être requalifié. Entre parties indépendantes, le taux se négocie mais doit rester justifiable.</p>
+<br/>
+<p><strong>Côté vendeur.</strong> Les intérêts encaissés sont un rendement de la fortune mobilière, imposable au titre du revenu. Tant que le crédit n'est pas remboursé, la créance figure dans la fortune imposable du vendeur (impôt sur la fortune).</p>
+<br/>
+<p><strong>Le piège majeur : la liquidation partielle indirecte.</strong> Lorsqu'un vendeur cède les actions d'une société détenue dans sa fortune privée, le gain est en principe un <strong>gain en capital privé exonéré</strong>, l'un des grands avantages du système suisse. Mais ce privilège est fragile : la liquidation partielle indirecte (LPI) permet au fisc de requalifier une partie du gain en dividende imposable. Elle suppose cinq conditions cumulatives : une participation d'au moins 20 %, le passage des titres de la fortune privée du vendeur à la fortune commerciale de l'acquéreur, l'existence au moment de la vente d'une substance non nécessaire à l'exploitation et distribuable, une distribution de cette substance dans les cinq ans, et le fait que le vendeur savait ou devait savoir. Le lien avec le crédit-vendeur est direct : <strong>si l'acheteur rembourse le prêt en puisant dans les liquidités ou réserves excédentaires de la société rachetée, le gain exonéré peut être requalifié en revenu imposable</strong>. La façon de financer le remboursement est donc déterminante.</p>
+<br/>
+<p><strong>Côté acheteur.</strong> Si l'acheteur est une société ou une entreprise, les intérêts sont une charge déductible. Si l'acheteur est un particulier, les intérêts passifs privés sont déductibles jusqu'à concurrence du rendement de la fortune augmenté de 50 000 francs.</p>
+<br/>
+<p><strong>Cas de l'immobilier.</strong> Le vendeur reste redevable de l'<strong>impôt sur les gains immobiliers</strong> au moment du transfert de propriété, même si une partie du prix lui est payée plus tard : un décalage de trésorerie à anticiper. Les intérêts restent déductibles pour l'acquéreur.</p>
+<br/>
+<h3><strong>Les avantages</strong></h3>
+<br/>
+<p>Pour l'acheteur : moins de fonds propres et de dette bancaire nécessaires, un accès facilité au financement, et souvent la possibilité de conclure une opération qui n'aurait pas pu se faire. C'est aussi un gage de confiance, le vendeur croyant en ce qu'il vend. Pour le vendeur : un cercle d'acheteurs élargi, souvent un meilleur prix, des intérêts perçus, un encaissement étalé et une transmission plus douce.</p>
+<br/>
+<h3><strong>Les inconvénients et les risques</strong></h3>
+<br/>
+<p>Le principal risque pèse sur le vendeur : le <strong>défaut de l'acheteur</strong>. Si le crédit est subordonné à la banque, le vendeur passe après elle et peut ne rien récupérer, d'où l'importance des garanties. S'ajoutent la complexité administrative (suivi, relances, contentieux) et les risques fiscaux propres au droit suisse. Pour l'acheteur, le remboursement pèse sur la trésorerie juste après la reprise, une période souvent délicate.</p>
+<br/>
+<h3><strong>Points de vigilance</strong></h3>
+<br/>
+<p>Faites toujours établir un contrat de prêt écrit et distinct, fixez un taux défendable, prévoyez des garanties adaptées, et <strong>analysez en amont les conséquences fiscales</strong>, en particulier le risque de liquidation partielle indirecte dans une cession d'actions. La manière dont le remboursement est financé peut faire toute la différence entre un gain exonéré et un revenu lourdement imposé.</p>
+<br/>
+<h3><strong>En résumé</strong></h3>
+<br/>
+<p>Le crédit-vendeur est un levier puissant pour réussir une transmission ou débloquer une vente, à condition d'être bien structuré. Ses atouts (souplesse, confiance, accès au financement) sont réels, mais ses pièges fiscaux, spécifiques au droit suisse, imposent une préparation soignée. Chez <strong>neofidu.ch</strong>, nous accompagnons vendeurs et acheteurs dans le montage, la rédaction du contrat et l'optimisation fiscale de l'opération.</p>
+<br/>
+<p><em>Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les règles fiscales varient selon les cantons et votre situation. Contactez NeoFidu pour une analyse adaptée à votre projet.</em></p>`,
+    category: "entreprise",
+    date: "2026-08-20",
+    readTime: 7,
+    keywords: [
+      "crédit-vendeur",
+      "prêt vendeur",
+      "vendor loan",
+      "transmission entreprise",
+      "rachat PME Suisse",
+      "financement acquisition",
+      "liquidation partielle indirecte",
+      "gain en capital",
+      "cession d'actions",
+      "fiscalité Suisse",
+      "succession entreprise",
+      "immobilier"
+    ],
+  },
    {
     id: "102",
     slug: "initiative-12-pourcent-vaud-baisse-impots",
