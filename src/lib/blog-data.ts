@@ -50,6 +50,7 @@ export const blogArticles: BlogArticle[] = [
   {
     id: "103",
     slug: "credit-vendeur-suisse-guide",
+    image: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&auto=format&fit=crop&q=60",
     title: "Le crédit-vendeur en Suisse : guide pour entreprises et particuliers",
     titleEn: "Seller financing (vendor loan) in Switzerland: a guide",
     excerpt: "Ce que c'est, comment l'appliquer, ses implications fiscales suisses (intérêts admis AFC, liquidation partielle indirecte, gains immobiliers), ses avantages et ses risques, pour les cessions d'entreprise comme pour les ventes privées.",
@@ -133,7 +134,7 @@ export const blogArticles: BlogArticle[] = [
     date: "2026-08-16",
     readTime: 6,
     keywords: ["initiative 12% Vaud","baisse impôts Vaud","votation 27 septembre 2026","impôt cantonal Vaud","contre-projet 7% Vaud","initiative 12 pour cent","fiscalité vaudoise 2026"],
-    image: "https://images.unsplash.com/photo-1579468118444-283b34316500?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1769676391727-c31326749b11?w=800&auto=format&fit=crop&q=60",
   },
   {
     id: "101",
