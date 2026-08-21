@@ -139,7 +139,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               </Badge>
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                {article.title}
+                {isEnglish && article.titleEn ? article.titleEn : article.title}
               </h1>
 
               <p className="text-xl text-muted-foreground mb-6">
@@ -187,7 +187,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="prose prose-lg max-w-none mb-12 prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-li:text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{ __html: isEnglish && article.contentEn ? article.contentEn : article.content }}
             />
 
             {/* CTA */}
