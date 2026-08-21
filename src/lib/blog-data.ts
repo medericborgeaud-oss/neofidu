@@ -48,6 +48,69 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "104",
+    slug: "nouvelles-obligations-transparence-sarl-sa-2026",
+    image: "https://images.unsplash.com/photo-1635859890085-ec8cb5466806?w=800&auto=format&fit=crop&q=60",
+    title: "Sàrl et SA : les nouvelles obligations de transparence dès le 1er octobre 2026",
+    titleEn: "LLCs and corporations: new transparency obligations from 1 October 2026",
+    excerpt: "Dès le 1er octobre 2026, la LTPM oblige les Sàrl et SA à identifier leurs ayants droit économiques et à les annoncer à un nouveau registre fédéral. Champ d'application, délais 2027 et sanctions (jusqu'à 500 000 CHF) : ce qu'il faut savoir.",
+    excerptEn: "From 1 October 2026, the LTPM requires Swiss LLCs and corporations to identify their beneficial owners and report them to a new federal register. Scope, 2027 deadlines and penalties: what you need to know.",
+    content: `<p>À partir du 1er octobre 2026, toutes les Sàrl et SA suisses devront respecter de nouvelles obligations issues de la loi fédérale sur la transparence des personnes morales et l'identification des ayants droit économiques (LTPM). Concrètement, chaque société devra identifier les personnes physiques qui la contrôlent réellement et les annoncer à un nouveau registre fédéral. Voici ce qui change, qui est concerné, les délais à respecter et les sanctions encourues.</p>
+<br/>
+<h3><strong>Ce qui change au 1er octobre 2026</strong></h3>
+<br/>
+<p>Le Conseil fédéral a fixé l'entrée en vigueur de la LTPM au 1er octobre 2026. Cette loi met en place un registre national de transparence, appelé TranspaReg, géré par l'Office fédéral de la justice. Ce registre recense les ayants droit économiques des sociétés, c'est-à-dire les personnes physiques qui, en dernier ressort, contrôlent l'entreprise. Point important : ce registre <strong>n'est pas public</strong>. Il est tenu sous forme électronique et son accès est réservé aux autorités et à certains intermédiaires financiers dans le cadre de la lutte contre le blanchiment d'argent.</p>
+<br/>
+<h3><strong>Qui est concerné</strong></h3>
+<br/>
+<p>Sont soumises à la LTPM la plupart des personnes morales de droit privé suisse, notamment les <strong>sociétés anonymes (SA)</strong>, les <strong>sociétés à responsabilité limitée (Sàrl)</strong>, les sociétés coopératives, ainsi que certaines sociétés d'investissement (SICAV, SICAF, SCmPC). Certaines entités étrangères sont aussi visées (succursale inscrite en Suisse, administration effective en Suisse, ou détention d'un bien immobilier en Suisse). Sont en revanche <strong>exclues</strong> les sociétés cotées en bourse, les associations et les fondations. Si vous dirigez une Sàrl ou une SA, vous êtes donc très probablement concerné.</p>
+<br/>
+<h3><strong>Qu'est-ce qu'un ayant droit économique</strong></h3>
+<br/>
+<p>L'ayant droit économique est la personne physique qui contrôle réellement la société. La loi retient en principe un <strong>seuil de 25 pour cent</strong> : est réputée ayant droit économique toute personne qui détient, directement ou indirectement, au moins 25 pour cent du capital ou des droits de vote, ou qui exerce un contrôle par un autre moyen. Lorsque aucune personne ne remplit ces critères, la loi prévoit une solution de repli : c'est alors la personne occupant la position dirigeante la plus élevée qui est désignée. Il faut donc toujours pouvoir désigner au moins une personne physique.</p>
+<br/>
+<h3><strong>Vos obligations concrètes</strong></h3>
+<br/>
+<p>La société doit identifier ses ayants droit économiques, collecter et vérifier les informations les concernant (identité, nature et étendue du contrôle), les documenter et les conserver, puis les annoncer au registre de transparence, en principe via la plateforme fédérale <strong>EasyGov</strong>. L'obligation ne s'arrête pas à la première annonce : en cas de changement (nouvel associé, cession de parts, modification de la structure de contrôle), les informations doivent être mises à jour, en principe dans un délai d'un mois. Il s'agit donc d'une obligation continue.</p>
+<br/>
+<h3><strong>Les délais à respecter</strong></h3>
+<br/>
+<p>Pour toute société <strong>nouvellement inscrite</strong> au registre du commerce après le 1er octobre 2026, la déclaration doit intervenir dans un délai de 30 jours.</p>
+<br/>
+<p>Pour les sociétés <strong>déjà existantes</strong>, la première annonce doit être faite dans le mois qui suit la première modification de l'inscription au registre du commerce intervenant après le 1er octobre 2026, mais au plus tard selon un calendrier échelonné : les SA soumises au contrôle ordinaire jusqu'au 1er janvier 2027, les autres sociétés soumises au contrôle ordinaire jusqu'au 1er février 2027, les SA non soumises au contrôle ordinaire jusqu'au 1er mars 2027, et les autres sociétés suisses ainsi que les entités étrangères concernées jusqu'au 1er avril 2027. En pratique, la plupart des petites Sàrl et SA romandes devront être en règle au plus tard au printemps 2027, mais il est vivement conseillé d'anticiper.</p>
+<br/>
+<h3><strong>Les sanctions en cas de manquement</strong></h3>
+<br/>
+<p>La LTPM est assortie de sanctions dissuasives. La violation intentionnelle des obligations d'annonce est punie d'une <strong>amende pouvant atteindre 500 000 francs</strong>, et jusqu'à <strong>100 000 francs en cas de négligence</strong>. Au-delà de l'amende, la loi prévoit dans les cas les plus graves d'autres conséquences : suspension de certains droits sociaux et patrimoniaux, refus d'inscription au registre du commerce, voire liquidation de la société. Ignorer ces règles n'est donc pas une option.</p>
+<br/>
+<h3><strong>Ce que vous devez faire maintenant</strong></h3>
+<br/>
+<p>Sans attendre 2027, cartographiez votre actionnariat ou sociétariat pour identifier qui détient au moins 25 pour cent du capital ou des voix, ou qui contrôle la société autrement. Rassemblez les pièces justificatives (documents d'identité, statuts, registre des actions ou des parts, conventions d'actionnaires), vérifiez la cohérence avec votre inscription au registre du commerce, préparez la déclaration via EasyGov et mettez en place un suivi pour actualiser les données à chaque changement. Pour les structures à plusieurs niveaux de détention (holdings, participations croisées, ayants droit à l'étranger), l'identification peut vite devenir complexe.</p>
+<br/>
+<h3><strong>Comment NeoFidu vous accompagne</strong></h3>
+<br/>
+<p>Chez <strong>neofidu.ch</strong>, nous aidons les Sàrl et les SA de Suisse romande à se mettre en conformité avec la LTPM : identification des ayants droit économiques, constitution du dossier, déclaration au registre de transparence et mise en place d'un suivi pour rester à jour. Contactez-nous pour préparer sereinement l'échéance du 1er octobre 2026.</p>
+<br/>
+<p><em>Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les modalités d'application et les délais transitoires de la LTPM peuvent faire l'objet de précisions. Contactez NeoFidu pour une analyse adaptée à votre société.</em></p>`,
+    category: "actualites",
+    date: "2026-08-20",
+    readTime: 6,
+    keywords: [
+      "LTPM",
+      "transparence personnes morales",
+      "ayants droit économiques",
+      "registre de transparence",
+      "TranspaReg",
+      "Sàrl",
+      "SA",
+      "1er octobre 2026",
+      "EasyGov",
+      "conformité",
+      "registre du commerce",
+      "obligations société Suisse"
+    ],
+  },
+  {
     id: "103",
     slug: "credit-vendeur-suisse-guide",
     image: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&auto=format&fit=crop&q=60",
