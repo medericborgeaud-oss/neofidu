@@ -6,6 +6,7 @@ export interface BlogArticle {
   excerpt: string;
   excerptEn?: string;
   content: string;
+  contentEn?: string;
   category: string;
   date: string;
   readTime: number;
@@ -92,6 +93,43 @@ export const blogArticles: BlogArticle[] = [
 <p>Chez <strong>neofidu.ch</strong>, nous aidons les Sàrl et les SA de Suisse romande à se mettre en conformité avec la LTPM : identification des ayants droit économiques, constitution du dossier, déclaration au registre de transparence et mise en place d'un suivi pour rester à jour. Contactez-nous pour préparer sereinement l'échéance du 1er octobre 2026.</p>
 <br/>
 <p><em>Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les modalités d'application et les délais transitoires de la LTPM peuvent faire l'objet de précisions. Contactez NeoFidu pour une analyse adaptée à votre société.</em></p>`,
+    contentEn: `<p>From 1 October 2026, all Swiss LLCs (Sàrl) and corporations (SA) will have to comply with new obligations under the Federal Act on the Transparency of Legal Entities and the Identification of Beneficial Owners (LTPM). In practice, every company will have to identify the natural persons who truly control it and report them to a new federal register. Here is what changes, who is concerned, the deadlines to meet and the penalties involved.</p>
+<br/>
+<h3><strong>What changes on 1 October 2026</strong></h3>
+<br/>
+<p>The Federal Council has set the entry into force of the LTPM for 1 October 2026. The law establishes a national transparency register, called TranspaReg, managed by the Federal Office of Justice. This register lists companies' beneficial owners, that is, the natural persons who ultimately control the business. Important point: this register <strong>is not public</strong>. It is kept in electronic form and access is reserved for the authorities and certain financial intermediaries in the context of anti-money-laundering efforts.</p>
+<br/>
+<h3><strong>Who is concerned</strong></h3>
+<br/>
+<p>Most Swiss private-law legal entities are subject to the LTPM, in particular <strong>corporations (SA)</strong>, <strong>limited liability companies (Sàrl)</strong>, cooperatives, and certain investment companies (SICAV, SICAF, SCmPC). Some foreign entities are also covered (a branch registered in Switzerland, effective management in Switzerland, or ownership of real estate in Switzerland). <strong>Excluded</strong>, on the other hand, are listed companies, associations and foundations. If you run an LLC or a corporation, you are therefore very probably concerned.</p>
+<br/>
+<h3><strong>What is a beneficial owner</strong></h3>
+<br/>
+<p>The beneficial owner is the natural person who actually controls the company. The law applies in principle a <strong>25 percent threshold</strong>: any person who holds, directly or indirectly, at least 25 percent of the capital or voting rights, or who exercises control by another means, is deemed a beneficial owner. Where no one meets these criteria, the law provides a fallback: the person holding the most senior management position is then designated. You must therefore always be able to identify at least one natural person.</p>
+<br/>
+<h3><strong>Your concrete obligations</strong></h3>
+<br/>
+<p>The company must identify its beneficial owners, collect and verify the relevant information (identity, nature and extent of control), document and keep it, then report it to the transparency register, in principle via the federal <strong>EasyGov</strong> platform. The obligation does not stop at the first report: in the event of a change (new partner, transfer of shares, change in the control structure), the information must be updated, in principle within one month. It is therefore an ongoing obligation.</p>
+<br/>
+<h3><strong>The deadlines</strong></h3>
+<br/>
+<p>For any company <strong>newly registered</strong> in the commercial register after 1 October 2026, the declaration must be made within 30 days.</p>
+<br/>
+<p>For <strong>existing companies</strong>, the first report must be made within the month following the first change to the commercial-register entry occurring after 1 October 2026, but at the latest according to a staggered schedule: corporations subject to an ordinary audit by 1 January 2027, other companies subject to an ordinary audit by 1 February 2027, corporations not subject to an ordinary audit by 1 March 2027, and other Swiss companies and the foreign entities concerned by 1 April 2027. In practice, most small LLCs and corporations in French-speaking Switzerland will have to be compliant by spring 2027 at the latest, but it is strongly advised to act early.</p>
+<br/>
+<h3><strong>Penalties for non-compliance</strong></h3>
+<br/>
+<p>The LTPM comes with dissuasive penalties. An intentional breach of the reporting obligations is punishable by a <strong>fine of up to 500,000 francs</strong>, and up to <strong>100,000 francs in the event of negligence</strong>. Beyond the fine, in the most serious cases the law provides for other consequences: suspension of certain membership and financial rights, refusal of registration in the commercial register, or even liquidation of the company. Ignoring these rules is therefore not an option.</p>
+<br/>
+<h3><strong>What you should do now</strong></h3>
+<br/>
+<p>Without waiting for 2027, map your shareholding or membership to identify who holds at least 25 percent of the capital or votes, or who otherwise controls the company. Gather the supporting documents (identity documents, articles of association, share or unit register, shareholder agreements), check consistency with your commercial-register entry, prepare the declaration via EasyGov and set up a process to update the data whenever there is a change. For structures with several tiers of ownership (holdings, cross-shareholdings, beneficial owners abroad), identification can quickly become complex.</p>
+<br/>
+<h3><strong>How NeoFidu helps</strong></h3>
+<br/>
+<p>At <strong>neofidu.ch</strong>, we help LLCs and corporations in French-speaking Switzerland comply with the LTPM: identifying beneficial owners, building the file, reporting to the transparency register and setting up ongoing monitoring to stay up to date. Contact us to prepare calmly for the 1 October 2026 deadline.</p>
+<br/>
+<p><em>This article is for information only and does not replace personalised advice. The implementing rules and transitional deadlines of the LTPM may be subject to clarification. Contact NeoFidu for an analysis tailored to your company.</em></p>`,
     category: "actualites",
     date: "2026-08-20",
     readTime: 6,
@@ -167,6 +205,55 @@ export const blogArticles: BlogArticle[] = [
 <p>Le crédit-vendeur est un levier puissant pour réussir une transmission ou débloquer une vente, à condition d'être bien structuré. Ses atouts (souplesse, confiance, accès au financement) sont réels, mais ses pièges fiscaux, spécifiques au droit suisse, imposent une préparation soignée. Chez <strong>neofidu.ch</strong>, nous accompagnons vendeurs et acheteurs dans le montage, la rédaction du contrat et l'optimisation fiscale de l'opération.</p>
 <br/>
 <p><em>Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les règles fiscales varient selon les cantons et votre situation. Contactez NeoFidu pour une analyse adaptée à votre projet.</em></p>`,
+    contentEn: `<p>Seller financing is a still little-known financing tool, even though it plays a central role in many SME transfers and in some property sales in Switzerland. It makes it possible to close a deal that bank financing alone could not, while sending a strong signal of trust between the parties. But you need to understand how it works, and above all its tax consequences, which can hold unpleasant surprises.</p>
+<br/>
+<h3><strong>What is seller financing?</strong></h3>
+<br/>
+<p>Seller financing (also called a vendor loan) is a loan the seller grants to the buyer to finance part of the purchase price. In practice, the buyer does not pay the full price in cash: a portion remains owed to the seller and is repaid in instalments over a set period, in principle with interest. For part of the price, the seller therefore plays the role a bank would have played. It is most often seen in two situations: the transfer of a business (SME buyout, succession, family transfer) and, more rarely, the sale of a property between private individuals.</p>
+<br/>
+<h3><strong>When is it used?</strong></h3>
+<br/>
+<p>In a business transfer, seller financing complements the other sources of funding. A typical structure combines around <strong>30 percent equity</strong> from the buyer, <strong>60 to 70 percent bank financing</strong>, and the balance as a vendor loan. The latter usually represents <strong>10 to 30 percent of the price</strong>, repayable over 1 to 5 years, and is almost always subordinated (repaid after the bank in the event of difficulty).</p>
+<br/>
+<p>It is particularly useful when the buyer does not have all the funds, when the value of the business depends on its future performance, or when the seller wants to make it easier for an employee, a relative or a trusted third party to take over. In real estate the mechanism is identical: the seller accepts deferred payment of part of the price, which remains rare in Switzerland but can unlock a family or private sale.</p>
+<br/>
+<h3><strong>How to set it up</strong></h3>
+<br/>
+<p>Seller financing is based on a <strong>written loan agreement</strong>, separate from the sale contract, setting out at least: the amount, the term, the interest rate, the repayment schedule (regular instalments or bullet), the ranking (subordinated or not), the securities and the consequences of default.</p>
+<br/>
+<p>Securities are essential for the seller: a pledge over the shares or units sold (a direct security over what was just sold), a third-party guarantee, a pledge over other assets, or a mortgage certificate for a property sale. When the buyer also borrows from a bank, the bank generally requires a subordination agreement placing the vendor loan behind the bank debt.</p>
+<br/>
+<h3><strong>Tax implications in Switzerland</strong></h3>
+<br/>
+<p>This is the most important point, and the one where a professional's support really matters.</p>
+<br/>
+<p><strong>A defensible interest rate.</strong> Interest must reflect market conditions. The Federal Tax Administration (FTA) publishes safe-harbour rates each year, useful above all in family transfers or between related parties. For 2026, on Swiss-franc loans granted by related parties, the FTA accepts up to <strong>3.5 percent on the portion up to one million</strong> and <strong>1.5 percent above that</strong>; the minimum rate when a company lends to its shareholders is <strong>0.75 percent</strong>. A rate outside these limits may be re-characterised. Between fully independent parties, the rate is negotiated but must remain justifiable.</p>
+<br/>
+<p><strong>For the seller.</strong> Interest received is income from movable assets, taxable as income. As long as the loan is not repaid, the receivable is part of the seller's taxable wealth (wealth tax).</p>
+<br/>
+<p><strong>The main trap: indirect partial liquidation.</strong> When a seller sells the shares of a company held in their private assets, the gain is in principle a <strong>tax-free private capital gain</strong>, one of the major advantages of the Swiss system. But this privilege is fragile: indirect partial liquidation (IPL) allows the tax authorities to re-characterise part of the gain as taxable dividend. It requires five cumulative conditions: a stake of at least 20 percent, the transfer of the shares from the seller's private assets to the buyer's business assets, the existence at the time of sale of non-operating, distributable substance, a distribution of that substance within five years, and the fact that the seller knew or should have known. The link with seller financing is direct: <strong>if the buyer repays the loan by drawing on the acquired company's surplus cash or reserves, the tax-free gain may be re-characterised as taxable income</strong>. How the repayment is financed is therefore decisive.</p>
+<br/>
+<p><strong>For the buyer.</strong> If the buyer is a company or a business, the interest is a deductible expense. If the buyer is a private individual, private debt interest is deductible up to the amount of investment income plus 50,000 francs.</p>
+<br/>
+<p><strong>Real estate.</strong> The seller remains liable for the <strong>real estate capital gains tax</strong> at the time of the transfer of ownership, even if part of the price is paid later: a cash-flow gap to anticipate. Interest remains deductible for the buyer.</p>
+<br/>
+<h3><strong>The advantages</strong></h3>
+<br/>
+<p>For the buyer: less equity and bank debt required, easier access to financing, and often the ability to close a deal that could not have happened otherwise. It is also a sign of trust, the seller believing in what they sell. For the seller: a wider pool of buyers, often a better price, interest earned, staggered proceeds and a smoother transfer.</p>
+<br/>
+<h3><strong>The drawbacks and risks</strong></h3>
+<br/>
+<p>The main risk falls on the seller: the <strong>buyer's default</strong>. If the loan is subordinated to the bank, the seller ranks behind it and may recover nothing, hence the importance of securities. Add to this the administrative complexity (monitoring, reminders, litigation) and the tax risks specific to Swiss law. For the buyer, repayment weighs on cash flow right after the takeover, often a delicate period.</p>
+<br/>
+<h3><strong>Points to watch</strong></h3>
+<br/>
+<p>Always have a written, separate loan agreement drawn up, set a defensible rate, provide suitable securities, and above all <strong>analyse the tax consequences in advance</strong>, in particular the risk of indirect partial liquidation in a share deal. The way the repayment is financed can make all the difference between a tax-free gain and heavily taxed income.</p>
+<br/>
+<h3><strong>In summary</strong></h3>
+<br/>
+<p>Seller financing is a powerful lever to succeed in a transfer or unlock a sale, provided it is well structured. Its strengths (flexibility, trust, access to financing) are real, but its tax traps, specific to Swiss law, call for careful preparation. At <strong>neofidu.ch</strong>, we support sellers and buyers with the structuring, the drafting of the agreement and the tax optimisation of the transaction.</p>
+<br/>
+<p><em>This article is for information only and does not replace personalised advice. Tax rules vary by canton and by your situation. Contact NeoFidu for an analysis tailored to your project.</em></p>`,
     category: "entreprise",
     date: "2026-08-20",
     readTime: 7,
@@ -193,6 +280,57 @@ export const blogArticles: BlogArticle[] = [
     excerpt: "Le 27 septembre 2026, les Vaudois votent sur l'initiative des 12%. Mécanisme, contre-projet à 7%, coût de 272 millions et impact concret sur votre facture fiscale, expliqués simplement.",
     excerptEn: "On 27 September 2026, Vaud residents vote on the 12% initiative. The mechanism, the 7% counter-project, the CHF 272m cost and the concrete impact on your tax bill, explained simply.",
     content: `<p style="margin:0 0 18px;line-height:1.75;">Le <strong>27 septembre 2026</strong>, les Vaudoises et les Vaudois se prononceront sur l'un des objets fiscaux les plus discutés de ces dernières années : la fameuse « <strong>initiative des 12%</strong> ». La question paraît simple, faut-il réduire l'impôt cantonal de 12%, mais ses conséquences sont importantes. Chez NeoFidu, nous recevons beaucoup de questions à ce sujet. Voici un décryptage neutre pour comprendre ce qui est en jeu, et surtout ce que cela changerait concrètement sur votre feuille d'impôt.</p><div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:16px;margin:22px 0;"><strong>En bref :</strong> baisse de 12% de l'impôt cantonal sur le revenu et la fortune · votation le 27 septembre 2026 · contre-projet du parlement à −7% d'ici 2027 · coût estimé à ~272 millions de francs par an pour le canton.</div><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">De quoi parle-t-on exactement ?</h2><p style="margin:0 0 18px;line-height:1.75;">L'initiative demande un rabais de <strong>12% sur la facture finale de l'impôt cantonal sur le revenu et la fortune</strong>. Elle a été lancée en 2023 par trois organisations économiques vaudoises: la Chambre vaudoise immobilière (CVI), la Chambre vaudoise du commerce et de l'industrie (CVCI) et la Fédération patronale vaudoise (FPV) et a réuni environ <strong>28 000 signatures</strong>. Son objectif affiché : redonner du pouvoir d'achat, en particulier à la classe moyenne.</p><p style="margin:0 0 18px;line-height:1.75;">Un point essentiel à retenir d'emblée : cette baisse concerne <strong>uniquement la part cantonale</strong> de l'impôt. Elle ne touche ni l'impôt communal (chaque commune fixe son propre coefficient), ni l'impôt fédéral direct (IFD), qui reste identique partout en Suisse.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Ce que cela changerait sur votre porte-monnaie</h2><p style="margin:0 0 18px;line-height:1.75;">Le mécanisme est volontairement simple : une fois votre impôt cantonal calculé, on applique une réduction de 12%. Quelques ordres de grandeur, à titre purement illustratif :</p><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Impôt cantonal actuel</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Économie estimée avec −12%</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 3’000</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 360</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 8’000</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 960</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 15’000</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 1’800</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">Ces montants ne sont que des ordres de grandeur : le résultat réel dépend de votre revenu imposable, de votre fortune, de votre situation familiale et de votre commune de domicile. Mais le principe reste le même pour tout le monde: <strong>plus votre impôt cantonal est élevé, plus l'économie en francs est importante</strong>. C'est précisément l'un des points au cœur du débat, sur lequel nous revenons plus bas.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Le contre-projet à 7%</h2><p style="margin:0 0 18px;line-height:1.75;">L'histoire ne se résume pas à un simple « oui ou non ». Ni le Conseil d'État ni le Grand Conseil n'ont soutenu l'initiative dans sa forme actuelle. En réponse, le parlement cantonal a adopté, dans le cadre des débats budgétaires, une baisse plus modérée : une <strong>réduction cumulée de 7% de l'impôt cantonal sur le revenu d'ici 2027</strong>, à titre de contre-projet.</p><p style="margin:0 0 18px;line-height:1.75;">En clair, une baisse d'impôt est déjà en marche dans le canton, indépendamment du vote. La question du 27 septembre porte donc surtout sur son <strong>ampleur</strong> : faut-il s'en tenir à ce mouvement de 7%, ou aller plus loin avec les 12% demandés par les milieux économiques ? Le comité d'initiative a choisi de maintenir son texte malgré ce contre-projet, estimant qu'il ne va pas assez loin.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Un coût estimé à 272 millions</h2><p style="margin:0 0 18px;line-height:1.75;">Le nerf de la guerre, c'est le coût pour les finances cantonales. Selon les estimations du Conseil d'État, l'initiative représenterait un manque à gagner d'environ <strong>272 millions de francs par an</strong> pour le canton. C'est ce montant qui cristallise les positions. Après avoir franchi les étapes juridiques (le Tribunal fédéral a validé la tenue du vote), l'objet arrive donc devant le peuple dans un climat politique tendu.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Les arguments en présence</h2><p style="margin:0 0 18px;line-height:1.75;">Comme pour toute votation, deux visions s'opposent. Voici, de manière équilibrée, les principaux arguments avancés de part et d'autre.</p><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Partisans (milieux économiques, PLR, UDC)</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Opposants (gauche, syndicats)</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Rendre du pouvoir d'achat à la classe moyenne</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Mesure jugée inégalitaire, profitant surtout aux hauts revenus et grandes fortunes</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Renforcer l'attractivité fiscale du canton</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Risque de coupes dans les prestations publiques (santé, formation, social)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Des finances cantonales jugées saines, permettant de restituer une partie de la charge</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">272 millions de recettes en moins jugés « risqués » pour l'équilibre budgétaire</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">Chez NeoFidu, notre rôle n'est pas de vous dire comment voter, mais de vous donner les clés pour comprendre l'objet et son impact sur votre situation personnelle.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Ce que vous pouvez faire dès maintenant</h2><p style="margin:0 0 18px;line-height:1.75;">Quel que soit le résultat du 27 septembre, une chose ne change pas : <strong>bien remplir sa déclaration reste le meilleur moyen de ne pas payer plus d'impôt que nécessaire</strong>. Les déductions liées au 3<sup>e</sup> pilier, aux frais professionnels, aux frais de garde ou encore aux travaux d'entretien immobilier ont souvent un effet bien plus concret sur votre facture qu'un ajustement de quelques pourcents.</p><p style="margin:0 0 18px;line-height:1.75;">Si vous vous demandez ce que cette réforme représenterait précisément dans votre cas, ou comment optimiser votre déclaration vaudoise, notre équipe est là pour vous accompagner. Nous suivons de près l'évolution du dossier et adapterons nos conseils en fonction du verdict des urnes.</p><div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:18px;margin:24px 0;"><strong>Vous voulez savoir ce que cette réforme changerait pour vous ?</strong><br>Chez NeoFidu, on analyse votre situation vaudoise concrète et on optimise votre déclaration, quel que soit le résultat du vote. <strong>Devis et premier avis gratuits, sans engagement.</strong><br><a href="/demande" style="color:#0ea5e9;font-weight:600;">→ Demander un avis gratuit</a></div><p style="color:#64748b;font-size:0.9em;margin:26px 0 0;line-height:1.7;">Cet article est fourni à titre informatif et ne constitue pas une prise de position politique ni un conseil fiscal individualisé. Les montants cités sont des illustrations simplifiées et varient selon la commune et la situation. Informations à jour au 16 août 2026, sujettes à évolution d'ici la votation. Sources : RTS, 24heures.</p>`,
+    contentEn: `<p>On 27 September 2026, the people of the canton of Vaud will vote on one of the most debated tax issues of recent years: the famous "12% initiative". The question sounds simple, should cantonal tax be cut by 12%, but the consequences are significant. At NeoFidu we receive many questions about it. Here is a neutral breakdown to understand what is at stake, and above all what it would concretely change on your tax bill.</p>
+<br/>
+<p><strong>In brief:</strong> a 12% cut in cantonal income and wealth tax · vote on 27 September 2026 · parliament's counter-project of −7% by 2027 · estimated cost of about 272 million francs per year for the canton.</p>
+<br/>
+<h3><strong>What exactly is being voted on?</strong></h3>
+<br/>
+<p>The initiative calls for a 12% rebate on the final cantonal income and wealth tax bill. It was launched in 2023 by three Vaud business organisations (the Chambre vaudoise immobilière, the Chambre vaudoise du commerce et de l'industrie and the Fédération patronale vaudoise) and gathered around 28,000 signatures. Its stated aim: to give back purchasing power, particularly to the middle class.</p>
+<br/>
+<p>One essential point from the outset: this cut concerns only the cantonal share of the tax. It affects neither the communal tax (each municipality sets its own coefficient) nor the direct federal tax, which remains the same everywhere in Switzerland.</p>
+<br/>
+<h3><strong>What it would change for your wallet</strong></h3>
+<br/>
+<p>The mechanism is deliberately simple: once your cantonal tax is calculated, a 12% reduction is applied. A few orders of magnitude, purely for illustration:</p>
+<br/>
+<table style="width:100%;border-collapse:collapse;margin-bottom:16px"><thead><tr style="background:#f3f4f6"><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Current cantonal tax</th><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Estimated saving with −12%</th></tr></thead><tbody>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">CHF 3,000</td><td style="border:1px solid #d1d5db;padding:8px 12px">~CHF 360</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">CHF 8,000</td><td style="border:1px solid #d1d5db;padding:8px 12px">~CHF 960</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">CHF 15,000</td><td style="border:1px solid #d1d5db;padding:8px 12px">~CHF 1,800</td></tr>
+</tbody></table>
+<br/>
+<p>These figures are only orders of magnitude: the real result depends on your taxable income, your wealth, your family situation and your municipality of residence. But the principle is the same for everyone: the higher your cantonal tax, the larger the saving in francs. This is precisely one of the points at the heart of the debate, which we return to below.</p>
+<br/>
+<h3><strong>The 7% counter-project</strong></h3>
+<br/>
+<p>The story is not just a simple "yes or no". Neither the cantonal government nor the cantonal parliament supported the initiative in its current form. In response, the parliament adopted, as part of the budget debates, a more moderate cut: a cumulative 7% reduction in cantonal income tax by 2027, as a counter-project.</p>
+<br/>
+<p>In short, a tax cut is already under way in the canton, regardless of the vote. The question on 27 September is therefore mainly about its scale: should the canton stick to this 7% move, or go further with the 12% requested by business circles? The initiative committee chose to maintain its text despite the counter-project, considering that it does not go far enough.</p>
+<br/>
+<h3><strong>An estimated cost of 272 million</strong></h3>
+<br/>
+<p>The crux of the matter is the cost to cantonal finances. According to the government's estimates, the initiative would represent a shortfall of about 272 million francs per year for the canton. It is this figure that crystallises the positions. Having cleared the legal hurdles (the Federal Supreme Court validated holding the vote), the matter therefore comes before the people in a tense political climate.</p>
+<br/>
+<h3><strong>The arguments</strong></h3>
+<br/>
+<p>As with any vote, two visions clash. Here, in a balanced way, are the main arguments put forward on each side.</p>
+<br/>
+<table style="width:100%;border-collapse:collapse;margin-bottom:16px"><thead><tr style="background:#f3f4f6"><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Supporters (business circles, PLR, UDC)</th><th style="border:1px solid #d1d5db;padding:8px 12px;text-align:left">Opponents (left, unions)</th></tr></thead><tbody>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">Give purchasing power back to the middle class</td><td style="border:1px solid #d1d5db;padding:8px 12px">Seen as unfair, mainly benefiting high incomes and large fortunes</td></tr>
+<tr style="background:#f9fafb"><td style="border:1px solid #d1d5db;padding:8px 12px">Strengthen the canton's tax attractiveness</td><td style="border:1px solid #d1d5db;padding:8px 12px">Risk of cuts to public services (health, education, social)</td></tr>
+<tr><td style="border:1px solid #d1d5db;padding:8px 12px">Cantonal finances seen as healthy, allowing part of the burden to be returned</td><td style="border:1px solid #d1d5db;padding:8px 12px">272 million in lost revenue seen as risky for the budget balance</td></tr>
+</tbody></table>
+<br/>
+<p>At NeoFidu, our role is not to tell you how to vote, but to give you the keys to understand the issue and its impact on your personal situation.</p>
+<br/>
+<h3><strong>What you can do now</strong></h3>
+<br/>
+<p>Whatever the result on 27 September, one thing does not change: filling in your tax return properly remains the best way not to pay more tax than necessary. Deductions linked to the third pillar, professional expenses, childcare costs or property maintenance work often have a far more concrete effect on your bill than an adjustment of a few percent.</p>
+<br/>
+<p>If you are wondering what this reform would mean precisely in your case, or how to optimise your Vaud tax return, our team is here to help. We follow the file closely and will adapt our advice to the ballot's verdict.</p>
+<br/>
+<p><em>This article is provided for information only and is neither a political stance nor individualised tax advice. The amounts cited are simplified illustrations and vary by municipality and situation. Information current as of 16 August 2026, subject to change before the vote. Sources: RTS, 24heures.</em></p>`,
     category: "actualites",
     date: "2026-08-16",
     readTime: 6,
