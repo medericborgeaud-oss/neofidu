@@ -49,6 +49,81 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "105",
+    slug: "retrait-2e-pilier-financer-creation-entreprise",
+    image: "https://images.unsplash.com/photo-1631631656955-b9d56137ba90?w=800&auto=format&fit=crop&q=60",
+    title: "Retirer son 2e pilier pour financer la création de son entreprise : avantages et inconvénients",
+    titleEn: "Withdrawing your 2nd pillar to finance your business launch: pros and cons",
+    excerpt: "La loi suisse permet, sous conditions, de retirer son 2e pilier pour financer son passage à l'indépendance. Conditions, coût fiscal, avantages, risques et pièges (notamment si vous visez une Sàrl) : le guide complet.",
+    excerptEn: "Swiss law lets you cash out your occupational pension to become self-employed, under conditions. Requirements, tax cost, advantages, risks and pitfalls: the full guide.",
+    content: `<p>Se lancer à son compte demande souvent des liquidités : équipement, premiers frais, trésorerie de démarrage. Beaucoup de futurs indépendants l'ignorent, mais la loi suisse permet, sous conditions, de retirer son avoir de 2e pilier pour financer ce passage à l'indépendance. C'est un levier puissant, mais qui a un coût et des pièges. Voici ce qu'il faut savoir avant de toucher à sa prévoyance.</p>
+<br/>
+<h3><strong>Peut-on vraiment retirer son 2e pilier pour créer sa société ?</strong></h3>
+<br/>
+<p>Oui, mais uniquement dans un cas précis : lorsque vous vous établissez comme <strong>indépendant</strong> (raison individuelle ou société en nom collectif) et que cette activité devient votre <strong>activité principale</strong>. La loi (art. 5 LFLP) autorise alors le versement en espèces de votre avoir de libre passage.</p>
+<br/>
+<p>Point crucial et souvent mal compris : ce droit <strong>ne concerne pas la Sàrl ni la SA</strong>. Dans une Sàrl ou une SA, le fondateur est considéré comme <strong>salarié de sa propre société</strong>, donc toujours soumis à la prévoyance professionnelle. La création directe d'une Sàrl ne donne pas droit au retrait. Si votre objectif est une Sàrl, la voie consiste à créer d'abord une raison individuelle, puis, plus tard, à la transformer en société (avec de sérieuses précautions, voir plus bas).</p>
+<br/>
+<h3><strong>Les conditions à remplir</strong></h3>
+<br/>
+<p>Plusieurs conditions doivent être réunies. Votre activité indépendante doit être <strong>reconnue par votre caisse de compensation AVS</strong> comme activité principale : c'est l'attestation d'affiliation en tant qu'indépendant qui fait foi, et c'est ce document, et non l'usage que vous ferez de l'argent, que la fondation vérifie. La demande de versement doit être déposée <strong>dans l'année</strong> qui suit le début de votre activité. Si vous êtes <strong>marié ou en partenariat enregistré</strong>, l'accord écrit de votre conjoint est obligatoire. Enfin, l'avoir doit se trouver sur un compte ou une police de libre passage (il a quitté la caisse de pension d'un ancien employeur).</p>
+<br/>
+<h3><strong>Combien ça coûte en impôt</strong></h3>
+<br/>
+<p>Le retrait n'est pas gratuit. Il est soumis à un <strong>impôt unique sur les prestations en capital de prévoyance</strong>, prélevé <strong>séparément</strong> de votre revenu ordinaire, à un taux réduit (un cinquième du barème au niveau fédéral). Vous ne payez donc pas l'impôt sur le revenu plein, et le capital ne s'ajoute pas à votre revenu de l'année.</p>
+<br/>
+<p>L'ordre de grandeur : pour un retrait de 100'000 francs, l'impôt total (fédéral, cantonal et communal) se situe souvent <strong>entre 3 et 6 pour cent</strong> selon votre canton, votre commune et votre état civil (les personnes mariées paient généralement moins). Le barème étant progressif, plus le montant retiré est élevé, plus le taux grimpe.</p>
+<br/>
+<h3><strong>Retrait total ou partiel ?</strong></h3>
+<br/>
+<p>Attention : le retrait pour activité indépendante porte sur <strong>la totalité du compte concerné</strong>, pas sur un montant partiel choisi. Si vous n'avez besoin que d'une partie de votre avoir, une solution existe : votre capital de libre passage peut être réparti sur <strong>deux institutions au maximum</strong>. En scindant votre compte avant le retrait, vous pouvez ne débloquer que le compte dont vous avez réellement besoin et laisser le reste en prévoyance. À organiser en amont avec votre fondation.</p>
+<br/>
+<h3><strong>Les avantages</strong></h3>
+<br/>
+<p>Le premier atout est évident : <strong>des liquidités immédiates</strong>, sans dette ni intérêts, sans dépendre de l'accord d'une banque. Pour un lancement, c'est souvent décisif.</p>
+<br/>
+<p>Ensuite, une fois le versement effectué, <strong>l'argent est à vous</strong> : la loi n'exige pas que vous le dépensiez en frais professionnels précis. Vous pouvez financer votre activité, le garder en réserve de trésorerie, ou même l'affecter à un autre projet privé. C'est votre statut d'indépendant qui justifie le retrait, pas l'usage des fonds.</p>
+<br/>
+<p>Enfin, la <strong>fiscalité de sortie reste modérée</strong> comparée à l'impôt sur le revenu ordinaire : le capital est imposé une fois, à taux réduit.</p>
+<br/>
+<h3><strong>Les inconvénients et les risques</strong></h3>
+<br/>
+<p>Le revers est réel. En retirant votre 2e pilier, vous <strong>amputez votre prévoyance retraite</strong> et vous perdez la croissance de ce capital dans un cadre fiscalement privilégié : l'avoir de 2e pilier est exonéré d'impôt sur la fortune ; une fois retiré, le solde entre dans votre fortune imposable et génère de l'impôt chaque année.</p>
+<br/>
+<p>Il y a aussi le <strong>coût fiscal immédiat</strong> du retrait, et le fait que l'opération est en principe <strong>irréversible</strong> : contrairement à un retrait pour l'achat de son logement, vous ne pourrez pas rembourser votre 2e pilier indépendant.</p>
+<br/>
+<p>Le risque le plus sous-estimé concerne ceux qui visent une <strong>Sàrl</strong>. Si vous retirez votre 2e pilier comme indépendant, puis créez une Sàrl peu après, vous <strong>redevenez salarié</strong> de votre société et donc à nouveau soumis à la prévoyance obligatoire. L'administration fiscale peut alors considérer que votre activité indépendante n'était pas durable et <strong>requalifier le retrait</strong>, en l'imposant comme un revenu ordinaire (bien plus lourd). Il n'existe pas de délai légal chiffré, mais enchaîner retrait et création de Sàrl en quelques mois est risqué : il faut laisser l'activité indépendante tourner réellement et, idéalement, obtenir un accord préalable de l'administration cantonale des impôts.</p>
+<br/>
+<h3><strong>Les alternatives à considérer</strong></h3>
+<br/>
+<p>Avant de sortir votre 2e pilier, comparez avec d'autres pistes. Un <strong>crédit d'exploitation</strong> bancaire peut, dans certains cas, coûter moins cher que la perte de prévoyance et l'impôt de sortie, surtout si le besoin est modeste. Si vous passez plus tard en Sàrl, un <strong>prêt d'associé</strong> (compte courant) vous permet d'injecter des fonds dans la société tout en pouvant les récupérer ensuite sans impôt. Et dans tous les cas, pensez à <strong>reconstituer votre prévoyance</strong> : en tant qu'indépendant sans 2e pilier, vous bénéficiez du <strong>pilier 3a « grand plafond »</strong> (jusqu'à 20 pour cent du revenu net, dans une limite annuelle), fiscalement très avantageux.</p>
+<br/>
+<h3><strong>Ce qu'il faut retenir</strong></h3>
+<br/>
+<p>Retirer son 2e pilier pour se lancer est un levier légitime et parfois décisif, mais ce n'est jamais neutre. Il ne fonctionne que pour une raison individuelle (pas une Sàrl), il coûte un impôt de sortie, il réduit votre retraite, et il piège ceux qui basculent trop vite en société. Bien utilisé, avec le bon timing et les bons montants, il finance sereinement votre démarrage. Mal calibré, il peut vous coûter cher.</p>
+<br/>
+<p>Chez <strong>neofidu.ch</strong>, nous accompagnons les futurs indépendants et les jeunes sociétés de Suisse romande : analyse de l'opportunité du retrait, calcul de l'impôt de sortie, choix de la structure (raison individuelle ou Sàrl), timing et demandes d'accord préalable. Contactez-nous pour sécuriser votre lancement.</p>
+<br/>
+<p><em>Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les règles fiscales et de prévoyance varient selon les cantons et votre situation. Contactez NeoFidu ou votre caisse de compensation pour une analyse adaptée à votre projet.</em></p>`,
+    category: "entreprise",
+    date: "2026-08-27",
+    readTime: 6,
+    keywords: [
+      "retrait 2e pilier",
+      "libre passage",
+      "créer son entreprise",
+      "devenir indépendant",
+      "raison individuelle",
+      "prestation en capital",
+      "prévoyance",
+      "financement création entreprise",
+      "AVS indépendant",
+      "impôt prestation en capital",
+      "Sàrl",
+      "Suisse romande"
+    ],
+  },
+  {
     id: "104",
     slug: "nouvelles-obligations-transparence-sarl-sa-2026",
     image: "https://images.unsplash.com/photo-1635859890085-ec8cb5466806?w=800&auto=format&fit=crop&q=60",
