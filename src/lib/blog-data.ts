@@ -100,7 +100,7 @@ export const blogArticles: BlogArticle[] = [
 <br/>
 <p>Si de plus en plus de Suisses s'installent en France voisine, c'est d'abord pour se loger mieux et moins cher, tout en conservant un salaire suisse au pouvoir d'achat renforcé. La fiscalité et la santé peuvent ajouter des avantages, à condition d'être bien optimisées. Mais l'équation n'est pas gagnante pour tout le monde : trajets, complexité administrative, prévoyance et risque de change doivent entrer dans la balance.</p>
 <br/>
-<p>Chez <strong>neofidu.ch</strong>, nous accompagnons les frontaliers et les Suisses installés à l'étranger : simulation fiscale des deux côtés de la frontière, choix d'assurance, prévoyance, financement et déclarations. Contactez-nous pour évaluer si le projet est vraiment avantageux dans votre cas.</p>
+<p>Chez <strong>neofidu.ch</strong>, nous vous accompagnons sur le volet suisse de votre projet frontalier : fiscalité suisse, imposition à la source, prévoyance (2e et 3e pilier) et déclaration d'impôts en Suisse. Pour la partie française, nous vous orientons vers les bons interlocuteurs. Contactez-nous pour cadrer votre situation côté suisse.</p>
 <br/>
 <p><em>Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les règles fiscales, sociales et de prévoyance varient selon le canton, la situation familiale et les choix effectués. Contactez NeoFidu pour une analyse adaptée à votre projet.</em></p>`,
     category: "expatries",
