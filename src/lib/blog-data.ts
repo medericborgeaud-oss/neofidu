@@ -51,7 +51,7 @@ export const blogArticles: BlogArticle[] = [
   {
     id: "105",
     slug: "retrait-2e-pilier-financer-creation-entreprise",
-    image: "https://images.unsplash.com/photo-1631631656955-b9d56137ba90?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1580674287165-60059e9ac2aa?w=800&auto=format&fit=crop&q=60",
     title: "Retirer son 2e pilier pour financer la création de son entreprise : avantages et inconvénients",
     titleEn: "Withdrawing your 2nd pillar to finance your business launch: pros and cons",
     excerpt: "La loi suisse permet, sous conditions, de retirer son 2e pilier pour financer son passage à l'indépendance. Conditions, coût fiscal, avantages, risques et pièges (notamment si vous visez une Sàrl) : le guide complet.",
