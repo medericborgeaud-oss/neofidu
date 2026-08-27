@@ -49,6 +49,79 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "106",
+    slug: "suisses-demenagent-france-voisine",
+    image: "https://images.unsplash.com/photo-1724661404654-d673345667a2?w=800&auto=format&fit=crop&q=60",
+    title: "Pourquoi de plus en plus de Suisses déménagent en France voisine tout en travaillant en Suisse",
+    titleEn: "Why more and more Swiss people are moving to neighbouring France while still working in Switzerland",
+    excerpt: "Logement, pouvoir d'achat, fiscalité, santé : pourquoi de plus en plus de Suisses s'installent en France voisine tout en gardant leur emploi en Suisse, et les pièges à peser avant de sauter le pas.",
+    excerptEn: "Housing costs, purchasing power, taxation and healthcare: why growing numbers of Swiss residents settle in neighbouring France while keeping their Swiss jobs, and the pitfalls to weigh.",
+    content: `<p>On connaît le frontalier français qui vient travailler à Genève ou à Lausanne. On parle beaucoup moins du mouvement inverse, pourtant en pleine expansion : des Suisses, et des résidents de Suisse, qui vont s'installer en France voisine tout en conservant leur emploi et leur salaire helvétiques. Le phénomène touche surtout le Grand Genève, mais gagne l'Arc jurassien et la région bâloise. Décryptage des raisons de fond, et des points de vigilance avant de sauter le pas.</p>
+<br/>
+<h3><strong>Un phénomène qui prend de l'ampleur</strong></h3>
+<br/>
+<p>Les chiffres parlent d'eux-mêmes. En 2026, on compte environ <strong>391'000 frontaliers franco-suisses</strong>, dont plus de 100'000 pour la seule région genevoise. Et selon l'Office fédéral de la statistique, près de <strong>155'000 citoyens suisses</strong> vivent désormais dans une région frontalière à l'étranger, France en tête. Le Grand Genève est de loin le plus concerné : la crise du logement y pousse chaque année davantage de ménages à traverser la frontière pour se loger.</p>
+<br/>
+<h3><strong>Raison n°1 : le logement, le vrai déclencheur</strong></h3>
+<br/>
+<p>C'est la cause principale. À Genève ou sur l'arc lémanique, se loger coûte une fortune et les biens sont rares. De l'autre côté de la frontière, en Haute-Savoie, dans l'Ain ou le Doubs, on trouve pour le même budget une maison avec jardin là où l'on peinait à louer un appartement en Suisse. Pour une famille, la différence est énorme : accéder à la propriété, gagner en surface et en qualité de vie devient possible, alors que ça reste hors de portée côté suisse.</p>
+<br/>
+<h3><strong>Raison n°2 : le pouvoir d'achat</strong></h3>
+<br/>
+<p>Gagner en francs suisses et dépenser en euros, c'est un avantage mécanique. Avec un franc fort, le salaire helvétique se transforme en un pouvoir d'achat nettement supérieur une fois converti. Courses, restaurants, services, énergie, loisirs : le coût de la vie est sensiblement plus bas en France. À revenu égal, le niveau de vie ressenti grimpe.</p>
+<br/>
+<h3><strong>Raison n°3 : la fiscalité, souvent avantageuse</strong></h3>
+<br/>
+<p>C'est un point technique mais central, et il dépend du canton où vous travaillez.</p>
+<br/>
+<p>Pour les <strong>huit cantons liés à l'accord de 1983</strong> (Vaud, Valais, Berne, Soleure, Bâle-Ville, Bâle-Campagne, Neuchâtel et Jura), le frontalier est <strong>imposé en France</strong>, sur son lieu de résidence. La France reverse en compensation 4,5 % du salaire brut au canton concerné. Concrètement, vous déclarez votre salaire suisse à l'impôt français, avec les mécanismes français (quotient familial, décote), ce qui peut se révéler avantageux selon votre situation familiale.</p>
+<br/>
+<p><strong>Genève fait exception</strong> : le canton impose à la source les personnes qui travaillent sur son sol mais résident en France, qu'elles soient étrangères ou suisses, et rétrocède 3,5 % de cette masse salariale à la France. Les frontaliers genevois peuvent, sous conditions, demander une taxation au réel pour faire valoir leurs déductions. Dans tous les cas, une planification est nécessaire : ce n'est pas automatiquement moins cher, mais c'est souvent optimisable.</p>
+<br/>
+<h3><strong>Raison n°4 : l'assurance maladie et le droit d'option</strong></h3>
+<br/>
+<p>En devenant résident français tout en travaillant en Suisse, vous disposez d'un <strong>c�oit d'option</strong> pour votre couverture santé : dans les trois mois, vous choisissez entre l'assurance suisse LAMal, l'affiliation à la Sécurité sociale française (la CMU frontalier) ou, dans certains cas, une assurance privée. Pour beaucoup de familles, la CMU, calculée en pourcentage du revenu, revient moins cher que les primes LAMal suisses. C'est un levier d'économies non négligeable, à condition de bien comparer selon sa situation.</p>
+<br/>
+<h3><strong>Raison n°5 : la qualité de vie et la famille</strong></h3>
+<br/>
+<p>Au-delà des chiffres, il y a le cadre de vie : plus d'espace, un jardin, souvent un environnement plus calme. Côté famille, la garde d'enfants et certains services sont plus accessibles financièrement, et les allocations françaises entrent dans l'équation. Pour de jeunes parents, ce faisceau d'avantages pèse lourd.</p>
+<br/>
+<h3><strong>Les contreparties à ne pas sous-estimer</strong></h3>
+<br/>
+<p>Le tableau n'est pas parfait. Il y a d'abord les trajets et la frontière : bouchons aux douanes, temps de transport, dépendance à la voiture. Ensuite, la complexité administrative double : vous relevez de deux systèmes (fiscal, social, parfois bancaire), avec des déclarations en France et des obligations en Suisse. La prévoyance mérite une attention particulière : sort du 2e pilier, possibilités de 3e pilier, et fiscalité de la retraite changent quand on réside à l'étranger.</p>
+<br/>
+<p>Le financement immobilier appelle aussi la prudence. Emprunter en euros pour un bien en France alors que vos revenus sont en francs crée un <strong>risque de change</strong> à double tranchant : favorable tant que le franc est fort, défavorable s'il faiblit. Enfin, il faut anticiper les frais et démarches du déménagement lui-même, et le fait que votre statut administratif évolue.</p>
+<br/>
+<h3><strong>Ce que ça implique concrètement</strong></h3>
+<br/>
+<p>Avant de franchir le pas, quelques réflexes utiles : simuler votre imposition dans les deux configurations (Suisse à la source ou France selon votre canton), comparer LAMal et CMU pour votre ménage, vérifier l'impact sur votre 2e et 3e pilier, cadrer votre financement immobilier et le risque de change, et anticiper la double déclaration. Un accompagnement évite les mauvaises surprises, car chaque situation est différente.</p>
+<br/>
+<h3><strong>En résumé</strong></h3>
+<br/>
+<p>Si de plus en plus de Suisses s'installent en France voisine, c'est d'abord pour se loger mieux et moins cher, tout en conservant un salaire suisse au pouvoir d'achat renforcé. La fiscalité et la santé peuvent ajouter des avantages, à condition d'être bien optimisées. Mais l'équation n'est pas gagnante pour tout le monde : trajets, complexité administrative, prévoyance et risque de change doivent entrer dans la balance.</p>
+<br/>
+<p>Chez <strong>neofidu.ch</strong>, nous accompagnons les frontaliers et les Suisses installés à l'étranger : simulation fiscale des deux côtés de la frontière, choix d'assurance, prévoyance, financement et déclarations. Contactez-nous pour évaluer si le projet est vraiment avantageux dans votre cas.</p>
+<br/>
+<p><em>Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les règles fiscales, sociales et de prévoyance varient selon le canton, la situation familiale et les choix effectués. Contactez NeoFidu pour une analyse adaptée à votre projet.</em></p>`,
+    category: "expatries",
+    date: "2026-08-27",
+    readTime: 6,
+    keywords: [
+      "frontalier",
+      "France voisine",
+      "Suisses en France",
+      "Grand Genève",
+      "accord 1983",
+      "impôt à la source",
+      "CMU frontalier",
+      "LAMal",
+      "logement Suisse",
+      "pouvoir d'achat",
+      "quasi-résident",
+      "Suisse romande"
+    ],
+  },
+  {
     id: "105",
     slug: "retrait-2e-pilier-financer-creation-entreprise",
     image: "https://images.unsplash.com/photo-1580674287165-60059e9ac2aa?w=800&auto=format&fit=crop&q=60",
