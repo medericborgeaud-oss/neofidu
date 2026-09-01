@@ -66,19 +66,12 @@ function CountryFlag({ slug }: { slug: string }) {
   }
   if (slug === "portugal") {
     return (
-      <svg width="120" height="80" viewBox="0 0 3 2" role="img" aria-label="Portugal">
-        <rect width="3" height="2" fill="#DA020E" />
-        <rect width="1.2" height="2" fill="#046A38" />
-      </svg>
+      <img src={`https://flagcdn.com/pt.svg`} width="120" height="80" alt="Portugal" style={{ objectFit: "cover", borderRadius: "6px" }} />
     );
   }
   if (slug === "espagne") {
     return (
-      <svg width="120" height="80" viewBox="0 0 3 2" role="img" aria-label="Espagne">
-        <rect width="3" height="2" fill="#FFC400" />
-        <rect width="3" height="0.5" fill="#C60B1E" />
-        <rect y="1.5" width="3" height="0.5" fill="#C60B1E" />
-      </svg>
+      <img src={`https://flagcdn.com/es.svg`} width="120" height="80" alt="Espagne" style={{ objectFit: "cover", borderRadius: "6px" }} />
     );
   }
   if (slug === "belgique") {
