@@ -49,6 +49,142 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "107",
+    slug: "imposition-retrait-2e-pilier-etranger",
+    title: "Retirer son 2e pilier en capital et partir à l'étranger : comment ça se taxe",
+    titleEn: "Withdrawing your 2nd pillar as a lump sum and moving abroad: how it's taxed",
+    excerpt: "Impôt à la source suisse, remboursement via la convention de double imposition, et de grandes différences selon le pays d'accueil (Italie, France, Portugal). Tableau comparatif et exemples chiffrés.",
+    excerptEn: "Swiss withholding tax, refunds under double-taxation treaties, and big differences depending on the destination country (Italy, France, Portugal). Comparison table and worked examples.",
+    content: `<div style="max-width:820px;margin:0 auto;font-family:Calibri,Arial,sans-serif;color:#1F2937;line-height:1.6;font-size:17px">
+
+<p>Beaucoup de personnes qui quittent la Suisse retirent leur avoir de 2e pilier (caisse de pension ou compte de libre passage) en <strong>capital</strong>. C'est souvent une bonne idée, mais la note fiscale dépend énormément de <strong>trois facteurs</strong> : le canton où se trouve votre institution de prévoyance, la convention fiscale avec votre nouveau pays, et le pays lui-même. Selon les choix, on passe d'une imposition de 5 % à plus de 25 %. Voici comment ça marche.</p>
+
+<h2 style="color:#10B981;font-size:22px;border-bottom:2px solid #D1FAE5;padding-bottom:4px;margin-top:34px">1. Le principe : un impôt séparé et réduit</h2>
+<p>Le retrait en capital de la prévoyance n'est jamais ajouté à votre revenu ordinaire. Il est taxé <strong>séparément</strong>, une seule fois, à un <strong>taux réduit</strong> (impôt sur les prestations en capital). Plus le montant retiré est élevé, plus le taux monte : le barème est progressif.</p>
+
+<h2 style="color:#10B981;font-size:22px;border-bottom:2px solid #D1FAE5;padding-bottom:4px;margin-top:34px">2. Si vous êtes déjà à l'étranger au moment du retrait</h2>
+<p>Là, dès que vous n'êtes plus domicilié en Suisse, l'institution prélève un <strong>impôt à la source</strong> directement sur le capital, avant de vous verser le solde. Deux points essentiels, souvent mal compris :</p>
+<ul>
+<li><strong>Le taux dépend du canton de la fondation, pas de votre dernier domicile.</strong> C'est le canton où est établie votre caisse de pension ou votre fondation de libre passage qui fixe le barème. Certains cantons (Schwyz, par exemple) sont nettement moins chers. <em>C'est le premier levier d'optimisation.</em></li>
+<li><strong>Ce que vous pouvez retirer dépend de votre âge au moment du départ.</strong>
+<ul>
+<li><strong>À l'âge de la retraite (ou si vous êtes déjà retraité)</strong> : vous percevez la <strong>totalité</strong> de votre 2e pilier, part obligatoire <em>et</em> surobligatoire, en capital ou en rente. Aucun blocage.</li>
+<li><strong>Avant l'âge de la retraite, vers un pays de l'UE/AELE</strong> (où vous serez soumis à l'assurance vieillesse obligatoire) : vous ne pouvez encaisser que la <strong>part surobligatoire</strong> (ce que la caisse assure au-delà du minimum légal LPP, par exemple sur les salaires élevés ou grâce à un plan généreux). La <strong>part obligatoire</strong> (le minimum garanti par la loi sur le salaire assuré de base) reste sur un compte de libre passage jusqu'à l'âge de la retraite : elle est <em>différée, pas perdue</em>.</li>
+</ul>
+</li>
+</ul>
+
+<div style="background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:14px 18px;margin-top:8px">
+<p style="margin:0 0 8px 0;font-weight:bold;color:#0D735E">Exemple chiffré — départ avant la retraite (salaire de CHF 7'000 par mois, soit CHF 84'000 par an)</p>
+<p style="margin:0 0 8px 0"><strong>Part obligatoire (minimum légal LPP).</strong> On retire d'abord la déduction de coordination : 84'000 − 26'460 = <strong>57'540</strong>. Ces CHF 57'540 forment le « salaire coordonné » assuré au minimum légal (le plafond de l'obligatoire monte jusqu'à 64'260, donc tout tient dans l'obligatoire). La prévoyance constituée sur ces 57'540 est celle qui reste <strong>bloquée</strong> en cas de départ dans l'UE/AELE.</p>
+<p style="margin:0 0 8px 0"><strong>Part surobligatoire.</strong> Elle n'apparaît que si la caisse assure <em>au-delà</em> de ce minimum. Exemple d'une caisse plus généreuse qui assure la totalité du salaire, sans déduction de coordination : 84'000 − 57'540 = <strong>26'460</strong> de salaire assuré en plus, qui relève du surobligatoire. C'est la seule part que l'on peut <strong>retirer en capital</strong> lors d'un départ dans l'UE/AELE.</p>
+<p style="margin:0;font-size:14px;color:#6B7280">La répartition exacte dépend du plan de votre caisse (certaines n'assurent que le minimum, d'autres bien plus). Montants 2025/2026 ; c'est le capital accumulé sur chaque part, et non le salaire d'une seule année, qui détermine ce qui est bloqué ou disponible.</p>
+</div>
+
+<h2 style="color:#10B981;font-size:22px;border-bottom:2px solid #D1FAE5;padding-bottom:4px;margin-top:34px">3. Le remboursement via la convention (CDI)</h2>
+<p>L'impôt suisse à la source n'est pas forcément le dernier mot. Beaucoup de <strong>conventions de double imposition</strong> attribuent le droit d'imposer ce capital au <strong>pays de résidence</strong>. Dans ce cas, vous pouvez demander à la Suisse le <strong>remboursement</strong> de l'impôt prélevé, en fournissant une attestation de résidence fiscale et le formulaire adéquat, <strong>en principe dans un délai de 3 ans</strong>. Vous payez alors l'impôt dans votre nouveau pays, à ses conditions.</p>
+<p style="background:#F0FDF9;border-left:4px solid #10B981;padding:10px 14px;border-radius:4px">En résumé : la Suisse prélève d'abord (au taux du canton de la fondation), puis, selon la convention, vous récupérez cet impôt et c'est le <strong>pays de résidence</strong> qui taxe. D'où l'importance de bien choisir sa destination.</p>
+
+<h2 style="color:#10B981;font-size:22px;border-bottom:2px solid #D1FAE5;padding-bottom:4px;margin-top:34px">4. Tableau comparatif selon le pays de résidence</h2>
+<table style="width:100%;border-collapse:collapse;font-size:15px;margin-top:10px">
+<thead>
+<tr style="background:#10B981;color:#fff">
+<th style="padding:9px;text-align:left;border:1px solid #D1FAE5">Pays de résidence</th>
+<th style="padding:9px;text-align:left;border:1px solid #D1FAE5">Qui impose (CDI)</th>
+<th style="padding:9px;text-align:left;border:1px solid #D1FAE5">Impôt suisse à la source</th>
+<th style="padding:9px;text-align:left;border:1px solid #D1FAE5">Imposition dans le pays</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>Rester en Suisse</strong></td>
+<td style="padding:9px;border:1px solid #D1FAE5">Suisse</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Impôt sur les prestations en capital (taux réduit, ~5 à 9 % selon canton et montant)</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Rien de plus</td>
+</tr>
+<tr style="background:#F0FDF9">
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>Italie</strong></td>
+<td style="padding:9px;border:1px solid #D1FAE5">Italie (résidence)</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Prélevé puis <strong>remboursable</strong></td>
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>Imposition substitutive de 5 %</strong> sur le capital LPP (régime très favorable)</td>
+</tr>
+<tr>
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>Portugal</strong></td>
+<td style="padding:9px;border:1px solid #D1FAE5">Portugal (résidence)</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Prélevé puis <strong>remboursable</strong></td>
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>Barème progressif (14,5 à 48 %)</strong> depuis la fin du régime NHR (remplacé par l'IFICI, qui exclut les pensions)</td>
+</tr>
+<tr style="background:#F0FDF9">
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>France</strong></td>
+<td style="padding:9px;border:1px solid #D1FAE5">France (résidence)</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Prélevé puis <strong>remboursable</strong></td>
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>Prélèvement forfaitaire de 7,5 %</strong> après abattement de 10 % (soit ~6,75 % effectif), si le capital est versé en une seule fois (art. 163 bis CGI)</td>
+</tr>
+<tr>
+<td style="padding:9px;border:1px solid #D1FAE5"><strong>Autres pays UE</strong> (Espagne, Allemagne...)</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Le plus souvent la résidence</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Prélevé puis souvent remboursable</td>
+<td style="padding:9px;border:1px solid #D1FAE5">Variable : certains pays offrent un régime forfaitaire pour les capitaux de prévoyance, à examiner au cas par cas</td>
+</tr>
+</tbody>
+</table>
+<p style="font-size:14px;color:#6B7280">Les modalités exactes (formulaire, délai, intermédiaire) diffèrent par pays. Ce tableau donne le principe, pas une règle applicable telle quelle à votre situation.</p>
+
+<h2 style="color:#10B981;font-size:22px;border-bottom:2px solid #D1FAE5;padding-bottom:4px;margin-top:34px">5. Exemple chiffré : un retrait de CHF 500'000</h2>
+<p>Pour un même capital de <strong>CHF 500'000</strong>, voici la charge fiscale <strong>finale</strong> indicative selon le pays où l'on est domicilié au moment du retrait (impôt suisse récupéré lorsque le pays de résidence impose) :</p>
+
+<svg viewBox="0 0 620 340" style="width:100%;max-width:620px;display:block;margin:14px auto;font-family:Calibri,Arial,sans-serif">
+  <line x1="70" y1="20" x2="70" y2="270" stroke="#D1D5DB" stroke-width="1"/>
+  <line x1="70" y1="270" x2="600" y2="270" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="62" y="274" text-anchor="end" font-size="12" fill="#6B7280">0</text>
+  <text x="62" y="212" text-anchor="end" font-size="12" fill="#6B7280">50k</text>
+  <line x1="70" y1="208" x2="600" y2="208" stroke="#F3F4F6" stroke-width="1"/>
+  <text x="62" y="150" text-anchor="end" font-size="12" fill="#6B7280">100k</text>
+  <line x1="70" y1="146" x2="600" y2="146" stroke="#F3F4F6" stroke-width="1"/>
+  <text x="62" y="88" text-anchor="end" font-size="12" fill="#6B7280">150k</text>
+  <line x1="70" y1="84" x2="600" y2="84" stroke="#F3F4F6" stroke-width="1"/>
+  <rect x="90" y="220" width="80" height="50" fill="#10B981" rx="3"/>
+  <text x="130" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F2937">~40'000</text>
+  <text x="130" y="288" text-anchor="middle" font-size="12" fill="#1F2937">Suisse (~8 %)</text>
+  <rect x="210" y="228" width="80" height="42" fill="#34D399" rx="3"/>
+  <text x="250" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F2937">~34'000</text>
+  <text x="250" y="288" text-anchor="middle" font-size="12" fill="#1F2937">France (6,75 %)</text>
+  <rect x="330" y="239" width="80" height="31" fill="#0D735E" rx="3"/>
+  <text x="370" y="231" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F2937">~25'000</text>
+  <text x="370" y="288" text-anchor="middle" font-size="12" fill="#1F2937">Italie (5 %)</text>
+  <rect x="450" y="96" width="80" height="174" fill="#EF4444" rx="3"/>
+  <text x="490" y="88" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F2937">~140'000</text>
+  <text x="490" y="288" text-anchor="middle" font-size="12" fill="#1F2937">Portugal (~28 %)</text>
+  <text x="335" y="318" text-anchor="middle" font-size="12" fill="#6B7280">Impôt total indicatif sur un retrait de CHF 500'000 (illustratif)</text>
+</svg>
+
+<p>Même exemple, autrement dit : en <strong>Italie</strong> vous conservez environ <strong>CHF 475'000</strong>, en <strong>France</strong> environ <strong>CHF 466'000</strong>, en restant en <strong>Suisse</strong> environ CHF 460'000, et au <strong>Portugal</strong> aujourd'hui environ CHF 360'000. L'écart entre deux destinations dépasse ici <strong>CHF 100'000</strong>, pour le même capital de départ.</p>
+<p style="font-size:14px;color:#6B7280">Chiffres purement illustratifs (taux moyens indicatifs, hors situation personnelle). Les taux réels dépendent du montant, du canton de la fondation, de l'état civil et des règles précises de chaque pays.</p>
+
+<h2 style="color:#10B981;font-size:22px;border-bottom:2px solid #D1FAE5;padding-bottom:4px;margin-top:34px">6. Les leviers pour payer moins</h2>
+<ul>
+<li><strong>Choisir le canton de la fondation.</strong> Avant le retrait, transférer son avoir vers une fondation de libre passage établie dans un canton à faible imposition réduit l'impôt suisse à la source, et le montant que vous devez avancer.</li>
+<li><strong>Bien choisir sa destination.</strong> Comme le montre l'exemple, le pays de résidence est décisif. L'Italie reste très avantageuse (5 %) ; le Portugal l'était, mais ne l'est plus depuis la disparition du régime NHR.</li>
+<li><strong>Échelonner le retrait.</strong> Répartir l'avoir sur deux comptes et retirer sur deux années civiles différentes casse la progressivité, là où l'imposition est progressive (Suisse ou pays à barème).</li>
+<li><strong>Demander le remboursement dans les délais.</strong> La réclamation de l'impôt suisse via la convention doit être faite à temps (en principe 3 ans), avec les bons justificatifs.</li>
+<li><strong>Vérifier la part obligatoire / surobligatoire</strong> si vous partez dans l'UE ou l'AELE : une partie peut rester bloquée jusqu'à la retraite.</li>
+</ul>
+
+<h2 style="color:#10B981;font-size:22px;border-bottom:2px solid #D1FAE5;padding-bottom:4px;margin-top:34px">En résumé</h2>
+<p>Retirer son 2e pilier en capital en partant à l'étranger peut être très avantageux, mais tout se joue dans les détails : le <strong>canton de votre fondation</strong>, la <strong>convention</strong> avec votre pays d'accueil, et le <strong>régime fiscal local</strong>. Entre une destination bien choisie et une autre, la différence se compte en dizaines de milliers de francs. Cela se prépare <strong>avant</strong> le départ et avant le retrait, pas après.</p>
+
+<p style="background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:14px 16px;margin-top:22px">Chez <strong>neofidu.ch</strong>, nous accompagnons le volet <strong>suisse</strong> de votre projet : choix du moment et du canton de la fondation, échelonnement du retrait, calcul de l'impôt à la source et demande de remboursement via la convention. Pour la fiscalité de votre pays d'accueil, nous vous orientons vers les bons interlocuteurs locaux. Contactez-nous pour cadrer votre retrait avant de partir.</p>
+
+<p style="font-size:13px;color:#6B7280;font-style:italic;margin-top:20px">Cet article a une vocation purement informative et ne remplace pas un conseil personnalisé. Les taux, barèmes et règles conventionnelles varient selon le canton, le montant, l'état civil et le pays de résidence, et évoluent dans le temps. Contactez NeoFidu pour une analyse adaptée à votre situation.</p>
+
+</div>`,
+    category: "expatries",
+    date: "2026-09-01",
+    readTime: "8 min",
+    keywords: ["retrait 2e pilier", "LPP", "impôt à la source", "prestation en capital", "expatriation", "Italie", "France", "Portugal", "convention double imposition", "libre passage"],
+    image: "https://images.unsplash.com/photo-1580674287165?w=1200&auto=format&fit=crop&q=80",
+  },
+  {
     id: "106",
     slug: "suisses-demenagent-france-voisine",
     image: "https://images.unsplash.com/photo-1724661404654-d673345667a2?w=800&auto=format&fit=crop&q=60",
