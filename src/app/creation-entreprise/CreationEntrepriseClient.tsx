@@ -286,7 +286,7 @@ export default function CreationEntreprisePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-violet-50/50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-primary/10/50 to-white">
       <Header />
 
       <div className="pt-28 pb-20">
@@ -302,13 +302,13 @@ export default function CreationEntreprisePage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-4xl mx-auto mb-16"
           >
-            <Badge className="mb-4 bg-violet-100 text-violet-700">
+            <Badge className="mb-4 bg-primary/10 text-primary">
               <Rocket className="w-4 h-4 mr-1" />
               {isEnglish ? "Company creation" : "Création d'entreprise"}
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               {isEnglish ? "Create your " : "Créez votre "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary">
                 {isEnglish ? "company in Switzerland" : "entreprise en Suisse"}
               </span>
             </h1>
@@ -319,7 +319,7 @@ export default function CreationEntreprisePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="#contact-creation">
-                <Button size="lg" className="bg-violet-600 hover:bg-violet-700 px-8">
+                <Button size="lg" className="bg-primary hover:bg-primary px-8">
                   {isEnglish ? "Free consultation" : "Premier échange gratuit"}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
@@ -332,15 +332,15 @@ export default function CreationEntreprisePage() {
             </div>
             <div className="flex flex-wrap justify-center gap-6 mt-10 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <BadgeCheck className="w-5 h-5 text-violet-600" />
+                <BadgeCheck className="w-5 h-5 text-primary" />
                 <span>{isEnglish ? "Free first meeting" : "1er échange gratuit"}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-violet-600" />
+                <Clock className="w-5 h-5 text-primary" />
                 <span>{isEnglish ? "Fast response" : "Réponse rapide"}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-violet-600" />
+                <Shield className="w-5 h-5 text-primary" />
                 <span>{isEnglish ? "No commitment" : "Sans engagement"}</span>
               </div>
             </div>
@@ -359,11 +359,11 @@ export default function CreationEntreprisePage() {
                 <Card
                   key={type.id}
                   className={`relative overflow-hidden ${
-                    type.popular ? "border-2 border-violet-500 shadow-xl" : "border hover:shadow-lg"
+                    type.popular ? "border-2 border-primary shadow-xl" : "border hover:shadow-lg"
                   }`}
                 >
                   {type.popular && (
-                    <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-violet-600 to-purple-600 text-white text-center py-2 text-sm font-medium">
+                    <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-primary to-primary text-white text-center py-2 text-sm font-medium">
                       <Star className="w-4 h-4 inline mr-1" />
                       {isEnglish ? "Most popular" : "Le plus populaire"}
                     </div>
@@ -371,11 +371,11 @@ export default function CreationEntreprisePage() {
                   <div className={`p-6 ${type.popular ? "pt-14" : ""}`}>
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${
                       type.color === "emerald" ? "bg-emerald-100" :
-                      type.color === "violet" ? "bg-violet-100" : "bg-amber-100"
+                      type.color === "violet" ? "bg-primary/10" : "bg-amber-100"
                     }`}>
                       <type.icon className={`w-7 h-7 ${
                         type.color === "emerald" ? "text-emerald-600" :
-                        type.color === "violet" ? "text-violet-600" : "text-amber-600"
+                        type.color === "violet" ? "text-primary" : "text-amber-600"
                       }`} />
                     </div>
 
@@ -386,7 +386,7 @@ export default function CreationEntreprisePage() {
                       <span className="text-sm text-muted-foreground">dès </span>
                       <span className={`text-3xl font-bold ${
                         type.color === "emerald" ? "text-emerald-600" :
-                        type.color === "violet" ? "text-violet-600" : "text-amber-600"
+                        type.color === "violet" ? "text-primary" : "text-amber-600"
                       }`}>CHF {type.price}.-</span>
                       <p className="text-xs text-muted-foreground mt-1">
                         {isEnglish ? "Notary/RC fees not included" : "Frais notaire/RC non inclus"}
@@ -404,7 +404,7 @@ export default function CreationEntreprisePage() {
                         <li key={i} className="flex items-start gap-2 text-sm">
                           <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
                             type.color === "emerald" ? "text-emerald-500" :
-                            type.color === "violet" ? "text-violet-500" : "text-amber-500"
+                            type.color === "violet" ? "text-primary" : "text-amber-500"
                           }`} />
                           <span>{adv}</span>
                         </li>
@@ -415,7 +415,7 @@ export default function CreationEntreprisePage() {
                     <ul className="space-y-1 mb-6">
                       {type.included.map((inc, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
-                          <BadgeCheck className="w-4 h-4 text-violet-500 shrink-0 mt-0.5" />
+                          <BadgeCheck className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                           <span>{inc}</span>
                         </li>
                       ))}
@@ -424,7 +424,7 @@ export default function CreationEntreprisePage() {
                     <Link href="#contact-creation">
                       <Button className={`w-full ${
                         type.color === "emerald" ? "bg-emerald-600 hover:bg-emerald-700" :
-                        type.color === "violet" ? "bg-violet-600 hover:bg-violet-700" :
+                        type.color === "violet" ? "bg-primary hover:bg-primary" :
                         "bg-amber-600 hover:bg-amber-700"
                       }`}>
                         {isEnglish ? "Contact us" : "Contactez-nous"}
@@ -453,7 +453,7 @@ export default function CreationEntreprisePage() {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-lg min-w-[600px]">
                 <thead>
-                  <tr className="bg-gradient-to-r from-violet-600 to-purple-600 text-white">
+                  <tr className="bg-gradient-to-r from-primary to-primary text-white">
                     <th className="p-4 text-left font-semibold w-1/4"></th>
                     <th className="p-4 text-center font-semibold">
                       <div className="flex flex-col items-center gap-1">
@@ -482,15 +482,15 @@ export default function CreationEntreprisePage() {
                   {comparisonData.map((row, index) => (
                     <tr
                       key={index}
-                      className={`${index % 2 === 0 ? "bg-white" : "bg-violet-50/30"} hover:bg-violet-50 transition-colors`}
+                      className={`${index % 2 === 0 ? "bg-white" : "bg-primary/10/30"} hover:bg-primary/10 transition-colors`}
                     >
-                      <td className="p-4 font-medium border-r border-violet-100">
+                      <td className="p-4 font-medium border-r border-primary/10">
                         {isEnglish ? row.criterionEn : row.criterion}
                       </td>
                       <td className="p-4 text-center text-sm">
                         {isEnglish ? (row.riEn || row.ri) : row.ri}
                       </td>
-                      <td className="p-4 text-center text-sm bg-violet-50/50 font-medium">
+                      <td className="p-4 text-center text-sm bg-primary/10/50 font-medium">
                         {isEnglish ? (row.sarlEn || row.sarl) : row.sarl}
                       </td>
                       <td className="p-4 text-center text-sm">
@@ -519,12 +519,12 @@ export default function CreationEntreprisePage() {
               {processSteps.map((step) => (
                 <Card key={step.number} className="p-6 hover:shadow-lg transition-shadow">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-bold">
                       {step.number}
                     </div>
                     <div>
                       <h3 className="font-bold mb-1">{isEnglish ? step.titleEn : step.title}</h3>
-                      <step.icon className="w-5 h-5 text-violet-500" />
+                      <step.icon className="w-5 h-5 text-primary" />
                     </div>
                   </div>
                 </Card>
@@ -534,7 +534,7 @@ export default function CreationEntreprisePage() {
 
           {/* Why Neofidu */}
           <section className="mb-20">
-            <div className="bg-gradient-to-br from-violet-600 to-purple-700 rounded-3xl p-8 md:p-12 text-white">
+            <div className="bg-gradient-to-br from-primary to-primary rounded-3xl p-8 md:p-12 text-white">
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
                 {isEnglish ? "Why choose Neofidu?" : "Pourquoi choisir Neofidu ?"}
               </h2>
@@ -559,7 +559,7 @@ export default function CreationEntreprisePage() {
           {/* FAQ */}
           <section className="mb-20">
             <div className="text-center mb-10">
-              <Badge className="mb-4 bg-violet-100 text-violet-700">
+              <Badge className="mb-4 bg-primary/10 text-primary">
                 <HelpCircle className="w-4 h-4 mr-1" />
                 FAQ
               </Badge>
@@ -569,14 +569,14 @@ export default function CreationEntreprisePage() {
             </div>
             <div className="max-w-3xl mx-auto space-y-3">
               {faqs.map((faq, index) => (
-                <Card key={index} className={`overflow-hidden ${openFaq === index ? "ring-2 ring-violet-500" : ""}`}>
+                <Card key={index} className={`overflow-hidden ${openFaq === index ? "ring-2 ring-primary" : ""}`}>
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full p-5 text-left flex items-center justify-between gap-4"
                   >
                     <span className="font-semibold">{isEnglish ? faq.qEn : faq.q}</span>
                     {openFaq === index ? (
-                      <ChevronUp className="w-5 h-5 text-violet-600 shrink-0" />
+                      <ChevronUp className="w-5 h-5 text-primary shrink-0" />
                     ) : (
                       <ChevronDown className="w-5 h-5 text-muted-foreground shrink-0" />
                     )}
@@ -594,7 +594,7 @@ export default function CreationEntreprisePage() {
           {/* Contact Form */}
           <section className="mb-20" id="contact-creation">
             <div className="text-center mb-10">
-              <Badge className="mb-4 bg-violet-600 text-white">
+              <Badge className="mb-4 bg-primary text-white">
                 <Phone className="w-4 h-4 mr-1" />
                 {isEnglish ? "Free consultation" : "Consultation gratuite"}
               </Badge>
@@ -620,15 +620,15 @@ export default function CreationEntreprisePage() {
                 <div>
                   <p className="font-semibold mb-3">{isEnglish ? "Related services" : "Services associés"}</p>
                   <ul className="space-y-2">
-                    <li><Link href="/independants" className="text-violet-600 hover:underline flex items-center gap-2"><Users className="w-4 h-4" />{isEnglish ? "Freelance accounting" : "Comptabilité indépendants"}</Link></li>
-                    <li><Link href="/tarifs" className="text-violet-600 hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Our pricing" : "Nos tarifs"}</Link></li>
+                    <li><Link href="/independants" className="text-primary hover:underline flex items-center gap-2"><Users className="w-4 h-4" />{isEnglish ? "Freelance accounting" : "Comptabilité indépendants"}</Link></li>
+                    <li><Link href="/tarifs" className="text-primary hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Our pricing" : "Nos tarifs"}</Link></li>
                   </ul>
                 </div>
                 <div>
                   <p className="font-semibold mb-3">{isEnglish ? "Free tools" : "Outils gratuits"}</p>
                   <ul className="space-y-2">
-                    <li><Link href="/simulateur/impots" className="text-violet-600 hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Tax calculator" : "Simulateur d'impôts"}</Link></li>
-                    <li><Link href="/simulateur/salaire-net" className="text-violet-600 hover:underline flex items-center gap-2"><Banknote className="w-4 h-4" />{isEnglish ? "Net salary" : "Salaire net"}</Link></li>
+                    <li><Link href="/simulateur/impots" className="text-primary hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Tax calculator" : "Simulateur d'impôts"}</Link></li>
+                    <li><Link href="/simulateur/salaire-net" className="text-primary hover:underline flex items-center gap-2"><Banknote className="w-4 h-4" />{isEnglish ? "Net salary" : "Salaire net"}</Link></li>
                   </ul>
                 </div>
                 <div>
@@ -640,7 +640,7 @@ export default function CreationEntreprisePage() {
                       { name: "Fribourg", slug: "fribourg" },
                       { name: "Valais", slug: "valais" }
                     ].map(c => (
-                      <Link key={c.slug} href={`/cantons/${c.slug}`} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-violet-600 hover:text-white transition-colors">{c.name}</Link>
+                      <Link key={c.slug} href={`/cantons/${c.slug}`} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">{c.name}</Link>
                     ))}
                   </div>
                 </div>
