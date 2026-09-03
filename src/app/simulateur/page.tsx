@@ -232,7 +232,7 @@ export default function SimulateurPage() {
               <Link href="/simulateur/salaire-net">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-teal-500 flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
                       <Briefcase className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
@@ -248,7 +248,7 @@ export default function SimulateurPage() {
               <Link href="/simulateur/impots">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
                       <Calculator className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
@@ -280,7 +280,7 @@ export default function SimulateurPage() {
               <Link href="/simulateur/valeur-locative">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-purple-500 flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
                       <Home className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
@@ -328,7 +328,7 @@ export default function SimulateurPage() {
               <Link href="/simulateur/retraite">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
                       <TrendingUp className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
@@ -666,7 +666,7 @@ export default function SimulateurPage() {
             calculateTaxes && (
               <div className="max-w-4xl mx-auto space-y-6">
                 {/* Summary Card */}
-                <Card className="bg-gradient-to-br from-primary to-emerald-600 text-white">
+                <Card className="bg-gradient-to-br from-primary to-primary text-white">
                   <CardContent className="p-8">
                     <div className="grid md:grid-cols-3 gap-6 text-center">
                       <div>
