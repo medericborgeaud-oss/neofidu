@@ -109,7 +109,7 @@ function ThankYouContent() {
       ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-violet-50/50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-primary/10/50 to-white">
       <Header />
 
       <div className="pt-28 pb-20">
@@ -128,8 +128,8 @@ function ThankYouContent() {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               className="relative w-24 h-24 mx-auto mb-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full opacity-20 animate-pulse" />
-              <div className="absolute inset-2 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary rounded-full opacity-20 animate-pulse" />
+              <div className="absolute inset-2 bg-gradient-to-br from-primary to-primary rounded-full flex items-center justify-center">
                 <CheckCircle2 className="w-12 h-12 text-white" />
               </div>
               <motion.div
@@ -142,7 +142,7 @@ function ThankYouContent() {
               </motion.div>
             </motion.div>
 
-            <Badge className="mb-4 bg-violet-100 text-violet-700 py-2 px-4">
+            <Badge className="mb-4 bg-primary/10 text-primary py-2 px-4">
               <TypeIcon className="w-4 h-4 mr-2" />
               {isEnglish ? typeInfo.en : typeInfo.fr}
             </Badge>
@@ -150,11 +150,11 @@ function ThankYouContent() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               {isEnglish ? (
                 <>
-                  Thank you for your <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-600">request!</span>
+                  Thank you for your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary">request!</span>
                 </>
               ) : (
                 <>
-                  Merci pour votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-600">demande !</span>
+                  Merci pour votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary">demande !</span>
                 </>
               )}
             </h1>
@@ -173,8 +173,8 @@ function ThankYouContent() {
             transition={{ delay: 0.3 }}
             className="max-w-2xl mx-auto mb-16"
           >
-            <Card className="overflow-hidden border-violet-200">
-              <div className="bg-gradient-to-r from-violet-600 to-purple-600 p-6 text-white">
+            <Card className="overflow-hidden border-primary/20">
+              <div className="bg-gradient-to-r from-primary to-primary p-6 text-white">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
                     <Mail className="w-7 h-7" />
@@ -228,12 +228,12 @@ function ThankYouContent() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
                 >
-                  <Card className="p-6 h-full hover:shadow-lg transition-shadow border-t-4 border-t-violet-500">
+                  <Card className="p-6 h-full hover:shadow-lg transition-shadow border-t-4 border-t-primary">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center text-violet-600 font-bold">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold">
                         {index + 1}
                       </div>
-                      <step.icon className="w-6 h-6 text-violet-600" />
+                      <step.icon className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="font-bold mb-2">{step.title}</h3>
                     <p className="text-sm text-muted-foreground">{step.description}</p>
@@ -257,13 +257,13 @@ function ThankYouContent() {
             <div className="grid md:grid-cols-2 gap-4">
               {resources.map((resource, index) => (
                 <Link key={index} href={resource.href}>
-                  <Card className="p-5 h-full hover:shadow-lg transition-all hover:border-violet-300 group cursor-pointer">
+                  <Card className="p-5 h-full hover:shadow-lg transition-all hover:border-primary/20 group cursor-pointer">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-200 transition-colors">
-                        <resource.icon className="w-6 h-6 text-violet-600" />
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <resource.icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1 group-hover:text-violet-600 transition-colors">
+                        <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
                           {resource.title}
                         </h3>
                         <p className="text-sm text-muted-foreground">{resource.description}</p>
@@ -301,7 +301,7 @@ export default function MerciPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-violet-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
       </div>
     }>
       <ThankYouContent />
