@@ -172,10 +172,10 @@ export function Pillar3aSimulatorEnhanced() {
 
   return (
     <Card className="shadow-2xl border-2">
-      <CardHeader className="bg-gradient-to-r from-emerald-50 to-teal-50 border-b">
+      <CardHeader className="bg-gradient-to-r from-primary/10 to-primary/10 border-b">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary flex items-center justify-center">
               <Calculator className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -183,7 +183,7 @@ export function Pillar3aSimulatorEnhanced() {
               <p className="text-sm text-muted-foreground">Économie d'impôts et capital retraite</p>
             </div>
           </div>
-          <Badge className="bg-emerald-100 text-emerald-800">
+          <Badge className="bg-primary/10 text-primary">
             Plafond CHF 7'258
           </Badge>
         </div>
@@ -201,11 +201,11 @@ export function Pillar3aSimulatorEnhanced() {
                   onClick={() => setFormData({ ...formData, isIndependent: false, contribution: "7258" })}
                   className={`p-4 rounded-xl border-2 transition-all ${
                     !formData.isIndependent
-                      ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
+                      ? "border-primary bg-primary/10 ring-2 ring-primary/20"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <Briefcase className={`w-8 h-8 mx-auto mb-2 ${!formData.isIndependent ? "text-emerald-600" : "text-gray-400"}`} />
+                  <Briefcase className={`w-8 h-8 mx-auto mb-2 ${!formData.isIndependent ? "text-primary" : "text-gray-400"}`} />
                   <span className="font-semibold block">Salarié</span>
                   <span className="text-xs text-muted-foreground">Max CHF 7'258/an</span>
                 </button>
@@ -214,11 +214,11 @@ export function Pillar3aSimulatorEnhanced() {
                   onClick={() => setFormData({ ...formData, isIndependent: true, contribution: "36288" })}
                   className={`p-4 rounded-xl border-2 transition-all ${
                     formData.isIndependent
-                      ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
+                      ? "border-primary bg-primary/10 ring-2 ring-primary/20"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <Building2 className={`w-8 h-8 mx-auto mb-2 ${formData.isIndependent ? "text-emerald-600" : "text-gray-400"}`} />
+                  <Building2 className={`w-8 h-8 mx-auto mb-2 ${formData.isIndependent ? "text-primary" : "text-gray-400"}`} />
                   <span className="font-semibold block">Indépendant</span>
                   <span className="text-xs text-muted-foreground">Max CHF 36'288/an</span>
                 </button>
@@ -312,7 +312,7 @@ export function Pillar3aSimulatorEnhanced() {
                     key={opt.label}
                     type="button"
                     onClick={() => setFormData({ ...formData, contribution: opt.value.toString() })}
-                    className="px-4 py-1.5 text-sm rounded-full border border-emerald-300 text-emerald-700 hover:bg-emerald-50 transition-colors"
+                    className="px-4 py-1.5 text-sm rounded-full border border-primary/20 text-primary hover:bg-primary/10 transition-colors"
                   >
                     {opt.label}
                   </button>
@@ -360,7 +360,7 @@ export function Pillar3aSimulatorEnhanced() {
             <Button
               onClick={handleCalculate}
               size="lg"
-              className="w-full h-14 text-lg bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
+              className="w-full h-14 text-lg bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary"
             >
               <Calculator className="w-5 h-5 mr-2" />
               Calculer mon économie d'impôts
@@ -370,14 +370,14 @@ export function Pillar3aSimulatorEnhanced() {
           <div className="space-y-6">
             {/* Main results */}
             <div className="grid md:grid-cols-3 gap-4">
-              <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white border-0">
+              <Card className="bg-gradient-to-br from-primary to-primary text-white border-0">
                 <CardContent className="p-6 text-center">
                   <TrendingUp className="w-8 h-8 mx-auto mb-2 opacity-80" />
                   <div className="text-3xl font-bold">{formatCurrency(result.taxSavingsYear)}</div>
                   <div className="text-sm text-white/80">Économie d'impôts/an</div>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-blue-500 to-indigo-600 text-white border-0">
+              <Card className="bg-gradient-to-br from-blue-500 to-primary text-white border-0">
                 <CardContent className="p-6 text-center">
                   <PiggyBank className="w-8 h-8 mx-auto mb-2 opacity-80" />
                   <div className="text-3xl font-bold">{formatCurrency(result.projectedCapital)}</div>
@@ -409,7 +409,7 @@ export function Pillar3aSimulatorEnhanced() {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-muted-foreground">Intérêts accumulés</span>
-                    <span className="font-semibold text-emerald-600">+{formatCurrency(result.projectedInterest)}</span>
+                    <span className="font-semibold text-primary">+{formatCurrency(result.projectedInterest)}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-muted-foreground">Capital brut</span>
@@ -419,9 +419,9 @@ export function Pillar3aSimulatorEnhanced() {
                     <span className="text-muted-foreground">Impôt au retrait (estimé)</span>
                     <span className="font-semibold text-red-600">-{formatCurrency(result.withdrawalTax)}</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b bg-emerald-50 -mx-6 px-6">
+                  <div className="flex justify-between items-center py-2 border-b bg-primary/10 -mx-6 px-6">
                     <span className="font-semibold">Capital net estimé</span>
-                    <span className="font-bold text-lg text-emerald-600">{formatCurrency(result.netCapital)}</span>
+                    <span className="font-bold text-lg text-primary">{formatCurrency(result.netCapital)}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 bg-blue-50 -mx-6 px-6">
                     <span className="font-semibold">Économies d'impôts totales</span>
@@ -445,7 +445,7 @@ export function Pillar3aSimulatorEnhanced() {
                     <div
                       key={c.canton}
                       className={`flex items-center justify-between p-3 rounded-lg ${
-                        c.canton === formData.canton ? "bg-emerald-100 border-2 border-emerald-300" : "bg-gray-50"
+                        c.canton === formData.canton ? "bg-primary/10 border-2 border-primary/20" : "bg-gray-50"
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -456,7 +456,7 @@ export function Pillar3aSimulatorEnhanced() {
                         )}
                       </div>
                       <div className="text-right">
-                        <div className="font-semibold text-emerald-600">+{formatCurrency(c.netBenefit)}</div>
+                        <div className="font-semibold text-primary">+{formatCurrency(c.netBenefit)}</div>
                         <div className="text-xs text-muted-foreground">bénéfice net</div>
                       </div>
                     </div>
@@ -475,7 +475,7 @@ export function Pillar3aSimulatorEnhanced() {
                 Modifier les paramètres
               </Button>
               <Link href="/demande" className="flex-1">
-                <Button className="w-full bg-gradient-to-r from-emerald-500 to-teal-600">
+                <Button className="w-full bg-gradient-to-r from-primary to-primary">
                   Optimiser ma déclaration
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
