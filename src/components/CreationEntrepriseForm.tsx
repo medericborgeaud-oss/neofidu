@@ -131,7 +131,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
 
   return (
     <Card className="overflow-hidden" id="contact-form">
-      <div className="bg-gradient-to-r from-violet-600 to-purple-600 p-6 text-white">
+      <div className="bg-gradient-to-r from-primary to-primary p-6 text-white">
         <h3 className="text-xl font-bold mb-1">{t.title}</h3>
         <p className="text-white/80 text-sm">{t.subtitle}</p>
         <div className="flex flex-wrap gap-4 mt-4">
@@ -172,13 +172,13 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
                 onClick={() => updateForm("companyType", type.id)}
                 className={`p-4 rounded-xl border-2 text-left transition-all ${
                   formData.companyType === type.id
-                    ? "border-violet-500 bg-violet-50"
-                    : "border-border hover:border-violet-300"
+                    ? "border-primary bg-primary/10"
+                    : "border-border hover:border-primary/20"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    formData.companyType === type.id ? "bg-violet-500 text-white" : "bg-gray-100 text-gray-500"
+                    formData.companyType === type.id ? "bg-primary text-white" : "bg-gray-100 text-gray-500"
                   }`}>
                     <type.icon className="w-5 h-5" />
                   </div>
@@ -198,7 +198,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
               required
               value={formData.firstName}
               onChange={(e) => updateForm("firstName", e.target.value)}
-              className="rounded-xl border-2 focus:border-violet-500"
+              className="rounded-xl border-2 focus:border-primary"
             />
           </div>
           <div>
@@ -208,7 +208,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
               required
               value={formData.lastName}
               onChange={(e) => updateForm("lastName", e.target.value)}
-              className="rounded-xl border-2 focus:border-violet-500"
+              className="rounded-xl border-2 focus:border-primary"
             />
           </div>
         </div>
@@ -222,7 +222,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
             required
             value={formData.email}
             onChange={(e) => updateForm("email", e.target.value)}
-            className="rounded-xl border-2 focus:border-violet-500"
+            className="rounded-xl border-2 focus:border-primary"
           />
         </div>
 
@@ -235,7 +235,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
               placeholder="+41 79 123 45 67"
               value={formData.phone}
               onChange={(e) => updateForm("phone", e.target.value)}
-              className="rounded-xl border-2 focus:border-violet-500"
+              className="rounded-xl border-2 focus:border-primary"
             />
           </div>
           <div>
@@ -243,7 +243,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
             <select
               value={formData.canton}
               onChange={(e) => updateForm("canton", e.target.value)}
-              className="w-full h-10 px-4 rounded-xl border-2 border-input bg-background text-sm focus:border-violet-500 focus:outline-none"
+              className="w-full h-10 px-4 rounded-xl border-2 border-input bg-background text-sm focus:border-primary focus:outline-none"
             >
               <option value="">{t.selectCanton}</option>
               {cantons.map((c) => (
@@ -261,7 +261,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
             rows={4}
             value={formData.projectDescription}
             onChange={(e) => updateForm("projectDescription", e.target.value)}
-            className="rounded-xl border-2 focus:border-violet-500 resize-none"
+            className="rounded-xl border-2 focus:border-primary resize-none"
           />
         </div>
 
@@ -276,7 +276,7 @@ export function CreationEntrepriseForm({ defaultCompanyType }: CreationEntrepris
           <Button
             type="submit"
             size="lg"
-            className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 h-14 text-base font-semibold"
+            className="w-full rounded-xl bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300 h-14 text-base font-semibold"
             disabled={isLoading || !formData.companyType}
           >
             {isLoading ? (
