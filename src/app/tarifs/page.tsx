@@ -829,9 +829,6 @@ export default function TarifsPage() {
                     <h3 className="font-semibold group-hover:text-primary transition-colors">
                       {isEnglish ? canton.nameen : canton.name}
                     </h3>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {isEnglish ? "Tax rate" : "Taux"} {canton.rate}
-                    </p>
                     <span className="text-xs text-primary mt-2 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       {isEnglish ? "See guide" : "Voir le guide"} <ArrowRight className="w-3 h-3" />
                     </span>
