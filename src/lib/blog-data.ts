@@ -49,6 +49,75 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "108",
+    slug: "impot-au-forfait-suisse-guide",
+    title: "L'impôt au forfait en Suisse : comment ça marche, qui en profite et ce que ça rapporte",
+    titleEn: "Swiss lump-sum taxation: how it works, who benefits and what it really brings in",
+    excerpt: "Imposition d'après la dépense : définition, conditions d'accès, calcul (seuil fédéral de 429 100 francs, septuple du loyer, calcul de contrôle), comparaison entre cantons et recettes réelles pour les finances publiques.",
+    excerptEn: "Taxation based on expenditure: definition, eligibility, calculation (CHF 429,100 federal floor, seven times the rent, control calculation), comparison between cantons and the real revenue it generates.",
+    content: `<div style="max-width:820px;margin:0 auto;font-family:Calibri,Arial,sans-serif;color:#1F2937;line-height:1.6;font-size:17px">
+
+<p>L'impôt au forfait, ou « imposition d'après la dépense », est l'un des régimes fiscaux les plus commentés de Suisse. Adoré par les cantons touristiques, combattu par ses détracteurs comme un privilège, il reste pourtant méconnu dans son fonctionnement réel. Voici ce qu'il faut savoir : ce que c'est, qui peut en bénéficier, comment il varie d'un canton à l'autre, et ce qu'il rapporte concrètement aux finances publiques.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">Qu'est-ce que l'impôt au forfait ?</h2>
+
+<p>L'impôt au forfait est un mode d'imposition particulier réservé à certains contribuables étrangers fortunés. Sa spécificité tient en une idée simple : au lieu de calculer l'impôt sur le revenu et la fortune réels de la personne, l'administration le calcule sur sa <strong>dépense</strong>, c'est-à-dire sur son train de vie. Le contribuable ne déclare donc pas dans le détail ses revenus mondiaux ; il est imposé sur une base convenue, reflétant ce qu'il dépense pour vivre.</p>
+
+<p>Le régime repose sur le droit fédéral (art. 14 de la loi sur l'impôt fédéral direct, et art. 6 de la loi sur l'harmonisation des impôts directs). L'impôt fédéral direct s'applique au forfait partout en Suisse, mais les cantons restent libres de proposer ou non ce régime pour leurs propres impôts. La loi a été révisée en 2012 et les règles, sensiblement durcies, sont en vigueur depuis 2016.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">Qui peut en bénéficier ?</h2>
+
+<p>Les conditions sont cumulatives et strictes. Pour être imposé d'après la dépense, il faut : ne pas posséder la nationalité suisse ; prendre domicile fiscal en Suisse pour la première fois, ou après une absence d'au moins dix ans ; et n'exercer aucune activité lucrative en Suisse.</p>
+
+<p>Depuis 2016, lorsqu'un couple marié s'installe, <strong>les deux conjoints</strong> doivent remplir ces conditions. Le profil type est donc celui du retraité fortuné, du rentier, du sportif ou de l'artiste, ou encore de l'entrepreneur dont l'activité se déroule à l'étranger. On peut détenir des biens en Suisse, y percevoir des revenus de sa fortune ou y vivre confortablement ; ce que l'on ne peut pas faire, c'est y travailler. Dès qu'une activité lucrative est exercée sur le sol suisse, le droit au forfait tombe.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">Comment l'impôt est-il calculé ?</h2>
+
+<p>La base imposable correspond à la dépense annuelle du contribuable et des personnes à sa charge, en Suisse et à l'étranger. Pour éviter les abus, la loi fixe des <strong>seuils minimaux</strong> en dessous desquels on ne peut pas descendre.</p>
+
+<p>Le premier est un seuil fixe. Au niveau fédéral, la dépense minimale imposable est d'au moins <strong>429 100 francs</strong> (montant indexé ; le plancher légal de base est de 400 000 francs). Chaque canton fixe ensuite son propre minimum pour ses impôts. Le second est un seuil variable, lié au logement : la dépense retenue doit atteindre au moins <strong>sept fois le loyer annuel</strong> ou la valeur locative du logement (ou trois fois le prix de la pension pour une personne logée et nourrie). C'est le plus élevé des deux seuils qui s'applique.</p>
+
+<p>S'ajoute enfin le <strong>calcul de contrôle</strong> : l'impôt au forfait ne peut jamais être inférieur à celui qui serait dû, au barème ordinaire, sur certains revenus de source suisse (rendements de la fortune mobilière et immobilière, retraites, redevances) et sur les revenus étrangers pour lesquels le contribuable réclame un dégrèvement au titre d'une convention de double imposition. Si ces revenus dépassent la dépense, c'est sur eux que l'impôt est calculé. Au niveau cantonal, une composante de fortune doit par ailleurs être intégrée dans le forfait.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">Un régime à géométrie cantonale</h2>
+
+<p>C'est là que les différences se creusent. Si l'impôt fédéral direct s'applique au forfait dans toute la Suisse, chaque canton décide pour ses propres impôts, et tous n'ont pas fait le même choix.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:18px 0;font-size:15px">
+<tr><th style="background:#10B981;color:#fff;border:1px solid #D1D5DB;padding:8px 10px;text-align:left">Cantons</th><th style="background:#10B981;color:#fff;border:1px solid #D1D5DB;padding:8px 10px;text-align:left">Position sur le forfait</th></tr>
+<tr><td style="border:1px solid #D1D5DB;padding:8px 10px">Zurich, Schaffhouse, Appenzell Rh.-Ext., Bâle-Campagne, Bâle-Ville</td><td style="border:1px solid #D1D5DB;padding:8px 10px">Aboli par votation populaire (Zurich en tête, dès 2010)</td></tr>
+<tr><td style="border:1px solid #D1D5DB;padding:8px 10px">Vaud, Valais, Genève, Tessin, Grisons, Berne, Lucerne, Fribourg, Neuchâtel, Jura…</td><td style="border:1px solid #D1D5DB;padding:8px 10px">Maintenu, avec des règles resserrées</td></tr>
+</table>
+
+<p>Les abolitions se sont concentrées en Suisse alémanique, à la suite de votations. La Suisse romande et le Tessin, eux, ont conservé le régime. Résultat : les forfaitaires se regroupent très majoritairement dans quelques cantons. Le canton de Vaud en compte environ 1 400, le Valais près de 1 160, le Tessin autour de 780 et Genève quelque 690 ; les Grisons et Berne complètent le peloton de tête. Ce sont, sans surprise, des cantons touristiques, de montagne ou frontaliers, qui voient dans ce régime un levier d'attractivité.</p>
+
+<p>Les seuils fixes cantonaux varient aussi. Beaucoup se situent au niveau du plancher fédéral, mais certains cantons appliquent des minimums plus élevés ou des calculs plus exigeants — Genève et Vaud figurant parmi les plus stricts. À situation égale, la facture d'un forfaitaire ne sera donc pas la même à Sion, à Genève ou à Coire. Sur le plan national, la tentative d'abolir le régime a échoué : l'initiative « Halte aux privilèges fiscaux » a été rejetée en votation le 30 novembre 2014, par près de 59 % des voix.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">Ce que ça rapporte vraiment</h2>
+
+<p>Le forfait concerne peu de monde — moins d'un contribuable sur mille — mais chaque dossier pèse lourd. Fin 2018, on dénombrait environ <strong>4 557 personnes</strong> imposées d'après la dépense, pour un total d'impôts d'environ <strong>821 millions de francs</strong> (Confédération, cantons et communes confondus). Cela représente une moyenne de l'ordre de <strong>180 000 francs d'impôt par forfait et par an</strong>, très au-dessus de ce que verse un contribuable ordinaire.</p>
+
+<p>À ces recettes directes s'ajoutent des retombées indirectes souvent avancées par les cantons concernés : dépenses de consommation locales, emplois (personnel de maison, services, artisanat), marché de l'immobilier haut de gamme, mécénat et dons. Pour un canton de montagne ou périphérique, un forfaitaire qui ne se serait pas installé ailleurs représente un apport net.</p>
+
+<p>C'est précisément cet équilibre qui nourrit le débat. Les partisans du régime y voient une source de revenus substantielle et une politique d'attractivité gagnante. Ses détracteurs dénoncent une inégalité de traitement et un privilège difficilement justifiable face au contribuable ordinaire. Les abolitions cantonales et l'initiative de 2014 sont nées de cette tension, que le durcissement des règles en 2016 a cherché à apaiser sans supprimer le régime.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">Pour qui est-ce réellement intéressant ?</h2>
+
+<p>L'impôt au forfait a du sens pour une personne étrangère fortunée qui vient s'établir en Suisse sans y travailler, et dont les revenus et la fortune se trouvent largement à l'étranger. Dans ce cas, l'impôt calculé sur la dépense peut être nettement inférieur à l'impôt ordinaire qui frapperait l'ensemble de ses revenus mondiaux.</p>
+
+<p>Mais ce n'est pas un choix anodin. Le forfait se négocie avec l'administration cantonale (sous la forme d'un accord préalable), suppose une estimation soignée de la dépense, et doit être coordonné avec les conventions de double imposition du pays d'origine — la France, par exemple, a durci sa reconnaissance du forfait « majoré ». Un mauvais calibrage peut coûter cher, voire faire perdre le bénéfice du régime.</p>
+
+<p style="background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:14px 16px;margin-top:22px">Chez <strong>neofidu.ch</strong>, nous accompagnons l'analyse d'éligibilité, le calcul de la dépense, le choix du canton, la négociation du ruling et la coordination internationale. L'objectif : savoir, chiffres à l'appui, si le forfait est réellement avantageux dans votre situation — et le sécuriser dans la durée.</p>
+
+<p style="font-size:13px;color:#6B7280;font-style:italic;margin-top:20px">Cet article a une vocation purement informative et ne constitue pas un conseil fiscal personnalisé. Les seuils et pratiques évoluent et varient d'un canton à l'autre ; une analyse individuelle est indispensable avant toute décision.</p>
+
+</div>`,
+    category: "fiscalite",
+    date: "2026-09-07",
+    readTime: "9 min",
+    keywords: ["impôt au forfait", "imposition d'après la dépense", "forfait fiscal", "étrangers fortunés", "cantons", "Vaud", "Valais", "Genève", "Tessin", "fiscalité suisse"],
+  },
+  {
     id: "107",
     slug: "imposition-retrait-2e-pilier-etranger",
     title: "Retirer son 2e pilier en capital et partir à l'étranger : comment ça se taxe",
