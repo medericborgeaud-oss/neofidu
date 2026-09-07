@@ -91,11 +91,11 @@ export const blogArticles: BlogArticle[] = [
 
 <p>Les abolitions se sont concentrées en Suisse alémanique, à la suite de votations. La Suisse romande et le Tessin, eux, ont conservé le régime. Résultat : les forfaitaires se regroupent très majoritairement dans quelques cantons. Le canton de Vaud en compte environ 1 400, le Valais près de 1 160, le Tessin autour de 780 et Genève quelque 690 ; les Grisons et Berne complètent le peloton de tête. Ce sont, sans surprise, des cantons touristiques, de montagne ou frontaliers, qui voient dans ce régime un levier d'attractivité.</p>
 
-<p>Les seuils fixes cantonaux varient aussi. Beaucoup se situent au niveau du plancher fédéral, mais certains cantons appliquent des minimums plus élevés ou des calculs plus exigeants — Genève et Vaud figurant parmi les plus stricts. À situation égale, la facture d'un forfaitaire ne sera donc pas la même à Sion, à Genève ou à Coire. Sur le plan national, la tentative d'abolir le régime a échoué : l'initiative « Halte aux privilèges fiscaux » a été rejetée en votation le 30 novembre 2014, par près de 59 % des voix.</p>
+<p>Les seuils fixes cantonaux varient aussi. Beaucoup se situent au niveau du plancher fédéral, mais certains cantons appliquent des minimums plus élevés ou des calculs plus exigeants, Genève et Vaud figurant parmi les plus stricts. À situation égale, la facture d'un forfaitaire ne sera donc pas la même à Sion, à Genève ou à Coire. Sur le plan national, la tentative d'abolir le régime a échoué : l'initiative « Halte aux privilèges fiscaux » a été rejetée en votation le 30 novembre 2014, par près de 59 % des voix.</p>
 
 <h2 style="color:#0D735E;font-size:22px;margin-top:28px">Ce que ça rapporte vraiment</h2>
 
-<p>Le forfait concerne peu de monde — moins d'un contribuable sur mille — mais chaque dossier pèse lourd. Fin 2018, on dénombrait environ <strong>4 557 personnes</strong> imposées d'après la dépense, pour un total d'impôts d'environ <strong>821 millions de francs</strong> (Confédération, cantons et communes confondus). Cela représente une moyenne de l'ordre de <strong>180 000 francs d'impôt par forfait et par an</strong>, très au-dessus de ce que verse un contribuable ordinaire.</p>
+<p>Le forfait concerne peu de monde (moins d'un contribuable sur mille), mais chaque dossier pèse lourd. Fin 2018, on dénombrait environ <strong>4 557 personnes</strong> imposées d'après la dépense, pour un total d'impôts d'environ <strong>821 millions de francs</strong> (Confédération, cantons et communes confondus). Cela représente une moyenne de l'ordre de <strong>180 000 francs d'impôt par forfait et par an</strong>, très au-dessus de ce que verse un contribuable ordinaire.</p>
 
 <p>À ces recettes directes s'ajoutent des retombées indirectes souvent avancées par les cantons concernés : dépenses de consommation locales, emplois (personnel de maison, services, artisanat), marché de l'immobilier haut de gamme, mécénat et dons. Pour un canton de montagne ou périphérique, un forfaitaire qui ne se serait pas installé ailleurs représente un apport net.</p>
 
@@ -105,16 +105,17 @@ export const blogArticles: BlogArticle[] = [
 
 <p>L'impôt au forfait a du sens pour une personne étrangère fortunée qui vient s'établir en Suisse sans y travailler, et dont les revenus et la fortune se trouvent largement à l'étranger. Dans ce cas, l'impôt calculé sur la dépense peut être nettement inférieur à l'impôt ordinaire qui frapperait l'ensemble de ses revenus mondiaux.</p>
 
-<p>Mais ce n'est pas un choix anodin. Le forfait se négocie avec l'administration cantonale (sous la forme d'un accord préalable), suppose une estimation soignée de la dépense, et doit être coordonné avec les conventions de double imposition du pays d'origine — la France, par exemple, a durci sa reconnaissance du forfait « majoré ». Un mauvais calibrage peut coûter cher, voire faire perdre le bénéfice du régime.</p>
+<p>Mais ce n'est pas un choix anodin. Le forfait se négocie avec l'administration cantonale (sous la forme d'un accord préalable), suppose une estimation soignée de la dépense, et doit être coordonné avec les conventions de double imposition du pays d'origine ; la France, par exemple, a durci sa reconnaissance du forfait « majoré ». Un mauvais calibrage peut coûter cher, voire faire perdre le bénéfice du régime.</p>
 
-<p style="background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:14px 16px;margin-top:22px">Chez <strong>neofidu.ch</strong>, nous accompagnons l'analyse d'éligibilité, le calcul de la dépense, le choix du canton, la négociation du ruling et la coordination internationale. L'objectif : savoir, chiffres à l'appui, si le forfait est réellement avantageux dans votre situation — et le sécuriser dans la durée.</p>
+<p style="background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:14px 16px;margin-top:22px">Chez <strong>neofidu.ch</strong>, nous accompagnons l'analyse d'éligibilité, le calcul de la dépense, le choix du canton, la négociation du ruling et la coordination internationale. L'objectif : savoir, chiffres à l'appui, si le forfait est réellement avantageux dans votre situation, et le sécuriser dans la durée.</p>
 
 <p style="font-size:13px;color:#6B7280;font-style:italic;margin-top:20px">Cet article a une vocation purement informative et ne constitue pas un conseil fiscal personnalisé. Les seuils et pratiques évoluent et varient d'un canton à l'autre ; une analyse individuelle est indispensable avant toute décision.</p>
 
 </div>`,
     category: "fiscalite",
     date: "2026-09-07",
-    readTime: "9 min",
+    readTime: 9,
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=60",
     keywords: ["impôt au forfait", "imposition d'après la dépense", "forfait fiscal", "étrangers fortunés", "cantons", "Vaud", "Valais", "Genève", "Tessin", "fiscalité suisse"],
   },
   {
@@ -249,9 +250,9 @@ export const blogArticles: BlogArticle[] = [
 </div>`,
     category: "expatries",
     date: "2026-09-01",
-    readTime: "8 min",
+    readTime: 8,
     keywords: ["retrait 2e pilier", "LPP", "impôt à la source", "prestation en capital", "expatriation", "Italie", "France", "Portugal", "convention double imposition", "libre passage"],
-    image: "https://images.unsplash.com/photo-1580674287165?w=1200&auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&auto=format&fit=crop&q=80",
   },
   {
     id: "106",
