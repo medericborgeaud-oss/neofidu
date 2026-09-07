@@ -19,6 +19,11 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   const userAgent = request.headers.get("user-agent") || "";
 
+  // ===== 410 GONE: fiches entreprises retirees (on garde la page /observatoire) =====
+  if (pathname.startsWith("/observatoire/") || pathname.startsWith("/en/observatoire/")) {
+    return new NextResponse("Gone", { status: 410 });
+  }
+
   // ===== 0. BLOCK AGGRESSIVE CRAWLERS =====
   // These bots ignore robots.txt and hammer /observatoire/ routes
   if (pathname.startsWith("/observatoire")) {
@@ -96,5 +101,6 @@ export const config = {
   matcher: [
     "/admin/:path*",
     "/observatoire/:path*",
+    "/en/observatoire/:path*",
   ],
 };
