@@ -84,7 +84,6 @@ const nextConfig = {
       { source: "/services/:path*", destination: "/#services", permanent: true },
       { source: "/about", destination: "/#about", permanent: true },
       { source: "/declaration-impots", destination: "/demande", permanent: true },
-      { source: "/observatoire/:slug", destination: "/observatoire", permanent: true },
       { source: "/demande/prolongation", destination: "/contact", permanent: false },
     ];
   },
