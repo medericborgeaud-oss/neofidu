@@ -33,12 +33,7 @@ function createEntry(
   };
 }
 
-// Single sitemap file (static pages + communes). Companies are no longer listed.
-export async function generateSitemaps() {
-  return [{ id: 0 }];
-}
-
-export default async function sitemap({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
