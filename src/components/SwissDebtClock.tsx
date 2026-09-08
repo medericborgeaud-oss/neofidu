@@ -10,9 +10,9 @@ import { useLanguage } from "@/lib/language-context";
 // ════════════════════════════════════════════════════════════════
 
 const DEBT_JAN1 = 140.0e9;
-const ANNUAL_DEFICIT = 0.742e9;
-const ANNUAL_REV = 90.4e9;
-const ANNUAL_EXP = 91.1e9;
+const ANNUAL_DEFICIT = -0.8e9;
+const ANNUAL_REV = 91.2e9;
+const ANNUAL_EXP = 90.4e9;
 
 const S = 365 * 24 * 3600;
 const PS_REV = ANNUAL_REV / S;
@@ -219,18 +219,18 @@ export default function SwissDebtClock() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            {en ? "Increase since Jan 1, 2026" : "Augmentation depuis le 1er janv. 2026"}
+            {en ? "Change since Jan 1, 2026" : "Variation depuis le 1er janv. 2026"}
           </div>
           <div className="text-2xl font-bold text-orange-400 tabular-nums mt-1.5">
-            + CHF {f2(vals.ytd)}
+            CHF {f2(vals.ytd)}
           </div>
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            {en ? "Increase since you opened this page" : "Augmentation depuis l\u0027ouverture de cette page"}
+            {en ? "Change since you opened this page" : "Variation depuis l\u0027ouverture de cette page"}
           </div>
           <div className="text-2xl font-bold text-yellow-400 tabular-nums mt-1.5">
-            + CHF {f2(vals.page)}
+            CHF {f2(vals.page)}
           </div>
         </div>
       </div>
@@ -275,10 +275,10 @@ export default function SwissDebtClock() {
         </div>
         <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4 text-center">
           <div className="text-xs uppercase tracking-wider opacity-55">
-            {en ? "Deficit / second" : "Déficit / seconde"}
+            {en ? "Surplus / second" : "Excédent / seconde"}
           </div>
           <div className="text-base font-bold text-yellow-400 tabular-nums mt-1">
-            CHF {f2(PS_DEF)}
+            CHF {f2(-PS_DEF)}
           </div>
         </div>
       </div>
@@ -293,7 +293,7 @@ export default function SwissDebtClock() {
               : "text-slate-500 hover:bg-white/[0.04] hover:text-slate-300"
           }`}
         >
-          {en ? "Revenue · 90.4 bn" : "Recettes · 90.4 Mrd"}
+          {en ? "Revenue · 91.2 bn" : "Recettes · 91.2 Mrd"}
         </button>
         <button
           onClick={() => setTab("d")}
@@ -303,7 +303,7 @@ export default function SwissDebtClock() {
               : "text-slate-500 hover:bg-white/[0.04] hover:text-slate-300"
           }`}
         >
-          {en ? "Spending · 91.1 bn" : "Dépenses · 91.1 Mrd"}
+          {en ? "Spending · 90.4 bn" : "Dépenses · 90.4 Mrd"}
         </button>
       </div>
 
