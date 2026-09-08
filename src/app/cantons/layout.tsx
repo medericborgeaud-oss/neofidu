@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire par canton — Vaud, Genève, Valais, Fribourg",
+  title: { template: "%s | NeoFidu", default: "Fiduciaire par canton — Vaud, Genève, Valais, Fribourg | NeoFidu" },
   description: "Fiduciaire digitale spécialisée par canton suisse. Déclaration d'impôts, comptabilité et conseil fiscal pour Vaud, Genève, Valais, Fribourg, Neuchâtel et Jura.",
   keywords: [
     "fiduciaire vaud",
