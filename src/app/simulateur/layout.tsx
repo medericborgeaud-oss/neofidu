@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: {
     template: "%s | Simulateurs Fiscaux | NeoFidu",
-    default: "Simulateurs Fiscaux Gratuits 2026 | Vaud, Genève, Valais | NeoFidu",
+    default: "Simulateurs Fiscaux Gratuits 2026 | Vaud, Genève, Valais",
   },
   description: "Simulateurs fiscaux gratuits pour la Suisse : impôts, salaire net, 3ème pilier, gain immobilier. Calculs précis pour tous les cantons romands.",
   keywords: [
