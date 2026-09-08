@@ -46,7 +46,7 @@ export async function generateMetadata({
     : baseKeywords;
 
   // Use French title with Neofidu branding for better SEO
-  const seoTitle = `${article.title} | Neofidu`;
+  const seoTitle = `${article.title} | NeoFidu`;
 
   // Use French description for meta (primary audience is French-speaking Switzerland)
   const seoDescription = article.excerpt;
