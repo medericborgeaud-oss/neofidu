@@ -49,6 +49,61 @@ export const blogCategories: Record<string, { name: string; nameEn: string; colo
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "109",
+    slug: "accords-suisse-canada",
+    title: "Suisse – Canada : les accords qui comptent quand on s'expatrie",
+    titleEn: "Switzerland–Canada: the agreements that matter when you emigrate",
+    excerpt: "Convention de double imposition, sécurité sociale (AVS/AI, régime canadien et entente distincte avec le Québec), sort du 2e et 3e pilier au départ, et succession : le guide des accords CH-Canada pour les Suisses de l'étranger.",
+    excerptEn: "Double-taxation treaty, social security (AVS/AI, the Canadian scheme and a separate agreement with Québec), what happens to your 2nd and 3rd pillar, and inheritance: the guide to the Switzerland-Canada agreements for Swiss abroad.",
+    content: `<div style="max-width:820px;margin:0 auto;font-family:Calibri,Arial,sans-serif;color:#1F2937;line-height:1.6;font-size:17px">
+
+<p>Premier volet de notre série sur les accords entre la Suisse et les pays où vivent les Suisses de l'étranger. Le Canada est une destination fréquente, et deux textes structurent presque tout ce qui touche à votre argent une fois installé là-bas : la convention de double imposition et la convention de sécurité sociale, avec une particularité pour le Québec. Voici l'essentiel côté impôts, rentes, prévoyance et succession.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">1. Impôts : la convention de double imposition</h2>
+<p>La Suisse et le Canada sont liés par une convention de double imposition (CDI) sur le revenu et la fortune, dans sa version en vigueur depuis 1998. Son rôle : éviter que le même revenu soit imposé deux fois, en répartissant le droit d'imposer entre les deux pays.</p>
+<p>En pratique, pour un Suisse résidant au Canada :</p>
+<ul>
+<li><strong>Rentes (AVS/AI et 2e pilier)</strong> : la CDI attribue en règle générale l'imposition des pensions à l'État de résidence, donc au Canada. La Suisse ne prélève pas d'impôt à la source sur les rentes AVS/AI versées à l'étranger ; pour les rentes du 2e pilier, un impôt à la source suisse peut s'appliquer mais être récupéré si la convention attribue l'imposition au Canada.</li>
+<li><strong>Dividendes d'actions suisses</strong> : la Suisse prélève d'abord l'impôt anticipé de 35 %. Grâce à la CDI, le taux résiduel est ramené à 15 % (voire 5 % pour une participation importante) ; la différence se récupère par une demande de remboursement auprès de l'Administration fédérale des contributions.</li>
+<li><strong>Immeubles</strong> : ils restent imposables là où ils se trouvent ; un bien en Suisse continue d'y être imposé.</li>
+</ul>
+<p>Le principe à retenir : la résidence fiscale bascule au Canada, mais la Suisse conserve un droit d'imposition sur certains éléments de source suisse, et la CDI sert à éliminer la double charge.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">2. Sécurité sociale : AVS/AI, régime canadien… et le cas du Québec</h2>
+<p>La Suisse et le Canada ont conclu une convention de sécurité sociale qui coordonne l'AVS/AI suisse avec le Régime de pensions du Canada (RPC) et la Sécurité de la vieillesse. Son mécanisme central est la <strong>totalisation</strong> : les périodes d'assurance accomplies dans un pays peuvent être prises en compte pour ouvrir le droit à une rente dans l'autre. Chaque pays verse ensuite sa propre rente, au prorata des périodes qui le concernent.</p>
+<p><strong>Attention au Québec.</strong> Le Québec gère son propre régime de rentes (RRQ), distinct du régime fédéral. Si vous vous installez au Québec, c'est une <strong>entente séparée entre la Suisse et le Québec</strong> qui s'applique pour ce volet : même principe de totalisation, mais l'interlocuteur est Retraite Québec.</p>
+<ul>
+<li>Le Canada étant hors UE/AELE, vous pouvez, sous conditions (avoir été assuré au moins cinq années consécutives juste avant le départ), adhérer à l'<strong>assurance AVS/AI facultative</strong> pour continuer à cotiser depuis l'étranger et préserver vos rentes futures.</li>
+<li>Le moment venu, la demande de rente AVS se fait via la Caisse suisse de compensation (CSC) à Genève, qui gère les assurés à l'étranger.</li>
+</ul>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">3. Prévoyance : que devient votre 2e et 3e pilier ?</h2>
+<p>C'est souvent la question la plus concrète au moment du départ. Comme le Canada est <strong>hors de l'UE/AELE</strong>, vous pouvez retirer <strong>l'intégralité de votre 2e pilier en capital</strong>, y compris la part obligatoire (contrairement à un départ vers l'UE/AELE, où cette part reste bloquée sur un compte de libre passage). Le 3e pilier A peut lui aussi être retiré lors d'un départ définitif de Suisse.</p>
+<p>Ces retraits en capital sont <strong>imposés à la source en Suisse</strong>, au barème du canton où se trouve l'institution de prévoyance ou la fondation de libre passage. Transférer au préalable son avoir vers une fondation située dans un canton à faible taux peut réduire sensiblement la facture. Selon la convention et le traitement fiscal canadien, une demande de remboursement de cet impôt à la source peut ensuite être envisagée : ce point dépend des cas et mérite une analyse avant le retrait.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">4. Succession et démarches pratiques</h2>
+<p>Sur les successions, il n'existe pas de convention spécifique entre la Suisse et le Canada. Deux logiques très différentes coexistent :</p>
+<ul>
+<li><strong>Canada</strong> : pas d'impôt sur les successions à proprement parler, mais une « disposition réputée » au décès : les biens du défunt sont réputés vendus à leur valeur de marché, ce qui déclenche un impôt sur les gains en capital latents.</li>
+<li><strong>Suisse</strong> : l'impôt sur les successions est cantonal ; il dépend du dernier domicile et du lieu des immeubles. Le conjoint et souvent les descendants sont exonérés dans de nombreux cantons.</li>
+</ul>
+<p>Côté démarches, au moment de partir : annoncer son départ au contrôle des habitants de la commune, s'immatriculer auprès de l'ambassade ou du consulat suisse (registre des Suisses de l'étranger), régler la question de l'AVS (facultative ou non), organiser la sortie de l'assurance-maladie LAMal et la couverture santé canadienne (l'affiliation provinciale peut comporter un délai de carence), et boucler une dernière déclaration d'impôt en Suisse.</p>
+
+<h2 style="color:#0D735E;font-size:22px;margin-top:28px">En résumé</h2>
+<p>Pour un Suisse au Canada, tout se joue autour de deux conventions — fiscale et sociale — plus une entente distincte si vous visez le Québec. Les leviers concrets : bien situer le retrait de votre 2e pilier, récupérer l'impôt anticipé sur vos revenus de source suisse, préserver vos droits AVS et anticiper le volet successoral.</p>
+
+<p style="background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:14px 16px;margin-top:22px">Chez <strong>neofidu.ch</strong>, nous accompagnons le volet suisse de votre expatriation : optimisation et calcul de l'impôt sur le retrait de prévoyance, demandes de remboursement de l'impôt anticipé et de l'impôt à la source, coordination AVS et dernière déclaration. Voir aussi <a href="/suisses-de-letranger/canada" style="color:#0D735E;font-weight:bold">notre page dédiée au Canada</a>.</p>
+
+<p style="font-size:13px;color:#6B7280;font-style:italic;margin-top:20px">Cet article fournit une information générale et ne constitue pas un conseil fiscal ou juridique personnalisé. Les règles conventionnelles et les pratiques évoluent et varient selon la province, le canton et la situation individuelle ; une analyse au cas par cas est indispensable avant toute décision.</p>
+
+</div>`,
+    category: "expatries",
+    date: "2026-09-07",
+    readTime: 8,
+    keywords: ["Suisses de l'étranger", "Canada", "convention double imposition", "sécurité sociale", "AVS", "Québec", "2e pilier", "impôt à la source", "expatriation", "prévoyance"],
+    image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&auto=format&fit=crop&q=60",
+  },
+  {
     id: "108",
     slug: "impot-au-forfait-suisse-guide",
     title: "L'impôt au forfait en Suisse : comment ça marche, qui en profite et ce que ça rapporte",
