@@ -45,7 +45,7 @@ export async function generateMetadata({
     ? [...article.keywords, ...baseKeywords]
     : baseKeywords;
 
-  const seoTitle = `${title} | NeoFidu`;
+  const seoTitle = title;
   const seoDescription = excerpt;
 
   return {
