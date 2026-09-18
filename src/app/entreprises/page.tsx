@@ -102,8 +102,9 @@ const advantages = [
   },
 ];
 
-export default function EntreprisesPage() {
-  const { t, isEnglish } = useLanguage();
+export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { t, isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
 
   return (
     <>
@@ -293,4 +294,8 @@ export default function EntreprisesPage() {
       <Footer />
     </>
   );
+}
+
+export default function EntreprisesPage() {
+  return <EntreprisesContent />;
 }
