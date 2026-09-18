@@ -210,8 +210,9 @@ const faqs = [
 
 
 
-export default function IndependantsPage() {
-  const { isEnglish } = useLanguage();
+export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -665,4 +666,8 @@ export default function IndependantsPage() {
       <Footer />
     </main>
   );
+}
+
+export default function IndependantsPage() {
+  return <IndependantsContent />;
 }
