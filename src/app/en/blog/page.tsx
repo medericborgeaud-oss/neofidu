@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { blogArticles, blogCategories } from "@/lib/blog-data";
 
 export const metadata: Metadata = {
-  title: "Blog — Swiss Tax & Accounting Insights | NeoFidu",
+  title: "Blog: Swiss Tax & Accounting Insights",
   description:
     "Articles in English on Swiss taxation, accounting and running a business in French-speaking Switzerland, by NeoFidu, your online fiduciary.",
   keywords: [
