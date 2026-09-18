@@ -18,7 +18,7 @@ import { useState } from "react";
 const categoryCTA: Record<string, { title: string; description: string; link: string; linkLabel: string; simulator: { href: string; label: string } }> = {
   fiscalite: {
     title: "Optimisez votre fiscalité avec NeoFidu",
-    description: "Nos spécialistes diplômés prennent en charge votre déclaration d’impôts de A à Z. Résultat garanti, dès CHF 89.-",
+    description: "Nos spécialistes diplômés prennent en charge votre déclaration d’impôts de A à Z. Résultat garanti, dès CHF 89.-",
     link: "/demande",
     linkLabel: "Déposer ma déclaration",
     simulator: { href: "/simulateur/impots", label: "Simuler mes impôts gratuitement" },
@@ -63,21 +63,28 @@ const categoryCTA: Record<string, { title: string; description: string; link: st
 interface BlogArticleClientProps {
   article: BlogArticle;
   otherArticles: BlogArticle[];
+  forceEn?: boolean;
 }
 
-export default function BlogArticleClient({ article, otherArticles }: BlogArticleClientProps) {
+export default function BlogArticleClient({ article, otherArticles, forceEn = false }: BlogArticleClientProps) {
   const [copied, setCopied] = useState(false);
   const { isEnglish } = useLanguage();
+  const en = forceEn || isEnglish;
+  const blogBase = en ? "/en/blog" : "/blog";
+  const title = en && article.titleEn ? article.titleEn : article.title;
+  const excerpt = en && article.excerptEn ? article.excerptEn : article.excerpt;
+  const content = en && article.contentEn ? article.contentEn : article.content;
   const categoryInfo = blogCategories[article.category];
+  const categoryName = en ? categoryInfo.nameEn : categoryInfo.name;
 
   const handleShare = async () => {
-    const url = `https://neofidu.ch/blog/${article.slug}`;
+    const url = `https://neofidu.ch${blogBase}/${article.slug}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: article.title,
-          text: article.excerpt,
+          title: title,
+          text: excerpt,
           url: url,
         });
       } catch (err) {
@@ -104,9 +111,9 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
           {/* Breadcrumb */}
           <BreadcrumbLight
             items={[
-              { label: "Blog", href: "/blog" },
-              { label: categoryInfo.name, href: `/blog?category=${article.category}` },
-              { label: article.title.length > 40 ? `${article.title.substring(0, 40)}...` : article.title },
+              { label: "Blog", href: blogBase },
+              { label: categoryName, href: `${blogBase}?category=${article.category}` },
+              { label: title.length > 40 ? `${title.substring(0, 40)}...` : title },
             ]}
             className="mb-8"
           />
@@ -117,7 +124,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               <div className="relative h-72 md:h-96 w-full overflow-hidden rounded-xl mb-8">
                 <Image
                   src={article.image}
-                  alt={article.title}
+                  alt={title}
                   fill
                   className="object-cover object-[center_30%]"
                   priority
@@ -135,22 +142,22 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               transition={{ duration: 0.5 }}
             >
               <Badge className={`mb-4 ${categoryInfo.color} text-white`}>
-                {categoryInfo.name}
+                {categoryName}
               </Badge>
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                {isEnglish && article.titleEn ? article.titleEn : article.title}
+                {title}
               </h1>
 
               <p className="text-xl text-muted-foreground mb-6">
-                {isEnglish && article.excerptEn ? article.excerptEn : article.excerpt}
+                {excerpt}
               </p>
 
               <div className="flex items-center gap-6 text-sm text-muted-foreground mb-8 pb-8 border-b">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   <time dateTime={article.date}>
-                    {new Date(article.date).toLocaleDateString("fr-CH", {
+                    {new Date(article.date).toLocaleDateString(en ? "en-CH" : "fr-CH", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
@@ -159,22 +166,22 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>{article.readTime} min de lecture</span>
+                  <span>{article.readTime} {en ? "min read" : "min de lecture"}</span>
                 </div>
                 <button
                   onClick={handleShare}
                   className="flex items-center gap-2 hover:text-primary transition-colors ml-auto"
-                  aria-label="Partager l'article"
+                  aria-label={en ? "Share article" : "Partager l'article"}
                 >
                   {copied ? (
                     <>
                       <Check className="w-4 h-4 text-green-600" />
-                      <span className="text-green-600">Copié!</span>
+                      <span className="text-green-600">{en ? "Copied!" : "Copié!"}</span>
                     </>
                   ) : (
                     <>
                       <Share2 className="w-4 h-4" />
-                      <span>Partager</span>
+                      <span>{en ? "Share" : "Partager"}</span>
                     </>
                   )}
                 </button>
@@ -187,7 +194,7 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="prose prose-lg max-w-none mb-12 prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-li:text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: isEnglish && article.contentEn ? article.contentEn : article.content }}
+              dangerouslySetInnerHTML={{ __html: content }}
             />
 
             {/* CTA */}
@@ -216,51 +223,51 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
 
               {/* Quick links - expanded */}
               <div className="bg-secondary/30 rounded-xl p-6 mb-12">
-                <h4 className="font-semibold mb-4">Liens utiles</h4>
+                <h4 className="font-semibold mb-4">{en ? "Useful links" : "Liens utiles"}</h4>
                 <div className="grid sm:grid-cols-2 gap-4 text-sm">
                   <div>
-                    <p className="text-muted-foreground font-medium mb-2">Outils gratuits</p>
+                    <p className="text-muted-foreground font-medium mb-2">{en ? "Free tools" : "Outils gratuits"}</p>
                     <ul className="space-y-2">
                       <li>
                         <Link href="/simulateur/impots" className="text-primary hover:underline">
-                          → Simulateur d'impôts
+                          → {en ? "Tax simulator" : "Simulateur d'impôts"}
                         </Link>
                       </li>
                       <li>
                         <Link href="/simulateur/3eme-pilier" className="text-primary hover:underline">
-                          → Calculateur 3ème pilier
+                          → {en ? "3rd pillar calculator" : "Calculateur 3ème pilier"}
                         </Link>
                       </li>
                       <li>
                         <Link href="/simulateur/baisse-loyer" className="text-primary hover:underline">
-                          → Calculateur baisse de loyer
+                          → {en ? "Rent reduction calculator" : "Calculateur baisse de loyer"}
                         </Link>
                       </li>
                     </ul>
                   </div>
                   <div>
-                    <p className="text-muted-foreground font-medium mb-2">Services</p>
+                    <p className="text-muted-foreground font-medium mb-2">{en ? "Services" : "Services"}</p>
                     <ul className="space-y-2">
                       <li>
                         <Link href="/tarifs" className="text-primary hover:underline">
-                          → Nos tarifs
+                          → {en ? "Our pricing" : "Nos tarifs"}
                         </Link>
                       </li>
                       <li>
                         <Link href="/demande" className="text-primary hover:underline">
-                          → Déposer une demande
+                          → {en ? "Submit a request" : "Déposer une demande"}
                         </Link>
                       </li>
                       <li>
                         <Link href="/faq" className="text-primary hover:underline">
-                          → Consulter la FAQ
+                          → {en ? "Read the FAQ" : "Consulter la FAQ"}
                         </Link>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="mt-4 pt-4 border-t">
-                  <p className="text-muted-foreground font-medium mb-2">Nos régions</p>
+                  <p className="text-muted-foreground font-medium mb-2">{en ? "Our regions" : "Nos régions"}</p>
                   <div className="flex flex-wrap gap-2">
                     <Link href="/cantons/geneve" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Genève</Link>
                     <Link href="/cantons/vaud" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Vaud</Link>
@@ -278,24 +285,24 @@ export default function BlogArticleClient({ article, otherArticles }: BlogArticl
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                aria-label="Articles similaires"
+                aria-label={en ? "Related articles" : "Articles similaires"}
               >
-                <h2 className="text-2xl font-bold mb-6">Articles similaires</h2>
+                <h2 className="text-2xl font-bold mb-6">{en ? "Related articles" : "Articles similaires"}</h2>
                 <div className="grid md:grid-cols-3 gap-4">
                   {otherArticles.map((relatedArticle) => (
-                    <Link key={relatedArticle.id} href={`/blog/${relatedArticle.slug}`}>
+                    <Link key={relatedArticle.id} href={`${blogBase}/${relatedArticle.slug}`}>
                       <Card className="p-4 h-full hover:shadow-lg transition-all duration-300 group">
                         <Badge
                           variant="secondary"
                           className={`mb-2 ${blogCategories[relatedArticle.category].color} text-white text-xs`}
                         >
-                          {blogCategories[relatedArticle.category].name}
+                          {en ? blogCategories[relatedArticle.category].nameEn : blogCategories[relatedArticle.category].name}
                         </Badge>
                         <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                          {relatedArticle.title}
+                          {en && relatedArticle.titleEn ? relatedArticle.titleEn : relatedArticle.title}
                         </h3>
                         <span className="text-primary text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                          Lire <ArrowRight className="w-3 h-3" />
+                          {en ? "Read" : "Lire"} <ArrowRight className="w-3 h-3" />
                         </span>
                       </Card>
                     </Link>
