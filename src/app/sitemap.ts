@@ -109,6 +109,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // English service pages (mirror FR service URLs under /en)
   const enServicePages: MetadataRoute.Sitemap = [
     createEntry("/en/independants", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
+    createEntry("/en/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
   ];
 
   return [...staticPages, ...communePages, ...enCommunePages, ...enBlogPages, ...enServicePages];
