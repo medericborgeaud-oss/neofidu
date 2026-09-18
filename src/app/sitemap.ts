@@ -98,5 +98,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: c.url.replace(`${baseUrl}/communes/`, `${baseUrl}/en/communes/`),
   }));
 
-  return [...staticPages, ...communePages, ...enCommunePages];
+  // English blog pages (mirror the FR blog URLs under /en)
+  const enBlogPages: MetadataRoute.Sitemap = [
+    createEntry("/en/blog", { lastModified: currentDate, changeFrequency: "daily", priority: 0.8 }),
+    ...blogArticles.map((article) =>
+      createEntry(`/en/blog/${article.slug}`, { lastModified: article.date, changeFrequency: "monthly", priority: 0.65 })
+    ),
+  ];
+
+  return [...staticPages, ...communePages, ...enCommunePages, ...enBlogPages];
 }
