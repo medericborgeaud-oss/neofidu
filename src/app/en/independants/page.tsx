@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { IndependantsContent } from "../../independants/page";
 
 export const metadata: Metadata = {
-  title: "Accounting & Tax for the Self-Employed in Switzerland | NeoFidu",
+  title: "Accounting & Tax for the Self-Employed in Switzerland",
   description:
     "Online fiduciary for the self-employed and freelancers in French-speaking Switzerland: AVS registration, 3rd pillar, bookkeeping, VAT and tax optimisation. Service available in English.",
   keywords: [
