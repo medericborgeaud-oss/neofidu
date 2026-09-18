@@ -71,6 +71,11 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://neofidu.ch/blog/${article.slug}`,
+      languages: {
+        "fr-CH": `https://neofidu.ch/blog/${article.slug}`,
+        "en-CH": `https://neofidu.ch/en/blog/${article.slug}`,
+        "x-default": `https://neofidu.ch/blog/${article.slug}`,
+      },
     },
   };
 }
