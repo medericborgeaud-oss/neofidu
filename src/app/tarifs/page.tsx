@@ -265,8 +265,9 @@ const cantons = [
   { name: "Jura", nameen: "Jura", slug: "jura", rate: "~37%" },
 ];
 
-export default function TarifsPage() {
-  const { isEnglish } = useLanguage();
+export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   // JSON-LD Schema for Services and Pricing
   const servicesSchema = {
     "@context": "https://schema.org",
@@ -1058,3 +1059,7 @@ export default function TarifsPage() {
     </main>
   );
                 }
+
+export default function TarifsPage() {
+  return <TarifsContent />;
+}
