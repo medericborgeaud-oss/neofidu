@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { TarifsContent } from "../../tarifs/page";
 
 export const metadata: Metadata = {
-  title: "Pricing — Online Fiduciary in Switzerland | NeoFidu",
+  title: "Pricing: Online Fiduciary in Switzerland",
   description:
     "Transparent pricing for our online fiduciary services in French-speaking Switzerland: tax returns from CHF 89, accounting, VAT and company formation. No hidden fees. Service available in English.",
   keywords: [
