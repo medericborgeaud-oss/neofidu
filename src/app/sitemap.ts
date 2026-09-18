@@ -92,5 +92,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Sitemap communes error:", e);
   }
 
-  return [...staticPages, ...communePages];
+  // English commune pages (mirror the FR commune URLs under /en)
+  const enCommunePages: MetadataRoute.Sitemap = communePages.map((c) => ({
+    ...c,
+    url: c.url.replace(`${baseUrl}/communes/`, `${baseUrl}/en/communes/`),
+  }));
+
+  return [...staticPages, ...communePages, ...enCommunePages];
 }
