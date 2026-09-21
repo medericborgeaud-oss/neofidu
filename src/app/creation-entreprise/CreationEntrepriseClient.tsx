@@ -281,8 +281,9 @@ const faqs = [
   },
 ];
 
-export default function CreationEntreprisePage() {
-  const { isEnglish } = useLanguage();
+export function CreationEntrepriseContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -653,4 +654,8 @@ export default function CreationEntreprisePage() {
       <Footer />
     </main>
   );
+}
+
+export default function CreationEntreprisePage() {
+  return <CreationEntrepriseContent />;
 }
