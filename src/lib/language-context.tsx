@@ -1,7 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { Locale, defaultLocale, translations, locales } from "./i18n";
+import { usePathname } from "next/navigation";
+import { Locale, defaultLocale, translations, locales } from "@/i18n";
 
 interface LanguageContextType {
   locale: Locale;
@@ -15,17 +16,26 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const STORAGE_KEY = "neofidu_language";
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
+  const pathname = usePathname();
+  const isEnPath = pathname === "/en" || (pathname?.startsWith("/en/") ?? false);
+
+  const [locale, setLocaleState] = useState<Locale>(isEnPath ? "en" : defaultLocale);
   const [mounted, setMounted] = useState(false);
 
-  // Load saved language preference
+  // Load saved language preference. English URLs (/en/...) always render in English.
   useEffect(() => {
+    if (isEnPath) {
+      setLocaleState("en");
+      document.documentElement.lang = "en";
+      setMounted(true);
+      return;
+    }
     const savedLocale = localStorage.getItem(STORAGE_KEY) as Locale | null;
     if (savedLocale && locales.includes(savedLocale)) {
       setLocaleState(savedLocale);
     }
     setMounted(true);
-  }, []);
+  }, [isEnPath]);
 
 
   const setLocale = (newLocale: Locale) => {
@@ -54,14 +64,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   // Prevent hydration mismatch
   if (!mounted) {
+    const initialLocale: Locale = isEnPath ? "en" : defaultLocale;
     return (
       <LanguageContext.Provider
         value={{
-          locale: defaultLocale,
+          locale: initialLocale,
           setLocale: () => {},
           t: (path) => {
             const keys = path.split(".");
-            let result: unknown = translations[defaultLocale];
+            let result: unknown = translations[initialLocale];
             for (const key of keys) {
               if (result && typeof result === "object" && key in result) {
                 result = (result as Record<string, unknown>)[key];
@@ -71,7 +82,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
             }
             return typeof result === "string" ? result : path;
           },
-          isEnglish: false
+          isEnglish: isEnPath
         }}
       >
         {children}
