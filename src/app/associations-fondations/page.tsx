@@ -173,8 +173,9 @@ const advantages = [
 
 const cantons = ["Vaud", "Genève", "Valais", "Fribourg", "Neuchâtel", "Jura"];
 
-export default function AssociationsFondationsPage() {
-  const { t, isEnglish } = useLanguage();
+export function AssociationsFondationsContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { t, isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const [formData, setFormData] = useState({
     orgName: "",
     orgType: "association",
@@ -633,4 +634,8 @@ export default function AssociationsFondationsPage() {
       <Footer />
     </>
   );
+}
+
+export default function AssociationsFondationsPage() {
+  return <AssociationsFondationsContent />;
 }
