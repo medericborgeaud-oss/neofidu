@@ -17,8 +17,9 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
-export default function CantonsPage() {
-  const { isEnglish } = useLanguage();
+export function CantonsContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
 
   const cantons = [
     {
@@ -237,4 +238,8 @@ export default function CantonsPage() {
       </section>
     </main>
   );
+}
+
+export default function CantonsPage() {
+  return <CantonsContent />;
 }
