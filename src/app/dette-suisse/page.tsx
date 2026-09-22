@@ -5,9 +5,9 @@ import SwissDebtClock from "@/components/SwissDebtClock";
 import Link from "next/link";
 
 // ════════════════════════════════════════════════════════════════
-//  SEO — Metadata (Next.js App Router)
+//  SEO - Metadata (Next.js App Router)
 // ════════════════════════════════════════════════════════════════
-const TITLE = "Compteur de la dette suisse en direct — Budget fédéral 2026";
+const TITLE = "Compteur de la dette suisse en direct - Budget fédéral 2026";
 const DESC =
   "Suivez en temps réel l'évolution de la dette fédérale suisse. " +
   "Recettes, dépenses et déficit par seconde selon le budget 2026 " +
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Compteur de la dette fédérale suisse en temps réel — NeoFidu",
+        alt: "Compteur de la dette fédérale suisse en temps réel - NeoFidu",
       },
     ],
   },
