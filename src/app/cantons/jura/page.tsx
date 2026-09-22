@@ -18,8 +18,9 @@ import {
   HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-export default function JuraPage() {
-  const { isEnglish } = useLanguage();
+export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const communes = [
     "Delémont", "Porrentruy", "Bassecourt", "Courrendlin", "Courroux",
     "Courtételle", "Alle", "Fontenais", "Haute-Sorne", "Val Terbi",
@@ -581,4 +582,8 @@ export default function JuraPage() {
       </section>
     </main>
   );
+}
+
+export default function JuraPage() {
+  return <JuraContent />;
 }
