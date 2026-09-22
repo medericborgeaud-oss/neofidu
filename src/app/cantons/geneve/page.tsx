@@ -16,8 +16,9 @@ import {
   HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-export default function GenevePage() {
-  const { isEnglish } = useLanguage();
+export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const communes = [
     "Genève", "Carouge", "Vernier", "Lancy", "Meyrin",
     "Onex", "Thônex", "Versoix", "Grand-Saconnex", "Plan-les-Ouates",
@@ -552,4 +553,8 @@ export default function GenevePage() {
       </section>
     </main>
   );
+}
+
+export default function GenevePage() {
+  return <GeneveContent />;
 }
