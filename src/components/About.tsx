@@ -164,7 +164,7 @@ export function About() {
                   className="w-[100px] h-[100px] rounded-full object-cover"
                 />
                 <p className="text-sm font-medium text-foreground">
-                  — Médéric Borgeaud, {isEnglish ? "Founder" : "Fondateur"}
+                  - Médéric Borgeaud, {isEnglish ? "Founder" : "Fondateur"}
                 </p>
               </div>
             </div>
