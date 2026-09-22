@@ -8,7 +8,7 @@ interface RelatedArticlesProps {
   compact?: boolean;
 }
 
-// Articles database — mapped by context
+// Articles database - mapped by context
 const ARTICLES = {
   // Canton-specific
   cantonVD: [
