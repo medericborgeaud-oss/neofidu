@@ -84,7 +84,7 @@ export default function VaudPage() {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Vaud?",
-      answer: "The regular deadline is March 15, 2026 — one of the earliest in Switzerland. A free extension until June 30 is possible via VaudTax. A paid extension (CHF 89) until September 30 can also be requested."
+      answer: "The regular deadline is March 15, 2026 - one of the earliest in Switzerland. A free extension until June 30 is possible via VaudTax. A paid extension (CHF 89) until September 30 can also be requested."
     },
     {
       question: "How does the VaudTax software work?",
@@ -105,7 +105,7 @@ export default function VaudPage() {
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts dans le canton de Vaud ?",
-      answer: "Le délai ordinaire est le 15 mars 2026 — l'un des plus courts de Suisse. Une prolongation gratuite jusqu'au 30 juin est possible via VaudTax. Une prolongation payante (CHF 89.-) jusqu'au 30 septembre peut aussi être demandée."
+      answer: "Le délai ordinaire est le 15 mars 2026 - l'un des plus courts de Suisse. Une prolongation gratuite jusqu'au 30 juin est possible via VaudTax. Une prolongation payante (CHF 89.-) jusqu'au 30 septembre peut aussi être demandée."
     },
     {
       question: "Comment fonctionne le logiciel VaudTax ?",
@@ -262,8 +262,8 @@ export default function VaudPage() {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Bicycle deduction" : "Forfait vélo"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Vaud is one of the few cantons offering a flat-rate deduction of CHF 700 for bicycle commuting — a unique benefit for eco-friendly taxpayers."
-                  : "Vaud est l'un des rares cantons offrant un forfait de CHF 700 pour les trajets à vélo — un avantage unique pour les contribuables éco-responsables."}
+                  ? "Vaud is one of the few cantons offering a flat-rate deduction of CHF 700 for bicycle commuting - a unique benefit for eco-friendly taxpayers."
+                  : "Vaud est l'un des rares cantons offrant un forfait de CHF 700 pour les trajets à vélo - un avantage unique pour les contribuables éco-responsables."}
               </p>
             </Card>
             <Card className="p-6">
@@ -404,7 +404,7 @@ export default function VaudPage() {
           <div className="flex items-center gap-3 mb-8">
             <HelpCircle className="w-8 h-8 text-primary" />
             <h2 className="text-3xl font-bold">
-              {isEnglish ? "Frequently Asked Questions — Taxes in Vaud" : "Questions fréquentes — Impôts dans le canton de Vaud"}
+              {isEnglish ? "Frequently Asked Questions - Taxes in Vaud" : "Questions fréquentes - Impôts dans le canton de Vaud"}
             </h2>
           </div>
           <div className="space-y-6 max-w-3xl">
