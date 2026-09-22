@@ -78,7 +78,7 @@ export default function FribourgPage() {
     },
     {
       question: "Is Fribourg really advantageous for families?",
-      answer: "Yes, Fribourg is one of the most family-friendly cantons in Switzerland. You can deduct up to CHF 10,000 per child for childcare costs, and the deduction per dependent child is CHF 9,000 — among the highest in the country. Additional deductions exist for single-parent families."
+      answer: "Yes, Fribourg is one of the most family-friendly cantons in Switzerland. You can deduct up to CHF 10,000 per child for childcare costs, and the deduction per dependent child is CHF 9,000 - among the highest in the country. Additional deductions exist for single-parent families."
     },
     {
       question: "How does the FriTax software work?",
@@ -99,7 +99,7 @@ export default function FribourgPage() {
     },
     {
       question: "Fribourg est-il vraiment avantageux pour les familles ?",
-      answer: "Oui, Fribourg est l'un des cantons les plus favorables aux familles en Suisse. Vous pouvez déduire jusqu'à CHF 10'000 par enfant pour les frais de garde, et la déduction par enfant à charge est de CHF 9'000 — parmi les plus élevées du pays. Des déductions supplémentaires existent pour les familles monoparentales."
+      answer: "Oui, Fribourg est l'un des cantons les plus favorables aux familles en Suisse. Vous pouvez déduire jusqu'à CHF 10'000 par enfant pour les frais de garde, et la déduction par enfant à charge est de CHF 9'000 - parmi les plus élevées du pays. Des déductions supplémentaires existent pour les familles monoparentales."
     },
     {
       question: "Comment fonctionne le logiciel FriTax ?",
@@ -306,8 +306,8 @@ export default function FribourgPage() {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Child deduction" : "Déduction par enfant"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "CHF 9,000 per dependent child — a generous amount that significantly reduces taxable income for families."
-                  : "CHF 9'000 par enfant à charge — un montant généreux qui réduit significativement le revenu imposable des familles."}
+                  ? "CHF 9,000 per dependent child - a generous amount that significantly reduces taxable income for families."
+                  : "CHF 9'000 par enfant à charge - un montant généreux qui réduit significativement le revenu imposable des familles."}
               </p>
             </Card>
             <Card className="p-6">
@@ -440,7 +440,7 @@ export default function FribourgPage() {
           <div className="flex items-center gap-3 mb-8">
             <HelpCircle className="w-8 h-8 text-primary" />
             <h2 className="text-3xl font-bold">
-              {isEnglish ? "Frequently Asked Questions — Taxes in Fribourg" : "Questions fréquentes — Impôts à Fribourg"}
+              {isEnglish ? "Frequently Asked Questions - Taxes in Fribourg" : "Questions fréquentes - Impôts à Fribourg"}
             </h2>
           </div>
           <div className="space-y-6 max-w-3xl">
