@@ -43,7 +43,7 @@ export default function SecondAvisPage() {
           <section className="max-w-3xl mx-auto text-center mb-16">
             <p className="text-sm font-semibold text-primary tracking-wide uppercase mb-3">Comptabilité entreprise</p>
             <h1 className="text-3xl md:text-5xl font-bold mb-5">Payez-vous trop cher votre <span className="text-gradient">fiduciaire</span> ?</h1>
-            <p className="text-lg text-muted-foreground mb-8">Envoyez-nous votre dernière facture. En 48 h, on vous dit en toute transparence si vous pourriez payer moins — sans engagement, et sans changer si vous êtes déjà au bon prix.</p>
+            <p className="text-lg text-muted-foreground mb-8">Envoyez-nous votre dernière facture. En 48 h, on vous dit en toute transparence si vous pourriez payer moins - sans engagement, et sans changer si vous êtes déjà au bon prix.</p>
             <Link href="/demande?type=comptabilite" className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-8 py-4 font-medium hover:opacity-90 transition">Demander un second avis gratuit <ArrowRight className="w-4 h-4" /></Link>
             <p className="text-xs text-muted-foreground mt-3">Gratuit · Confidentiel · Réponse sous 48 h · Sans engagement</p>
           </section>
@@ -79,7 +79,7 @@ export default function SecondAvisPage() {
 
           <section className="max-w-3xl mx-auto mb-16">
             <h2 className="text-2xl font-bold mb-4">Pourquoi on ose la comparaison</h2>
-            <p className="text-muted-foreground">Parce qu'on affiche nos prix publiquement. Les tarifs des fiduciaires varient du simple au triple pour les mêmes prestations — beaucoup d'entreprises paient sans le savoir l'addition d'un bureau physique et d'heures non justifiées. Notre modèle 100 % digital permet souvent 20 à 40 % d'économie à prestations égales. Le second avis vous permet juste de le vérifier, sans risque.</p>
+            <p className="text-muted-foreground">Parce qu'on affiche nos prix publiquement. Les tarifs des fiduciaires varient du simple au triple pour les mêmes prestations - beaucoup d'entreprises paient sans le savoir l'addition d'un bureau physique et d'heures non justifiées. Notre modèle 100 % digital permet souvent 20 à 40 % d'économie à prestations égales. Le second avis vous permet juste de le vérifier, sans risque.</p>
           </section>
 
           <section className="max-w-3xl mx-auto mb-16">
