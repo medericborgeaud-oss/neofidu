@@ -5,9 +5,9 @@ import SwissDebtClock from "@/components/SwissDebtClock";
 import Link from "next/link";
 
 // ════════════════════════════════════════════════════════════════
-//  SEO — Metadata (Next.js App Router)
+//  SEO - Metadata (Next.js App Router)
 // ════════════════════════════════════════════════════════════════
-const TITLE = "Swiss Debt Clock — Federal Budget 2026";
+const TITLE = "Swiss Debt Clock - Federal Budget 2026";
 const DESC =
   "Track Switzerland's federal debt in real time. Revenue, expenses " +
   "and deficit per second based on the 2026 federal budget published " +
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Swiss federal debt clock in real time — NeoFidu",
+        alt: "Swiss federal debt clock in real time - NeoFidu",
       },
     ],
   },
