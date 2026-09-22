@@ -19,6 +19,9 @@ const EN_TWIN_EXACT = new Set<string>([
   "/creation-entreprise",
   "/associations-fondations",
   "/blog",
+  "/faq",
+  "/suisses-de-letranger",
+  "/cantons",
 ]);
 
 // Returns the /en equivalent of a French path, or null when no English route exists.
@@ -26,7 +29,7 @@ function toEnPath(p: string | null): string | null {
   if (!p) return null;
   if (p === "/en" || p.startsWith("/en/")) return null;
   if (EN_TWIN_EXACT.has(p)) return p === "/" ? "/en" : "/en" + p;
-  if (p.startsWith("/blog/") || p.startsWith("/communes/")) return "/en" + p;
+  if (p.startsWith("/blog/") || p.startsWith("/communes/") || p.startsWith("/cantons/")) return "/en" + p;
   return null;
 }
 
