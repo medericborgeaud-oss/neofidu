@@ -17,8 +17,9 @@ import {
   HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-export default function VaudPage() {
-  const { isEnglish } = useLanguage();
+export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const communes = [
     "Leysin", "Aigle", "Les Diablerets", "Ormont-Dessus", "Ormont-Dessous",
     "Villars-sur-Ollon", "Gryon", "Bex", "Ollon", "Lavey-Morcles",
@@ -507,4 +508,8 @@ export default function VaudPage() {
       </section>
     </main>
   );
+}
+
+export default function VaudPage() {
+  return <VaudContent />;
 }
