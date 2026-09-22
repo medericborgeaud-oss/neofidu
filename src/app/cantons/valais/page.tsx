@@ -85,7 +85,7 @@ export default function ValaisPage() {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Valais?",
-      answer: "The regular deadline is March 31, 2026. An extension until June 30 is available upon request. In justified cases, a further extension until December 31 can be granted — Valais offers one of the longest possible deadlines in Switzerland."
+      answer: "The regular deadline is March 31, 2026. An extension until June 30 is available upon request. In justified cases, a further extension until December 31 can be granted - Valais offers one of the longest possible deadlines in Switzerland."
     },
     {
       question: "Is Valais really one of the lowest-taxed cantons?",
@@ -96,7 +96,7 @@ export default function ValaisPage() {
       answer: "If you own a secondary residence (chalet, apartment) in a Valais resort like Verbier, Zermatt, or Crans-Montana, you must declare the imputed rental value as income. This is calculated based on the property's market rental potential. Maintenance costs and mortgage interest are deductible against this income."
     },
     {
-      question: "I rent out my chalet seasonally — how is this taxed?",
+      question: "I rent out my chalet seasonally - how is this taxed?",
       answer: "Seasonal rental income must be declared as income. You can deduct maintenance costs, management fees, insurance, and mortgage interest. If your actual rental income exceeds the imputed rental value, you declare the actual income instead. We help optimize the declaration to minimize your tax burden."
     },
     {
@@ -106,7 +106,7 @@ export default function ValaisPage() {
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts en Valais ?",
-      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 décembre peut être accordé — le Valais offre l'un des délais les plus longs possibles en Suisse."
+      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 décembre peut être accordé - le Valais offre l'un des délais les plus longs possibles en Suisse."
     },
     {
       question: "Le Valais est-il vraiment l'un des cantons les moins imposés ?",
@@ -117,7 +117,7 @@ export default function ValaisPage() {
       answer: "Si vous possédez une résidence secondaire (chalet, appartement) dans une station valaisanne comme Verbier, Zermatt ou Crans-Montana, vous devez déclarer la valeur locative comme revenu. Celle-ci est calculée sur la base du potentiel locatif du bien. Les frais d'entretien et les intérêts hypothécaires sont déductibles de ce revenu."
     },
     {
-      question: "Je loue mon chalet en saisonnier — comment est-ce imposé ?",
+      question: "Je loue mon chalet en saisonnier - comment est-ce imposé ?",
       answer: "Les revenus de location saisonnière doivent être déclarés comme revenu. Vous pouvez déduire les frais d'entretien, les frais de gérance, l'assurance et les intérêts hypothécaires. Si vos revenus locatifs réels dépassent la valeur locative, vous déclarez les revenus réels. Nous aidons à optimiser la déclaration pour minimiser votre charge fiscale."
     },
     {
@@ -451,7 +451,7 @@ export default function ValaisPage() {
           <div className="flex items-center gap-3 mb-8">
             <HelpCircle className="w-8 h-8 text-primary" />
             <h2 className="text-3xl font-bold">
-              {isEnglish ? "Frequently Asked Questions — Taxes in Valais" : "Questions fréquentes — Impôts en Valais"}
+              {isEnglish ? "Frequently Asked Questions - Taxes in Valais" : "Questions fréquentes - Impôts en Valais"}
             </h2>
           </div>
           <div className="space-y-6 max-w-3xl">
