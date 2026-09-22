@@ -93,7 +93,7 @@ export function Header() {
     }
   }, [searchOpen]);
 
-  // Menu items — segmented by client profile
+  // Menu items - segmented by client profile
   const particuliersItems = [
     {
       href: "/demande",
@@ -362,7 +362,7 @@ export function Header() {
                 {t("header.pricing")}
               </Link>
 
-              {/* Suivi des demandes — small icon */}
+              {/* Suivi des demandes - small icon */}
               <Link
                 href="/suivi"
                 className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all !ml-6"
