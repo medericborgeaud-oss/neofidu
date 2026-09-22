@@ -152,23 +152,23 @@ export async function getCommunesVoisines(slug: string): Promise<Commune[]> {
 // ─── Helpers ───
 
 export function formatPopulation(pop: number | null): string {
-  if (!pop) return "—";
+  if (!pop) return "-";
   if (pop >= 1000) return `${(pop / 1000).toFixed(1).replace(".0", "")}k`;
   return pop.toString();
 }
 
 export function formatTaux(taux: number | null): string {
-  if (taux === null || taux === undefined) return "—";
+  if (taux === null || taux === undefined) return "-";
   return `${taux.toFixed(1)}`;
 }
 
 export function formatDensite(densite: number | null): string {
-  if (!densite) return "—";
+  if (!densite) return "-";
   return `${Math.round(densite)} hab/km²`;
 }
 
 
-// —— Company count by commune ——
+// -- Company count by commune --
 
 export async function getCompanyCountByCommune(communeName: string, canton: string): Promise<number> {
   try {
