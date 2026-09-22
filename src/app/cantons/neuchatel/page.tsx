@@ -471,7 +471,7 @@ export default function NeuchatelPage() {
           <div className="flex items-center gap-3 mb-8">
             <HelpCircle className="w-8 h-8 text-primary" />
             <h2 className="text-3xl font-bold">
-              {isEnglish ? "Frequently Asked Questions — Taxes in Neuchâtel" : "Questions fréquentes — Impôts à Neuchâtel"}
+              {isEnglish ? "Frequently Asked Questions - Taxes in Neuchâtel" : "Questions fréquentes - Impôts à Neuchâtel"}
             </h2>
           </div>
           <div className="space-y-6 max-w-3xl">
