@@ -83,7 +83,7 @@ export default function JuraPage() {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Jura?",
-      answer: "The regular deadline is March 31, 2026. An extension until June 30 is available upon request. In justified cases, a further extension until October 31 can be granted — Jura is one of the most flexible cantons for deadlines."
+      answer: "The regular deadline is March 31, 2026. An extension until June 30 is available upon request. In justified cases, a further extension until October 31 can be granted - Jura is one of the most flexible cantons for deadlines."
     },
     {
       question: "How are farmers taxed in canton Jura?",
@@ -104,7 +104,7 @@ export default function JuraPage() {
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts dans le Jura ?",
-      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 octobre peut être accordé — le Jura est l'un des cantons les plus souples pour les délais."
+      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 octobre peut être accordé - le Jura est l'un des cantons les plus souples pour les délais."
     },
     {
       question: "Comment les agriculteurs sont-ils imposés dans le canton du Jura ?",
@@ -484,7 +484,7 @@ export default function JuraPage() {
           <div className="flex items-center gap-3 mb-8">
             <HelpCircle className="w-8 h-8 text-primary" />
             <h2 className="text-3xl font-bold">
-              {isEnglish ? "Frequently Asked Questions — Taxes in Jura" : "Questions fréquentes — Impôts dans le Jura"}
+              {isEnglish ? "Frequently Asked Questions - Taxes in Jura" : "Questions fréquentes - Impôts dans le Jura"}
             </h2>
           </div>
           <div className="space-y-6 max-w-3xl">
