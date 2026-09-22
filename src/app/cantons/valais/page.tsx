@@ -18,8 +18,9 @@ import {
   HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-export default function ValaisPage() {
-  const { isEnglish } = useLanguage();
+export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const communes = [
     "Monthey", "Troistorrents", "Val-d'Illiez", "Champéry", "Collombey-Muraz",
     "Vouvry", "St-Maurice", "Massongex", "Vérossaz",
@@ -554,4 +555,8 @@ export default function ValaisPage() {
       </section>
     </main>
   );
+}
+
+export default function ValaisPage() {
+  return <ValaisContent />;
 }
