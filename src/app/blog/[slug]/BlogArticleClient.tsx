@@ -25,7 +25,7 @@ const categoryCTA: Record<string, { title: string; description: string; link: st
   },
   comptabilite: {
     title: "Confiez-nous votre comptabilité",
-    description: "Comptabilité complète pour indépendants et PME. Bouclement annuel, TVA, déclarations — on gère tout.",
+    description: "Comptabilité complète pour indépendants et PME. Bouclement annuel, TVA, déclarations - on gère tout.",
     link: "/independants",
     linkLabel: "Découvrir nos offres",
     simulator: { href: "/simulateur/salaire-net", label: "Calculer mon salaire net" },
@@ -46,7 +46,7 @@ const categoryCTA: Record<string, { title: string; description: string; link: st
   },
   immobilier: {
     title: "Fiscalité immobilière simplifiée",
-    description: "Déclarations fiscales immobilières, valeur locative et optimisation de votre rendement — en Suisse romande.",
+    description: "Déclarations fiscales immobilières, valeur locative et optimisation de votre rendement - en Suisse romande.",
     link: "/entreprises",
     linkLabel: "En savoir plus",
     simulator: { href: "/simulateur/valeur-locative", label: "Simuler ma valeur locative" },
