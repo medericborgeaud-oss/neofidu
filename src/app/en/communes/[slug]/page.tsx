@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://neofidu.ch/en/communes/${params.slug}`;
 
   return {
-    title: `Taxes in ${commune.nom} (${cantonName}) — Rate & municipal coefficient`,
+    title: `Taxes in ${commune.nom} (${cantonName}) - Rate & municipal coefficient`,
     description: `Taxes in ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Compare taxation with neighbouring municipalities.`,
     openGraph: {
       title: `Taxes in ${commune.nom} (${cantonName})`,
@@ -210,7 +210,7 @@ export default async function CommunePageEN({ params }: Props) {
                 <div>
                   <h1 className="text-2xl font-semibold text-gray-900 mb-1">Taxes in {commune.nom}</h1>
                   <p className="text-sm text-gray-500 mb-4">
-                    {commune.district ? `${commune.district}, ` : ""}{cantonName}{commune.code_postal ? ` — ${commune.code_postal}` : ""}
+                    {commune.district ? `${commune.district}, ` : ""}{cantonName}{commune.code_postal ? ` - ${commune.code_postal}` : ""}
                   </p>
                 </div>
                 <CantonFlag canton={commune.canton} size={56} />
@@ -224,15 +224,15 @@ export default async function CommunePageEN({ params }: Props) {
               <div className="grid grid-cols-3 gap-3 mb-6">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Users className="w-3 h-3" /> Population</div>
-                  <p className="text-sm font-medium text-gray-900">{commune.population ? commune.population.toLocaleString("en-CH") : "—"}</p>
+                  <p className="text-sm font-medium text-gray-900">{commune.population ? commune.population.toLocaleString("en-CH") : "-"}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Ruler className="w-3 h-3" /> Density</div>
-                  <p className="text-sm font-medium text-gray-900">{commune.densite ? `${Math.round(commune.densite)} inh./km²` : "—"}</p>
+                  <p className="text-sm font-medium text-gray-900">{commune.densite ? `${Math.round(commune.densite)} inh./km²` : "-"}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><MapPin className="w-3 h-3" /> Area</div>
-                  <p className="text-sm font-medium text-gray-900">{commune.superficie_km2 ? `${commune.superficie_km2.toFixed(1)} km²` : "—"}</p>
+                  <p className="text-sm font-medium text-gray-900">{commune.superficie_km2 ? `${commune.superficie_km2.toFixed(1)} km²` : "-"}</p>
                 </div>
               </div>
 
@@ -317,14 +317,14 @@ export default async function CommunePageEN({ params }: Props) {
               <div className="bg-emerald-50 rounded-lg p-4 flex items-center justify-between gap-4">
                 <div>
                   <p className="text-sm text-emerald-800 font-medium">Do you live in {commune.nom}?</p>
-                  <p className="text-sm text-emerald-600">Tax return from CHF 89.—</p>
+                  <p className="text-sm text-emerald-600">Tax return from CHF 89.-</p>
                 </div>
                 <Link href="/demande">
                   <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">Learn more</Button>
                 </Link>
               </div>
 
-              <p className="text-center text-xs text-gray-400 mt-4">Source: FSO / LINDAS — Municipality code {commune.code_ofs}</p>
+              <p className="text-center text-xs text-gray-400 mt-4">Source: FSO / LINDAS - Municipality code {commune.code_ofs}</p>
             </div>
           </Card>
         </div>
