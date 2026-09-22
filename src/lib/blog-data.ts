@@ -55,8 +55,8 @@ export const blogArticles: BlogArticle[] = [
     titleEn: "Starting Out Self-Employed in Switzerland: Which Insurances to Take (and in What Order)",
     excerpt: "En devenant indépendant, vous perdez le filet de sécurité de l'employeur : accident, salaire en cas de maladie, chômage, 2e pilier. Le guide des assurances à mettre en place, du strictement obligatoire au recommandé, dans le bon ordre.",
     excerptEn: "Becoming self-employed means losing the employer's safety net: accident cover, sick pay, unemployment, 2nd pillar. A guide to the insurances to put in place, from legally required to recommended, in the right order.",
-    content: "<div style='max-width:820px;margin:0 auto;font-family:Calibri,Arial,sans-serif;color:#1F2937;line-height:1.6;font-size:17px'><p>Se mettre à son compte, c'est une belle liberté, mais aussi la fin d'un filet de sécurité invisible : celui de l'employeur. Un salarié est couvert automatiquement contre l'accident, garde son salaire en cas de maladie, cotise au chômage et se constitue un 2e pilier sans y penser. L'indépendant, lui, perd tout cela d'un coup. La bonne nouvelle : on peut reconstruire cette protection, à condition de savoir par quoi commencer.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>1. Ce qui est obligatoire par la loi</h2><p><strong>AVS / AI / APG (1er pilier).</strong> Dès le début de votre activité, vous devez vous affilier à une caisse de compensation. Contrairement au salarié, vous payez toute la cotisation vous-même : au maximum <strong>10,0 % de votre revenu net</strong>, avec un barème dégressif pour les revenus modestes (jusqu'à environ 5,4 %) et une cotisation minimale de <strong>530 francs par an</strong>. C'est aussi la caisse qui vous fait cotiser aux allocations familiales.</p><p><strong>Assurance-maladie (LAMal).</strong> Obligatoire pour tout résident. Attention toutefois : la couverture accident, elle, n'est pas automatique (voir ci-dessous).</p><div style='background:#FEF7ED;border:1px solid #F59E0B;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>À retenir dès le premier jour :</strong> comme indépendant, vous n'êtes <strong>pas affilié à l'assurance chômage</strong> et <strong>pas couvert par l'assurance-accidents obligatoire (LAA)</strong>. Ces deux trous sont la principale source de mauvaises surprises. Les points 2 et 3 servent à les combler.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>2. Le premier piège : l'accident</h2><p>Un salarié est assuré contre les accidents par son employeur. Vous, non. Un accident de ski un dimanche peut vous laisser sans couverture adaptée. Deux solutions : <strong>inclure la couverture accident dans votre assurance-maladie LAMal</strong> (le plus simple), ou <strong>souscrire une assurance-accidents facultative selon la LAA</strong>, souvent plus complète (indemnités journalières, rentes, capital invalidité ou décès). C'est le premier réflexe à avoir, avant toute optimisation.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>3. Le deuxième piège : la perte de revenu</h2><p>Salarié malade, votre salaire continue un temps. Indépendant malade, votre chiffre d'affaires s'arrête, mais pas vos charges, et aucun chômage ne vient amortir. C'est le risque le plus sous-estimé au démarrage. La réponse : une <strong>assurance perte de gain (indemnités journalières) en cas de maladie</strong>, et d'accident si ce n'est pas déjà couvert au point 2. Vous choisissez le montant journalier et le délai d'attente (30, 60 ou 90 jours) : plus il est long, plus la prime baisse. C'est l'assurance qui protège votre capacité à générer un revenu.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>4. Reconstruire votre prévoyance (et payer moins d'impôt)</h2><p>En quittant le salariat, vous sortez du 2e pilier obligatoire. Deux leviers pour recréer une épargne retraite, tous deux déductibles du revenu imposable :</p><ul><li><strong>Le 2e pilier facultatif.</strong> Un indépendant peut s'affilier volontairement (souvent via l'association professionnelle de son métier ou l'institution supplétive). Utile surtout si vos revenus sont élevés et que vous voulez de la couverture décès/invalidité en plus de l'épargne.</li><li><strong>Le 3e pilier A (« grand pilier 3a »).</strong> C'est l'outil-clé de l'indépendant sans 2e pilier : jusqu'à <strong>20 % du revenu net, au maximum 36'288 francs en 2026</strong> (contre 7'258 francs pour qui possède déjà un 2e pilier). Chaque franc versé est déductible : à un taux marginal courant, l'économie d'impôt est immédiate et substantielle, tout en construisant votre retraite.</li></ul><div style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>Le bon ordre :</strong> beaucoup d'indépendants ont intérêt à privilégier d'abord le grand 3a (souple, déductible, plafond élevé) avant d'envisager un 2e pilier facultatif, sauf besoin marqué de couverture décès/invalidité.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>5. La responsabilité civile professionnelle</h2><p>Elle couvre les dommages que vous pourriez causer à un tiers dans l'exercice de votre métier (erreur de conseil, dégât, préjudice financier). Elle est <strong>obligatoire</strong> pour certaines professions réglementées (médecins, avocats, professions de la santé) et fortement recommandée pour toutes les autres dès que votre activité peut engager votre responsabilité. La prime est modeste au regard du risque : souvent la meilleure assurance tranquillité d'un indépendant.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>6. Selon votre activité : les assurances de l'entreprise</h2><ul><li><strong>RC entreprise / exploitation</strong> : dommages causés à des tiers dans vos locaux ou avec votre matériel.</li><li><strong>Assurance choses</strong> (inventaire, matériel, marchandises) : incendie, dégâts d'eau, vol.</li><li><strong>Protection juridique</strong> professionnelle : litiges avec clients, fournisseurs ou administration.</li><li><strong>Cyber-assurance</strong> : si vous traitez des données clients ou dépendez fortement de l'informatique.</li></ul><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>En résumé : dans quel ordre</h2><p><strong>1. Obligatoire</strong> — AVS/AI/APG et allocations familiales, LAMal. <strong>2. Indispensable</strong> — couverture accident, perte de gain maladie/accident, RC professionnelle. <strong>3. Fortement recommandé</strong> — 3e pilier 3a (et/ou 2e pilier facultatif). <strong>4. Selon l'activité</strong> — RC exploitation, assurance choses, protection juridique, cyber.</p><p>La règle d'or : ne cherchez pas d'abord à optimiser, cherchez d'abord à ne pas être à découvert sur l'accident, la maladie et votre responsabilité. L'optimisation fiscale (le 3a en tête) vient ensuite, et elle est d'autant plus efficace qu'elle est mise en place tôt dans l'année.</p><p style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'>Chez <strong>NeoFidu</strong>, nous faisons le point au démarrage de votre activité : affiliation à la caisse de compensation, choix de la couverture accident et perte de gain, mise en place du 3e pilier et calcul de l'économie d'impôt. L'objectif : partir couvert, sans payer pour des assurances inutiles.</p><p style='font-size:13px;color:#6B7280;font-style:italic;margin-top:20px'>Information générale, ne constituant pas un conseil en assurance personnalisé. Les taux, plafonds et obligations dépendent de votre profession, de votre canton et de votre situation.</p></div>",
-    contentEn: "<div style='max-width:820px;margin:0 auto;font-family:Calibri,Arial,sans-serif;color:#1F2937;line-height:1.6;font-size:17px'><p>Going self-employed is a real freedom, but it also ends an invisible safety net: the employer's. An employee is automatically covered against accidents, keeps their salary when ill, pays into unemployment insurance and builds a 2nd pillar without thinking about it. The self-employed person loses all of this at once. The good news: you can rebuild that protection, as long as you know where to start.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>1. What the law requires</h2><p><strong>AVS / AI / APG (1st pillar).</strong> From the start of your activity you must join a compensation fund. Unlike an employee, you pay the whole contribution yourself: up to <strong>10.0% of your net income</strong>, on a sliding scale for modest incomes (down to about 5.4%), with a minimum contribution of <strong>CHF 530 per year</strong>. The fund also collects your family-allowance contributions.</p><p><strong>Health insurance (LAMal).</strong> Mandatory for every resident. Note, however, that accident cover is not automatic (see below).</p><div style='background:#FEF7ED;border:1px solid #F59E0B;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>Remember from day one:</strong> as a self-employed person you are <strong>not covered by unemployment insurance</strong> and <strong>not covered by the mandatory accident insurance (LAA)</strong>. These two gaps are the main source of nasty surprises. Points 2 and 3 are there to fill them.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>2. First trap: accidents</h2><p>An employee is insured against accidents by their employer. You are not. A skiing accident on a Sunday can leave you without proper cover. Two options: <strong>add accident cover to your LAMal health insurance</strong> (the simplest), or <strong>take out optional accident insurance under the LAA</strong>, often more complete (daily allowances, pensions, disability or death capital). This is the first reflex to have, before any optimisation.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>3. Second trap: loss of income</h2><p>If an employee is ill, their salary continues for a while. If you are ill, your turnover stops but your costs do not, and no unemployment insurance cushions the blow. It is the most underestimated risk at the start. The answer: <strong>loss-of-earnings insurance (daily allowances) for illness</strong>, and for accident if not already covered under point 2. You choose the daily amount and the waiting period (30, 60 or 90 days): the longer it is, the lower the premium. This is the insurance that protects your ability to earn.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>4. Rebuilding your retirement savings (and paying less tax)</h2><p>Leaving employment, you also leave the mandatory 2nd pillar. Two levers to rebuild retirement savings, both deductible from taxable income:</p><ul><li><strong>The voluntary 2nd pillar.</strong> A self-employed person can join voluntarily (often through their professional association or the substitute institution). Useful mainly if your income is high and you want death/disability cover on top of the savings.</li><li><strong>Pillar 3a (the larger self-employed limit).</strong> The key tool for a self-employed person without a 2nd pillar: up to <strong>20% of net income, capped at CHF 36,288 in 2026</strong> (versus CHF 7,258 for someone who already has a 2nd pillar). Every franc paid in is deductible: at a typical marginal rate, the tax saving is immediate and substantial, while building your retirement.</li></ul><div style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>The right order:</strong> many self-employed people should prioritise the larger 3a first (flexible, deductible, high cap) before considering a voluntary 2nd pillar, unless they specifically need death/disability cover.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>5. Professional liability insurance</h2><p>It covers damage you might cause to a third party in your work (advice error, damage, financial loss). It is <strong>mandatory</strong> for certain regulated professions (doctors, lawyers, health professions) and strongly recommended for all others as soon as your activity can engage your liability. The premium is modest relative to the risk: often the best peace-of-mind insurance for a self-employed person.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>6. Depending on your activity: business insurances</h2><ul><li><strong>Business/operating liability</strong>: damage caused to third parties on your premises or with your equipment.</li><li><strong>Property insurance</strong> (inventory, equipment, goods): fire, water damage, theft.</li><li><strong>Legal protection</strong>: disputes with clients, suppliers or the authorities.</li><li><strong>Cyber insurance</strong>: if you handle client data or depend heavily on IT.</li></ul><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>In short: in what order</h2><p><strong>1. Mandatory</strong> — AVS/AI/APG and family allowances, LAMal. <strong>2. Essential</strong> — accident cover, illness/accident loss-of-earnings, professional liability. <strong>3. Strongly recommended</strong> — pillar 3a (and/or voluntary 2nd pillar). <strong>4. Activity-dependent</strong> — operating liability, property, legal protection, cyber.</p><p>The golden rule: do not aim to optimise first, aim first not to be exposed on accidents, illness and liability. Tax optimisation (3a in the lead) comes next, and it is all the more effective when set up early in the year.</p><p style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'>At <strong>NeoFidu</strong>, we review everything when you start out: registration with the compensation fund, choice of accident and loss-of-earnings cover, setting up pillar 3a and computing the tax saving. The goal: start out covered, without paying for insurance you do not need.</p><p style='font-size:13px;color:#6B7280;font-style:italic;margin-top:20px'>General information, not personalised insurance advice. Rates, ceilings and obligations depend on your profession, canton and situation.</p></div>",
+    content: "<div style='max-width:820px;margin:0 auto;font-family:Calibri,Arial,sans-serif;color:#1F2937;line-height:1.6;font-size:17px'><p>Se mettre à son compte, c'est une belle liberté, mais aussi la fin d'un filet de sécurité invisible : celui de l'employeur. Un salarié est couvert automatiquement contre l'accident, garde son salaire en cas de maladie, cotise au chômage et se constitue un 2e pilier sans y penser. L'indépendant, lui, perd tout cela d'un coup. La bonne nouvelle : on peut reconstruire cette protection, à condition de savoir par quoi commencer.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>1. Ce qui est obligatoire par la loi</h2><p><strong>AVS / AI / APG (1er pilier).</strong> Dès le début de votre activité, vous devez vous affilier à une caisse de compensation. Contrairement au salarié, vous payez toute la cotisation vous-même : au maximum <strong>10,0 % de votre revenu net</strong>, avec un barème dégressif pour les revenus modestes (jusqu'à environ 5,4 %) et une cotisation minimale de <strong>530 francs par an</strong>. C'est aussi la caisse qui vous fait cotiser aux allocations familiales.</p><p><strong>Assurance-maladie (LAMal).</strong> Obligatoire pour tout résident. Attention toutefois : la couverture accident, elle, n'est pas automatique (voir ci-dessous).</p><div style='background:#FEF7ED;border:1px solid #F59E0B;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>À retenir dès le premier jour :</strong> comme indépendant, vous n'êtes <strong>pas affilié à l'assurance chômage</strong> et <strong>pas couvert par l'assurance-accidents obligatoire (LAA)</strong>. Ces deux trous sont la principale source de mauvaises surprises. Les points 2 et 3 servent à les combler.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>2. Le premier piège : l'accident</h2><p>Un salarié est assuré contre les accidents par son employeur. Vous, non. Un accident de ski un dimanche peut vous laisser sans couverture adaptée. Deux solutions : <strong>inclure la couverture accident dans votre assurance-maladie LAMal</strong> (le plus simple), ou <strong>souscrire une assurance-accidents facultative selon la LAA</strong>, souvent plus complète (indemnités journalières, rentes, capital invalidité ou décès). C'est le premier réflexe à avoir, avant toute optimisation.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>3. Le deuxième piège : la perte de revenu</h2><p>Salarié malade, votre salaire continue un temps. Indépendant malade, votre chiffre d'affaires s'arrête, mais pas vos charges, et aucun chômage ne vient amortir. C'est le risque le plus sous-estimé au démarrage. La réponse : une <strong>assurance perte de gain (indemnités journalières) en cas de maladie</strong>, et d'accident si ce n'est pas déjà couvert au point 2. Vous choisissez le montant journalier et le délai d'attente (30, 60 ou 90 jours) : plus il est long, plus la prime baisse. C'est l'assurance qui protège votre capacité à générer un revenu.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>4. Reconstruire votre prévoyance (et payer moins d'impôt)</h2><p>En quittant le salariat, vous sortez du 2e pilier obligatoire. Deux leviers pour recréer une épargne retraite, tous deux déductibles du revenu imposable :</p><ul><li><strong>Le 2e pilier facultatif.</strong> Un indépendant peut s'affilier volontairement (souvent via l'association professionnelle de son métier ou l'institution supplétive). Utile surtout si vos revenus sont élevés et que vous voulez de la couverture décès/invalidité en plus de l'épargne.</li><li><strong>Le 3e pilier A (« grand pilier 3a »).</strong> C'est l'outil-clé de l'indépendant sans 2e pilier : jusqu'à <strong>20 % du revenu net, au maximum 36'288 francs en 2026</strong> (contre 7'258 francs pour qui possède déjà un 2e pilier). Chaque franc versé est déductible : à un taux marginal courant, l'économie d'impôt est immédiate et substantielle, tout en construisant votre retraite.</li></ul><div style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>Le bon ordre :</strong> beaucoup d'indépendants ont intérêt à privilégier d'abord le grand 3a (souple, déductible, plafond élevé) avant d'envisager un 2e pilier facultatif, sauf besoin marqué de couverture décès/invalidité.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>5. La responsabilité civile professionnelle</h2><p>Elle couvre les dommages que vous pourriez causer à un tiers dans l'exercice de votre métier (erreur de conseil, dégât, préjudice financier). Elle est <strong>obligatoire</strong> pour certaines professions réglementées (médecins, avocats, professions de la santé) et fortement recommandée pour toutes les autres dès que votre activité peut engager votre responsabilité. La prime est modeste au regard du risque : souvent la meilleure assurance tranquillité d'un indépendant.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>6. Selon votre activité : les assurances de l'entreprise</h2><ul><li><strong>RC entreprise / exploitation</strong> : dommages causés à des tiers dans vos locaux ou avec votre matériel.</li><li><strong>Assurance choses</strong> (inventaire, matériel, marchandises) : incendie, dégâts d'eau, vol.</li><li><strong>Protection juridique</strong> professionnelle : litiges avec clients, fournisseurs ou administration.</li><li><strong>Cyber-assurance</strong> : si vous traitez des données clients ou dépendez fortement de l'informatique.</li></ul><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>En résumé : dans quel ordre</h2><p><strong>1. Obligatoire</strong> - AVS/AI/APG et allocations familiales, LAMal. <strong>2. Indispensable</strong> - couverture accident, perte de gain maladie/accident, RC professionnelle. <strong>3. Fortement recommandé</strong> - 3e pilier 3a (et/ou 2e pilier facultatif). <strong>4. Selon l'activité</strong> - RC exploitation, assurance choses, protection juridique, cyber.</p><p>La règle d'or : ne cherchez pas d'abord à optimiser, cherchez d'abord à ne pas être à découvert sur l'accident, la maladie et votre responsabilité. L'optimisation fiscale (le 3a en tête) vient ensuite, et elle est d'autant plus efficace qu'elle est mise en place tôt dans l'année.</p><p style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'>Chez <strong>NeoFidu</strong>, nous faisons le point au démarrage de votre activité : affiliation à la caisse de compensation, choix de la couverture accident et perte de gain, mise en place du 3e pilier et calcul de l'économie d'impôt. L'objectif : partir couvert, sans payer pour des assurances inutiles.</p><p style='font-size:13px;color:#6B7280;font-style:italic;margin-top:20px'>Information générale, ne constituant pas un conseil en assurance personnalisé. Les taux, plafonds et obligations dépendent de votre profession, de votre canton et de votre situation.</p></div>",
+    contentEn: "<div style='max-width:820px;margin:0 auto;font-family:Calibri,Arial,sans-serif;color:#1F2937;line-height:1.6;font-size:17px'><p>Going self-employed is a real freedom, but it also ends an invisible safety net: the employer's. An employee is automatically covered against accidents, keeps their salary when ill, pays into unemployment insurance and builds a 2nd pillar without thinking about it. The self-employed person loses all of this at once. The good news: you can rebuild that protection, as long as you know where to start.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>1. What the law requires</h2><p><strong>AVS / AI / APG (1st pillar).</strong> From the start of your activity you must join a compensation fund. Unlike an employee, you pay the whole contribution yourself: up to <strong>10.0% of your net income</strong>, on a sliding scale for modest incomes (down to about 5.4%), with a minimum contribution of <strong>CHF 530 per year</strong>. The fund also collects your family-allowance contributions.</p><p><strong>Health insurance (LAMal).</strong> Mandatory for every resident. Note, however, that accident cover is not automatic (see below).</p><div style='background:#FEF7ED;border:1px solid #F59E0B;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>Remember from day one:</strong> as a self-employed person you are <strong>not covered by unemployment insurance</strong> and <strong>not covered by the mandatory accident insurance (LAA)</strong>. These two gaps are the main source of nasty surprises. Points 2 and 3 are there to fill them.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>2. First trap: accidents</h2><p>An employee is insured against accidents by their employer. You are not. A skiing accident on a Sunday can leave you without proper cover. Two options: <strong>add accident cover to your LAMal health insurance</strong> (the simplest), or <strong>take out optional accident insurance under the LAA</strong>, often more complete (daily allowances, pensions, disability or death capital). This is the first reflex to have, before any optimisation.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>3. Second trap: loss of income</h2><p>If an employee is ill, their salary continues for a while. If you are ill, your turnover stops but your costs do not, and no unemployment insurance cushions the blow. It is the most underestimated risk at the start. The answer: <strong>loss-of-earnings insurance (daily allowances) for illness</strong>, and for accident if not already covered under point 2. You choose the daily amount and the waiting period (30, 60 or 90 days): the longer it is, the lower the premium. This is the insurance that protects your ability to earn.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>4. Rebuilding your retirement savings (and paying less tax)</h2><p>Leaving employment, you also leave the mandatory 2nd pillar. Two levers to rebuild retirement savings, both deductible from taxable income:</p><ul><li><strong>The voluntary 2nd pillar.</strong> A self-employed person can join voluntarily (often through their professional association or the substitute institution). Useful mainly if your income is high and you want death/disability cover on top of the savings.</li><li><strong>Pillar 3a (the larger self-employed limit).</strong> The key tool for a self-employed person without a 2nd pillar: up to <strong>20% of net income, capped at CHF 36,288 in 2026</strong> (versus CHF 7,258 for someone who already has a 2nd pillar). Every franc paid in is deductible: at a typical marginal rate, the tax saving is immediate and substantial, while building your retirement.</li></ul><div style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'><strong>The right order:</strong> many self-employed people should prioritise the larger 3a first (flexible, deductible, high cap) before considering a voluntary 2nd pillar, unless they specifically need death/disability cover.</div><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>5. Professional liability insurance</h2><p>It covers damage you might cause to a third party in your work (advice error, damage, financial loss). It is <strong>mandatory</strong> for certain regulated professions (doctors, lawyers, health professions) and strongly recommended for all others as soon as your activity can engage your liability. The premium is modest relative to the risk: often the best peace-of-mind insurance for a self-employed person.</p><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>6. Depending on your activity: business insurances</h2><ul><li><strong>Business/operating liability</strong>: damage caused to third parties on your premises or with your equipment.</li><li><strong>Property insurance</strong> (inventory, equipment, goods): fire, water damage, theft.</li><li><strong>Legal protection</strong>: disputes with clients, suppliers or the authorities.</li><li><strong>Cyber insurance</strong>: if you handle client data or depend heavily on IT.</li></ul><h2 style='color:#0D735E;font-size:22px;margin-top:28px'>In short: in what order</h2><p><strong>1. Mandatory</strong> - AVS/AI/APG and family allowances, LAMal. <strong>2. Essential</strong> - accident cover, illness/accident loss-of-earnings, professional liability. <strong>3. Strongly recommended</strong> - pillar 3a (and/or voluntary 2nd pillar). <strong>4. Activity-dependent</strong> - operating liability, property, legal protection, cyber.</p><p>The golden rule: do not aim to optimise first, aim first not to be exposed on accidents, illness and liability. Tax optimisation (3a in the lead) comes next, and it is all the more effective when set up early in the year.</p><p style='background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:12px 16px;margin:12px 0'>At <strong>NeoFidu</strong>, we review everything when you start out: registration with the compensation fund, choice of accident and loss-of-earnings cover, setting up pillar 3a and computing the tax saving. The goal: start out covered, without paying for insurance you do not need.</p><p style='font-size:13px;color:#6B7280;font-style:italic;margin-top:20px'>General information, not personalised insurance advice. Rates, ceilings and obligations depend on your profession, canton and situation.</p></div>",
     category: "entreprise",
     date: "2026-09-17",
     readTime: 7,
@@ -231,7 +231,7 @@ export const blogArticles: BlogArticle[] = [
 </ul>
 
 <div style="background:#F0FDF9;border:1px solid #10B981;border-radius:8px;padding:14px 18px;margin-top:8px">
-<p style="margin:0 0 8px 0;font-weight:bold;color:#0D735E">Exemple chiffré — départ avant la retraite (salaire de CHF 7'000 par mois, soit CHF 84'000 par an)</p>
+<p style="margin:0 0 8px 0;font-weight:bold;color:#0D735E">Exemple chiffré - départ avant la retraite (salaire de CHF 7'000 par mois, soit CHF 84'000 par an)</p>
 <p style="margin:0 0 8px 0"><strong>Part obligatoire (minimum légal LPP).</strong> On retire d'abord la déduction de coordination : 84'000 − 26'460 = <strong>57'540</strong>. Ces CHF 57'540 forment le « salaire coordonné » assuré au minimum légal (le plafond de l'obligatoire monte jusqu'à 64'260, donc tout tient dans l'obligatoire). La prévoyance constituée sur ces 57'540 est celle qui reste <strong>bloquée</strong> en cas de départ dans l'UE/AELE.</p>
 <p style="margin:0 0 8px 0"><strong>Part surobligatoire.</strong> Elle n'apparaît que si la caisse assure <em>au-delà</em> de ce minimum. Exemple d'une caisse plus généreuse qui assure la totalité du salaire, sans déduction de coordination : 84'000 − 57'540 = <strong>26'460</strong> de salaire assuré en plus, qui relève du surobligatoire. C'est la seule part que l'on peut <strong>retirer en capital</strong> lors d'un départ dans l'UE/AELE.</p>
 <p style="margin:0;font-size:14px;color:#6B7280">La répartition exacte dépend du plan de votre caisse (certaines n'assurent que le minimum, d'autres bien plus). Montants 2025/2026 ; c'est le capital accumulé sur chaque part, et non le salaire d'une seule année, qui détermine ce qui est bloqué ou disponible.</p>
@@ -784,7 +784,7 @@ export const blogArticles: BlogArticle[] = [
     titleEn: "Sole proprietorship or LLC: when and at what revenue to set up your structure?",
     excerpt: "RI ou Sàrl en Suisse romande ? À quel chiffre d'affaires et à quel bénéfice se lancer ou basculer ? Tableaux comparatifs, seuils, charges sociales et fiscalité expliqués.",
     excerptEn: "Sole proprietorship or LLC in Switzerland? At what revenue and profit should you start or switch? Comparison tables, thresholds, social charges and taxation explained.",
-    content: `<p style="margin:0 0 18px;line-height:1.75;">La plupart des entrepreneurs nous arrivent avec la même question : <strong>« je crée une Sàrl ou une raison individuelle ? »</strong> C'est une bonne question, mais elle vient souvent <strong>trop tôt</strong> — ou trop tard.</p><p style="margin:0 0 18px;line-height:1.75;">Trop tôt, parce qu'on dépense CHF 2'000 à 3'000 de frais de constitution pour une Sàrl avant d'avoir un seul client. Trop tard, parce qu'on reste en raison individuelle alors qu'on dégage déjà CHF 150'000 de bénéfice — et qu'on paie chaque année des milliers de francs d'impôts en trop, tout en exposant sa maison et ses économies.</p><p style="margin:0 0 18px;line-height:1.75;">La vraie question n'est pas seulement <strong>« quelle forme ? »</strong>, mais <strong>« à quel moment, à quel chiffre d'affaires et à quel bénéfice ? »</strong>. C'est ce que cet article décortique, chiffres et tableaux à l'appui.</p><div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:16px;margin:22px 0;"><strong>À garder en tête :</strong> cet article donne un cadre général pour la Suisse romande (VD, GE, VS, FR, NE, JU). La fiscalité variant fortement d'un canton à l'autre, il ne remplace pas l'analyse de votre situation personnelle.</div><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Les 3 chiffres à connaître par cœur</h2><p style="margin:0 0 18px;line-height:1.75;">Avant de comparer les formes juridiques, retenez ces trois seuils. Ils structurent toute la décision.</p><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Seuil</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Ce qui se déclenche</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Forme concernée</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>CHF 100’000 de chiffre d’affaires</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Assujettissement obligatoire à la <strong>TVA</strong> + inscription obligatoire au <strong>Registre du commerce</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Raison individuelle</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>CHF 500’000 de chiffre d’affaires</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligation de tenir une <strong>comptabilité commerciale complète</strong> (partie double)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">RI (la Sàrl dès le 1<sup>er</sup> franc)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>~CHF 80’000 à 120’000 de bénéfice net</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Zone où le passage en <strong>Sàrl</strong> devient généralement intéressant fiscalement</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Bascule RI → Sàrl</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">Les deux premiers sont des <strong>obligations légales</strong>. Le troisième est une <strong>zone de décision</strong> : aucun seuil officiel pour « devenir une Sàrl », c'est un arbitrage économique.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Étape 1 : quand faut-il créer « une structure » tout court ?</h2><p style="margin:0 0 18px;line-height:1.75;">Beaucoup confondent « créer une entreprise » et « créer une Sàrl ». Dès que vous facturez une prestation à votre nom, de manière durable, vous <strong>exercez déjà une activité indépendante</strong> — vous êtes de fait une raison individuelle, même sans rien avoir « créé » formellement.</p><p style="margin:0 0 18px;line-height:1.75;">À ce stade, ce qui compte n'est pas la forme juridique mais <strong>votre statut social</strong> :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Vous devez vous annoncer à une <strong>caisse de compensation AVS</strong> comme indépendant et faire reconnaître ce statut.</li><li>Tant que votre chiffre d'affaires reste sous <strong>CHF 100'000</strong>, aucune obligation d'inscription au Registre du commerce ni de TVA.</li><li>La raison individuelle ne coûte presque rien à créer : <strong>pas de capital, pas de notaire</strong>.</li></ul><p style="margin:0 0 18px;line-height:1.75;"><strong>En clair :</strong> pour démarrer et valider un projet, on ne crée pas une Sàrl — on lance une raison individuelle. La structure « lourde » vient plus tard.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Le grand comparatif : raison individuelle vs Sàrl</h2><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Critère</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Raison individuelle (RI)</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Capital de départ</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Aucun</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>CHF 20’000</strong> minimum</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Frais de création</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 0 à 700</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 2’000 à 3’000 (notaire + RC + FOSC)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Responsabilité</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Illimitée</strong> sur tout le patrimoine privé</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Limitée</strong> au capital social</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Registre du commerce</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligatoire dès <strong>CHF 100’000</strong> de CA</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligatoire dès la constitution</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Personnalité juridique</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Non : vous <em>êtes</em> l’entreprise</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Oui : entité distincte</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Comptabilité</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Simplifiée si CA &lt; <strong>CHF 500’000</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Partie double dès le 1<sup>er</sup> franc</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Statut du dirigeant</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Indépendant</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Salarié</strong> de sa société</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Charges sociales</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">AVS ~10 % ; pas de chômage ; LPP facultative</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Partagées ; chômage couvert ; <strong>LPP dès CHF 22’680</strong></td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Imposition du bénéfice</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Ajouté au <strong>revenu</strong>, barème <strong>progressif</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Société + <strong>dividende</strong> (imposition partielle)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Salaire/dividende</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Impossible</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Oui</strong> (levier fiscal principal)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Associés / investisseurs</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Impossible</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Oui, plusieurs associés</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Vente / transmission</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Difficile (liée à la personne)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Facile (cession de parts)</td></tr></tbody></table><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Critère n°1 : la responsabilité (le plus sous-estimé)</h2><p style="margin:0 0 18px;line-height:1.75;">C'est de loin la différence la plus importante — et celle qu'on regrette le plus de ne pas avoir anticipée.</p><p style="margin:0 0 18px;line-height:1.75;">En <strong>raison individuelle</strong>, aucune séparation entre vous et l'entreprise. Une dette, une poursuite ou une faillite engage vos <strong>biens privés</strong> : épargne, voiture, voire logement.</p><p style="margin:0 0 18px;line-height:1.75;">En <strong>Sàrl</strong>, la société est une personne juridique distincte. En cas de faillite, les créanciers se remboursent en principe sur le <strong>patrimoine de la société</strong>. Votre patrimoine privé est protégé.</p><div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:16px;margin:22px 0;"><strong>Trois nuances honnêtes</strong> — la Sàrl n'est pas un bouclier magique :<br>1. Banques et bailleurs exigent souvent une <strong>caution personnelle</strong> du gérant.<br>2. En cas de <strong>faute de gestion</strong> ou de cotisations impayées, votre responsabilité personnelle peut être engagée.<br>3. Le capital de CHF 20'000 doit rester un vrai fonds de roulement.</div><div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:18px;margin:24px 0;"><strong>Règle simple :</strong> plus votre activité comporte de risques (stocks, gros investissements, dettes, contrats importants), plus la Sàrl se justifie tôt. Une activité de conseil sans stock ni dette peut rester en RI bien plus longtemps.</div><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Critère n°2 : les charges sociales</h2><p style="margin:0 0 18px;line-height:1.75;">C'est le critère le plus mal compris, parce qu'il joue dans les <strong>deux sens</strong>.</p><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Cotisation</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Raison individuelle</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl (gérant salarié)</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>AVS / AI / APG</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~<strong>10 %</strong> du bénéfice (dégressif sur les bas revenus)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>10,6 %</strong> du salaire (5,3 % employé / 5,3 % employeur)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Chômage (AC)</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">❌ Aucune couverture</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">✅ Couverte</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>LPP (2<sup>e</sup> pilier)</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Facultative</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Obligatoire</strong> dès CHF 22’680 de salaire</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>LAA (accidents)</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">À souscrire soi-même</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligatoire</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">En <strong>RI</strong>, charges plus légères au départ, mais vous êtes <strong>moins protégé</strong>. En <strong>Sàrl</strong>, vous payez davantage, mais la couverture est meilleure et la <strong>LPP devient un puissant outil fiscal</strong> : cotisations et surtout <strong>rachats</strong> sont déductibles.</p><div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:16px;margin:22px 0;"><strong>À ne pas négliger :</strong> un indépendant à bons revenus sans 2<sup>e</sup> pilier construit une « bombe à retardement » pour sa retraite. La bascule en Sàrl est souvent l'occasion de combler ces lacunes.</div><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Critère n°3 : la fiscalité (là où se cache l'argent)</h2><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">En raison individuelle : tout passe dans votre revenu</h3><p style="margin:0 0 18px;line-height:1.75;">Le bénéfice est <strong>ajouté à votre revenu privé</strong> et imposé au <strong>barème progressif</strong>. Tant que le bénéfice est modeste, c'est <strong>avantageux</strong>. Quand il grimpe, la progressivité mord fort : dans certains cantons le <strong>taux marginal dépasse 40 %</strong>.</p><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">En Sàrl : deux niveaux, mais un levier</h3><p style="margin:0 0 18px;line-height:1.75;">La Sàrl est imposée sur son <strong>bénéfice</strong>. Ce que vous vous versez est ensuite imposé chez vous : le <strong>salaire</strong> comme un revenu, les <strong>dividendes</strong> avec une <strong>imposition partielle</strong> — pour une participation qualifiée (≥ 10 %), seuls <strong>70 %</strong> du dividende sont imposés au fédéral (la part cantonale varie). Le dividende <strong>n'est pas soumis aux charges sociales</strong>.</p><p style="margin:0 0 18px;line-height:1.75;">C'est l'<strong>arbitrage salaire/dividende</strong> : doser un salaire raisonnable et un dividende allégé pour optimiser la charge globale. Cet arbitrage <strong>n'existe pas</strong> en raison individuelle.</p><div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:16px;margin:22px 0;"><strong>Attention :</strong> le salaire doit rester <strong>conforme au marché</strong>. L'AVS et le fisc requalifient un dividende déguisé si le salaire est anormalement bas.</div><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;"></th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">RI — bénéfice 60k</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">RI — bénéfice 150k</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl — bénéfice 150k</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Imposition</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Tout en revenu</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Tout en revenu, <strong>forte progressivité</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Salaire + dividende allégé</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Charges sociales</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~10 % sur tout</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~10 % sur tout</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Sur le salaire seulement</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Lisser le résultat</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Non</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Non</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Oui (réserve en société)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Verdict</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">✅ RI idéale</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">⚠️ RI désavantageuse</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">✅ Sàrl gagnante</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">Conclusion presque toujours identique : <strong>à bénéfice faible, la RI gagne ; à bénéfice élevé, la Sàrl reprend l'avantage.</strong> Le point de bascule se situe entre <strong>CHF 80'000 et CHF 120'000 de bénéfice net annuel</strong>.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Alors, quand créer quoi ?</h2><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">Créez (ou restez en) raison individuelle si…</h3><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Vous <strong>démarrez</strong> et validez encore votre activité.</li><li>Votre <strong>bénéfice</strong> est inférieur à ~CHF 80'000–100'000.</li><li>Votre activité présente <strong>peu de risques</strong>.</li><li>Vous voulez des <strong>coûts et une administration minimaux</strong>.</li><li>Vous êtes <strong>seul</strong>, sans associé.</li></ul><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">Créez directement une Sàrl si…</h3><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Votre activité est <strong>risquée</strong> dès le départ.</li><li>Vous démarrez à <strong>plusieurs</strong> ou avec un investisseur.</li><li>Vous prévoyez un <strong>bénéfice élevé</strong> rapidement.</li><li>L'<strong>image</strong> et la séparation patrimoniale comptent dès le lancement.</li><li>Vous voulez pouvoir <strong>revendre ou transmettre</strong> facilement.</li></ul><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">Basculez de RI vers Sàrl quand…</h3><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Votre <strong>bénéfice dépasse durablement ~CHF 100'000</strong>.</li><li>Votre <strong>risque</strong> augmente (personnel, gros contrats).</li><li>Vous voulez <strong>protéger un patrimoine privé</strong> conséquent.</li><li>Vous souhaitez <strong>structurer votre prévoyance</strong>.</li></ul><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Profil / niveau</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Recommandation typique</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Lancement, CA &lt; 100k, bénéfice faible</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Raison individuelle</strong></td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CA 100k–500k, bénéfice &lt; ~80k, faible risque</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>RI</strong> (avec TVA + RC)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Bénéfice ~80k–120k</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Zone de bascule</strong> — au cas par cas</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Bénéfice &gt; 120k, risque élevé ou associés</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Sàrl</strong></td></tr></tbody></table><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Le passage de RI à Sàrl : comment ça marche</h2><p style="margin:0 0 18px;line-height:1.75;">On ne « casse » pas son entreprise. Le transfert se fait via la <strong>loi sur la fusion (LFus)</strong>, par apport de l'entreprise individuelle dans la nouvelle société.</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Neutralité fiscale possible :</strong> les réserves latentes peuvent être transférées <strong>sans imposition immédiate</strong> si l'entreprise est reprise à sa valeur comptable et reste imposable en Suisse.</li><li><strong>Délai de blocage de 5 ans :</strong> ne pas vendre ses parts dans les 5 ans, sous peine de rappel d'impôt.</li><li><strong>Effet rétroactif :</strong> l'opération peut souvent rétroagir jusqu'à 6 mois.</li><li><strong>Prévoyance :</strong> vous devenez salarié, donc affilié à la LPP — l'occasion de combler des lacunes par des rachats déductibles.</li></ul><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Combien ça coûte, vraiment ?</h2><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Poste</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Raison individuelle</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Capital à immobiliser</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 0</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 20’000 (reste un actif)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Création</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 0 à ~700</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 2’000 à 3’000</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Comptabilité annuelle</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Plus légère (si &lt; 500k)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Partie double — plus élevée</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Déclarations</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">1 (privée + annexe)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Société + déclaration privée</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">La Sàrl coûte plus cher à créer <strong>et</strong> à faire tourner. Ce surcoût ne se justifie que lorsque l'économie fiscale, la protection du patrimoine ou le besoin d'associés le compensent.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Les erreurs fréquentes (vues en cabinet)</h2><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Créer une Sàrl trop tôt</strong>, sans chiffre d'affaires : CHF 20'000 immobilisés et frais disproportionnés.</li><li><strong>Rester en RI trop longtemps</strong> : à 150k de bénéfice, on « offre » des milliers de francs au fisc.</li><li><strong>Oublier la prévoyance</strong> : un indépendant sans 2<sup>e</sup> pilier prépare un trou de retraite.</li><li><strong>Se verser un salaire trop bas en Sàrl</strong> : risque de requalification AVS.</li><li><strong>Sous-estimer la responsabilité</strong> d'une RI — jusqu'au premier impayé.</li></ul><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">En résumé</h2><p style="margin:0 0 18px;line-height:1.75;">La raison individuelle est idéale pour <strong>démarrer, tester et tant que les bénéfices restent modestes</strong>. La Sàrl prend l'avantage dès que votre <strong>bénéfice dépasse durablement ~CHF 80'000–120'000</strong>, que votre <strong>risque augmente</strong>, que vous démarrez <strong>à plusieurs</strong>, ou que la <strong>protection du patrimoine</strong> devient prioritaire.</p><p style="margin:0 0 18px;line-height:1.75;">Le bon réflexe : <strong>réévaluer chaque année</strong> votre chiffre d'affaires, votre bénéfice et votre exposition au risque.</p><div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:18px;margin:24px 0;"><strong>Vous hésitez sur le bon moment ?</strong><br>Chez NeoFidu, on analyse votre situation concrète — chiffre d'affaires, bénéfice, canton, risque, prévoyance — et on vous dit franchement si la raison individuelle suffit encore ou si la Sàrl vous ferait économiser. <strong>Devis et premier avis gratuits, sans engagement.</strong><br><a href="/demande?type=comptabilite" style="color:#0ea5e9;font-weight:600;">→ Demander un avis gratuit</a></div><p style="color:#64748b;font-size:0.9em;margin:26px 0 0;line-height:1.7;">Cet article est fourni à titre informatif et ne constitue pas un conseil juridique ou fiscal individualisé. Les seuils et taux reflètent l'état du droit en 2026 et varient selon les cantons. Sources officielles : portail PME de la Confédération (kmu.admin.ch), Administration fédérale des contributions (estv.admin.ch), portail ch.ch.</p>`,
+    content: `<p style="margin:0 0 18px;line-height:1.75;">La plupart des entrepreneurs nous arrivent avec la même question : <strong>« je crée une Sàrl ou une raison individuelle ? »</strong> C'est une bonne question, mais elle vient souvent <strong>trop tôt</strong> - ou trop tard.</p><p style="margin:0 0 18px;line-height:1.75;">Trop tôt, parce qu'on dépense CHF 2'000 à 3'000 de frais de constitution pour une Sàrl avant d'avoir un seul client. Trop tard, parce qu'on reste en raison individuelle alors qu'on dégage déjà CHF 150'000 de bénéfice - et qu'on paie chaque année des milliers de francs d'impôts en trop, tout en exposant sa maison et ses économies.</p><p style="margin:0 0 18px;line-height:1.75;">La vraie question n'est pas seulement <strong>« quelle forme ? »</strong>, mais <strong>« à quel moment, à quel chiffre d'affaires et à quel bénéfice ? »</strong>. C'est ce que cet article décortique, chiffres et tableaux à l'appui.</p><div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:16px;margin:22px 0;"><strong>À garder en tête :</strong> cet article donne un cadre général pour la Suisse romande (VD, GE, VS, FR, NE, JU). La fiscalité variant fortement d'un canton à l'autre, il ne remplace pas l'analyse de votre situation personnelle.</div><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Les 3 chiffres à connaître par cœur</h2><p style="margin:0 0 18px;line-height:1.75;">Avant de comparer les formes juridiques, retenez ces trois seuils. Ils structurent toute la décision.</p><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Seuil</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Ce qui se déclenche</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Forme concernée</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>CHF 100’000 de chiffre d’affaires</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Assujettissement obligatoire à la <strong>TVA</strong> + inscription obligatoire au <strong>Registre du commerce</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Raison individuelle</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>CHF 500’000 de chiffre d’affaires</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligation de tenir une <strong>comptabilité commerciale complète</strong> (partie double)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">RI (la Sàrl dès le 1<sup>er</sup> franc)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>~CHF 80’000 à 120’000 de bénéfice net</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Zone où le passage en <strong>Sàrl</strong> devient généralement intéressant fiscalement</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Bascule RI → Sàrl</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">Les deux premiers sont des <strong>obligations légales</strong>. Le troisième est une <strong>zone de décision</strong> : aucun seuil officiel pour « devenir une Sàrl », c'est un arbitrage économique.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Étape 1 : quand faut-il créer « une structure » tout court ?</h2><p style="margin:0 0 18px;line-height:1.75;">Beaucoup confondent « créer une entreprise » et « créer une Sàrl ». Dès que vous facturez une prestation à votre nom, de manière durable, vous <strong>exercez déjà une activité indépendante</strong> - vous êtes de fait une raison individuelle, même sans rien avoir « créé » formellement.</p><p style="margin:0 0 18px;line-height:1.75;">À ce stade, ce qui compte n'est pas la forme juridique mais <strong>votre statut social</strong> :</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Vous devez vous annoncer à une <strong>caisse de compensation AVS</strong> comme indépendant et faire reconnaître ce statut.</li><li>Tant que votre chiffre d'affaires reste sous <strong>CHF 100'000</strong>, aucune obligation d'inscription au Registre du commerce ni de TVA.</li><li>La raison individuelle ne coûte presque rien à créer : <strong>pas de capital, pas de notaire</strong>.</li></ul><p style="margin:0 0 18px;line-height:1.75;"><strong>En clair :</strong> pour démarrer et valider un projet, on ne crée pas une Sàrl - on lance une raison individuelle. La structure « lourde » vient plus tard.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Le grand comparatif : raison individuelle vs Sàrl</h2><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Critère</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Raison individuelle (RI)</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Capital de départ</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Aucun</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>CHF 20’000</strong> minimum</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Frais de création</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 0 à 700</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 2’000 à 3’000 (notaire + RC + FOSC)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Responsabilité</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Illimitée</strong> sur tout le patrimoine privé</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Limitée</strong> au capital social</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Registre du commerce</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligatoire dès <strong>CHF 100’000</strong> de CA</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligatoire dès la constitution</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Personnalité juridique</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Non : vous <em>êtes</em> l’entreprise</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Oui : entité distincte</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Comptabilité</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Simplifiée si CA &lt; <strong>CHF 500’000</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Partie double dès le 1<sup>er</sup> franc</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Statut du dirigeant</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Indépendant</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Salarié</strong> de sa société</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Charges sociales</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">AVS ~10 % ; pas de chômage ; LPP facultative</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Partagées ; chômage couvert ; <strong>LPP dès CHF 22’680</strong></td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Imposition du bénéfice</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Ajouté au <strong>revenu</strong>, barème <strong>progressif</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Société + <strong>dividende</strong> (imposition partielle)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Salaire/dividende</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Impossible</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Oui</strong> (levier fiscal principal)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Associés / investisseurs</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Impossible</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Oui, plusieurs associés</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Vente / transmission</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Difficile (liée à la personne)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Facile (cession de parts)</td></tr></tbody></table><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Critère n°1 : la responsabilité (le plus sous-estimé)</h2><p style="margin:0 0 18px;line-height:1.75;">C'est de loin la différence la plus importante - et celle qu'on regrette le plus de ne pas avoir anticipée.</p><p style="margin:0 0 18px;line-height:1.75;">En <strong>raison individuelle</strong>, aucune séparation entre vous et l'entreprise. Une dette, une poursuite ou une faillite engage vos <strong>biens privés</strong> : épargne, voiture, voire logement.</p><p style="margin:0 0 18px;line-height:1.75;">En <strong>Sàrl</strong>, la société est une personne juridique distincte. En cas de faillite, les créanciers se remboursent en principe sur le <strong>patrimoine de la société</strong>. Votre patrimoine privé est protégé.</p><div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:16px;margin:22px 0;"><strong>Trois nuances honnêtes</strong> - la Sàrl n'est pas un bouclier magique :<br>1. Banques et bailleurs exigent souvent une <strong>caution personnelle</strong> du gérant.<br>2. En cas de <strong>faute de gestion</strong> ou de cotisations impayées, votre responsabilité personnelle peut être engagée.<br>3. Le capital de CHF 20'000 doit rester un vrai fonds de roulement.</div><div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:18px;margin:24px 0;"><strong>Règle simple :</strong> plus votre activité comporte de risques (stocks, gros investissements, dettes, contrats importants), plus la Sàrl se justifie tôt. Une activité de conseil sans stock ni dette peut rester en RI bien plus longtemps.</div><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Critère n°2 : les charges sociales</h2><p style="margin:0 0 18px;line-height:1.75;">C'est le critère le plus mal compris, parce qu'il joue dans les <strong>deux sens</strong>.</p><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Cotisation</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Raison individuelle</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl (gérant salarié)</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>AVS / AI / APG</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~<strong>10 %</strong> du bénéfice (dégressif sur les bas revenus)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>10,6 %</strong> du salaire (5,3 % employé / 5,3 % employeur)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Chômage (AC)</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">❌ Aucune couverture</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">✅ Couverte</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>LPP (2<sup>e</sup> pilier)</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Facultative</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Obligatoire</strong> dès CHF 22’680 de salaire</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>LAA (accidents)</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">À souscrire soi-même</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Obligatoire</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">En <strong>RI</strong>, charges plus légères au départ, mais vous êtes <strong>moins protégé</strong>. En <strong>Sàrl</strong>, vous payez davantage, mais la couverture est meilleure et la <strong>LPP devient un puissant outil fiscal</strong> : cotisations et surtout <strong>rachats</strong> sont déductibles.</p><div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:16px;margin:22px 0;"><strong>À ne pas négliger :</strong> un indépendant à bons revenus sans 2<sup>e</sup> pilier construit une « bombe à retardement » pour sa retraite. La bascule en Sàrl est souvent l'occasion de combler ces lacunes.</div><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Critère n°3 : la fiscalité (là où se cache l'argent)</h2><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">En raison individuelle : tout passe dans votre revenu</h3><p style="margin:0 0 18px;line-height:1.75;">Le bénéfice est <strong>ajouté à votre revenu privé</strong> et imposé au <strong>barème progressif</strong>. Tant que le bénéfice est modeste, c'est <strong>avantageux</strong>. Quand il grimpe, la progressivité mord fort : dans certains cantons le <strong>taux marginal dépasse 40 %</strong>.</p><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">En Sàrl : deux niveaux, mais un levier</h3><p style="margin:0 0 18px;line-height:1.75;">La Sàrl est imposée sur son <strong>bénéfice</strong>. Ce que vous vous versez est ensuite imposé chez vous : le <strong>salaire</strong> comme un revenu, les <strong>dividendes</strong> avec une <strong>imposition partielle</strong> - pour une participation qualifiée (≥ 10 %), seuls <strong>70 %</strong> du dividende sont imposés au fédéral (la part cantonale varie). Le dividende <strong>n'est pas soumis aux charges sociales</strong>.</p><p style="margin:0 0 18px;line-height:1.75;">C'est l'<strong>arbitrage salaire/dividende</strong> : doser un salaire raisonnable et un dividende allégé pour optimiser la charge globale. Cet arbitrage <strong>n'existe pas</strong> en raison individuelle.</p><div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:16px;margin:22px 0;"><strong>Attention :</strong> le salaire doit rester <strong>conforme au marché</strong>. L'AVS et le fisc requalifient un dividende déguisé si le salaire est anormalement bas.</div><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;"></th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">RI - bénéfice 60k</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">RI - bénéfice 150k</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl - bénéfice 150k</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Imposition</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Tout en revenu</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Tout en revenu, <strong>forte progressivité</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Salaire + dividende allégé</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Charges sociales</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~10 % sur tout</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~10 % sur tout</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Sur le salaire seulement</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Lisser le résultat</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Non</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Non</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Oui (réserve en société)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Verdict</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">✅ RI idéale</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">⚠️ RI désavantageuse</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">✅ Sàrl gagnante</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">Conclusion presque toujours identique : <strong>à bénéfice faible, la RI gagne ; à bénéfice élevé, la Sàrl reprend l'avantage.</strong> Le point de bascule se situe entre <strong>CHF 80'000 et CHF 120'000 de bénéfice net annuel</strong>.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Alors, quand créer quoi ?</h2><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">Créez (ou restez en) raison individuelle si…</h3><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Vous <strong>démarrez</strong> et validez encore votre activité.</li><li>Votre <strong>bénéfice</strong> est inférieur à ~CHF 80'000–100'000.</li><li>Votre activité présente <strong>peu de risques</strong>.</li><li>Vous voulez des <strong>coûts et une administration minimaux</strong>.</li><li>Vous êtes <strong>seul</strong>, sans associé.</li></ul><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">Créez directement une Sàrl si…</h3><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Votre activité est <strong>risquée</strong> dès le départ.</li><li>Vous démarrez à <strong>plusieurs</strong> ou avec un investisseur.</li><li>Vous prévoyez un <strong>bénéfice élevé</strong> rapidement.</li><li>L'<strong>image</strong> et la séparation patrimoniale comptent dès le lancement.</li><li>Vous voulez pouvoir <strong>revendre ou transmettre</strong> facilement.</li></ul><h3 style="font-weight:700;font-size:1.12rem;margin:26px 0 10px;color:#0f172a;">Basculez de RI vers Sàrl quand…</h3><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li>Votre <strong>bénéfice dépasse durablement ~CHF 100'000</strong>.</li><li>Votre <strong>risque</strong> augmente (personnel, gros contrats).</li><li>Vous voulez <strong>protéger un patrimoine privé</strong> conséquent.</li><li>Vous souhaitez <strong>structurer votre prévoyance</strong>.</li></ul><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Profil / niveau</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Recommandation typique</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Lancement, CA &lt; 100k, bénéfice faible</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Raison individuelle</strong></td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CA 100k–500k, bénéfice &lt; ~80k, faible risque</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>RI</strong> (avec TVA + RC)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Bénéfice ~80k–120k</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Zone de bascule</strong> - au cas par cas</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Bénéfice &gt; 120k, risque élevé ou associés</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Sàrl</strong></td></tr></tbody></table><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Le passage de RI à Sàrl : comment ça marche</h2><p style="margin:0 0 18px;line-height:1.75;">On ne « casse » pas son entreprise. Le transfert se fait via la <strong>loi sur la fusion (LFus)</strong>, par apport de l'entreprise individuelle dans la nouvelle société.</p><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Neutralité fiscale possible :</strong> les réserves latentes peuvent être transférées <strong>sans imposition immédiate</strong> si l'entreprise est reprise à sa valeur comptable et reste imposable en Suisse.</li><li><strong>Délai de blocage de 5 ans :</strong> ne pas vendre ses parts dans les 5 ans, sous peine de rappel d'impôt.</li><li><strong>Effet rétroactif :</strong> l'opération peut souvent rétroagir jusqu'à 6 mois.</li><li><strong>Prévoyance :</strong> vous devenez salarié, donc affilié à la LPP - l'occasion de combler des lacunes par des rachats déductibles.</li></ul><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Combien ça coûte, vraiment ?</h2><table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.93rem;"><thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Poste</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Raison individuelle</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Sàrl</th></tr></thead><tbody><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Capital à immobiliser</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 0</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 20’000 (reste un actif)</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Création</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">CHF 0 à ~700</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">~CHF 2’000 à 3’000</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Comptabilité annuelle</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Plus légère (si &lt; 500k)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Partie double - plus élevée</td></tr><tr><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;"><strong>Déclarations</strong></td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">1 (privée + annexe)</td><td style="padding:8px;border:1px solid #e2e8f0;vertical-align:top;">Société + déclaration privée</td></tr></tbody></table><p style="margin:0 0 18px;line-height:1.75;">La Sàrl coûte plus cher à créer <strong>et</strong> à faire tourner. Ce surcoût ne se justifie que lorsque l'économie fiscale, la protection du patrimoine ou le besoin d'associés le compensent.</p><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Les erreurs fréquentes (vues en cabinet)</h2><ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;"><li><strong>Créer une Sàrl trop tôt</strong>, sans chiffre d'affaires : CHF 20'000 immobilisés et frais disproportionnés.</li><li><strong>Rester en RI trop longtemps</strong> : à 150k de bénéfice, on « offre » des milliers de francs au fisc.</li><li><strong>Oublier la prévoyance</strong> : un indépendant sans 2<sup>e</sup> pilier prépare un trou de retraite.</li><li><strong>Se verser un salaire trop bas en Sàrl</strong> : risque de requalification AVS.</li><li><strong>Sous-estimer la responsabilité</strong> d'une RI - jusqu'au premier impayé.</li></ul><h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">En résumé</h2><p style="margin:0 0 18px;line-height:1.75;">La raison individuelle est idéale pour <strong>démarrer, tester et tant que les bénéfices restent modestes</strong>. La Sàrl prend l'avantage dès que votre <strong>bénéfice dépasse durablement ~CHF 80'000–120'000</strong>, que votre <strong>risque augmente</strong>, que vous démarrez <strong>à plusieurs</strong>, ou que la <strong>protection du patrimoine</strong> devient prioritaire.</p><p style="margin:0 0 18px;line-height:1.75;">Le bon réflexe : <strong>réévaluer chaque année</strong> votre chiffre d'affaires, votre bénéfice et votre exposition au risque.</p><div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:18px;margin:24px 0;"><strong>Vous hésitez sur le bon moment ?</strong><br>Chez NeoFidu, on analyse votre situation concrète - chiffre d'affaires, bénéfice, canton, risque, prévoyance - et on vous dit franchement si la raison individuelle suffit encore ou si la Sàrl vous ferait économiser. <strong>Devis et premier avis gratuits, sans engagement.</strong><br><a href="/demande?type=comptabilite" style="color:#0ea5e9;font-weight:600;">→ Demander un avis gratuit</a></div><p style="color:#64748b;font-size:0.9em;margin:26px 0 0;line-height:1.7;">Cet article est fourni à titre informatif et ne constitue pas un conseil juridique ou fiscal individualisé. Les seuils et taux reflètent l'état du droit en 2026 et varient selon les cantons. Sources officielles : portail PME de la Confédération (kmu.admin.ch), Administration fédérale des contributions (estv.admin.ch), portail ch.ch.</p>`,
     category: "entreprise",
     date: "2026-06-18",
     readTime: 10,
@@ -800,11 +800,11 @@ export const blogArticles: BlogArticle[] = [
     excerpt: "Dès 2026, les plateformes crypto suisses transmettent vos données au fisc, partagées avec 74 pays en 2027. Qui est concerné, et comment se mettre en règle avant qu'il ne soit trop tard.",
     excerptEn: "From 2026, Swiss crypto platforms report client data, shared with 74 countries in 2027. Who is affected and how to get compliant.",
     content: `<p style="margin:0 0 18px;line-height:1.75;">L'époque où l'on pouvait garder ses cryptos « sous le radar » du fisc est terminée. La Suisse a adopté l'<strong>échange automatique de renseignements sur les cryptoactifs</strong>, calqué sur le standard CARF de l'OCDE. Concrètement : dès 2026, les plateformes crypto suisses collectent vos données fiscales, et dès 2027 la Suisse les partagera avec <strong>74 pays partenaires</strong>, dont toute l'Union européenne et le Royaume-Uni.</p>
-<p style="margin:0 0 18px;line-height:1.75;">Si vous détenez du Bitcoin, de l'Ethereum ou tout autre cryptoactif, ce changement vous concerne directement — surtout si vous ne les avez jamais déclarés.</p>
+<p style="margin:0 0 18px;line-height:1.75;">Si vous détenez du Bitcoin, de l'Ethereum ou tout autre cryptoactif, ce changement vous concerne directement - surtout si vous ne les avez jamais déclarés.</p>
 <div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:16px;margin:24px 0;font-weight:600;">📅 À retenir : entrée en vigueur du cadre au 1er janvier 2026 · collecte des données dès 2026 · premier échange international en 2027.</div>
 <h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Ce qui change vraiment en 2026</h2>
 <p style="margin:0 0 18px;line-height:1.75;">Jusqu'ici, le fisc suisse ne recevait <strong>aucune information automatique</strong> sur les avoirs crypto. Vous deviez les déclarer vous-même au titre de la fortune, mais aucune plateforme ne transmettait spontanément vos soldes. Ce système reposait sur la confiance ; il bascule vers la <strong>transparence automatique</strong>.</p>
-<p style="margin:0 0 18px;line-height:1.75;">Les prestataires de services crypto suisses devront identifier leurs clients et déclarer leurs avoirs à l'Administration fédérale des contributions, qui transmettra ces données aux pays de résidence des clients — et recevra en retour les informations sur les Suisses détenant des cryptos à l'étranger.</p>
+<p style="margin:0 0 18px;line-height:1.75;">Les prestataires de services crypto suisses devront identifier leurs clients et déclarer leurs avoirs à l'Administration fédérale des contributions, qui transmettra ces données aux pays de résidence des clients - et recevra en retour les informations sur les Suisses détenant des cryptos à l'étranger.</p>
 <h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Quelles données sont transmises ?</h2>
 <ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;">
 <li><strong>Identité complète</strong> : nom, adresse, juridiction de résidence</li>
@@ -816,9 +816,9 @@ export const blogArticles: BlogArticle[] = [
 <table style="width:100%;border-collapse:collapse;margin:16px 0;">
 <thead><tr><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Profil</th><th style="text-align:left;padding:8px;border:1px solid #e2e8f0;background:#f8fafc;">Concerné ?</th></tr></thead>
 <tbody>
-<tr><td style="padding:8px;border:1px solid #e2e8f0;">Cryptos sur une plateforme (Kraken, Bitstamp...)</td><td style="padding:8px;border:1px solid #e2e8f0;">Oui — la plateforme déclare vos avoirs</td></tr>
-<tr><td style="padding:8px;border:1px solid #e2e8f0;">Résident suisse, plateforme étrangère (UE, UK...)</td><td style="padding:8px;border:1px solid #e2e8f0;">Oui — via l'échange réciproque</td></tr>
-<tr><td style="padding:8px;border:1px solid #e2e8f0;">Self-custody (Ledger, wallet privé)</td><td style="padding:8px;border:1px solid #e2e8f0;">Indirectement — tout passage par une plateforme est tracé</td></tr>
+<tr><td style="padding:8px;border:1px solid #e2e8f0;">Cryptos sur une plateforme (Kraken, Bitstamp...)</td><td style="padding:8px;border:1px solid #e2e8f0;">Oui - la plateforme déclare vos avoirs</td></tr>
+<tr><td style="padding:8px;border:1px solid #e2e8f0;">Résident suisse, plateforme étrangère (UE, UK...)</td><td style="padding:8px;border:1px solid #e2e8f0;">Oui - via l'échange réciproque</td></tr>
+<tr><td style="padding:8px;border:1px solid #e2e8f0;">Self-custody (Ledger, wallet privé)</td><td style="padding:8px;border:1px solid #e2e8f0;">Indirectement - tout passage par une plateforme est tracé</td></tr>
 </tbody>
 </table>
 <p style="margin:0 0 18px;line-height:1.75;">Le self-custody n'est pas un moyen d'échapper au fisc : dès que vous achetez ou revendez via une plateforme régulée, ce point d'entrée ou de sortie est déclaré.</p>
@@ -832,7 +832,7 @@ export const blogArticles: BlogArticle[] = [
 <h2 style="font-weight:700;font-size:1.35rem;margin:38px 0 14px;color:#0f172a;">Rappel : comment les cryptos sont imposées en Suisse</h2>
 <ul style="margin:4px 0 22px;line-height:1.8;padding-left:22px;">
 <li><strong>Impôt sur la fortune (oui)</strong> : vos cryptos sont déclarées à leur valeur au 31 décembre.</li>
-<li><strong>Gains en capital (non, sauf exception)</strong> : les plus-values privées sont en principe exonérées, comme pour les actions — sauf si vous êtes qualifié de commerçant professionnel de titres.</li>
+<li><strong>Gains en capital (non, sauf exception)</strong> : les plus-values privées sont en principe exonérées, comme pour les actions - sauf si vous êtes qualifié de commerçant professionnel de titres.</li>
 <li><strong>Revenus (oui)</strong> : staking, mining, lending et airdrops sont imposés comme du revenu.</li>
 </ul>
 <p style="margin:0 0 18px;line-height:1.75;">Pour le détail, voyez notre <a href="https://neofidu.ch/blog/declarer-cryptomonnaies-suisse-guide-2026">guide pour déclarer ses cryptomonnaies en Suisse</a>.</p>
@@ -867,7 +867,7 @@ export const blogArticles: BlogArticle[] = [
 <br/>
 <h3><strong>Un choc pétrolier aux conséquences immédiates</strong></h3>
 <br/>
-<p>Le conflit en Iran a provoqué une flambée des cours du pétrole. Le prix du baril de Brent a bondi de <strong>17 à 18 %</strong> depuis le début des hostilités, dépassant les 115 dollars à son pic. La prise de contrôle du détroit d'Ormuz par l'Iran — par lequel transite <strong>20 % du pétrole mondial</strong> — a amplifié les craintes d'une pénurie durable.</p>
+<p>Le conflit en Iran a provoqué une flambée des cours du pétrole. Le prix du baril de Brent a bondi de <strong>17 à 18 %</strong> depuis le début des hostilités, dépassant les 115 dollars à son pic. La prise de contrôle du détroit d'Ormuz par l'Iran - par lequel transite <strong>20 % du pétrole mondial</strong> - a amplifié les craintes d'une pénurie durable.</p>
 <br/>
 <p>Pour les ménages suisses, cela se traduit par une hausse directe du prix de l'essence, du mazout et du chauffage. Selon certaines projections, <strong>le conflit pourrait coûter jusqu'à 1 700 francs par ménage suisse</strong> en surcoûts énergétiques et inflation induite.</p>
 <br/>
@@ -896,7 +896,7 @@ export const blogArticles: BlogArticle[] = [
 <br/>
 <p>La hausse des prix de l'énergie se répercute rapidement sur l'inflation. Selon les estimations, une hausse de 5 à 10 % du prix du pétrole ajoute <strong>0,1 à 0,3 point de pourcentage</strong> à l'inflation. Avec un bond de près de 18 % du brut, l'impact est significatif.</p>
 <br/>
-<p>Pour les épargnants suisses, cela signifie que les rendements réels des comptes d'épargne et des obligations à faible coupon <strong>s'érodent davantage</strong>. Le pouvoir d'achat diminue, et le coût de la vie augmente — énergie, transports, alimentation.</p>
+<p>Pour les épargnants suisses, cela signifie que les rendements réels des comptes d'épargne et des obligations à faible coupon <strong>s'érodent davantage</strong>. Le pouvoir d'achat diminue, et le coût de la vie augmente - énergie, transports, alimentation.</p>
 <br/>
 <h3><strong>L'or et les matières premières en forte hausse</strong></h3>
 <br/>
@@ -972,7 +972,7 @@ export const blogArticles: BlogArticle[] = [
 <br/>
 <h3><strong>Canton de Vaud : délai au 15 mars 2026</strong></h3>
 <br/>
-<p>Si vous êtes vaudois, vous avez jusqu'au <strong>15 mars 2026</strong> pour déposer votre déclaration. C'est l'un des délais les plus courts de Romandie. Cependant, vous pouvez demander une <strong>prolongation gratuite jusqu'au 30 juin</strong> via le portail VaudTax — aucune justification n'est requise.</p>
+<p>Si vous êtes vaudois, vous avez jusqu'au <strong>15 mars 2026</strong> pour déposer votre déclaration. C'est l'un des délais les plus courts de Romandie. Cependant, vous pouvez demander une <strong>prolongation gratuite jusqu'au 30 juin</strong> via le portail VaudTax - aucune justification n'est requise.</p>
 <br/>
 <p>Pour les cas complexes (activité indépendante, immobilier, succession), une seconde prolongation jusqu'au <strong>30 septembre</strong> est possible sur demande motivée.</p>
 <br/>
@@ -994,7 +994,7 @@ export const blogArticles: BlogArticle[] = [
 <br/>
 <h3><strong>Canton du Jura : délai au 31 mars 2026</strong></h3>
 <br/>
-<p>Le Jura aligne son délai au <strong>31 mars 2026</strong>, avec une possibilité de prolongation jusqu'au <strong>30 septembre</strong> sur demande motivée — l'une des extensions les plus longues de Romandie. Le portail jurassien permet également de suivre l'état de traitement de votre dossier en temps réel.</p>
+<p>Le Jura aligne son délai au <strong>31 mars 2026</strong>, avec une possibilité de prolongation jusqu'au <strong>30 septembre</strong> sur demande motivée - l'une des extensions les plus longues de Romandie. Le portail jurassien permet également de suivre l'état de traitement de votre dossier en temps réel.</p>
 <br/>
 <h3><strong>Comment demander une prolongation ?</strong></h3>
 <br/>
@@ -1014,11 +1014,11 @@ export const blogArticles: BlogArticle[] = [
 <ul style="margin-left:20px;margin-bottom:16px">
 <li style="margin-bottom:8px">📂 <strong>Préparez vos documents dès janvier</strong> : certificats de salaire, attestations bancaires, justificatifs de déductions</li>
 <li style="margin-bottom:8px">🔔 <strong>Activez les rappels</strong> sur votre smartphone pour les dates limites</li>
-<li style="margin-bottom:8px">💼 <strong>Déléguez à un fiduciaire</strong> si votre situation est complexe — ils ont souvent des délais prolongés d'office</li>
+<li style="margin-bottom:8px">💼 <strong>Déléguez à un fiduciaire</strong> si votre situation est complexe - ils ont souvent des délais prolongés d'office</li>
 <li style="margin-bottom:8px">📬 <strong>Vérifiez votre boîte postale</strong> en janvier : la convocation fiscale officielle y arrive généralement</li>
 </ul>
 <br/>
-<p>Besoin d'aide pour votre déclaration cette année ? <strong>Neofidu</strong> vous accompagne de A à Z, quel que soit votre canton romand — délais, déductions, optimisation fiscale.</p>`,
+<p>Besoin d'aide pour votre déclaration cette année ? <strong>Neofidu</strong> vous accompagne de A à Z, quel que soit votre canton romand - délais, déductions, optimisation fiscale.</p>`,
     category: "fiscalite",
     date: "2026-03-23",
     readTime: 9,
@@ -1030,7 +1030,7 @@ export const blogArticles: BlogArticle[] = [
     slug: "activite-accessoire-suisse-declaration-revenus",
     title: "Activité accessoire en Suisse : comment déclarer ses revenus complémentaires en 2026",
     excerpt: "Freelance le week-end, Airbnb, vente en ligne, cours particuliers : comment déclarer une activité accessoire en Suisse ? Seuils AVS, impôts, risques et conseils pratiques.",
-    content: `<p>Vous travaillez à 100 % et faites des missions de conseil le week-end ? Vous louez votre appartement sur Airbnb ? Vous vendez des créations sur Etsy ? En Suisse, ces <strong>revenus complémentaires doivent être déclarés</strong> — et les règles sont plus nuancées qu'on ne le pense.</p>
+    content: `<p>Vous travaillez à 100 % et faites des missions de conseil le week-end ? Vous louez votre appartement sur Airbnb ? Vous vendez des créations sur Etsy ? En Suisse, ces <strong>revenus complémentaires doivent être déclarés</strong> - et les règles sont plus nuancées qu'on ne le pense.</p>
 <br/>
 <h3><strong>Qu'est-ce qu'une activité accessoire ?</strong></h3>
 <br/>
@@ -1039,7 +1039,7 @@ export const blogArticles: BlogArticle[] = [
 <ul style="margin-left:20px;margin-bottom:16px">
 <li style="margin-bottom:8px">📊 Un <strong>taux d'occupation inférieur</strong> à l'activité principale</li>
 <li style="margin-bottom:8px">💰 Des <strong>revenus généralement plus modestes</strong></li>
-<li style="margin-bottom:8px">⏰ Un caractère <strong>non-exclusif</strong> — vous restez salarié par ailleurs</li>
+<li style="margin-bottom:8px">⏰ Un caractère <strong>non-exclusif</strong> - vous restez salarié par ailleurs</li>
 </ul>
 <br/>
 <h3><strong>Quels types de revenus sont concernés ?</strong></h3>
@@ -1059,7 +1059,7 @@ export const blogArticles: BlogArticle[] = [
 <br/>
 <h3><strong>Le seuil de 2 300 CHF : ce qu'il faut savoir</strong></h3>
 <br/>
-<p>Pour l'AVS/AI, les revenus d'activité accessoire inférieurs à <strong>2 300 CHF par employeur et par année</strong> peuvent être exemptés de cotisations sociales, sur demande explicite. Attention : cette franchise ne s'applique pas à l'impôt sur le revenu — <strong>tous les revenus, même minimes, doivent être déclarés fiscalement</strong>.</p>
+<p>Pour l'AVS/AI, les revenus d'activité accessoire inférieurs à <strong>2 300 CHF par employeur et par année</strong> peuvent être exemptés de cotisations sociales, sur demande explicite. Attention : cette franchise ne s'applique pas à l'impôt sur le revenu - <strong>tous les revenus, même minimes, doivent être déclarés fiscalement</strong>.</p>
 <br/>
 <h3><strong>Comment déclarer concrètement ?</strong></h3>
 <br/>
@@ -1139,7 +1139,7 @@ export const blogArticles: BlogArticle[] = [
     date: "2026-03-15",
     readTime: 12,
     content: `
-<p>Vous payez peut-être trop cher de loyer sans le savoir. En Suisse, votre loyer est directement lié au <strong>taux de référence hypothécaire</strong> — et quand ce taux baisse, vous avez le droit de demander une réduction. Bonne nouvelle : on vous explique tout dans ce guide pratique.</p>
+<p>Vous payez peut-être trop cher de loyer sans le savoir. En Suisse, votre loyer est directement lié au <strong>taux de référence hypothécaire</strong> - et quand ce taux baisse, vous avez le droit de demander une réduction. Bonne nouvelle : on vous explique tout dans ce guide pratique.</p>
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #22c55e;">
 <p style="margin: 0; font-weight: 600;">📊 Taux de référence actuel : 1.25% (juin 2026)</p>
@@ -1228,11 +1228,11 @@ export const blogArticles: BlogArticle[] = [
 <h2 id="procedure"><strong>Comment demander une baisse (en 5 étapes)</strong></p>
 <p>C'est plus simple que vous ne le pensez :</p>
 <ol>
-<li style="margin-bottom: 0.25rem;"><strong>Vérifiez si vous y avez droit</strong> — Comparez le taux actuel avec celui de votre entrée</li>
-<li style="margin-bottom: 0.25rem;"><strong>Calculez votre économie</strong> — Utilisez notre calculateur, c'est instantané</li>
-<li style="margin-bottom: 0.25rem;"><strong>Écrivez une lettre</strong> — On vous donne un modèle juste en-dessous</li>
-<li style="margin-bottom: 0.25rem;"><strong>Envoyez en recommandé</strong> — Gardez toujours une preuve</li>
-<li style="margin-bottom: 0.25rem;"><strong>Respectez le timing</strong> — Minimum 3 mois avant le prochain terme</li>
+<li style="margin-bottom: 0.25rem;"><strong>Vérifiez si vous y avez droit</strong> - Comparez le taux actuel avec celui de votre entrée</li>
+<li style="margin-bottom: 0.25rem;"><strong>Calculez votre économie</strong> - Utilisez notre calculateur, c'est instantané</li>
+<li style="margin-bottom: 0.25rem;"><strong>Écrivez une lettre</strong> - On vous donne un modèle juste en-dessous</li>
+<li style="margin-bottom: 0.25rem;"><strong>Envoyez en recommandé</strong> - Gardez toujours une preuve</li>
+<li style="margin-bottom: 0.25rem;"><strong>Respectez le timing</strong> - Minimum 3 mois avant le prochain terme</li>
 </ol>
 
 <h2 id="modele-lettre"><strong>Modèle de lettre (copier-coller)</strong></p>
@@ -1268,18 +1268,18 @@ Meilleures salutations,
 
 <p><strong>Les délais importants</strong></p>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;"><strong>Quand demander ?</strong> — N'importe quand, mais anticipez</li>
-<li style="margin-bottom: 0.25rem;"><strong>Effet de la baisse</strong> — Au prochain terme (souvent fin de trimestre)</li>
-<li style="margin-bottom: 0.25rem;"><strong>Préavis</strong> — Généralement 3 mois avant le terme</li>
-<li style="margin-bottom: 0.25rem;"><strong>Réponse du bailleur</strong> — Il a 30 jours pour vous répondre</li>
+<li style="margin-bottom: 0.25rem;"><strong>Quand demander ?</strong> - N'importe quand, mais anticipez</li>
+<li style="margin-bottom: 0.25rem;"><strong>Effet de la baisse</strong> - Au prochain terme (souvent fin de trimestre)</li>
+<li style="margin-bottom: 0.25rem;"><strong>Préavis</strong> - Généralement 3 mois avant le terme</li>
+<li style="margin-bottom: 0.25rem;"><strong>Réponse du bailleur</strong> - Il a 30 jours pour vous répondre</li>
 </ul>
 
 <h2 id="refus"><strong>Et si mon bailleur refuse ?</strong></p>
 <p>Pas de panique, vous avez des recours :</p>
 <ol>
-<li style="margin-bottom: 0.25rem;"><strong>L'autorité de conciliation</strong> — C'est gratuit et c'est l'étape obligatoire avant d'aller plus loin</li>
-<li style="margin-bottom: 0.25rem;"><strong>L'ASLOCA</strong> — L'association des locataires peut vous conseiller</li>
-<li style="margin-bottom: 0.25rem;"><strong>Le Tribunal des baux</strong> — En dernier recours</li>
+<li style="margin-bottom: 0.25rem;"><strong>L'autorité de conciliation</strong> - C'est gratuit et c'est l'étape obligatoire avant d'aller plus loin</li>
+<li style="margin-bottom: 0.25rem;"><strong>L'ASLOCA</strong> - L'association des locataires peut vous conseiller</li>
+<li style="margin-bottom: 0.25rem;"><strong>Le Tribunal des baux</strong> - En dernier recours</li>
 </ol>
 
 <p>Bon à savoir : le bailleur peut contester s'il prouve que ses coûts ont augmenté (travaux, inflation...). Mais il doit le démontrer précisément, pas juste le dire.</p>
@@ -1307,7 +1307,7 @@ Meilleures salutations,
 <h2 id="faq"><strong>Questions fréquentes</strong></p>
 
 <h3><strong>La baisse est automatique ?</strong></h3>
-<p>Non ! C'est le piège. Si vous ne demandez rien, votre loyer reste le même. C'est à vous de faire la démarche — et beaucoup de locataires l'ignorent.</p>
+<p>Non ! C'est le piège. Si vous ne demandez rien, votre loyer reste le même. C'est à vous de faire la démarche - et beaucoup de locataires l'ignorent.</p>
 
 <h3><strong>Je peux demander une baisse rétroactive ?</strong></h3>
 <p>Malheureusement non. La baisse s'applique seulement à partir du prochain terme. D'où l'intérêt de ne pas attendre.</p>
@@ -1316,7 +1316,7 @@ Meilleures salutations,
 <p>Oui, c'est possible. Il peut invoquer la hausse de l'IPC ou des frais d'entretien pour réduire votre baisse. Mais il doit le justifier avec des chiffres précis.</p>
 
 <h3><strong>Ça marche dans tous les cantons ?</strong></h3>
-<p>Oui, le taux de référence est national. Que vous soyez à Vaud, Genève, Valais, Fribourg, Neuchâtel ou ailleurs — c'est le même principe.</p>
+<p>Oui, le taux de référence est national. Que vous soyez à Vaud, Genève, Valais, Fribourg, Neuchâtel ou ailleurs - c'est le même principe.</p>
 
 <p><strong>En résumé</strong></p>
 <p>Demander une baisse de loyer, c'est votre droit. Si vous êtes locataire depuis quelques années et que le taux a baissé, vous pouvez potentiellement économiser plusieurs centaines de francs par an. La procédure est simple, gratuite, et ça prend 10 minutes. Alors pourquoi s'en priver ?</p>
@@ -1379,7 +1379,7 @@ Meilleures salutations,
       "expat Switzerland tax"
     ],
     content: `
-<p>Vous venez d'arriver en Suisse avec un permis B ? Vous êtes frontalier et vous bossez à Genève ou Lausanne ? Vous avez remarqué que votre employeur prélève déjà des impôts sur votre salaire — et vous ne comprenez pas trop comment ça marche ?</p>
+<p>Vous venez d'arriver en Suisse avec un permis B ? Vous êtes frontalier et vous bossez à Genève ou Lausanne ? Vous avez remarqué que votre employeur prélève déjà des impôts sur votre salaire - et vous ne comprenez pas trop comment ça marche ?</p>
 
 <p>Pas de panique. Ce guide vous explique tout sur l'<strong>impôt à la source</strong>, et surtout : <strong>comment récupérer de l'argent si vous payez trop</strong> (spoiler : c'est souvent le cas).</p>
 
@@ -1414,7 +1414,7 @@ Meilleures salutations,
 <h3><strong>Le moins bon</strong></h3>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
 <li style="margin-bottom: 0.25rem;">Le barème ne prend pas en compte vos déductions perso</li>
-<li style="margin-bottom: 0.25rem;">Vous payez souvent trop — parfois plusieurs centaines de francs</li>
+<li style="margin-bottom: 0.25rem;">Vous payez souvent trop - parfois plusieurs centaines de francs</li>
 <li style="margin-bottom: 0.25rem;">Il faut demander une rectification pour récupérer le trop-perçu</li>
 </ul>
 
@@ -3114,11 +3114,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3>Quand devient-on trader professionnel ?</h3>
 <p>Si le fisc considère que vous êtes un trader professionnel, vos gains en capital deviennent imposables comme un revenu. L'Administration fédérale des contributions (AFC) utilise cinq critères pour évaluer votre situation :</p>
-<p><strong>1. Volume de transactions élevé</strong> — Si le total de vos transactions dépasse 5 fois votre capital crypto initial sur l'année, c'est un signal fort.</p>
-<p><strong>2. Durée de détention courte</strong> — Vous achetez et revendez régulièrement en moins de 6 mois ? Cela ressemble à une activité professionnelle.</p>
-<p><strong>3. Utilisation de levier ou de marge</strong> — Le recours à l'emprunt pour investir (trading sur marge, futures, options) est un critère déterminant.</p>
-<p><strong>4. Part importante dans vos revenus</strong> — Si vos gains crypto représentent une part significative de votre revenu total, le fisc peut considérer que c'est votre activité principale.</p>
-<p><strong>5. Connaissances professionnelles</strong> — Vous travaillez dans la finance ou la tech ? Vous utilisez des outils d'analyse technique avancés ? Cela peut jouer en votre défaveur.</p>
+<p><strong>1. Volume de transactions élevé</strong> - Si le total de vos transactions dépasse 5 fois votre capital crypto initial sur l'année, c'est un signal fort.</p>
+<p><strong>2. Durée de détention courte</strong> - Vous achetez et revendez régulièrement en moins de 6 mois ? Cela ressemble à une activité professionnelle.</p>
+<p><strong>3. Utilisation de levier ou de marge</strong> - Le recours à l'emprunt pour investir (trading sur marge, futures, options) est un critère déterminant.</p>
+<p><strong>4. Part importante dans vos revenus</strong> - Si vos gains crypto représentent une part significative de votre revenu total, le fisc peut considérer que c'est votre activité principale.</p>
+<p><strong>5. Connaissances professionnelles</strong> - Vous travaillez dans la finance ou la tech ? Vous utilisez des outils d'analyse technique avancés ? Cela peut jouer en votre défaveur.</p>
 <p>Même si vous remplissez un ou deux critères, ce n'est pas automatique : le fisc examine la situation globale. Dans le doute, consultez un spécialiste pour évaluer votre risque de requalification.</p>
 
 <h2>Comment calculer la valeur de ses cryptos au 31 décembre ?</h2>
@@ -3206,7 +3206,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p><strong>Calendrier pour la Suisse :</strong> initialement prévu pour 2026, le CARF a été repoussé à <strong>2027</strong> en Suisse. Les premiers échanges de données auront donc lieu en 2028, sur la base des transactions de 2027.</p>
 <p>Ce que cela change pour vous :</p>
 <p><strong>1. Ne pas déclarer n'est plus une option.</strong> Avec l'échange automatique, toute omission sera détectable.</p>
-<p><strong>2. Les wallets privés restent hors du radar</strong> — pour l'instant. Le CARF ne couvre que les plateformes centralisées (CEX). Vos wallets Ledger ou MetaMask ne sont pas concernés directement, mais les transferts vers un exchange le seront.</p>
+<p><strong>2. Les wallets privés restent hors du radar</strong> - pour l'instant. Le CARF ne couvre que les plateformes centralisées (CEX). Vos wallets Ledger ou MetaMask ne sont pas concernés directement, mais les transferts vers un exchange le seront.</p>
 <p><strong>3. Régularisez maintenant.</strong> Si vous n'avez pas déclaré vos cryptos les années précédentes, une dénonciation spontanée avant 2027 vous évitera les pénalités (une seule fois dans votre vie).</p>
 <p>Pour en savoir plus, consultez notre article dédié : <a href="/blog/carf-2026-fin-secret-crypto-suisse">CARF 2026 : la fin du secret pour les cryptos en Suisse</a>.</p>
 
@@ -4732,7 +4732,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     slug: "creer-entreprise-suisse-2026",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=60",
     title: "Créer une entreprise en Suisse 2026 : guide",
-    titleEn: "Start a Business in Switzerland 2026 — Step-by-Step Guide",
+    titleEn: "Start a Business in Switzerland 2026 - Step-by-Step Guide",
     excerpt:
       "Sàrl, SA ou indépendant ? Étapes, coûts et démarches pour créer votre entreprise en Suisse en 2026. Guide pratique de nos experts fiduciaires.",
     excerptEn: "LLC, AG or self-employed? Discover the steps, costs and procedures to start your business in Switzerland in 2026. Practical guide by our fiduciary experts.",
@@ -4759,7 +4759,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Les moins :</strong></p>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">Responsabilité illimitée — si ça tourne mal, vos biens personnels sont en jeu</li>
+<li style="margin-bottom: 0.25rem;">Responsabilité illimitée - si ça tourne mal, vos biens personnels sont en jeu</li>
 <li style="margin-bottom: 0.25rem;">Certains clients préfèrent travailler avec des "vraies" sociétés</li>
 <li style="margin-bottom: 0.25rem;">Impôts sur le revenu personnel (ça peut vite monter)</li>
 </ul>
@@ -4777,7 +4777,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p><strong>Ce qu'il faut savoir :</strong></p>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
 <li style="margin-bottom: 0.25rem;"><strong>Capital minimum</strong> : CHF 20'000.- (à déposer en entier)</li>
-<li style="margin-bottom: 0.25rem;"><strong>Responsabilité limitée</strong> au capital — vos biens perso sont protégés</li>
+<li style="margin-bottom: 0.25rem;"><strong>Responsabilité limitée</strong> au capital - vos biens perso sont protégés</li>
 <li style="margin-bottom: 0.25rem;">Passage obligatoire chez le notaire</li>
 <li style="margin-bottom: 0.25rem;">Inscription au Registre du Commerce</li>
 </ul>
@@ -6340,7 +6340,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>L\'initiative « Pas de Suisse à 10 millions ! » : de quoi s\'agit-il ?</strong></p>
 
-<p>Déposée par l\'Union Démocratique du Centre (UDC), cette initiative populaire fédérale vise à inscrire dans la Constitution suisse une limite de <strong>10 millions d\'habitants</strong> d\'ici 2050. Concrètement, si la population résidante permanente dépasse 9,5 millions avant cette échéance, les autorités seraient contraintes d\'agir — notamment en matière d\'asile et de regroupement familial. En dernier recours, la Suisse devrait dénoncer l\'Accord sur la libre circulation des personnes avec l\'Union européenne.</p>
+<p>Déposée par l\'Union Démocratique du Centre (UDC), cette initiative populaire fédérale vise à inscrire dans la Constitution suisse une limite de <strong>10 millions d\'habitants</strong> d\'ici 2050. Concrètement, si la population résidante permanente dépasse 9,5 millions avant cette échéance, les autorités seraient contraintes d\'agir - notamment en matière d\'asile et de regroupement familial. En dernier recours, la Suisse devrait dénoncer l\'Accord sur la libre circulation des personnes avec l\'Union européenne.</p>
 
 <p>C\'est là qu\'intervient la redoutable <strong>clause guillotine</strong> des Bilatérales I : la résiliation de l\'accord sur la libre circulation entraînerait automatiquement la caducité des six autres accords sectoriels. Un bouleversement profond des relations économiques entre la Suisse et son principal partenaire commercial.</p>
 
@@ -6382,7 +6382,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>En cas de <strong>oui</strong> le 14 juin, les effets seraient contrastés. Certains aspects pourraient être perçus positivement à court terme :</p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;"><strong>Détente sur le marché locatif</strong> : un ralentissement de l\'immigration réduirait la pression sur la demande de logements, ce qui pourrait stabiliser — voire légèrement faire baisser — les loyers dans certaines régions, rendant l\'accès au logement un peu plus accessible pour les résidents.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Détente sur le marché locatif</strong> : un ralentissement de l\'immigration réduirait la pression sur la demande de logements, ce qui pourrait stabiliser - voire légèrement faire baisser - les loyers dans certaines régions, rendant l\'accès au logement un peu plus accessible pour les résidents.</li>
 <li style="margin-bottom: 0.25rem;"><strong>Moindre pression sur les infrastructures</strong> : une croissance démographique plus lente signifie moins de besoins urgents d\'expansion des transports, des écoles et des services de santé, ce qui pourrait limiter la hausse des dépenses publiques cantonales à court terme.</li>
 </ul>
 
@@ -6427,7 +6427,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Pour les PME de Suisse romande, l\'enjeu est double. D\'un côté, la croissance démographique élargit le bassin de consommateurs et de talents disponibles. De l\'autre, une restriction de l\'immigration compliquerait considérablement le recrutement dans des secteurs déjà en tension : santé, construction, hôtellerie-restauration, technologies.</p>
 
-<p>Sans accès facilité aux travailleurs de l\'UE/AELE, les entreprises devraient recourir aux procédures de contingentement — plus lourdes, moins flexibles et génératrices de coûts supplémentaires qui se répercutent directement sur la charge fiscale globale des sociétés.</p>
+<p>Sans accès facilité aux travailleurs de l\'UE/AELE, les entreprises devraient recourir aux procédures de contingentement - plus lourdes, moins flexibles et génératrices de coûts supplémentaires qui se répercutent directement sur la charge fiscale globale des sociétés.</p>
 
 <br/>
 
@@ -6457,7 +6457,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Pourquoi la Suisse n'avait-elle pas la faillite personnelle ?</strong></p>
 
-<p>Contrairement à la France (surendettement Banque de France), l'Allemagne (Privatinsolvenz) ou les États-Unis (Chapter 7), la Suisse ne disposait d'aucune procédure permettant à un particulier d'effacer ses dettes. Le droit des poursuites (LP) réservait la faillite aux personnes inscrites au registre du commerce — soit les indépendants et dirigeants d'entreprises.</p>
+<p>Contrairement à la France (surendettement Banque de France), l'Allemagne (Privatinsolvenz) ou les États-Unis (Chapter 7), la Suisse ne disposait d'aucune procédure permettant à un particulier d'effacer ses dettes. Le droit des poursuites (LP) réservait la faillite aux personnes inscrites au registre du commerce - soit les indépendants et dirigeants d'entreprises.</p>
 
 <p>Pour les autres, la seule issue était l'accumulation d'<strong>actes de défaut de biens</strong> : des créances qui survivaient vingt ans, bloquant l'accès à un compte, un logement ou un emploi. Selon l'Office fédéral de la statistique, <strong>3 millions de poursuites</strong> sont ouvertes chaque année en Suisse et environ <strong>15 % des ménages</strong> se trouvent en situation de fragilité financière.</p>
 
@@ -6471,7 +6471,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <li style="margin-bottom: 0.25rem;"><strong>Procédure ouverte</strong> aux particuliers surendettés sans aucune perspective de redressement financier</li>
 <li style="margin-bottom: 0.25rem;"><strong>Durée de 3 ans</strong> pendant lesquels le débiteur vit sur le minimum vital et reverse tout excédent à ses créanciers</li>
 <li style="margin-bottom: 0.25rem;"><strong>Effacement des dettes</strong> restantes à l'issue des 3 ans</li>
-<li style="margin-bottom: 0.25rem;"><strong>Procédure utilisable une seule fois dans une vie</strong> — les deux chambres ont écarté la possibilité d'y recourir tous les dix ans</li>
+<li style="margin-bottom: 0.25rem;"><strong>Procédure utilisable une seule fois dans une vie</strong> - les deux chambres ont écarté la possibilité d'y recourir tous les dix ans</li>
 </ul>
 
 <br/>
@@ -6499,8 +6499,8 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
 <li style="margin-bottom: 0.25rem;"><strong>Fin de la spirale perpétuelle</strong> : plus d'actes de défaut de biens qui vous suivent vingt ans. À l'issue des 3 ans, c'est une page blanche.</li>
-<li style="margin-bottom: 0.25rem;"><strong>Accès au crédit fortement limité</strong> pendant la procédure — et quelques années après, selon les fichiers de solvabilité (ZEK, IKO).</li>
-<li style="margin-bottom: 0.25rem;"><strong>Biens protégés</strong> : le minimum vital est garanti — loyer, nourriture, transport nécessaire au travail.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Accès au crédit fortement limité</strong> pendant la procédure - et quelques années après, selon les fichiers de solvabilité (ZEK, IKO).</li>
+<li style="margin-bottom: 0.25rem;"><strong>Biens protégés</strong> : le minimum vital est garanti - loyer, nourriture, transport nécessaire au travail.</li>
 <li style="margin-bottom: 0.25rem;"><strong>Créanciers partiellement remboursés</strong> seulement : les créanciers chirographaires (cartes de crédit, prêts personnels) seront en pratique les plus lésés.</li>
 </ul>
 
@@ -6521,7 +6521,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Un point fiscal à ne pas négliger</strong></p>
 
-<p>Du point de vue fiscal, l'effacement de dettes peut dans certains cas générer un <strong>revenu imposable théorique</strong>. Si un créancier abandonne formellement sa créance, l'administration fiscale pourrait qualifier cette remise de dette en revenu extraordinaire. Chaque situation devra être analysée individuellement — un accompagnement que Neofidu propose aux particuliers comme aux dirigeants confrontés à des situations patrimoniales complexes.</p>
+<p>Du point de vue fiscal, l'effacement de dettes peut dans certains cas générer un <strong>revenu imposable théorique</strong>. Si un créancier abandonne formellement sa créance, l'administration fiscale pourrait qualifier cette remise de dette en revenu extraordinaire. Chaque situation devra être analysée individuellement - un accompagnement que Neofidu propose aux particuliers comme aux dirigeants confrontés à des situations patrimoniales complexes.</p>
 
 <div><a href="/contact">Prendre rendez-vous avec un expert Neofidu →</a></div>`,
     category: 'actualites',
@@ -6548,7 +6548,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
       "déclaration impôts sans parler français suisse",
       "120000 threshold withholding tax switzerland",
     ],
-    content: `<p>You've just arrived in French-speaking Switzerland — Geneva, Lausanne, Neuchâtel, Fribourg — and every administrative document is in French. Taxes are no exception. If you hold a <strong>B or L permit</strong>, Swiss law automatically withholds income tax at source each month. This system is called <strong>impôt à la source</strong> in French, or <em>quellensteuer</em> in German. It sounds simple, but it hides several important subtleties that could cost you money.</p>
+    content: `<p>You've just arrived in French-speaking Switzerland - Geneva, Lausanne, Neuchâtel, Fribourg - and every administrative document is in French. Taxes are no exception. If you hold a <strong>B or L permit</strong>, Swiss law automatically withholds income tax at source each month. This system is called <strong>impôt à la source</strong> in French, or <em>quellensteuer</em> in German. It sounds simple, but it hides several important subtleties that could cost you money.</p>
 
 <br/>
 
@@ -6556,14 +6556,14 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Instead of filing a tax return, your employer deducts income tax directly from your payslip each month and pays it to the cantonal tax authority on your behalf. The rate applied is based on a pre-defined tax code (code A, B, C, H…) that depends on your civil status, whether your spouse works, and your canton of residence. You receive a certificate at the end of the year (attestation de retenue d'impôt à la source) showing how much was withheld.</p>
 
-<p>This system applies by default to <strong>all foreign nationals with a B or L permit</strong> whose gross income stays below <strong>CHF 120,000/year</strong>. Above this threshold — or in specific situations — you must file a full tax return like any Swiss national.</p>
+<p>This system applies by default to <strong>all foreign nationals with a B or L permit</strong> whose gross income stays below <strong>CHF 120,000/year</strong>. Above this threshold - or in specific situations - you must file a full tax return like any Swiss national.</p>
 
 <br/>
 
-<p><strong>The CHF 120,000 threshold — what changes?</strong></p>
+<p><strong>The CHF 120,000 threshold - what changes?</strong></p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;"><strong>Below CHF 120,000/year</strong>: withholding tax applies automatically. You don't need to file a return — unless you want to claim additional deductions.</li>
+<li style="margin-bottom: 0.25rem;"><strong>Below CHF 120,000/year</strong>: withholding tax applies automatically. You don't need to file a return - unless you want to claim additional deductions.</li>
 <li style="margin-bottom: 0.25rem;"><strong>Above CHF 120,000/year</strong>: you are required to file a full tax return (déclaration d'impôts). Withholding tax already paid is deducted from the final bill.</li>
 <li style="margin-bottom: 0.25rem;"><strong>You can also voluntarily request rectification</strong> (demande de rectification) even below the threshold if you have significant deductions: pillar 3a contributions, professional expenses, alimony, medical costs.</li>
 </ul>
@@ -6572,7 +6572,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p><strong>Can I get a refund? The rectification process</strong></p>
 
-<p>Yes — and this is where most expats leave money on the table. The withholding tax rate is calculated on a flat basis. It doesn't account for your actual deductions. If you have made <strong>pillar 3a contributions</strong>, paid for <strong>professional training</strong>, commuted long distances, or paid <strong>alimony</strong>, you can file a <em>demande de rectification</em> with the cantonal tax administration after 31 March of the following year. In Geneva and Vaud, this can result in significant refunds — typically CHF 500 to several thousand francs depending on your situation.</p>
+<p>Yes - and this is where most expats leave money on the table. The withholding tax rate is calculated on a flat basis. It doesn't account for your actual deductions. If you have made <strong>pillar 3a contributions</strong>, paid for <strong>professional training</strong>, commuted long distances, or paid <strong>alimony</strong>, you can file a <em>demande de rectification</em> with the cantonal tax administration after 31 March of the following year. In Geneva and Vaud, this can result in significant refunds - typically CHF 500 to several thousand francs depending on your situation.</p>
 
 <p>The deadline to file for rectification is generally <strong>31 March of the year following the tax year</strong>. Missing this deadline means losing your refund permanently.</p>
 
@@ -6581,17 +6581,17 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p><strong>Key documents you'll receive (in French)</strong></p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;"><strong>Attestation de retenue d'impôt à la source</strong> — Annual certificate from your employer showing total withheld tax</li>
-<li style="margin-bottom: 0.25rem;"><strong>Barème / code de retenue</strong> — Your tax code (A0, A1, B0, C0…) shown on your payslip</li>
-<li style="margin-bottom: 0.25rem;"><strong>Demande de rectification</strong> — Form to claim deductions and request a refund or adjustment</li>
-<li style="margin-bottom: 0.25rem;"><strong>Bordereau de taxation ordinaire ultérieure (TOU)</strong> — Applies if your income exceeds CHF 120,000 or you change status</li>
+<li style="margin-bottom: 0.25rem;"><strong>Attestation de retenue d'impôt à la source</strong> - Annual certificate from your employer showing total withheld tax</li>
+<li style="margin-bottom: 0.25rem;"><strong>Barème / code de retenue</strong> - Your tax code (A0, A1, B0, C0…) shown on your payslip</li>
+<li style="margin-bottom: 0.25rem;"><strong>Demande de rectification</strong> - Form to claim deductions and request a refund or adjustment</li>
+<li style="margin-bottom: 0.25rem;"><strong>Bordereau de taxation ordinaire ultérieure (TOU)</strong> - Applies if your income exceeds CHF 120,000 or you change status</li>
 </ul>
 
 <br/>
 
 <p><strong>How Neofidu helps expats navigate this in English</strong></p>
 
-<p>Neofidu's entire expat service is delivered <strong>in English</strong>. We review your payslips, identify missed deductions, prepare your rectification request, and communicate with the canton on your behalf — all without requiring you to speak French. Our service is 100% online, starting from <strong>CHF 50</strong>.</p>
+<p>Neofidu's entire expat service is delivered <strong>in English</strong>. We review your payslips, identify missed deductions, prepare your rectification request, and communicate with the canton on your behalf - all without requiring you to speak French. Our service is 100% online, starting from <strong>CHF 50</strong>.</p>
 
 <p>We work with expats across all French-speaking cantons: Geneva, Vaud, Valais, Fribourg, Neuchâtel, and Jura.</p>
 
@@ -6614,8 +6614,8 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&auto=format&fit=crop&q=80",
     title: "Suisses de l'étranger : 7 erreurs fiscales courantes (et comment les éviter)",
     titleEn: "Swiss Abroad: 7 Common Tax Mistakes (and How to Avoid Them)",
-    excerpt: "Vous quittez la Suisse, vous y revenez ou vous vivez à l'étranger avec des liens en Suisse ? Voici les erreurs fiscales que l'on voit le plus souvent — et ce qu'il faut faire à la place.",
-    excerptEn: "Leaving Switzerland, coming back, or living abroad with Swiss ties? Here are the most common tax mistakes we see — and what to do instead.",
+    excerpt: "Vous quittez la Suisse, vous y revenez ou vous vivez à l'étranger avec des liens en Suisse ? Voici les erreurs fiscales que l'on voit le plus souvent - et ce qu'il faut faire à la place.",
+    excerptEn: "Leaving Switzerland, coming back, or living abroad with Swiss ties? Here are the most common tax mistakes we see - and what to do instead.",
     keywords: [
       "suisses de l'étranger impôts",
       "quitter la suisse fiscalité",
@@ -6628,11 +6628,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
       "déclaration impôts suisses abroad",
       "cinquième suisse fiscalité",
     ],
-    content: `<p>Ils sont plus de <strong>838'000</strong>. Les Suisses de l'étranger — la fameuse « cinquième Suisse » — représentent 11 % de la population du pays. Chaque année, des milliers quittent la Suisse, d'autres y reviennent, et beaucoup gardent des liens financiers avec la Confédération sans toujours savoir ce que ça implique fiscalement.</p>
+    content: `<p>Ils sont plus de <strong>838'000</strong>. Les Suisses de l'étranger - la fameuse « cinquième Suisse » - représentent 11 % de la population du pays. Chaque année, des milliers quittent la Suisse, d'autres y reviennent, et beaucoup gardent des liens financiers avec la Confédération sans toujours savoir ce que ça implique fiscalement.</p>
 
 <br/>
 
-<p>Que vous prépariez votre départ, que vous viviez déjà à l'étranger, ou que vous planifiez un retour, voici les erreurs les plus fréquentes que nous voyons chez NeoFidu — et surtout, comment les éviter.</p>
+<p>Que vous prépariez votre départ, que vous viviez déjà à l'étranger, ou que vous planifiez un retour, voici les erreurs les plus fréquentes que nous voyons chez NeoFidu - et surtout, comment les éviter.</p>
 
 <br/>
 
@@ -6668,7 +6668,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Ce qu'ils oublient souvent : dans cette déclaration, vous devez indiquer <strong>l'ensemble de vos revenus et de votre fortune mondiale</strong> — y compris votre salaire à l'étranger, vos comptes bancaires étrangers, votre maison à l'étranger, etc.</p>
+<p>Ce qu'ils oublient souvent : dans cette déclaration, vous devez indiquer <strong>l'ensemble de vos revenus et de votre fortune mondiale</strong> - y compris votre salaire à l'étranger, vos comptes bancaires étrangers, votre maison à l'étranger, etc.</p>
 
 <br/>
 
@@ -6676,7 +6676,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>👉 <strong>Ce qu'il faut faire :</strong> Déclarez honnêtement tous vos revenus mondiaux. Si vous ne le faites pas, l'administration fiscale peut estimer vos revenus elle-même — et en général, ce n'est pas en votre faveur.</p>
+<p>👉 <strong>Ce qu'il faut faire :</strong> Déclarez honnêtement tous vos revenus mondiaux. Si vous ne le faites pas, l'administration fiscale peut estimer vos revenus elle-même - et en général, ce n'est pas en votre faveur.</p>
 
 <br/>
 
@@ -6695,11 +6695,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Dans les deux cas, un <strong>impôt à la source</strong> est prélevé en Suisse au moment du retrait. Le taux dépend du canton où siège votre caisse de pension — et les écarts entre cantons sont importants (parfois du simple au triple).</p>
+<p>Dans les deux cas, un <strong>impôt à la source</strong> est prélevé en Suisse au moment du retrait. Le taux dépend du canton où siège votre caisse de pension - et les écarts entre cantons sont importants (parfois du simple au triple).</p>
 
 <br/>
 
-<p>Si une convention de double imposition existe avec votre pays de résidence, vous pouvez souvent <strong>demander le remboursement</strong> de cet impôt à la source suisse — mais il faudra alors déclarer ce revenu dans votre pays.</p>
+<p>Si une convention de double imposition existe avec votre pays de résidence, vous pouvez souvent <strong>demander le remboursement</strong> de cet impôt à la source suisse - mais il faudra alors déclarer ce revenu dans votre pays.</p>
 
 <br/>
 
@@ -6731,7 +6731,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Quand vous vivez à l'étranger, vous ne cotisez plus automatiquement à l'<strong>AVS</strong>. Chaque année sans cotisation crée une <strong>lacune</strong> qui réduit votre future rente de vieillesse. Une année manquante, c'est environ <strong>2,3 % de rente en moins</strong> — à vie.</p>
+<p>Quand vous vivez à l'étranger, vous ne cotisez plus automatiquement à l'<strong>AVS</strong>. Chaque année sans cotisation crée une <strong>lacune</strong> qui réduit votre future rente de vieillesse. Une année manquante, c'est environ <strong>2,3 % de rente en moins</strong> - à vie.</p>
 
 <br/>
 
@@ -6747,7 +6747,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>👉 <strong>Ce qu'il faut faire :</strong> Avant de partir, renseignez-vous sur l'AVS facultative. Le délai de 12 mois est strict — si vous le manquez, c'est trop tard. Demandez un extrait de compte AVS pour connaître votre situation actuelle.</p>
+<p>👉 <strong>Ce qu'il faut faire :</strong> Avant de partir, renseignez-vous sur l'AVS facultative. Le délai de 12 mois est strict - si vous le manquez, c'est trop tard. Demandez un extrait de compte AVS pour connaître votre situation actuelle.</p>
 
 <br/>
 
@@ -6780,7 +6780,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Depuis 2017, la Suisse échange automatiquement des informations financières avec plus de <strong>100 pays</strong>. Concrètement, si vous avez un compte bancaire en Suisse et que vous résidez à l'étranger, votre banque suisse transmet des informations à l'administration fiscale de votre pays de résidence — et vice versa.</p>
+<p>Depuis 2017, la Suisse échange automatiquement des informations financières avec plus de <strong>100 pays</strong>. Concrètement, si vous avez un compte bancaire en Suisse et que vous résidez à l'étranger, votre banque suisse transmet des informations à l'administration fiscale de votre pays de résidence - et vice versa.</p>
 
 <br/>
 
@@ -6800,7 +6800,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>La fiscalité des Suisses de l'étranger est un domaine où les erreurs coûtent cher — mais où une bonne planification fait toute la différence. Que ce soit pour un départ, un séjour prolongé à l'étranger, ou un retour en Suisse, chaque étape mérite une attention particulière.</p>
+<p>La fiscalité des Suisses de l'étranger est un domaine où les erreurs coûtent cher - mais où une bonne planification fait toute la différence. Que ce soit pour un départ, un séjour prolongé à l'étranger, ou un retour en Suisse, chaque étape mérite une attention particulière.</p>
 
 <br/>
 
@@ -6808,7 +6808,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Besoin d'un accompagnement personnalisé ? <strong><a href="/contact">Contactez-nous</a></strong> — nous sommes là pour vous aiguiller.</p>
+<p>Besoin d'un accompagnement personnalisé ? <strong><a href="/contact">Contactez-nous</a></strong> - nous sommes là pour vous aiguiller.</p>
 
 <br/>
 
@@ -6826,8 +6826,8 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&auto=format&fit=crop&q=80",
     title: "Que faire avec mon épargne en Suisse ? Guide complet pour ne pas laisser dormir son argent",
     titleEn: "What to Do With Your Savings in Switzerland? A Complete Guide to Making Your Money Work",
-    excerpt: "Votre argent dort sur un compte épargne à 0,1 % ? En Suisse, il existe des options bien plus intéressantes — à condition de les connaître. Tour d'horizon des solutions, du 3ème pilier aux placements en passant par le rachat LPP.",
-    excerptEn: "Is your money sitting in a savings account earning 0.1%? In Switzerland, there are much better options — if you know about them. Here's an overview from pillar 3a to investments and pension buybacks.",
+    excerpt: "Votre argent dort sur un compte épargne à 0,1 % ? En Suisse, il existe des options bien plus intéressantes - à condition de les connaître. Tour d'horizon des solutions, du 3ème pilier aux placements en passant par le rachat LPP.",
+    excerptEn: "Is your money sitting in a savings account earning 0.1%? In Switzerland, there are much better options - if you know about them. Here's an overview from pillar 3a to investments and pension buybacks.",
     keywords: [
       "épargne suisse",
       "que faire avec son argent suisse",
@@ -6840,7 +6840,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
       "prévoyance suisse",
       "optimiser épargne fiscalité",
     ],
-    content: `<p>Vous avez de l'argent de côté. Peut-être quelques milliers de francs, peut-être bien plus. Et cet argent dort sur un compte épargne classique, celui que vous avez ouvert quand vous étiez étudiant. Résultat : votre banque vous verse <strong>0,1 % d'intérêt par an</strong> — voire zéro — pendant que l'inflation grignote votre pouvoir d'achat.</p>
+    content: `<p>Vous avez de l'argent de côté. Peut-être quelques milliers de francs, peut-être bien plus. Et cet argent dort sur un compte épargne classique, celui que vous avez ouvert quand vous étiez étudiant. Résultat : votre banque vous verse <strong>0,1 % d'intérêt par an</strong> - voire zéro - pendant que l'inflation grignote votre pouvoir d'achat.</p>
 
 <br/>
 
@@ -6860,7 +6860,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Le problème : les taux d'intérêt sont au plancher. En moyenne, les banques suisses offrent environ <strong>0,11 %</strong> en 2026. Quelques banques régionales font mieux — la Caisse d'Épargne d'Aubonne par exemple propose encore 1 % — mais c'est l'exception, pas la règle.</p>
+<p>Le problème : les taux d'intérêt sont au plancher. En moyenne, les banques suisses offrent environ <strong>0,11 %</strong> en 2026. Quelques banques régionales font mieux - la Caisse d'Épargne d'Aubonne par exemple propose encore 1 % - mais c'est l'exception, pas la règle.</p>
 
 <br/>
 
@@ -6891,7 +6891,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Selon votre canton et votre taux d'imposition, un versement de 7'258 CHF peut vous faire économiser entre <strong>1'500 et 2'500 CHF d'impôts</strong>. C'est un rendement immédiat de 20 à 35 % — aucun placement ne fait mieux.</p>
+<p>Selon votre canton et votre taux d'imposition, un versement de 7'258 CHF peut vous faire économiser entre <strong>1'500 et 2'500 CHF d'impôts</strong>. C'est un rendement immédiat de 20 à 35 % - aucun placement ne fait mieux.</p>
 
 <br/>
 
@@ -6922,7 +6922,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Le montant racheté est <strong>intégralement déductible</strong> de votre revenu imposable — sans plafond annuel (le plafond est le montant de votre lacune). Si vous avez une lacune de 80'000 CHF, vous pouvez théoriquement verser 80'000 CHF en une année et déduire cette somme entière de vos impôts.</p>
+<p>Le montant racheté est <strong>intégralement déductible</strong> de votre revenu imposable - sans plafond annuel (le plafond est le montant de votre lacune). Si vous avez une lacune de 80'000 CHF, vous pouvez théoriquement verser 80'000 CHF en une année et déduire cette somme entière de vos impôts.</p>
 
 <br/>
 
@@ -6954,15 +6954,15 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Les <strong>ETF</strong> (Exchange Traded Funds) sont des fonds qui répliquent un indice boursier — par exemple le SMI suisse, le S&P 500 américain, ou un indice mondial. Ils offrent une diversification instantanée à des frais très bas (souvent moins de 0,2 % par an).</p>
+<p>Les <strong>ETF</strong> (Exchange Traded Funds) sont des fonds qui répliquent un indice boursier - par exemple le SMI suisse, le S&P 500 américain, ou un indice mondial. Ils offrent une diversification instantanée à des frais très bas (souvent moins de 0,2 % par an).</p>
 
 <br/>
 
-<p>Sur les 30 dernières années, un portefeuille diversifié en actions mondiales a généré un rendement annuel moyen de <strong>7 à 8 %</strong> — bien loin des 0,1 % du compte épargne. Bien sûr, il y a des années de baisse, mais sur un horizon de 10 ans ou plus, la bourse a toujours été plus performante que l'épargne bancaire.</p>
+<p>Sur les 30 dernières années, un portefeuille diversifié en actions mondiales a généré un rendement annuel moyen de <strong>7 à 8 %</strong> - bien loin des 0,1 % du compte épargne. Bien sûr, il y a des années de baisse, mais sur un horizon de 10 ans ou plus, la bourse a toujours été plus performante que l'épargne bancaire.</p>
 
 <br/>
 
-<p>En Suisse, plusieurs courtiers facilitent l'accès aux ETF : <strong>Swissquote</strong>, <strong>Interactive Brokers</strong>, <strong>Yuh</strong>, <strong>Neon Invest</strong>, ou encore <strong>PostFinance</strong>. Les frais varient considérablement — comparez avant de choisir.</p>
+<p>En Suisse, plusieurs courtiers facilitent l'accès aux ETF : <strong>Swissquote</strong>, <strong>Interactive Brokers</strong>, <strong>Yuh</strong>, <strong>Neon Invest</strong>, ou encore <strong>PostFinance</strong>. Les frais varient considérablement - comparez avant de choisir.</p>
 
 <br/>
 
@@ -6970,7 +6970,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>👉 <strong>Le verdict :</strong> Si vous avez un horizon de placement d'au moins 5 à 10 ans et que vous supportez les fluctuations, les ETF sont le meilleur rapport rendement/frais. Commencez petit si vous débutez — même 200 CHF par mois font une grande différence sur 20 ans.</p>
+<p>👉 <strong>Le verdict :</strong> Si vous avez un horizon de placement d'au moins 5 à 10 ans et que vous supportez les fluctuations, les ETF sont le meilleur rapport rendement/frais. Commencez petit si vous débutez - même 200 CHF par mois font une grande différence sur 20 ans.</p>
 
 <br/>
 
@@ -6978,7 +6978,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Devenir propriétaire en Suisse reste un objectif pour beaucoup. Mais les prix élevés — souvent <strong>supérieurs à 1 million de CHF</strong> dans les agglomérations — rendent l'accession difficile. Vous devez apporter au minimum <strong>20 % de fonds propres</strong>, dont au moins 10 % en « vrai » cash (pas du 2ème pilier).</p>
+<p>Devenir propriétaire en Suisse reste un objectif pour beaucoup. Mais les prix élevés - souvent <strong>supérieurs à 1 million de CHF</strong> dans les agglomérations - rendent l'accession difficile. Vous devez apporter au minimum <strong>20 % de fonds propres</strong>, dont au moins 10 % en « vrai » cash (pas du 2ème pilier).</p>
 
 <br/>
 
@@ -7002,7 +7002,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>👉 <strong>Le verdict :</strong> L'immobilier est un bon investissement à long terme en Suisse, mais il nécessite un capital de départ important. Ne vous précipitez pas — et ne videz pas votre prévoyance pour acheter.</p>
+<p>👉 <strong>Le verdict :</strong> L'immobilier est un bon investissement à long terme en Suisse, mais il nécessite un capital de départ important. Ne vous précipitez pas - et ne videz pas votre prévoyance pour acheter.</p>
 
 <br/>
 
@@ -7025,7 +7025,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Avec un amortissement direct, votre dette diminue, et donc vos intérêts aussi — ce qui réduit votre déduction fiscale. L'amortissement indirect maintient les deux avantages en parallèle.</p>
+<p>Avec un amortissement direct, votre dette diminue, et donc vos intérêts aussi - ce qui réduit votre déduction fiscale. L'amortissement indirect maintient les deux avantages en parallèle.</p>
 
 <br/>
 
@@ -7046,7 +7046,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
 
 <ul style="margin-left:20px;margin-bottom:16px">
-<li style="margin-bottom:8px">🪙 Les <strong>gains en capital sur les cryptos</strong> sont en principe <strong>exonérés d'impôts</strong> pour les investisseurs privés en Suisse — comme pour les actions. Mais attention : si le fisc considère que vous tradez de manière professionnelle (volume élevé, fréquence, effet de levier), vous pourriez être requalifié comme « commerçant professionnel de titres » et vos gains deviendraient imposables.</li>
+<li style="margin-bottom:8px">🪙 Les <strong>gains en capital sur les cryptos</strong> sont en principe <strong>exonérés d'impôts</strong> pour les investisseurs privés en Suisse - comme pour les actions. Mais attention : si le fisc considère que vous tradez de manière professionnelle (volume élevé, fréquence, effet de levier), vous pourriez être requalifié comme « commerçant professionnel de titres » et vos gains deviendraient imposables.</li>
 <li style="margin-bottom:8px">💰 Vos cryptos doivent être déclarées dans votre <strong>fortune</strong> au 31 décembre de chaque année, à la valeur du marché.</li>
 <li style="margin-bottom:8px">🏗️ Le crowdfunding immobilier offre des rendements attractifs (4 à 8 %) mais comporte un risque de perte et un manque de liquidité.</li>
 </ul>
@@ -7080,7 +7080,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <br/>
 
-<p>Chaque situation est unique. Votre âge, votre canton de domicile, votre situation familiale et vos projets de vie influencent la meilleure stratégie. Un versement au 3ème pilier peut être plus intéressant qu'un rachat LPP, ou l'inverse — tout dépend de votre taux marginal d'imposition et de votre horizon.</p>
+<p>Chaque situation est unique. Votre âge, votre canton de domicile, votre situation familiale et vos projets de vie influencent la meilleure stratégie. Un versement au 3ème pilier peut être plus intéressant qu'un rachat LPP, ou l'inverse - tout dépend de votre taux marginal d'imposition et de votre horizon.</p>
 
 <br/>
 
@@ -7100,8 +7100,8 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop&q=80",
     title: "Indépendant en Suisse : comment cotiser et investir pour ma retraite ?",
     titleEn: "Self-Employed in Switzerland: How to Save and Invest for Retirement?",
-    excerpt: "En tant qu'indépendant, personne ne cotise à votre place. Sans action de votre part, votre retraite se résume à l'AVS — soit environ 2'450 CHF par mois au maximum. Voici comment construire une vraie prévoyance.",
-    excerptEn: "As a self-employed person, no one contributes on your behalf. Without action, your retirement comes down to AHV — roughly CHF 2,450/month max. Here's how to build real pension coverage.",
+    excerpt: "En tant qu'indépendant, personne ne cotise à votre place. Sans action de votre part, votre retraite se résume à l'AVS - soit environ 2'450 CHF par mois au maximum. Voici comment construire une vraie prévoyance.",
+    excerptEn: "As a self-employed person, no one contributes on your behalf. Without action, your retirement comes down to AHV - roughly CHF 2,450/month max. Here's how to build real pension coverage.",
     keywords: [
       "indépendant retraite suisse",
       "prévoyance indépendant suisse",
@@ -7114,11 +7114,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
       "LPP facultatif indépendant",
       "prévoyance self employed suisse romande",
     ],
-    content: `<p>Vous avez fait le grand saut. Vous êtes à votre compte — freelance, consultant, artisan, thérapeute, développeur, ou commerçant. Vous gérez vos clients, vos factures, vos horaires. Mais il y a un sujet que beaucoup d'indépendants repoussent : <strong>la retraite</strong>.</p>
+    content: `<p>Vous avez fait le grand saut. Vous êtes à votre compte - freelance, consultant, artisan, thérapeute, développeur, ou commerçant. Vous gérez vos clients, vos factures, vos horaires. Mais il y a un sujet que beaucoup d'indépendants repoussent : <strong>la retraite</strong>.</p>
  
 <br/>
  
-<p>Et c'est compréhensible. Quand on lance son activité, on pense chiffre d'affaires, pas pension. Le problème, c'est que contrairement à un salarié, <strong>personne ne cotise à votre place</strong>. Pas d'employeur qui verse la moitié de votre LPP. Pas de déduction automatique sur votre fiche de paie. Si vous ne faites rien, votre retraite se résumera à l'AVS — et ça ne suffira pas.</p>
+<p>Et c'est compréhensible. Quand on lance son activité, on pense chiffre d'affaires, pas pension. Le problème, c'est que contrairement à un salarié, <strong>personne ne cotise à votre place</strong>. Pas d'employeur qui verse la moitié de votre LPP. Pas de déduction automatique sur votre fiche de paie. Si vous ne faites rien, votre retraite se résumera à l'AVS - et ça ne suffira pas.</p>
  
 <br/>
  
@@ -7135,7 +7135,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
  
 <ul style="margin-left:20px;margin-bottom:16px">
-<li style="margin-bottom:8px">🏛️ <strong>1er pilier (AVS/AI) :</strong> Obligatoire pour tous, y compris les indépendants. C'est la base — la rente maximale est d'environ <strong>2'450 CHF/mois</strong> pour une personne seule (2026). Pour un couple, max. 3'675 CHF.</li>
+<li style="margin-bottom:8px">🏛️ <strong>1er pilier (AVS/AI) :</strong> Obligatoire pour tous, y compris les indépendants. C'est la base - la rente maximale est d'environ <strong>2'450 CHF/mois</strong> pour une personne seule (2026). Pour un couple, max. 3'675 CHF.</li>
 <li style="margin-bottom:8px">🏢 <strong>2ème pilier (LPP) :</strong> Obligatoire pour les salariés, <strong>facultatif</strong> pour les indépendants. C'est là que le bât blesse.</li>
 <li style="margin-bottom:8px">💰 <strong>3ème pilier (3a/3b) :</strong> Facultatif pour tous, mais particulièrement intéressant pour les indépendants.</li>
 </ul>
@@ -7150,7 +7150,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<h3><strong>Étape 1 : L'AVS — la base obligatoire</strong></h3>
+<h3><strong>Étape 1 : L'AVS - la base obligatoire</strong></h3>
  
 <br/>
  
@@ -7158,7 +7158,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<p>Le taux est de <strong>10 % de votre revenu net</strong> (revenu moins les charges professionnelles). Si votre revenu est inférieur à 60'500 CHF, un barème dégressif s'applique — vous payez un taux réduit. En dessous de 10'100 CHF de revenu, la cotisation minimale est de <strong>530 CHF par an</strong>.</p>
+<p>Le taux est de <strong>10 % de votre revenu net</strong> (revenu moins les charges professionnelles). Si votre revenu est inférieur à 60'500 CHF, un barème dégressif s'applique - vous payez un taux réduit. En dessous de 10'100 CHF de revenu, la cotisation minimale est de <strong>530 CHF par an</strong>.</p>
  
 <br/>
  
@@ -7170,7 +7170,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<h3><strong>Étape 2 : Le 3ème pilier 3a — votre meilleur allié</strong></h3>
+<h3><strong>Étape 2 : Le 3ème pilier 3a - votre meilleur allié</strong></h3>
  
 <br/>
  
@@ -7205,7 +7205,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<h3><strong>Étape 3 : Le 2ème pilier facultatif — faut-il y aller ?</strong></h3>
+<h3><strong>Étape 3 : Le 2ème pilier facultatif - faut-il y aller ?</strong></h3>
  
 <br/>
  
@@ -7244,7 +7244,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<h3><strong>Étape 4 : Investir le surplus — construire son propre « 4ème pilier »</strong></h3>
+<h3><strong>Étape 4 : Investir le surplus - construire son propre « 4ème pilier »</strong></h3>
  
 <br/>
  
@@ -7276,7 +7276,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<h3><strong>Étape 5 : Protégez-vous en route — invalidité et décès</strong></h3>
+<h3><strong>Étape 5 : Protégez-vous en route - invalidité et décès</strong></h3>
  
 <br/>
  
@@ -7290,7 +7290,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <ul style="margin-left:20px;margin-bottom:16px">
 <li style="margin-bottom:8px">🏥 <strong>Assurance maladie (LAMal) :</strong> Couvre les soins, pas la perte de revenu</li>
-<li style="margin-bottom:8px">📉 <strong>AI (assurance invalidité) :</strong> Rente maximale d'environ 2'450 CHF/mois — pas de quoi vivre</li>
+<li style="margin-bottom:8px">📉 <strong>AI (assurance invalidité) :</strong> Rente maximale d'environ 2'450 CHF/mois - pas de quoi vivre</li>
 <li style="margin-bottom:8px">💀 <strong>Décès :</strong> Rente de veuf/veuve AVS très limitée</li>
 </ul>
  
@@ -7364,7 +7364,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<p>Être indépendant en Suisse, c'est une liberté immense — mais aussi une responsabilité. Personne ne construira votre retraite à votre place. La bonne nouvelle, c'est que les outils existent, qu'ils sont fiscalement très avantageux, et que plus vous commencez tôt, plus l'effet boule de neige est puissant.</p>
+<p>Être indépendant en Suisse, c'est une liberté immense - mais aussi une responsabilité. Personne ne construira votre retraite à votre place. La bonne nouvelle, c'est que les outils existent, qu'ils sont fiscalement très avantageux, et que plus vous commencez tôt, plus l'effet boule de neige est puissant.</p>
  
 <br/>
  
@@ -7385,8 +7385,8 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     image: "https://images.unsplash.com/photo-1608734022710-538043c7ec3f?w=800&auto=format&fit=crop&q=80",
     title: "Divorce en Suisse : ce que personne ne vous dit sur les impôts",
     titleEn: "Divorce in Switzerland: What Nobody Tells You About Taxes",
-    excerpt: "Vous pensez à vous séparer — ou c'est déjà fait. Votre avocat vous parle garde des enfants et pension. Mais qui vous parle des impôts ? Voici tout ce qui change fiscalement après un divorce en Suisse.",
-    excerptEn: "Thinking about separating — or already going through it? Your lawyer talks custody and alimony. But who tells you about taxes? Here's everything that changes fiscally after a divorce in Switzerland.",
+    excerpt: "Vous pensez à vous séparer - ou c'est déjà fait. Votre avocat vous parle garde des enfants et pension. Mais qui vous parle des impôts ? Voici tout ce qui change fiscalement après un divorce en Suisse.",
+    excerptEn: "Thinking about separating - or already going through it? Your lawyer talks custody and alimony. But who tells you about taxes? Here's everything that changes fiscally after a divorce in Switzerland.",
     keywords: [
       "divorce impôts suisse",
       "conséquences fiscales divorce suisse",
@@ -7403,7 +7403,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<p>La plupart des guides sur le divorce parlent de procédure, de garde et de pension. Presque aucun ne vous explique concrètement ce qui change sur votre <strong>déclaration d'impôts</strong>. Combien vous allez payer en plus — ou en moins. Ce que vous pouvez déduire. Ce que vous devez déclarer. Et les pièges à éviter.</p>
+<p>La plupart des guides sur le divorce parlent de procédure, de garde et de pension. Presque aucun ne vous explique concrètement ce qui change sur votre <strong>déclaration d'impôts</strong>. Combien vous allez payer en plus - ou en moins. Ce que vous pouvez déduire. Ce que vous devez déclarer. Et les pièges à éviter.</p>
  
 <br/>
  
@@ -7415,7 +7415,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<p>En Suisse, dès que vous êtes <strong>séparés de fait ou légalement</strong>, chacun remplit sa propre déclaration d'impôts. Et ce, pour <strong>toute l'année fiscale</strong> au cours de laquelle la séparation survient — même si vous vous séparez le 30 décembre.</p>
+<p>En Suisse, dès que vous êtes <strong>séparés de fait ou légalement</strong>, chacun remplit sa propre déclaration d'impôts. Et ce, pour <strong>toute l'année fiscale</strong> au cours de laquelle la séparation survient - même si vous vous séparez le 30 décembre.</p>
  
 <br/>
  
@@ -7500,7 +7500,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <ul style="margin-left:20px;margin-bottom:16px">
 <li style="margin-bottom:8px">🔄 Le parent avec le <strong>revenu le plus élevé</strong> est imposé au barème famille monoparentale et bénéficie de la déduction pour enfant</li>
-<li style="margin-bottom:8px">🔄 Le parent avec le <strong>revenu le plus bas</strong> est imposé au barème personne seule — un taux plus élevé</li>
+<li style="margin-bottom:8px">🔄 Le parent avec le <strong>revenu le plus bas</strong> est imposé au barème personne seule - un taux plus élevé</li>
 <li style="margin-bottom:8px">🔄 Chaque parent peut déduire les <strong>frais de garde effectifs</strong> payés à des tiers, jusqu'à <strong>CHF 25'500 par enfant</strong> (impôt fédéral : max 5'050 CHF)</li>
 </ul>
  
@@ -7518,7 +7518,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<p>En cas de divorce, les avoirs de prévoyance professionnelle (LPP) accumulés <strong>pendant la durée du mariage</strong> sont partagés par moitié entre les époux. C'est la loi — quel que soit le régime matrimonial.</p>
+<p>En cas de divorce, les avoirs de prévoyance professionnelle (LPP) accumulés <strong>pendant la durée du mariage</strong> sont partagés par moitié entre les époux. C'est la loi - quel que soit le régime matrimonial.</p>
  
 <br/>
  
@@ -7532,13 +7532,13 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <ul style="margin-left:20px;margin-bottom:16px">
 <li style="margin-bottom:8px">📉 Si vous perdez la moitié de votre LPP, votre <strong>rente de retraite diminue</strong> considérablement</li>
-<li style="margin-bottom:8px">💡 Vous pouvez <strong>racheter des années</strong> pour combler la lacune créée par le partage — et ces rachats sont <strong>entièrement déductibles</strong> de vos impôts</li>
+<li style="margin-bottom:8px">💡 Vous pouvez <strong>racheter des années</strong> pour combler la lacune créée par le partage - et ces rachats sont <strong>entièrement déductibles</strong> de vos impôts</li>
 <li style="margin-bottom:8px">⏰ Le rachat post-divorce est souvent la <strong>meilleure optimisation fiscale</strong> disponible dans les années qui suivent : vous réduisez vos impôts tout en reconstruisant votre prévoyance</li>
 </ul>
  
 <br/>
  
-<p>👉 <strong>À retenir :</strong> Le partage LPP ne coûte rien au moment du divorce. Mais planifiez des rachats dans les années suivantes — c'est fiscalement très intéressant.</p>
+<p>👉 <strong>À retenir :</strong> Le partage LPP ne coûte rien au moment du divorce. Mais planifiez des rachats dans les années suivantes - c'est fiscalement très intéressant.</p>
  
 <br/>
  
@@ -7575,14 +7575,14 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <br/>
  
 <ul style="margin-left:20px;margin-bottom:16px">
-<li style="margin-bottom:8px">🏠 <strong>Un conjoint rachète la part de l'autre :</strong> Pas d'impôt sur le gain immobilier (c'est une liquidation de régime matrimonial, pas une vente). Mais celui qui garde la maison reprend seul l'hypothèque — la banque doit accepter.</li>
+<li style="margin-bottom:8px">🏠 <strong>Un conjoint rachète la part de l'autre :</strong> Pas d'impôt sur le gain immobilier (c'est une liquidation de régime matrimonial, pas une vente). Mais celui qui garde la maison reprend seul l'hypothèque - la banque doit accepter.</li>
 <li style="margin-bottom:8px">🏷️ <strong>Vente du bien :</strong> L'impôt sur le gain immobilier s'applique. Le montant dépend de la plus-value réalisée et de la durée de détention. Attention : une vente rapide (< 5 ans de propriété) entraîne un <strong>supplément d'impôt</strong> dans la plupart des cantons.</li>
 <li style="margin-bottom:8px">🤝 <strong>Copropriété maintenue :</strong> Possible mais déconseillé. Les deux restent solidaires de l'hypothèque et de la valeur locative. Fiscalement et humainement, c'est rarement une bonne idée à long terme.</li>
 </ul>
  
 <br/>
  
-<p>Autre point important : si vous aviez utilisé votre <strong>2ème ou 3ème pilier</strong> pour financer l'achat, le partage du bien immobilier interagit avec le partage de la prévoyance. C'est un calcul complexe — ne le faites pas seul.</p>
+<p>Autre point important : si vous aviez utilisé votre <strong>2ème ou 3ème pilier</strong> pour financer l'achat, le partage du bien immobilier interagit avec le partage de la prévoyance. C'est un calcul complexe - ne le faites pas seul.</p>
  
 <br/>
  
@@ -7600,7 +7600,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <ul style="margin-left:20px;margin-bottom:16px">
 <li style="margin-bottom:8px">❌ <strong>Oublier de signaler la séparation à l'administration fiscale :</strong> Vous devez informer votre office d'impôts dès la séparation effective. Sinon, vous recevrez une taxation conjointe erronée qu'il faudra contester.</li>
-<li style="margin-bottom:8px">❌ <strong>Ne pas adapter ses acomptes :</strong> Vos acomptes provisionnels sont basés sur l'ancien revenu du couple. Après la séparation, demandez un recalcul pour éviter de payer trop — ou pas assez.</li>
+<li style="margin-bottom:8px">❌ <strong>Ne pas adapter ses acomptes :</strong> Vos acomptes provisionnels sont basés sur l'ancien revenu du couple. Après la séparation, demandez un recalcul pour éviter de payer trop - ou pas assez.</li>
 <li style="margin-bottom:8px">❌ <strong>Oublier de déduire la pension dès le premier mois :</strong> Si vous commencez à verser une pension en cours d'année, déduisez-la dès le premier versement. Chaque mois oublié est de l'argent perdu.</li>
 <li style="margin-bottom:8px">❌ <strong>Déduire le 3a au mauvais plafond :</strong> L'année de la séparation, vous passez peut-être du plafond salarié (7'258 CHF) au plafond sans caisse de pension (36'288 CHF) si votre situation change. Vérifiez.</li>
 <li style="margin-bottom:8px">❌ <strong>Ignorer les rachats LPP possibles :</strong> Après le partage de votre 2ème pilier, vous avez une lacune. Chaque rachat est déductible. C'est souvent la meilleure optimisation post-divorce.</li>
@@ -7623,7 +7623,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <ul style="margin-left:20px;margin-bottom:16px">
 <li style="margin-bottom:8px">Vous passez immédiatement à une <strong>déclaration individuelle</strong> pour toute l'année</li>
 <li style="margin-bottom:8px">Les pensions alimentaires sont <strong>déductibles pour celui qui paie</strong> et <strong>imposables pour celui qui reçoit</strong></li>
-<li style="margin-bottom:8px">La répartition des <strong>déductions enfants</strong> dépend du type de garde — en garde alternée, une pension même symbolique peut optimiser la fiscalité</li>
+<li style="margin-bottom:8px">La répartition des <strong>déductions enfants</strong> dépend du type de garde - en garde alternée, une pension même symbolique peut optimiser la fiscalité</li>
 <li style="margin-bottom:8px">Le partage LPP est <strong>neutre fiscalement</strong>, mais les rachats post-divorce sont une opportunité d'optimisation majeure</li>
 <li style="margin-bottom:8px">Le 3ème pilier suit les règles du <strong>régime matrimonial</strong>, pas celles de la LPP</li>
 <li style="margin-bottom:8px">Le bien immobilier : privilégiez le <strong>rachat de part</strong> plutôt que la vente pour éviter l'impôt sur le gain immobilier</li>
@@ -7631,11 +7631,11 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
  
 <br/>
  
-<p>Un divorce est déjà assez difficile comme ça. Ne laissez pas les impôts aggraver la situation. Une bonne planification fiscale <strong>avant de signer la convention</strong> peut vous faire économiser des milliers de francs — chaque année, pendant des années.</p>
+<p>Un divorce est déjà assez difficile comme ça. Ne laissez pas les impôts aggraver la situation. Une bonne planification fiscale <strong>avant de signer la convention</strong> peut vous faire économiser des milliers de francs - chaque année, pendant des années.</p>
  
 <br/>
  
-<p>Chez <strong>NeoFidu</strong>, nous aidons régulièrement des personnes en cours de séparation ou de divorce à comprendre l'impact fiscal et à optimiser leur nouvelle situation. Déclaration post-divorce, simulation de pension, rachats LPP — nous faisons le calcul pour que vous n'ayez pas à le faire dans un moment pareil.</p>
+<p>Chez <strong>NeoFidu</strong>, nous aidons régulièrement des personnes en cours de séparation ou de divorce à comprendre l'impact fiscal et à optimiser leur nouvelle situation. Déclaration post-divorce, simulation de pension, rachats LPP - nous faisons le calcul pour que vous n'ayez pas à le faire dans un moment pareil.</p>
  
 <br/>
  
@@ -7657,7 +7657,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     category: "actualites",
     date: "2026-04-23",
     readTime: 8,
-    content: `<p>Le <strong>14 juin 2026</strong>, le peuple suisse se prononce sur l'initiative populaire « Pas de Suisse à 10 millions ! ». Quel que soit le résultat, cette votation touche directement au fonctionnement du marché du travail suisse — et donc à votre quotidien d'entrepreneur ou d'indépendant.</p>
+    content: `<p>Le <strong>14 juin 2026</strong>, le peuple suisse se prononce sur l'initiative populaire « Pas de Suisse à 10 millions ! ». Quel que soit le résultat, cette votation touche directement au fonctionnement du marché du travail suisse - et donc à votre quotidien d'entrepreneur ou d'indépendant.</p>
 <br/>
 <p>Cet article ne prend pas position. Il vous donne les éléments factuels pour comprendre ce qui est en jeu et anticiper les scénarios possibles pour votre activité.</p>
 <br/>
@@ -7703,21 +7703,21 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <tr><td style="border:1px solid #e2e8f0;padding:10px 14px">Services administratifs</td><td style="border:1px solid #e2e8f0;padding:10px 14px">Recrutement transfrontalier fréquent en Suisse romande</td></tr>
 </tbody></table>
 <br/>
-<h3><strong>Scénario 1 : l'initiative est acceptée — ce qui changerait pour vous</strong></h3>
+<h3><strong>Scénario 1 : l'initiative est acceptée - ce qui changerait pour vous</strong></h3>
 <br/>
-<p>En cas de oui, les conséquences ne seraient pas immédiates — le Conseil fédéral disposerait d'un délai pour agir. Mais voici ce que les entrepreneurs romands devraient anticiper :</p>
+<p>En cas de oui, les conséquences ne seraient pas immédiates - le Conseil fédéral disposerait d'un délai pour agir. Mais voici ce que les entrepreneurs romands devraient anticiper :</p>
 <br/>
 <p><strong>Recrutement :</strong> sans libre circulation, l'embauche d'un ressortissant européen nécessiterait un permis de travail, des contingents et des procédures administratives. Pour une PME de 5 ou 10 personnes, cela représenterait un frein en temps et en coûts. Le recrutement de frontaliers serait aussi impacté.</p>
 <br/>
 <p><strong>Salaires :</strong> une réduction du bassin de candidats exercerait mécaniquement une pression à la hausse sur les salaires. Les PME, qui concentrent les deux tiers de l'emploi en Suisse, ont généralement moins de marge pour absorber ces hausses que les grandes entreprises.</p>
 <br/>
-<p><strong>Accès aux marchés :</strong> la chute des bilatérales I créerait de nouvelles barrières pour les entreprises qui exportent vers l'UE ou travaillent avec des clients européens — certifications supplémentaires, formalités douanières, perte de reconnaissance mutuelle.</p>
+<p><strong>Accès aux marchés :</strong> la chute des bilatérales I créerait de nouvelles barrières pour les entreprises qui exportent vers l'UE ou travaillent avec des clients européens - certifications supplémentaires, formalités douanières, perte de reconnaissance mutuelle.</p>
 <br/>
 <p><strong>Points positifs possibles :</strong> une pression démographique réduite pourrait, à terme, détendre le marché immobilier et freiner la hausse des loyers commerciaux. Certaines régions rurales pourraient aussi bénéficier d'une moindre pression sur les infrastructures.</p>
 <br/>
-<h3><strong>Scénario 2 : l'initiative est rejetée — le statu quo</strong></h3>
+<h3><strong>Scénario 2 : l'initiative est rejetée - le statu quo</strong></h3>
 <br/>
-<p>En cas de non, les accords bilatéraux sont préservés et la libre circulation continue. Cela signifie que les tensions actuelles sur le marché du travail persistent — mais aussi que les entrepreneurs conservent leur flexibilité de recrutement et leur accès aux marchés européens.</p>
+<p>En cas de non, les accords bilatéraux sont préservés et la libre circulation continue. Cela signifie que les tensions actuelles sur le marché du travail persistent - mais aussi que les entrepreneurs conservent leur flexibilité de recrutement et leur accès aux marchés européens.</p>
 <br/>
 <p>Les défis démographiques (vieillissement, départs en retraite) resteront à gérer par d'autres voies : formation, numérisation, attractivité des conditions de travail.</p>
 <br/>
@@ -7734,7 +7734,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 </tbody></table>
 <br/>
 <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 16px 0;">
-<p style="margin: 0;"><strong>Exemple :</strong> Pour un salaire brut de 6'000 CHF/mois, le coût total employeur se situe entre <strong>6'900 et 7'200 CHF</strong>. En cas de pression salariale accrue, c'est le salaire brut qui monterait — entraînant une hausse proportionnelle de l'ensemble des charges.</p>
+<p style="margin: 0;"><strong>Exemple :</strong> Pour un salaire brut de 6'000 CHF/mois, le coût total employeur se situe entre <strong>6'900 et 7'200 CHF</strong>. En cas de pression salariale accrue, c'est le salaire brut qui monterait - entraînant une hausse proportionnelle de l'ensemble des charges.</p>
 </div>
 <br/>
 <h3><strong>Et pour les indépendants ?</strong></h3>
@@ -7742,9 +7742,9 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>Si vous travaillez seul, vous n'êtes pas directement concerné par le recrutement. Mais vous l'êtes indirectement de plusieurs façons :</p>
 <br/>
 <ul style="margin-left:20px;margin-bottom:16px">
-<li style="margin-bottom:8px"><strong>Vos clients</strong> — si les entreprises qui vous mandatent peinent à fonctionner par manque de personnel, vos mandats peuvent être reportés ou réduits</li>
-<li style="margin-bottom:8px"><strong>Vos sous-traitants</strong> — si vous collaborez avec des prestataires européens (développeurs, traducteurs, graphistes), la fin de la libre circulation compliquerait ces échanges</li>
-<li style="margin-bottom:8px"><strong>L'économie générale</strong> — un ralentissement macroéconomique se répercuterait sur le pouvoir d'achat et le volume d'affaires de l'ensemble des acteurs</li>
+<li style="margin-bottom:8px"><strong>Vos clients</strong> - si les entreprises qui vous mandatent peinent à fonctionner par manque de personnel, vos mandats peuvent être reportés ou réduits</li>
+<li style="margin-bottom:8px"><strong>Vos sous-traitants</strong> - si vous collaborez avec des prestataires européens (développeurs, traducteurs, graphistes), la fin de la libre circulation compliquerait ces échanges</li>
+<li style="margin-bottom:8px"><strong>L'économie générale</strong> - un ralentissement macroéconomique se répercuterait sur le pouvoir d'achat et le volume d'affaires de l'ensemble des acteurs</li>
 </ul>
 <br/>
 <p>À l'inverse, un ralentissement de la croissance démographique pourrait, à terme, réduire la concurrence sur certains marchés locaux et détendre les prix des locaux commerciaux.</p>
@@ -7754,10 +7754,10 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p>Quelle que soit l'issue du vote, les entrepreneurs ont intérêt à <strong>anticiper les deux scénarios</strong>. Voici quelques pistes concrètes :</p>
 <br/>
 <ul style="margin-left:20px;margin-bottom:16px">
-<li style="margin-bottom:8px">📋 <strong>Faites le point sur votre dépendance à la main-d'œuvre étrangère</strong> — avez-vous des employés frontaliers ou européens ? Des sous-traitants hors Suisse ?</li>
-<li style="margin-bottom:8px">💰 <strong>Connaissez vos coûts salariaux réels</strong> — salaire brut + charges sociales, pour chaque poste</li>
-<li style="margin-bottom:8px">🔄 <strong>Évaluez vos alternatives</strong> — formation interne, automatisation, collaboration avec des prestataires suisses</li>
-<li style="margin-bottom:8px">📊 <strong>Optimisez votre fiscalité</strong> — dans un contexte de hausse des coûts, chaque déduction compte</li>
+<li style="margin-bottom:8px">📋 <strong>Faites le point sur votre dépendance à la main-d'œuvre étrangère</strong> - avez-vous des employés frontaliers ou européens ? Des sous-traitants hors Suisse ?</li>
+<li style="margin-bottom:8px">💰 <strong>Connaissez vos coûts salariaux réels</strong> - salaire brut + charges sociales, pour chaque poste</li>
+<li style="margin-bottom:8px">🔄 <strong>Évaluez vos alternatives</strong> - formation interne, automatisation, collaboration avec des prestataires suisses</li>
+<li style="margin-bottom:8px">📊 <strong>Optimisez votre fiscalité</strong> - dans un contexte de hausse des coûts, chaque déduction compte</li>
 </ul>
 <br/>
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 12px; padding: 28px; margin-top: 40px; text-align: center;">
@@ -7808,7 +7808,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #22c55e;">
 <p style="margin: 0; font-weight: 600;">💡 Ce qu'il faut retenir</p>
-<p style="margin: 8px 0 0 0; font-size: 14px; color: #444;">L'impôt sur le gain immobilier porte sur la différence entre le prix de vente et le prix d'acquisition, diminuée des impenses. Plus la durée de détention est longue, plus le taux baisse. Conservez <strong>toutes vos factures</strong> de travaux dès le premier jour — c'est la clé de l'optimisation.</p>
+<p style="margin: 8px 0 0 0; font-size: 14px; color: #444;">L'impôt sur le gain immobilier porte sur la différence entre le prix de vente et le prix d'acquisition, diminuée des impenses. Plus la durée de détention est longue, plus le taux baisse. Conservez <strong>toutes vos factures</strong> de travaux dès le premier jour - c'est la clé de l'optimisation.</p>
 </div>
 
 <p><strong>Dans cet article</strong></p>
@@ -7830,7 +7830,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <strong>Gain imposable = Prix de vente − Prix d'acquisition − Impenses</strong>
 </p>
 
-<p>Le <strong>prix d'acquisition</strong> correspond au prix payé lors de l'achat, augmenté des frais d'acquisition (notaire, droits de mutation, registre foncier). Si le bien a été acquis par succession ou donation, c'est la valeur vénale au moment du transfert — ou le dernier prix d'achat à titre onéreux — qui fait foi, selon le canton.</p>
+<p>Le <strong>prix d'acquisition</strong> correspond au prix payé lors de l'achat, augmenté des frais d'acquisition (notaire, droits de mutation, registre foncier). Si le bien a été acquis par succession ou donation, c'est la valeur vénale au moment du transfert - ou le dernier prix d'achat à titre onéreux - qui fait foi, selon le canton.</p>
 
 <p>Les <strong>impenses</strong> sont les dépenses qui ont augmenté la valeur du bien (et non les frais d'entretien courant). Nous les détaillons plus bas.</p>
 
@@ -7969,7 +7969,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les barèmes exacts sont progressifs et varient selon le montant du gain. Consultez les calculateurs cantonaux pour un calcul précis.</p>
 
 <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-<p style="margin: 0; font-weight: 600;">⚠️ Genève — Changement majeur en 2025</p>
+<p style="margin: 0; font-weight: 600;">⚠️ Genève - Changement majeur en 2025</p>
 <p style="margin: 8px 0 0 0; font-size: 14px;">Depuis le 1er janvier 2025, Genève a supprimé l'exonération totale après 25 ans de détention. Un taux plancher de <strong>2%</strong> s'applique désormais, même pour les biens détenus depuis plus de 25 ans. Les propriétaires genevois de longue date doivent en tenir compte dans leur planification.</p>
 </div>
 
@@ -7985,7 +7985,7 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 <tbody>
 <tr>
 <td style="padding: 10px; border: 1px solid #d1d5db;"><strong>VD</strong></td>
-<td style="padding: 10px; border: 1px solid #d1d5db;">Les années de <strong>résidence principale</strong> comptent double dans le calcul de la durée de détention — un avantage considérable. Exonération totale après 24 ans de détention effective.</td>
+<td style="padding: 10px; border: 1px solid #d1d5db;">Les années de <strong>résidence principale</strong> comptent double dans le calcul de la durée de détention - un avantage considérable. Exonération totale après 24 ans de détention effective.</td>
 </tr>
 <tr style="background: #f9fafb;">
 <td style="padding: 10px; border: 1px solid #d1d5db;"><strong>GE</strong></td>
@@ -8016,27 +8016,27 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 
 <h3>1. Frais d'acquisition</h3>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem;"><strong>Droits de mutation</strong> (stamp duty) payés lors de l'achat — varient de 1.5% à 3.3% selon le canton</li>
+<li style="margin-bottom: 0.5rem;"><strong>Droits de mutation</strong> (stamp duty) payés lors de l'achat - varient de 1.5% à 3.3% selon le canton</li>
 <li style="margin-bottom: 0.5rem;"><strong>Émoluments du registre foncier</strong> (inscription de la propriété)</li>
-<li style="margin-bottom: 0.5rem;"><strong>Frais de notaire</strong> — honoraires pour l'acte d'achat</li>
+<li style="margin-bottom: 0.5rem;"><strong>Frais de notaire</strong> - honoraires pour l'acte d'achat</li>
 <li style="margin-bottom: 0.5rem;"><strong>Commission de courtage à l'achat</strong> (si vous avez payé un courtier lors de l'acquisition)</li>
 </ul>
 
 <h3>2. Travaux à plus-value (investissements valorisants)</h3>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem;"><strong>Transformations et agrandissements</strong> — extension, surélévation, ajout d'un garage</li>
-<li style="margin-bottom: 0.5rem;"><strong>Rénovation complète de cuisine ou salle de bains</strong> — si remplacement par un standard supérieur</li>
+<li style="margin-bottom: 0.5rem;"><strong>Transformations et agrandissements</strong> - extension, surélévation, ajout d'un garage</li>
+<li style="margin-bottom: 0.5rem;"><strong>Rénovation complète de cuisine ou salle de bains</strong> - si remplacement par un standard supérieur</li>
 <li style="margin-bottom: 0.5rem;"><strong>Installation d'une piscine, sauna, cave à vin</strong></li>
 <li style="margin-bottom: 0.5rem;"><strong>Ajout d'un ascenseur</strong></li>
-<li style="margin-bottom: 0.5rem;"><strong>Aménagements extérieurs significatifs</strong> — terrasse, pergola, mur de soutènement</li>
+<li style="margin-bottom: 0.5rem;"><strong>Aménagements extérieurs significatifs</strong> - terrasse, pergola, mur de soutènement</li>
 <li style="margin-bottom: 0.5rem;"><strong>Installation de panneaux solaires</strong> (photovoltaïques ou thermiques)</li>
 <li style="margin-bottom: 0.5rem;"><strong>Pompe à chaleur</strong> remplaçant un chauffage au mazout (la partie dépassant la simple rénovation)</li>
-<li style="margin-bottom: 0.5rem;"><strong>Domotique et smart home</strong> — installations d'automatisation</li>
+<li style="margin-bottom: 0.5rem;"><strong>Domotique et smart home</strong> - installations d'automatisation</li>
 </ul>
 
 <h3>3. Frais de vente</h3>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem;"><strong>Commission de courtage à la vente</strong> — généralement 2% à 3% du prix de vente</li>
+<li style="margin-bottom: 0.5rem;"><strong>Commission de courtage à la vente</strong> - généralement 2% à 3% du prix de vente</li>
 <li style="margin-bottom: 0.5rem;"><strong>Frais de publicité et d'annonces</strong> (Immoscout24, journaux, etc.)</li>
 <li style="margin-bottom: 0.5rem;"><strong>Frais de notaire de la vente</strong></li>
 <li style="margin-bottom: 0.5rem;"><strong>Émoluments du registre foncier</strong> liés au transfert</li>
@@ -8044,10 +8044,10 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 
 <h3>4. Autres impenses</h3>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem;"><strong>Frais d'architecte et d'ingénieur</strong> — liés aux travaux à plus-value</li>
+<li style="margin-bottom: 0.5rem;"><strong>Frais d'architecte et d'ingénieur</strong> - liés aux travaux à plus-value</li>
 <li style="margin-bottom: 0.5rem;"><strong>Permis de construire</strong> et taxes d'autorisation</li>
-<li style="margin-bottom: 0.5rem;"><strong>Indemnité de résiliation anticipée de l'hypothèque</strong> (pénalité de remboursement) — selon le canton</li>
-<li style="margin-bottom: 0.5rem;"><strong>Contributions de plus-value</strong> — taxe payée lors d'un changement de zone (art. 5 LAT)</li>
+<li style="margin-bottom: 0.5rem;"><strong>Indemnité de résiliation anticipée de l'hypothèque</strong> (pénalité de remboursement) - selon le canton</li>
+<li style="margin-bottom: 0.5rem;"><strong>Contributions de plus-value</strong> - taxe payée lors d'un changement de zone (art. 5 LAT)</li>
 </ul>
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #22c55e;">
@@ -8057,7 +8057,7 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 
 <h2 id="plus-value-entretien">Travaux à plus-value vs travaux d'entretien</h2>
 
-<p>C'est la distinction la plus importante — et la plus fréquente source de litiges avec les autorités fiscales. La règle d'or : <strong>un même montant ne peut pas être déduit deux fois</strong>.</p>
+<p>C'est la distinction la plus importante - et la plus fréquente source de litiges avec les autorités fiscales. La règle d'or : <strong>un même montant ne peut pas être déduit deux fois</strong>.</p>
 
 <table style="width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
 <thead>
@@ -8105,7 +8105,7 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 
 <h2 id="remploi">Le remploi : reporter l'impôt en réinvestissant</h2>
 
-<p>Si vous vendez votre logement pour en racheter un autre en Suisse (ou parfois à l'étranger selon les conventions), vous pouvez bénéficier d'un <strong>report d'imposition</strong> appelé « remploi ». Attention : ce n'est pas une exonération — l'impôt est simplement différé jusqu'à la prochaine vente sans remploi.</p>
+<p>Si vous vendez votre logement pour en racheter un autre en Suisse (ou parfois à l'étranger selon les conventions), vous pouvez bénéficier d'un <strong>report d'imposition</strong> appelé « remploi ». Attention : ce n'est pas une exonération - l'impôt est simplement différé jusqu'à la prochaine vente sans remploi.</p>
 
 <h3>Conditions du remploi</h3>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
@@ -8226,7 +8226,7 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 
 <p style="font-size: 13px; color: #666;">Ces montants sont des estimations indicatives. Le calcul exact dépend du barème progressif de chaque canton, du coefficient communal, et de la situation individuelle. Utilisez les calculateurs cantonaux officiels pour un montant précis.</p>
 
-<p>L'écart est frappant : pour la même vente, l'impôt va de <strong>~CHF 8'500 (JU)</strong> à <strong>~CHF 27'200 (VD)</strong> — un facteur de plus de 3. C'est pourquoi une planification fiscale en amont est essentielle.</p>
+<p>L'écart est frappant : pour la même vente, l'impôt va de <strong>~CHF 8'500 (JU)</strong> à <strong>~CHF 27'200 (VD)</strong> - un facteur de plus de 3. C'est pourquoi une planification fiscale en amont est essentielle.</p>
 
 <h2 id="optimisation">5 stratégies d'optimisation</h2>
 
@@ -8236,7 +8236,7 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 <p>C'est le levier le plus puissant. Chaque franc de travaux à plus-value dûment documenté réduit le gain imposable d'autant. Conservez <strong>toutes</strong> les factures, devis acceptés, contrats d'architecte et preuves de paiement. En l'absence de justificatifs, l'administration fiscale refusera la déduction.</p>
 
 <h3>2. Attendre le bon moment pour vendre</h3>
-<p>Les taux baissent significativement avec la durée de détention. Par exemple, à Genève, vendre après 10 ans au lieu de 8 ans peut réduire le taux de 5 à 10 points. Si votre vente n'est pas urgente, un report de quelques mois peut s'avérer très rentable — surtout si vous approchez d'un palier de réduction.</p>
+<p>Les taux baissent significativement avec la durée de détention. Par exemple, à Genève, vendre après 10 ans au lieu de 8 ans peut réduire le taux de 5 à 10 points. Si votre vente n'est pas urgente, un report de quelques mois peut s'avérer très rentable - surtout si vous approchez d'un palier de réduction.</p>
 
 <h3>3. Utiliser le remploi</h3>
 <p>Si vous vendez pour racheter votre résidence principale, le remploi vous permet de reporter intégralement l'imposition. C'est la stratégie idéale pour les propriétaires qui déménagent. N'oubliez pas que Genève offre un délai de 5 ans, contre 2 ans dans les autres cantons romands.</p>
@@ -8245,7 +8245,7 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 <p>Lors de gros travaux de rénovation, demandez à votre artisan de séparer clairement la part « entretien » (déductible de votre revenu annuel) et la part « plus-value » (conservée pour le gain immobilier). Cela évite la double déduction interdite et maximise vos déductions totales sur l'ensemble de la période.</p>
 
 <h3>5. Vaudois : exploitez la résidence principale</h3>
-<p>Dans le canton de Vaud, les années de résidence principale comptent double. Si vous avez habité votre bien pendant 12 ans, le fisc considère une détention de 24 ans — ce qui vous place au taux plancher de 7%, voire à l'exonération totale. C'est un avantage majeur dont beaucoup de propriétaires vaudois ne sont pas conscients.</p>
+<p>Dans le canton de Vaud, les années de résidence principale comptent double. Si vous avez habité votre bien pendant 12 ans, le fisc considère une détention de 24 ans - ce qui vous place au taux plancher de 7%, voire à l'exonération totale. C'est un avantage majeur dont beaucoup de propriétaires vaudois ne sont pas conscients.</p>
 
 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 24px; border-radius: 12px; margin: 30px 0; text-align: center;">
 <p style="margin: 0 0 8px 0; font-weight: 700; font-size: 18px;">Vous vendez un bien immobilier en Suisse romande ?</p>
@@ -8257,7 +8257,7 @@ Les taux indiqués sont des ordres de grandeur pour un gain de CHF 200'000. Les 
 
 <p>Au niveau fédéral, les gains immobiliers sur des biens de la fortune privée ne sont <strong>pas imposés</strong> par l'IFD. Seuls les gains réalisés dans le cadre d'une activité professionnelle (commerce immobilier, promoteurs) sont soumis à l'impôt fédéral sur le revenu.</p>
 
-<p>En résumé, pour un particulier qui vend sa résidence ou un bien locatif, seul l'impôt cantonal sur le gain immobilier s'applique — ce qui est déjà une bonne nouvelle.</p>
+<p>En résumé, pour un particulier qui vend sa résidence ou un bien locatif, seul l'impôt cantonal sur le gain immobilier s'applique - ce qui est déjà une bonne nouvelle.</p>
 
 <h2>Conclusion</h2>
 
