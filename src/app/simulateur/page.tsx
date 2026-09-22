@@ -350,7 +350,7 @@ export default function SimulateurPage() {
               Essayez notre simulateur le plus populaire
             </h2>
             <p className="text-gray-500 text-sm">
-              Estimez votre charge fiscale en quelques secondes — gratuit et sans inscription.
+              Estimez votre charge fiscale en quelques secondes - gratuit et sans inscription.
             </p>
           </div>
 
