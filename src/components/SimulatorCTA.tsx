@@ -25,7 +25,7 @@ export function SimulatorCTA() {
         </h2>
         <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
           {isEnglish
-            ? "Our certified specialists manage your file from A to Z. Just send your documents — we take care of the rest."
+            ? "Our certified specialists manage your file from A to Z. Just send your documents - we take care of the rest."
             : "Nos spécialistes diplômés gèrent votre dossier de A à Z. Vous envoyez vos documents, on s’occupe du reste."}
         </p>
         <div className="flex justify-center gap-8 mb-10 flex-wrap">
