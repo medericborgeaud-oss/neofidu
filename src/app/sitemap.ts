@@ -116,6 +116,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/en/associations-fondations", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
     createEntry("/en/suisses-de-letranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
     createEntry("/en/faq", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
+    createEntry("/en/cantons", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
+    createEntry("/en/cantons/vaud", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/en/cantons/geneve", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/en/cantons/fribourg", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/en/cantons/valais", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/en/cantons/jura", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/en/cantons/neuchatel", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
   ];
 
   return [...staticPages, ...communePages, ...enCommunePages, ...enBlogPages, ...enServicePages];
