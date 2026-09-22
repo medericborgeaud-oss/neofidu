@@ -251,8 +251,8 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               {isEnglish
-                ? "You do your job, we handle the numbers. Accounting, taxes, VAT, business creation — everything is taken care of. From CHF 500.-/year."
-                : "Vous faites votre métier, on s'occupe des chiffres. Comptabilité, impôts, TVA, création d'entreprise — tout est pris en charge. Dès CHF 500.-/an."}
+                ? "You do your job, we handle the numbers. Accounting, taxes, VAT, business creation - everything is taken care of. From CHF 500.-/year."
+                : "Vous faites votre métier, on s'occupe des chiffres. Comptabilité, impôts, TVA, création d'entreprise - tout est pris en charge. Dès CHF 500.-/an."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/demande">
@@ -476,8 +476,8 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {isEnglish
-                  ? "NeoFidu supports self-employed and freelancers in Vaud, Geneva and Valais — 100% online."
-                  : "NeoFidu accompagne les indépendants et freelances à Vaud, Genève et en Valais — 100 % en ligne."}
+                  ? "NeoFidu supports self-employed and freelancers in Vaud, Geneva and Valais - 100% online."
+                  : "NeoFidu accompagne les indépendants et freelances à Vaud, Genève et en Valais - 100 % en ligne."}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
