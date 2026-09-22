@@ -21,8 +21,8 @@ export default function SuissesDeLEtrangerPage() {
             </h1>
             <p className="text-muted-foreground mb-10 max-w-2xl">
               {isEnglish
-                ? "You live abroad but kept ties with Switzerland? We handle your Romandy tax matters remotely — property, pensions, pillar withdrawals and cantonal returns."
-                : "Vous vivez à l'étranger mais gardez des liens avec la Suisse ? Nous gérons votre fiscalité romande à distance — immobilier, rentes, retraits de piliers et déclarations cantonales."}
+                ? "You live abroad but kept ties with Switzerland? We handle your Romandy tax matters remotely - property, pensions, pillar withdrawals and cantonal returns."
+                : "Vous vivez à l'étranger mais gardez des liens avec la Suisse ? Nous gérons votre fiscalité romande à distance - immobilier, rentes, retraits de piliers et déclarations cantonales."}
             </p>
 
             <div className="grid md:grid-cols-2 gap-4">
