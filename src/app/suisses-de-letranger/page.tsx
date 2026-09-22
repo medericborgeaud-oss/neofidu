@@ -7,8 +7,9 @@ import { useLanguage } from "@/lib/language-context";
 import { ArrowRight } from "lucide-react";
 import { countryPages } from "@/lib/country-data";
 
-export default function SuissesDeLEtrangerPage() {
-  const { isEnglish } = useLanguage();
+export function SuissesDeLEtrangerContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
 
   return (
     <>
@@ -48,4 +49,8 @@ export default function SuissesDeLEtrangerPage() {
       <Footer />
     </>
   );
+}
+
+export default function SuissesDeLEtrangerPage() {
+  return <SuissesDeLEtrangerContent />;
 }
