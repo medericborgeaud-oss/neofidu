@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/language-context";
 
 // ════════════════════════════════════════════════════════════════
-//  DATA — Swiss federal budget 2026
+//  DATA - Swiss federal budget 2026
 //  Sources: Federal Finance Administration (FFA / EFV)
 //  efv.admin.ch · efd.admin.ch
 // ════════════════════════════════════════════════════════════════
@@ -207,8 +207,8 @@ export default function SwissDebtClock() {
       <div className="bg-red-500/[0.07] border border-red-500/[0.12] rounded-xl p-5 text-center mb-3">
         <div className="text-xs uppercase tracking-wider opacity-55 mb-2">
           {en
-            ? "Estimated net debt of the Confederation — right now"
-            : "Dette nette estimée de la Confédération — en ce moment"}
+            ? "Estimated net debt of the Confederation - right now"
+            : "Dette nette estimée de la Confédération - en ce moment"}
         </div>
         <div className="text-[1.65rem] sm:text-4xl md:text-5xl font-extrabold text-red-400 tabular-nums leading-tight">
           CHF {f2(vals.debt)}
@@ -321,8 +321,8 @@ export default function SwissDebtClock() {
           : "neofidu.ch · Données indicatives basées sur le budget fédéral 2026"}
         <br />
         {en
-          ? "Source: Federal Finance Administration — efv.admin.ch"
-          : "Sources : Administration fédérale des finances — efv.admin.ch"}
+          ? "Source: Federal Finance Administration - efv.admin.ch"
+          : "Sources : Administration fédérale des finances - efv.admin.ch"}
       </div>
     </div>
   );
