@@ -208,8 +208,9 @@ function generateFAQSchema(items: FAQItem[]) {
   };
 }
 
-export default function FAQPage() {
-  const { isEnglish } = useLanguage();
+export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState(isEnglish ? "All" : "Tous");
 
@@ -449,4 +450,8 @@ export default function FAQPage() {
       <Footer />
     </main>
   );
+}
+
+export default function FAQPage() {
+  return <FAQContent />;
 }
