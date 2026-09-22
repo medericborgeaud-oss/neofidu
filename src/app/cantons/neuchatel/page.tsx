@@ -18,8 +18,9 @@ import {
   HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-export default function NeuchatelPage() {
-  const { isEnglish } = useLanguage();
+export function NeuchatelContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const communes = [
     "Neuchâtel", "La Chaux-de-Fonds", "Le Locle", "Val-de-Travers", "Boudry",
     "Milvignes", "Val-de-Ruz", "Peseux", "Corcelles-Cormondrèche", "Hauterive",
@@ -574,4 +575,8 @@ export default function NeuchatelPage() {
       </section>
     </main>
   );
+}
+
+export default function NeuchatelPage() {
+  return <NeuchatelContent />;
 }
