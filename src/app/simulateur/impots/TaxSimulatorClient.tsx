@@ -377,7 +377,7 @@ export function TaxSimulatorClient() {
                       Commune de domicile
                     </Label>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Optionnel — pour un calcul plus précis avec le coefficient communal
+                      Optionnel - pour un calcul plus précis avec le coefficient communal
                     </p>
                     <select
                       id="commune"
@@ -385,7 +385,7 @@ export function TaxSimulatorClient() {
                       onChange={(e) => setFormData({ ...formData, commune: e.target.value })}
                       className="w-full h-12 px-4 rounded-md border border-input bg-background text-base mt-2"
                     >
-                      <option value="">— Moyenne cantonale —</option>
+                      <option value="">- Moyenne cantonale -</option>
                       {communes.map((c) => (
                         <option key={c.slug} value={c.slug}>
                           {c.nom}{c.taux_commune ? ` (coeff. ${c.taux_commune})` : ""}
