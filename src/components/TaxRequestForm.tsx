@@ -3804,7 +3804,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
   />
   <div>
     <span className="font-medium">
-      {formData.firstName || (isEnglish ? "Taxpayer 1" : "Contribuable 1")} — {isEnglish ? "eats outside home most working days" : "mange hors du domicile la majorité des jours de travail"}
+      {formData.firstName || (isEnglish ? "Taxpayer 1" : "Contribuable 1")} - {isEnglish ? "eats outside home most working days" : "mange hors du domicile la majorité des jours de travail"}
     </span>
     <p className="text-sm text-blue-600 mt-1">
       {isEnglish ? "Deductible if the taxpayer cannot return home during the lunch break" : "Déductible si le/la contribuable ne peut pas rentrer chez lui/elle pendant la pause de midi"}
@@ -3832,7 +3832,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
 )}
 </>
 )}
-              {/* Conjoint(e) — affiché uniquement pour un couple */}
+              {/* Conjoint(e) - affiché uniquement pour un couple */}
 {formData.clientType === "couple" && (formData.employmentStatus2 === "employed" || formData.employmentStatus2 === "both") && (                <div className="border-t border-blue-200 mt-4 pt-4">
                   <label className="flex items-center gap-3 cursor-pointer">
                     <input
@@ -3843,7 +3843,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                     />
                     <div>
                       <span className="font-medium">
-                        {formData.firstName2 || (isEnglish ? "Partner" : "Conjoint(e)")} — {isEnglish ? "eats outside home most working days" : "mange hors du domicile la majorité des jours de travail"}
+                        {formData.firstName2 || (isEnglish ? "Partner" : "Conjoint(e)")} - {isEnglish ? "eats outside home most working days" : "mange hors du domicile la majorité des jours de travail"}
                       </span>
                       <p className="text-sm text-blue-600 mt-1">
                         {isEnglish ? "Deductible if the partner cannot go home during the lunch break" : "Déductible si le/la conjoint(e) ne peut pas rentrer chez lui/elle pendant la pause de midi"}
