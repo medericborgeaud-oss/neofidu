@@ -17,8 +17,9 @@ import {
   HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-export default function FribourgPage() {
-  const { isEnglish } = useLanguage();
+export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
+  const { isEnglish: ctxIsEnglish } = useLanguage();
+  const isEnglish = forceEn || ctxIsEnglish;
   const communes = [
     "Fribourg", "Bulle", "Villars-sur-Glâne", "Marly", "Granges-Paccot",
     "Givisiez", "Düdingen", "Estavayer-le-Lac", "Romont", "Châtel-Saint-Denis",
@@ -543,4 +544,8 @@ export default function FribourgPage() {
       </section>
     </main>
   );
+}
+
+export default function FribourgPage() {
+  return <FribourgContent />;
 }
