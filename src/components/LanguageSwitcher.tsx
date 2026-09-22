@@ -3,17 +3,52 @@
 import { useLanguage } from "@/lib/language-context";
 import { localeNames, Locale } from "@/lib/i18n";
 import { Globe } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 
 interface LanguageSwitcherProps {
   variant?: "header" | "footer" | "minimal";
   className?: string;
 }
 
+// Base paths that have a dedicated server-rendered English route under /en.
+const EN_TWIN_EXACT = new Set<string>([
+  "/",
+  "/independants",
+  "/tarifs",
+  "/entreprises",
+  "/creation-entreprise",
+  "/associations-fondations",
+  "/blog",
+]);
+
+// Returns the /en equivalent of a French path, or null when no English route exists.
+function toEnPath(p: string | null): string | null {
+  if (!p) return null;
+  if (p === "/en" || p.startsWith("/en/")) return null;
+  if (EN_TWIN_EXACT.has(p)) return p === "/" ? "/en" : "/en" + p;
+  if (p.startsWith("/blog/") || p.startsWith("/communes/")) return "/en" + p;
+  return null;
+}
+
 export function LanguageSwitcher({ variant = "header", className = "" }: LanguageSwitcherProps) {
   const { locale, setLocale, t } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Switch language: navigate to the /en (or French) URL when one exists,
+  // otherwise fall back to a client-side language switch.
+  const switchTo = (lang: Locale) => {
+    setLocale(lang);
+    if (lang === "en") {
+      const enPath = toEnPath(pathname);
+      if (enPath) router.push(enPath);
+    } else if (pathname === "/en" || pathname?.startsWith("/en/")) {
+      router.push(pathname === "/en" ? "/" : pathname.replace(/^\/en/, ""));
+    }
+  };
 
   const toggleLanguage = () => {
-    setLocale(locale === "fr" ? "en" : "fr");
+    switchTo(locale === "fr" ? "en" : "fr");
   };
 
   if (variant === "minimal") {
@@ -37,7 +72,7 @@ export function LanguageSwitcher({ variant = "header", className = "" }: Languag
           {(["fr", "en"] as Locale[]).map((lang) => (
             <button
               key={lang}
-              onClick={() => setLocale(lang)}
+              onClick={() => switchTo(lang)}
               className={`px-2 py-1 text-sm rounded transition-colors ${
                 locale === lang
                   ? "bg-primary/20 text-primary font-medium"
@@ -72,8 +107,16 @@ export function LanguageSwitcher({ variant = "header", className = "" }: Languag
 // Banner component to show we speak English
 export function LanguageBanner() {
   const { locale, setLocale, t } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
 
   if (locale === "en") return null;
+
+  const goEnglish = () => {
+    setLocale("en");
+    const enPath = toEnPath(pathname);
+    if (enPath) router.push(enPath);
+  };
 
   return (
     <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 px-4 text-center text-sm">
@@ -81,7 +124,7 @@ export function LanguageBanner() {
       <span className="font-medium">We speak English!</span>
       <span className="mx-2 opacity-60">|</span>
       <button
-        onClick={() => setLocale("en")}
+        onClick={goEnglish}
         className="underline hover:no-underline font-medium"
       >
         Switch to English
