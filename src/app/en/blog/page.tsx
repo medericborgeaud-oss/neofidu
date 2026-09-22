@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Blog — Swiss Tax & Accounting Insights | NeoFidu",
+    title: "Blog - Swiss Tax & Accounting Insights | NeoFidu",
     description:
       "Articles in English on Swiss taxation, accounting and business in French-speaking Switzerland.",
     type: "website",
@@ -85,7 +85,7 @@ export default function BlogIndexEn() {
         </nav>
 
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          NeoFidu Blog — in English
+          NeoFidu Blog - in English
         </h1>
         <p className="text-gray-600 mb-8 max-w-2xl">
           Practical guides on Swiss taxation, accounting and self-employment in
