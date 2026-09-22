@@ -114,6 +114,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/en/entreprises", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
     createEntry("/en/creation-entreprise", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
     createEntry("/en/associations-fondations", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/en/suisses-de-letranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/en/faq", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
   ];
 
   return [...staticPages, ...communePages, ...enCommunePages, ...enBlogPages, ...enServicePages];
