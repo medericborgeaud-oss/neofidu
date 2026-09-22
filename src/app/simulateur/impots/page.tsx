@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "outil fiscal gratuit suisse",
   ],
   openGraph: {
-    title: "Simulateur d'impôts Suisse 2026 — Résultat gratuit en 30 secondes",
+    title: "Simulateur d'impôts Suisse 2026 - Résultat gratuit en 30 secondes",
     description:
       "Calculez vos impôts en Suisse romande en quelques clics. Outil gratuit, résultat immédiat pour Vaud, Genève, Fribourg, Valais et Neuchâtel.",
     type: "website",
