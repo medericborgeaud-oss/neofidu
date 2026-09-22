@@ -4,49 +4,67 @@ import { Globe } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { usePathname, useRouter } from "next/navigation";
 
+// Base FR paths that have a dedicated server-rendered English route under /en.
+const EN_TWIN_EXACT = new Set<string>([
+  "/",
+  "/independants",
+  "/tarifs",
+  "/entreprises",
+  "/creation-entreprise",
+  "/associations-fondations",
+  "/blog",
+  "/faq",
+  "/suisses-de-letranger",
+  "/cantons",
+]);
+
+// Returns the /en equivalent of a French path, or null when no English route exists.
+function toEnPath(p: string | null): string | null {
+  if (!p) return null;
+  if (p === "/en" || p.startsWith("/en/")) return null;
+  if (EN_TWIN_EXACT.has(p)) return p === "/" ? "/en" : "/en" + p;
+  if (p.startsWith("/blog/") || p.startsWith("/communes/") || p.startsWith("/cantons/")) return "/en" + p;
+  return null;
+}
+
 export function ExpatBanner() {
   const { setLocale, isEnglish } = useLanguage();
   const pathname = usePathname();
   const router = useRouter();
 
+  // Dedicated page pairs with different slugs (not /en prefixed).
   const debtPages: Record<string, string> = {
     "/dette-suisse": "/swiss-debt",
     "/swiss-debt": "/dette-suisse",
   };
 
-  // Detect if current URL is an EN page
-  const isOnEnPage = pathname.startsWith("/en/");
-
-  // Detect if current FR page has a dedicated EN version
-  const hasEnVersion = /^\/(observatoire|communes)\/[^/]+/.test(pathname);
+  const isOnEnPage = pathname === "/en" || (pathname?.startsWith("/en/") ?? false);
 
   const handleClick = () => {
     // Dedicated page pairs (dette-suisse / swiss-debt)
-    const target = debtPages[pathname];
+    const target = debtPages[pathname ?? ""];
     if (target) {
+      setLocale(pathname === "/dette-suisse" ? "en" : "fr");
       router.push(target);
       return;
     }
 
-    // EN page → navigate to FR version (remove /en prefix)
-    if (isOnEnPage) {
+    // Currently English (on an /en URL or English context) -> switch to French
+    if (isOnEnPage || isEnglish) {
       setLocale("fr");
-      router.push(pathname.replace(/^\/en/, ""));
+      if (isOnEnPage) {
+        router.push(pathname === "/en" ? "/" : (pathname ?? "").replace(/^\/en/, ""));
+      }
       return;
     }
 
-    // FR page with dedicated EN version → navigate to EN version
-    if (hasEnVersion && !isEnglish) {
-      setLocale("en");
-      router.push("/en" + pathname);
-      return;
-    }
-
-    // Other pages: toggle locale context for Header/Footer only
-    setLocale(isEnglish ? "fr" : "en");
+    // French page -> switch to English: navigate to the /en version if it exists
+    setLocale("en");
+    const enPath = toEnPath(pathname);
+    if (enPath) router.push(enPath);
   };
 
-  // Show "Passer en Français" if on EN page or if context is English
+  // Show "Français" if on EN page or if context is English
   const showFrench = isOnEnPage || isEnglish;
 
   return (
