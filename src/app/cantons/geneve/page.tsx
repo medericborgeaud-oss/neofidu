@@ -329,8 +329,8 @@ export default function GenevePage() {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "2nd pillar buyback" : "Rachat de 2ème pilier"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Fully deductible from taxable income — a very effective strategy for high Geneva incomes."
-                  : "Entièrement déductible du revenu imposable — stratégie très efficace pour les hauts revenus genevois."}
+                  ? "Fully deductible from taxable income - a very effective strategy for high Geneva incomes."
+                  : "Entièrement déductible du revenu imposable - stratégie très efficace pour les hauts revenus genevois."}
               </p>
             </Card>
             <Card className="p-6">
@@ -447,7 +447,7 @@ export default function GenevePage() {
           <div className="flex items-center gap-3 mb-8">
             <HelpCircle className="w-8 h-8 text-primary" />
             <h2 className="text-3xl font-bold">
-              {isEnglish ? "Frequently Asked Questions — Taxes in Geneva" : "Questions fréquentes — Impôts à Genève"}
+              {isEnglish ? "Frequently Asked Questions - Taxes in Geneva" : "Questions fréquentes - Impôts à Genève"}
             </h2>
           </div>
           <div className="space-y-6 max-w-3xl">
