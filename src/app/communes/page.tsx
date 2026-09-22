@@ -1,5 +1,5 @@
 // src/app/communes/page.tsx
-// Page liste des communes romandes — dashboard avec recherche et filtres
+// Page liste des communes romandes - dashboard avec recherche et filtres
 
 import { Metadata } from "next";
 import { getCommunes, getCommunesStats } from "@/lib/communes";
@@ -8,17 +8,17 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Communes romandes — Fiscalité, population, entreprises | NeoFidu",
+  title: "Communes romandes - Fiscalité, population, entreprises | NeoFidu",
   description:
     "Explorez les 1'098 communes de Suisse romande. Comparez les coefficients d'imposition, la population et le nombre d'entreprises par commune.",
   openGraph: {
-    title: "Communes romandes — Fiscalité, population, entreprises | NeoFidu",
+    title: "Communes romandes - Fiscalité, population, entreprises | NeoFidu",
     description:
       "Explorez les communes de Suisse romande. Comparez les taux d'imposition et statistiques.",
   },
 };
 
-export const revalidate = 3600; // Pas de cache — données toujours fraîches
+export const revalidate = 3600; // Pas de cache - données toujours fraîches
 export default async function CommunesPage(props: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
