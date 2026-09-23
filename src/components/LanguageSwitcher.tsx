@@ -30,6 +30,7 @@ function toEnPath(p: string | null): string | null {
   if (p === "/en" || p.startsWith("/en/")) return null;
   if (EN_TWIN_EXACT.has(p)) return p === "/" ? "/en" : "/en" + p;
   if (p.startsWith("/blog/") || p.startsWith("/communes/") || p.startsWith("/cantons/")) return "/en" + p;
+  if (p === "/dette-suisse") return "/en/swiss-debt";
   return null;
 }
 
@@ -46,6 +47,7 @@ export function LanguageSwitcher({ variant = "header", className = "" }: Languag
       const enPath = toEnPath(pathname);
       if (enPath) router.push(enPath);
     } else if (pathname === "/en" || pathname?.startsWith("/en/")) {
+      if (pathname === "/en/swiss-debt") { router.push("/dette-suisse"); return; }
       router.push(pathname === "/en" ? "/" : pathname.replace(/^\/en/, ""));
     }
   };
