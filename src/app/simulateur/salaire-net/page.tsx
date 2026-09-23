@@ -36,6 +36,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/simulateur/salaire-net",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur/salaire-net",
+      "en-CH": "https://neofidu.ch/en/simulateur/salaire-net",
+      "x-default": "https://neofidu.ch/simulateur/salaire-net",
+    },
   },
 };
 
