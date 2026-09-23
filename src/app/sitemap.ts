@@ -49,6 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/faq", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
     createEntry("/simulateur", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/impots", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+    createEntry("/en/simulateur/impots", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/3eme-pilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/valeur-locative", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/gain-immobilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
