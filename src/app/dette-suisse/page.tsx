@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     canonical: URL,
     languages: {
       "fr-CH": "https://neofidu.ch/dette-suisse",
-      "en-CH": "https://neofidu.ch/swiss-debt",
+      "en-CH": "https://neofidu.ch/en/swiss-debt",
       "x-default": "https://neofidu.ch/dette-suisse",
     },
   },
