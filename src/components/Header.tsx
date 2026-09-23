@@ -20,6 +20,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 const EN_TWIN_EXACT = new Set<string>([
   "/expats",
   "/simulateur/impots",
+  "/simulateur/salaire-net",
   "/independants",
   "/tarifs",
   "/entreprises",
