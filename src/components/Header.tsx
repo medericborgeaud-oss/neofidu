@@ -19,6 +19,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 // FR base paths that have a dedicated /en twin route.
 const EN_TWIN_EXACT = new Set<string>([
   "/expats",
+  "/simulateur/impots",
   "/independants",
   "/tarifs",
   "/entreprises",
