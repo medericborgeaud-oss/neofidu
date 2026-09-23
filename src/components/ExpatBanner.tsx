@@ -34,8 +34,8 @@ export function ExpatBanner() {
 
   // Dedicated page pairs with different slugs (not /en prefixed).
   const debtPages: Record<string, string> = {
-    "/dette-suisse": "/swiss-debt",
-    "/swiss-debt": "/dette-suisse",
+    "/dette-suisse": "/en/swiss-debt",
+    "/en/swiss-debt": "/dette-suisse",
   };
 
   const isOnEnPage = pathname === "/en" || (pathname?.startsWith("/en/") ?? false);
