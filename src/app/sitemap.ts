@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/contact", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
     createEntry("/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/suisses-etranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
-    createEntry("/expats", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
+    createEntry("/en/expats", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
     createEntry("/independants", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/creation-entreprise", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/entreprises", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
