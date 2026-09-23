@@ -16,6 +16,27 @@ import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, Clipbo
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
+// FR base paths that have a dedicated /en twin route.
+const EN_TWIN_EXACT = new Set<string>([
+  "/independants",
+  "/tarifs",
+  "/entreprises",
+  "/creation-entreprise",
+  "/associations-fondations",
+  "/blog",
+  "/faq",
+  "/suisses-de-letranger",
+  "/cantons",
+  "/communes",
+]);
+
+function enHref(href: string): string {
+  if (href === "/") return "/en";
+  if (EN_TWIN_EXACT.has(href)) return "/en" + href;
+  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/")) return "/en" + href;
+  return href;
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +45,7 @@ export function Header() {
   const [outilsOpen, setOutilsOpen] = useState(false);
   const { t, locale, isEnglish } = useLanguage();
   const pathname = usePathname();
+  const L = (href: string) => (isEnglish ? enHref(href) : href);
 
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -67,8 +89,8 @@ export function Header() {
   const handleSearchSelect = useCallback((href: string) => {
     setSearchOpen(false);
     setSearchQuery("");
-    router.push(href);
-  }, [router]);
+    router.push(isEnglish ? enHref(href) : href);
+  }, [router, isEnglish]);
 
   // Cmd+K shortcut
   useEffect(() => {
@@ -221,7 +243,7 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href={L("/")} className="flex items-center space-x-2">
               <div className="relative">
                 <span className="text-2xl md:text-4xl font-bold text-primary">
                   neo
@@ -249,7 +271,7 @@ export function Header() {
                   {particuliersItems.map((item) => (
                     <DropdownMenuItem key={item.href} asChild>
                       <Link
-                        href={item.href}
+                        href={L(item.href)}
                         className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
                       >
                         <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -286,7 +308,7 @@ export function Header() {
                   {entreprisesItems.map((item) => (
                     <DropdownMenuItem key={item.href} asChild>
                       <Link
-                        href={item.href}
+                        href={L(item.href)}
                         className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
                       >
                         <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -302,7 +324,7 @@ export function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link
-                      href="/independants"
+                      href={L("/independants")}
                       className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
                     >
                       {isEnglish ? "All business services →" : "Tous les services entreprise →"}
@@ -323,7 +345,7 @@ export function Header() {
                   {outilsItems.map((item) => (
                     <DropdownMenuItem key={item.href} asChild>
                       <Link
-                        href={item.href}
+                        href={L(item.href)}
                         className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
                       >
                         <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -350,13 +372,13 @@ export function Header() {
 
               {/* Direct links */}
               <Link
-                href="/blog"
+                href={L("/blog")}
                 className="px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
               >
                 Blog
               </Link>
               <Link
-                href="/tarifs"
+                href={L("/tarifs")}
                 className="px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
               >
                 {t("header.pricing")}
@@ -407,7 +429,7 @@ export function Header() {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px] sm:w-[350px]">
                   <div className="flex flex-col space-y-4 mt-8 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 4rem)' }}>
-                    <Link href="/" className="flex items-center space-x-2 mb-4">
+                    <Link href={L("/")} className="flex items-center space-x-2 mb-4">
                       <span className="text-2xl font-bold text-primary">neo</span>
                       <span className="text-2xl font-bold text-foreground">fidu</span>
                       <span className="text-sm text-muted-foreground">.ch</span>
@@ -427,7 +449,7 @@ export function Header() {
                           {particuliersItems.map((item) => (
                             <Link
                               key={item.href}
-                              href={item.href}
+                              href={L(item.href)}
                               onClick={() => setIsOpen(false)}
                               className="flex items-center gap-3 py-3 text-muted-foreground hover:text-primary transition-colors"
                             >
@@ -456,7 +478,7 @@ export function Header() {
                           {entreprisesItems.map((item) => (
                             <Link
                               key={item.href}
-                              href={item.href}
+                              href={L(item.href)}
                               onClick={() => setIsOpen(false)}
                               className="flex items-center gap-3 py-3 text-muted-foreground hover:text-primary transition-colors"
                             >
@@ -485,7 +507,7 @@ export function Header() {
                           {outilsItems.map((item) => (
                             <Link
                               key={item.href}
-                              href={item.href}
+                              href={L(item.href)}
                               onClick={() => setIsOpen(false)}
                               className="flex items-center gap-3 py-3 text-muted-foreground hover:text-primary transition-colors"
                             >
@@ -509,14 +531,14 @@ export function Header() {
 
                     {/* Direct links */}
                     <Link
-                      href="/blog"
+                      href={L("/blog")}
                       onClick={() => setIsOpen(false)}
                       className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
                     >
                       Blog
                     </Link>
                     <Link
-                      href="/tarifs"
+                      href={L("/tarifs")}
                       onClick={() => setIsOpen(false)}
                       className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
                     >
