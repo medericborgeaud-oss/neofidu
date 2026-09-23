@@ -9,8 +9,30 @@ import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ShieldCheck, Lock, CreditCard, Server, Mail, Loader2, CheckCircle2 } from "lucide-react";
 
+// FR base paths that have a dedicated /en twin route.
+const EN_TWIN_EXACT_FOOTER = new Set<string>([
+  "/independants",
+  "/tarifs",
+  "/entreprises",
+  "/creation-entreprise",
+  "/associations-fondations",
+  "/blog",
+  "/faq",
+  "/suisses-de-letranger",
+  "/cantons",
+  "/communes",
+]);
+
+function enHrefFooter(href: string): string {
+  if (href === "/") return "/en";
+  if (EN_TWIN_EXACT_FOOTER.has(href)) return "/en" + href;
+  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/")) return "/en" + href;
+  return href;
+}
+
 export function Footer() {
   const { t, isEnglish } = useLanguage();
+  const L = (href: string) => (isEnglish ? enHrefFooter(href) : href);
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -135,7 +157,7 @@ export function Footer() {
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={link.href}
+                    href={L(link.href)}
                     className="text-slate-400 hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -154,7 +176,7 @@ export function Footer() {
               {footerLinks.tools.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={link.href}
+                    href={L(link.href)}
                     className="text-slate-400 hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -173,7 +195,7 @@ export function Footer() {
               {footerLinks.guides.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={link.href}
+                    href={L(link.href)}
                     className="text-slate-400 hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -192,7 +214,7 @@ export function Footer() {
               {footerLinks.info.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={link.href}
+                    href={L(link.href)}
                     className="text-slate-400 hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -211,7 +233,7 @@ export function Footer() {
               {footerLinks.cantons.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={link.href}
+                    href={L(link.href)}
                     className="text-slate-400 hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -226,7 +248,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Brand */}
           <div className="flex flex-col justify-center">
-            <Link href="/" className="flex items-center space-x-1 mb-4">
+            <Link href={L("/")} className="flex items-center space-x-1 mb-4">
               <span className="text-2xl font-bold text-primary">neo</span>
               <span className="text-2xl font-bold text-white">fidu</span>
               <span className="text-sm text-slate-400">.ch</span>
