@@ -113,9 +113,9 @@ function CategoryBar({ cat, total, en }: { cat: Category; total: number; en: boo
 // ════════════════════════════════════════════════════════════════
 //  MAIN COMPONENT
 // ════════════════════════════════════════════════════════════════
-export default function SwissDebtClock() {
+export default function SwissDebtClock({ forceEn = false }: { forceEn?: boolean }) {
   const { isEnglish } = useLanguage();
-  const en = isEnglish;
+  const en = forceEn || isEnglish;
 
   const [tab, setTab] = useState<"r" | "d">("r");
   const [vals, setVals] = useState({
