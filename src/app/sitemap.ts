@@ -55,6 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/simulateur/gain-immobilier", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/carte-impots", { lastModified: currentDate, changeFrequency: "weekly", priority: 1.0 }),
     createEntry("/simulateur/salaire-net", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+    createEntry("/en/simulateur/salaire-net", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/baisse-loyer", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
     createEntry("/simulateur/retraite", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.92 }),
     createEntry("/guide/deductions-fiscales", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
