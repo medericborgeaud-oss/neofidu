@@ -14,6 +14,7 @@ interface LanguageSwitcherProps {
 const EN_TWIN_EXACT = new Set<string>([
   "/",
   "/independants",
+  "/simulateur/impots",
   "/tarifs",
   "/entreprises",
   "/creation-entreprise",
