@@ -13,6 +13,8 @@ import { ShieldCheck, Lock, CreditCard, Server, Mail, Loader2, CheckCircle2 } fr
 const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/expats",
   "/simulateur/impots",
+  "/simulateur/salaire-net",
+  "/simulateur/3eme-pilier",
   "/independants",
   "/tarifs",
   "/entreprises",
