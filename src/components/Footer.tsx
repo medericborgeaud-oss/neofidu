@@ -58,7 +58,7 @@ export function Footer() {
       { label: isEnglish ? "Property tax simulator" : "Simulateur valeur locative", href: "/simulateur/valeur-locative" },
       { label: isEnglish ? "Real estate gain tax" : "Gain immobilier", href: "/simulateur/gain-immobilier" },
       { label: isEnglish ? "Retirement simulator" : "Simulateur retraite", href: "/simulateur/retraite" },
-      { label: isEnglish ? "Swiss debt clock" : "Compteur dette suisse", href: isEnglish ? "/swiss-debt" : "/dette-suisse" },
+      { label: isEnglish ? "Swiss debt clock" : "Compteur dette suisse", href: isEnglish ? "/en/swiss-debt" : "/dette-suisse" },
     ],
     guides: [
       { label: isEnglish ? "Tax deductions guide" : "Guide déductions fiscales", href: "/guide/deductions-fiscales" },
