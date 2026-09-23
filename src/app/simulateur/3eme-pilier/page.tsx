@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/simulateur/3eme-pilier",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur/3eme-pilier",
+      "en-CH": "https://neofidu.ch/en/simulateur/3eme-pilier",
+      "x-default": "https://neofidu.ch/simulateur/3eme-pilier",
+    },
   },
 };
 
