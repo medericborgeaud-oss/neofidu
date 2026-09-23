@@ -75,7 +75,7 @@ export function Header() {
     { href: "/observatoire", label: isEnglish ? "Company Observatory" : "Observatoire des entreprises", category: "Informations" },
     { href: "/communes", label: isEnglish ? "Communes" : "Communes romandes", category: "Informations" },
     { href: "/guide/deductions-fiscales", label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales", category: "Informations" },
-    { href: isEnglish ? "/swiss-debt" : "/dette-suisse", label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse", category: "Informations" },
+    { href: isEnglish ? "/en/swiss-debt" : "/dette-suisse", label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse", category: "Informations" },
     { href: "/suivi", label: isEnglish ? "File Tracking" : "Suivi de dossier", category: "Informations" },
     { href: "/#about", label: isEnglish ? "About" : "À propos", category: "Informations" },
   ];
