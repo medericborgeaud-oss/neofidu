@@ -12,6 +12,7 @@ import { ShieldCheck, Lock, CreditCard, Server, Mail, Loader2, CheckCircle2 } fr
 // FR base paths that have a dedicated /en twin route.
 const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/expats",
+  "/simulateur/impots",
   "/independants",
   "/tarifs",
   "/entreprises",
