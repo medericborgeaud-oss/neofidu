@@ -224,7 +224,7 @@ export default function SwissDebtPage() {
             </div>
 
             {/* Widget */}
-            <SwissDebtClock />
+            <SwissDebtClock forceEn />
 
             {/* SEO content */}
             <section className="max-w-3xl mx-auto mt-16 space-y-8">
