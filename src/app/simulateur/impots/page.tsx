@@ -33,6 +33,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/simulateur/impots",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur/impots",
+      "en-CH": "https://neofidu.ch/en/simulateur/impots",
+      "x-default": "https://neofidu.ch/simulateur/impots",
+    },
   },
 };
 
