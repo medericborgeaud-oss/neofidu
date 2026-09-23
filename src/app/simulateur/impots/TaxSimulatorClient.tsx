@@ -138,7 +138,7 @@ interface CommuneOption {
 }
 
 export function TaxSimulatorClient() {
-  const { t } = useLanguage();
+  const { t, isEnglish } = useLanguage();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     grossIncome: "",
@@ -374,10 +374,10 @@ export function TaxSimulatorClient() {
                   <div>
                     <Label htmlFor="commune" className="text-base font-medium flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
-                      Commune de domicile
+                      {isEnglish ? "Municipality of residence" : "Commune de domicile"}
                     </Label>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Optionnel - pour un calcul plus précis avec le coefficient communal
+                      {isEnglish ? "Optional - for a more precise calculation with the municipal coefficient" : "Optionnel - pour un calcul plus précis avec le coefficient communal"}
                     </p>
                     <select
                       id="commune"
@@ -385,7 +385,7 @@ export function TaxSimulatorClient() {
                       onChange={(e) => setFormData({ ...formData, commune: e.target.value })}
                       className="w-full h-12 px-4 rounded-md border border-input bg-background text-base mt-2"
                     >
-                      <option value="">- Moyenne cantonale -</option>
+                      <option value="">{isEnglish ? "- Cantonal average -" : "- Moyenne cantonale -"}</option>
                       {communes.map((c) => (
                         <option key={c.slug} value={c.slug}>
                           {c.nom}{c.taux_commune ? ` (coeff. ${c.taux_commune})` : ""}
@@ -396,7 +396,7 @@ export function TaxSimulatorClient() {
                 )}
 
                 {isRomandie && loadingCommunes && (
-                  <p className="text-sm text-muted-foreground">Chargement des communes...</p>
+                  <p className="text-sm text-muted-foreground">{isEnglish ? "Loading municipalities..." : "Chargement des communes..."}</p>
                 )}
 
                 <div>
@@ -695,7 +695,7 @@ export function TaxSimulatorClient() {
       </div>
 
       <p className="text-xs text-center text-muted-foreground italic max-w-2xl mx-auto">
-        * Cette simulation est une estimation indicative. Les impôts cantonaux et communaux réels sont calculés selon des barèmes progressifs propres à chaque canton. Pour un calcul précis adapté à votre situation, confiez votre déclaration à un professionnel.
+        {isEnglish ? "* This simulation is an indicative estimate. Actual cantonal and communal taxes are calculated using progressive scales specific to each canton. For a precise calculation tailored to your situation, entrust your tax return to a professional." : "* Cette simulation est une estimation indicative. Les impôts cantonaux et communaux réels sont calculés selon des barèmes progressifs propres à chaque canton. Pour un calcul précis adapté à votre situation, confiez votre déclaration à un professionnel."}
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
