@@ -39,6 +39,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: URL,
+    languages: {
+      "fr-CH": "https://neofidu.ch/dette-suisse",
+      "en-CH": "https://neofidu.ch/swiss-debt",
+      "x-default": "https://neofidu.ch/dette-suisse",
+    },
   },
   openGraph: {
     title: TITLE,
