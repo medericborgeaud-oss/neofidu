@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/simulateur/baisse-loyer",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur/baisse-loyer",
+      "en-CH": "https://neofidu.ch/en/simulateur/baisse-loyer",
+      "x-default": "https://neofidu.ch/simulateur/baisse-loyer",
+    },
   },
 };
 
