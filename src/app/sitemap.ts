@@ -60,6 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/simulateur/salaire-net", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
     createEntry("/en/simulateur/salaire-net", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/baisse-loyer", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.95 }),
+    createEntry("/en/simulateur/baisse-loyer", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/retraite", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.92 }),
     createEntry("/guide/deductions-fiscales", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/cantons", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
