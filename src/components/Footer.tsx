@@ -17,6 +17,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/simulateur/3eme-pilier",
   "/simulateur/valeur-locative",
   "/simulateur/gain-immobilier",
+  "/simulateur/baisse-loyer",
   "/independants",
   "/tarifs",
   "/entreprises",
