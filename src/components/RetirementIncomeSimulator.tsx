@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TrendingUp, PiggyBank, Shield, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
 
 const AVS_MIN = 1260;
 const AVS_MAX = 2520;
@@ -28,6 +29,7 @@ function compound(capital: number, contrib: number, years: number, r: number) {
 }
 
 export default function RetirementIncomeSimulator() {
+  const { isEnglish } = useLanguage();
   const [form, setForm] = useState({
     currentAge: "40",
     retirementAge: "65",
@@ -93,24 +95,24 @@ export default function RetirementIncomeSimulator() {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
               <Shield className="h-4 w-4 text-blue-500" />
-              Votre profil
+              {isEnglish ? "Your profile" : "Votre profil"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <Label htmlFor="currentAge">Âge actuel</Label>
+              <Label htmlFor="currentAge">{isEnglish ? "Current age" : "Âge actuel"}</Label>
               <Input id="currentAge" type="number" min={18} max={70}
                 value={form.currentAge} onChange={e => upd("currentAge", e.target.value)}
                 className="h-12 text-lg mt-1" />
             </div>
             <div>
-              <Label htmlFor="retirementAge">Âge de retraite visé</Label>
+              <Label htmlFor="retirementAge">{isEnglish ? "Target retirement age" : "Âge de retraite visé"}</Label>
               <Input id="retirementAge" type="number" min={58} max={72}
                 value={form.retirementAge} onChange={e => upd("retirementAge", e.target.value)}
                 className="h-12 text-lg mt-1" />
             </div>
             <div>
-              <Label htmlFor="annualIncome">Revenu annuel brut actuel</Label>
+              <Label htmlFor="annualIncome">{isEnglish ? "Current gross annual income" : "Revenu annuel brut actuel"}</Label>
               <div className="relative mt-1">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">CHF</span>
                 <Input id="annualIncome" type="number" min={10000} step={1000}
@@ -119,21 +121,21 @@ export default function RetirementIncomeSimulator() {
               </div>
             </div>
             <div>
-              <Label htmlFor="avsYears">Années de cotisation AVS déjà effectuées</Label>
+              <Label htmlFor="avsYears">{isEnglish ? "AVS contribution years already completed" : "Années de cotisation AVS déjà effectuées"}</Label>
               <Input id="avsYears" type="number" min={0} max={44}
                 value={form.avsYears} onChange={e => upd("avsYears", e.target.value)}
                 className="h-12 text-lg mt-1" />
-              <p className="text-xs text-muted-foreground mt-1">44 ans = rente AVS complète</p>
+              <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "44 years = full AVS pension" : "44 ans = rente AVS complète"}</p>
             </div>
             <div>
-              <Label htmlFor="returnRate">Rendement annuel attendu</Label>
+              <Label htmlFor="returnRate">{isEnglish ? "Expected annual return" : "Rendement annuel attendu"}</Label>
               <div className="relative mt-1">
                 <Input id="returnRate" type="number" min={0} max={10} step={0.1}
                   value={form.returnRate} onChange={e => upd("returnRate", e.target.value)}
                   className="h-12 text-lg pr-10" />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">%</span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">Appliqué au 2ème et 3ème pilier</p>
+              <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Applied to the 2nd and 3rd pillar" : "Appliqué au 2ème et 3ème pilier"}</p>
             </div>
           </CardContent>
         </Card>
@@ -143,43 +145,43 @@ export default function RetirementIncomeSimulator() {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
               <PiggyBank className="h-4 w-4 text-green-500" />
-              2ème pilier (LPP)
+              {isEnglish ? "2nd pillar (LPP)" : "2ème pilier (LPP)"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <Label htmlFor="lppCapital">Avoir LPP actuel</Label>
+              <Label htmlFor="lppCapital">{isEnglish ? "Current LPP assets" : "Avoir LPP actuel"}</Label>
               <div className="relative mt-1">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">CHF</span>
                 <Input id="lppCapital" type="number" min={0} step={1000}
                   value={form.lppCapital} onChange={e => upd("lppCapital", e.target.value)}
                   className="h-12 text-lg pl-14" />
               </div>
-              <p className="text-xs text-muted-foreground mt-1">Visible sur votre certificat de prévoyance</p>
+              <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Shown on your pension certificate" : "Visible sur votre certificat de prévoyance"}</p>
             </div>
             <div>
-              <Label htmlFor="lppContrib">Cotisation annuelle totale</Label>
+              <Label htmlFor="lppContrib">{isEnglish ? "Total annual contribution" : "Cotisation annuelle totale"}</Label>
               <div className="relative mt-1">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">CHF</span>
                 <Input id="lppContrib" type="number" min={0} step={500}
                   value={form.lppContrib} onChange={e => upd("lppContrib", e.target.value)}
                   className="h-12 text-lg pl-14" />
               </div>
-              <p className="text-xs text-muted-foreground mt-1">Part salarié + part employeur</p>
+              <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Employee share + employer share" : "Part salarié + part employeur"}</p>
             </div>
             <div>
-              <Label htmlFor="lppRate">Taux de conversion</Label>
+              <Label htmlFor="lppRate">{isEnglish ? "Conversion rate" : "Taux de conversion"}</Label>
               <div className="relative mt-1">
                 <Input id="lppRate" type="number" min={4} max={8} step={0.1}
                   value={form.lppRate} onChange={e => upd("lppRate", e.target.value)}
                   className="h-12 text-lg pr-10" />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">%</span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">Taux légal 2026 : 6,8% (obligatoire)</p>
+              <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "2026 legal rate: 6.8% (mandatory)" : "Taux légal 2026 : 6,8% (obligatoire)"}</p>
             </div>
             <div className="p-3 rounded-lg bg-muted text-xs text-muted-foreground">
-              Capital × taux de conversion = rente annuelle.
-              Ex : 500’000 × 6,8% = 34’000/an.
+              {isEnglish ? "Capital × conversion rate = annual pension." : "Capital × taux de conversion = rente annuelle."}
+              {isEnglish ? "E.g.: 500,000 × 6.8% = 34,000/yr." : "Ex : 500’000 × 6,8% = 34’000/an."}
             </div>
           </CardContent>
         </Card>
@@ -189,12 +191,12 @@ export default function RetirementIncomeSimulator() {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
               <TrendingUp className="h-4 w-4 text-purple-500" />
-              3ème pilier (3a)
+              {isEnglish ? "3rd pillar (3a)" : "3ème pilier (3a)"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <Label htmlFor="p3Capital">Capital 3ème pilier actuel</Label>
+              <Label htmlFor="p3Capital">{isEnglish ? "Current 3rd pillar capital" : "Capital 3ème pilier actuel"}</Label>
               <div className="relative mt-1">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">CHF</span>
                 <Input id="p3Capital" type="number" min={0} step={1000}
@@ -203,18 +205,18 @@ export default function RetirementIncomeSimulator() {
               </div>
             </div>
             <div>
-              <Label htmlFor="p3Contrib">Cotisation annuelle</Label>
+              <Label htmlFor="p3Contrib">{isEnglish ? "Annual contribution" : "Cotisation annuelle"}</Label>
               <div className="relative mt-1">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">CHF</span>
                 <Input id="p3Contrib" type="number" min={0} max={36288} step={500}
                   value={form.p3Contrib} onChange={e => upd("p3Contrib", e.target.value)}
                   className="h-12 text-lg pl-14" />
               </div>
-              <p className="text-xs text-muted-foreground mt-1">Max 2026 : 7’258 (salarié)</p>
+              <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "2026 max: 7,258 (employee)" : "Max 2026 : 7’258 (salarié)"}</p>
             </div>
             <div className="p-3 rounded-lg bg-muted text-xs text-muted-foreground">
-              Le capital est amorti sur <strong>20 ans</strong> après la retraite.
-              L&apos;imposition au retrait n&apos;est pas incluse.
+              {isEnglish ? <>The capital is spread over <strong>20 years</strong> after retirement.</> : <>Le capital est amorti sur <strong>20 ans</strong> après la retraite.</>}
+              {isEnglish ? "Withdrawal taxation is not included." : <>L&apos;imposition au retrait n&apos;est pas incluse.</>}
             </div>
           </CardContent>
         </Card>
@@ -226,45 +228,45 @@ export default function RetirementIncomeSimulator() {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2">
               <ChevronRight className="h-5 w-5 text-primary" />
-              Revenu mensuel estimé à la retraite
+              {isEnglish ? "Estimated monthly retirement income" : "Revenu mensuel estimé à la retraite"}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <div className="text-center p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
                 <Shield className="h-5 w-5 text-blue-500 mx-auto mb-2" />
-                <p className="text-xs font-medium text-muted-foreground mb-1">AVS · 1er pilier</p>
+                <p className="text-xs font-medium text-muted-foreground mb-1">{isEnglish ? "AVS · 1st pillar" : "AVS · 1er pilier"}</p>
                 <p className="text-2xl font-bold">{fmt(R.avsMth)}</p>
-                <p className="text-xs text-muted-foreground mt-1">{R.totalAvsYrs} ans cotisés</p>
+                <p className="text-xs text-muted-foreground mt-1">{R.totalAvsYrs} {isEnglish ? "years contributed" : "ans cotisés"}</p>
               </div>
               <div className="text-center p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
                 <PiggyBank className="h-5 w-5 text-green-500 mx-auto mb-2" />
-                <p className="text-xs font-medium text-muted-foreground mb-1">LPP · 2ème pilier</p>
+                <p className="text-xs font-medium text-muted-foreground mb-1">{isEnglish ? "LPP · 2nd pillar" : "LPP · 2ème pilier"}</p>
                 <p className="text-2xl font-bold">{fmt(R.lppMth)}</p>
-                <p className="text-xs text-muted-foreground mt-1">Capital : {fmt(R.lppFinal)}</p>
+                <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Capital: " : "Capital : "}{fmt(R.lppFinal)}</p>
               </div>
               <div className="text-center p-4 rounded-xl bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800">
                 <TrendingUp className="h-5 w-5 text-purple-500 mx-auto mb-2" />
-                <p className="text-xs font-medium text-muted-foreground mb-1">3ème pilier · sur 20 ans</p>
+                <p className="text-xs font-medium text-muted-foreground mb-1">{isEnglish ? "3rd pillar · over 20 years" : "3ème pilier · sur 20 ans"}</p>
                 <p className="text-2xl font-bold">{fmt(R.p3Mth)}</p>
-                <p className="text-xs text-muted-foreground mt-1">Capital : {fmt(R.p3Final)}</p>
+                <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Capital: " : "Capital : "}{fmt(R.p3Final)}</p>
               </div>
               <div className="text-center p-4 rounded-xl bg-primary text-primary-foreground">
-                <p className="text-xs font-medium opacity-80 mb-1">Total mensuel estimé</p>
+                <p className="text-xs font-medium opacity-80 mb-1">{isEnglish ? "Estimated monthly total" : "Total mensuel estimé"}</p>
                 <p className="text-3xl font-bold">{fmt(R.total)}</p>
-                <p className="text-xs opacity-80 mt-1">par mois</p>
+                <p className="text-xs opacity-80 mt-1">{isEnglish ? "per month" : "par mois"}</p>
                 <div className="mt-2 px-2 py-1 bg-white/20 rounded text-xs font-medium">
-                  Taux de remplacement : {Math.round(R.replRate * 100)}%
+                  {isEnglish ? "Replacement rate: " : "Taux de remplacement : "}{Math.round(R.replRate * 100)}%
                 </div>
               </div>
             </div>
             <p className="text-xs text-muted-foreground text-center">
-              Estimation indicative non contractuelle · paramètres 2026 · montants bruts avant impôts ·
-              rendement hypothétique de {form.returnRate}%
+              {isEnglish ? "Indicative, non-binding estimate · 2026 parameters · gross amounts before tax ·" : "Estimation indicative non contractuelle · paramètres 2026 · montants bruts avant impôts ·"}
+              {isEnglish ? "hypothetical return of " : "rendement hypothétique de "}{form.returnRate}%
               <br className="hidden md:block" />
-              {" "}Pour un bilan de prévoyance personnalisé,{" "}
+              {" "}{isEnglish ? "For a personalized pension review," : "Pour un bilan de prévoyance personnalisé,"}{" "}
               <a href="/demande" className="text-primary underline hover:no-underline">
-                contactez NeoFidu
+                {isEnglish ? "contact NeoFidu" : "contactez NeoFidu"}
               </a>.
             </p>
           </CardContent>
@@ -272,7 +274,7 @@ export default function RetirementIncomeSimulator() {
       ) : (
         <Card>
           <CardContent className="py-8 text-center text-muted-foreground">
-            L&apos;âge de retraite doit être supérieur à l&apos;âge actuel.
+            {isEnglish ? "The retirement age must be higher than the current age." : <>L&apos;âge de retraite doit être supérieur à l&apos;âge actuel.</>}
           </CardContent>
         </Card>
       )}
