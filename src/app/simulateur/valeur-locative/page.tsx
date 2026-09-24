@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/simulateur/valeur-locative",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur/valeur-locative",
+      "en-CH": "https://neofidu.ch/en/simulateur/valeur-locative",
+      "x-default": "https://neofidu.ch/simulateur/valeur-locative",
+    },
   },
 };
 
