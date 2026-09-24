@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/simulateur/gain-immobilier",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur/gain-immobilier",
+      "en-CH": "https://neofidu.ch/en/simulateur/gain-immobilier",
+      "x-default": "https://neofidu.ch/simulateur/gain-immobilier",
+    },
   },
 };
 
