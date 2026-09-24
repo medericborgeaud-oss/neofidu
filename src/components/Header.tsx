@@ -24,6 +24,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/simulateur/3eme-pilier",
   "/simulateur/valeur-locative",
   "/simulateur/gain-immobilier",
+  "/simulateur/baisse-loyer",
   "/independants",
   "/tarifs",
   "/entreprises",
