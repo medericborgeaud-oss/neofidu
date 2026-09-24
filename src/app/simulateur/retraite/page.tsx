@@ -4,6 +4,30 @@ import RetirementIncomeSimulator from "@/components/RetirementIncomeSimulator";
 import { Zap } from "lucide-react";
 import { SimulatorCTA } from "@/components/SimulatorCTA";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Simulateur Retraite Suisse 2026 | AVS, LPP, 3e pilier",
+  description:
+    "Estimez votre revenu à la retraite en Suisse : rente AVS, capital LPP (2e pilier) et 3e pilier. Simulateur gratuit et instantané, paramètres 2026.",
+  keywords: [
+    "simulateur retraite suisse",
+    "calcul rente AVS",
+    "rente LPP 2e pilier",
+    "revenu retraite suisse",
+    "prévoyance suisse",
+    "taux de remplacement retraite",
+  ],
+  alternates: {
+    canonical: "https://neofidu.ch/simulateur/retraite",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur/retraite",
+      "en-CH": "https://neofidu.ch/en/simulateur/retraite",
+      "x-default": "https://neofidu.ch/simulateur/retraite",
+    },
+  },
+};
+
 export default function SimulateurRetraitePage() {
   return (
     <main className="min-h-screen flex flex-col">
