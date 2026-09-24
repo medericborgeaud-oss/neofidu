@@ -81,7 +81,12 @@ export function BaiseLoyerCalculator() {
     };
   }, [entryRate, lastAdjustmentRate, currentRent]);
 
-  const faqItems = [
+  const faqItems = isEnglish ? [
+    { question: "What is the current reference rate?", answer: `The rate is ${CURRENT_RATE}% (June 2026). It is published by the Federal Housing Office.` },
+    { question: "How do I request a reduction?", answer: "Send a registered letter to your landlord mentioning the rate decrease. Respect the notice period (3 months)." },
+    { question: "Can my landlord refuse?", answer: "They can contest it if they prove a cost increase. In case of dispute, refer the matter to the conciliation authority." },
+    { question: "Is the reduction automatic?", answer: "No, it is up to the tenant to request it in writing. Without a request, the rent stays unchanged." },
+  ] : [
     { question: "Quel est le taux de référence actuel ?", answer: `Le taux est de ${CURRENT_RATE}% (${CURRENT_RATE_DATE}). Il est publié par l'Office fédéral du logement.` },
     { question: "Comment demander une baisse ?", answer: "Envoyez une lettre recommandée à votre bailleur en mentionnant la baisse du taux. Respectez le délai de préavis (3 mois)." },
     { question: "Mon bailleur peut-il refuser ?", answer: "Il peut contester s'il prouve une hausse des coûts. En cas de litige, saisissez l'autorité de conciliation." },
@@ -93,7 +98,7 @@ export function BaiseLoyerCalculator() {
       <Header />
       <div className="pt-28 pb-20">
         <div className="container mx-auto px-4">
-          <BreadcrumbLight items={[{ label: "Simulateurs", href: "/simulateur" }, { label: "Baisse de loyer" }]} className="mb-8" />
+          <BreadcrumbLight items={[{ label: isEnglish ? "Simulators" : "Simulateurs", href: "/simulateur" }, { label: isEnglish ? "Rent Reduction" : "Baisse de loyer" }]} className="mb-8" />
 
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center max-w-3xl mx-auto mb-12">
@@ -101,10 +106,10 @@ export function BaiseLoyerCalculator() {
               <Home className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Calculateur de <span className="text-gradient">baisse de loyer</span>
+              {isEnglish ? <>Rent Reduction <span className="text-gradient">Calculator</span></> : <>Calculateur de <span className="text-gradient">baisse de loyer</span></>}
             </h1>
             <p className="text-muted-foreground text-lg">
-              Calculez si vous pouvez demander une baisse de loyer selon le taux de référence hypothécaire suisse.
+              {isEnglish ? "Find out if you can request a rent reduction based on the Swiss mortgage reference rate." : "Calculez si vous pouvez demander une baisse de loyer selon le taux de référence hypothécaire suisse."}
             </p>
           </motion.div>
 
@@ -116,13 +121,13 @@ export function BaiseLoyerCalculator() {
                   <Percent className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Taux de référence actuel</p>
+                  <p className="text-sm text-muted-foreground">{isEnglish ? "Current reference rate" : "Taux de référence actuel"}</p>
                   <p className="text-2xl font-bold text-primary">{CURRENT_RATE}%</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Calendar className="w-4 h-4" />
-                <span>Mis à jour : {CURRENT_RATE_DATE}</span>
+                <span>{isEnglish ? "Updated: June 2026" : "Mis à jour : " + CURRENT_RATE_DATE}</span>
               </div>
             </div>
           </Card>
@@ -132,31 +137,31 @@ export function BaiseLoyerCalculator() {
             <Card className="p-6 shadow-lg">
               <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
                 <Calculator className="w-5 h-5 text-primary" />
-                Calculer ma baisse de loyer
+                {isEnglish ? "Calculate my rent reduction" : "Calculer ma baisse de loyer"}
               </h2>
               <div className="space-y-5">
                 <div>
-                  <Label htmlFor="entryDate">Date d'entrée dans le logement</Label>
+                  <Label htmlFor="entryDate">{isEnglish ? "Move-in date" : "Date d'entrée dans le logement"}</Label>
                   <Input id="entryDate" type="date" value={entryDate} onChange={(e) => { setEntryDate(e.target.value); setShowResult(false); }} className="mt-1.5" max={new Date().toISOString().split("T")[0]} />
-                  {entryRate && <p className="text-xs text-muted-foreground mt-1">Taux à cette date : <span className="font-medium text-primary">{entryRate}%</span></p>}
+                  {entryRate && <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Rate at that date: " : "Taux à cette date : "}<span className="font-medium text-primary">{entryRate}%</span></p>}
                 </div>
                 <div>
-                  <Label>Taux lors du dernier ajustement <span className="text-xs text-muted-foreground">(optionnel)</span></Label>
+                  <Label>{isEnglish ? "Rate at last adjustment " : "Taux lors du dernier ajustement "}<span className="text-xs text-muted-foreground">{isEnglish ? "(optional)" : "(optionnel)"}</span></Label>
                   <select value={lastAdjustmentRate || ""} onChange={(e) => { setLastAdjustmentRate(e.target.value ? parseFloat(e.target.value) : null); setShowResult(false); }} className="mt-1.5 w-full px-3 py-2 border rounded-lg bg-white text-sm">
-                    <option value="">Utiliser le taux à l'entrée</option>
+                    <option value="">{isEnglish ? "Use the move-in rate" : "Utiliser le taux à l'entrée"}</option>
                     {[3.50, 3.00, 2.75, 2.50, 2.25, 2.00, 1.75, 1.50, 1.25].map(r => <option key={r} value={r}>{r}%</option>)}
                   </select>
                 </div>
                 <div>
-                  <Label htmlFor="currentRent">Loyer mensuel actuel (CHF)</Label>
+                  <Label htmlFor="currentRent">{isEnglish ? "Current monthly rent (CHF)" : "Loyer mensuel actuel (CHF)"}</Label>
                   <div className="relative mt-1.5">
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">CHF</span>
                     <Input id="currentRent" type="number" value={currentRent} onChange={(e) => { setCurrentRent(e.target.value); setShowResult(false); }} placeholder="1'800" className="pl-12" min="0" />
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">Loyer net sans les charges</p>
+                  <p className="text-xs text-muted-foreground mt-1">{isEnglish ? "Net rent excluding charges" : "Loyer net sans les charges"}</p>
                 </div>
                 <Button onClick={() => setShowResult(true)} disabled={!entryDate || !currentRent} className="w-full rounded-xl py-6">
-                  <Calculator className="w-5 h-5 mr-2" /> Calculer ma baisse potentielle
+                  <Calculator className="w-5 h-5 mr-2" /> {isEnglish ? "Calculate my potential reduction" : "Calculer ma baisse potentielle"}
                 </Button>
               </div>
             </Card>
@@ -169,37 +174,37 @@ export function BaiseLoyerCalculator() {
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${results.canReduce ? "bg-emerald-100" : "bg-amber-100"}`}>
                       {results.canReduce ? <CheckCircle2 className="w-7 h-7 text-emerald-600" /> : <AlertTriangle className="w-7 h-7 text-amber-600" />}
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{results.canReduce ? "Vous pouvez demander une baisse !" : "Pas de baisse possible"}</h3>
+                    <h3 className="text-xl font-bold mb-2">{results.canReduce ? (isEnglish ? "You can request a reduction!" : "Vous pouvez demander une baisse !") : (isEnglish ? "No reduction possible" : "Pas de baisse possible")}</h3>
                     {results.canReduce ? (
                       <>
-                        <p className="text-muted-foreground mb-6">Le taux est passé de {results.oldRate}% à {results.newRate}%.</p>
+                        <p className="text-muted-foreground mb-6">{isEnglish ? <>The rate dropped from {results.oldRate}% to {results.newRate}%.</> : <>Le taux est passé de {results.oldRate}% à {results.newRate}%.</>}</p>
                         <div className="grid grid-cols-2 gap-4 mb-6">
                           <div className="bg-emerald-50 rounded-xl p-4 text-center">
-                            <p className="text-sm text-muted-foreground">Réduction mensuelle</p>
+                            <p className="text-sm text-muted-foreground">{isEnglish ? "Monthly reduction" : "Réduction mensuelle"}</p>
                             <p className="text-2xl font-bold text-emerald-600">- CHF {results.monthlyReduction}</p>
                           </div>
                           <div className="bg-emerald-50 rounded-xl p-4 text-center">
-                            <p className="text-sm text-muted-foreground">Économie annuelle</p>
+                            <p className="text-sm text-muted-foreground">{isEnglish ? "Yearly saving" : "Économie annuelle"}</p>
                             <p className="text-2xl font-bold text-emerald-600">CHF {results.yearlyReduction}</p>
                           </div>
                         </div>
                         <div className="bg-secondary/50 rounded-xl p-4">
-                          <div className="flex justify-between mb-2"><span className="text-sm text-muted-foreground">Loyer actuel</span><span>CHF {currentRent}</span></div>
-                          <div className="flex justify-between mb-2"><span className="text-sm text-muted-foreground">Réduction ({results.reductionPercent}%)</span><span className="text-emerald-600">- CHF {results.monthlyReduction}</span></div>
-                          <div className="border-t pt-2 flex justify-between"><span className="font-semibold">Nouveau loyer</span><span className="text-xl font-bold text-primary">CHF {results.newRent}</span></div>
+                          <div className="flex justify-between mb-2"><span className="text-sm text-muted-foreground">{isEnglish ? "Current rent" : "Loyer actuel"}</span><span>CHF {currentRent}</span></div>
+                          <div className="flex justify-between mb-2"><span className="text-sm text-muted-foreground">{isEnglish ? <>Reduction ({results.reductionPercent}%)</> : <>Réduction ({results.reductionPercent}%)</>}</span><span className="text-emerald-600">- CHF {results.monthlyReduction}</span></div>
+                          <div className="border-t pt-2 flex justify-between"><span className="font-semibold">{isEnglish ? "New rent" : "Nouveau loyer"}</span><span className="text-xl font-bold text-primary">CHF {results.newRent}</span></div>
                         </div>
                       </>
                     ) : (
-                      <p className="text-muted-foreground">Le taux actuel ({results.newRate}%) n'est pas inférieur à celui de votre entrée ({results.oldRate}%).</p>
+                      <p className="text-muted-foreground">{isEnglish ? <>The current rate ({results.newRate}%) is not lower than the one at your move-in ({results.oldRate}%).</> : <>Le taux actuel ({results.newRate}%) n'est pas inférieur à celui de votre entrée ({results.oldRate}%).</>}</p>
                     )}
                   </Card>
                   <Card className="mt-4 p-5 bg-gradient-to-br from-primary/5 to-teal-50 border-primary/20">
                     <div className="flex items-start gap-4">
                       <Scale className="w-10 h-10 text-primary" />
                       <div>
-                        <h4 className="font-semibold mb-1">Besoin d'aide ?</h4>
-                        <p className="text-sm text-muted-foreground mb-3">Notre équipe vous accompagne dans vos démarches.</p>
-                        <Button asChild size="sm" className="rounded-full"><Link href="/#contact">Nous contacter <ArrowRight className="w-4 h-4 ml-1" /></Link></Button>
+                        <h4 className="font-semibold mb-1">{isEnglish ? "Need help?" : "Besoin d'aide ?"}</h4>
+                        <p className="text-sm text-muted-foreground mb-3">{isEnglish ? "Our team supports you through the process." : "Notre équipe vous accompagne dans vos démarches."}</p>
+                        <Button asChild size="sm" className="rounded-full"><Link href="/#contact">{isEnglish ? "Contact us" : "Nous contacter"} <ArrowRight className="w-4 h-4 ml-1" /></Link></Button>
                       </div>
                     </div>
                   </Card>
@@ -208,8 +213,8 @@ export function BaiseLoyerCalculator() {
                 <Card className="p-6 bg-secondary/30 border-dashed">
                   <div className="text-center py-8">
                     <Calculator className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                    <h3 className="font-semibold text-lg mb-2">Résultats</h3>
-                    <p className="text-muted-foreground text-sm">Remplissez le formulaire pour voir votre baisse potentielle</p>
+                    <h3 className="font-semibold text-lg mb-2">{isEnglish ? "Results" : "Résultats"}</h3>
+                    <p className="text-muted-foreground text-sm">{isEnglish ? "Fill in the form to see your potential reduction" : "Remplissez le formulaire pour voir votre baisse potentielle"}</p>
                   </div>
                 </Card>
               )}
@@ -219,12 +224,12 @@ export function BaiseLoyerCalculator() {
           {/* SEO Content */}
           <section className="max-w-4xl mx-auto mt-16">
             <Card className="p-8">
-              <h2 className="text-2xl font-bold mb-6">Tout savoir sur la baisse de loyer en Suisse</h2>
+              <h2 className="text-2xl font-bold mb-6">{isEnglish ? "Everything about rent reductions in Switzerland" : "Tout savoir sur la baisse de loyer en Suisse"}</h2>
               <div className="space-y-4 text-muted-foreground">
-                <p>Le <strong>taux de référence hypothécaire</strong> est publié par l'Office fédéral du logement. Il sert de base pour les ajustements de loyer en Suisse.</p>
-                <p>Chaque baisse de <strong>0.25%</strong> du taux permet une réduction d'environ <strong>2.91%</strong> du loyer. Par exemple, un passage de 1.50% à 1.25% justifie une baisse de 2.91%.</p>
-                <p>Tout locataire en Suisse (Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura) peut demander une baisse si le taux actuel est inférieur au taux lors de la dernière fixation de loyer.</p>
-                <h3 className="text-lg font-semibold text-foreground pt-4">Historique des taux</h3>
+                {isEnglish ? <p>The <strong>mortgage reference rate</strong> is published by the Federal Housing Office. It is the basis for rent adjustments in Switzerland.</p> : <p>Le <strong>taux de référence hypothécaire</strong> est publié par l'Office fédéral du logement. Il sert de base pour les ajustements de loyer en Suisse.</p>}
+                {isEnglish ? <p>Each <strong>0.25%</strong> drop in the rate allows a reduction of about <strong>2.91%</strong> of the rent. For example, going from 1.50% to 1.25% justifies a 2.91% reduction.</p> : <p>Chaque baisse de <strong>0.25%</strong> du taux permet une réduction d'environ <strong>2.91%</strong> du loyer. Par exemple, un passage de 1.50% à 1.25% justifie une baisse de 2.91%.</p>}
+                {isEnglish ? <p>Any tenant in Switzerland (Vaud, Geneva, Valais, Fribourg, Neuchâtel, Jura) can request a reduction if the current rate is lower than the rate at the last rent adjustment.</p> : <p>Tout locataire en Suisse (Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura) peut demander une baisse si le taux actuel est inférieur au taux lors de la dernière fixation de loyer.</p>}
+                <h3 className="text-lg font-semibold text-foreground pt-4">{isEnglish ? "Rate history" : "Historique des taux"}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                   {referenceRates.slice(0, 8).map((r, i) => (
                     <div key={i} className="bg-secondary/50 rounded-lg p-2 text-center">
@@ -239,7 +244,7 @@ export function BaiseLoyerCalculator() {
 
           {/* FAQ */}
           <section className="max-w-4xl mx-auto mt-8">
-            <h2 className="text-2xl font-bold mb-6 text-center">Questions fréquentes</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">{isEnglish ? "Frequently asked questions" : "Questions fréquentes"}</h2>
             <div className="space-y-3">
               {faqItems.map((item, index) => (
                 <Card key={index} className={`overflow-hidden ${openFaqIndex === index ? "border-primary/20" : ""}`}>
@@ -264,11 +269,11 @@ export function BaiseLoyerCalculator() {
           <section className="max-w-2xl mx-auto mt-12 text-center">
             <Card className="p-8 bg-gradient-to-br from-primary/5 to-teal-50">
               <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Besoin d'optimiser vos finances ?</h3>
-              <p className="text-muted-foreground mb-6">NeoFidu vous accompagne dans vos déclarations d'impôts en Suisse romande.</p>
+              <h3 className="text-xl font-bold mb-2">{isEnglish ? "Want to optimize your finances?" : "Besoin d'optimiser vos finances ?"}</h3>
+              <p className="text-muted-foreground mb-6">{isEnglish ? "NeoFidu supports you with your tax returns in French-speaking Switzerland." : "NeoFidu vous accompagne dans vos déclarations d'impôts en Suisse romande."}</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button asChild className="rounded-full"><Link href="/demande">Démarrer ma déclaration <ArrowRight className="w-4 h-4 ml-2" /></Link></Button>
-                <Button asChild variant="outline" className="rounded-full"><Link href="/simulateur">Autres simulateurs</Link></Button>
+                <Button asChild className="rounded-full"><Link href="/demande">{isEnglish ? "Start my tax return" : "Démarrer ma déclaration"} <ArrowRight className="w-4 h-4 ml-2" /></Link></Button>
+                <Button asChild variant="outline" className="rounded-full"><Link href="/simulateur">{isEnglish ? "Other simulators" : "Autres simulateurs"}</Link></Button>
               </div>
             </Card>
           </section>
