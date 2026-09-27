@@ -16,6 +16,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/simulateur/baisse-loyer",
   "/simulateur/retraite",
   "/guide/deductions-fiscales",
+  "/contact",
   "/tarifs",
   "/entreprises",
   "/creation-entreprise",
