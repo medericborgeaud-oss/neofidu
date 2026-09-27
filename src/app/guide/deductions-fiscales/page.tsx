@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/guide/deductions-fiscales",
+    languages: {
+      "fr-CH": "https://neofidu.ch/guide/deductions-fiscales",
+      "en-CH": "https://neofidu.ch/en/guide/deductions-fiscales",
+      "x-default": "https://neofidu.ch/guide/deductions-fiscales",
+    },
   },
 };
 
