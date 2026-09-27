@@ -20,6 +20,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/simulateur/valeur-locative",
   "/simulateur/gain-immobilier",
   "/simulateur/baisse-loyer",
+  "/simulateur/retraite",
   "/tarifs",
   "/entreprises",
   "/creation-entreprise",
