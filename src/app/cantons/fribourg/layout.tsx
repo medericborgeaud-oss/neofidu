@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/cantons/fribourg",
+    languages: {
+      "fr-CH": "https://neofidu.ch/cantons/fribourg",
+      "en-CH": "https://neofidu.ch/en/cantons/fribourg",
+      "x-default": "https://neofidu.ch/cantons/fribourg",
+    },
   },
 };
 
