@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Suisses de l'étranger : impôts en Suisse | NeoFidu",
+  title: "Suisses de l'étranger : impôts en Suisse",
   description:
     "Suisse de l'étranger avec des obligations fiscales en Suisse ? Déclaration d'impôts, immobilier et double imposition, 100% en ligne avec NeoFidu.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Suisses de l'étranger : impôts en Suisse | NeoFidu",
+    title: "Suisses de l'étranger : impôts en Suisse",
     description:
       "Suisse de l'étranger avec des obligations fiscales en Suisse ? Déclaration d'impôts, immobilier et double imposition, 100% en ligne avec NeoFidu.",
     type: "website",
