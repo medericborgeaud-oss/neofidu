@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire pour Associations & Fondations en Suisse | NeoFidu",
+  title: "Fiduciaire pour Associations & Fondations en Suisse",
   description:
     "Comptabilité, fiscalité et gestion pour associations et fondations en Suisse romande. Accompagnement dédié aux structures à but non lucratif.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Fiduciaire pour Associations & Fondations en Suisse | NeoFidu",
+    title: "Fiduciaire pour Associations & Fondations en Suisse",
     description:
       "Comptabilité, fiscalité et gestion pour associations et fondations en Suisse romande. Accompagnement dédié aux structures à but non lucratif.",
     type: "website",
