@@ -37,6 +37,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/cantons/valais",
+    languages: {
+      "fr-CH": "https://neofidu.ch/cantons/valais",
+      "en-CH": "https://neofidu.ch/en/cantons/valais",
+      "x-default": "https://neofidu.ch/cantons/valais",
+    },
   },
 };
 
