@@ -62,6 +62,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch",
+    languages: {
+      "fr-CH": "https://neofidu.ch",
+      "en-CH": "https://neofidu.ch/en",
+      "x-default": "https://neofidu.ch",
+    },
   },
 };
 
