@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/faq",
+    languages: {
+      "fr-CH": "https://neofidu.ch/faq",
+      "en-CH": "https://neofidu.ch/en/faq",
+      "x-default": "https://neofidu.ch/faq",
+    },
   },
 };
 
