@@ -66,6 +66,7 @@ export const metadata: Metadata = {
     canonical: "https://neofidu.ch/creation-entreprise",
     languages: {
       "fr-CH": "https://neofidu.ch/creation-entreprise",
+      "en-CH": "https://neofidu.ch/en/creation-entreprise",
       "en": "https://neofidu.ch/creation-entreprise",
     },
   },
