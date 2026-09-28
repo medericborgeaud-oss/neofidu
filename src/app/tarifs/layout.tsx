@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/tarifs",
+    languages: {
+      "fr-CH": "https://neofidu.ch/tarifs",
+      "en-CH": "https://neofidu.ch/en/tarifs",
+      "x-default": "https://neofidu.ch/tarifs",
+    },
   },
 };
 
