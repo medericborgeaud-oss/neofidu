@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     canonical: "https://neofidu.ch/cantons",
     languages: {
       "fr-CH": "https://neofidu.ch/cantons",
+      "en-CH": "https://neofidu.ch/en/cantons",
       "x-default": "https://neofidu.ch/cantons",
     },
   },
