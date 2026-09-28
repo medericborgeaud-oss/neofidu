@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/cantons/jura",
+    languages: {
+      "fr-CH": "https://neofidu.ch/cantons/jura",
+      "en-CH": "https://neofidu.ch/en/cantons/jura",
+      "x-default": "https://neofidu.ch/cantons/jura",
+    },
   },
 };
 
