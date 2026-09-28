@@ -76,8 +76,8 @@ export const metadata: Metadata = {
     canonical: "https://neofidu.ch",
     languages: {
       "fr-CH": "https://neofidu.ch",
-      "en": "https://neofidu.ch",
-      "en-CH": "https://neofidu.ch",
+      "en": "https://neofidu.ch/en",
+      "en-CH": "https://neofidu.ch/en",
       "x-default": "https://neofidu.ch",
     },
   },
@@ -375,10 +375,6 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        {/* Hreflang for FR/EN bilingual content */}
-        <link rel="alternate" hreflang="fr-CH" href="https://neofidu.ch" />
-        <link rel="alternate" hreflang="x-default" href="https://neofidu.ch" />
-
         {/* Favicon - ensure proper reference */}
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
