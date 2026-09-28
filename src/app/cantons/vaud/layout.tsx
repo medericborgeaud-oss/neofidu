@@ -38,6 +38,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/cantons/vaud",
+    languages: {
+      "fr-CH": "https://neofidu.ch/cantons/vaud",
+      "en-CH": "https://neofidu.ch/en/cantons/vaud",
+      "x-default": "https://neofidu.ch/cantons/vaud",
+    },
   },
 };
 
