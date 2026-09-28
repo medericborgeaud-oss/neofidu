@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/cantons/neuchatel",
+    languages: {
+      "fr-CH": "https://neofidu.ch/cantons/neuchatel",
+      "en-CH": "https://neofidu.ch/en/cantons/neuchatel",
+      "x-default": "https://neofidu.ch/cantons/neuchatel",
+    },
   },
 };
 
