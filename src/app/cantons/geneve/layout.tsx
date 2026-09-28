@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/cantons/geneve",
+    languages: {
+      "fr-CH": "https://neofidu.ch/cantons/geneve",
+      "en-CH": "https://neofidu.ch/en/cantons/geneve",
+      "x-default": "https://neofidu.ch/cantons/geneve",
+    },
   },
 };
 
