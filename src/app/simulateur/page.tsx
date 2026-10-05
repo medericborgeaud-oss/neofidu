@@ -341,7 +341,7 @@ export default function SimulateurPage() {
                 </Card>
               </Link>
 
-              <Link href="/en/swiss-debt">
+              <Link href="/dette-suisse">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
                     <div className="w-10 h-10 rounded-lg bg-red-600 flex items-center justify-center mb-3">
