@@ -35,6 +35,8 @@ export default function DemandePage() {
     subtitle: isEnglish
       ? "Fill out the form below and receive a personalized quote immediately."
       : "Remplissez le formulaire ci-dessous et recevez un devis personnalisé rapidement.",
+    guideCta: isEnglish ? "Need help filling it out? Read our step-by-step guide" : "Besoin d'aide pour remplir ? Consultez notre guide pas à pas",
+    guideHref: isEnglish ? "/en/blog/comment-remplir-declaration-impot-en-ligne-guide" : "/blog/comment-remplir-declaration-impot-en-ligne-guide",
     whichService: isEnglish ? "Which service interests you?" : "Quel service vous intéresse ?",
     changeService: isEnglish ? "Change service" : "Changer de service",
     taxTitle: isEnglish ? "Tax Declaration" : "Déclaration d'impôt",
@@ -67,6 +69,10 @@ export default function DemandePage() {
             <p className="text-muted-foreground text-lg">
               {t.subtitle}
             </p>
+            <Link href={t.guideHref} className="inline-flex items-center gap-2 mt-4 text-primary font-medium hover:underline">
+              <FileText className="w-4 h-4" />
+              {t.guideCta}
+            </Link>
           </div>
 
           {serviceType === null ? (
