@@ -62,7 +62,8 @@ export const metadata: Metadata = {
     canonical: "https://neofidu.ch/demande",
     languages: {
       "fr-CH": "https://neofidu.ch/demande",
-      "en": "https://neofidu.ch/demande",
+      "en-CH": "https://neofidu.ch/en/demande",
+      "x-default": "https://neofidu.ch/demande",
     },
   },
   robots: {
