@@ -69,10 +69,6 @@ export default function DemandePage() {
             <p className="text-muted-foreground text-lg">
               {t.subtitle}
             </p>
-            <Link href={t.guideHref} className="inline-flex items-center gap-2 mt-4 text-primary font-medium hover:underline">
-              <FileText className="w-4 h-4" />
-              {t.guideCta}
-            </Link>
           </div>
 
           {serviceType === null ? (
@@ -137,6 +133,12 @@ export default function DemandePage() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {t.changeService}
               </Button>
+              <div className="text-center mb-6">
+                <Link href={t.guideHref} className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                  <FileText className="w-4 h-4" />
+                  {t.guideCta}
+                </Link>
+              </div>
               <TaxRequestForm />
             </div>
           ) : serviceType === "accounting" ? (
