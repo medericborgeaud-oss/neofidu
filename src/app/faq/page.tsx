@@ -362,9 +362,9 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
 
           {/* SEO: Hidden content for crawlers - All Q&A in plain HTML */}
           <div className="sr-only" aria-hidden="true">
-            <h2>Toutes les questions fréquentes - NeoFidu</h2>
-            {faqItemsFR.map((item, index) => (
-              <article key={`seo-fr-${index}`}>
+            <h2>{isEnglish ? "All frequently asked questions - NeoFidu" : "Toutes les questions fréquentes - NeoFidu"}</h2>
+            {faqItems.map((item, index) => (
+              <article key={`seo-${index}`}>
                 <h3>{item.question}</h3>
                 <p>{item.answer}</p>
               </article>
