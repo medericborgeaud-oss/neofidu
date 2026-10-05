@@ -297,14 +297,14 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Services fiduciaires",
+      "name": (isEnglish ? "Fiduciary services" : "Services fiduciaires"),
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Déclaration d'impôts à la carte",
-            "description": "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +40, titres +30"
+            "name": (isEnglish ? "À la carte tax return" : "Déclaration d'impôts à la carte"),
+            "description": (isEnglish ? "À la carte tax return for individuals in French-speaking Switzerland. Add-ons: couple +30, child +15, real estate +60, self-employed +40, securities +30" : "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +40, titres +30")
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -317,8 +317,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Comptabilité PME",
-            "description": "Comptabilité complète pour Sàrl et SA jusqu'à 10 employés"
+            "name": (isEnglish ? "SME accounting" : "Comptabilité PME"),
+            "description": (isEnglish ? "Full accounting for LLCs and corporations with up to 10 employees" : "Comptabilité complète pour Sàrl et SA jusqu'à 10 employés")
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -332,8 +332,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Création d'entreprise",
-            "description": "Constitution RI dès CHF 290.-, Sàrl dès CHF 990.-, SA dès CHF 1'490.-"
+            "name": (isEnglish ? "Company formation" : "Création d'entreprise"),
+            "description": (isEnglish ? "Sole proprietorship from CHF 290.-, LLC from CHF 990.-, corporation from CHF 1'490.-" : "Constitution RI dès CHF 290.-, Sàrl dès CHF 990.-, SA dès CHF 1'490.-")
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -351,66 +351,66 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Ces prix sont-ils définitifs ?",
+        "name": (isEnglish ? "Are these prices final?" : "Ces prix sont-ils définitifs ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Les prix affichés sont des prix de départ. Le devis final dépend de la complexité de votre situation. Nous fournissons toujours un devis détaillé avant de commencer."
+          "text": (isEnglish ? "The prices shown are starting prices. The final quote depends on the complexity of your situation. We always provide a detailed quote before starting." : "Les prix affichés sont des prix de départ. Le devis final dépend de la complexité de votre situation. Nous fournissons toujours un devis détaillé avant de commencer.")
         }
       },
       {
         "@type": "Question",
-        "name": "Comment obtenir un devis personnalisé ?",
+        "name": (isEnglish ? "How do I get a personalised quote?" : "Comment obtenir un devis personnalisé ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email, sans aucun engagement."
+          "text": (isEnglish ? "Fill in our online form in 2 minutes. You will receive a detailed quote by email, with no obligation." : "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email, sans aucun engagement.")
         }
       },
       {
         "@type": "Question",
-        "name": "Quels moyens de paiement acceptez-vous ?",
+        "name": (isEnglish ? "Which payment methods do you accept?" : "Quels moyens de paiement acceptez-vous ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT."
+          "text": (isEnglish ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (interest-free payment in 3 instalments) and TWINT." : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT.")
         }
       },
       {
         "@type": "Question",
-        "name": "Les tarifs varient-ils selon le canton ?",
+        "name": (isEnglish ? "Do prices vary by canton?" : "Les tarifs varient-ils selon le canton ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nos tarifs de base sont identiques pour tous les cantons romands (Genève, Vaud, Valais, Fribourg, Neuchâtel, Jura). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence."
+          "text": (isEnglish ? "Our base prices are the same for all French-speaking cantons (Geneva, Vaud, Valais, Fribourg, Neuchâtel, Jura). The final price depends only on the complexity of your file, not on your canton of residence." : "Nos tarifs de base sont identiques pour tous les cantons romands (Genève, Vaud, Valais, Fribourg, Neuchâtel, Jura). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence.")
         }
       },
       {
         "@type": "Question",
-        "name": "Le prix inclut-il les cryptomonnaies ?",
+        "name": (isEnglish ? "Does the price include cryptocurrencies?" : "Le prix inclut-il les cryptomonnaies ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. Demandez un devis pour une estimation précise."
+          "text": (isEnglish ? "Declaring cryptocurrencies (Bitcoin, Ethereum, etc.) may require a surcharge depending on the number of transactions and platforms used. Request a quote for a precise estimate." : "La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. Demandez un devis pour une estimation précise.")
         }
       },
       {
         "@type": "Question",
-        "name": "Que se passe-t-il si mon dossier est plus complexe que prévu ?",
+        "name": (isEnglish ? "What happens if my file is more complex than expected?" : "Que se passe-t-il si mon dossier est plus complexe que prévu ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable."
+          "text": (isEnglish ? "If additional items appear after the initial quote, we contact you for a revised quote before continuing. No surcharge is billed without your prior agreement." : "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable.")
         }
       },
       {
         "@type": "Question",
-        "name": "Proposez-vous le paiement en plusieurs fois ?",
+        "name": (isEnglish ? "Do you offer instalment payments?" : "Proposez-vous le paiement en plusieurs fois ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."
+          "text": (isEnglish ? "Yes, with Klarna you can pay in 3 interest-free instalments. This option is available for all individual and business packages." : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises.")
         }
       },
       {
         "@type": "Question",
-        "name": "Proposez-vous un rabais pour les étudiants ou les rentiers AVS/AI ?",
+        "name": (isEnglish ? "Do you offer a discount for students or AVS/AI pensioners?" : "Proposez-vous un rabais pour les étudiants ou les rentiers AVS/AI ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui. Les étudiants et les rentiers AVS/AI bénéficient de CHF 20.- de rabais sur leur déclaration d'impôts. Il suffit de cocher la case lors de la commande ; un justificatif (carte d'étudiant ou décision AVS/AI) pourra être demandé."
+          "text": (isEnglish ? "Yes. Students and AVS/AI pensioners receive a CHF 20.- discount on their tax return. Just tick the box when ordering; proof (student card or AVS/AI decision) may be requested." : "Oui. Les étudiants et les rentiers AVS/AI bénéficient de CHF 20.- de rabais sur leur déclaration d'impôts. Il suffit de cocher la case lors de la commande ; un justificatif (carte d'étudiant ou décision AVS/AI) pourra être demandé.")
         }
       }
     ]
