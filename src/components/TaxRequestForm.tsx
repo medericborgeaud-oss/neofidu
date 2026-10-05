@@ -3049,7 +3049,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               {/* Date de naissance */}
 <div>
   <label className="block text-sm font-medium mb-2">
-    Date de naissance <span className="text-red-500">*</span>
+    {isEnglish ? "Date of birth" : "Date de naissance"} <span className="text-red-500">*</span>
   </label>
   <Input
     type="text"
@@ -3057,7 +3057,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
     value={formData.birthDate}
 
   
-    placeholder="JJ.MM.AAAA"
+    placeholder={isEnglish ? "DD.MM.YYYY" : "JJ.MM.AAAA"}
     onChange={(e) => {
       const digits = e.target.value.replace(/\D/g, "").slice(0, 8);
       let formatted = digits;
@@ -3090,7 +3090,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
     </p>
   ) : (
     <p className="text-xs text-muted-foreground mt-1">
-      Format : 31.12.1980
+      {isEnglish ? "Format: 31.12.1980" : "Format : 31.12.1980"}
 
     </p>
   )}
@@ -3246,7 +3246,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
     inputMode="numeric"
     value={formData.birthDate2}
 
-    placeholder="JJ.MM.AAAA"
+    placeholder={isEnglish ? "DD.MM.YYYY" : "JJ.MM.AAAA"}
 
     onChange={(e) => {
       const digits = e.target.value.replace(/\D/g, "").slice(0, 8);
@@ -3279,7 +3279,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
     </p>
   ) : (
     <p className="text-xs text-muted-foreground mt-1">
-      Format : 31.12.1980
+      {isEnglish ? "Format: 31.12.1980" : "Format : 31.12.1980"}
 
     </p>
   )}
