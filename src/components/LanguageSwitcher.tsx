@@ -13,6 +13,7 @@ interface LanguageSwitcherProps {
 // Base paths that have a dedicated server-rendered English route under /en.
 const EN_TWIN_EXACT = new Set<string>([
   "/",
+  "/demande",
   "/independants",
   "/simulateur/impots",
   "/simulateur/salaire-net",
