@@ -340,6 +340,22 @@ export default function SimulateurPage() {
                   </CardContent>
                 </Card>
               </Link>
+
+              <Link href="/en/swiss-debt">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-red-600 flex items-center justify-center mb-3">
+                      <Building2 className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Compteur de la dette suisse
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Visualisez en temps réel la dette publique de la Suisse et des cantons romands
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             </div>
           </div>
 
