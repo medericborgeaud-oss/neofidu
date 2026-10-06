@@ -139,21 +139,26 @@ export function Hero() {
               ))}
             </div>
             {/* Canton flags */}
-            <div className="flex justify-center gap-4 md:gap-6 mt-6">
+            <div className="flex justify-center gap-7 md:gap-12 mt-12 flex-wrap">
               {([
-                { code: "VD", name: isEnglish ? "Vaud" : "Vaud" },
-                { code: "GE", name: isEnglish ? "Geneva" : "Genève" },
-                { code: "VS", name: isEnglish ? "Valais" : "Valais" },
-                { code: "FR", name: isEnglish ? "Fribourg" : "Fribourg" },
-                { code: "NE", name: "Neuchâtel" },
-                { code: "JU", name: "Jura" },
+                { code: "VD", name: "Vaud", slug: "vaud" },
+                { code: "GE", name: isEnglish ? "Geneva" : "Genève", slug: "geneve" },
+                { code: "VS", name: "Valais", slug: "valais" },
+                { code: "FR", name: "Fribourg", slug: "fribourg" },
+                { code: "NE", name: "Neuchâtel", slug: "neuchatel" },
+                { code: "JU", name: "Jura", slug: "jura" },
               ] as const).map((canton) => (
-                <div key={canton.code} className="flex flex-col items-center gap-1.5">
-                  <div className="overflow-hidden">
-                    <CantonFlag canton={canton.code} size={36} eager showBorder={false} />
+                <Link
+                  key={canton.code}
+                  href={(isEnglish ? "/en" : "") + "/cantons/" + canton.slug}
+                  className="flex flex-col items-center gap-2 transition-transform hover:scale-110 hover:-translate-y-0.5"
+                  aria-label={canton.name}
+                >
+                  <div className="overflow-hidden rounded-sm">
+                    <CantonFlag canton={canton.code} size={48} eager showBorder={false} />
                   </div>
-                  <span className="text-white/60 text-[10px] md:text-xs">{canton.name}</span>
-                </div>
+                  <span className="text-white/70 text-[11px] md:text-sm">{canton.name}</span>
+                </Link>
               ))}
             </div>
           </div>
