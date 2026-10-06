@@ -527,7 +527,7 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-emerald-600 text-white">
+      <section className="py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             {isEnglish ? "Take advantage of Valais taxation" : "Profitez de la fiscalité valaisanne"}
