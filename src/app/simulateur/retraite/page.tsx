@@ -33,7 +33,7 @@ export default function SimulateurRetraitePage() {
     <main className="min-h-screen flex flex-col">
       <Header />
       {/* Hero section */}
-      <section className="relative bg-gradient-to-br from-teal-700 via-teal-600 to-emerald-500 text-white pt-24 md:pt-32 pb-12 md:pb-16">
+      <section className="relative bg-gradient-hero text-white pt-24 md:pt-32 pb-12 md:pb-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="relative z-10 text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
