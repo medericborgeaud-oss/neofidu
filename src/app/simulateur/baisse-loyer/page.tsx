@@ -119,7 +119,7 @@ export default function BaiseLoyerPage() {
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">
-          <section className="bg-gradient-to-br from-primary via-emerald-600 to-teal-700 text-white pt-24 md:pt-32 pb-12 md:pb-16">
+          <section className="bg-gradient-hero text-white pt-24 md:pt-32 pb-12 md:pb-16">
             <div className="container mx-auto px-4">
               <Breadcrumb items={[{ label: "Simulateurs", href: "/simulateur" }, { label: "Baisse de Loyer" }]} className="mb-6" />
               <div className="max-w-4xl mx-auto text-center">
