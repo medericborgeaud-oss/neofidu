@@ -117,7 +117,7 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary via-primary to-emerald-600 text-white py-20">
+      <section className="bg-gradient-hero text-white py-20">
         <div className="container mx-auto px-4">
           <Breadcrumb
             items={[
