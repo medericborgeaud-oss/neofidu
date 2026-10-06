@@ -61,7 +61,7 @@ export function Pillar3aPageClient() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-28 pb-12 bg-gradient-to-br from-emerald-600 via-teal-600 to-primary text-white">
+      <section className="pt-28 pb-12 bg-gradient-hero text-white">
         <div className="container mx-auto px-4">
           <Breadcrumb items={[{ label: isEnglish ? "Simulators" : "Simulateurs", href: "/simulateur" }, { label: isEnglish ? "Pillar 3a" : "3ème Pilier" }]} className="mb-6" />
           <div className="max-w-3xl mx-auto text-center">
@@ -116,7 +116,7 @@ export function Pillar3aPageClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-emerald-600 to-teal-600 text-white">
+      <section className="py-16 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             {t("simulators.pillar3aPage.ctaTitle")}
