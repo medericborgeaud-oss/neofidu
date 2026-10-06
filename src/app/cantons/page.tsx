@@ -93,7 +93,7 @@ export function CantonsContent({ forceEn = false }: { forceEn?: boolean }) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary via-primary to-emerald-600 text-white py-20">
+      <section className="bg-gradient-hero text-white py-20">
         <div className="container mx-auto px-4">
           <Breadcrumb
             items={[
@@ -218,7 +218,7 @@ export function CantonsContent({ forceEn = false }: { forceEn?: boolean }) {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-primary to-emerald-600 text-white">
+      <section className="py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             {isEnglish ? "Ready to simplify your taxes?" : "Prêt à simplifier vos impôts ?"}
