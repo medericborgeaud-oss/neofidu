@@ -45,7 +45,7 @@ export function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
       {/* Visual breadcrumb navigation */}
       <nav
         aria-label="Fil d'Ariane"
-        className={`flex items-center text-sm ${className}`}
+        className={`flex items-center text-sm pt-4 md:pt-6 ${className}`}
       >
         <ol className="flex items-center flex-wrap gap-1">
           {/* Home link */}
@@ -113,7 +113,7 @@ export function BreadcrumbLight({ items, className = "" }: BreadcrumbProps) {
 
       <nav
         aria-label="Fil d'Ariane"
-        className={`flex items-center text-sm ${className}`}
+        className={`flex items-center text-sm pt-4 md:pt-6 ${className}`}
       >
         <ol className="flex items-center flex-wrap gap-1">
           <li className="flex items-center">
