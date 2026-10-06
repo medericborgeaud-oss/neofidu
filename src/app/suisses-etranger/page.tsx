@@ -130,7 +130,7 @@ export default function SuissesEtrangerPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-28 pb-16 bg-gradient-to-br from-primary via-primary/90 to-teal-600 text-white relative overflow-hidden">
+      <section className="pt-28 pb-16 bg-gradient-hero text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-64 h-64 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-300 rounded-full blur-3xl" />
