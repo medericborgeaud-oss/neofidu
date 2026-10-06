@@ -202,7 +202,7 @@ export function GainImmobilierSimulator() {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 text-white pt-24 md:pt-28 pb-12 md:pb-16">
+        <section className="bg-gradient-hero text-white pt-24 md:pt-28 pb-12 md:pb-16">
           <div className="container mx-auto px-4">
             <Breadcrumb items={[{ label: isEnglish ? "Simulators" : "Simulateurs", href: "/simulateur" }, { label: isEnglish ? "Real Estate Capital Gains" : "Gain Immobilier" }]} className="mb-6" />
             <div className="max-w-4xl mx-auto text-center">
@@ -508,7 +508,7 @@ export function GainImmobilierSimulator() {
               </Card>
             ) : calculateTax ? (
               <div className="max-w-4xl mx-auto space-y-6">
-                <Card className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white">
+                <Card className="bg-gradient-hero text-white">
                   <CardContent className="p-8">
                     <div className="grid md:grid-cols-3 gap-6 text-center">
                       <div>
