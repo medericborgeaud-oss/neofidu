@@ -27,7 +27,7 @@ const services = [
     titleEn: "SME Accounting",
     description: "Tenue de comptabilit\u00e9 compl\u00e8te pour votre S\u00e0rl ou SA. Bouclement annuel, d\u00e9clarations TVA, \u00e9tats financiers et rapprochement bancaire.",
     descriptionEn: "Complete accounting for your LLC or AG. Annual closing, VAT returns, financial statements and bank reconciliation.",
-    price: "300",
+    price: "200",
     unit: "/mois",
     unitEn: "/month",
     features: [
