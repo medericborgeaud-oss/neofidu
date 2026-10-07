@@ -157,7 +157,7 @@ const pricingData = {
       nameen: "SME",
       description: "Sàrl, SA jusqu'à 10 employés",
       descriptionen: "LLC, AG up to 10 employees",
-      price: "300",
+      price: "200",
       priceNote: "dès",
       unit: "/mois",
       features: [
@@ -322,9 +322,9 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
-            "price": "300",
+            "price": "200",
             "priceCurrency": "CHF",
-            "minPrice": "300",
+            "minPrice": "200",
             "unitText": "mois"
           }
         },
