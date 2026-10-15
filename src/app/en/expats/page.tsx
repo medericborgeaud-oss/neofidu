@@ -19,8 +19,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://neofidu.ch/en/expats",
     languages: {
+      "fr-CH": "https://neofidu.ch/suisses-etranger",
       "en-CH": "https://neofidu.ch/en/expats",
-      "x-default": "https://neofidu.ch/en/expats",
+      "x-default": "https://neofidu.ch/suisses-etranger",
     },
   },
   openGraph: {
