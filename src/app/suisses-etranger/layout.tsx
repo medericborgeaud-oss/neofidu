@@ -39,6 +39,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/suisses-etranger",
+    languages: {
+      "fr-CH": "https://neofidu.ch/suisses-etranger",
+      "en-CH": "https://neofidu.ch/en/expats",
+      "x-default": "https://neofidu.ch/suisses-etranger",
+    },
   },
   robots: {
     index: true,
