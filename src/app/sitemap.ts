@@ -44,6 +44,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/en/contact", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
     createEntry("/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/suisses-etranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/associations-fondations", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
+    createEntry("/suisses-de-letranger", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.8 }),
+    createEntry("/suisses-de-letranger/canada", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
+    createEntry("/suisses-de-letranger/france", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.7 }),
     createEntry("/en/expats", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.95 }),
     createEntry("/independants", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/creation-entreprise", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
@@ -119,6 +123,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // English service pages (mirror FR service URLs under /en)
   const enServicePages: MetadataRoute.Sitemap = [
     createEntry("/en", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.9 }),
+    createEntry("/en/simulateur", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
     createEntry("/en/independants", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
     createEntry("/en/tarifs", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
     createEntry("/en/entreprises", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
