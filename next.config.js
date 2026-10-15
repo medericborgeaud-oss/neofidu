@@ -85,6 +85,8 @@ const nextConfig = {
       { source: "/about", destination: "/#about", permanent: true },
       { source: "/declaration-impots", destination: "/demande", permanent: true },
       { source: "/demande/prolongation", destination: "/contact", permanent: false },
+      { source: "/suisses-de-letranger", destination: "/suisses-etranger", permanent: true },
+      { source: "/en/suisses-de-letranger", destination: "/en/expats", permanent: true },
     ];
   },
   async headers() {
