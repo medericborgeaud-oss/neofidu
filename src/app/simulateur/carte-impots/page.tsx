@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     canonical: "https://neofidu.ch/simulateur/carte-impots",
     languages: {
       "fr-CH": "https://neofidu.ch/simulateur/carte-impots",
-      "en": "https://neofidu.ch/simulateur/carte-impots",
+      "x-default": "https://neofidu.ch/simulateur/carte-impots",
     },
   },
   robots: {
