@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/simulateur",
+    languages: {
+      "fr-CH": "https://neofidu.ch/simulateur",
+      "en-CH": "https://neofidu.ch/en/simulateur",
+      "x-default": "https://neofidu.ch/simulateur",
+    },
   },
 };
 
