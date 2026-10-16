@@ -216,7 +216,7 @@ export function AssociationsFondationsContent({ forceEn = false }: { forceEn?: b
   const servicePills = [
     { key: "comptabilite", label: isEnglish ? "Accounting" : "Comptabilité" },
     { key: "fiscalite", label: isEnglish ? "Tax" : "Fiscalité" },
-    { key: "tva", label: "TVA" },
+    { key: "tva", label: isEnglish ? "VAT" : "TVA" },
     { key: "revision", label: isEnglish ? "Audit" : "Révision" },
     { key: "creation", label: isEnglish ? "Creation" : "Création" },
   ];
