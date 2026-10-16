@@ -10,6 +10,7 @@ import { useLanguage } from "@/lib/language-context";
 
 export default function MentionsLegalesPage() {
   const { isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? (h === "/" ? "/en" : "/en" + h) : h);
 
   const t = {
     backToHome: isEnglish ? "Back to home" : "Retour à l'accueil",
@@ -93,7 +94,7 @@ export default function MentionsLegalesPage() {
           {/* Breadcrumb */}
           <div className="mb-8">
             <Link
-              href="/"
+              href={L("/")}
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -272,7 +273,7 @@ export default function MentionsLegalesPage() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <Link
-                    href="/conditions-generales"
+                    href={L("/conditions-generales")}
                     className="p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group"
                   >
                     <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -284,7 +285,7 @@ export default function MentionsLegalesPage() {
                   </Link>
 
                   <Link
-                    href="/politique-confidentialite"
+                    href={L("/politique-confidentialite")}
                     className="p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group"
                   >
                     <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
