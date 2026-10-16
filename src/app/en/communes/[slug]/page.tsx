@@ -189,7 +189,7 @@ export default async function CommunePageEN({ params }: Props) {
 
         <div className="max-w-3xl mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-6">
-            <Link href="/communes" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors">
+            <Link href="/en/communes" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors">
               <ArrowLeft className="w-4 h-4" />Back to municipalities
             </Link>
             <Link href={`/communes/${params.slug}`} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
@@ -263,7 +263,7 @@ export default async function CommunePageEN({ params }: Props) {
                     <p className="text-sm text-gray-600">
                       Dominant sector: <span className="font-medium text-gray-900 capitalize">{commune.secteur_dominant}</span>
                     </p>
-                    <Link href={`/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
+                    <Link href={`/en/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
                       className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 mt-3">
                       View companies in {commune.nom} <ArrowRight className="w-3 h-3" />
                     </Link>
@@ -319,7 +319,7 @@ export default async function CommunePageEN({ params }: Props) {
                   <p className="text-sm text-emerald-800 font-medium">Do you live in {commune.nom}?</p>
                   <p className="text-sm text-emerald-600">Tax return from CHF 89.-</p>
                 </div>
-                <Link href="/demande">
+                <Link href="/en/demande">
                   <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">Learn more</Button>
                 </Link>
               </div>
@@ -345,13 +345,13 @@ export default async function CommunePageEN({ params }: Props) {
                 <p className="text-sm font-medium text-emerald-800">Calculate your exact tax</p>
                 <p className="text-xs text-emerald-600">Free simulator with {commune.nom} rates</p>
               </div>
-              <Link href={`/simulateur-impots?commune=${encodeURIComponent(commune.slug || "")}`}>
+              <Link href={`/en/simulateur/impots?commune=${encodeURIComponent(commune.slug || "")}`}>
                 <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Simulate my taxes</Button>
               </Link>
             </div>
             <p className="text-xs text-gray-400 mt-3">
               In Switzerland, taxes are calculated by applying these coefficients to a progressive cantonal scale, not directly on income.{" "}
-              <Link href="/simulateur-impots" className="text-blue-600 underline">Learn more</Link>
+              <Link href="/en/simulateur/impots" className="text-blue-600 underline">Learn more</Link>
             </p>
           </Card>
         </section>
@@ -369,7 +369,7 @@ export default async function CommunePageEN({ params }: Props) {
                   <span className="text-2xl font-bold text-gray-900">{companyCount}</span>{" "}
                   active companies are registered in this municipality.
                 </p>
-                <Link href={`/observatoire?commune=${commune.nom}`} className="text-sm text-blue-600 underline">
+                <Link href={`/en/observatoire?commune=${commune.nom}`} className="text-sm text-blue-600 underline">
                   View companies in the Observatory
                 </Link>
               </div>
@@ -435,7 +435,7 @@ export default async function CommunePageEN({ params }: Props) {
               </div>
               <p className="text-xs text-gray-400 mt-3">
                 Indicative amounts for the current fiscal year.{" "}
-                <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-blue-600 underline">Canton {commune.canton} page</Link>
+                <Link href={`/en/cantons/${commune.canton.toLowerCase()}`} className="text-blue-600 underline">Canton {commune.canton} page</Link>
               </p>
             </Card>
           </section>
@@ -495,7 +495,7 @@ export default async function CommunePageEN({ params }: Props) {
                 <h3 className="text-sm font-medium text-gray-800">How to file a tax return in {commune.nom}?</h3>
                 <p className="text-sm text-gray-600 mt-1">
                   Residents of {commune.nom} can entrust their tax return to{" "}
-                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, a Swiss online fiduciary, from CHF 149.
+                  <Link href="/en" className="text-blue-600 underline">NeoFidu</Link>, a Swiss online fiduciary, from CHF 149.
                 </p>
               </div>
             </div>
@@ -505,11 +505,11 @@ export default async function CommunePageEN({ params }: Props) {
         {/* Internal links */}
         <section className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex flex-wrap gap-2">
-            <Link href="/simulateur-impots" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Tax simulator</Link>
-            <Link href="/simulateur-salaire" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Salary simulator</Link>
-            <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
-            <Link href="/communes" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">All municipalities</Link>
-            <Link href="/particuliers" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Tax return</Link>
+            <Link href="/en/simulateur/impots" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Tax simulator</Link>
+            <Link href="/en/simulateur/salaire-net" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Salary simulator</Link>
+            <Link href={`/en/cantons/${commune.canton.toLowerCase()}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
+            <Link href="/en/communes" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">All municipalities</Link>
+            <Link href="/en" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Tax return</Link>
           </div>
         </section>
 
