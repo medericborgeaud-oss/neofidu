@@ -79,7 +79,7 @@ export function Simulators() {
         {/* Simulator Cards */}
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {simulators.map((sim) => (
-            <Link key={sim.id} href={sim.href} className="group">
+            <Link key={sim.id} href={(isEnglish ? "/en" : "") + sim.href} className="group">
               <Card className="h-full hover:shadow-xl transition-all duration-300 overflow-hidden border-0 shadow-lg group-hover:-translate-y-1">
                 <div className={`h-2 bg-gradient-to-r ${sim.gradient}`} />
                 <CardContent className="p-6">
@@ -106,7 +106,7 @@ export function Simulators() {
 
         {/* All simulators link */}
         <div className="text-center mt-8">
-          <Link href="/simulateur">
+          <Link href={(isEnglish ? "/en" : "") + "/simulateur"}>
             <Button variant="outline" size="lg">
               {isEnglish ? "See all simulators" : "Voir tous les simulateurs"}
               <ArrowRight className="w-5 h-5 ml-2" />
