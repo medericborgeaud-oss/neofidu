@@ -19,6 +19,8 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 // FR base paths that have a dedicated /en twin route.
 const EN_TWIN_EXACT = new Set<string>([
   "/demande",
+  "/second-avis",
+  "/suivi",
   "/simulateur",
   "/expats",
   "/simulateur/impots",
@@ -399,7 +401,7 @@ export function Header() {
 
               {/* Suivi des demandes - small icon */}
               <Link
-                href="/suivi"
+                href={L("/suivi")}
                 className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all !ml-6"
                 title={isEnglish ? "Track your request" : "Suivi des demandes"}
               >
@@ -572,7 +574,7 @@ export function Header() {
                         {isEnglish ? "Client area" : "Espace client"}
                       </p>
                       <Link
-                        href="/suivi"
+                        href={L("/suivi")}
                         onClick={() => setIsOpen(false)}
                         className="text-lg font-medium text-primary hover:text-primary/80 transition-colors py-2 border-b border-border flex items-center gap-2"
                       >
