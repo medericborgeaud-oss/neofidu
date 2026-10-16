@@ -18,6 +18,8 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 // FR base paths that have a dedicated /en twin route.
 const EN_TWIN_EXACT = new Set<string>([
+  "/demande",
+  "/simulateur",
   "/expats",
   "/simulateur/impots",
   "/simulateur/salaire-net",
@@ -298,7 +300,7 @@ export function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link
-                      href="/demande"
+                      href={L("/demande")}
                       className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
                     >
                       {isEnglish ? "Start my tax return →" : "Déposer ma déclaration →"}
@@ -418,7 +420,7 @@ export function Header() {
                 asChild
                 className="ml-2 rounded-full px-6 text-sm"
               >
-                <Link href="/demande">{t("header.cta")}</Link>
+                <Link href={L("/demande")}>{t("header.cta")}</Link>
               </Button>
             </nav>
 
@@ -584,7 +586,7 @@ export function Header() {
                       className="w-full rounded-full mt-4"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Link href="/demande">{t("header.cta")}</Link>
+                      <Link href={L("/demande")}>{t("header.cta")}</Link>
                     </Button>
                   </div>
                 </SheetContent>
