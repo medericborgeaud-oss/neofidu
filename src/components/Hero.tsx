@@ -104,7 +104,7 @@ export function Hero() {
               size="lg"
               className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-black/10 group"
             >
-              <Link href="/demande">
+              <Link href={(isEnglish ? "/en" : "") + "/demande"}>
                 {isEnglish ? "Submit a request" : "Déposer une demande"}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -115,7 +115,7 @@ export function Hero() {
               variant="outline"
               className="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 rounded-full px-8 py-6 text-lg font-semibold"
             >
-              <Link href="/simulateur">
+              <Link href={(isEnglish ? "/en" : "") + "/simulateur"}>
                 <Calculator className="mr-2 w-5 h-5" />
                 {isEnglish ? "Estimate my taxes for free" : "Simuler mes impôts gratuitement"}
               </Link>
