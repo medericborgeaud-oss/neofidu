@@ -11,6 +11,7 @@ import { ShieldCheck, Lock, CreditCard, Server, Mail, Loader2, CheckCircle2 } fr
 
 // FR base paths that have a dedicated /en twin route.
 const EN_TWIN_EXACT_FOOTER = new Set<string>([
+  "/demande",
   "/expats",
   "/simulateur/impots",
   "/simulateur/salaire-net",
@@ -36,6 +37,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
 
 function enHrefFooter(href: string): string {
   if (href === "/") return "/en";
+  if (href === "/suisses-etranger") return "/en/expats";
   if (EN_TWIN_EXACT_FOOTER.has(href)) return "/en" + href;
   if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/")) return "/en" + href;
   return href;
