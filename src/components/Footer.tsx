@@ -12,6 +12,11 @@ import { ShieldCheck, Lock, CreditCard, Server, Mail, Loader2, CheckCircle2 } fr
 // FR base paths that have a dedicated /en twin route.
 const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/demande",
+  "/second-avis",
+  "/suivi",
+  "/mentions-legales",
+  "/conditions-generales",
+  "/politique-confidentialite",
   "/expats",
   "/simulateur/impots",
   "/simulateur/salaire-net",
@@ -38,6 +43,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
 function enHrefFooter(href: string): string {
   if (href === "/") return "/en";
   if (href === "/suisses-etranger") return "/en/expats";
+  if (href.startsWith("/conditions-generales#")) return "/en" + href;
   if (EN_TWIN_EXACT_FOOTER.has(href)) return "/en" + href;
   if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/")) return "/en" + href;
   return href;
@@ -432,16 +438,16 @@ export function Footer() {
             &copy; {new Date().getFullYear()} NeoFidu. {isEnglish ? "All rights reserved." : "Tous droits réservés."}
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 md:gap-6">
-            <Link href="/mentions-legales" className="text-slate-500 hover:text-slate-300 text-sm">
+            <Link href={L("/mentions-legales")} className="text-slate-500 hover:text-slate-300 text-sm">
               {isEnglish ? "Legal notice" : "Mentions légales"}
             </Link>
-            <Link href="/conditions-generales" className="text-slate-500 hover:text-slate-300 text-sm">
+            <Link href={L("/conditions-generales")} className="text-slate-500 hover:text-slate-300 text-sm">
               {isEnglish ? "Terms of service" : "CGU"}
             </Link>
-            <Link href="/conditions-generales#remboursements" className="text-slate-500 hover:text-slate-300 text-sm">
+            <Link href={L("/conditions-generales#remboursements")} className="text-slate-500 hover:text-slate-300 text-sm">
               {isEnglish ? "Refund policy" : "Remboursements"}
             </Link>
-            <Link href="/politique-confidentialite" className="text-slate-500 hover:text-slate-300 text-sm">
+            <Link href={L("/politique-confidentialite")} className="text-slate-500 hover:text-slate-300 text-sm">
               {isEnglish ? "Privacy policy" : "Vie privée"}
             </Link>
           </div>
