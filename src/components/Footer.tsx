@@ -29,6 +29,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/blog",
   "/faq",
   "/suisses-de-letranger",
+  "/observatoire",
   "/cantons",
   "/communes",
 ]);
