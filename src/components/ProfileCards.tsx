@@ -123,7 +123,7 @@ export function ProfileCards() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {profiles.slice(0, 3).map((profile) => (
-            <Link key={profile.title} href={profile.href}>
+            <Link key={profile.title} href={isEnglish ? "/en" + (profile.href === "/suisses-etranger" ? "/expats" : profile.href) : profile.href}>
               <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group cursor-pointer">
                 <div className="flex flex-col h-full">
                   <div className={`p-3 rounded-xl w-fit mb-4 ${profile.color}`}>
@@ -158,7 +158,7 @@ export function ProfileCards() {
 
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto mt-6">
           {profiles.slice(3, 5).map((profile) => (
-            <Link key={profile.title} href={profile.href}>
+            <Link key={profile.title} href={isEnglish ? "/en" + (profile.href === "/suisses-etranger" ? "/expats" : profile.href) : profile.href}>
               <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group cursor-pointer">
                 <div className="flex flex-col h-full">
                   <div className={`p-3 rounded-xl w-fit mb-4 ${profile.color}`}>
