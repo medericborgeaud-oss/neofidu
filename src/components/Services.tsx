@@ -253,7 +253,7 @@ export function Services() {
               );
 
               return service.link ? (
-                <Link key={service.title} href={service.link} className="block">
+                <Link key={service.title} href={(isEnglish ? "/en" : "") + service.link} className="block">
                   {cardContent}
                 </Link>
               ) : (
