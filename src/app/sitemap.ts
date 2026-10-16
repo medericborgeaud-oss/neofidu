@@ -87,6 +87,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/conditions-generales", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
     createEntry("/politique-confidentialite", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
     createEntry("/mentions-legales", { lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 }),
+    createEntry("/en/mentions-legales", { lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 }),
+    createEntry("/en/conditions-generales", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
+    createEntry("/en/politique-confidentialite", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
+    createEntry("/second-avis", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
+    createEntry("/en/second-avis", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.6 }),
+    createEntry("/en/suivi", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.5 }),
   ];
 
   // Commune individual pages
