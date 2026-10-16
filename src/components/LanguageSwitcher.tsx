@@ -31,6 +31,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/blog",
   "/faq",
   "/suisses-de-letranger",
+  "/observatoire",
   "/cantons",
 ]);
 
