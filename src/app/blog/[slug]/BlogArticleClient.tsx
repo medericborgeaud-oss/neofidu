@@ -69,7 +69,7 @@ interface BlogArticleClientProps {
 export default function BlogArticleClient({ article, otherArticles, forceEn = false }: BlogArticleClientProps) {
   const [copied, setCopied] = useState(false);
   const { isEnglish } = useLanguage();
-  const en = forceEn || isEnglish;
+  const en = forceEn; // le contenu suit l'URL (FR vs /en), pas la préférence de langue
   const blogBase = en ? "/en/blog" : "/blog";
   const title = en && article.titleEn ? article.titleEn : article.title;
   const excerpt = en && article.excerptEn ? article.excerptEn : article.excerpt;
