@@ -33,6 +33,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/suisses-de-letranger",
   "/observatoire",
   "/cantons",
+  "/communes",
 ]);
 
 // Returns the /en equivalent of a French path, or null when no English route exists.
