@@ -108,6 +108,12 @@ const creationServices = [
       "Inscription RC (si nécessaire)",
       "Conseil assurances",
     ],
+    featuresEn: [
+      "Analysis of your project",
+      "AVS/AI affiliation",
+      "Commercial register entry (if needed)",
+      "Insurance advice",
+    ],
   },
   {
     title: "Passage en Sàrl",
@@ -122,6 +128,14 @@ const creationServices = [
       "Inscription RC",
       "Transfert d'actifs",
       "Affiliation caisse de compensation",
+    ],
+    featuresEn: [
+      "Tax opportunity assessment",
+      "Articles of association",
+      "Notarial deed",
+      "Commercial register entry",
+      "Asset transfer",
+      "Compensation fund affiliation",
     ],
   },
 ];
@@ -213,6 +227,7 @@ const faqs = [
 export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) {
   const { isEnglish: ctxIsEnglish } = useLanguage();
   const isEnglish = forceEn || ctxIsEnglish;
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -255,13 +270,13 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                 : "Vous faites votre métier, on s'occupe des chiffres. Comptabilité, impôts, TVA, création d'entreprise - tout est pris en charge. Dès CHF 500.-/an."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/demande">
+              <Link href={L("/demande")}>
                 <Button size="lg" className="px-8">
                   {isEnglish ? "Get a free quote" : "Demander un devis gratuit"}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link href="/tarifs">
+              <Link href={L("/tarifs")}>
                 <Button size="lg" variant="outline" className="px-8">
                   {isEnglish ? "See pricing" : "Voir les tarifs"}
                 </Button>
@@ -432,14 +447,14 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                         {isEnglish ? service.titleEn : service.title}
                       </h3>
                       <Badge variant="secondary" className="bg-emerald-100 text-emerald-700">
-                        dès CHF {service.price}.-
+                        {isEnglish ? "from" : "dès"} CHF {service.price}.-
                       </Badge>
                     </div>
                     <p className="text-muted-foreground text-sm mb-4">
                       {isEnglish ? service.descriptionEn : service.description}
                     </p>
                     <ul className="space-y-2">
-                      {service.features.map((feature, i) => (
+                      {(isEnglish ? (service as any).featuresEn : service.features).map((feature, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
                           <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                           <span>{feature}</span>
@@ -451,7 +466,7 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
               </div>
 
               <div className="text-center mt-8">
-                <Link href="/creation-entreprise#contact-creation">
+                <Link href={L("/creation-entreprise#contact-creation")}>
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
                     {isEnglish ? "Discuss my project" : "Discuter de mon projet"}
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -557,7 +572,7 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
             </div>
 
             <div className="text-center mt-8">
-              <Link href="/faq" className="text-primary hover:underline inline-flex items-center gap-2">
+              <Link href={L("/faq")} className="text-primary hover:underline inline-flex items-center gap-2">
                 {isEnglish ? "See all FAQs" : "Voir toutes les questions"}
                 <ArrowRight className="w-4 h-4" />
               </Link>
@@ -580,19 +595,19 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                   <p className="font-semibold mb-3">{isEnglish ? "Free tools" : "Outils gratuits"}</p>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/simulateur/impots" className="text-primary hover:underline flex items-center gap-2">
+                      <Link href={L("/simulateur/impots")} className="text-primary hover:underline flex items-center gap-2">
                         <Calculator className="w-4 h-4" />
                         {isEnglish ? "Tax calculator" : "Simulateur d'impôts"}
                       </Link>
                     </li>
                     <li>
-                      <Link href="/simulateur/3eme-pilier" className="text-primary hover:underline flex items-center gap-2">
+                      <Link href={L("/simulateur/3eme-pilier")} className="text-primary hover:underline flex items-center gap-2">
                         <PiggyBank className="w-4 h-4" />
                         {isEnglish ? "3rd pillar calculator" : "Calculateur 3ème pilier"}
                       </Link>
                     </li>
                     <li>
-                      <Link href="/simulateur/salaire-net" className="text-primary hover:underline flex items-center gap-2">
+                      <Link href={L("/simulateur/salaire-net")} className="text-primary hover:underline flex items-center gap-2">
                         <TrendingUp className="w-4 h-4" />
                         {isEnglish ? "Net salary calculator" : "Simulateur salaire net"}
                       </Link>
@@ -603,13 +618,13 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                   <p className="font-semibold mb-3">{isEnglish ? "Guides" : "Guides"}</p>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/blog/creer-entreprise-suisse-2026" className="text-primary hover:underline flex items-center gap-2">
+                      <Link href={L("/blog/creer-entreprise-suisse-2026")} className="text-primary hover:underline flex items-center gap-2">
                         <FileText className="w-4 h-4" />
                         {isEnglish ? "Start a business in Switzerland" : "Créer son entreprise en Suisse"}
                       </Link>
                     </li>
                     <li>
-                      <Link href="/guide/deductions-fiscales" className="text-primary hover:underline flex items-center gap-2">
+                      <Link href={L("/guide/deductions-fiscales")} className="text-primary hover:underline flex items-center gap-2">
                         <FileText className="w-4 h-4" />
                         {isEnglish ? "Tax deductions guide" : "Guide déductions fiscales"}
                       </Link>
@@ -619,10 +634,10 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                 <div>
                   <p className="font-semibold mb-3">{isEnglish ? "Our regions" : "Nos régions"}</p>
                   <div className="flex flex-wrap gap-2">
-                    <Link href="/cantons/vaud" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Vaud</Link>
-                    <Link href="/cantons/geneve" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Genève</Link>
-                    <Link href="/cantons/fribourg" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Fribourg</Link>
-                    <Link href="/cantons/valais" className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Valais</Link>
+                    <Link href={L("/cantons/vaud")} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Vaud</Link>
+                    <Link href={L("/cantons/geneve")} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Genève</Link>
+                    <Link href={L("/cantons/fribourg")} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Fribourg</Link>
+                    <Link href={L("/cantons/valais")} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">Valais</Link>
                   </div>
                 </div>
               </div>
@@ -647,13 +662,13 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                 : "Faites confiance à Neofidu pour votre comptabilité. Devis gratuit, sans engagement."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/demande">
+              <Link href={L("/demande")}>
                 <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8">
                   {isEnglish ? "Get my free quote" : "Obtenir mon devis gratuit"}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link href="/tarifs">
+              <Link href={L("/tarifs")}>
                 <Button size="lg" className="bg-white/10 border-2 border-white text-white hover:bg-white/30 px-8">
                   {isEnglish ? "View pricing" : "Voir les tarifs"}
                 </Button>
