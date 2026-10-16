@@ -68,7 +68,14 @@ export const metadata: Metadata = {
   title: "Observatoire romand des entreprises 2026 : statistiques par canton et forme juridique",
   description:
     "Le tissu économique de Suisse romande en chiffres : 185'545 entreprises inscrites au registre du commerce, répartition par canton (VD, GE, VS, FR, NE, JU) et par forme juridique, fiscalité et carte de densité.",
-  alternates: { canonical: "https://neofidu.ch/observatoire" },
+  alternates: {
+    canonical: "https://neofidu.ch/observatoire",
+    languages: {
+      "fr-CH": "https://neofidu.ch/observatoire",
+      "en-CH": "https://neofidu.ch/en/observatoire",
+      "x-default": "https://neofidu.ch/observatoire",
+    },
+  },
   openGraph: {
     title: "Observatoire romand des entreprises | NeoFidu",
     description: "Statistiques du tissu économique romand : par canton, par forme juridique, fiscalité et carte de densité.",
