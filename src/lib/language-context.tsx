@@ -1,8 +1,8 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, { createContext, useContext, ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { Locale, defaultLocale, translations, locales } from "./i18n";
+import { Locale, defaultLocale, translations } from "./i18n";
 
 interface LanguageContextType {
   locale: Locale;
@@ -13,39 +13,19 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const STORAGE_KEY = "neofidu_language";
-
+// The display language is determined solely by the URL: French routes render in
+// French, routes under /en render in English. A saved preference no longer leaks
+// English onto a French URL (or the reverse). Switching language is handled by
+// navigation in LanguageSwitcher, which moves to the matching /en (or FR) URL.
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isEnPath = pathname === "/en" || (pathname?.startsWith("/en/") ?? false);
+  const isEnglish = pathname === "/en" || (pathname?.startsWith("/en/") ?? false);
+  const locale: Locale = isEnglish ? "en" : defaultLocale;
 
-  const [locale, setLocaleState] = useState<Locale>(isEnPath ? "en" : defaultLocale);
-  const [mounted, setMounted] = useState(false);
+  // Kept for API compatibility. Language follows the URL, so this is a no-op;
+  // LanguageSwitcher performs the actual switch by navigating to the other URL.
+  const setLocale = (_newLocale: Locale) => {};
 
-  // Load saved language preference. English URLs (/en/...) always render in English.
-  useEffect(() => {
-    if (isEnPath) {
-      setLocaleState("en");
-      document.documentElement.lang = "en";
-      setMounted(true);
-      return;
-    }
-    const savedLocale = localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (savedLocale && locales.includes(savedLocale)) {
-      setLocaleState(savedLocale);
-    }
-    setMounted(true);
-  }, [isEnPath]);
-
-
-  const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
-    localStorage.setItem(STORAGE_KEY, newLocale);
-    // Update html lang attribute
-    document.documentElement.lang = newLocale;
-  };
-
-  // Translation function
   const t = (path: string): string => {
     const keys = path.split(".");
     let result: unknown = translations[locale];
@@ -54,7 +34,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       if (result && typeof result === "object" && key in result) {
         result = (result as Record<string, unknown>)[key];
       } else {
-        console.warn(`Translation not found: ${path}`);
         return path;
       }
     }
@@ -62,43 +41,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return typeof result === "string" ? result : path;
   };
 
-  // Prevent hydration mismatch
-  if (!mounted) {
-    const initialLocale: Locale = isEnPath ? "en" : defaultLocale;
-    return (
-      <LanguageContext.Provider
-        value={{
-          locale: initialLocale,
-          setLocale: () => {},
-          t: (path) => {
-            const keys = path.split(".");
-            let result: unknown = translations[initialLocale];
-            for (const key of keys) {
-              if (result && typeof result === "object" && key in result) {
-                result = (result as Record<string, unknown>)[key];
-              } else {
-                return path;
-              }
-            }
-            return typeof result === "string" ? result : path;
-          },
-          isEnglish: isEnPath
-        }}
-      >
-        {children}
-      </LanguageContext.Provider>
-    );
-  }
-
   return (
-    <LanguageContext.Provider
-      value={{
-        locale,
-        setLocale,
-        t,
-        isEnglish: locale === "en"
-      }}
-    >
+    <LanguageContext.Provider value={{ locale, setLocale, t, isEnglish }}>
       {children}
     </LanguageContext.Provider>
   );
