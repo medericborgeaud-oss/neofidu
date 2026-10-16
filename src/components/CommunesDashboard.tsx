@@ -23,6 +23,7 @@ import {
   formatTaux,
 } from "@/lib/communes";
 import { CantonFlag } from "@/components/CantonFlag";
+import { useLanguage } from "@/lib/language-context";
 
 const CANTONS = ["VD", "GE", "VS", "FR", "NE", "JU"];
 
@@ -45,6 +46,8 @@ export function CommunesDashboard({
   const [canton, setCanton] = useState(initialFilters.canton || "");
   const currentPage = initialFilters.page || 1;
   const hasFilters = search || canton;
+  const { isEnglish } = useLanguage();
+  const en = isEnglish;
 
   function buildUrl(overrides: Partial<CommuneFilters> = {}) {
     const params = new URLSearchParams();
@@ -55,7 +58,7 @@ export function CommunesDashboard({
     if (c) params.set("canton", c);
     if (p > 1) params.set("page", p.toString());
     const qs = params.toString();
-    return `/communes${qs ? `?${qs}` : ""}`;
+    return `${en ? "/en/communes" : "/communes"}${qs ? `?${qs}` : ""}`;
   }
 
   function clearFilter(key: string) {
@@ -79,15 +82,15 @@ export function CommunesDashboard({
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-1">Communes romandes</h1>
-        <p className="text-sm text-gray-500">{stats.total.toLocaleString("fr-CH")} communes dans 6 cantons</p>
+        <h1 className="text-2xl font-bold text-gray-900 mb-1">{en ? "Municipalities of French-speaking Switzerland" : "Communes romandes"}</h1>
+        <p className="text-sm text-gray-500">{stats.total.toLocaleString("fr-CH")} {en ? "municipalities across 6 cantons" : "communes dans 6 cantons"}</p>
       </div>
 
       {/* KPI row â 3 cards */}
       <div className="grid grid-cols-3 gap-3 mb-6">
         {stats.plus_grande && (
           <div className="bg-gray-50 rounded-xl px-4 py-3">
-            <p className="text-[10px] uppercase tracking-wide text-gray-400 flex items-center gap-1 mb-1"><Users className="w-3 h-3" /> Plus peuplee</p>
+            <p className="text-[10px] uppercase tracking-wide text-gray-400 flex items-center gap-1 mb-1"><Users className="w-3 h-3" /> {en ? "Most populated" : "Plus peuplee"}</p>
             <div className="flex items-center gap-2">
               <CantonFlag canton={stats.plus_grande.canton || ""} size={24} />
               <div>
@@ -99,7 +102,7 @@ export function CommunesDashboard({
         )}
         {stats.plus_petite && (
           <div className="bg-gray-50 rounded-xl px-4 py-3">
-            <p className="text-[10px] uppercase tracking-wide text-gray-400 flex items-center gap-1 mb-1"><MapPin className="w-3 h-3" /> Plus petite</p>
+            <p className="text-[10px] uppercase tracking-wide text-gray-400 flex items-center gap-1 mb-1"><MapPin className="w-3 h-3" /> {en ? "Smallest" : "Plus petite"}</p>
             <div className="flex items-center gap-2">
               <CantonFlag canton={stats.plus_petite.canton || ""} size={24} />
               <div>
@@ -109,10 +112,10 @@ export function CommunesDashboard({
             </div>
           </div>
         )}
-        <Link href="/simulateur-impots" className="bg-emerald-50 rounded-xl px-4 py-3 hover:bg-emerald-100 transition-colors group">
-          <p className="text-[10px] uppercase tracking-wide text-emerald-500 flex items-center gap-1 mb-1"><Calculator className="w-3 h-3" /> Outil gratuit</p>
-          <p className="text-sm font-semibold text-emerald-700 group-hover:text-emerald-800">Simuler mes impots</p>
-          <p className="text-[10px] text-emerald-500">Estimation par commune</p>
+        <Link href={en ? "/en/simulateur/impots" : "/simulateur-impots"} className="bg-emerald-50 rounded-xl px-4 py-3 hover:bg-emerald-100 transition-colors group">
+          <p className="text-[10px] uppercase tracking-wide text-emerald-500 flex items-center gap-1 mb-1"><Calculator className="w-3 h-3" /> {en ? "Free tool" : "Outil gratuit"}</p>
+          <p className="text-sm font-semibold text-emerald-700 group-hover:text-emerald-800">{en ? "Estimate my taxes" : "Simuler mes impots"}</p>
+          <p className="text-[10px] text-emerald-500">{en ? "Estimate by municipality" : "Estimation par commune"}</p>
         </Link>
       </div>
 
@@ -122,7 +125,7 @@ export function CommunesDashboard({
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
             type="text"
-            placeholder="Rechercher une commune..."
+            placeholder={en ? "Search a municipality..." : "Rechercher une commune..."}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
@@ -161,14 +164,14 @@ export function CommunesDashboard({
               {CANTON_NAMES[canton] || canton} <X className="w-3 h-3" />
             </button>
           )}
-          <span className="text-xs text-gray-400">{total.toLocaleString("fr-CH")} resultat{total !== 1 ? "s" : ""}</span>
+          <span className="text-xs text-gray-400">{total.toLocaleString("fr-CH")} {en ? (total !== 1 ? "results" : "result") : (total !== 1 ? "resultats" : "resultat")}</span>
         </div>
       )}
 
       {/* Table header */}
       <div className="flex items-center gap-3 px-4 py-2 text-[10px] uppercase tracking-wider text-gray-400 border-b border-gray-100">
         <span className="w-6 text-center">#</span>
-        <span className="flex-1">Commune</span>
+        <span className="flex-1">{en ? "Municipality" : "Commune"}</span>
         <span className="w-16 text-right">Coeff.</span>
         <span className="w-20 text-right">Population</span>
         <span className="w-6" />
@@ -179,7 +182,7 @@ export function CommunesDashboard({
         {communes.map((commune, i) => (
           <Link
             key={commune.slug}
-            href={`/communes/${commune.slug}`}
+            href={`${en ? "/en" : ""}/communes/${commune.slug}`}
             className="group flex items-center gap-3 px-4 py-3 hover:bg-emerald-50/50 transition-colors"
           >
             {/* Rank */}
@@ -227,8 +230,8 @@ export function CommunesDashboard({
       {communes.length === 0 && (
         <div className="text-center py-16">
           <MapPin className="w-8 h-8 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-500">Aucune commune trouvee</p>
-          <Link href="/communes" className="text-sm text-emerald-600 hover:underline mt-2 inline-block">Reinitialiser les filtres</Link>
+          <p className="text-gray-500">{en ? "No municipality found" : "Aucune commune trouvee"}</p>
+          <Link href={en ? "/en/communes" : "/communes"} className="text-sm text-emerald-600 hover:underline mt-2 inline-block">{en ? "Reset filters" : "Reinitialiser les filtres"}</Link>
         </div>
       )}
 
@@ -252,15 +255,15 @@ export function CommunesDashboard({
       {/* CTA */}
       <div className="mt-8 bg-emerald-50 rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div>
-          <p className="text-emerald-800 font-medium text-sm">Vous habitez en Suisse romande ?</p>
-          <p className="text-xs text-emerald-600">Declaration d&apos;impots des CHF 89.&mdash; | Comptabilite des CHF 500.&mdash;/an</p>
+          <p className="text-emerald-800 font-medium text-sm">{en ? "Do you live in French-speaking Switzerland?" : "Vous habitez en Suisse romande ?"}</p>
+          <p className="text-xs text-emerald-600">{en ? "Tax return from CHF 89.- | Accounting from CHF 500.-/year" : "Declaration d'impots des CHF 89.- | Comptabilite des CHF 500.-/an"}</p>
         </div>
-        <Link href="/demande">
-          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Faire ma demande</Button>
+        <Link href={en ? "/en/demande" : "/demande"}>
+          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">{en ? "Submit my request" : "Faire ma demande"}</Button>
         </Link>
       </div>
 
-      <p className="text-center text-[10px] text-gray-400 mt-4">Source : Registre officiel des communes (OFS) via LINDAS</p>
+      <p className="text-center text-[10px] text-gray-400 mt-4">{en ? "Source: Official register of municipalities (FSO) via LINDAS" : "Source : Registre officiel des communes (OFS) via LINDAS"}</p>
     </div>
   );
 }
