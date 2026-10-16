@@ -106,6 +106,7 @@ function formatFileSize(bytes: number): string {
 
 export default function SuiviPage() {
   const { isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
   const [reference, setReference] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -689,11 +690,11 @@ export default function SuiviPage() {
                     {isEnglish ? "Useful links" : "Liens utiles"}
                   </p>
                   <div className="flex flex-wrap justify-center gap-4 text-sm">
-                    <a href="/demande" className="text-teal-600 hover:text-teal-700 hover:underline">
+                    <a href={L("/demande")} className="text-teal-600 hover:text-teal-700 hover:underline">
                       {isEnglish ? "Submit a new request" : "Déposer une nouvelle demande"}
                     </a>
                     <span className="text-gray-300">|</span>
-                    <a href="/faq" className="text-teal-600 hover:text-teal-700 hover:underline">
+                    <a href={L("/faq")} className="text-teal-600 hover:text-teal-700 hover:underline">
                       {isEnglish ? "FAQ" : "Questions fréquentes"}
                     </a>
                     <span className="text-gray-300">|</span>
@@ -701,7 +702,7 @@ export default function SuiviPage() {
                       {isEnglish ? "Contact us" : "Nous contacter"}
                     </a>
                     <span className="text-gray-300">|</span>
-                    <a href="/blog" className="text-teal-600 hover:text-teal-700 hover:underline">
+                    <a href={L("/blog")} className="text-teal-600 hover:text-teal-700 hover:underline">
                       {isEnglish ? "Fiscal news" : "Actualités fiscales"}
                     </a>
                   </div>
