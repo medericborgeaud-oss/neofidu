@@ -81,6 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/observatoire", { lastModified: currentDate, changeFrequency: "daily", priority: 0.9 }),
     createEntry("/en/observatoire", { lastModified: currentDate, changeFrequency: "daily", priority: 0.85 }),
     createEntry("/communes", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.9 }),
+    createEntry("/en/communes", { lastModified: currentDate, changeFrequency: "weekly", priority: 0.85 }),
     createEntry("/dette-suisse", { lastModified: currentDate, changeFrequency: "daily", priority: 0.8 }),
     createEntry("/en/swiss-debt", { lastModified: currentDate, changeFrequency: "daily", priority: 0.8 }),
     createEntry("/conditions-generales", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
