@@ -37,13 +37,13 @@ export function SimulatorCTA() {
           ))}
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/demande">
+          <Link href={(isEnglish ? "/en" : "") + "/demande"}>
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold px-8 shadow-lg">
               {isEnglish ? "Get started" : "Déposer une demande"}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
-          <Link href="/tarifs">
+          <Link href={(isEnglish ? "/en" : "") + "/tarifs"}>
             <Button size="lg" variant="ghost" className="border border-white/50 text-white hover:bg-white/10 hover:text-white px-8">
               {isEnglish ? "See pricing" : "Voir les tarifs"}
             </Button>
