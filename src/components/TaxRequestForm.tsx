@@ -1652,9 +1652,9 @@ export function TaxRequestForm() {
     // {isEnglish ? "Couple supplement" : "Supplément couple"}
     if (formData.familyStatus === "couple") price += 30;
     // Supplément indépendant adulte 1
-    if (formData.isIndependent) price += 40;
+    if (formData.isIndependent) price += 100;
     // Supplément indépendant adulte 2 (conjoint)
-    if (formData.familyStatus === "couple" && formData.isIndependent2) price += 40;
+    if (formData.familyStatus === "couple" && formData.isIndependent2) price += 100;
     if (formData.hasChildren) price += 15 * formData.childrenCount;
     if (formData.hasProperty && properties.length > 0) price += 60 * properties.length;
     if (formData.hasStocks && formData.stocksCount >= 3) price += 30;
@@ -5993,13 +5993,13 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {formData.isIndependent && (
                   <div className="flex justify-between">
                     <span>{(isEnglish ? "Self-employed supplement" : "Supplément indépendant") + (formData.familyStatus === "couple" ? ` (${formData.firstName || "Adulte 1"})` : "")}</span>
-                    <span>CHF 40.-</span>
+                    <span>CHF 100.-</span>
                   </div>
                 )}
                 {formData.familyStatus === "couple" && formData.isIndependent2 && (
                   <div className="flex justify-between">
                     <span>{isEnglish ? "Self-employed supplement" : "Supplément indépendant"} ({formData.firstName2 || (isEnglish ? "Adult 2" : "Adulte 2")})</span>
-                    <span>CHF 40.-</span>
+                    <span>CHF 100.-</span>
                   </div>
                 )}
                 {formData.hasChildren && formData.childrenCount > 0 && (
