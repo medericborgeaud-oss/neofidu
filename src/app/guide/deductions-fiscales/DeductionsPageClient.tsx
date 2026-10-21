@@ -24,6 +24,7 @@ import { useLanguage } from "@/lib/language-context";
 
 export function DeductionsPageClient() {
   const { t, isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   const deductionCategories = [
     {
@@ -377,7 +378,7 @@ export function DeductionsPageClient() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link href="/simulateur">
+              <Link href={L("/simulateur")}>
                 <Button
                   size="lg"
                   className="bg-white text-primary hover:bg-white/90"
@@ -386,7 +387,7 @@ export function DeductionsPageClient() {
                   {isEnglish ? "Simulate my taxes" : "Simuler mes impôts"}
                 </Button>
               </Link>
-              <Link href="/demande">
+              <Link href={L("/demande")}>
                 <Button
                   size="lg"
                   variant="outline"
@@ -604,7 +605,7 @@ export function DeductionsPageClient() {
                       : "Nos experts connaissent toutes les déductions possibles dans votre canton. Confiez-nous votre déclaration pour une optimisation maximale."}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link href="/demande">
+                    <Link href={L("/demande")}>
                       <Button
                         size="lg"
                         className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto"
@@ -613,7 +614,7 @@ export function DeductionsPageClient() {
                         <ArrowRight className="w-5 h-5 ml-2" />
                       </Button>
                     </Link>
-                    <Link href="/simulateur">
+                    <Link href={L("/simulateur")}>
                       <Button
                         size="lg"
                         variant="outline"
