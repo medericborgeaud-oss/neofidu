@@ -110,7 +110,7 @@ const pricingData = {
       features: [
         "Déclaration fiscale complète",
         "Couple: +CHF 30.-",
-        "Indépendant: +CHF 40.-",
+        "Indépendant: +CHF 100.-",
         "Bien immobilier: +CHF 60.-/bien",
         "Enfant: +CHF 15.-/enfant",
 
@@ -118,7 +118,7 @@ const pricingData = {
       featuresen: [
         "Complete tax return",
         "Couple: +CHF 30.-",
-        "Self-employed: +CHF 40.-",
+        "Self-employed: +CHF 100.-",
         "Property: +CHF 60.-/property",
         "Child: +CHF 15.-/child",
 
@@ -304,7 +304,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
           "itemOffered": {
             "@type": "Service",
             "name": (isEnglish ? "À la carte tax return" : "Déclaration d'impôts à la carte"),
-            "description": (isEnglish ? "À la carte tax return for individuals in French-speaking Switzerland. Add-ons: couple +30, child +15, real estate +60, self-employed +40, securities +30" : "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +40, titres +30")
+            "description": (isEnglish ? "À la carte tax return for individuals in French-speaking Switzerland. Add-ons: couple +30, child +15, real estate +60, self-employed +100, securities +30" : "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +100, titres +30")
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -589,14 +589,14 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                             { label: "Couple / married", price: "+CHF 30.-" },
                             { label: "Per child", price: "+CHF 15.-" },
                             { label: "Per property owned", price: "+CHF 60.-" },
-                            { label: "Self-employed income", price: "+CHF 40.-" },
+                            { label: "Self-employed income", price: "+CHF 100.-" },
                             { label: "Securities (≥3 positions)", price: "+CHF 30.-" },
                           ]
                         : [
                             { label: "Couple / marié", price: "+CHF 30.-" },
                             { label: "Par enfant", price: "+CHF 15.-" },
                             { label: "Par bien immobilier", price: "+CHF 60.-" },
-                            { label: "Revenu indépendant", price: "+CHF 40.-" },
+                            { label: "Revenu indépendant", price: "+CHF 100.-" },
                             { label: "Actions (≥3 positions)", price: "+CHF 30.-" },
                           ]
                       ).map((item, i) => (
