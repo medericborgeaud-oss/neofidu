@@ -26,6 +26,7 @@ interface SimulatorInternalLinksProps {
 
 export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksProps) {
   const { isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   const simulators = [
     {
@@ -144,7 +145,7 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {filteredSimulators.map((sim) => (
-              <Link key={sim.id} href={sim.href}>
+              <Link key={sim.id} href={L(sim.href)}>
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group">
                   <CardContent className="p-4">
                     <div className={`w-10 h-10 rounded-lg ${sim.color} flex items-center justify-center mb-3`}>
@@ -173,7 +174,7 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
           </p>
           <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {relatedPages.map((page) => (
-              <Link key={page.href} href={page.href}>
+              <Link key={page.href} href={L(page.href)}>
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-2">
@@ -202,7 +203,7 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
             {cantons.map((canton) => (
               <Link
                 key={canton.href}
-                href={canton.href}
+                href={L(canton.href)}
                 className="inline-flex items-center gap-1 px-3 py-1.5 bg-white rounded-full border hover:border-primary hover:text-primary transition-colors text-sm"
               >
                 <MapPin className="w-3 h-3" />
@@ -220,7 +221,7 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
               : "Besoin d'aide pour votre déclaration ?"}
           </p>
           <Link
-            href="/demande"
+            href={L("/demande")}
             className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors"
           >
             {isEnglish ? "Start Your Tax Return" : "Commencer ma déclaration"}
