@@ -135,13 +135,13 @@ export default function ExpatsPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button asChild size="lg" className="rounded-full text-lg px-8">
-                <Link href="/demande">
+                <Link href="/en/demande">
                   Start Your Tax Return
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full text-lg px-8">
-                <Link href="/simulateur/impots">
+                <Link href="/en/simulateur/impots">
                   Free Tax Calculator
                 </Link>
               </Button>
@@ -281,7 +281,7 @@ export default function ExpatsPage() {
 
           <div className="text-center mt-8">
             <Button asChild variant="outline" className="rounded-full">
-              <Link href="/faq">
+              <Link href="/en/faq">
                 View All FAQs
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
@@ -302,7 +302,7 @@ export default function ExpatsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="rounded-full text-lg px-8">
-              <Link href="/demande">
+              <Link href="/en/demande">
                 Start Now - From CHF 89 (VAT incl.)
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
