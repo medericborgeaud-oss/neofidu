@@ -248,7 +248,7 @@ export default function ObservatoireEnPage() {
               <Link href="/en/creation-entreprise" className="text-primary hover:underline">Start a company</Link>
               <Link href="/en/associations-fondations" className="text-primary hover:underline">Associations &amp; foundations</Link>
               <Link href="/en/blog/raison-individuelle-ou-sarl-quand-creer-structure" className="text-primary hover:underline">Sole proprietorship or LLC?</Link>
-              <Link href="/communes" className="text-primary hover:underline">Explore by municipality</Link>
+              <Link href="/en/communes" className="text-primary hover:underline">Explore by municipality</Link>
             </div>
           </section>
 
