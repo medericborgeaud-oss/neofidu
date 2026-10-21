@@ -176,6 +176,7 @@ const cantons = ["Vaud", "Genève", "Valais", "Fribourg", "Neuchâtel", "Jura"];
 export function AssociationsFondationsContent({ forceEn = false }: { forceEn?: boolean }) {
   const { t, isEnglish: ctxIsEnglish } = useLanguage();
   const isEnglish = forceEn || ctxIsEnglish;
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
   const [formData, setFormData] = useState({
     orgName: "",
     orgType: "association",
@@ -621,7 +622,7 @@ export function AssociationsFondationsContent({ forceEn = false }: { forceEn?: b
               : "Des questions ? Consultez aussi nos services pour"}
           </p>
           <div className="flex items-center justify-center gap-4">
-            <Link href="/demande" className="text-primary font-medium hover:underline">
+            <Link href={L("/demande")} className="text-primary font-medium hover:underline">
               {isEnglish ? "Individuals" : "Particuliers"}
             </Link>
             <span className="text-muted-foreground">{"·"}</span>
