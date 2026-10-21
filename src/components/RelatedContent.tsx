@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/language-context";
 // Related simulators component
 export function RelatedSimulators({ currentSimulator }: { currentSimulator: string }) {
   const { isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   const simulators = [
     {
@@ -61,7 +62,7 @@ export function RelatedSimulators({ currentSimulator }: { currentSimulator: stri
       </h3>
       <div className="grid gap-3">
         {filtered.map((sim) => (
-          <Link key={sim.id} href={sim.href} className="group">
+          <Link key={sim.id} href={L(sim.href)} className="group">
             <div className="flex items-center gap-3 p-3 rounded-lg bg-white hover:shadow-md transition-all">
               <div className={`w-10 h-10 rounded-lg bg-secondary flex items-center justify-center ${sim.color}`}>
                 <sim.icon className="w-5 h-5" />
@@ -79,7 +80,7 @@ export function RelatedSimulators({ currentSimulator }: { currentSimulator: stri
           </Link>
         ))}
       </div>
-      <Link href="/simulateur" className="inline-flex items-center gap-2 text-sm text-primary font-medium mt-4 hover:underline">
+      <Link href={L("/simulateur")} className="inline-flex items-center gap-2 text-sm text-primary font-medium mt-4 hover:underline">
         {isEnglish ? "See all simulators" : "Voir tous les simulateurs"}
         <ArrowRight className="w-4 h-4" />
       </Link>
@@ -90,6 +91,7 @@ export function RelatedSimulators({ currentSimulator }: { currentSimulator: stri
 // Related articles for service pages
 export function RelatedArticles({ category }: { category: "fiscalite" | "comptabilite" | "immobilier" | "entreprise" }) {
   const { isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   const articlesByCategory = {
     fiscalite: [
@@ -122,7 +124,7 @@ export function RelatedArticles({ category }: { category: "fiscalite" | "comptab
       <ul className="space-y-2">
         {articles.map((article, index) => (
           <li key={index}>
-            <Link href={article.href} className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2">
+            <Link href={L(article.href)} className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2">
               <ArrowRight className="w-4 h-4" />
               {article.title}
             </Link>
@@ -136,6 +138,7 @@ export function RelatedArticles({ category }: { category: "fiscalite" | "comptab
 // Canton links component for cross-linking
 export function RelatedCantons({ currentCanton }: { currentCanton: string }) {
   const { isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   const cantons = [
     { id: "geneve", name: "Genève", href: "/cantons/geneve" },
@@ -157,7 +160,7 @@ export function RelatedCantons({ currentCanton }: { currentCanton: string }) {
         {filtered.map((canton) => (
           <Link
             key={canton.id}
-            href={canton.href}
+            href={L(canton.href)}
             className="px-3 py-1.5 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
           >
             {canton.name}
@@ -171,10 +174,11 @@ export function RelatedCantons({ currentCanton }: { currentCanton: string }) {
 // Quick links CTA component
 export function QuickActionsCTA() {
   const { isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   return (
     <div className="grid sm:grid-cols-3 gap-4 my-8">
-      <Link href="/demande" className="group">
+      <Link href={L("/demande")} className="group">
         <Card className="p-4 text-center hover:shadow-lg transition-all hover:border-primary">
           <FileText className="w-8 h-8 mx-auto mb-2 text-primary" />
           <p className="font-medium group-hover:text-primary">
@@ -185,7 +189,7 @@ export function QuickActionsCTA() {
           </p>
         </Card>
       </Link>
-      <Link href="/tarifs" className="group">
+      <Link href={L("/tarifs")} className="group">
         <Card className="p-4 text-center hover:shadow-lg transition-all hover:border-primary">
           <Calculator className="w-8 h-8 mx-auto mb-2 text-emerald-600" />
           <p className="font-medium group-hover:text-primary">
@@ -196,7 +200,7 @@ export function QuickActionsCTA() {
           </p>
         </Card>
       </Link>
-      <Link href="/faq" className="group">
+      <Link href={L("/faq")} className="group">
         <Card className="p-4 text-center hover:shadow-lg transition-all hover:border-primary">
           <Users className="w-8 h-8 mx-auto mb-2 text-blue-600" />
           <p className="font-medium group-hover:text-primary">
