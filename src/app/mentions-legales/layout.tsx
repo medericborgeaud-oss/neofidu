@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/mentions-legales",
+    languages: {
+      "fr-CH": "https://neofidu.ch/mentions-legales",
+      "en-CH": "https://neofidu.ch/en/mentions-legales",
+      "x-default": "https://neofidu.ch/mentions-legales",
+    },
   },
 };
 
