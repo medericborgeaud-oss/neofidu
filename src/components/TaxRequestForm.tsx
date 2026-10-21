@@ -5976,7 +5976,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>{isEnglish ? "Declaration" : "Déclaration"} {formData.familyStatus === "couple" ? (isEnglish ? "joint" : "commune") : (isEnglish ? "individual" : "individuelle")}</span>
-                  <span>CHF 60.-</span>
+                  <span>CHF 30.-</span>
                 </div>
                 {formData.livesAbroad && (
                   <div className="flex justify-between">
@@ -6005,19 +6005,19 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {formData.hasChildren && formData.childrenCount > 0 && (
                   <div className="flex justify-between">
                     <span>{formData.childrenCount} {isEnglish ? "child(ren)" : "enfant(s)"}</span>
-                    <span>CHF {10 * formData.childrenCount}.-</span>
+                    <span>CHF {15 * formData.childrenCount}.-</span>
                   </div>
                 )}
                 {formData.hasProperty && properties.length > 0 && (
                   <div className="flex justify-between">
                     <span>{properties.length} {isEnglish ? "propert(ies)" : "bien(s) immobilier(s)"}</span>
-                    <span>CHF {50 * properties.length}.-</span>
+                    <span>CHF {60 * properties.length}.-</span>
                   </div>
                 )}
                 {formData.hasStocks && formData.stocksCount > 2 && (
                   <div className="flex justify-between">
                     <span>{isEnglish ? "Securities" : "Titres"} ({formData.stocksCount} {isEnglish ? "positions" : "positions"})</span>
-                    <span>CHF 20.-</span>
+                    <span>CHF 30.-</span>
                   </div>
                 )}
                 {formData.deliveryMethod === "post" && (
