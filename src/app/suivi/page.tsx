@@ -159,6 +159,9 @@ export default function SuiviPage() {
     pageSubtitle: isEnglish
       ? "Enter your reference number to track the progress of your file in real time"
       : "Entrez votre numéro de référence pour suivre l'avancement de votre dossier en temps réel",
+    depotBanner: isEnglish
+      ? "Business clients: you can also use this page to upload your accounting documents (invoices, receipts, bank statements). Enter your reference, then use the \"Add documents\" area."
+      : "Clients entreprises : cette page vous permet aussi de déposer vos documents comptables (factures, tickets, justificatifs bancaires). Saisissez votre référence, puis utilisez la zone « Ajouter des documents ».",
 
     // Search
     searchPlaceholder: isEnglish ? "Ex: NF-A1B2C3D4" : "Ex: NF-A1B2C3D4",
@@ -404,6 +407,10 @@ export default function SuiviPage() {
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 {t.pageSubtitle}
               </p>
+              <div className="mt-5 max-w-2xl mx-auto bg-primary/10 border border-primary/20 rounded-xl px-4 py-3 text-sm text-gray-700 flex items-start gap-2 text-left">
+                <Upload className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
+                <span>{t.depotBanner}</span>
+              </div>
             </div>
 
             {/* Search Form */}
