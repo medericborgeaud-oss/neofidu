@@ -211,6 +211,7 @@ function generateFAQSchema(items: FAQItem[]) {
 export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
   const { isEnglish: ctxIsEnglish } = useLanguage();
   const isEnglish = forceEn || ctxIsEnglish;
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState(isEnglish ? "All" : "Tous");
 
@@ -377,7 +378,7 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
               {isEnglish ? "Related Articles" : "Articles connexes"}
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <Link href="/blog/declaration-impots-2025-guide-complet" className="group">
+              <Link href={L("/blog/declaration-impots-2025-guide-complet")} className="group">
                 <Card className="p-5 h-full hover:shadow-lg hover:border-primary/20 transition-all">
                   <span className="text-xs font-medium text-emerald-600 uppercase tracking-wider">
                     {isEnglish ? "Tax Guide" : "Guide fiscal"}
@@ -390,7 +391,7 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
                   </p>
                 </Card>
               </Link>
-              <Link href="/blog/pilier-3a-2026-plafonds-avantages" className="group">
+              <Link href={L("/blog/pilier-3a-2026-plafonds-avantages")} className="group">
                 <Card className="p-5 h-full hover:shadow-lg hover:border-primary/20 transition-all">
                   <span className="text-xs font-medium text-emerald-600 uppercase tracking-wider">
                     {isEnglish ? "Retirement" : "Prévoyance"}
@@ -403,7 +404,7 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
                   </p>
                 </Card>
               </Link>
-              <Link href="/blog/tva-suisse-2026-taux-obligations" className="group">
+              <Link href={L("/blog/tva-suisse-2026-taux-obligations")} className="group">
                 <Card className="p-5 h-full hover:shadow-lg hover:border-primary/20 transition-all">
                   <span className="text-xs font-medium text-blue-600 uppercase tracking-wider">
                     {isEnglish ? "VAT" : "TVA"}
@@ -419,7 +420,7 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
             </div>
             <div className="text-center mt-6">
               <Button asChild variant="outline" className="rounded-full">
-                <Link href="/blog">
+                <Link href={L("/blog")}>
                   {isEnglish ? "View all articles" : "Voir tous les articles"} →
                 </Link>
               </Button>
@@ -438,7 +439,7 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
                   <Link href="/#contact">{t.contactUs}</Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-full">
-                  <Link href="/demande">{t.startRequest}</Link>
+                  <Link href={L("/demande")}>{t.startRequest}</Link>
                 </Button>
               </div>
 
