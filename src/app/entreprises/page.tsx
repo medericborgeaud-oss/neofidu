@@ -105,6 +105,7 @@ const advantages = [
 export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
   const { t, isEnglish: ctxIsEnglish } = useLanguage();
   const isEnglish = forceEn || ctxIsEnglish;
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   return (
     <>
@@ -144,13 +145,13 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
               </motion.p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="rounded-full px-8">
-                  <Link href="/contact">
+                  <Link href={L("/contact")}>
                     {isEnglish ? "Request a quote" : "Demander un devis"}
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-full px-8">
-                  <Link href="/tarifs">
+                  <Link href={L("/tarifs")}>
                     {isEnglish ? "View pricing" : "Voir les tarifs"}
                   </Link>
                 </Button>
@@ -216,7 +217,7 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
                     </ul>
                     <div className="mt-6">
                       <Button asChild variant="outline" className="w-full rounded-full">
-                        <Link href="/contact">
+                        <Link href={L("/contact")}>
                           {isEnglish ? "Request a quote" : "Demander un devis"}
                           <ArrowRight className="ml-2 w-4 h-4" />
                         </Link>
@@ -277,13 +278,13 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="rounded-full px-8">
-                <Link href="/contact">
+                <Link href={L("/contact")}>
                   {isEnglish ? "Contact us" : "Nous contacter"}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-white text-emerald-600 hover:bg-gray-50">
-                <Link href="/contact">
+                <Link href={L("/contact")}>
                   {isEnglish ? "Request a quote" : "Cr\u00e9emander un devis"}
                 </Link>
               </Button>
