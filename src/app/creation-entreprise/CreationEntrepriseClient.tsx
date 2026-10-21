@@ -284,6 +284,7 @@ const faqs = [
 export function CreationEntrepriseContent({ forceEn = false }: { forceEn?: boolean }) {
   const { isEnglish: ctxIsEnglish } = useLanguage();
   const isEnglish = forceEn || ctxIsEnglish;
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -621,15 +622,15 @@ export function CreationEntrepriseContent({ forceEn = false }: { forceEn?: boole
                 <div>
                   <p className="font-semibold mb-3">{isEnglish ? "Related services" : "Services associés"}</p>
                   <ul className="space-y-2">
-                    <li><Link href="/independants" className="text-primary hover:underline flex items-center gap-2"><Users className="w-4 h-4" />{isEnglish ? "Freelance accounting" : "Comptabilité indépendants"}</Link></li>
-                    <li><Link href="/tarifs" className="text-primary hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Our pricing" : "Nos tarifs"}</Link></li>
+                    <li><Link href={L("/independants")} className="text-primary hover:underline flex items-center gap-2"><Users className="w-4 h-4" />{isEnglish ? "Freelance accounting" : "Comptabilité indépendants"}</Link></li>
+                    <li><Link href={L("/tarifs")} className="text-primary hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Our pricing" : "Nos tarifs"}</Link></li>
                   </ul>
                 </div>
                 <div>
                   <p className="font-semibold mb-3">{isEnglish ? "Free tools" : "Outils gratuits"}</p>
                   <ul className="space-y-2">
-                    <li><Link href="/simulateur/impots" className="text-primary hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Tax calculator" : "Simulateur d'impôts"}</Link></li>
-                    <li><Link href="/simulateur/salaire-net" className="text-primary hover:underline flex items-center gap-2"><Banknote className="w-4 h-4" />{isEnglish ? "Net salary" : "Salaire net"}</Link></li>
+                    <li><Link href={L("/simulateur/impots")} className="text-primary hover:underline flex items-center gap-2"><Calculator className="w-4 h-4" />{isEnglish ? "Tax calculator" : "Simulateur d'impôts"}</Link></li>
+                    <li><Link href={L("/simulateur/salaire-net")} className="text-primary hover:underline flex items-center gap-2"><Banknote className="w-4 h-4" />{isEnglish ? "Net salary" : "Salaire net"}</Link></li>
                   </ul>
                 </div>
                 <div>
