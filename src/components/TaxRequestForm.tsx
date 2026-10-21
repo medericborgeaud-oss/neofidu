@@ -5976,7 +5976,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>{isEnglish ? "Declaration" : "Déclaration"} {formData.familyStatus === "couple" ? (isEnglish ? "joint" : "commune") : (isEnglish ? "individual" : "individuelle")}</span>
-                  <span>CHF 30.-</span>
+                  <span>CHF 89.-</span>
                 </div>
                 {formData.livesAbroad && (
                   <div className="flex justify-between">
@@ -5987,7 +5987,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {formData.familyStatus === "couple" && (
                   <div className="flex justify-between">
                     <span>{isEnglish ? "Couple supplement" : "Supplément couple"}</span>
-                    <span>CHF 20.-</span>
+                    <span>CHF 30.-</span>
                   </div>
                 )}
                 {formData.isIndependent && (
