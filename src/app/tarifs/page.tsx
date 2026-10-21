@@ -268,6 +268,7 @@ const cantons = [
 export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
   const { isEnglish: ctxIsEnglish } = useLanguage();
   const isEnglish = forceEn || ctxIsEnglish;
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
   // JSON-LD Schema for Services and Pricing
   const servicesSchema = {
     "@context": "https://schema.org",
@@ -503,7 +504,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 ? "No commitment. Personalized quote for accounting & corporate tax."
                 : "Sans engagement. Devis personnalisé pour la comptabilité & fiscalité entreprises."}
             </p>
-            <Link href="/demande">
+            <Link href={L("/demande")}>
               <Button
                 size="lg"
                 className="bg-white text-primary hover:bg-white/90"
@@ -622,7 +623,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
 
                   {/* CTA */}
                   <div className="text-center">
-                    <Link href="/demande">
+                    <Link href={L("/demande")}>
                       <Button size="lg" className="px-8">
                         {isEnglish ? "Get my quote" : "Obtenir mon devis"}
                         <ArrowRight className="w-5 h-5 ml-2" />
@@ -980,8 +981,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? <>Our base prices are the same for all cantons in French-speaking Switzerland (<Link href="/cantons/geneve" className="text-primary hover:underline">Geneva</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">Neuchâtel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). The final price depends solely on the complexity of your file, not your canton of residence.</>
-                    : <>Nos tarifs de base sont identiques pour tous les cantons romands (<Link href="/cantons/geneve" className="text-primary hover:underline">Genève</Link>, <Link href="/cantons/vaud" className="text-primary hover:underline">Vaud</Link>, <Link href="/cantons/valais" className="text-primary hover:underline">Valais</Link>, <Link href="/cantons/fribourg" className="text-primary hover:underline">Fribourg</Link>, <Link href="/cantons/neuchatel" className="text-primary hover:underline">Neuchâtel</Link>, <Link href="/cantons/jura" className="text-primary hover:underline">Jura</Link>). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence.</>}
+                    ? <>Our base prices are the same for all cantons in French-speaking Switzerland (<Link href={L("/cantons/geneve")} className="text-primary hover:underline">Geneva</Link>, <Link href={L("/cantons/vaud")} className="text-primary hover:underline">Vaud</Link>, <Link href={L("/cantons/valais")} className="text-primary hover:underline">Valais</Link>, <Link href={L("/cantons/fribourg")} className="text-primary hover:underline">Fribourg</Link>, <Link href={L("/cantons/neuchatel")} className="text-primary hover:underline">Neuchâtel</Link>, <Link href={L("/cantons/jura")} className="text-primary hover:underline">Jura</Link>). The final price depends solely on the complexity of your file, not your canton of residence.</>
+                    : <>Nos tarifs de base sont identiques pour tous les cantons romands (<Link href={L("/cantons/geneve")} className="text-primary hover:underline">Genève</Link>, <Link href={L("/cantons/vaud")} className="text-primary hover:underline">Vaud</Link>, <Link href={L("/cantons/valais")} className="text-primary hover:underline">Valais</Link>, <Link href={L("/cantons/fribourg")} className="text-primary hover:underline">Fribourg</Link>, <Link href={L("/cantons/neuchatel")} className="text-primary hover:underline">Neuchâtel</Link>, <Link href={L("/cantons/jura")} className="text-primary hover:underline">Jura</Link>). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence.</>}
                 </p>
               </Card>
               <Card className="p-6">
@@ -992,8 +993,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? <>Declaring cryptocurrencies (Bitcoin, Ethereum, etc.) may require a supplement depending on the number of transactions and platforms used. <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline">Read our complete guide on crypto tax declaration in Switzerland</Link> and request a quote for an accurate estimate.</>
-                    : <>La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. <Link href="/blog/declarer-cryptomonnaies-suisse-guide-2026" className="text-primary hover:underline">Consultez notre guide complet sur la déclaration crypto en Suisse</Link> et demandez un devis pour une estimation précise.</>}
+                    ? <>Declaring cryptocurrencies (Bitcoin, Ethereum, etc.) may require a supplement depending on the number of transactions and platforms used. <Link href={L("/blog/declarer-cryptomonnaies-suisse-guide-2026")} className="text-primary hover:underline">Read our complete guide on crypto tax declaration in Switzerland</Link> and request a quote for an accurate estimate.</>
+                    : <>La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. <Link href={L("/blog/declarer-cryptomonnaies-suisse-guide-2026")} className="text-primary hover:underline">Consultez notre guide complet sur la déclaration crypto en Suisse</Link> et demandez un devis pour une estimation précise.</>}
                 </p>
               </Card>
               <Card className="p-6">
@@ -1040,13 +1041,13 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 : "Obtenez votre devis gratuit en 2 minutes. Sans engagement. Paiement en plusieurs fois disponible."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/demande">
+              <Link href={L("/demande")}>
                 <Button size="lg" className="px-8">
                   {isEnglish ? "Get my free quote" : "Obtenir mon devis gratuit"}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link href="/faq">
+              <Link href={L("/faq")}>
                 <Button size="lg" variant="outline" className="px-8">
                   {isEnglish ? "More questions?" : "D'autres questions ?"}
                 </Button>
