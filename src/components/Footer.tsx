@@ -19,6 +19,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/politique-confidentialite",
   "/expats",
   "/simulateur/impots",
+  "/simulateur/carte-impots",
   "/simulateur/salaire-net",
   "/simulateur/3eme-pilier",
   "/simulateur/valeur-locative",
@@ -71,6 +72,7 @@ export function Footer() {
     ],
     tools: [
       { label: isEnglish ? "Tax calculator" : "Simulateur d'impôts", href: "/simulateur/impots" },
+      { label: isEnglish ? "Swiss tax map" : "Carte des impôts", href: "/simulateur/carte-impots" },
       { label: isEnglish ? "3rd pillar calculator" : "Simulateur 3ème pilier", href: "/simulateur/3eme-pilier" },
       { label: isEnglish ? "Rent reduction calculator" : "Calculateur baisse loyer", href: "/simulateur/baisse-loyer" },
       { label: isEnglish ? "Net salary calculator" : "Simulateur salaire net", href: "/simulateur/salaire-net" },
