@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/politique-confidentialite",
+    languages: {
+      "fr-CH": "https://neofidu.ch/politique-confidentialite",
+      "en-CH": "https://neofidu.ch/en/politique-confidentialite",
+      "x-default": "https://neofidu.ch/politique-confidentialite",
+    },
   },
   robots: {
     index: true,
