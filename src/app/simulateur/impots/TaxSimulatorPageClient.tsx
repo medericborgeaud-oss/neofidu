@@ -18,6 +18,7 @@ import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export function TaxSimulatorPageClient() {
   const { t, isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   const cantonsRomandie = ["Vaud", "Genève", "Valais", "Fribourg", "Neuchâtel", "Jura"];
   const cantonsAlemanique = isEnglish
@@ -66,7 +67,7 @@ export function TaxSimulatorPageClient() {
       {/* Hero Section */}
       <section className="bg-gradient-hero text-white pt-24 md:pt-28 pb-12 md:pb-16">
         <div className="container mx-auto px-4">
-          <Breadcrumb items={[{ label: isEnglish ? "Simulators" : "Simulateurs", href: "/simulateur" }, { label: isEnglish ? "Tax Simulator" : "Simulateur d'impôts" }]} className="mb-6" />
+          <Breadcrumb items={[{ label: isEnglish ? "Simulators" : "Simulateurs", href: L("/simulateur") }, { label: isEnglish ? "Tax Simulator" : "Simulateur d'impôts" }]} className="mb-6" />
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
               <Zap className="w-4 h-4 text-yellow-300" />
@@ -153,7 +154,7 @@ export function TaxSimulatorPageClient() {
             {t("simulators.taxSimulatorPage.otherSimulators")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <Link href="/simulateur/3eme-pilier">
+            <Link href={L("/simulateur/3eme-pilier")}>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-lg mb-2">
@@ -168,7 +169,7 @@ export function TaxSimulatorPageClient() {
                 </CardContent>
               </Card>
             </Link>
-            <Link href="/simulateur/valeur-locative">
+            <Link href={L("/simulateur/valeur-locative")}>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-lg mb-2">
