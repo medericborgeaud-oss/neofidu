@@ -365,7 +365,7 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                         </li>
                       ))}
                     </ul>
-                    <Link href={service.title === "Création d'entreprise" ? "/creation-entreprise#contact-creation" : "/demande"}>
+                    <Link href={L(service.title === "Création d'entreprise" ? "/creation-entreprise#contact-creation" : "/demande")}>
                       <Button className="w-full">
                         {isEnglish ? "Get started" : "Commencer"}
                         <ArrowRight className="w-4 h-4 ml-2" />
