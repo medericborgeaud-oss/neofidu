@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/conditions-generales",
+    languages: {
+      "fr-CH": "https://neofidu.ch/conditions-generales",
+      "en-CH": "https://neofidu.ch/en/conditions-generales",
+      "x-default": "https://neofidu.ch/conditions-generales",
+    },
   },
   robots: {
     index: true,
