@@ -20,6 +20,7 @@ import { SimulatorCTA } from "@/components/SimulatorCTA";
 
 export function Pillar3aPageClient() {
   const { t, isEnglish } = useLanguage();
+  const L = (h: string) => (isEnglish ? "/en" + h : h);
 
   const features = [
     {
@@ -63,7 +64,7 @@ export function Pillar3aPageClient() {
       {/* Hero Section */}
       <section className="pt-28 pb-12 bg-gradient-hero text-white">
         <div className="container mx-auto px-4">
-          <Breadcrumb items={[{ label: isEnglish ? "Simulators" : "Simulateurs", href: "/simulateur" }, { label: isEnglish ? "Pillar 3a" : "3ème Pilier" }]} className="mb-6" />
+          <Breadcrumb items={[{ label: isEnglish ? "Simulators" : "Simulateurs", href: L("/simulateur") }, { label: isEnglish ? "Pillar 3a" : "3ème Pilier" }]} className="mb-6" />
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
               <Zap className="w-4 h-4 text-yellow-300" />
@@ -126,13 +127,13 @@ export function Pillar3aPageClient() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" variant="secondary" className="text-emerald-700">
-              <Link href="/demande">
+              <Link href={L("/demande")}>
                 {t("simulators.pillar3aPage.ctaButton1")}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white/20">
-              <Link href="/simulateur/impots">
+              <Link href={L("/simulateur/impots")}>
                 <Calculator className="mr-2 w-5 h-5" />
                 {t("simulators.pillar3aPage.ctaButton2")}
               </Link>
