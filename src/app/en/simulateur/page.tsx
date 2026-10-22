@@ -97,7 +97,7 @@ const tools = [
     icon: Map,
     title: "Swiss Tax Map",
     desc: "Compare the tax burden of all 26 Swiss cantons on an interactive map.",
-    href: "/simulateur/carte-impots",
+    href: "/en/simulateur/carte-impots",
   },
 ];
 
