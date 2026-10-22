@@ -23,6 +23,7 @@ import {
   Briefcase,
   ArrowRight,
   TrendingUp,
+  MapPin,
   Percent,
 } from "lucide-react";
 import Link from "next/link";
@@ -336,6 +337,22 @@ export default function SimulateurPage() {
                     </h3>
                     <p className="text-sm text-muted-foreground">
                       Estimez vos revenus AVS, LPP et 3ème pilier à la retraite
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/simulateur/carte-impots">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
+                      <MapPin className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                      Carte des impôts suisses
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Comparez les taux d'imposition des 26 cantons sur une carte interactive
                     </p>
                   </CardContent>
                 </Card>
