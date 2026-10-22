@@ -784,7 +784,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                         )
                       )}
                     </ul>
-                    <Link href={plan.name === "Création d'entreprise" ? "/creation-entreprise#contact-creation" : "/demande"}>
+                    <Link href={L(plan.name === "Création d'entreprise" ? "/creation-entreprise#contact-creation" : "/demande")}>
                       <Button
                         className={`w-full ${
                           plan.popular
@@ -826,7 +826,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
               {cantons.map((canton) => (
-                <Link key={canton.slug} href={`/cantons/${canton.slug}`}>
+                <Link key={canton.slug} href={L(`/cantons/${canton.slug}`)}>
                   <Card className="p-4 text-center flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition-all cursor-pointer group">
                     <img src={`/flags/${({ geneve: "ge", vaud: "vd", valais: "vs", fribourg: "fr", neuchatel: "ne", jura: "ju" } as Record<string, string>)[canton.slug]}.svg`} alt={`Drapeau ${canton.name}`} className="w-10 h-auto mx-auto mb-2 rounded border border-gray-400 shadow-sm" />
                     <h3 className="font-semibold group-hover:text-primary transition-colors">
