@@ -10,6 +10,14 @@ export const metadata = {
   title: "Second avis gratuit sur votre facture de fiduciaire | NeoFidu",
   description:
     "Payez-vous trop cher votre fiduciaire ? Envoyez votre dernière facture, on vous dit en 48h si vous pouvez économiser. Gratuit, confidentiel, sans engagement.",
+  alternates: {
+    canonical: "https://neofidu.ch/second-avis",
+    languages: {
+      "fr-CH": "https://neofidu.ch/second-avis",
+      "en-CH": "https://neofidu.ch/en/second-avis",
+      "x-default": "https://neofidu.ch/second-avis",
+    },
+  },
 };
 
 const steps = [
