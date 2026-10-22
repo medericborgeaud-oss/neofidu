@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://neofidu.ch/suivi",
+    languages: {
+      "fr-CH": "https://neofidu.ch/suivi",
+      "en-CH": "https://neofidu.ch/en/suivi",
+      "x-default": "https://neofidu.ch/suivi",
+    },
   },
   robots: {
     index: false,
