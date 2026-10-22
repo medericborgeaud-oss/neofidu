@@ -642,7 +642,7 @@ export function CreationEntrepriseContent({ forceEn = false }: { forceEn?: boole
                       { name: "Fribourg", slug: "fribourg" },
                       { name: "Valais", slug: "valais" }
                     ].map(c => (
-                      <Link key={c.slug} href={`/cantons/${c.slug}`} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">{c.name}</Link>
+                      <Link key={c.slug} href={L(`/cantons/${c.slug}`)} className="px-3 py-1 bg-white rounded-full text-sm hover:bg-primary hover:text-white transition-colors">{c.name}</Link>
                     ))}
                   </div>
                 </div>
