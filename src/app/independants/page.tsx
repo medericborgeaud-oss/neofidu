@@ -492,7 +492,7 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {isEnglish
                   ? "NeoFidu supports self-employed and freelancers in Vaud, Geneva and Valais - 100% online."
-                  : "NeoFidu accompagne les indépendants et freelances à Vaud, Genève et en Valais - 100 % en ligne."}
+                  : "NeoFidu accompagne les indépendants et freelances dans les cantons de Vaud, de Genève et du Valais - 100 % en ligne."}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">

@@ -1420,7 +1420,7 @@ Meilleures salutations,
 <p>Oui, c'est possible. Il peut invoquer la hausse de l'IPC ou des frais d'entretien pour réduire votre baisse. Mais il doit le justifier avec des chiffres précis.</p>
 
 <h3><strong>Ça marche dans tous les cantons ?</strong></h3>
-<p>Oui, le taux de référence est national. Que vous soyez à Vaud, Genève, Valais, Fribourg, Neuchâtel ou ailleurs - c'est le même principe.</p>
+<p>Oui, le taux de référence est national. Que vous soyez dans le canton de Vaud, de Genève, du Valais, de Fribourg, de Neuchâtel ou ailleurs, c'est le même principe.</p>
 
 <p><strong>En résumé</strong></p>
 <p>Demander une baisse de loyer, c'est votre droit. Si vous êtes locataire depuis quelques années et que le taux a baissé, vous pouvez potentiellement économiser plusieurs centaines de francs par an. La procédure est simple, gratuite, et ça prend 10 minutes. Alors pourquoi s'en priver ?</p>
@@ -1822,7 +1822,7 @@ Meilleures salutations,
 
 <p>Particularités du canton de Fribourg :</p>
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.25rem;">Taux d'imposition modérés comparés à Vaud et Neuchâtel</li>
+<li style="margin-bottom: 0.25rem;">Taux d'imposition modérés comparés aux cantons de Vaud et de Neuchâtel</li>
 <li style="margin-bottom: 0.25rem;">Frontaliers imposés en France (convention franco-suisse)</li>
 <li style="margin-bottom: 0.25rem;">Rectification possible via le formulaire cantonal</li>
 <li style="margin-bottom: 0.25rem;">Canton bilingue (français/allemand) : attention aux formulaires</li>
@@ -2348,7 +2348,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <tr>
 <td>Neuchâtel</td>
 <td>Jusqu'à 28%</td>
-<td>Système similaire à Vaud</td>
+<td>Système similaire au canton de Vaud</td>
 </tr>
 <tr>
 <td>Jura</td>
@@ -5543,7 +5543,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <h3><strong>Canton de Fribourg</strong></h3>
 
-<p>Fribourg accepte les déductions de télétravail selon des <strong>critères similaires</strong> à Vaud :</p>
+<p>Fribourg accepte les déductions de télétravail selon des <strong>critères similaires</strong> au canton de Vaud :</p>
 
 <ul style="list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
 <li style="margin-bottom: 0.25rem;">Pièce dédiée ou espace clairement délimité</li>

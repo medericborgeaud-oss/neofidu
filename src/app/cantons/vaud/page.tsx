@@ -113,11 +113,11 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
       answer: "VaudTax est le logiciel officiel obligatoire pour remplir sa déclaration dans le canton de Vaud. Il peut être téléchargé sur le site du canton ou utilisé en ligne. Il vous guide section par section et calcule automatiquement votre impôt."
     },
     {
-      question: "Quelles sont les principales déductions spécifiques à Vaud ?",
+      question: "Quelles sont les principales déductions spécifiques au canton de Vaud ?",
       answer: "Le canton de Vaud offre plusieurs déductions spécifiques : un forfait vélo de CHF 700 pour les trajets domicile-travail, des plafonds généreux pour les frais de transport, les frais professionnels, le 3e pilier A (jusqu'à CHF 7'258), les rachats de 2e pilier et les frais de garde."
     },
     {
-      question: "Comment fonctionnent les acomptes provisionnels à Vaud ?",
+      question: "Comment fonctionnent les acomptes provisionnels dans le canton de Vaud ?",
       answer: "Le canton de Vaud envoie des factures provisionnelles basées sur votre dernière taxation connue. Vous payez tout au long de l'année par acomptes. Si vos revenus ont significativement changé, vous pouvez demander un ajustement pour éviter un solde important en fin d'année."
     },
     {
@@ -224,7 +224,7 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
               <p className="text-muted-foreground">
                 {isEnglish
                   ? "The wealth tax in Vaud is also progressive, ranging from 1‰ to approximately 7.5‰ depending on the level of taxable wealth."
-                  : "L'impôt sur la fortune à Vaud est également progressif, allant de 1‰ à environ 7,5‰ selon le niveau de fortune imposable."}
+                  : "L'impôt sur la fortune dans le canton de Vaud est également progressif, allant de 1‰ à environ 7,5‰ selon le niveau de fortune imposable."}
               </p>
             </div>
             <Card className="p-6 border-primary/20">
