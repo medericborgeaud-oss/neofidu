@@ -172,12 +172,12 @@ export const deductionsFamille: GuideChapter = {
       { type: "h2", id: "modeste", text: "Low-income deduction (code 695)" },
       {
         type: "p",
-        text: "Vaud grants an extra deduction to low-income households. The amount depends on income and family size and decreases as income rises. VaudTax calculates it automatically.",
+        text: "The canton of Vaud grants an extra deduction to low-income households. The amount depends on income and family size and decreases as income rises. VaudTax calculates it automatically.",
       },
     ],
     faq: [
       {
-        q: "How much can I deduct for daycare in Vaud?",
+        q: "How much can I deduct for daycare in the canton of Vaud?",
         a: "Up to CHF 15,200 per child under 14 in 2026, for third-party childcare linked to the parents' work, training or inability to work. Receipts must be attached.",
       },
       {

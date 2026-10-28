@@ -211,7 +211,7 @@ export const avantDeCommencer: GuideChapter = {
         items: [
           "Keep this form until the process is over: you also need it if you post supporting documents on paper.",
           "If VaudTax says the number and code do not match, check both against the A3 form (0 and O, 1 and I are easy to mix up).",
-          "Just moved to Vaud and received nothing? New taxpayers first receive a form to set provisional instalments, then the tax return early the following year.",
+          "Just moved to the canton of Vaud and received nothing? New taxpayers first receive a form to set provisional instalments, then the tax return early the following year.",
         ],
       },
       { type: "h3", text: "The login screen" },

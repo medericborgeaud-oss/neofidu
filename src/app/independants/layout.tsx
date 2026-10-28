@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Comptabilité Indépendants & Freelances | Vaud, Genève, Valais",
   description:
-    "Fiduciaire digitale pour indépendants et freelances à Vaud, Genève et Valais. Comptabilité, déclaration d'impôts, TVA. Devis gratuit.",
+    "Fiduciaire digitale pour indépendants et freelances dans les cantons de Vaud, de Genève et du Valais. Comptabilité, déclaration d'impôts, TVA. Devis gratuit.",
   keywords: [
     "comptabilité indépendant suisse",
     "comptable freelance suisse",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "indépendant freelance suisse romande"],
   openGraph: {
     title: "Comptabilité Indépendants & Freelances | Vaud · Genève · Valais | NeoFidu",
-    description: "Comptabilité pour indépendants à Vaud, Genève et Valais. Déclaration d'impôts, TVA, création entreprise. Devis gratuit en ligne.",
+    description: "Comptabilité pour indépendants dans les cantons de Vaud, de Genève et du Valais. Déclaration d'impôts, TVA, création entreprise. Devis gratuit en ligne.",
     url: "https://neofidu.ch/independants",
     type: "website",
     locale: "fr_CH",

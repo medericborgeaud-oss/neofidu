@@ -4,54 +4,11 @@ import { useLanguage } from "@/lib/language-context";
 import { localeNames, Locale } from "@/lib/i18n";
 import { Globe } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { isEnglishPath, languageToggleTarget } from "@/lib/en-routes";
 
 interface LanguageSwitcherProps {
   variant?: "header" | "footer" | "minimal";
   className?: string;
-}
-
-// Base paths that have a dedicated server-rendered English route under /en.
-const EN_TWIN_EXACT = new Set<string>([
-  "/",
-  "/demande",
-  "/independants",
-  "/simulateur/impots",
-  "/simulateur/salaire-net",
-  "/simulateur/3eme-pilier",
-  "/simulateur/valeur-locative",
-  "/simulateur/gain-immobilier",
-  "/simulateur/baisse-loyer",
-  "/simulateur/retraite",
-  "/simulateur/carte-impots",
-  "/simulateur",
-  "/mentions-legales",
-  "/conditions-generales",
-  "/politique-confidentialite",
-  "/second-avis",
-  "/suivi",
-  "/guide/deductions-fiscales",
-  "/guide/vaudtax",
-  "/contact",
-  "/tarifs",
-  "/entreprises",
-  "/creation-entreprise",
-  "/associations-fondations",
-  "/blog",
-  "/faq",
-  "/suisses-de-letranger",
-  "/observatoire",
-  "/cantons",
-  "/communes",
-]);
-
-// Returns the /en equivalent of a French path, or null when no English route exists.
-function toEnPath(p: string | null): string | null {
-  if (!p) return null;
-  if (p === "/en" || p.startsWith("/en/")) return null;
-  if (EN_TWIN_EXACT.has(p)) return p === "/" ? "/en" : "/en" + p;
-  if (p.startsWith("/blog/") || p.startsWith("/communes/") || p.startsWith("/cantons/") || p.startsWith("/guide/vaudtax/")) return "/en" + p;
-  if (p === "/dette-suisse") return "/en/swiss-debt";
-  return null;
 }
 
 export function LanguageSwitcher({ variant = "header", className = "" }: LanguageSwitcherProps) {
@@ -63,12 +20,9 @@ export function LanguageSwitcher({ variant = "header", className = "" }: Languag
   // otherwise fall back to a client-side language switch.
   const switchTo = (lang: Locale) => {
     setLocale(lang);
-    if (lang === "en") {
-      const enPath = toEnPath(pathname);
-      if (enPath) router.push(enPath);
-    } else if (pathname === "/en" || pathname?.startsWith("/en/")) {
-      if (pathname === "/en/swiss-debt") { router.push("/dette-suisse"); return; }
-      router.push(pathname === "/en" ? "/" : pathname.replace(/^\/en/, ""));
+    const onEn = isEnglishPath(pathname);
+    if ((lang === "en" && !onEn) || (lang === "fr" && onEn)) {
+      router.push(languageToggleTarget(pathname));
     }
   };
 
@@ -139,8 +93,7 @@ export function LanguageBanner() {
 
   const goEnglish = () => {
     setLocale("en");
-    const enPath = toEnPath(pathname);
-    if (enPath) router.push(enPath);
+    router.push(languageToggleTarget(pathname));
   };
 
   return (

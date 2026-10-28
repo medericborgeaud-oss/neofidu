@@ -113,7 +113,7 @@ export const autresDeductions: GuideChapter = {
     summary: [
       "**Further training (code 618)**: up to **CHF 12,000** per person per year, excluding first education, if you paid it yourself.",
       "**Medical and dental costs (code 710)**: only the part above **5% of income** (code 700) is deductible, after insurance reimbursements.",
-      "**Donations (code 720)**: deductible from **CHF 100** a year up to **20%** of income, to Swiss tax-exempt charities. Donations to churches are not deductible in Vaud.",
+      "**Donations (code 720)**: deductible from **CHF 100** a year up to **20%** of income, to Swiss tax-exempt charities. Donations to churches are not deductible in the canton of Vaud.",
       "**Political parties (code 620)**: up to **CHF 10,100** a year.",
     ],
     blocks: [
@@ -166,12 +166,12 @@ export const autresDeductions: GuideChapter = {
     ],
     faq: [
       {
-        q: "Are dentist bills tax deductible in Vaud?",
+        q: "Are dentist bills tax deductible in the canton of Vaud?",
         a: "Yes, together with other unreimbursed medical costs, but only for the part above 5% of your net income (code 700).",
       },
       {
         q: "Is a donation to my church deductible?",
-        a: "No. In Vaud, payments to churches, parishes and religious institutions are not deductible.",
+        a: "No. In the canton of Vaud, payments to churches, parishes and religious institutions are not deductible.",
       },
     ],
   },

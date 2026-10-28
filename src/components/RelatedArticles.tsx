@@ -19,7 +19,7 @@ const ARTICLES = {
       icon: "calculator",
     },
     {
-      title: "Déclaration d'impôts à Vaud : guide complet",
+      title: "Déclaration d'impôts dans le canton de Vaud : guide complet",
       description: "Délais, déductions et optimisations fiscales pour les contribuables vaudois.",
       href: "/vaud",
       icon: "receipt",
