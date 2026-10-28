@@ -32,6 +32,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/simulateur/retraite",
   "/guide/deductions-fiscales",
   "/guide/vaudtax",
+  "/guide/getax",
   "/contact",
   "/independants",
   "/tarifs",
@@ -49,7 +50,7 @@ const EN_TWIN_EXACT = new Set<string>([
 function enHref(href: string): string {
   if (href === "/") return "/en";
   if (EN_TWIN_EXACT.has(href)) return "/en" + href;
-  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/")) return "/en" + href;
+  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/")) return "/en" + href;
   return href;
 }
 
@@ -92,6 +93,7 @@ export function Header() {
     { href: "/communes", label: isEnglish ? "Communes" : "Communes romandes", category: "Informations" },
     { href: "/guide/deductions-fiscales", label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales", category: "Informations" },
     { href: "/guide/vaudtax", label: isEnglish ? "VaudTax guide (Vaud tax return)" : "Guide VaudTax : remplir sa déclaration vaudoise", category: "Informations" },
+    { href: "/guide/getax", label: isEnglish ? "GeTax guide (Geneva tax return)" : "Guide GeTax : remplir sa déclaration genevoise", category: "Informations" },
     { href: isEnglish ? "/en/swiss-debt" : "/dette-suisse", label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse", category: "Informations" },
     { href: "/suivi", label: isEnglish ? "File Tracking" : "Suivi de dossier", category: "Informations" },
     { href: "/#about", label: isEnglish ? "About" : "À propos", category: "Informations" },
@@ -151,6 +153,12 @@ export function Header() {
       label: isEnglish ? "VaudTax guide" : "Guide VaudTax",
       icon: BookOpen,
       description: isEnglish ? "Fill in your Vaud tax return" : "Remplir sa déclaration vaudoise",
+    },
+    {
+      href: "/guide/getax",
+      label: isEnglish ? "GeTax guide" : "Guide GeTax",
+      icon: BookOpen,
+      description: isEnglish ? "Fill in your Geneva tax return" : "Remplir sa déclaration genevoise",
     },
     {
       href: "/guide/deductions-fiscales",

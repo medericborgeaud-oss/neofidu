@@ -50,4 +50,21 @@ export const vaudtaxGuide: GuideDefinition = {
     verifierEnvoyer,
   ],
   pillar: { fr: vaudtaxPillarFr, en: vaudtaxPillarEn },
+  cantonName: { fr: "Canton de Vaud", en: "Canton of Vaud" },
+  ui: {
+    fr: {
+      pathLabel: "Dans VaudTax",
+      ctaText:
+        "NeoFidu prépare et dépose votre déclaration vaudoise pour vous, avec une vérification des déductions oubliées.",
+      disclaimer:
+        "Ce guide est informatif et ne remplace pas un conseil personnalisé. Les montants proviennent des publications officielles de l'Administration cantonale des impôts (ACI) du canton de Vaud. En cas de doute, les instructions officielles de l'ACI font foi.",
+    },
+    en: {
+      pathLabel: "In VaudTax",
+      ctaText:
+        "NeoFidu prepares and files your Vaud tax return for you, including a check for missed deductions. Service in English available.",
+      disclaimer:
+        "This guide is for information only and is not personalised advice. Amounts come from official publications of the Vaud cantonal tax administration (ACI). VaudTax itself is in French: we quote the French labels so you can find them on screen. If in doubt, the official ACI instructions prevail.",
+    },
+  },
 };

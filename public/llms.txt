@@ -30,6 +30,9 @@ Key information:
 - [VaudTax guide (FR)](https://neofidu.ch/guide/vaudtax): How to fill in the Vaud tax return in VaudTax, section by section, with official 2026 Vaud deduction amounts and return codes
 - [VaudTax guide (EN)](https://neofidu.ch/en/guide/vaudtax): English version for expats, quoting the French VaudTax labels
 - Chapters: before you start, personal situation and children, salary, work expenses, insurance and pillar 3a, accounts/securities/crypto, wealth and debts, housing, family deductions, training/medical/donations, checking and filing (https://neofidu.ch/guide/vaudtax/<chapter>)
+- [GeTax guide (FR)](https://neofidu.ch/guide/getax): How to fill in the Geneva tax return in GeTax (desktop or online), screen by screen, with official 2026 Geneva deduction amounts and return codes (11.10, 31.50, 52.21, etc.)
+- [GeTax guide (EN)](https://neofidu.ch/en/guide/getax): English version for expats and cross-border workers, quoting the French GeTax labels with translations
+- Chapters: before you start, personal situation and children, salary, work expenses, pension savings (pillar 3a, 3a catch-up, buy-ins), accounts/securities/crypto, wealth and debts, property, deductions, source tax/TOU/quasi-residents/cross-border workers, checking and filing (https://neofidu.ch/guide/getax/<chapter>)
 
 ## Canton Pages
 

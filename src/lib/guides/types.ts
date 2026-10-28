@@ -58,4 +58,17 @@ export interface GuideDefinition {
   chapters: GuideChapter[];
   /** Fichiers présents dans /public/guides/<slug>/ */
   availableScreenshots: Set<string>;
+  /** Nom du canton pour les données structurées (JSON-LD) */
+  cantonName: Record<GuideLocale, string>;
+  /** Libellés propres au guide : logiciel, appel à l'action, autorité fiscale */
+  ui: Record<GuideLocale, GuideUi>;
+}
+
+export interface GuideUi {
+  /** Titre du bloc "chemin de clics", ex. "Dans VaudTax" */
+  pathLabel: string;
+  /** Texte du bloc d'appel à l'action en bas de page */
+  ctaText: string;
+  /** Avertissement en pied d'article (source des montants, autorité qui fait foi) */
+  disclaimer: string;
 }

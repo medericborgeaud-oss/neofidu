@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 import { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
 import { vaudtaxGuide } from "@/lib/guides/vaudtax";
+import { getaxGuide } from "@/lib/guides/getax";
 import { createClient } from "@supabase/supabase-js";
 
 const baseUrl = "https://neofidu.ch";
@@ -76,6 +77,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...vaudtaxGuide.chapters.flatMap((c) => [
       createEntry(`/guide/vaudtax/${c.slug}`, { lastModified: vaudtaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.8 }),
       createEntry(`/en/guide/vaudtax/${c.slug}`, { lastModified: vaudtaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.75 }),
+    ]),
+    createEntry("/guide/getax", { lastModified: getaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/en/guide/getax", { lastModified: getaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.85 }),
+    ...getaxGuide.chapters.flatMap((c) => [
+      createEntry(`/guide/getax/${c.slug}`, { lastModified: getaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.8 }),
+      createEntry(`/en/guide/getax/${c.slug}`, { lastModified: getaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.75 }),
     ]),
     createEntry("/cantons", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
     ...["vaud", "geneve", "valais", "fribourg", "neuchatel", "jura"].map((canton) =>
