@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     "réduire ses impôts suisse",
   ],
   openGraph: {
-    title: "Déductions fiscales en Suisse 2026 â Guide complet pour payer moins d'impôts",
-    description: "Découvrez toutes les déductions fiscales auxquelles vous avez droit : 3ème pilier, frais professionnels, dons, frais de gardeâ¦ Guide 2026.",
+    title: "Déductions fiscales en Suisse 2026 : Guide complet pour payer moins d'impôts",
+    description: "Découvrez toutes les déductions fiscales auxquelles vous avez droit : 3ème pilier, frais professionnels, dons, frais de garde... Guide 2026.",
     type: "website",
     url: "https://neofidu.ch/guide/deductions-fiscales",
   },

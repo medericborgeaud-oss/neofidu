@@ -3,6 +3,7 @@
 export const dynamic = "force-dynamic";
 import { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
+import { vaudtaxGuide } from "@/lib/guides/vaudtax";
 import { createClient } from "@supabase/supabase-js";
 
 const baseUrl = "https://neofidu.ch";
@@ -70,6 +71,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/en/simulateur/retraite", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/guide/deductions-fiscales", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/en/guide/deductions-fiscales", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/guide/vaudtax", { lastModified: vaudtaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/en/guide/vaudtax", { lastModified: vaudtaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.85 }),
+    ...vaudtaxGuide.chapters.flatMap((c) => [
+      createEntry(`/guide/vaudtax/${c.slug}`, { lastModified: vaudtaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.8 }),
+      createEntry(`/en/guide/vaudtax/${c.slug}`, { lastModified: vaudtaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.75 }),
+    ]),
     createEntry("/cantons", { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 }),
     ...["vaud", "geneve", "valais", "fribourg", "neuchatel", "jura"].map((canton) =>
       createEntry(`/cantons/${canton}`, { lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 })

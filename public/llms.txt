@@ -20,19 +20,25 @@ Key information:
 
 ## Free Tools
 
-- [Tax simulator](https://neofidu.ch/simulateur-impots): Calculate your taxes by canton and municipality with real municipal coefficients
-- [Salary simulator](https://neofidu.ch/simulateur-salaire): Gross-to-net salary calculator with Swiss social contributions (AVS, AI, APG, AC, LPP)
+- [Tax simulator](https://neofidu.ch/simulateur/impots): Calculate your taxes by canton and municipality with real municipal coefficients
+- [Salary simulator](https://neofidu.ch/simulateur/salaire-net): Gross-to-net salary calculator with Swiss social contributions (AVS, AI, APG, AC, LPP)
 - [Company Observatory](https://neofidu.ch/observatoire): Database of 200,000+ companies in French-speaking Switzerland with sector classification, legal form, and headquarters data
 - [Municipality database](https://neofidu.ch/communes): 670 municipalities across 6 cantons with tax coefficients, population, density, real estate prices, and neighboring municipality comparisons
 
+## Tax return guides (step by step)
+
+- [VaudTax guide (FR)](https://neofidu.ch/guide/vaudtax): How to fill in the Vaud tax return in VaudTax, section by section, with official 2026 Vaud deduction amounts and return codes
+- [VaudTax guide (EN)](https://neofidu.ch/en/guide/vaudtax): English version for expats, quoting the French VaudTax labels
+- Chapters: before you start, personal situation and children, salary, work expenses, insurance and pillar 3a, accounts/securities/crypto, wealth and debts, housing, family deductions, training/medical/donations, checking and filing (https://neofidu.ch/guide/vaudtax/<chapter>)
+
 ## Canton Pages
 
-- [Vaud (VD)](https://neofidu.ch/cantons/vd): Tax information for canton Vaud
-- [Geneva (GE)](https://neofidu.ch/cantons/ge): Tax information for canton Geneva
-- [Valais (VS)](https://neofidu.ch/cantons/vs): Tax information for canton Valais
-- [Fribourg (FR)](https://neofidu.ch/cantons/fr): Tax information for canton Fribourg
-- [Neuchatel (NE)](https://neofidu.ch/cantons/ne): Tax information for canton Neuchatel
-- [Jura (JU)](https://neofidu.ch/cantons/ju): Tax information for canton Jura
+- [Vaud (VD)](https://neofidu.ch/cantons/vaud): Tax information for canton Vaud
+- [Geneva (GE)](https://neofidu.ch/cantons/geneve): Tax information for canton Geneva
+- [Valais (VS)](https://neofidu.ch/cantons/valais): Tax information for canton Valais
+- [Fribourg (FR)](https://neofidu.ch/cantons/fribourg): Tax information for canton Fribourg
+- [Neuchatel (NE)](https://neofidu.ch/cantons/neuchatel): Tax information for canton Neuchatel
+- [Jura (JU)](https://neofidu.ch/cantons/jura): Tax information for canton Jura
 
 ## Blog
 
@@ -40,7 +46,6 @@ Key information:
 
 ## English Pages
 
-- [Company pages (EN)](https://neofidu.ch/en/observatoire/): English version of individual company pages from the Observatory
 - [Municipality pages (EN)](https://neofidu.ch/en/communes/): English version of municipality pages with tax rates and local data
 
 ## Optional
