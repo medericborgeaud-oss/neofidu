@@ -192,7 +192,7 @@ export const fraisProfessionnels: GuideChapter = {
       { type: "h3", text: "Public transport: the default rule" },
       {
         type: "p",
-        text: "Vaud grants a flat amount based on the **shortest one-way distance** between home and work. You enter the kilometres and VaudTax applies the official scale.",
+        text: "The canton of Vaud grants a flat amount based on the **shortest one-way distance** between home and work. You enter the kilometres and VaudTax applies the official scale.",
       },
       {
         type: "table",
@@ -288,7 +288,7 @@ export const fraisProfessionnels: GuideChapter = {
         a: "No, saving time alone is not enough. A private vehicle is accepted if no public transport is reasonably usable (timetables, long distance to the stop, many changes, disability) or if you need it for your work.",
       },
       {
-        q: "What is the per-km car rate in Vaud for 2026?",
+        q: "What is the per-km car rate in the canton of Vaud for 2026?",
         a: "CHF 0.75 per km up to 15,000 km a year, then CHF 0.35 per km beyond, according to the ACI table of Vaud deductions for 2026.",
       },
       {

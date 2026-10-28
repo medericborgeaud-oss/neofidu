@@ -139,7 +139,7 @@ export const situationPersonnelle: GuideChapter = {
       "cohabiting couple tax vaud",
     ],
     summary: [
-      "Vaud uses a **family quotient**: your taxable income is divided by a number of shares to set your tax rate (1.0 single, 1.8 married couple, 1.3 single parent, plus 0.5 per dependent child).",
+      "The canton of Vaud uses a **family quotient**: your taxable income is divided by a number of shares to set your tax rate (1.0 single, 1.8 married couple, 1.3 single parent, plus 0.5 per dependent child).",
       "Your situation on **31 December 2026** is what counts. Married during the year? You are taxed jointly for the whole year.",
       "Children are entered in the section **« Enfants et personnes à charge »** (children and dependants): minors, and adult children in apprenticeship or studies.",
       "**Cohabiting** (unmarried) couples are not entitled to the 1.3 share, even with children.",
@@ -233,7 +233,7 @@ export const situationPersonnelle: GuideChapter = {
     faq: [
       {
         q: "We married in December 2026. Do we file jointly?",
-        a: "Yes. In Vaud, your situation on 31 December decides: if you marry during the year, you file a single joint return for the whole of 2026.",
+        a: "Yes. In the canton of Vaud, your situation on 31 December decides: if you marry during the year, you file a single joint return for the whole of 2026.",
       },
       {
         q: "We are unmarried with a child. Who gets the 0.5 share?",

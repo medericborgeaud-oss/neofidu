@@ -18,7 +18,7 @@ export const logement: GuideChapter = {
       "vaudtax immeuble",
     ],
     summary: [
-      "**Locataire** : Vaud offre une **déduction sociale pour le logement** (code 660) si votre loyer net dépasse 20 % de votre revenu net. Elle est plafonnée à **CHF 6'800** en 2026.",
+      "**Locataire** : le canton de Vaud offre une **déduction sociale pour le logement** (code 660) si votre loyer net dépasse 20 % de votre revenu net. Elle est plafonnée à **CHF 6'800** en 2026.",
       "**Propriétaire occupant** : vous déclarez une **valeur locative** (réduite de 35 % pour l'impôt cantonal) et déduisez les frais d'entretien et les intérêts hypothécaires.",
       "Forfait d'entretien 2026 pour un logement occupé par le propriétaire : **20 %** de la valeur locative (immeuble de 20 ans et moins) ou **30 %** (plus de 20 ans). Ou les frais effectifs, au choix chaque année.",
       "La valeur locative sera **abolie au 1er janvier 2029** : elle s'applique encore pleinement à la déclaration 2026.",
@@ -28,7 +28,7 @@ export const logement: GuideChapter = {
       { type: "path", items: ["Déductions spéciales sur le revenu (codes 618 à 720)", "Afficher", "Déduction sociale pour le logement (code 660)"] },
       {
         type: "p",
-        text: "Le loyer n'est en principe pas déductible. Vaud prévoit cependant une **déduction sociale** pour les ménages dont le loyer pèse lourd par rapport au revenu. Elle se calcule ainsi :",
+        text: "Le loyer n'est en principe pas déductible. Le canton de Vaud prévoit cependant une **déduction sociale** pour les ménages dont le loyer pèse lourd par rapport au revenu. Elle se calcule ainsi :",
       },
       {
         type: "steps",
@@ -58,7 +58,7 @@ export const logement: GuideChapter = {
       {
         type: "list",
         items: [
-          "La **valeur locative** est un revenu fictif : le loyer que vous paieriez pour votre propre logement. Vaud la calcule selon une grille (surface, commune, année de construction, équipements), indexée chaque année.",
+          "La **valeur locative** est un revenu fictif : le loyer que vous paieriez pour votre propre logement. Le canton de Vaud la calcule selon une grille (surface, commune, année de construction, équipements), indexée chaque année.",
           "Pour l'impôt cantonal et communal, elle est **réduite de 35 %**. Pour l'impôt fédéral, de 10 % seulement. VaudTax applique les deux.",
           "L'**estimation fiscale** de l'immeuble (figurant sur votre avis d'estimation) entre dans la fortune. Les dettes hypothécaires viennent en déduction.",
           "Achat ou vente en cours d'année : la valeur locative est calculée au prorata de la durée de possession.",
@@ -112,7 +112,7 @@ export const logement: GuideChapter = {
     faq: [
       {
         q: "Peut-on déduire son loyer dans le canton de Vaud ?",
-        a: "Pas directement. Mais Vaud accorde une déduction sociale pour le logement (code 660) lorsque le loyer net dépasse 20 % du revenu net, dans certaines limites et au maximum CHF 6'800 en 2026.",
+        a: "Pas directement. Mais le canton de Vaud accorde une déduction sociale pour le logement (code 660) lorsque le loyer net dépasse 20 % du revenu net, dans certaines limites et au maximum CHF 6'800 en 2026.",
       },
       {
         q: "Forfait de 20 % ou 30 % : comment savoir ?",
@@ -143,7 +143,7 @@ export const logement: GuideChapter = {
       "vaudtax property",
     ],
     summary: [
-      "**Tenants**: Vaud offers a **housing deduction** (code 660) if your net rent exceeds 20% of your net income, capped at **CHF 6,800** in 2026.",
+      "**Tenants**: the canton of Vaud offers a **housing deduction** (code 660) if your net rent exceeds 20% of your net income, capped at **CHF 6,800** in 2026.",
       "**Owner-occupiers**: you declare an **imputed rental value** (reduced by 35% for cantonal tax) and deduct maintenance costs and mortgage interest.",
       "Flat maintenance deduction in 2026 for an owner-occupied home: **20%** of the rental value (building 20 years old or less) or **30%** (over 20 years). Or actual costs, chosen each year.",
       "Imputed rental value will be **abolished on 1 January 2029**: it still fully applies to the 2026 return.",
@@ -153,7 +153,7 @@ export const logement: GuideChapter = {
       { type: "path", items: ["Déductions spéciales sur le revenu (codes 618 à 720)", "Afficher", "Déduction sociale pour le logement (code 660)"] },
       {
         type: "p",
-        text: "Rent is not normally deductible. Vaud does however offer a **social deduction** for households whose rent is high compared with their income:",
+        text: "Rent is not normally deductible. The canton of Vaud does however offer a **social deduction** for households whose rent is high compared with their income:",
       },
       {
         type: "steps",
@@ -178,7 +178,7 @@ export const logement: GuideChapter = {
       {
         type: "list",
         items: [
-          "The **imputed rental value** (valeur locative) is notional income: the rent you would pay for your own home. Vaud calculates it from a grid (floor area, commune, year of construction, equipment), indexed each year.",
+          "The **imputed rental value** (valeur locative) is notional income: the rent you would pay for your own home. The canton of Vaud calculates it from a grid (floor area, commune, year of construction, equipment), indexed each year.",
           "For cantonal and communal tax it is **reduced by 35%**; for federal tax, by only 10%. VaudTax applies both.",
           "The property's **tax valuation** (on your valuation notice) counts as wealth. Mortgage debt is deducted.",
         ],
@@ -215,8 +215,8 @@ export const logement: GuideChapter = {
     ],
     faq: [
       {
-        q: "Can I deduct my rent in Vaud?",
-        a: "Not directly. Vaud grants a housing deduction (code 660) when net rent exceeds 20% of net income, within limits and up to CHF 6,800 in 2026.",
+        q: "Can I deduct my rent in the canton of Vaud?",
+        a: "Not directly. The canton of Vaud grants a housing deduction (code 660) when net rent exceeds 20% of net income, within limits and up to CHF 6,800 in 2026.",
       },
       {
         q: "When will imputed rental value be abolished?",

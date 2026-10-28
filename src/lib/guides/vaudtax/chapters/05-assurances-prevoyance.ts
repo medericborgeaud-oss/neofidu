@@ -258,7 +258,7 @@ export const assurancesPrevoyance: GuideChapter = {
         a: "No. Catch-up payments are only possible for gaps from 2025 onwards. The first possible catch-up is in 2026, for 2025.",
       },
       {
-        q: "How much health insurance can I deduct in Vaud?",
+        q: "How much health insurance can I deduct in the canton of Vaud?",
         a: "Up to CHF 5,000 for a single person, CHF 9,900 for a married couple and CHF 1,300 per dependent child, after subtracting any subsidies.",
       },
     ],

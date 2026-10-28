@@ -18,7 +18,7 @@ export const fortuneDettes: GuideChapter = {
       "leasing déduction impôt vaud",
     ],
     summary: [
-      "La fortune nette n'est pas imposée à Vaud si elle reste **sous CHF 60'000** (personne seule) ou **CHF 120'000** (couple marié).",
+      "La fortune nette n'est pas imposée dans le canton de Vaud si elle reste **sous CHF 60'000** (personne seule) ou **CHF 120'000** (couple marié).",
       "Se déclarent notamment : **voiture** et autres biens de valeur (code 430), **valeur de rachat des assurances-vie** (code 435), espèces et or (code 420).",
       "Le 2e pilier et le 3e pilier A **ne sont pas** de la fortune imposable.",
       "Les **dettes** au 31 décembre réduisent la fortune et leurs **intérêts** sont déductibles (codes 610 et 615). Le leasing n'est pas une dette déductible.",
@@ -107,7 +107,7 @@ export const fortuneDettes: GuideChapter = {
       "vaudtax wealth",
     ],
     summary: [
-      "Net wealth is not taxed in Vaud **below CHF 60,000** (single) or **CHF 120,000** (married couple).",
+      "Net wealth is not taxed in the canton of Vaud **below CHF 60,000** (single) or **CHF 120,000** (married couple).",
       "Declare in particular: **car** and other valuables (code 430), **life insurance surrender value** (code 435), cash and gold (code 420).",
       "2nd pillar and pillar 3a savings are **not** taxable wealth.",
       "**Debts** at 31 December reduce your wealth and their **interest** is deductible (codes 610 and 615). Leasing is not a deductible debt.",
@@ -116,7 +116,7 @@ export const fortuneDettes: GuideChapter = {
       { type: "h2", id: "seuil", text: "The Vaud exemption threshold" },
       {
         type: "p",
-        text: "Vaud does not tax net wealth below **CHF 60,000** for a single person and **CHF 120,000** for a married couple living together. Above that, all wealth is taxable. You still declare everything: the tax office applies the threshold.",
+        text: "The canton of Vaud does not tax net wealth below **CHF 60,000** for a single person and **CHF 120,000** for a married couple living together. Above that, all wealth is taxable. You still declare everything: the tax office applies the threshold.",
       },
 
       { type: "h2", id: "elements", text: "Other assets" },
@@ -162,7 +162,7 @@ export const fortuneDettes: GuideChapter = {
         a: "Yes, at its market value on 31 December, under code 430. A leased car is not declared, since it belongs to the leasing company.",
       },
       {
-        q: "From what amount is wealth taxed in Vaud?",
+        q: "From what amount is wealth taxed in the canton of Vaud?",
         a: "Net wealth is not taxed if it stays below CHF 60,000 for a single person or CHF 120,000 for a married couple living together.",
       },
       {
