@@ -76,7 +76,7 @@ export function buildGuideJsonLd(guide: GuideDefinition, locale: GuideLocale, ch
     },
     about: [
       { "@type": "Thing", name: `${guide.software}` },
-      { "@type": "AdministrativeArea", name: locale === "en" ? "Canton of Vaud" : "Canton de Vaud" },
+      { "@type": "AdministrativeArea", name: guide.cantonName[locale] },
     ],
     isPartOf: chapter
       ? { "@type": "CreativeWorkSeries", name: guide.pillar[locale].title, url: guideUrl(guide, locale) }

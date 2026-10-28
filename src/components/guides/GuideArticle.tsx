@@ -40,13 +40,8 @@ const UI = {
     start: "Commencer le guide",
     chapters: "Les chapitres du guide",
     ctaTitle: "Vous préférez déléguer ?",
-    ctaText:
-      "NeoFidu prépare et dépose votre déclaration vaudoise pour vous, avec une vérification des déductions oubliées.",
     ctaButton: "Confier ma déclaration",
     ctaSecondary: "Voir les tarifs",
-    disclaimer:
-      "Ce guide est informatif et ne remplace pas un conseil personnalisé. Les montants proviennent des publications officielles de l'Administration cantonale des impôts (ACI) du canton de Vaud. En cas de doute, les instructions officielles de l'ACI font foi.",
-    pathLabel: "Dans VaudTax",
     dateLocale: "fr-CH",
   },
   en: {
@@ -66,13 +61,8 @@ const UI = {
     start: "Start the guide",
     chapters: "Guide chapters",
     ctaTitle: "Rather hand it over?",
-    ctaText:
-      "NeoFidu prepares and files your Vaud tax return for you, including a check for missed deductions. Service in English available.",
     ctaButton: "Hand over my tax return",
     ctaSecondary: "See pricing",
-    disclaimer:
-      "This guide is for information only and is not personalised advice. Amounts come from official publications of the Vaud cantonal tax administration (ACI). VaudTax itself is in French: we quote the French labels so you can find them on screen. If in doubt, the official ACI instructions prevail.",
-    pathLabel: "In VaudTax",
     dateLocale: "en-GB",
   },
 } as const;
@@ -176,7 +166,7 @@ function Block({
         <div className="mb-6 rounded-lg border border-border bg-muted/40 px-4 py-3">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">
             <MousePointerClick className="h-4 w-4" aria-hidden />
-            {t.pathLabel}
+            {guide.ui[locale].pathLabel}
           </div>
           <div className="flex flex-wrap items-center gap-1.5 text-sm">
             {block.items.map((item, i) => (
@@ -471,7 +461,7 @@ export function GuideArticle({
             {/* Appel à l'action discret */}
             <section className="mt-12 rounded-xl bg-primary text-primary-foreground p-6 md:p-8">
               <h2 className="text-xl font-bold mb-2">{t.ctaTitle}</h2>
-              <p className="opacity-90 mb-5">{t.ctaText}</p>
+              <p className="opacity-90 mb-5">{guide.ui[locale].ctaText}</p>
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`${base}/demande`}
@@ -488,7 +478,7 @@ export function GuideArticle({
               </div>
             </section>
 
-            <p className="mt-8 text-xs text-muted-foreground leading-relaxed">{t.disclaimer}</p>
+            <p className="mt-8 text-xs text-muted-foreground leading-relaxed">{guide.ui[locale].disclaimer}</p>
           </article>
 
           {/* Sommaire latéral */}
