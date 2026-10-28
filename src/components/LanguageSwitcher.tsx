@@ -30,6 +30,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/second-avis",
   "/suivi",
   "/guide/deductions-fiscales",
+  "/guide/vaudtax",
   "/contact",
   "/tarifs",
   "/entreprises",
@@ -48,7 +49,7 @@ function toEnPath(p: string | null): string | null {
   if (!p) return null;
   if (p === "/en" || p.startsWith("/en/")) return null;
   if (EN_TWIN_EXACT.has(p)) return p === "/" ? "/en" : "/en" + p;
-  if (p.startsWith("/blog/") || p.startsWith("/communes/") || p.startsWith("/cantons/")) return "/en" + p;
+  if (p.startsWith("/blog/") || p.startsWith("/communes/") || p.startsWith("/cantons/") || p.startsWith("/guide/vaudtax/")) return "/en" + p;
   if (p === "/dette-suisse") return "/en/swiss-debt";
   return null;
 }
