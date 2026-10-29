@@ -30,10 +30,11 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
       { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    apple: [{ url: "/apple-touch-icon.svg", type: "image/svg+xml", sizes: "180x180" }],
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
     shortcut: "/favicon.ico",
   },
   keywords: [
@@ -114,8 +115,8 @@ export default function RootLayout({
       caption: "NeoFidu Logo",
     },
     image: [
-      "https://neofidu.ch/og-image.svg",
-      "https://neofidu.ch/logo.svg",
+      "https://neofidu.ch/opengraph-image",
+      "https://neofidu.ch/icon-512.png",
     ],
     telephone: "+41786913912",
     email: "contact@neofidu.ch",
@@ -375,11 +376,6 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        {/* Favicon - ensure proper reference */}
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
-
         {/* Preconnect to external domains for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

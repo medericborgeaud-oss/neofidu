@@ -16,6 +16,20 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
+        // Les photos du fondateur ne doivent pas servir de vignette dans Google
+        userAgent: "Googlebot-Image",
+        allow: "/",
+        disallow: [
+          "/api/",
+          "/admin/",
+          "/auth/",
+          "/banners/",
+          "/mederic-borgeaud-avatar.png",
+          "/mederic-borgeaud-avatar.jpg",
+          "/mederic-borgeaud.jpg",
+        ],
+      },
+      {
         userAgent: "GPTBot",
         disallow: ["/"],
       },
