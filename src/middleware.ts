@@ -36,6 +36,14 @@ export function middleware(request: NextRequest) {
   // ===== 1. ADMIN PROTECTION =====
   // Protect admin routes with basic authentication
   if (pathname.startsWith("/admin")) {
+    const validUsername = process.env.ADMIN_USERNAME;
+    const validPassword = process.env.ADMIN_PASSWORD;
+
+    // Pas d'identifiants configures sur Vercel : acces refuse a tout le monde
+    if (!validUsername || !validPassword) {
+      return new NextResponse("Admin disabled", { status: 503 });
+    }
+
     const authHeader = request.headers.get("authorization");
 
     if (!authHeader) {
@@ -55,10 +63,9 @@ export function middleware(request: NextRequest) {
       }
 
       const credentials = Buffer.from(base64Credentials, "base64").toString("ascii");
-      const [username, password] = credentials.split(":");
-
-      const validUsername = process.env.ADMIN_USERNAME || "admin";
-      const validPassword = process.env.ADMIN_PASSWORD || "neofidu2024";
+      const sep = credentials.indexOf(":");
+      const username = credentials.slice(0, sep);
+      const password = credentials.slice(sep + 1);
 
       if (username !== validUsername || password !== validPassword) {
         return new NextResponse("Authentication required", {
