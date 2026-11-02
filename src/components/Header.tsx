@@ -33,6 +33,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/guide/deductions-fiscales",
   "/guide/vaudtax",
   "/guide/getax",
+  "/guide/vstax",
   "/contact",
   "/independants",
   "/tarifs",
@@ -50,7 +51,7 @@ const EN_TWIN_EXACT = new Set<string>([
 function enHref(href: string): string {
   if (href === "/") return "/en";
   if (EN_TWIN_EXACT.has(href)) return "/en" + href;
-  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/")) return "/en" + href;
+  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/") || href.startsWith("/guide/vstax/")) return "/en" + href;
   return href;
 }
 
@@ -94,6 +95,7 @@ export function Header() {
     { href: "/guide/deductions-fiscales", label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales", category: "Informations" },
     { href: "/guide/vaudtax", label: isEnglish ? "VaudTax guide (Vaud tax return)" : "Guide VaudTax : remplir sa déclaration vaudoise", category: "Informations" },
     { href: "/guide/getax", label: isEnglish ? "GeTax guide (Geneva tax return)" : "Guide GeTax : remplir sa déclaration genevoise", category: "Informations" },
+    { href: "/guide/vstax", label: isEnglish ? "VSTax guide (Valais tax return)" : "Guide VSTax : remplir sa déclaration valaisanne", category: "Informations" },
     { href: isEnglish ? "/en/swiss-debt" : "/dette-suisse", label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse", category: "Informations" },
     { href: "/suivi", label: isEnglish ? "File Tracking" : "Suivi de dossier", category: "Informations" },
     { href: "/#about", label: isEnglish ? "About" : "À propos", category: "Informations" },
@@ -159,6 +161,12 @@ export function Header() {
       label: isEnglish ? "GeTax guide" : "Guide GeTax",
       icon: BookOpen,
       description: isEnglish ? "Fill in your Geneva tax return" : "Remplir sa déclaration genevoise",
+    },
+    {
+      href: "/guide/vstax",
+      label: isEnglish ? "VSTax guide" : "Guide VSTax",
+      icon: BookOpen,
+      description: isEnglish ? "Fill in your Valais tax return" : "Remplir sa déclaration valaisanne",
     },
     {
       href: "/guide/deductions-fiscales",
