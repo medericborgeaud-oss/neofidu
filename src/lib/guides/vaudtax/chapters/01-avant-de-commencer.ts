@@ -82,6 +82,12 @@ export const avantDeCommencer: GuideChapter = {
         text: "Commencez par le formulaire **« Identification »** (état civil, commune, adresse) : tant qu'il est incomplet, une partie des autres formulaires reste bloquée.",
       },
 
+      {
+        type: "callout",
+        tone: "info",
+        title: "Imposé à la source ?",
+        text: "Avec un permis B ou L et un salaire imposé à la source, vous ne remplissez une déclaration VaudTax que dans certains cas : salaire brut de plus de CHF 120'000, autres revenus ou fortune imposable, ou demande volontaire de taxation ordinaire ultérieure (délai au 31 mars de l'année suivante). Voir le chapitre [Impôt à la source et TOU](/guide/vaudtax/impot-source-tou).",
+      },
       { type: "h2", id: "documents", text: "Les documents à réunir avant de commencer" },
       {
         type: "p",
@@ -246,7 +252,7 @@ export const avantDeCommencer: GuideChapter = {
         type: "callout",
         tone: "info",
         title: "Taxed at source?",
-        text: "If you hold a B or L permit and your salary is taxed at source, you only fill in a VaudTax return in specific cases: gross salary above CHF 120,000, other income or taxable wealth, or a voluntary request for ordinary assessment (deadline 31 March of the following year). See our [withholding tax guide](/blog/impot-source-suisse-guide-complet-2026).",
+        text: "If you hold a B or L permit and your salary is taxed at source, you only fill in a VaudTax return in specific cases: gross salary above CHF 120,000, other income or taxable wealth, or a voluntary request for ordinary assessment (deadline 31 March of the following year). See our chapter [Source tax and TOU](/guide/vaudtax/impot-source-tou).",
       },
 
       { type: "h2", id: "documents", text: "Documents to gather before you start" },

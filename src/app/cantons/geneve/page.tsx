@@ -44,16 +44,16 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
   ];
   const deadlines = [
     {
-      date: isEnglish ? "March 31, 2026" : "31 mars 2026",
-      description: isEnglish ? "Regular filing deadline" : "Délai ordinaire de dépôt"
+      date: isEnglish ? "March 31, 2027" : "31 mars 2027",
+      description: isEnglish ? "Regular filing deadline (2026 return)" : "Délai ordinaire de dépôt (déclaration 2026)"
     },
     {
-      date: isEnglish ? "June 30, 2026" : "30 juin 2026",
-      description: isEnglish ? "Extension on request" : "Prolongation sur demande"
+      date: isEnglish ? "CHF 20 to 60" : "CHF 20 à 60",
+      description: isEnglish ? "Paid extension: CHF 20 up to 3 months, CHF 40 up to 5, CHF 60 beyond" : "Prolongation payante : CHF 20 jusqu'à 3 mois, CHF 40 jusqu'à 5, CHF 60 au-delà"
     },
     {
-      date: isEnglish ? "March 31, 2026" : "31 mars 2026",
-      description: isEnglish ? "TOU deadline for cross-border workers" : "Délai TOU frontaliers"
+      date: isEnglish ? "March 31, 2027" : "31 mars 2027",
+      description: isEnglish ? "Deadline for TOU and source tax rectification (2026)" : "Délai TOU et rectification impôt à la source (2026)"
     },
   ];
   const advantages = isEnglish ? [
@@ -74,11 +74,11 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Geneva?",
-      answer: "The regular deadline is March 31, 2026. An extension until June 30 is possible upon request via GeTax or e-démarches."
+      answer: "For the 2026 return, the deadline is normally March 31, 2027. Extensions are paid: CHF 20 up to 3 months, CHF 40 up to 5 months and CHF 60 beyond. They can be requested online until October 31, then only by letter with reasons."
     },
     {
       question: "What is the quasi-resident status in Geneva?",
-      answer: "The quasi-resident status allows cross-border workers taxed at source to request ordinary taxation (TOU) if at least 90% of their worldwide income comes from Switzerland. This grants the same deductions as Geneva residents, including 3rd pillar, 2nd pillar buybacks, and professional expenses."
+      answer: "The quasi-resident status allows cross-border workers taxed at source to request ordinary taxation (TOU) if at least 90% of their household's worldwide gross income is taxable in Switzerland. The request must be renewed every year by March 31. This grants the same deductions as Geneva residents, including 3rd pillar, 2nd pillar buybacks, and professional expenses."
     },
     {
       question: "How does the Geneva tax shield work?",
@@ -95,11 +95,11 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts à Genève ?",
-      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande via GeTax ou e-démarches."
+      answer: "Pour la déclaration 2026, le délai est en principe le 31 mars 2027. La prolongation est payante : CHF 20 jusqu'à 3 mois, CHF 40 jusqu'à 5 mois et CHF 60 au-delà. Elle se demande en ligne jusqu'au 31 octobre, ensuite uniquement par courrier motivé."
     },
     {
       question: "Qu'est-ce que le statut quasi-résident à Genève ?",
-      answer: "Le statut quasi-résident permet aux frontaliers imposés à la source de demander une taxation ordinaire (TOU) s'ils réalisent au moins 90% de leurs revenus mondiaux en Suisse. Cela ouvre droit aux mêmes déductions que les résidents genevois, y compris le 3e pilier, les rachats de 2e pilier et les frais professionnels."
+      answer: "Le statut quasi-résident permet aux frontaliers imposés à la source de demander une taxation ordinaire (TOU) si au moins 90 % des revenus bruts mondiaux du couple sont imposables en Suisse. La demande se renouvelle chaque année avant le 31 mars. Cela ouvre droit aux mêmes déductions que les résidents genevois, y compris le 3e pilier, les rachats de 2e pilier et les frais professionnels."
     },
     {
       question: "Comment fonctionne le bouclier fiscal genevois ?",
@@ -412,6 +412,10 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
                 <li>• <strong>{isEnglish ? "Childcare costs" : "Frais de garde"}</strong> : {isEnglish ? "generous deductions" : "déductions généreuses"}</li>
                 <li>• <strong>{isEnglish ? "Source taxation" : "Imposition à la source"}</strong> : {isEnglish ? "rectification possible" : "rectification possible"}</li>
               </ul>
+              <Link href={isEnglish ? "/en/guide/getax" : "/guide/getax"} className="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+                <ArrowRight className="w-4 h-4" />
+                {isEnglish ? "Fill in your return with GeTax: the complete guide" : "Remplir sa déclaration avec GeTax : le guide complet"}
+              </Link>
             </Card>
           </div>
         </div>
@@ -471,6 +475,12 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
                 {isEnglish ? "Useful guides" : "Guides utiles"}
               </h3>
               <ul className="space-y-3">
+                <li>
+                  <Link href={isEnglish ? "/en/guide/getax" : "/guide/getax"} className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "GeTax guide: step by step" : "Guide GeTax pas à pas"}
+                  </Link>
+                </li>
                 <li>
                   <Link href="/blog/impot-source-suisse-guide-complet-2026" className="text-primary hover:underline flex items-center gap-2">
                     <ArrowRight className="w-4 h-4" />

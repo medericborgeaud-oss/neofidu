@@ -13,6 +13,7 @@ import { logement } from "./chapters/08-logement";
 import { deductionsFamille } from "./chapters/09-deductions-famille";
 import { autresDeductions } from "./chapters/10-autres-deductions";
 import { verifierEnvoyer } from "./chapters/11-verifier-envoyer";
+import { impotSource } from "./chapters/12-impot-source-tou";
 import { vaudtaxPillarFr } from "./pillar-fr";
 import { vaudtaxPillarEn } from "./pillar-en";
 
@@ -22,7 +23,7 @@ export const vaudtaxGuide: GuideDefinition = {
   software: "VaudTax",
   taxYear: 2026,
   publishedAt: "2026-10-28",
-  updatedAt: "2026-10-28",
+  updatedAt: "2026-11-02",
   availableScreenshots: new Set<string>([
     "00-vue-ensemble.webp",
     "00-mode-saisie.webp",
@@ -48,6 +49,7 @@ export const vaudtaxGuide: GuideDefinition = {
     deductionsFamille,
     autresDeductions,
     verifierEnvoyer,
+    impotSource,
   ],
   pillar: { fr: vaudtaxPillarFr, en: vaudtaxPillarEn },
   cantonName: { fr: "Canton de Vaud", en: "Canton of Vaud" },
