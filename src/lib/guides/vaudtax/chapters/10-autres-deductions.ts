@@ -26,6 +26,12 @@ export const autresDeductions: GuideChapter = {
     blocks: [
       { type: "p", text: "Ces déductions se trouvent toutes dans la même rubrique de VaudTax." },
       { type: "path", items: ["Déductions spéciales sur le revenu (codes 618 à 720)", "Afficher"] },
+      {
+        type: "screenshot",
+        file: "10-deductions-speciales.webp",
+        alt: "Rubrique Déductions spéciales sur le revenu (codes 618 à 720) de VaudTax : formation, rentes et partis politiques, pensions versées, déduction pour le logement, frais médicaux, handicap, dons, récapitulatif",
+        caption: "La rubrique des déductions spéciales ; certains formulaires, comme la déduction pour le logement, ne s'ouvrent qu'une fois le formulaire « Identification » complété (VaudTax 2025)",
+      },
 
       { type: "h2", id: "formation", text: "Frais de formation et de perfectionnement (code 618)" },
       { type: "path", items: ["Déductions spéciales sur le revenu", "Frais de perfectionnement et de formation"] },
@@ -46,6 +52,12 @@ export const autresDeductions: GuideChapter = {
       },
 
       { type: "h2", id: "frais-medicaux", text: "Frais médicaux et dentaires (code 710)" },
+      {
+        type: "screenshot",
+        file: "10-frais-medicaux.webp",
+        alt: "Formulaire Frais médicaux et dentaires (code 710) de VaudTax : facture établie par, date de paiement, nature, montant brut, participation de tiers",
+        caption: "Une facture par ligne : la participation de la caisse-maladie se saisit dans « Participation de tiers » (VaudTax 2025)",
+      },
       { type: "path", items: ["Déductions spéciales sur le revenu", "Frais médicaux et dentaires"] },
       {
         type: "p",
@@ -63,6 +75,12 @@ export const autresDeductions: GuideChapter = {
       },
 
       { type: "h2", id: "dons", text: "Dons à des institutions d'utilité publique (code 720)" },
+      {
+        type: "screenshot",
+        file: "10-dons.webp",
+        alt: "Formulaire Dons à des institutions d'utilité publique (code 720) de VaudTax : institution, date du versement, montant",
+        caption: "Un don par formulaire, avec l'institution et la date du versement (VaudTax 2025)",
+      },
       { type: "path", items: ["Déductions spéciales sur le revenu", "Dons à des institutions d'utilité publique"] },
       {
         type: "list",
@@ -119,6 +137,12 @@ export const autresDeductions: GuideChapter = {
     blocks: [
       { type: "p", text: "All these deductions are in the same VaudTax section." },
       { type: "path", items: ["Déductions spéciales sur le revenu (codes 618 à 720)", "Afficher"] },
+      {
+        type: "screenshot",
+        file: "10-deductions-speciales.webp",
+        alt: "VaudTax special income deductions section (codes 618 to 720): training, annuities and political parties, maintenance paid, housing deduction, medical costs, disability, donations, summary",
+        caption: "The special deductions section; some forms, such as the housing deduction, only open once the « Identification » form is complete (VaudTax 2025)",
+      },
 
       { type: "h2", id: "formation", text: "Training and further education (code 618)" },
       {
@@ -132,6 +156,12 @@ export const autresDeductions: GuideChapter = {
       },
 
       { type: "h2", id: "frais-medicaux", text: "Medical and dental costs (code 710)" },
+      {
+        type: "screenshot",
+        file: "10-frais-medicaux.webp",
+        alt: "VaudTax medical and dental costs form (code 710): invoice issued by, payment date, type, gross amount, third-party contribution",
+        caption: "One invoice per entry: the health insurer's share goes in « Participation de tiers » (third-party contribution) (VaudTax 2025)",
+      },
       {
         type: "p",
         text: "Add up the health costs **you paid yourself** during the year (deductible, co-payment, dentist, prescribed glasses and lenses, prescription medicines, physiotherapy, etc.) for you and your dependants. Only the part above **5% of your net income** (code 700) is deductible.",
@@ -148,6 +178,12 @@ export const autresDeductions: GuideChapter = {
       },
 
       { type: "h2", id: "dons", text: "Donations to charities (code 720)" },
+      {
+        type: "screenshot",
+        file: "10-dons.webp",
+        alt: "VaudTax donations to charities form (code 720): institution, payment date, amount",
+        caption: "One donation per form, with the institution and payment date (VaudTax 2025)",
+      },
       {
         type: "list",
         items: [

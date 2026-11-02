@@ -53,6 +53,12 @@ export const comptesTitres: GuideChapter = {
         ],
       },
       {
+        type: "screenshot",
+        file: "06-import-ereleve.webp",
+        alt: "Écran Importer des eRelevés fiscaux de VaudTax : bouton Choisissez un ou plusieurs documents, fichiers PDF de 5 Mo au maximum",
+        caption: "L'import des eRelevés fiscaux : seuls les PDF originaux de la banque sont acceptés ; un nouvel import écrase les données du même relevé (VaudTax 2025)",
+      },
+      {
         type: "callout",
         tone: "warning",
         text: "Seul le PDF original téléchargé de l'e-banking fonctionne. Un relevé papier scanné ne s'importe pas. Le document doit contenir une page avec un code-barres : si ce n'est pas le cas, votre banque ne participe pas au système.",
@@ -100,6 +106,12 @@ export const comptesTitres: GuideChapter = {
       {
         type: "p",
         text: "Les crypto-monnaies se déclarent à leur **valeur vénale au 31 décembre** (la liste des cours de l'AFC donne les cours officiels des principales cryptos). Dans VaudTax, elles se saisissent dans la rubrique des comptes, sur une ligne crypto. Le staking et les intérêts reçus sont des revenus imposables. Les gains de cours restent non imposables pour un investisseur privé. Plus de détails : [déclarer ses cryptomonnaies](/blog/declarer-cryptomonnaies-suisse-guide-2026).",
+      },
+      {
+        type: "screenshot",
+        file: "06-numeraire-crypto.webp",
+        alt: "Formulaire Numéraire, billets de banque, or, autres métaux précieux et crypto-monnaies (code 420) de VaudTax : un seul champ Valeur imposable",
+        caption: "La rubrique du code 420 ne prend qu'une valeur globale. Pour détailler chaque crypto-monnaie et ses revenus, utilisez plutôt l'état des titres (VaudTax 2025)",
       },
 
       { type: "h2", id: "deductions-titres", text: "Deux petites déductions à ne pas oublier" },
@@ -186,6 +198,12 @@ export const comptesTitres: GuideChapter = {
         ],
       },
       {
+        type: "screenshot",
+        file: "06-import-ereleve.webp",
+        alt: "VaudTax import electronic tax statements screen: choose one or more documents button, PDF files up to 5 MB",
+        caption: "Importing eRelevés fiscaux: only the bank's original PDFs work; re-importing overwrites that statement's data (VaudTax 2025)",
+      },
+      {
         type: "callout",
         tone: "warning",
         text: "Only the original PDF downloaded from e-banking works. A scanned paper statement will not import. The document must include a barcode page; if it does not, your bank does not take part in the system.",
@@ -233,6 +251,12 @@ export const comptesTitres: GuideChapter = {
       {
         type: "p",
         text: "Crypto-assets are declared at their **market value on 31 December** (the Federal Tax Administration price list gives official rates for the main coins). In VaudTax, enter them in the accounts section on a crypto line. Staking rewards and interest are taxable income. Price gains remain tax-free for a private investor.",
+      },
+      {
+        type: "screenshot",
+        file: "06-numeraire-crypto.webp",
+        alt: "VaudTax cash, bank notes, gold, precious metals and crypto form (code 420): a single taxable value field",
+        caption: "Code 420 only takes a total value. To list each cryptocurrency and its income, use the securities list instead (VaudTax 2025)",
       },
 
       { type: "h2", id: "deductions-titres", text: "Two small deductions not to miss" },

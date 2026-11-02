@@ -78,6 +78,12 @@ export const deductionsFamille: GuideChapter = {
         ],
       },
       {
+        type: "screenshot",
+        file: "09-pensions-obtenues.webp",
+        alt: "Formulaire Pensions alimentaires obtenues (code 280) de VaudTax : nom, prénom et adresse de la personne qui verse la pension, montant",
+        caption: "Pour une pension reçue, VaudTax demande l'identité et l'adresse du débiteur, puis le montant (VaudTax 2025)",
+      },
+      {
         type: "p",
         text: "Le parent qui reçoit la pension imposable pour un enfant mineur obtient aussi la part de 0,5 au quotient familial. Voir [Situation personnelle et enfants](/guide/vaudtax/situation-personnelle).",
       },
@@ -167,6 +173,12 @@ export const deductionsFamille: GuideChapter = {
           ["**receive** maintenance for yourself or a minor child", "Taxable", "Pensions, « Pensions alimentaires obtenues » (code 280)"],
           ["pay a contribution for an **adult child**", "Not deductible from the month after they turn 18", "Possibly a 0.5 family quotient share"],
         ],
+      },
+      {
+        type: "screenshot",
+        file: "09-pensions-obtenues.webp",
+        alt: "VaudTax maintenance received form (code 280): name and address of the person paying, amount",
+        caption: "For maintenance received, VaudTax asks for the payer's name and address, then the amount (VaudTax 2025)",
       },
 
       { type: "h2", id: "modeste", text: "Low-income deduction (code 695)" },

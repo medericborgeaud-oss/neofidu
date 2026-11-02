@@ -33,6 +33,24 @@ export const fortuneDettes: GuideChapter = {
       { type: "h2", id: "elements", text: "Les autres éléments de fortune" },
       { type: "path", items: ["Autres éléments de fortune et revenus de fortune (codes 420 à 445)", "Afficher"] },
       {
+        type: "screenshot",
+        file: "07-autres-elements.webp",
+        alt: "Rubrique Autres éléments de fortune et revenus de fortune (codes 420 à 445) de VaudTax : numéraire et crypto, successions, autos et bijoux, assurances sur la vie, objets mobiliers, autre fortune",
+        caption: "Les six formulaires de la rubrique : chacun s'ouvre en cliquant sur son nom (VaudTax 2025)",
+      },
+      {
+        type: "screenshot",
+        file: "07-autos.webp",
+        alt: "Formulaire Autos, motos, chevaux de selle, collections, bijoux, bateaux, tableaux (code 430) de VaudTax : une valeur imposable globale",
+        caption: "Code 430 : additionnez vos véhicules et objets de valeur, par exemple une voiture de CHF 15'000 et un bateau de CHF 20'000 donnent CHF 35'000 (VaudTax 2025)",
+      },
+      {
+        type: "screenshot",
+        file: "07-assurances-vie.webp",
+        alt: "Formulaire Assurances sur la vie (code 435) de VaudTax : société d'assurances, numéro de police, années de conclusion et d'échéance, somme assurée, valeur de rachat",
+        caption: "Une police par formulaire ; seule la valeur de rachat au 31 décembre est imposable (VaudTax 2025)",
+      },
+      {
         type: "table",
         head: ["Élément", "Code", "Valeur à déclarer"],
         rows: [
@@ -57,6 +75,12 @@ export const fortuneDettes: GuideChapter = {
 
       { type: "h2", id: "dettes", text: "Dettes et intérêts passifs (codes 610 et 615)" },
       { type: "path", items: ["Intérêts et dettes (codes 610 et 615)", "Afficher", "Intérêts et dettes"] },
+      {
+        type: "screenshot",
+        file: "07-interets-dettes.webp",
+        alt: "Formulaire Intérêts et dettes (codes 610 et 615) de VaudTax : type privé ou commercial, dette hypothécaire ou autre, créancier, IBAN, numéro de compte, intérêts et montant au 31 décembre",
+        caption: "Une dette par formulaire : choisissez « Dette garantie par gage immobilier » pour une hypothèque (VaudTax 2025)",
+      },
       {
         type: "p",
         text: "Listez chaque dette au 31 décembre (hypothèque, crédit privé, prêt d'un proche) avec le nom du créancier, le solde et les intérêts payés en 2026. Les soldes réduisent votre fortune, les intérêts réduisent votre revenu.",
@@ -122,6 +146,24 @@ export const fortuneDettes: GuideChapter = {
       { type: "h2", id: "elements", text: "Other assets" },
       { type: "path", items: ["Autres éléments de fortune et revenus de fortune (codes 420 à 445)", "Afficher"] },
       {
+        type: "screenshot",
+        file: "07-autres-elements.webp",
+        alt: "VaudTax other assets and investment income section (codes 420 to 445): cash and crypto, inheritances, cars and jewellery, life insurance, movable property, other assets",
+        caption: "The section's six forms: click a name to open it (VaudTax 2025)",
+      },
+      {
+        type: "screenshot",
+        file: "07-autos.webp",
+        alt: "VaudTax cars, motorbikes, horses, collections, jewellery, boats, paintings form (code 430): one total taxable value",
+        caption: "Code 430: add up your vehicles and valuables, for example a CHF 15,000 car and a CHF 20,000 boat give CHF 35,000 (VaudTax 2025)",
+      },
+      {
+        type: "screenshot",
+        file: "07-assurances-vie.webp",
+        alt: "VaudTax life insurance form (code 435): insurer, policy number, start and maturity years, sum insured, surrender value",
+        caption: "One policy per form; only the surrender value on 31 December is taxable (VaudTax 2025)",
+      },
+      {
         type: "table",
         head: ["Asset", "Code", "Value to declare"],
         rows: [
@@ -142,6 +184,12 @@ export const fortuneDettes: GuideChapter = {
 
       { type: "h2", id: "dettes", text: "Debts and interest (codes 610 and 615)" },
       { type: "path", items: ["Intérêts et dettes (codes 610 et 615)", "Afficher", "Intérêts et dettes"] },
+      {
+        type: "screenshot",
+        file: "07-interets-dettes.webp",
+        alt: "VaudTax interest and debts form (codes 610 and 615): private or business, mortgage or other debt, creditor, IBAN, account number, interest and balance on 31 December",
+        caption: "One debt per form: choose « Dette garantie par gage immobilier » (secured by property) for a mortgage (VaudTax 2025)",
+      },
       {
         type: "p",
         text: "List each debt at 31 December (mortgage, personal loan, loan from a relative) with the creditor's name, the balance and the interest paid in 2026. Balances reduce your wealth; interest reduces your income.",

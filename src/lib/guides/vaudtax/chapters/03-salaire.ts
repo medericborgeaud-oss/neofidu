@@ -63,6 +63,12 @@ export const salaire: GuideChapter = {
       { type: "h2", id: "pertes-de-gain", text: "Chômage, maladie, accident, service militaire (codes 200 à 220)" },
       { type: "path", items: ["Indemnités perte de gain (codes 200 à 220)", "Afficher"] },
       {
+        type: "screenshot",
+        file: "03-indemnites.webp",
+        alt: "Formulaire Indemnités pour perte de gain (codes 200 à 220) de VaudTax : genre (assurance-chômage et APG, maladie et accidents, assurance-invalidité) et montant",
+        caption: "Un formulaire par indemnité : choisissez le genre, puis saisissez le montant de l'attestation (VaudTax 2025)",
+      },
+      {
         type: "table",
         head: ["Revenu", "Code", "Document"],
         rows: [
@@ -175,6 +181,12 @@ export const salaire: GuideChapter = {
 
       { type: "h2", id: "pertes-de-gain", text: "Unemployment, sickness, accident, military service (codes 200 to 220)" },
       { type: "path", items: ["Indemnités perte de gain (codes 200 à 220)", "Afficher"] },
+      {
+        type: "screenshot",
+        file: "03-indemnites.webp",
+        alt: "VaudTax loss of earnings form (codes 200 to 220): type (unemployment and military service, sickness and accident, disability insurance) and amount",
+        caption: "One form per benefit: choose the type, then enter the amount from the statement (VaudTax 2025)",
+      },
       {
         type: "table",
         head: ["Income", "Code", "Document"],
