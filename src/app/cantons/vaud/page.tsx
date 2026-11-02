@@ -55,16 +55,16 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
   ];
   const deadlines = [
     {
-      date: isEnglish ? "March 15, 2026" : "15 mars 2026",
+      date: isEnglish ? "March 15, 2027" : "15 mars 2027",
       description: isEnglish ? "Regular filing deadline" : "Délai ordinaire de dépôt"
     },
     {
-      date: isEnglish ? "June 30, 2026" : "30 juin 2026",
-      description: isEnglish ? "Free extension (via VaudTax)" : "Prolongation gratuite (via VaudTax)"
+      date: isEnglish ? "June 30, 2027" : "30 juin 2027",
+      description: isEnglish ? "Tolerated filing date for Swiss residents, no request needed" : "Dépôt toléré sans demande pour les domiciliés en Suisse"
     },
     {
-      date: isEnglish ? "September 30, 2026" : "30 septembre 2026",
-      description: isEnglish ? "Paid extension (CHF 89.-)" : "Prolongation payante (CHF 89.-)"
+      date: isEnglish ? "September 30, 2027" : "30 septembre 2027",
+      description: isEnglish ? "Free extension requested online (e-Délai)" : "Prolongation gratuite demandée en ligne (e-Délai)"
     },
   ];
   const advantages = isEnglish ? [
@@ -85,11 +85,11 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Vaud?",
-      answer: "The regular deadline is March 15, 2026 - one of the earliest in Switzerland. A free extension until June 30 is possible via VaudTax. A paid extension (CHF 89) until September 30 can also be requested."
+      answer: "For the 2026 return, the legal deadline is March 15, 2027, one of the earliest in Switzerland. Swiss residents can file until June 30 without asking, and a free extension, normally until September 30, can be requested online via e-Délai on vd.ch."
     },
     {
       question: "How does the VaudTax software work?",
-      answer: "VaudTax is the mandatory official software for filing tax returns in canton Vaud. It can be downloaded from the canton's website or used online. It guides you through each section of your return and calculates your tax automatically."
+      answer: "VaudTax is the free official tool of the Vaud tax administration. Since the 2025 return it only exists online, in the browser: there is nothing to install. You log in with your taxpayer number and control code, and it calculates your tax automatically. Our step-by-step VaudTax guide explains every section."
     },
     {
       question: "What are the main deductions specific to Vaud?",
@@ -101,16 +101,16 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "Can I declare my cryptocurrencies in Vaud?",
-      answer: "Yes, cryptocurrencies must be declared in the securities appendix of your Vaud tax return. Indicate the name, quantity, rate, and total value for each crypto. Use code 299 'Other assets' to report the total."
+      answer: "Yes, cryptocurrencies must be declared in the securities list of your Vaud tax return (code 410), at the official Federal Tax Administration rate on December 31. Staking or lending income is taxable."
     }
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts dans le canton de Vaud ?",
-      answer: "Le délai ordinaire est le 15 mars 2026 - l'un des plus courts de Suisse. Une prolongation gratuite jusqu'au 30 juin est possible via VaudTax. Une prolongation payante (CHF 89.-) jusqu'au 30 septembre peut aussi être demandée."
+      answer: "Pour la déclaration 2026, le délai légal est le 15 mars 2027, l'un des plus courts de Suisse. Les personnes domiciliées en Suisse peuvent déposer jusqu'au 30 juin sans demande, et une prolongation gratuite, en principe jusqu'au 30 septembre, se demande en ligne avec e-Délai sur vd.ch."
     },
     {
       question: "Comment fonctionne le logiciel VaudTax ?",
-      answer: "VaudTax est le logiciel officiel obligatoire pour remplir sa déclaration dans le canton de Vaud. Il peut être téléchargé sur le site du canton ou utilisé en ligne. Il vous guide section par section et calcule automatiquement votre impôt."
+      answer: "VaudTax est l'outil officiel et gratuit de l'Administration cantonale des impôts. Depuis la déclaration 2025, il n'existe plus qu'en ligne, dans le navigateur : rien à installer. On se connecte avec son numéro de contribuable et son code de contrôle, et il calcule automatiquement l'impôt. Notre guide VaudTax détaille chaque rubrique."
     },
     {
       question: "Quelles sont les principales déductions spécifiques au canton de Vaud ?",
@@ -122,7 +122,7 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "Peut-on déclarer ses cryptomonnaies dans le canton de Vaud ?",
-      answer: "Oui, les cryptomonnaies doivent être déclarées dans l'annexe titres de votre déclaration vaudoise. Indiquez le nom, la quantité, le cours et la valeur totale pour chaque crypto. Utilisez le code 299 « Autres avoirs » pour reporter le total."
+      answer: "Oui, les cryptomonnaies se déclarent dans l'état des titres de votre déclaration vaudoise (code 410), au cours officiel de l'AFC au 31 décembre. Les revenus de staking ou de lending sont imposables."
     }
   ];
   return (
@@ -365,10 +365,14 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
               <ul className="space-y-3 text-muted-foreground">
                 <li>• <strong>{isEnglish ? "Bicycle deduction" : "Déduction vélo"}</strong> : {isEnglish ? "CHF 700 flat rate" : "700 CHF forfaitaires"}</li>
                 <li>• <strong>{isEnglish ? "Transport costs" : "Frais de transport"}</strong> : {isEnglish ? "more generous cantonal cap" : "plafond cantonal plus généreux"}</li>
-                <li>• <strong>VaudTax</strong> : {isEnglish ? "mandatory official software" : "logiciel officiel obligatoire"}</li>
+                <li>• <strong>VaudTax</strong> : {isEnglish ? "free official tool, online only" : "outil officiel gratuit, uniquement en ligne"}</li>
                 <li>• <strong>{isEnglish ? "Installments" : "Acomptes"}</strong> : {isEnglish ? "provisional payment system" : "système de paiements provisionnels"}</li>
                 <li>• <strong>{isEnglish ? "Tax scale" : "Barème"}</strong> : {isEnglish ? "progressive cantonal + municipal rate" : "taux progressif cantonal + communal"}</li>
               </ul>
+              <Link href={isEnglish ? "/en/guide/vaudtax" : "/guide/vaudtax"} className="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+                <ArrowRight className="w-4 h-4" />
+                {isEnglish ? "Fill in your return with VaudTax: the complete guide" : "Remplir sa déclaration avec VaudTax : le guide complet"}
+              </Link>
             </Card>
           </div>
         </div>
@@ -427,6 +431,12 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
                 {isEnglish ? "Useful guides" : "Guides utiles"}
               </h3>
               <ul className="space-y-3">
+                <li>
+                  <Link href={isEnglish ? "/en/guide/vaudtax" : "/guide/vaudtax"} className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "VaudTax guide: step by step" : "Guide VaudTax pas à pas"}
+                  </Link>
+                </li>
                 <li>
                   <Link href="/guide/deductions-fiscales" className="text-primary hover:underline flex items-center gap-2">
                     <ArrowRight className="w-4 h-4" />

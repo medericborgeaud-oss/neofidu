@@ -19,7 +19,7 @@ export const vaudtaxPillarEn: GuideChapterContent = {
     "**VaudTax** is the Canton of Vaud's free online service to complete and file your tax return. Since 2025 it exists online only, and **only in French**.",
     "The **2026** return covers your income for 2026 and your wealth on 31 December 2026. It is normally due by **15 March 2027** (residents have a tolerance until 30 June).",
     "You need your **taxpayer number** and **control code**, plus salary certificates, bank statements and pillar 3a certificates.",
-    "This guide follows VaudTax in **11 chapters** and, for each amount, gives the exact French section name and the return code.",
+    "This guide follows VaudTax in **12 chapters** and, for each amount, gives the exact French section name and the return code.",
   ],
   blocks: [
     { type: "h2", id: "en-10-etapes", text: "Filling in VaudTax in 10 steps" },
@@ -96,7 +96,7 @@ export const vaudtaxPillarEn: GuideChapterContent = {
         "**C permit or Swiss spouse**: you file an ordinary VaudTax return every year.",
         "**B or L permit, salary taxed at source**: you only file if your gross salary exceeds CHF 120,000, you have other income or taxable wealth, or you requested an ordinary assessment by 31 March of the following year. The tax withheld is then credited.",
         "**Arrived from abroad during 2026**: you declare income from your arrival date and wealth at 31 December; the rate is calculated on an annualised basis and wealth tax is pro rata.",
-        "More in our guides on [withholding tax](/blog/impot-source-suisse-guide-complet-2026) and your [first Swiss tax return](/blog/first-tax-return-switzerland-expat-guide).",
+        "More in our guides on [source tax and TOU in Vaud](/guide/vaudtax/impot-source-tou) and your [first Swiss tax return](/blog/first-tax-return-switzerland-expat-guide).",
       ],
     },
 

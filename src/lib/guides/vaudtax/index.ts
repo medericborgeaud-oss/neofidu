@@ -13,6 +13,7 @@ import { logement } from "./chapters/08-logement";
 import { deductionsFamille } from "./chapters/09-deductions-famille";
 import { autresDeductions } from "./chapters/10-autres-deductions";
 import { verifierEnvoyer } from "./chapters/11-verifier-envoyer";
+import { impotSource } from "./chapters/12-impot-source-tou";
 import { vaudtaxPillarFr } from "./pillar-fr";
 import { vaudtaxPillarEn } from "./pillar-en";
 
@@ -22,7 +23,7 @@ export const vaudtaxGuide: GuideDefinition = {
   software: "VaudTax",
   taxYear: 2026,
   publishedAt: "2026-10-28",
-  updatedAt: "2026-10-28",
+  updatedAt: "2026-11-02",
   availableScreenshots: new Set<string>([
     "00-vue-ensemble.webp",
     "00-mode-saisie.webp",
@@ -35,6 +36,18 @@ export const vaudtaxGuide: GuideDefinition = {
     "06b-compte-solde.webp",
     "08-immeuble.webp",
     "11-outils.webp",
+    "01-e-delai.webp",
+    "03-indemnites.webp",
+    "06-import-ereleve.webp",
+    "06-numeraire-crypto.webp",
+    "07-autres-elements.webp",
+    "07-autos.webp",
+    "07-assurances-vie.webp",
+    "07-interets-dettes.webp",
+    "09-pensions-obtenues.webp",
+    "10-deductions-speciales.webp",
+    "10-frais-medicaux.webp",
+    "10-dons.webp",
   ]),
   chapters: [
     avantDeCommencer,
@@ -48,6 +61,7 @@ export const vaudtaxGuide: GuideDefinition = {
     deductionsFamille,
     autresDeductions,
     verifierEnvoyer,
+    impotSource,
   ],
   pillar: { fr: vaudtaxPillarFr, en: vaudtaxPillarEn },
   cantonName: { fr: "Canton de Vaud", en: "Canton of Vaud" },

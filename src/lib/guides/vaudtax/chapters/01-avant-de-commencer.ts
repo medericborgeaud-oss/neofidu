@@ -82,6 +82,12 @@ export const avantDeCommencer: GuideChapter = {
         text: "Commencez par le formulaire **« Identification »** (état civil, commune, adresse) : tant qu'il est incomplet, une partie des autres formulaires reste bloquée.",
       },
 
+      {
+        type: "callout",
+        tone: "info",
+        title: "Imposé à la source ?",
+        text: "Avec un permis B ou L et un salaire imposé à la source, vous ne remplissez une déclaration VaudTax que dans certains cas : salaire brut de plus de CHF 120'000, autres revenus ou fortune imposable, ou demande volontaire de taxation ordinaire ultérieure (délai au 31 mars de l'année suivante). Voir le chapitre [Impôt à la source et TOU](/guide/vaudtax/impot-source-tou).",
+      },
       { type: "h2", id: "documents", text: "Les documents à réunir avant de commencer" },
       {
         type: "p",
@@ -127,6 +133,12 @@ export const avantDeCommencer: GuideChapter = {
       {
         type: "p",
         text: "La demande de prolongation se fait en ligne sur [vd.ch/e-delai](https://www.vd.ch/e-delai), avec votre numéro de contribuable et votre code de contrôle. Si vous ne déposez rien, l'ACI envoie une sommation (émolument de CHF 50) puis peut vous taxer d'office avec une amende.",
+      },
+      {
+        type: "screenshot",
+        file: "01-e-delai.webp",
+        alt: "Page d'accueil de la prestation e-Délai sur prestations.vd.ch : étapes saisie, vérification, transmission, choix entre personnes physiques et personnes morales",
+        caption: "La page e-Délai : munissez-vous du numéro de contribuable et du code de contrôle ; seule la quittance PDF fait foi. Hors période, l'option « Personnes physiques » est grisée (vd.ch, novembre 2026)",
       },
 
       { type: "h2", id: "aide", text: "Où trouver de l'aide officielle" },
@@ -246,7 +258,7 @@ export const avantDeCommencer: GuideChapter = {
         type: "callout",
         tone: "info",
         title: "Taxed at source?",
-        text: "If you hold a B or L permit and your salary is taxed at source, you only fill in a VaudTax return in specific cases: gross salary above CHF 120,000, other income or taxable wealth, or a voluntary request for ordinary assessment (deadline 31 March of the following year). See our [withholding tax guide](/blog/impot-source-suisse-guide-complet-2026).",
+        text: "If you hold a B or L permit and your salary is taxed at source, you only fill in a VaudTax return in specific cases: gross salary above CHF 120,000, other income or taxable wealth, or a voluntary request for ordinary assessment (deadline 31 March of the following year). See our chapter [Source tax and TOU](/guide/vaudtax/impot-source-tou).",
       },
 
       { type: "h2", id: "documents", text: "Documents to gather before you start" },
@@ -294,6 +306,12 @@ export const avantDeCommencer: GuideChapter = {
       {
         type: "p",
         text: "Request an extension online at [vd.ch/e-delai](https://www.vd.ch/e-delai) with your taxpayer number and control code. If you file nothing, the ACI sends a reminder (CHF 50 fee) and may then assess you ex officio with a fine.",
+      },
+      {
+        type: "screenshot",
+        file: "01-e-delai.webp",
+        alt: "e-Délai start page on prestations.vd.ch: entry, check and submission steps, choice between individuals and companies",
+        caption: "The e-Délai page: have your taxpayer number and control code ready; only the PDF receipt counts. Outside the request period, « Personnes physiques » (individuals) is greyed out (vd.ch, November 2026)",
       },
 
       { type: "h2", id: "aide", text: "Official help" },

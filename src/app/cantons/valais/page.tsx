@@ -56,16 +56,16 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
   ];
   const deadlines = [
     {
-      date: isEnglish ? "March 31, 2026" : "31 mars 2026",
-      description: isEnglish ? "Regular filing deadline" : "Délai ordinaire de dépôt"
+      date: isEnglish ? "March 31, 2027" : "31 mars 2027",
+      description: isEnglish ? "Regular filing deadline (2026 return)" : "Délai ordinaire de dépôt (déclaration 2026)"
     },
     {
-      date: isEnglish ? "June 30, 2026" : "30 juin 2026",
-      description: isEnglish ? "Extension on request" : "Prolongation sur demande"
+      date: isEnglish ? "July 31, 2027" : "31 juillet 2027",
+      description: isEnglish ? "Extension by paying the CHF 20 fee before March 31" : "Prolongation en payant l'émolument de CHF 20 avant le 31 mars"
     },
     {
-      date: isEnglish ? "December 31, 2026" : "31 décembre 2026",
-      description: isEnglish ? "Ultimate deadline with justification" : "Délai ultime avec motif"
+      date: isEnglish ? "October 31, 2027" : "31 octobre 2027",
+      description: isEnglish ? "Extension for the self-employed (main activity)" : "Prolongation pour les indépendants (activité principale)"
     },
   ];
   const advantages = isEnglish ? [
@@ -86,7 +86,7 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Valais?",
-      answer: "The regular deadline is March 31, 2026. An extension until June 30 is available upon request. In justified cases, a further extension until December 31 can be granted - Valais offers one of the longest possible deadlines in Switzerland."
+      answer: "For the 2026 return, the deadline is March 31, 2027. Paying the CHF 20 fee with the slip enclosed with the return before March 31 is enough to get an extension, normally to July 31, or October 31 if your main activity is self-employed. No written request is needed."
     },
     {
       question: "Is Valais really one of the lowest-taxed cantons?",
@@ -98,16 +98,16 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "I rent out my chalet seasonally - how is this taxed?",
-      answer: "Seasonal rental income must be declared as income. You can deduct maintenance costs, management fees, insurance, and mortgage interest. If your actual rental income exceeds the imputed rental value, you declare the actual income instead. We help optimize the declaration to minimize your tax burden."
+      answer: "Rents are declared in schedule 2 of VSTax. For a furnished let (including Airbnb or Booking.com), a flat 20% deduction covers platform commissions, cleaning, visitor taxes and furniture. Upkeep is then deducted at a flat 10% or 20% or at actual cost, and mortgage interest goes in the debts list. Imputed rent remains taxable for the periods you keep the chalet for your own use."
     },
     {
       question: "Can I declare my cryptocurrencies in Valais?",
-      answer: "Yes, cryptocurrencies must be declared as movable assets in your Valais tax return via VSTax. Use the official AFC rate from ICTax or your exchange rate on December 31. With Valais's lower wealth tax rates, crypto holdings are taxed more favorably than in many other cantons."
+      answer: "Yes, cryptocurrencies are declared in the VSTax securities list (schedule 3), one line per currency, at the official Federal Tax Administration rate (ICTax) on December 31, otherwise the platform's rate. With Valais's lower wealth tax rates, crypto holdings are taxed more favorably than in many other cantons."
     }
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts en Valais ?",
-      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 décembre peut être accordé - le Valais offre l'un des délais les plus longs possibles en Suisse."
+      answer: "Pour la déclaration 2026, le délai est le 31 mars 2027. Il suffit de payer l'émolument de CHF 20 avec le bulletin joint à la déclaration avant le 31 mars pour obtenir une prolongation, en principe au 31 juillet, ou au 31 octobre si votre activité principale est indépendante. Aucune demande écrite n'est nécessaire."
     },
     {
       question: "Le Valais est-il vraiment l'un des cantons les moins imposés ?",
@@ -119,11 +119,11 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "Je loue mon chalet en saisonnier - comment est-ce imposé ?",
-      answer: "Les revenus de location saisonnière doivent être déclarés comme revenu. Vous pouvez déduire les frais d'entretien, les frais de gérance, l'assurance et les intérêts hypothécaires. Si vos revenus locatifs réels dépassent la valeur locative, vous déclarez les revenus réels. Nous aidons à optimiser la déclaration pour minimiser votre charge fiscale."
+      answer: "Les loyers se déclarent dans l'annexe 2 de VSTax. Pour une location meublée (y compris Airbnb ou Booking.com), une déduction forfaitaire de 20 % couvre les commissions, le nettoyage, les taxes de séjour et le mobilier. Les frais d'entretien se déduisent ensuite au forfait de 10 % ou 20 % ou au réel, et les intérêts hypothécaires dans l'état des dettes. La valeur locative reste imposable pour les périodes où vous gardez le chalet à votre usage."
     },
     {
       question: "Peut-on déclarer ses cryptomonnaies en Valais ?",
-      answer: "Oui, les cryptomonnaies doivent être déclarées dans la fortune mobilière de votre déclaration valaisanne via VSTax. Utilisez le cours officiel de l'AFC sur ICTax ou le cours de votre exchange au 31 décembre. Avec les taux d'impôt sur la fortune plus bas du Valais, les avoirs crypto sont imposés plus favorablement que dans d'autres cantons."
+      answer: "Oui, les cryptomonnaies se déclarent dans l'état des titres de VSTax (annexe 3), une ligne par monnaie, au cours officiel de l'AFC (ICTax) au 31 décembre, à défaut au cours de la plateforme. Avec les taux d'impôt sur la fortune plus bas du Valais, les avoirs crypto sont imposés plus favorablement que dans d'autres cantons."
     }
   ];
   return (
@@ -411,11 +411,15 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
               </h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li>• <strong>{isEnglish ? "Low rates" : "Taux bas"}</strong> : {isEnglish ? "among the most advantageous in Switzerland" : "parmi les plus avantageux de Suisse"}</li>
-                <li>• <strong>VSTax</strong> : {isEnglish ? "mandatory cantonal software" : "logiciel cantonal obligatoire"}</li>
+                <li>• <strong>VSTax</strong> : {isEnglish ? "free cantonal program, paperless filing" : "programme cantonal gratuit, envoi sans signature"}</li>
                 <li>• <strong>{isEnglish ? "Secondary residences" : "Résidences secondaires"}</strong> : {isEnglish ? "specific imputed rental value" : "valeur locative spécifique"}</li>
                 <li>• <strong>{isEnglish ? "Bilingual" : "Bilingue"}</strong> : {isEnglish ? "German-speaking Upper Valais" : "Haut-Valais germanophone"}</li>
                 <li>• <strong>{isEnglish ? "Tourism" : "Tourisme"}</strong> : {isEnglish ? "taxation adapted to seasonal rentals" : "fiscalité adaptée aux locations saisonnières"}</li>
               </ul>
+              <Link href={isEnglish ? "/en/guide/vstax" : "/guide/vstax"} className="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+                <ArrowRight className="w-4 h-4" />
+                {isEnglish ? "Fill in your return with VSTax: the complete guide" : "Remplir sa déclaration avec VSTax : le guide complet"}
+              </Link>
             </Card>
           </div>
         </div>
@@ -474,6 +478,12 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
                 {isEnglish ? "Useful guides" : "Guides utiles"}
               </h3>
               <ul className="space-y-3">
+                <li>
+                  <Link href={isEnglish ? "/en/guide/vstax" : "/guide/vstax"} className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "VSTax guide: step by step" : "Guide VSTax pas à pas"}
+                  </Link>
+                </li>
                 <li>
                   <Link href="/guide/deductions-fiscales" className="text-primary hover:underline flex items-center gap-2">
                     <ArrowRight className="w-4 h-4" />

@@ -19,7 +19,7 @@ export const vaudtaxPillarFr: GuideChapterContent = {
     "**VaudTax** est la prestation en ligne gratuite de l'État de Vaud pour remplir et déposer sa déclaration d'impôt. Depuis 2025, elle n'existe plus qu'en ligne.",
     "La déclaration **2026** porte sur vos revenus de l'année 2026 et votre fortune au 31 décembre 2026. Elle se dépose en principe jusqu'au **15 mars 2027** (tolérance au 30 juin pour les résidents).",
     "Il faut votre **numéro de contribuable** et votre **code de contrôle**, plus vos certificats de salaire, relevés bancaires et attestations 3e pilier.",
-    "Ce guide suit l'ordre de VaudTax en **11 chapitres** et donne, pour chaque montant, la rubrique exacte et le code de la déclaration.",
+    "Ce guide suit l'ordre de VaudTax en **12 chapitres** et donne, pour chaque montant, la rubrique exacte et le code de la déclaration.",
   ],
   blocks: [
     { type: "h2", id: "en-10-etapes", text: "Remplir VaudTax en 10 étapes" },
