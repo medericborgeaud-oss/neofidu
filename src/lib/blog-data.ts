@@ -3332,7 +3332,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 <p><strong>1. Ne pas déclarer n'est plus une option.</strong> Avec l'échange automatique, toute omission sera détectable.</p>
 <p><strong>2. Les wallets privés restent hors du radar</strong> - pour l'instant. Le CARF ne couvre que les plateformes centralisées (CEX). Vos wallets Ledger ou MetaMask ne sont pas concernés directement, mais les transferts vers un exchange le seront.</p>
 <p><strong>3. Régularisez maintenant.</strong> Si vous n'avez pas déclaré vos cryptos les années précédentes, une dénonciation spontanée avant 2027 vous évitera les pénalités (une seule fois dans votre vie).</p>
-<p>Pour en savoir plus, consultez notre article dédié : <a href="/blog/carf-2026-fin-secret-crypto-suisse">CARF 2026 : la fin du secret pour les cryptos en Suisse</a>.</p>
+<p>Pour en savoir plus, consultez notre article dédié : <a href="/blog/echange-automatique-crypto-suisse-2026-fin-anonymat">CARF 2026 : la fin du secret pour les cryptos en Suisse</a>.</p>
 
 <h2>Déclaration par canton : spécificités romandes</h2>
 
@@ -6472,7 +6472,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
     excerpt: `Le 14 juin 2026, les Suisses votent sur l\'initiative « Pas de Suisse à 10 millions ! ». Découvrez les impacts concrets sur la fiscalité et le marché immobilier helvétique.`,
     excerptEn: `On June 14, 2026, Swiss voters decide on the "No Switzerland at 10 million!" initiative. Discover the concrete impacts on taxation and the Swiss real estate market.`,
     keywords: ['10 millions', 'population', 'votation juin 2026', 'immobilier suisse', 'fiscalité', 'initiative UDC', 'bilatérales', 'marché immobilier'],
-    content: `<p>Le <strong>14 juin 2026</strong>, les Suisses sont appelés à se prononcer sur l\'initiative populaire <strong>« Pas de Suisse à 10 millions ! »</strong>, lancée par l\'UDC. Alors que la population résidante permanente frôle les 9 millions d\'habitants, cette votation soulève des questions majeures pour votre <a href="/blog/fiscalite-impots-suisse">situation fiscale</a> et pour le marché <a href="/blog/immobilier">immobilier</a> helvétique. Voici ce que vous devez savoir.</p>
+    content: `<p>Le <strong>14 juin 2026</strong>, les Suisses sont appelés à se prononcer sur l\'initiative populaire <strong>« Pas de Suisse à 10 millions ! »</strong>, lancée par l\'UDC. Alors que la population résidante permanente frôle les 9 millions d\'habitants, cette votation soulève des questions majeures pour votre <a href="/blog/declaration-impots-2025-guide-complet">situation fiscale</a> et pour le marché <a href="/blog/hypotheque-suisse-fonctionnement-specificites">immobilier</a> helvétique. Voici ce que vous devez savoir.</p>
 
 <br/>
 
@@ -6573,7 +6573,7 @@ Gain imposable = Prix de vente − Prix d'acquisition − Frais déductibles
 
 <p>Qu\'elle soit acceptée ou rejetée, la votation du <strong>14 juin 2026</strong> invite chacun à réfléchir à sa situation fiscale et patrimoniale dans un contexte démographique en mutation. Les impacts sur les prix de l\'immobilier, les cotisations sociales et la fiscalité des personnes physiques et des sociétés méritent d\'être anticipés dès aujourd\'hui.</p>
 
-<p>Chez <a href="/contact">Neofidu</a>, notre équipe de fiduciaires digitaux accompagne particuliers, <a href="/blog/expatries-suisse-fiscalite">expatriés</a>, indépendants et dirigeants de PME dans la complexité fiscale suisse.</p>
+<p>Chez <a href="/contact">Neofidu</a>, notre équipe de fiduciaires digitaux accompagne particuliers, <a href="/blog/first-tax-return-switzerland-expat-guide">expatriés</a>, indépendants et dirigeants de PME dans la complexité fiscale suisse.</p>
 
 <div><a href="/contact">Prendre rendez-vous avec un expert Neofidu →</a></div>`,
     category: 'actualites',

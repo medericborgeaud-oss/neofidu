@@ -6,7 +6,7 @@ export const impotSource: GuideChapter = {
   fr: {
     title: "Impôt à la source dans le canton de Fribourg : TOU obligatoire, TOU sur demande et quasi-résidents",
     navTitle: "Impôt à la source et TOU",
-    metaTitle: "Impôt à la source Fribourg : TOU, délai du 31 mars et quasi-résident (2026)",
+    metaTitle: "Impôt à la source Fribourg : TOU et quasi-résident (2026)",
     metaDescription:
       "Quand une personne imposée à la source dans le canton de Fribourg doit ou peut remplir une déclaration FriTax : TOU obligatoire dès CHF 120'000, TOU sur demande avant le 31 mars 2027, statut de quasi-résident (90 %), formulaires et adresse scciso@fr.ch.",
     keywords: [
@@ -104,7 +104,7 @@ export const impotSource: GuideChapter = {
   en: {
     title: "Source tax in Fribourg: mandatory TOU, TOU on request and quasi-residents",
     navTitle: "Source tax and TOU",
-    metaTitle: "Fribourg source tax: TOU, 31 March deadline and quasi-resident status (2026)",
+    metaTitle: "Fribourg source tax: TOU and quasi-resident status (2026)",
     metaDescription:
       "When a person taxed at source in Fribourg must or may file a FriTax return: mandatory subsequent ordinary assessment (TOU) above CHF 120,000, TOU on request by 31 March 2027, quasi-resident status (90%), forms and the scciso@fr.ch address.",
     keywords: [

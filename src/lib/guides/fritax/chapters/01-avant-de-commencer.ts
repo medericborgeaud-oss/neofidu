@@ -6,7 +6,7 @@ export const avantDeCommencer: GuideChapter = {
   fr: {
     title: "Avant de commencer FriTax : installation, code FriTax, délais et prolongations 2027",
     navTitle: "Avant de commencer",
-    metaTitle: "FriTax 2026 : installer, code FriTax, délai et prolongation à CHF 20",
+    metaTitle: "FriTax 2026 : installer, code, délai et prolongation",
     metaDescription:
       "Télécharger FriTax (Windows, Mac, Linux), trouver le code FriTax de 6 caractères, délai du 31 mars 2027, prolongations à CHF 20 jusqu'au 15 décembre, reprise de l'année précédente et documents à réunir.",
     keywords: [

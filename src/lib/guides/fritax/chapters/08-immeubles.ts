@@ -6,7 +6,7 @@ export const immeubles: GuideChapter = {
   fr: {
     title: "Immeubles dans FriTax : valeur locative, valeur fiscale, loyers et frais d'entretien (annexe 04)",
     navTitle: "Immeubles",
-    metaTitle: "FriTax 2026 : valeur locative, frais d'entretien 10 % ou 20 % et travaux énergétiques",
+    metaTitle: "FriTax 2026 : valeur locative, entretien et travaux énergétiques",
     metaDescription:
       "Remplir l'état des immeubles de FriTax (annexe 04) : valeur locative et valeur fiscale (code 3.310), nouveaux propriétaires, loyers encaissés et location meublée (3.340), forfait d'entretien de 10 % ou 20 % (4.310), investissements énergétiques (4.311) et immeubles hors canton.",
     keywords: [
@@ -134,7 +134,7 @@ export const immeubles: GuideChapter = {
   en: {
     title: "Property in FriTax: imputed rent, tax value, rental income and upkeep costs (schedule 04)",
     navTitle: "Property",
-    metaTitle: "FriTax 2026: imputed rent, 10% or 20% upkeep deduction and energy works",
+    metaTitle: "FriTax 2026: imputed rent, upkeep and energy works",
     metaDescription:
       "Completing the FriTax property list (schedule 04): imputed rent and tax value (code 3.310), new owners, rental income and furnished lets (3.340), the 10% or 20% upkeep flat rate (4.310), energy-saving investments (4.311) and property in another canton.",
     keywords: [

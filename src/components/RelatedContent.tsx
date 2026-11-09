@@ -97,7 +97,7 @@ export function RelatedArticles({ category }: { category: "fiscalite" | "comptab
     fiscalite: [
       { title: "Guide déductions fiscales 2026", href: "/guide/deductions-fiscales" },
       { title: "Impôt à la source : guide complet", href: "/blog/impot-source-suisse-guide-complet-2026" },
-      { title: "Votre première déclaration d'impôts", href: "/blog/premiere-declaration-impots-suisse-guide" },
+      { title: "Votre première déclaration d'impôts", href: "/blog/comment-remplir-declaration-impot-en-ligne-guide" },
     ],
     comptabilite: [
       { title: "Créer son entreprise en Suisse", href: "/blog/creer-entreprise-suisse-2026" },

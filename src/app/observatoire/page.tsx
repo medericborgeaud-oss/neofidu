@@ -55,7 +55,7 @@ const COMMUNES = [
   { name: "Sion", count: 5208, slug: "sion-vs" },
   { name: "Fribourg", count: 4644, slug: "fribourg-fr" },
   { name: "Neuchâtel", count: 4286, slug: "neuchatel-ne" },
-  { name: "Carouge", count: 3691, slug: "carouge-ge" },
+  { name: "Carouge", count: 3691, slug: "carouge-ge-ge" },
   { name: "Nyon", count: 2893, slug: "nyon-vd" },
   { name: "Martigny", count: 2711, slug: "martigny-vs" },
   { name: "La Chaux-de-Fonds", count: 2709, slug: "la-chaux-de-fonds-ne" },

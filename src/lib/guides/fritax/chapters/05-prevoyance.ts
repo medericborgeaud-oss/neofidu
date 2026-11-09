@@ -151,7 +151,7 @@ export const prevoyance: GuideChapter = {
   en: {
     title: "Pension savings in FriTax: pillar 3a (4.130), 3a catch-up, pension fund buy-ins (4.140) and lump sums",
     navTitle: "Pension savings",
-    metaTitle: "FriTax 2026: deducting pillar 3a, 3a catch-up and pension fund buy-ins",
+    metaTitle: "FriTax 2026: pillar 3a, catch-up and pension fund buy-ins",
     metaDescription:
       "Where to deduct pillar 3a in FriTax (code 4.130, CHF 7,258), the new 2026 3a catch-up payments, pension fund buy-ins (code 4.140), AHV contributions of non-earners (4.350) and how lump-sum pension benefits are taxed in Fribourg.",
     keywords: [

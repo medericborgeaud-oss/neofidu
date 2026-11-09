@@ -6,7 +6,7 @@ export const salaire: GuideChapter = {
   fr: {
     title: "Salaire, indemnités et rentes dans FriTax : codes 1.110 à 1.530 et 3.110 à 3.150",
     navTitle: "Salaire et revenus",
-    metaTitle: "FriTax : déclarer salaire, chômage, gains accessoires et rentes (2026)",
+    metaTitle: "FriTax : salaire, chômage, gains accessoires et rentes (2026)",
     metaDescription:
       "Où saisir le salaire net dans FriTax (code 1.110, chiffre 11 du certificat), activité accessoire (1.120), allocations (1.130), chômage et APG (1.510 à 1.530), rentes AVS, LPP et 3a (3.110 à 3.140) et pensions alimentaires reçues (3.150).",
     keywords: [
@@ -131,7 +131,7 @@ export const salaire: GuideChapter = {
   en: {
     title: "Salary, benefits and pensions in FriTax: codes 1.110 to 1.530 and 3.110 to 3.150",
     navTitle: "Salary and income",
-    metaTitle: "FriTax: declaring salary, unemployment, side income and pensions (2026)",
+    metaTitle: "FriTax: salary, unemployment, side income and pensions (2026)",
     metaDescription:
       "Where to enter net salary in FriTax (code 1.110, box 11 of the certificate), employed side income (1.120), allowances (1.130), unemployment and loss-of-earnings benefits (1.510 to 1.530), AHV, pension fund and 3a pensions (3.110 to 3.140) and maintenance received (3.150).",
     keywords: [
