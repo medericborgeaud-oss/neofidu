@@ -3,7 +3,7 @@ import type { GuideChapterContent } from "../types";
 export const fritaxPillarFr: GuideChapterContent = {
   title: "Comment remplir sa déclaration d'impôt fribourgeoise avec FriTax : le guide complet 2026",
   navTitle: "Guide FriTax",
-  metaTitle: "Remplir sa déclaration d'impôt dans le canton de Fribourg avec FriTax : guide 2026",
+  metaTitle: "Guide FriTax 2026 : la déclaration d'impôt fribourgeoise",
   metaDescription:
     "Tutoriel gratuit pas à pas pour remplir votre déclaration d'impôt fribourgeoise dans FriTax : codes de chaque rubrique (1.110, 2.130, 4.110...), déductions 2026, délais, code FriTax, envoi électronique et impôt à la source.",
   keywords: [

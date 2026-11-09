@@ -3,7 +3,7 @@ import type { GuideChapterContent } from "../types";
 export const fritaxPillarEn: GuideChapterContent = {
   title: "How to fill in your Fribourg tax return with FriTax: the complete 2026 guide",
   navTitle: "FriTax guide",
-  metaTitle: "Fribourg tax return with FriTax: step-by-step guide 2026 (English)",
+  metaTitle: "FriTax guide 2026: Fribourg tax return step by step",
   metaDescription:
     "Free step-by-step guide in English to the Fribourg tax return in FriTax: the code for every section (1.110, 2.130, 4.110...), 2026 deductions, deadlines, the FriTax code, electronic filing and source tax.",
   keywords: [
