@@ -6,7 +6,7 @@ export const verifierEnvoyer: GuideChapter = {
   fr: {
     title: "Vérifier et envoyer sa déclaration avec FriTax : calcul de l'impôt, pièces justificatives et accusé de réception",
     navTitle: "Vérifier et envoyer",
-    metaTitle: "FriTax : envoyer la déclaration par internet, pièces à joindre et délai de 72 heures",
+    metaTitle: "FriTax : envoi par internet, pièces à joindre et délai de 72 h",
     metaDescription:
       "Contrôler la déclaration et le calcul de l'impôt dans FriTax, joindre les pièces demandées (3 Mo par fichier, photo au téléphone possible), envoyer avec le code FriTax, accusé de réception et corrections pendant 72 heures, ou envoi papier signé.",
     keywords: [
@@ -136,7 +136,7 @@ export const verifierEnvoyer: GuideChapter = {
   en: {
     title: "Checking and filing your return with FriTax: tax calculation, supporting documents and receipt",
     navTitle: "Check and file",
-    metaTitle: "FriTax: filing online, documents to attach and the 72-hour correction window",
+    metaTitle: "FriTax: filing online, attachments and 72-hour window",
     metaDescription:
       "Checking the return and tax calculation in FriTax, attaching the requested documents (3 MB per file, phone photos accepted), filing with the FriTax code, the receipt and corrections within 72 hours, or filing a signed paper return.",
     keywords: [

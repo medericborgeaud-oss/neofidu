@@ -6,7 +6,7 @@ export const situationPersonnelle: GuideChapter = {
   fr: {
     title: "Situation personnelle dans FriTax : état civil, religion, enfants et cases A, B, C",
     navTitle: "Situation personnelle",
-    metaTitle: "FriTax : remplir la page 1, enfants à charge et cases A, B, C (2026)",
+    metaTitle: "FriTax : page 1, enfants à charge et cases A, B, C (2026)",
     metaDescription:
       "Comment remplir la page 1 de la déclaration fribourgeoise dans FriTax : état civil au 31 décembre, mariage ou divorce en cours d'année, religion et impôt ecclésiastique, enfants et personnes à charge (cases A*, B*, C*).",
     keywords: [
@@ -129,7 +129,7 @@ export const situationPersonnelle: GuideChapter = {
   en: {
     title: "Personal situation in FriTax: marital status, religion, children and boxes A, B, C",
     navTitle: "Personal situation",
-    metaTitle: "FriTax: filling in page 1, dependent children and boxes A, B, C (2026)",
+    metaTitle: "FriTax: page 1, dependent children and boxes A, B, C (2026)",
     metaDescription:
       "How to fill in page 1 of the Fribourg return in FriTax: marital status on 31 December, marriage or divorce during the year, religion and church tax, children and dependants (boxes A*, B*, C*).",
     keywords: [

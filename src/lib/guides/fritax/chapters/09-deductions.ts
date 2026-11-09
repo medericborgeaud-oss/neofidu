@@ -6,7 +6,7 @@ export const deductions: GuideChapter = {
   fr: {
     title: "Déductions dans FriTax : primes d'assurance, frais de garde, frais médicaux, dons et déductions sociales",
     navTitle: "Déductions",
-    metaTitle: "FriTax 2026 : toutes les déductions fribourgeoises (codes 4.110 à 7.110)",
+    metaTitle: "FriTax 2026 : toutes les déductions fribourgeoises",
     metaDescription:
       "Les déductions de la déclaration fribourgeoise 2026 dans FriTax : forfait d'assurance-maladie (4.110), 3e pilier B (4.120), frais de garde jusqu'à CHF 12'000 (4.380), formation (4.420), pensions versées, frais médicaux au-delà de 5 % (5.110), dons, déduction par enfant (6.110) et différences avec l'impôt fédéral.",
     keywords: [

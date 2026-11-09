@@ -6,7 +6,7 @@ export const comptesTitres: GuideChapter = {
   fr: {
     title: "Comptes, titres et crypto dans FriTax : l'état des titres (annexe 01), e-relevé et impôt anticipé",
     navTitle: "Comptes et titres",
-    metaTitle: "FriTax : remplir l'état des titres, e-relevé, crypto et impôt anticipé (2026)",
+    metaTitle: "FriTax : état des titres, e-relevé, crypto et impôt anticipé",
     metaDescription:
       "Remplir l'état des titres de FriTax (annexe 01, codes 3.210 et 3.220) : comptes bancaires, actions et ETF par ISIN avec la liste des cours, e-relevé fiscal, cryptomonnaies, gains de loterie, DA-1 et R-US, intérêts d'épargne (4.150) et frais de garde (4.320).",
     keywords: [
@@ -158,7 +158,7 @@ export const comptesTitres: GuideChapter = {
   en: {
     title: "Accounts, securities and crypto in FriTax: the securities list (schedule 01), e-relevé and withholding tax",
     navTitle: "Accounts and securities",
-    metaTitle: "FriTax: securities list, electronic bank statement, crypto and withholding tax (2026)",
+    metaTitle: "FriTax: securities list, e-statement, crypto and withholding tax",
     metaDescription:
       "Completing the FriTax securities list (schedule 01, codes 3.210 and 3.220): bank accounts, shares and ETFs by ISIN with the price list, electronic tax statements (e-relevé), cryptocurrencies, lottery wins, DA-1 and R-US, savings interest (4.150) and custody fees (4.320).",
     keywords: [

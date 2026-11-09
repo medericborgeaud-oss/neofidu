@@ -6,7 +6,7 @@ export const fortuneDettes: GuideChapter = {
   fr: {
     title: "Fortune et dettes dans FriTax : véhicules, assurances-vie, état des dettes (annexe 02) et intérêts",
     navTitle: "Fortune et dettes",
-    metaTitle: "FriTax : déclarer voiture, assurance-vie, dettes et intérêts passifs (2026)",
+    metaTitle: "FriTax : voiture, assurance-vie, dettes et intérêts (2026)",
     metaDescription:
       "Autres éléments de fortune dans FriTax (codes 3.510 à 3.570 : voiture, assurances-vie avec valeur de rachat, collections), état des dettes (annexe 02), intérêts passifs privés (4.210) plafonnés au rendement de la fortune plus CHF 50'000, et déduction sociale sur la fortune.",
     keywords: [
@@ -121,7 +121,7 @@ export const fortuneDettes: GuideChapter = {
   en: {
     title: "Wealth and debts in FriTax: vehicles, life insurance, the debts list (schedule 02) and interest",
     navTitle: "Wealth and debts",
-    metaTitle: "FriTax: declaring your car, life insurance, debts and interest paid (2026)",
+    metaTitle: "FriTax: car, life insurance, debts and interest (2026)",
     metaDescription:
       "Other assets in FriTax (codes 3.510 to 3.570: car, life insurance with surrender value, collections), the debts list (schedule 02), private interest paid (4.210) capped at investment income plus CHF 50,000, and the social deduction on wealth.",
     keywords: [

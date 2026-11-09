@@ -6,7 +6,7 @@ export const fraisProfessionnels: GuideChapter = {
   fr: {
     title: "Frais professionnels dans FriTax : transport, repas, forfait de 3 % et télétravail (annexe 03)",
     navTitle: "Frais professionnels",
-    metaTitle: "FriTax 2026 : frais de transport (max. CHF 12'000), repas et forfait 3 %",
+    metaTitle: "FriTax 2026 : frais de transport, repas et forfait 3 %",
     metaDescription:
       "Frais de déplacement dans le canton de Fribourg (plafond CHF 12'000, voiture CHF 0.70 par km, vélo CHF 700), repas à CHF 15 (max. CHF 3'200), séjour hors domicile, forfait de 3 % (CHF 2'000 à 4'000), télétravail et déduction pour deux conjoints actifs dans l'annexe 03 de FriTax.",
     keywords: [
@@ -137,7 +137,7 @@ export const fraisProfessionnels: GuideChapter = {
   en: {
     title: "Work expenses in FriTax: commuting, meals, the 3% flat rate and home office (schedule 03)",
     navTitle: "Work expenses",
-    metaTitle: "FriTax 2026: commuting costs (max. CHF 12,000), meals and 3% flat rate",
+    metaTitle: "FriTax 2026: commuting, meals and 3% flat rate",
     metaDescription:
       "Commuting costs in Fribourg (CHF 12,000 cap, car CHF 0.70 per km, bike CHF 700), meals at CHF 15 (max. CHF 3,200), weekly stays away, the 3% flat rate (CHF 2,000 to 4,000), home office and the dual-income deduction in FriTax schedule 03.",
     keywords: [
