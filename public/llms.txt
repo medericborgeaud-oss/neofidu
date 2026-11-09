@@ -1,80 +1,63 @@
 # NeoFidu
 
-> NeoFidu is a Swiss online fiduciary (fiduciaire en ligne) serving French-speaking Switzerland. We prepare tax returns, set up companies and keep accounts for individuals, self-employed people and businesses in 6 cantons: Vaud (VD), Geneva (GE), Valais (VS), Fribourg (FR), Neuchatel (NE) and Jura (JU). We also publish free step-by-step guides for the cantonal tax software (VaudTax, GeTax, VSTax) and free tax and finance simulators.
+> NeoFidu is a Swiss online fiduciary (fiduciaire en ligne) serving French-speaking Switzerland. We provide tax return preparation, company incorporation, and accounting services for individuals and businesses across 6 cantons: Vaud (VD), Geneva (GE), Valais (VS), Fribourg (FR), Neuchatel (NE), and Jura (JU).
 
 Key information:
 
-- NeoFidu operates in French-speaking Switzerland (Suisse romande) and also serves expats living there and Swiss citizens abroad with Swiss tax obligations
-- Tax returns from CHF 89 (Basic, simple cases) and from CHF 149 (Comfort: dependents, one owned property, professional expenses)
-- Company creation from CHF 290 (sole proprietorship), CHF 990 (Sarl / LLC), CHF 1'490 (SA / AG)
-- All services are delivered online
-- The site is in French with English versions of most pages under https://neofidu.ch/en (services, tax guides, simulators, municipality pages)
-
-## Tax return guides (step by step)
-
-Each guide follows the cantonal tax software screen by screen, with official 2026 deduction amounts and return codes. English versions quote the French software labels.
-
-- [VaudTax guide (FR)](https://neofidu.ch/guide/vaudtax): How to fill in the Vaud tax return in VaudTax
-- [VaudTax guide (EN)](https://neofidu.ch/en/guide/vaudtax): English version for expats
-- VaudTax chapters: [before you start](https://neofidu.ch/guide/vaudtax/avant-de-commencer), [personal situation and children](https://neofidu.ch/guide/vaudtax/situation-personnelle), [salary](https://neofidu.ch/guide/vaudtax/salaire), [work expenses](https://neofidu.ch/guide/vaudtax/frais-professionnels), [insurance and pillar 3a](https://neofidu.ch/guide/vaudtax/assurances-prevoyance), [accounts, securities and crypto](https://neofidu.ch/guide/vaudtax/comptes-titres), [wealth and debts](https://neofidu.ch/guide/vaudtax/fortune-dettes), [housing](https://neofidu.ch/guide/vaudtax/logement), [family deductions](https://neofidu.ch/guide/vaudtax/deductions-famille), [training, medical costs and donations](https://neofidu.ch/guide/vaudtax/autres-deductions), [checking and filing](https://neofidu.ch/guide/vaudtax/verifier-envoyer), [source tax, TOU, quasi-residents and French cross-border workers](https://neofidu.ch/guide/vaudtax/impot-source-tou). Same paths under /en/guide/vaudtax/
-- [GeTax guide (FR)](https://neofidu.ch/guide/getax): How to fill in the Geneva tax return in GeTax (desktop or online)
-- [GeTax guide (EN)](https://neofidu.ch/en/guide/getax): English version for expats and cross-border workers
-- GeTax chapters: [before you start](https://neofidu.ch/guide/getax/avant-de-commencer), [personal situation and children](https://neofidu.ch/guide/getax/situation-personnelle), [salary](https://neofidu.ch/guide/getax/salaire), [work expenses](https://neofidu.ch/guide/getax/frais-professionnels), [pension savings: pillar 3a, catch-up, buy-ins](https://neofidu.ch/guide/getax/prevoyance), [accounts, securities and crypto](https://neofidu.ch/guide/getax/comptes-titres), [wealth and debts](https://neofidu.ch/guide/getax/fortune-dettes), [property](https://neofidu.ch/guide/getax/immeubles), [deductions](https://neofidu.ch/guide/getax/deductions), [source tax, TOU, quasi-residents and cross-border workers](https://neofidu.ch/guide/getax/impot-source-tou), [checking and filing](https://neofidu.ch/guide/getax/verifier-envoyer). Same paths under /en/guide/getax/
-- [VSTax guide (FR)](https://neofidu.ch/guide/vstax): How to fill in the Valais tax return in VSTax
-- [VSTax guide (EN)](https://neofidu.ch/en/guide/vstax): English version for expats and holiday-home owners
-- VSTax chapters: [before you start](https://neofidu.ch/guide/vstax/avant-de-commencer), [personal situation and children](https://neofidu.ch/guide/vstax/situation-personnelle), [salary and pensions](https://neofidu.ch/guide/vstax/salaire), [work expenses](https://neofidu.ch/guide/vstax/frais-professionnels), [pension savings: pillar 3a, catch-up, buy-ins, lump sums](https://neofidu.ch/guide/vstax/prevoyance), [accounts, securities and crypto](https://neofidu.ch/guide/vstax/comptes-titres), [wealth and debts](https://neofidu.ch/guide/vstax/fortune-dettes), [property, holiday homes and furnished lets](https://neofidu.ch/guide/vstax/immeubles), [deductions](https://neofidu.ch/guide/vstax/deductions), [source tax, TOU and quasi-residents](https://neofidu.ch/guide/vstax/impot-source-tou), [checking and filing](https://neofidu.ch/guide/vstax/verifier-envoyer). Same paths under /en/guide/vstax/
-- [Swiss tax deductions guide](https://neofidu.ch/guide/deductions-fiscales) ([EN](https://neofidu.ch/en/guide/deductions-fiscales)): Overview of deductible items (work expenses, pillar 3a, mortgage interest, donations)
-
-## Free simulators
-
-All simulators are free, instant and need no sign-up. Each one has an English version under https://neofidu.ch/en/simulateur/
-
-- [Tax simulator](https://neofidu.ch/simulateur/impots): Income and wealth tax by canton and municipality, with real municipal coefficients
-- [Net salary simulator](https://neofidu.ch/simulateur/salaire-net): Gross-to-net salary with AVS, AI, APG, AC, LPP and taxes, all 26 cantons
-- [Pillar 3a simulator](https://neofidu.ch/simulateur/3eme-pilier): Tax savings from pillar 3a contributions (2026 limit CHF 7'258)
-- [Retirement simulator](https://neofidu.ch/simulateur/retraite): Retirement income from AVS, LPP (2nd pillar) and pillar 3a
-- [Imputed rental value simulator](https://neofidu.ch/simulateur/valeur-locative): Impact of the abolition of the imputed rental value (valeur locative) for homeowners
-- [Property gains tax simulator](https://neofidu.ch/simulateur/gain-immobilier): Tax on the gain when selling property, by canton and holding period
-- [Rent reduction simulator](https://neofidu.ch/simulateur/baisse-loyer): Whether a tenant can ask for a rent cut based on the mortgage reference rate
-- [Swiss tax map](https://neofidu.ch/simulateur/carte-impots): Interactive comparison of tax burden across the 26 cantons
+- NeoFidu operates exclusively in French-speaking Switzerland (Suisse romande)
+- Tax returns start from CHF 89 for individuals, CHF 149 with optimization
+- Company creation services from CHF 490
+- All services are delivered online with certified Swiss fiduciary experts
+- The site is primarily in French, with English versions available for company and municipality pages
 
 ## Services
 
-- [Tax returns for individuals](https://neofidu.ch/particuliers): Personal tax return preparation (VD, GE, VS, FR, NE, JU)
-- [Expats](https://neofidu.ch/en/expats): Tax returns in English for foreigners living in French-speaking Switzerland, including source-taxed workers (B permit) and TOU
-- [Swiss citizens abroad](https://neofidu.ch/suisses-de-letranger): Swiss tax returns, property and double taxation for Swiss people living abroad ([France](https://neofidu.ch/suisses-de-letranger/france), [Canada](https://neofidu.ch/suisses-de-letranger/canada))
-- [Self-employed](https://neofidu.ch/independants) ([EN](https://neofidu.ch/en/independants)): Accounting and tax returns for sole proprietors
-- [Company creation](https://neofidu.ch/creation-entreprise) ([EN](https://neofidu.ch/en/creation-entreprise)): Setting up a sole proprietorship, Sarl or SA
-- [Businesses](https://neofidu.ch/entreprises) ([EN](https://neofidu.ch/en/entreprises)): Accounting, VAT and corporate tax returns
-- [Associations and foundations](https://neofidu.ch/associations-fondations) ([EN](https://neofidu.ch/en/associations-fondations)): Services for non-profit organizations
-- [Free second opinion](https://neofidu.ch/second-avis) ([EN](https://neofidu.ch/en/second-avis)): Send your current fiduciary invoice and get an answer within 48 hours on whether you overpay
-- [Pricing](https://neofidu.ch/tarifs) ([EN](https://neofidu.ch/en/tarifs)): Full price list
-- [Submit a request](https://neofidu.ch/demande): Online form to request a service or a quote
-- [FAQ](https://neofidu.ch/faq) ([EN](https://neofidu.ch/en/faq))
+- [Tax returns for individuals](https://neofidu.ch/particuliers): Personal tax return preparation with cantonal expertise (VD, GE, VS, FR, NE, JU)
+- [Services for businesses](https://neofidu.ch/entreprises): Company creation, accounting, VAT registration, and corporate tax returns
+- [Services for associations and foundations](https://neofidu.ch/associations-fondations): Specialized services for non-profit organizations
+- [Pricing](https://neofidu.ch/tarifs): Transparent pricing for all services
+- [Submit a request](https://neofidu.ch/demande): Online form to request a quote or service
 
-## Data and reference pages
+## Free Tools
 
-- [Municipalities](https://neofidu.ch/communes) ([EN](https://neofidu.ch/en/communes)): Municipalities of the 6 cantons with tax coefficients, population and local data
-- [Canton pages](https://neofidu.ch/cantons): Tax information for [Vaud](https://neofidu.ch/cantons/vaud), [Geneva](https://neofidu.ch/cantons/geneve), [Valais](https://neofidu.ch/cantons/valais), [Fribourg](https://neofidu.ch/cantons/fribourg), [Neuchatel](https://neofidu.ch/cantons/neuchatel) and [Jura](https://neofidu.ch/cantons/jura)
-- [Business observatory](https://neofidu.ch/observatoire): Aggregate statistics on companies in French-speaking Switzerland by canton and legal form. Individual company pages have been removed (they return HTTP 410)
-- [Swiss debt clock](https://neofidu.ch/dette-suisse) ([EN](https://neofidu.ch/en/swiss-debt)): Federal debt, revenue and deficit in real time, based on the 2026 federal budget
+- [Tax simulator](https://neofidu.ch/simulateur/impots): Calculate your taxes by canton and municipality with real municipal coefficients
+- [Salary simulator](https://neofidu.ch/simulateur/salaire-net): Gross-to-net salary calculator with Swiss social contributions (AVS, AI, APG, AC, LPP)
+- [Company Observatory](https://neofidu.ch/observatoire): Database of 200,000+ companies in French-speaking Switzerland with sector classification, legal form, and headquarters data
+- [Municipality database](https://neofidu.ch/communes): 670 municipalities across 6 cantons with tax coefficients, population, density, real estate prices, and neighboring municipality comparisons
+
+## Tax return guides (step by step)
+
+- [VaudTax guide (FR)](https://neofidu.ch/guide/vaudtax): How to fill in the Vaud tax return in VaudTax, section by section, with official 2026 Vaud deduction amounts and return codes
+- [VaudTax guide (EN)](https://neofidu.ch/en/guide/vaudtax): English version for expats, quoting the French VaudTax labels
+- Chapters: before you start, personal situation and children, salary, work expenses, insurance and pillar 3a, accounts/securities/crypto, wealth and debts, housing, family deductions, training/medical/donations, checking and filing, source tax/TOU/quasi-residents/French cross-border workers (https://neofidu.ch/guide/vaudtax/<chapter>)
+- [GeTax guide (FR)](https://neofidu.ch/guide/getax): How to fill in the Geneva tax return in GeTax (desktop or online), screen by screen, with official 2026 Geneva deduction amounts and return codes (11.10, 31.50, 52.21, etc.)
+- [GeTax guide (EN)](https://neofidu.ch/en/guide/getax): English version for expats and cross-border workers, quoting the French GeTax labels with translations
+- Chapters: before you start, personal situation and children, salary, work expenses, pension savings (pillar 3a, 3a catch-up, buy-ins), accounts/securities/crypto, wealth and debts, property, deductions, source tax/TOU/quasi-residents/cross-border workers, checking and filing (https://neofidu.ch/guide/getax/<chapter>)
+- [VSTax guide (FR)](https://neofidu.ch/guide/vstax): How to fill in the Valais tax return in VSTax, form by form, with official 2026 Valais deduction amounts and return codes (310, 1910, 2560, etc.)
+- [VSTax guide (EN)](https://neofidu.ch/en/guide/vstax): English version for expats and holiday-home owners, quoting the French VSTax labels with translations
+- Chapters: before you start, personal situation and children, salary and pensions, work expenses, pension savings (pillar 3a, 3a catch-up, buy-ins, lump sums), accounts/securities/crypto, wealth and debts, property (holiday homes, furnished lets), deductions, source tax/TOU/quasi-residents, checking and filing (https://neofidu.ch/guide/vstax/<chapter>)
+- [FriTax guide (FR)](https://neofidu.ch/guide/fritax): How to fill in the Fribourg tax return in FriTax, section by section, with official 2026 Fribourg deduction amounts and return codes (1.110, 2.130, 4.110, 6.110, etc.)
+- [FriTax guide (EN)](https://neofidu.ch/en/guide/fritax): English version for expats, quoting the French FriTax labels with translations
+- Chapters: before you start (FriTax code, extensions), personal situation and children (boxes A/B/C), salary and pensions, work expenses (schedule 03), pension savings (pillar 3a, 3a catch-up, buy-ins, lump sums), accounts/securities/crypto (schedule 01, e-relevé), wealth and debts, property (schedule 04, upkeep, energy works), deductions, source tax/TOU/quasi-residents, checking and filing (72-hour correction window) (https://neofidu.ch/guide/fritax/<chapter>)
+
+## Canton Pages
+
+- [Vaud (VD)](https://neofidu.ch/cantons/vaud): Tax information for canton Vaud
+- [Geneva (GE)](https://neofidu.ch/cantons/geneve): Tax information for canton Geneva
+- [Valais (VS)](https://neofidu.ch/cantons/valais): Tax information for canton Valais
+- [Fribourg (FR)](https://neofidu.ch/cantons/fribourg): Tax information for canton Fribourg
+- [Neuchatel (NE)](https://neofidu.ch/cantons/neuchatel): Tax information for canton Neuchatel
+- [Jura (JU)](https://neofidu.ch/cantons/jura): Tax information for canton Jura
 
 ## Blog
 
-- [Blog](https://neofidu.ch/blog) ([EN](https://neofidu.ch/en/blog)): Articles on Swiss taxation, pensions, property, company creation and accounting
-- [Source tax in Switzerland, complete guide](https://neofidu.ch/blog/impot-source-suisse-guide-complet-2026)
-- [Cross-border workers and quasi-residents in Geneva](https://neofidu.ch/blog/frontalier-quasi-resident-geneve-guide-2026)
-- [First tax return in Switzerland, expat guide](https://neofidu.ch/blog/first-tax-return-switzerland-expat-guide)
-- [Declaring crypto assets in Switzerland](https://neofidu.ch/blog/declarer-cryptomonnaies-suisse-guide-2026)
-- [Pillar 3a: limits and benefits](https://neofidu.ch/blog/pilier-3a-2026-plafonds-avantages)
-- [Imputed rental value reform](https://neofidu.ch/blog/valeur-locative-suisse-reforme-2026)
-- [Property gains tax, complete guide](https://neofidu.ch/blog/impot-gain-immobilier-suisse-guide-complet)
-- [Individual taxation of married couples](https://neofidu.ch/blog/imposition-individuelle-couples-maries-suisse-2026)
-- [Sole proprietorship or Sarl: when to incorporate](https://neofidu.ch/blog/raison-individuelle-ou-sarl-quand-creer-structure)
-- [Bank fees for sole proprietorships compared](https://neofidu.ch/blog/frais-bancaires-raison-individuelle-comparatif)
+- [Blog](https://neofidu.ch/blog): Articles on Swiss taxation, company creation, accounting, and financial planning in French-speaking Switzerland
+
+## English Pages
+
+- [Municipality pages (EN)](https://neofidu.ch/en/communes/): English version of municipality pages with tax rates and local data
 
 ## Optional
 
-- [Homepage](https://neofidu.ch) ([EN](https://neofidu.ch/en))
-- [Request tracking](https://neofidu.ch/suivi): Track the status of a tax return or service request
-- [Contact](https://neofidu.ch/contact)
+- [Homepage](https://neofidu.ch): Main landing page with overview of all services
+- [Request tracking](https://neofidu.ch/suivi): Track the status of your tax return or service request

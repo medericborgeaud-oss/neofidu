@@ -30,6 +30,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/guide/vaudtax",
   "/guide/getax",
   "/guide/vstax",
+  "/guide/fritax",
   "/contact",
   "/independants",
   "/tarifs",
@@ -49,7 +50,7 @@ function enHrefFooter(href: string): string {
   if (href === "/suisses-etranger") return "/en/expats";
   if (href.startsWith("/conditions-generales#")) return "/en" + href;
   if (EN_TWIN_EXACT_FOOTER.has(href)) return "/en" + href;
-  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/") || href.startsWith("/guide/vstax/")) return "/en" + href;
+  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/") || href.startsWith("/guide/vstax/") || href.startsWith("/guide/fritax/")) return "/en" + href;
   return href;
 }
 
@@ -88,6 +89,7 @@ export function Footer() {
       { label: isEnglish ? "VaudTax guide (Vaud tax return)" : "Guide VaudTax", href: "/guide/vaudtax" },
       { label: isEnglish ? "GeTax guide (Geneva tax return)" : "Guide GeTax", href: "/guide/getax" },
       { label: isEnglish ? "VSTax guide (Valais tax return)" : "Guide VSTax", href: "/guide/vstax" },
+      { label: isEnglish ? "FriTax guide (Fribourg tax return)" : "Guide FriTax", href: "/guide/fritax" },
       { label: isEnglish ? "Tax deductions guide" : "Guide déductions fiscales", href: "/guide/deductions-fiscales" },
       { label: isEnglish ? "Withholding tax guide" : "Guide impôt à la source", href: "/blog/impot-source-suisse-guide-complet-2026" },
       { label: isEnglish ? "Start a business" : "Créer son entreprise", href: "/blog/creer-entreprise-suisse-2026" },
