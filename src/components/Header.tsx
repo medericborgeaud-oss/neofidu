@@ -34,6 +34,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/guide/vaudtax",
   "/guide/getax",
   "/guide/vstax",
+  "/guide/fritax",
   "/contact",
   "/independants",
   "/tarifs",
@@ -51,7 +52,7 @@ const EN_TWIN_EXACT = new Set<string>([
 function enHref(href: string): string {
   if (href === "/") return "/en";
   if (EN_TWIN_EXACT.has(href)) return "/en" + href;
-  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/") || href.startsWith("/guide/vstax/")) return "/en" + href;
+  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/") || href.startsWith("/guide/vstax/") || href.startsWith("/guide/fritax/")) return "/en" + href;
   return href;
 }
 
@@ -78,7 +79,7 @@ export function Header() {
     { href: "/simulateur/valeur-locative", label: isEnglish ? "Rental Value Calculator" : "Calculateur valeur locative", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/carte-impots", label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/gain-immobilier", label: isEnglish ? "Capital Gains Tax" : "Impôt gain immobilier", category: isEnglish ? "Tools" : "Outils" },
-    { href: "/simulateur/retraite", label: isEnglish ? "Retirement Simulator" : "Simulateur de retraite", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/simulateur-retraite", label: isEnglish ? "Retirement Simulator" : "Simulateur de retraite", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/baisse-loyer", label: isEnglish ? "Rent Reduction Calculator" : "Calculateur baisse de loyer", category: isEnglish ? "Tools" : "Outils" },
     { href: "/demande", label: isEnglish ? "Tax Return" : "Déclaration d'impôts", category: "Services" },
     { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },
@@ -96,6 +97,7 @@ export function Header() {
     { href: "/guide/vaudtax", label: isEnglish ? "VaudTax guide (Vaud tax return)" : "Guide VaudTax : remplir sa déclaration vaudoise", category: "Informations" },
     { href: "/guide/getax", label: isEnglish ? "GeTax guide (Geneva tax return)" : "Guide GeTax : remplir sa déclaration genevoise", category: "Informations" },
     { href: "/guide/vstax", label: isEnglish ? "VSTax guide (Valais tax return)" : "Guide VSTax : remplir sa déclaration valaisanne", category: "Informations" },
+    { href: "/guide/fritax", label: isEnglish ? "FriTax guide (Fribourg tax return)" : "Guide FriTax : remplir sa déclaration fribourgeoise", category: "Informations" },
     { href: isEnglish ? "/en/swiss-debt" : "/dette-suisse", label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse", category: "Informations" },
     { href: "/suivi", label: isEnglish ? "File Tracking" : "Suivi de dossier", category: "Informations" },
     { href: "/#about", label: isEnglish ? "About" : "À propos", category: "Informations" },
@@ -167,6 +169,12 @@ export function Header() {
       label: isEnglish ? "VSTax guide" : "Guide VSTax",
       icon: BookOpen,
       description: isEnglish ? "Fill in your Valais tax return" : "Remplir sa déclaration valaisanne",
+    },
+    {
+      href: "/guide/fritax",
+      label: isEnglish ? "FriTax guide" : "Guide FriTax",
+      icon: BookOpen,
+      description: isEnglish ? "Fill in your Fribourg tax return" : "Remplir sa déclaration fribourgeoise",
     },
     {
       href: "/guide/deductions-fiscales",

@@ -19,6 +19,7 @@ export const EN_TWIN_EXACT = new Set<string>([
   "/guide/getax",
   "/guide/vaudtax",
   "/guide/vstax",
+  "/guide/fritax",
   "/independants",
   "/mentions-legales",
   "/observatoire",
@@ -39,7 +40,7 @@ export const EN_TWIN_EXACT = new Set<string>([
 ]);
 
 // Sections dont toutes les sous-pages existent aussi sous /en.
-export const EN_TWIN_PREFIXES = ["/blog/", "/communes/", "/cantons/", "/guide/vaudtax/", "/guide/getax/", "/guide/vstax/"];
+export const EN_TWIN_PREFIXES = ["/blog/", "/communes/", "/cantons/", "/guide/vaudtax/", "/guide/getax/", "/guide/vstax/", "/guide/fritax/"];
 
 // Paires dont l'adresse diffère entre FR et EN.
 const FR_TO_EN_SPECIAL: Record<string, string> = {

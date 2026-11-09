@@ -45,16 +45,16 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
   ];
   const deadlines = [
     {
-      date: isEnglish ? "March 31, 2026" : "31 mars 2026",
-      description: isEnglish ? "Regular filing deadline" : "Délai ordinaire de dépôt"
+      date: isEnglish ? "March 31, 2027" : "31 mars 2027",
+      description: isEnglish ? "Regular filing deadline (2026 return)" : "Délai ordinaire de dépôt (déclaration 2026)"
     },
     {
-      date: isEnglish ? "June 30, 2026" : "30 juin 2026",
-      description: isEnglish ? "Extension on request" : "Prolongation sur demande"
+      date: isEnglish ? "June 30, 2027" : "30 juin 2027",
+      description: isEnglish ? "First extension by paying CHF 20 with the enclosed QR bill" : "Première prolongation en payant CHF 20 avec la QR-facture jointe"
     },
     {
-      date: isEnglish ? "September 30, 2026" : "30 septembre 2026",
-      description: isEnglish ? "Exceptional extension" : "Prolongation exceptionnelle"
+      date: isEnglish ? "December 15, 2027" : "15 décembre 2027",
+      description: isEnglish ? "Latest possible deadline (up to 4 extensions at CHF 20 each)" : "Délai ultime (jusqu'à 4 prolongations à CHF 20 chacune)"
     },
   ];
   const advantages = isEnglish ? [
@@ -75,15 +75,15 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Fribourg?",
-      answer: "The regular deadline is March 31, 2026. An extension until June 30 is possible upon request. In exceptional cases, a further extension until September 30 can be granted."
+      answer: "For the 2026 return, the deadline is the date printed on page 1, normally March 31, 2027. Paying CHF 20 with the enclosed QR bill moves it to June 30, with no written request. Further CHF 20 extensions to August 31, October 31 and December 15 are possible; no extension is granted beyond December 15."
     },
     {
       question: "Is Fribourg really advantageous for families?",
-      answer: "Yes, Fribourg is one of the most family-friendly cantons in Switzerland. You can deduct up to CHF 10,000 per child for childcare costs, and the deduction per dependent child is CHF 9,000 - among the highest in the country. Additional deductions exist for single-parent families."
+      answer: "Fribourg taxes couples and single-parent families with full splitting (the rate for 50% of their income). Childcare costs are deductible up to CHF 12,000 per child under 14, and the social deduction per child is CHF 8,600 (CHF 9,600 from the third child), reduced for higher incomes."
     },
     {
       question: "How does the FriTax software work?",
-      answer: "FriTax is the official software for filing tax returns in canton Fribourg. It is available in French and German, reflecting the bilingual nature of the canton. It can be downloaded from the cantonal tax administration website or used online."
+      answer: "FriTax is the free program of the Fribourg cantonal tax service, in French and German. You install it on Windows, macOS or Linux (there is no browser or tablet version), then file electronically with the 6-character FriTax code printed on your return folder. Our step-by-step FriTax guide explains every section."
     },
     {
       question: "What are the tax rates in Fribourg?",
@@ -91,28 +91,28 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "Can I declare my cryptocurrencies in Fribourg?",
-      answer: "Yes, cryptocurrencies must be declared as miscellaneous movable assets in your Fribourg tax return. Use the official AFC rate from ICTax or your exchange rate on December 31."
+      answer: "Yes, cryptocurrencies are declared in the FriTax securities list (schedule 01), one line per currency, at the official Federal Tax Administration rate (ICTax) on December 31, otherwise the platform's rate."
     }
   ] : [
     {
-      question: "Quel est le délai pour la déclaration d'impôts à Fribourg ?",
-      answer: "Le délai ordinaire est le 31 mars 2026. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas exceptionnels, un délai supplémentaire jusqu'au 30 septembre peut être accordé."
+      question: "Quel est le délai pour la déclaration d'impôts dans le canton de Fribourg ?",
+      answer: "Pour la déclaration 2026, le délai est la date imprimée en page 1, en principe le 31 mars 2027. En payant CHF 20 avec la QR-facture jointe, il passe au 30 juin, sans demande écrite. D'autres prolongations à CHF 20 sont possibles au 31 août, au 31 octobre et au 15 décembre ; aucune au-delà du 15 décembre."
     },
     {
-      question: "Fribourg est-il vraiment avantageux pour les familles ?",
-      answer: "Oui, Fribourg est l'un des cantons les plus favorables aux familles en Suisse. Vous pouvez déduire jusqu'à CHF 10'000 par enfant pour les frais de garde, et la déduction par enfant à charge est de CHF 9'000 - parmi les plus élevées du pays. Des déductions supplémentaires existent pour les familles monoparentales."
+      question: "Le canton de Fribourg est-il avantageux pour les familles ?",
+      answer: "Le canton de Fribourg impose les couples et les familles monoparentales selon le splitting intégral (taux correspondant à 50 % du revenu). Les frais de garde sont déductibles jusqu'à CHF 12'000 par enfant de moins de 14 ans, et la déduction sociale par enfant est de CHF 8'600 (CHF 9'600 dès le troisième), réduite pour les revenus plus élevés."
     },
     {
       question: "Comment fonctionne le logiciel FriTax ?",
-      answer: "FriTax est le logiciel officiel pour remplir sa déclaration dans le canton de Fribourg. Il est disponible en français et en allemand, reflétant le bilinguisme du canton. Il peut être téléchargé sur le site de l'administration fiscale cantonale ou utilisé en ligne."
+      answer: "FriTax est le programme gratuit du Service cantonal des contributions, en français et en allemand. Il s'installe sur Windows, macOS ou Linux (pas de version en ligne ni pour tablette), puis la déclaration s'envoie par internet avec le code FriTax de 6 caractères imprimé sur la fourre. Notre guide FriTax pas à pas détaille chaque rubrique."
     },
     {
       question: "Quels sont les taux d'imposition à Fribourg ?",
       answer: "Fribourg applique un système d'imposition progressif. Le taux marginal combiné (fédéral + cantonal + communal) varie selon la commune. La ville de Fribourg a des taux comparables à la moyenne suisse, tandis que certaines communes rurales offrent des taux nettement plus bas."
     },
     {
-      question: "Peut-on déclarer ses cryptomonnaies à Fribourg ?",
-      answer: "Oui, les cryptomonnaies doivent être déclarées dans la fortune mobilière diverse de votre déclaration fribourgeoise. Utilisez le cours officiel de l'AFC sur ICTax ou le cours de votre exchange au 31 décembre."
+      question: "Peut-on déclarer ses cryptomonnaies dans le canton de Fribourg ?",
+      answer: "Oui, les cryptomonnaies se déclarent dans l'état des titres de FriTax (annexe 01), une ligne par monnaie, au cours officiel de l'AFC (ICTax) au 31 décembre, à défaut au cours de la plateforme."
     }
   ];
   return (
@@ -291,7 +291,7 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
           <div className="flex items-center gap-3 mb-8">
             <Shield className="w-8 h-8 text-primary" />
             <h2 className="text-3xl font-bold">
-              {isEnglish ? "Main Tax Deductions in Fribourg" : "Principales déductions fiscales à Fribourg"}
+              {isEnglish ? "Main Tax Deductions in Fribourg" : "Principales déductions fiscales dans le canton de Fribourg"}
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -299,16 +299,16 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Childcare costs" : "Frais de garde d'enfants"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Up to CHF 10,000 per child per year for third-party childcare (daycare, nanny, after-school care). One of the highest caps in Switzerland."
-                  : "Jusqu'à CHF 10'000 par enfant et par an pour la garde par des tiers (crèche, nounou, parascolaire). L'un des plafonds les plus élevés de Suisse."}
+                  ? "Up to CHF 12,000 per child under 14 per year for third-party childcare (daycare, childminder, after-school care), if both parents or the single parent work (code 4.380)."
+                  : "Jusqu'à CHF 12'000 par enfant de moins de 14 ans et par an pour la garde par des tiers (crèche, maman de jour, accueil extrascolaire), si les deux parents ou le parent seul travaillent (code 4.380)."}
               </p>
             </Card>
             <Card className="p-6">
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Child deduction" : "Déduction par enfant"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "CHF 9,000 per dependent child - a generous amount that significantly reduces taxable income for families."
-                  : "CHF 9'000 par enfant à charge - un montant généreux qui réduit significativement le revenu imposable des familles."}
+                  ? "CHF 8,600 per child (CHF 9,600 from the third), reduced by CHF 100 per CHF 1,000 of net income above CHF 62,700, minimum CHF 7,100 (code 6.110)."
+                  : "CHF 8'600 par enfant (CHF 9'600 dès le troisième), réduite de CHF 100 par tranche de CHF 1'000 de revenu net au-delà de CHF 62'700, au minimum CHF 7'100 (code 6.110)."}
               </p>
             </Card>
             <Card className="p-6">
@@ -400,11 +400,15 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
               </h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li>• <strong>{isEnglish ? "Families" : "Familles"}</strong> : {isEnglish ? "among the most generous deductions" : "déductions parmi les plus généreuses"}</li>
-                <li>• <strong>FriTax</strong> : {isEnglish ? "bilingual cantonal software" : "logiciel cantonal bilingue"}</li>
-                <li>• <strong>{isEnglish ? "Childcare costs" : "Frais de garde"}</strong> : {isEnglish ? "up to CHF 10,000/child" : "jusqu'à 10'000 CHF/enfant"}</li>
+                <li>• <strong>FriTax</strong> : {isEnglish ? "free bilingual program, electronic filing without signature" : "programme gratuit bilingue, envoi électronique sans signature"}</li>
+                <li>• <strong>{isEnglish ? "Childcare costs" : "Frais de garde"}</strong> : {isEnglish ? "up to CHF 12,000/child" : "jusqu'à CHF 12'000 par enfant"}</li>
                 <li>• <strong>{isEnglish ? "Bilingual" : "Bilingue"}</strong> : {isEnglish ? "French and German" : "français et allemand"}</li>
                 <li>• <strong>{isEnglish ? "Education" : "Formation"}</strong> : {isEnglish ? "deductions for studies" : "déductions pour études"}</li>
               </ul>
+              <Link href={isEnglish ? "/en/guide/fritax" : "/guide/fritax"} className="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+                <ArrowRight className="w-4 h-4" />
+                {isEnglish ? "Fill in your return with FriTax: the complete guide" : "Remplir sa déclaration avec FriTax : le guide complet"}
+              </Link>
             </Card>
           </div>
         </div>
@@ -463,6 +467,12 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
                 {isEnglish ? "Useful guides" : "Guides utiles"}
               </h3>
               <ul className="space-y-3">
+                <li>
+                  <Link href={isEnglish ? "/en/guide/fritax" : "/guide/fritax"} className="text-primary hover:underline flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    {isEnglish ? "FriTax guide: step by step" : "Guide FriTax pas à pas"}
+                  </Link>
+                </li>
                 <li>
                   <Link href="/guide/deductions-fiscales" className="text-primary hover:underline flex items-center gap-2">
                     <ArrowRight className="w-4 h-4" />
