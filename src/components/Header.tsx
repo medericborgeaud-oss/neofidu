@@ -78,7 +78,7 @@ export function Header() {
     { href: "/simulateur/valeur-locative", label: isEnglish ? "Rental Value Calculator" : "Calculateur valeur locative", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/carte-impots", label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/gain-immobilier", label: isEnglish ? "Capital Gains Tax" : "Impôt gain immobilier", category: isEnglish ? "Tools" : "Outils" },
-    { href: "/simulateur/simulateur-retraite", label: isEnglish ? "Retirement Simulator" : "Simulateur de retraite", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/retraite", label: isEnglish ? "Retirement Simulator" : "Simulateur de retraite", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/baisse-loyer", label: isEnglish ? "Rent Reduction Calculator" : "Calculateur baisse de loyer", category: isEnglish ? "Tools" : "Outils" },
     { href: "/demande", label: isEnglish ? "Tax Return" : "Déclaration d'impôts", category: "Services" },
     { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },

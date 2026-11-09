@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fiduciaire pour PME & Sociétés en Suisse | Comptabilité & Fiscalité",
+  title: "Fiduciaire pour PME et sociétés en Suisse romande",
   description:
     "Comptabilité, salaires, TVA et fiscalité pour PME, Sàrl et SA en Suisse romande. Fiduciaire en ligne, forfaits clairs et accompagnement dédié.",
   keywords: [

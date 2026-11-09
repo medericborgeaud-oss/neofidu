@@ -30,6 +30,7 @@ import {
   getCommuneBySlug,
   getCommunesVoisines,
   CANTON_NAMES,
+  CANTON_SLUG,
   formatPopulation,
   formatTaux,
   formatDensite,
@@ -66,11 +67,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://neofidu.ch/communes/${params.slug}`;
 
   return {
-    title: `Impots a ${commune.nom} (${cantonName}) -- Taux, coefficient fiscal`,
-    description: `Impots a ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Comparez la fiscalite avec les communes voisines.`,
+    title: `Impôts à ${commune.nom} (${commune.canton}) : taux et coefficient`,
+    description: `Impôts à ${commune.nom}, canton de ${cantonName}. ${parts.join(", ")}. Comparez la fiscalité avec les communes voisines.`,
     openGraph: {
-      title: `Impots a ${commune.nom} (${cantonName})`,
-      description: `Fiscalite de ${commune.nom} : ${parts.join(", ")}. Comparez avec les communes voisines.`,
+      title: `Impôts à ${commune.nom} (${cantonName})`,
+      description: `Fiscalité de ${commune.nom} : ${parts.join(", ")}. Comparez avec les communes voisines.`,
     },
     alternates: {
       canonical: canonicalUrl,
@@ -425,13 +426,13 @@ export default async function CommunePage({ params }: Props) {
                 <p className="text-sm font-medium text-emerald-800">Calculez votre impot exact</p>
                 <p className="text-xs text-emerald-600">Simulateur gratuit avec les taux de {commune.nom}</p>
               </div>
-              <Link href={`/simulateur-impots?commune=${encodeURIComponent(commune.slug || "")}`}>
+              <Link href={`/simulateur/impots?commune=${encodeURIComponent(commune.slug || "")}`}>
                 <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Simuler mes impots</Button>
               </Link>
             </div>
             <p className="text-xs text-gray-400 mt-3">
               En Suisse, l&apos;impot est calcule en appliquant ces coefficients sur un bareme progressif cantonal, pas directement sur le revenu.{" "}
-              <Link href="/simulateur-impots" className="text-blue-600 underline">En savoir plus</Link>
+              <Link href="/simulateur/impots" className="text-blue-600 underline">En savoir plus</Link>
             </p>
           </Card>
         </section>
@@ -517,7 +518,7 @@ export default async function CommunePage({ params }: Props) {
               </div>
               <p className="text-xs text-gray-400 mt-3">
                 Montants indicatifs pour l&apos;annee fiscale en cours.{" "}
-                <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-blue-600 underline">Page canton {commune.canton}</Link>
+                <Link href={`/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-blue-600 underline">Page canton {commune.canton}</Link>
               </p>
             </Card>
           </section>
@@ -590,9 +591,9 @@ export default async function CommunePage({ params }: Props) {
         {/* Maillage interne */}
         <section className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex flex-wrap gap-2">
-            <Link href="/simulateur-impots" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Simulateur fiscal</Link>
-            <Link href="/simulateur-salaire" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Simulateur de salaire</Link>
-            <Link href={`/cantons/${commune.canton.toLowerCase()}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
+            <Link href="/simulateur/impots" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Simulateur fiscal</Link>
+            <Link href="/simulateur/salaire-net" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Simulateur de salaire</Link>
+            <Link href={`/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
             <Link href="/communes" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Toutes les communes</Link>
             <Link href="/particuliers" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Declaration fiscale</Link>
           </div>

@@ -56,6 +56,16 @@ export interface CommunesStats {
 
 export const CANTONS_ROMANDS = ["VD", "GE", "VS", "FR", "NE", "JU"];
 
+// Slugs des pages /cantons/<slug> (codes VD, GE... -> noms d'URL)
+export const CANTON_SLUG: Record<string, string> = {
+  VD: "vaud",
+  GE: "geneve",
+  VS: "valais",
+  FR: "fribourg",
+  NE: "neuchatel",
+  JU: "jura",
+};
+
 export const CANTON_NAMES: Record<string, string> = {
   VD: "Vaud",
   GE: "Genève",

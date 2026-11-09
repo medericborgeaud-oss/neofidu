@@ -8,7 +8,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: { absolute: "Municipalities of French-speaking Switzerland: taxes, population, companies | NeoFidu" },
+  title: { absolute: "Municipalities of French-speaking Switzerland | NeoFidu" },
   description:
     "Explore the municipalities of French-speaking Switzerland. Compare tax coefficients, population and the number of companies per municipality.",
   alternates: {

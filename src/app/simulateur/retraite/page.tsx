@@ -7,7 +7,7 @@ import { SimulatorCTA } from "@/components/SimulatorCTA";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Simulateur Retraite Suisse 2026 | AVS, LPP, 3e pilier",
+  title: { absolute: "Simulateur retraite 2026 : AVS, LPP, 3e pilier | NeoFidu" },
   description:
     "Estimez votre revenu à la retraite en Suisse : rente AVS, capital LPP (2e pilier) et 3e pilier. Simulateur gratuit et instantané, paramètres 2026.",
   keywords: [

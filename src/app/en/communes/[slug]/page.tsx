@@ -16,6 +16,7 @@ import { CantonFlag } from "@/components/CantonFlag";
 import CommuneMedia from "@/components/CommuneMedia";
 import {
   getCommuneBySlug, getCommunesVoisines, CANTON_NAMES,
+  CANTON_SLUG,
   formatPopulation, formatTaux, formatDensite, getCompanyCountByCommune,
 } from "@/lib/communes";
 
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://neofidu.ch/en/communes/${params.slug}`;
 
   return {
-    title: `Taxes in ${commune.nom} (${cantonName}) - Rate & municipal coefficient`,
+    title: `Taxes in ${commune.nom} (${commune.canton}): rate and coefficient`,
     description: `Taxes in ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Compare taxation with neighbouring municipalities.`,
     openGraph: {
       title: `Taxes in ${commune.nom} (${cantonName})`,
@@ -435,7 +436,7 @@ export default async function CommunePageEN({ params }: Props) {
               </div>
               <p className="text-xs text-gray-400 mt-3">
                 Indicative amounts for the current fiscal year.{" "}
-                <Link href={`/en/cantons/${commune.canton.toLowerCase()}`} className="text-blue-600 underline">Canton {commune.canton} page</Link>
+                <Link href={`/en/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-blue-600 underline">Canton {commune.canton} page</Link>
               </p>
             </Card>
           </section>
@@ -507,7 +508,7 @@ export default async function CommunePageEN({ params }: Props) {
           <div className="flex flex-wrap gap-2">
             <Link href="/en/simulateur/impots" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Tax simulator</Link>
             <Link href="/en/simulateur/salaire-net" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Salary simulator</Link>
-            <Link href={`/en/cantons/${commune.canton.toLowerCase()}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
+            <Link href={`/en/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
             <Link href="/en/communes" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">All municipalities</Link>
             <Link href="/en" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Tax return</Link>
           </div>

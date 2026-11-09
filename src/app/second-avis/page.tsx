@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Second avis gratuit sur votre facture de fiduciaire | NeoFidu",
+  title: "Second avis gratuit sur votre facture de fiduciaire",
   description:
     "Payez-vous trop cher votre fiduciaire ? Envoyez votre dernière facture, on vous dit en 48h si vous pouvez économiser. Gratuit, confidentiel, sans engagement.",
   alternates: {

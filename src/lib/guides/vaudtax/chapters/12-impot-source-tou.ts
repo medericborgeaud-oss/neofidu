@@ -6,7 +6,7 @@ export const impotSource: GuideChapter = {
   fr: {
     title: "Impôt à la source dans le canton de Vaud : TOU, nouveau calcul, quasi-résidents et frontaliers",
     navTitle: "Impôt à la source et TOU",
-    metaTitle: "Impôt à la source Vaud 2026 : TOU, nouveau calcul, quasi-résident, frontalier",
+    metaTitle: "Impôt à la source 2026 (VD) : TOU et quasi-résidents",
     metaDescription:
       "Quand remplir une déclaration VaudTax si vous êtes imposé à la source : TOU obligatoire dès CHF 120'000, TOU sur demande avant le 31 mars (formulaire 21049), nouveau calcul, quasi-résidents à 90 % et frontaliers de France.",
     keywords: [

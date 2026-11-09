@@ -1,3 +1,4 @@
+import { blogMetaTitle } from "@/lib/blog-seo-titles";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogArticles, blogCategories, BlogArticle } from "@/lib/blog-data";
@@ -46,13 +47,13 @@ export async function generateMetadata({
     : baseKeywords;
 
   // Use French title with Neofidu branding for better SEO
-  const seoTitle = `${article.title} | NeoFidu`;
+  const seoTitle = blogMetaTitle(article.slug, article.title, "fr");
 
   // Use French description for meta (primary audience is French-speaking Switzerland)
   const seoDescription = article.excerpt;
 
   return {
-    title: seoTitle,
+    title: { absolute: seoTitle },
     description: seoDescription,
     keywords: allKeywords,
     authors: [{ name: "NeoFidu" }],

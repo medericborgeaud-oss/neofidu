@@ -8,7 +8,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Communes romandes - Fiscalité, population, entreprises | NeoFidu",
+  title: "Communes romandes : fiscalité, population, entreprises",
   description:
     "Explorez les 1'098 communes de Suisse romande. Comparez les coefficients d'imposition, la population et le nombre d'entreprises par commune.",
   alternates: {

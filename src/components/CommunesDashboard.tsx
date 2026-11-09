@@ -112,7 +112,7 @@ export function CommunesDashboard({
             </div>
           </div>
         )}
-        <Link href={en ? "/en/simulateur/impots" : "/simulateur-impots"} className="bg-emerald-50 rounded-xl px-4 py-3 hover:bg-emerald-100 transition-colors group">
+        <Link href={en ? "/en/simulateur/impots" : "/simulateur/impots"} className="bg-emerald-50 rounded-xl px-4 py-3 hover:bg-emerald-100 transition-colors group">
           <p className="text-[10px] uppercase tracking-wide text-emerald-500 flex items-center gap-1 mb-1"><Calculator className="w-3 h-3" /> {en ? "Free tool" : "Outil gratuit"}</p>
           <p className="text-sm font-semibold text-emerald-700 group-hover:text-emerald-800">{en ? "Estimate my taxes" : "Simuler mes impots"}</p>
           <p className="text-[10px] text-emerald-500">{en ? "Estimate by municipality" : "Estimation par commune"}</p>

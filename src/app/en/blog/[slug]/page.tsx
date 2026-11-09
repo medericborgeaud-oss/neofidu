@@ -1,3 +1,4 @@
+import { blogMetaTitle } from "@/lib/blog-seo-titles";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogArticles, blogCategories, BlogArticle } from "@/lib/blog-data";
@@ -45,11 +46,11 @@ export async function generateMetadata({
     ? [...article.keywords, ...baseKeywords]
     : baseKeywords;
 
-  const seoTitle = title;
+  const seoTitle = blogMetaTitle(article.slug, title, "en");
   const seoDescription = excerpt;
 
   return {
-    title: seoTitle,
+    title: { absolute: seoTitle },
     description: seoDescription,
     keywords: allKeywords,
     authors: [{ name: "NeoFidu" }],
