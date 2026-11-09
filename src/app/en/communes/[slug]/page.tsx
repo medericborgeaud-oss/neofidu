@@ -18,9 +18,16 @@ import {
   getCommuneBySlug, getCommunesVoisines, CANTON_NAMES,
   CANTON_SLUG,
   formatPopulation, formatTaux, formatDensite, getCompanyCountByCommune,
+  getAllCommuneSlugs,
 } from "@/lib/communes";
 
-export const revalidate = 3600;
+// ISR : pages pre-generees au build comme la version FR (le rendu a froid prenait 20 a 80 s).
+export const revalidate = 86400; // 24 h
+
+export async function generateStaticParams() {
+  const slugs = await getAllCommuneSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
 
 interface Props {
   params: { slug: string };
