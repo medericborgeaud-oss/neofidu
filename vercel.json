@@ -159,6 +159,36 @@
       "source": "/en/cantons/ju",
       "destination": "/en/cantons/jura",
       "permanent": true
+    },
+    {
+      "source": "/expats",
+      "destination": "/en/expats",
+      "permanent": true
+    },
+    {
+      "source": "/blog/carf-2026-fin-secret-crypto-suisse",
+      "destination": "/blog/echange-automatique-crypto-suisse-2026-fin-anonymat",
+      "permanent": true
+    },
+    {
+      "source": "/blog/expatries-suisse-fiscalite",
+      "destination": "/blog/first-tax-return-switzerland-expat-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fiscalite-impots-suisse",
+      "destination": "/blog/declaration-impots-2025-guide-complet",
+      "permanent": true
+    },
+    {
+      "source": "/blog/immobilier",
+      "destination": "/blog/hypotheque-suisse-fonctionnement-specificites",
+      "permanent": true
+    },
+    {
+      "source": "/blog/premiere-declaration-impots-suisse-guide",
+      "destination": "/blog/comment-remplir-declaration-impot-en-ligne-guide",
+      "permanent": true
     }
   ]
 }
