@@ -74,6 +74,91 @@
       "source": "/guide",
       "destination": "/guide/deductions-fiscales",
       "permanent": true
+    },
+    {
+      "source": "/gerance-immobiliere",
+      "destination": "/entreprises",
+      "permanent": true
+    },
+    {
+      "source": "/simulateur-retraite",
+      "destination": "/simulateur/retraite",
+      "permanent": true
+    },
+    {
+      "source": "/simulateur/simulateur-retraite",
+      "destination": "/simulateur/retraite",
+      "permanent": true
+    },
+    {
+      "source": "/simulateur-impots",
+      "destination": "/simulateur/impots",
+      "permanent": true
+    },
+    {
+      "source": "/simulateur-salaire",
+      "destination": "/simulateur/salaire-net",
+      "permanent": true
+    },
+    {
+      "source": "/cantons/vd",
+      "destination": "/cantons/vaud",
+      "permanent": true
+    },
+    {
+      "source": "/en/cantons/vd",
+      "destination": "/en/cantons/vaud",
+      "permanent": true
+    },
+    {
+      "source": "/cantons/ge",
+      "destination": "/cantons/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/en/cantons/ge",
+      "destination": "/en/cantons/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/cantons/vs",
+      "destination": "/cantons/valais",
+      "permanent": true
+    },
+    {
+      "source": "/en/cantons/vs",
+      "destination": "/en/cantons/valais",
+      "permanent": true
+    },
+    {
+      "source": "/cantons/fr",
+      "destination": "/cantons/fribourg",
+      "permanent": true
+    },
+    {
+      "source": "/en/cantons/fr",
+      "destination": "/en/cantons/fribourg",
+      "permanent": true
+    },
+    {
+      "source": "/cantons/ne",
+      "destination": "/cantons/neuchatel",
+      "permanent": true
+    },
+    {
+      "source": "/en/cantons/ne",
+      "destination": "/en/cantons/neuchatel",
+      "permanent": true
+    },
+    {
+      "source": "/cantons/ju",
+      "destination": "/cantons/jura",
+      "permanent": true
+    },
+    {
+      "source": "/en/cantons/ju",
+      "destination": "/en/cantons/jura",
+      "permanent": true
     }
   ]
 }
