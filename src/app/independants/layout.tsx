@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Comptabilité Indépendants & Freelances | Vaud, Genève, Valais",
+  title: "Comptabilité pour indépendants en Suisse romande",
   description:
     "Fiduciaire digitale pour indépendants et freelances dans les cantons de Vaud, de Genève et du Valais. Comptabilité, déclaration d'impôts, TVA. Devis gratuit.",
   keywords: [
