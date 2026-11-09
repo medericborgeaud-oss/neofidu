@@ -494,7 +494,7 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog/premiere-declaration-impots-suisse-guide" className="text-primary hover:underline flex items-center gap-2">
+                  <Link href="/blog/comment-remplir-declaration-impot-en-ligne-guide" className="text-primary hover:underline flex items-center gap-2">
                     <ArrowRight className="w-4 h-4" />
                     {isEnglish ? "First tax return guide" : "Première déclaration d'impôts"}
                   </Link>
