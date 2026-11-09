@@ -6,7 +6,7 @@ export const deductions: GuideChapter = {
   fr: {
     title: "Déductions dans VSTax : primes d'assurance, frais médicaux, dons, formation et double revenu",
     navTitle: "Déductions",
-    metaTitle: "VSTax 2026 : primes d'assurance, frais médicaux, dons et autres déductions",
+    metaTitle: "VSTax 2026 : assurances, frais médicaux, dons et déductions",
     metaDescription:
       "Primes d'assurance-maladie et intérêts d'épargne (code 2560, CHF 7'600 couple), frais médicaux au-delà de 2 % (2565), dons (2570), formation (2581, CHF 12'550), déduction de CHF 7'000 pour couples à deux revenus et nouvelles déductions 2026 en Valais.",
     keywords: [
@@ -155,7 +155,7 @@ export const deductions: GuideChapter = {
   en: {
     title: "Deductions in VSTax: insurance premiums, medical costs, donations, training and two-income couples",
     navTitle: "Deductions",
-    metaTitle: "VSTax 2026: insurance premiums, medical costs, donations and other deductions",
+    metaTitle: "VSTax 2026: insurance, medical costs and other deductions",
     metaDescription:
       "Health insurance premiums and savings interest (code 2560, CHF 7,600 for couples), medical costs above 2% (2565), donations (2570), training (2581, CHF 12,550), the CHF 7,000 two-income deduction and new 2026 deductions in Valais.",
     keywords: [

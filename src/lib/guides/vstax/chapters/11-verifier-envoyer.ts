@@ -6,7 +6,7 @@ export const verifierEnvoyer: GuideChapter = {
   fr: {
     title: "Vérifier et transmettre sa déclaration VSTax : validation, calcul d'impôt, justificatifs et envoi sans signature",
     navTitle: "Vérifier et transmettre",
-    metaTitle: "VSTax : valider, joindre les justificatifs et transmettre sans signature",
+    metaTitle: "VSTax : valider, joindre les justificatifs et transmettre",
     metaDescription:
       "Valider la déclaration VSTax, lancer le calcul estimatif de l'impôt, joindre les justificatifs (PDF ou VSTax-QR avec Tell Tax) et transmettre par internet sans signature, avec 15 jours pour corriger.",
     keywords: [
