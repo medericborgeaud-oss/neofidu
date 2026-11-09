@@ -581,7 +581,7 @@ export default async function CommunePage({ params }: Props) {
                 <h3 className="text-sm font-medium text-gray-800">Comment faire sa déclaration d&apos;impôts à {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
                   Les habitants de {commune.nom} peuvent confier leur déclaration fiscale à{" "}
-                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, fiduciaire en ligne suisse, des CHF 149.
+                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, fiduciaire en ligne suisse, dès CHF 149.
                 </p>
               </div>
             </div>
