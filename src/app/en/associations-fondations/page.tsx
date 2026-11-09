@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AssociationsFondationsContent } from "../../associations-fondations/page";
 
 export const metadata: Metadata = {
-  title: "Accounting & Tax for Associations and Foundations in Switzerland",
+  title: "Accounting and Tax for Swiss Associations and Foundations",
   description:
     "Online fiduciary for Swiss associations and foundations: bookkeeping, annual accounts, tax exemption, VAT and reporting in French-speaking Switzerland. Service available in English.",
   keywords: [
