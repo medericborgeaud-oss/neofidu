@@ -153,7 +153,12 @@ export default async function CommunePageEN({ params }: Props) {
 
   const voisines = await getCommunesVoisines(params.slug);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
-  const companyCount = await getCompanyCountByCommune(commune.nom, commune.canton);
+  // Same as the FR page: use the precomputed column, live count only as a fallback
+  // (the live ilike count was what made these pages take 20-80 s to render).
+  const companyCount =
+    typeof commune.nb_entreprises === "number"
+      ? commune.nb_entreprises
+      : await getCompanyCountByCommune(commune.nom, commune.canton);
 
   const CANTON_THRESHOLDS: Record<string, { low: number; mid: number }> = {
     VD: { low: 54, mid: 65 }, GE: { low: 35, mid: 44 }, VS: { low: 120, mid: 135 },
