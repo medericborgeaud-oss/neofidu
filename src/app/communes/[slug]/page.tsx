@@ -554,7 +554,7 @@ export default async function CommunePage({ params }: Props) {
                     name: `Comment faire sa déclaration d'impôts à ${commune.nom} ?`,
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: `Les habitants de ${commune.nom} (${commune.canton}) peuvent faire appel à NeoFidu, fiduciaire en ligne, pour leur déclaration fiscale dès CHF 149.`,
+                      text: `Les habitants de ${commune.nom} (${commune.canton}) peuvent faire appel à NeoFidu, fiduciaire en ligne, pour leur déclaration fiscale dès CHF 89.`,
                     },
                   },
                 ],
@@ -581,7 +581,7 @@ export default async function CommunePage({ params }: Props) {
                 <h3 className="text-sm font-medium text-gray-800">Comment faire sa déclaration d&apos;impôts à {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
                   Les habitants de {commune.nom} peuvent confier leur déclaration fiscale à{" "}
-                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, fiduciaire en ligne suisse, dès CHF 149.
+                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, fiduciaire en ligne suisse, dès CHF 89.
                 </p>
               </div>
             </div>
