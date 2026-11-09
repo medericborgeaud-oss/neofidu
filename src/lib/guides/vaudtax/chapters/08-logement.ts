@@ -131,7 +131,7 @@ export const logement: GuideChapter = {
   en: {
     title: "Housing in VaudTax: tenant deduction, imputed rental value and maintenance costs",
     navTitle: "Housing: tenant or owner",
-    metaTitle: "VaudTax: rent deduction, imputed rental value and maintenance (English)",
+    metaTitle: "VaudTax: rent, imputed rental value and maintenance",
     metaDescription:
       "Tenants: the Vaud housing deduction (code 660). Owners: imputed rental value, 20% or 30% flat maintenance deduction, actual costs and mortgage interest.",
     keywords: [
