@@ -46,6 +46,7 @@ function calculateReduction(oldRate: number, newRate: number): number {
 
 export function BaiseLoyerCalculator() {
   const { isEnglish } = useLanguage();
+  const TitleTag = isEnglish ? "h1" : "h2";
   const [entryDate, setEntryDate] = useState("");
   const [currentRent, setCurrentRent] = useState("");
   const [lastAdjustmentRate, setLastAdjustmentRate] = useState<number | null>(null);
@@ -105,9 +106,10 @@ export function BaiseLoyerCalculator() {
             <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
               <Home className="w-8 h-8 text-primary" />
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            {/* La page FR a deja son H1 dans le hero : ici H1 seulement en anglais */}
+            <TitleTag className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               {isEnglish ? <>Rent Reduction <span className="text-gradient">Calculator</span></> : <>Calculateur de <span className="text-gradient">baisse de loyer</span></>}
-            </h1>
+            </TitleTag>
             <p className="text-muted-foreground text-lg">
               {isEnglish ? "Find out if you can request a rent reduction based on the Swiss mortgage reference rate." : "Calculez si vous pouvez demander une baisse de loyer selon le taux de référence hypothécaire suisse."}
             </p>
