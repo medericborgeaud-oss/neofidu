@@ -5,6 +5,9 @@ import { blogArticles, blogCategories, BlogArticle } from "@/lib/blog-data";
 import BlogArticleClient from "../../../blog/[slug]/BlogArticleClient";
 
 // Generate static paths for all blog articles (English routes)
+// Slugs inconnus : vrai 404 (sinon le loading.tsx racine fait renvoyer un 200 = soft 404)
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return blogArticles.map((article) => ({
     slug: article.slug,
