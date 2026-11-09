@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { countryPages, getCountryPage } from "@/lib/country-data";
 import CountryPageClient from "./CountryPageClient";
 
+// Slugs inconnus : vrai 404 (sinon le loading.tsx racine fait renvoyer un 200 = soft 404)
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return countryPages.map((c) => ({ pays: c.slug }));
 }
