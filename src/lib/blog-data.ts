@@ -1949,7 +1949,7 @@ Meilleures salutations,
 
 <br/>
 
-<h1><strong>🇫🇷 FRANÇAIS</strong></h1>
+<h2><strong>🇫🇷 FRANÇAIS</strong></h2>
 
 <br/>
 
@@ -2100,7 +2100,7 @@ Meilleures salutations,
 
 <hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;"/>
 
-<h1><strong>🇬🇧 ENGLISH</strong></h1>
+<h2><strong>🇬🇧 ENGLISH</strong></h2>
 
 <br/>
 
