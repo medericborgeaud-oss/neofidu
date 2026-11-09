@@ -120,25 +120,25 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportVelo: "CHF 700/an",
     transportPlafond: "Max CHF 7'000/an (tous modes confondus)",
     entretienImmo: "20% (<10 ans) ou 30% (>10 ans) de la valeur locative",
-    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   GE: {
     fraisRepas: "CHF 15/jour",
     transportTrain: "Frais effectifs (abonnement TPG, CFF)",
-    transportVoiture: "Frais effectifs justifies uniquement (pas de forfait km)",
-    transportVelo: "Non deductible",
+    transportVoiture: "Frais effectifs justifiés uniquement (pas de forfait km)",
+    transportVelo: "Non déductible",
     transportPlafond: "Pas de plafond fixe (frais effectifs)",
     entretienImmo: "Forfait 10% ou frais effectifs",
-    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   VS: {
     fraisRepas: "CHF 15/jour",
     transportTrain: "AG, demi-tarif ou abonnement de parcours",
     transportVoiture: "CHF 0.70/km",
     transportVelo: "Forfait admis",
-    transportPlafond: "Pas de plafond cantonal specifique",
+    transportPlafond: "Pas de plafond cantonal spécifique",
     entretienImmo: "10% de la valeur fiscale",
-    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   FR: {
     fraisRepas: "CHF 15/jour",
@@ -147,7 +147,7 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportVelo: "CHF 700/an",
     transportPlafond: "Max CHF 6'600/an",
     entretienImmo: "10% (<10 ans) ou 20% (>10 ans)",
-    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   NE: {
     fraisRepas: "CHF 15/jour",
@@ -156,7 +156,7 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportVelo: "CHF 700/an",
     transportPlafond: "Max CHF 6'000/an",
     entretienImmo: "20% ou frais effectifs",
-    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   JU: {
     fraisRepas: "CHF 15/jour",
@@ -165,7 +165,7 @@ const CANTON_DEDUCTIONS: Record<string, {
     transportVelo: "Admis sur justificatif",
     transportPlafond: "Pas de plafond fixe",
     entretienImmo: "Forfait 10% ou frais effectifs",
-    troisPilier: "CHF 7'258 (3a salarie) / CHF 36'288 (3a independant)",
+    troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
 };
 
@@ -221,23 +221,23 @@ export default async function CommunePage({ params }: Props) {
       : `Par rapport aux autres communes du canton de ${cantonName}, ${commune.nom} applique un coefficient communal relativement eleve.`;
 
   const ctaText = {
-    text: `Vous habitez a ${commune.nom} ?`,
-    offer: "Declaration d'impots des CHF 89.--",
+    text: `Vous habitez à ${commune.nom} ?`,
+    offer: "Déclaration d'impôts dès CHF 89.--",
     href: "/demande",
   };
 
   const districtText = commune.district ? ` dans le district de ${commune.district}` : "";
   const popSeoText = commune.population
-    ? ` Avec ${commune.population.toLocaleString("fr-CH")} habitants`
+    ? ` Elle compte ${commune.population.toLocaleString("fr-CH")} habitants`
     : "";
   const densiteSeoText = commune.densite
-    ? ` et une densite de ${Math.round(commune.densite)} hab./km2`
+    ? `${commune.population ? " pour une" : " Elle a une"} densité de ${Math.round(commune.densite)} hab./km²`
     : "";
   const tauxSeoText = commune.taux_commune
     ? `. Le coefficient communal est de ${commune.taux_commune}%`
     : "";
   const anneeSeoText = commune.annee_fiscale
-    ? ` (annee fiscale ${commune.annee_fiscale})`
+    ? ` (année fiscale ${commune.annee_fiscale})`
     : "";
 
   const seoDescription = `${commune.nom} est une commune du canton de ${cantonName}${districtText}.${popSeoText}${densiteSeoText}${tauxSeoText}${anneeSeoText}. ${attractiviteText}`;
@@ -281,7 +281,7 @@ export default async function CommunePage({ params }: Props) {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h1 className="text-2xl font-semibold text-gray-900 mb-1">
-                    Impots a {commune.nom}
+                    Impôts à {commune.nom}
                   </h1>
                   <p className="text-sm text-gray-500 mb-4">
                     {commune.district ? `${commune.district}, ` : ""}{cantonName}{commune.code_postal ? ` -- ${commune.code_postal}` : ""}
@@ -302,7 +302,7 @@ export default async function CommunePage({ params }: Props) {
                   <p className="text-sm font-medium text-gray-900">{commune.population ? commune.population.toLocaleString("fr-CH") : "--"}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Ruler className="w-3 h-3" /> Densite</div>
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-1"><Ruler className="w-3 h-3" /> Densité</div>
                   <p className="text-sm font-medium text-gray-900">{formatDensite(commune.densite)}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3">
@@ -314,7 +314,7 @@ export default async function CommunePage({ params }: Props) {
               {/* Fiscalite */}
               <div className="mb-6">
                 <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                  <TrendingDown className="w-4 h-4 text-emerald-500" /> Fiscalite de {commune.nom}
+                  <TrendingDown className="w-4 h-4 text-emerald-500" /> Fiscalité de {commune.nom}
                 </h2>
                 <div className="bg-gray-50 rounded-lg p-4">
                   <div className="grid grid-cols-2 gap-4">
@@ -324,7 +324,7 @@ export default async function CommunePage({ params }: Props) {
                     </div>
                   </div>
                   {commune.annee_fiscale && (
-                    <p className="text-xs text-gray-400 mt-3">Annee fiscale : {commune.annee_fiscale}</p>
+                    <p className="text-xs text-gray-400 mt-3">Année fiscale : {commune.annee_fiscale}</p>
                   )}
                   {commune.taux_commune === null && (
                     <p className="text-xs text-gray-400 mt-2 italic">Les taux d&apos;imposition seront ajoutes prochainement.</p>
@@ -336,7 +336,7 @@ export default async function CommunePage({ params }: Props) {
               {commune.secteur_dominant && (
                 <div className="mb-6">
                   <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-emerald-500" /> Economie
+                    <Building2 className="w-4 h-4 text-emerald-500" /> Économie
                   </h2>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <p className="text-sm text-gray-600">
@@ -355,7 +355,7 @@ export default async function CommunePage({ params }: Props) {
               {/* Immobilier */}
               {(commune.loyer_median_m2 || commune.prix_achat_m2) && (
                 <div className="mb-6">
-                  <h2 className="text-sm font-semibold text-gray-700 mb-3">Immobilier a {commune.nom}</h2>
+                  <h2 className="text-sm font-semibold text-gray-700 mb-3">Immobilier à {commune.nom}</h2>
                   <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
                     {commune.loyer_median_m2 && (
                       <div>
@@ -378,7 +378,7 @@ export default async function CommunePage({ params }: Props) {
               {voisines.length > 0 && (
                 <div className="mb-6">
                   <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-emerald-500" /> Comparer les impots : communes du meme district
+                    <Globe className="w-4 h-4 text-emerald-500" /> Comparer les impôts : communes du même district
                   </h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {voisines.map((v: any) => (
@@ -405,7 +405,7 @@ export default async function CommunePage({ params }: Props) {
                 </Link>
               </div>
 
-              <p className="text-center text-xs text-gray-400 mt-4">Source : OFS / LINDAS -- Code commune {commune.code_ofs}</p>
+              <p className="text-center text-xs text-gray-400 mt-4">Source : OFS / LINDAS, code commune {commune.code_ofs}</p>
             </div>
           </Card>
         </div>
@@ -415,23 +415,23 @@ export default async function CommunePage({ params }: Props) {
           <Card className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Calculator className="h-5 w-5 text-blue-600" />
-              <h2 className="text-lg font-semibold text-gray-900">Estimation fiscale a {commune.nom}</h2>
+              <h2 className="text-lg font-semibold text-gray-900">Estimation fiscale à {commune.nom}</h2>
             </div>
             <p className="text-sm text-gray-600 mb-4">
-              En Suisse, l&apos;impot est calcule en appliquant un coefficient communal et un taux cantonal sur un bareme progressif.
-              Le montant exact depend de votre revenu, de votre situation familiale et des deductions applicables.
+              En Suisse, l&apos;impôt est calculé en appliquant un coefficient communal et un taux cantonal sur un barème progressif.
+              Le montant exact dépend de votre revenu, de votre situation familiale et des déductions applicables.
             </p>
             <div className="bg-emerald-50 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div>
-                <p className="text-sm font-medium text-emerald-800">Calculez votre impot exact</p>
+                <p className="text-sm font-medium text-emerald-800">Calculez votre impôt exact</p>
                 <p className="text-xs text-emerald-600">Simulateur gratuit avec les taux de {commune.nom}</p>
               </div>
               <Link href={`/simulateur/impots?commune=${encodeURIComponent(commune.slug || "")}`}>
-                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Simuler mes impots</Button>
+                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Simuler mes impôts</Button>
               </Link>
             </div>
             <p className="text-xs text-gray-400 mt-3">
-              En Suisse, l&apos;impot est calcule en appliquant ces coefficients sur un bareme progressif cantonal, pas directement sur le revenu.{" "}
+              En Suisse, l&apos;impôt est calculé en appliquant ces coefficients sur un barème progressif cantonal, pas directement sur le revenu.{" "}
               <Link href="/simulateur/impots" className="text-blue-600 underline">En savoir plus</Link>
             </p>
           </Card>
@@ -442,13 +442,13 @@ export default async function CommunePage({ params }: Props) {
           <Card className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Landmark className="h-5 w-5 text-green-600" />
-              <h2 className="text-lg font-semibold text-gray-900">Tissu economique</h2>
+              <h2 className="text-lg font-semibold text-gray-900">Tissu économique</h2>
             </div>
             {companyCount > 0 ? (
               <div>
                 <p className="text-sm text-gray-600 mb-3">
                   <span className="text-2xl font-bold text-gray-900">{companyCount}</span>{" "}
-                  entreprises actives sont enregistrees dans cette commune.
+                  entreprises actives sont enregistrées dans cette commune.
                 </p>
                 <Link href={`/observatoire?commune=${commune.nom}`} className="text-sm text-blue-600 underline">
                   Voir les entreprises dans l&apos;Observatoire
@@ -469,7 +469,7 @@ export default async function CommunePage({ params }: Props) {
             <Card className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <HelpCircle className="h-5 w-5 text-purple-600" />
-                <h2 className="text-lg font-semibold text-gray-900">Principales deductions fiscales ({commune.canton})</h2>
+                <h2 className="text-lg font-semibold text-gray-900">Principales déductions fiscales ({commune.canton})</h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -498,7 +498,7 @@ export default async function CommunePage({ params }: Props) {
                       <td className="py-2">{CANTON_DEDUCTIONS[commune.canton].transportVoiture}</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-2 pl-4 flex items-center gap-2"><Bike className="w-3.5 h-3.5 text-green-500" /> Velo</td>
+                      <td className="py-2 pl-4 flex items-center gap-2"><Bike className="w-3.5 h-3.5 text-green-500" /> Vélo</td>
                       <td className="py-2">{CANTON_DEDUCTIONS[commune.canton].transportVelo}</td>
                     </tr>
                     <tr className="border-b">
@@ -517,7 +517,7 @@ export default async function CommunePage({ params }: Props) {
                 </table>
               </div>
               <p className="text-xs text-gray-400 mt-3">
-                Montants indicatifs pour l&apos;annee fiscale en cours.{" "}
+                Montants indicatifs pour l&apos;année fiscale en cours.{" "}
                 <Link href={`/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-blue-600 underline">Page canton {commune.canton}</Link>
               </p>
             </Card>
@@ -535,10 +535,10 @@ export default async function CommunePage({ params }: Props) {
                 mainEntity: [
                   {
                     "@type": "Question",
-                    name: `Quel est le taux d'imposition a ${commune.nom} ?`,
+                    name: `Quel est le taux d'imposition à ${commune.nom} ?`,
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: `Le coefficient communal a ${commune.nom} est de ${formatTaux(commune.taux_commune)}%. Ces coefficients s'appliquent sur l'impot de base cantonal.`,
+                      text: `Le coefficient communal à ${commune.nom} est de ${formatTaux(commune.taux_commune)}%. Ces coefficients s'appliquent sur l'impôt de base cantonal.`,
                     },
                   },
                   {
@@ -551,10 +551,10 @@ export default async function CommunePage({ params }: Props) {
                   },
                   {
                     "@type": "Question",
-                    name: `Comment faire sa declaration d'impots a ${commune.nom} ?`,
+                    name: `Comment faire sa déclaration d'impôts à ${commune.nom} ?`,
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: `Les habitants de ${commune.nom} (${commune.canton}) peuvent faire appel a NeoFidu, fiduciaire en ligne, pour leur declaration fiscale des CHF 149.`,
+                      text: `Les habitants de ${commune.nom} (${commune.canton}) peuvent faire appel à NeoFidu, fiduciaire en ligne, pour leur déclaration fiscale dès CHF 149.`,
                     },
                   },
                 ],
@@ -565,10 +565,10 @@ export default async function CommunePage({ params }: Props) {
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Questions frequentes</h2>
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-medium text-gray-800">Quel est le taux d&apos;imposition a {commune.nom} ?</h3>
+                <h3 className="text-sm font-medium text-gray-800">Quel est le taux d&apos;imposition à {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
                   Le coefficient communal est de {formatTaux(commune.taux_commune)}%.
-                  Ces coefficients s&apos;appliquent sur l&apos;impot de base cantonal (bareme progressif), et non directement sur votre revenu.
+                  Ces coefficients s&apos;appliquent sur l&apos;impôt de base cantonal (barème progressif), et non directement sur votre revenu.
                 </p>
               </div>
               <div>
@@ -578,10 +578,10 @@ export default async function CommunePage({ params }: Props) {
                 </p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-800">Comment faire sa declaration d&apos;impots a {commune.nom} ?</h3>
+                <h3 className="text-sm font-medium text-gray-800">Comment faire sa déclaration d&apos;impôts à {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  Les habitants de {commune.nom} peuvent confier leur declaration fiscale a{" "}
-                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, fiduciaire en ligne suisse, des CHF 149.
+                  Les habitants de {commune.nom} peuvent confier leur déclaration fiscale à{" "}
+                  <Link href="/particuliers" className="text-blue-600 underline">NeoFidu</Link>, fiduciaire en ligne suisse, dès CHF 149.
                 </p>
               </div>
             </div>
@@ -595,7 +595,7 @@ export default async function CommunePage({ params }: Props) {
             <Link href="/simulateur/salaire-net" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Simulateur de salaire</Link>
             <Link href={`/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Canton {commune.canton}</Link>
             <Link href="/communes" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Toutes les communes</Link>
-            <Link href="/particuliers" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Declaration fiscale</Link>
+            <Link href="/particuliers" className="text-xs bg-blue-50 text-blue-700 rounded-full px-3 py-1 hover:bg-blue-100">Déclaration fiscale</Link>
           </div>
         </section>
 
