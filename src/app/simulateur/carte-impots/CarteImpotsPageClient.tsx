@@ -41,11 +41,11 @@ export function CarteImpotsPageClient() {
               </span>
             </div>
 
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
               {t("simulators.taxMapPage.title")}
               <br />
               <span className="text-emerald-400">{t("simulators.taxMapPage.titleHighlight")}</span>
-            </h1>
+            </h2>
 
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
               {t("simulators.taxMapPage.description")}
