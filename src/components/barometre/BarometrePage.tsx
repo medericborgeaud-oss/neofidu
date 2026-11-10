@@ -159,33 +159,55 @@ export function BarometrePage({ lang }: { lang: Lang }) {
     return worst ? r.slice(-n).reverse() : r.slice(0, n);
   };
 
-  const MiniTable = ({ p, worst }: { p: (typeof PROFILS)[number]; worst?: boolean }) => {
-    const i = PROFILS.indexOf(p);
-    return (
-      <figure className="rounded-lg border border-border overflow-hidden">
-        <figcaption className="bg-muted/60 px-3 py-2 text-sm font-semibold text-foreground">
-          {PROFIL_LABELS[p][lang]}
-        </figcaption>
-        <ol className="text-sm">
-          {topN(p, 10, worst).map((c) => (
-            <li key={c.slug} className="flex items-center justify-between gap-3 border-t border-border px-3 py-1.5">
-              <span className="min-w-0 truncate">
-                {/* Rang avec ex aequo : 1 + nombre de communes strictement moins (ou plus) imposees */}
-                <span className="text-muted-foreground tabular-nums mr-2">
-                  {1 + BARO_COMMUNES.filter((o) => (worst ? o.totals[i] > c.totals[i] : o.totals[i] < c.totals[i])).length}.
-                </span>
+  // Un seul tableau par classement : chaque commune apparait une fois, classee selon le profil de
+  // reference (personne seule, CHF 100'000) ; les autres colonnes donnent la meme commune pour les autres profils.
+  const REF = PROFILS.indexOf("seul100");
+  // Colonne de reference en premier (visible sans defilement sur mobile)
+  const ORDER = [REF, ...PROFILS.map((_, i) => i).filter((i) => i !== REF)];
+  const RankTable = ({ worst }: { worst?: boolean }) => (
+    <div className="overflow-x-auto rounded-lg border border-border">
+      <table className="w-full text-sm min-w-[640px]">
+        <thead className="bg-muted/60">
+          <tr>
+            <th scope="col" className="px-3 py-2 text-left font-semibold w-14">{fr ? "Rang" : "Rank"}</th>
+            <th scope="col" className="px-3 py-2 text-left font-semibold">{fr ? "Commune" : "Municipality"}</th>
+            {ORDER.map((i) => shortLabels[i]).map((s, k) => (
+              <th
+                key={s}
+                scope="col"
+                className={`px-3 py-2 text-right font-semibold ${k === 0 ? "bg-primary/10 text-foreground" : ""}`}
+              >
+                {s}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {topN("seul100", 10, worst).map((c) => (
+            <tr key={c.slug} className="border-t border-border">
+              <td className="px-3 py-2 text-muted-foreground tabular-nums">
+                {1 + BARO_COMMUNES.filter((o) => (worst ? o.totals[REF] > c.totals[REF] : o.totals[REF] < c.totals[REF])).length}
+              </td>
+              <td className="px-3 py-2">
                 <Link href={`${base}/communes/${c.slug}`} className="text-primary hover:underline">
                   {c.nom}
                 </Link>{" "}
                 {!c.nom.endsWith(")") && <span className="text-muted-foreground">({c.canton})</span>}
-              </span>
-              <span className="tabular-nums font-medium whitespace-nowrap">CHF {l(c.totals[i])}</span>
-            </li>
+              </td>
+              {ORDER.map((i) => (
+                <td
+                  key={i}
+                  className={`px-3 py-2 text-right tabular-nums ${i === REF ? "bg-primary/5 font-semibold text-foreground" : "text-muted-foreground"}`}
+                >
+                  {l(c.totals[i])}
+                </td>
+              ))}
+            </tr>
           ))}
-        </ol>
-      </figure>
-    );
-  };
+        </tbody>
+      </table>
+    </div>
+  );
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -290,28 +312,34 @@ export function BarometrePage({ lang }: { lang: Lang }) {
               </table>
             </div>
 
-            <h2 id="moins-imposees" className="scroll-mt-24 text-2xl font-bold text-foreground mb-4">
+            <h2 id="moins-imposees" className="scroll-mt-24 text-2xl font-bold text-foreground mb-2">
               {fr ? "Les 10 communes les moins imposées" : "The 10 lowest-taxed municipalities"}
             </h2>
-            <div className="grid md:grid-cols-2 gap-4 mb-3">
-              {PROFILS.map((p) => (
-                <MiniTable key={p} p={p} />
-              ))}
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              {fr
+                ? "Classement pour une personne seule avec CHF 100'000 de salaire brut (première colonne de montants, en vert). Les autres colonnes donnent l'impôt de la même commune pour les autres profils, en CHF par an."
+                : "Ranking for a single person on a CHF 100,000 gross salary (first amount column, in green). The other columns show the same municipality's tax for the other profiles, in CHF per year."}
+            </p>
+            <div className="mb-10">
+              <RankTable />
+            </div>
+
+            <h2 id="plus-imposees" className="scroll-mt-24 text-2xl font-bold text-foreground mb-2">
+              {fr ? "Les 10 communes les plus imposées" : "The 10 highest-taxed municipalities"}
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              {fr
+                ? "Même lecture : classement pour une personne seule à CHF 100'000, rang 1 = la plus imposée."
+                : "Same reading: ranking for a single person on CHF 100,000, rank 1 = highest-taxed."}
+            </p>
+            <div className="mb-3">
+              <RankTable worst />
             </div>
             <p className="text-xs text-muted-foreground mb-10">
               {fr
-                ? "Les communes à égalité partagent le même rang (nombreuses communes valaisannes ont un coefficient identique)."
-                : "Municipalities with the same amount share the same rank (many Valais municipalities have identical coefficients)."}
+                ? "Les communes à égalité partagent le même rang. Le classement change selon le profil (les familles paient nettement moins dans les cantons du Valais et de Genève) : choisissez votre profil dans le classement complet ci-dessous."
+                : "Municipalities with the same amount share the same rank. The ranking changes with the profile (families pay much less in Valais and Geneva): pick your profile in the full ranking below."}
             </p>
-
-            <h2 id="plus-imposees" className="scroll-mt-24 text-2xl font-bold text-foreground mb-4">
-              {fr ? "Les 10 communes les plus imposées" : "The 10 highest-taxed municipalities"}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4 mb-10">
-              {PROFILS.map((p) => (
-                <MiniTable key={p} p={p} worst />
-              ))}
-            </div>
 
             <h2 id="villes" className="scroll-mt-24 text-2xl font-bold text-foreground mb-4">
               {fr ? "Les principales villes" : "Main towns"}
