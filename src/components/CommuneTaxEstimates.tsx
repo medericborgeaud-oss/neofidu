@@ -142,6 +142,13 @@ export function CommuneTaxEstimates({ lang, communeNom, communeSlug, cantonName,
           })}
         </ul>
 
+        <p className="text-sm mt-4">
+          <Link href={`${fr ? "" : "/en"}/barometre-fiscal`} className="text-blue-600 underline">
+            {fr
+              ? "Comparer avec les 657 communes romandes : baromètre fiscal 2026"
+              : "Compare with all 657 French-speaking municipalities: 2026 tax barometer"}
+          </Link>
+        </p>
         <p className="text-xs text-gray-500 mt-3 leading-relaxed">
           {fr ? (
             <>

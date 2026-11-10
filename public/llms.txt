@@ -6,6 +6,7 @@ Key information:
 
 - NeoFidu operates exclusively in French-speaking Switzerland (Suisse romande)
 - Tax returns start from CHF 89 for individuals, CHF 149 with optimization
+- Run by a certified Swiss fiduciary specialist with 10+ years of experience in French-speaking Swiss taxation
 - Company creation services from CHF 490
 - All services are delivered online by a certified Swiss fiduciary specialist
 - The site is primarily in French, with English versions of the tax return guides and municipality pages
@@ -18,15 +19,29 @@ Key information:
 - [Pricing](https://neofidu.ch/tarifs): Transparent pricing for all services
 - [Submit a request](https://neofidu.ch/demande): Online form to request a quote or service
 
-## Free Tools
+## Data: tax barometer and municipalities
 
-- [Tax simulator](https://neofidu.ch/simulateur/impots): Calculate your taxes by canton and municipality with real municipal coefficients
-- [Salary simulator](https://neofidu.ch/simulateur/salaire-net): Gross-to-net salary calculator with Swiss social contributions (AVS, AI, APG, AC, LPP)
+- [French-speaking Switzerland tax barometer 2026 (FR)](https://neofidu.ch/barometre-fiscal): 2026 income tax (federal, cantonal, municipal) in all 657 municipalities of Vaud, Geneva, Valais, Fribourg, Neuchâtel and Jura for 4 typical profiles, computed with the official Swiss Federal Tax Administration (FTA/AFC) calculator. Canton medians, 10 lowest and highest-taxed municipalities, main towns, full ranking
+- [Tax barometer (EN)](https://neofidu.ch/en/barometre-fiscal): English version
+- [Barometer data (CSV)](https://neofidu.ch/barometre-fiscal/donnees.csv): All figures, free to reuse with attribution
+- [Municipality pages](https://neofidu.ch/communes): one page per municipality (657) with the municipal tax coefficient and 2026 income tax for 4 profiles (single CHF 60,000 and 100,000 gross; married couple with 2 children, CHF 150,000; retired couple, CHF 70,000 pensions). URL pattern: https://neofidu.ch/communes/<name>-<canton>, e.g. /communes/lausanne-vd. English: /en/communes/<slug>
 - [Company Observatory](https://neofidu.ch/observatoire): Statistics on the 185,000+ companies registered in French-speaking Switzerland (legal forms, sectors, cantons)
-- [Municipality database](https://neofidu.ch/communes): municipalities across 6 cantons with tax coefficients and 2026 income tax amounts for 4 typical household profiles (computed with the official Swiss Federal Tax Administration calculator), population and neighboring municipality comparisons
+
+## Free simulators
+
+- [Income tax simulator](https://neofidu.ch/simulateur/impots): 2026 income tax for any Swiss canton and every French-speaking municipality, computed with the official FTA calculator (pillar 3a deduction included)
+- [Tax map](https://neofidu.ch/simulateur/carte-impots): Interactive map comparing tax burden across Swiss cantons
+- [Net salary simulator](https://neofidu.ch/simulateur/salaire-net): Gross-to-net salary with Swiss social contributions (AVS/AHV, AI, APG, AC, LPP)
+- [Pillar 3a simulator](https://neofidu.ch/simulateur/3eme-pilier): Tax savings from pillar 3a contributions
+- [Imputed rental value simulator](https://neofidu.ch/simulateur/valeur-locative): Valeur locative and the 2026 reform
+- [Real estate capital gains tax simulator](https://neofidu.ch/simulateur/gain-immobilier): Impôt sur les gains immobiliers by canton and holding period
+- [Rent reduction calculator](https://neofidu.ch/simulateur/baisse-loyer): Rent reduction after a fall in the reference mortgage rate
+- [Retirement income simulator](https://neofidu.ch/simulateur/retraite): AVS, LPP and pillar 3a retirement income
+- [Swiss debt counter](https://neofidu.ch/dette-suisse): Swiss public debt in real time
 
 ## Tax return guides (step by step)
 
+- [Tax deductions guide](https://neofidu.ch/guide/deductions-fiscales): All 2026 tax deductions compared across the 6 French-speaking cantons (EN: /en/guide/deductions-fiscales)
 - [VaudTax guide (FR)](https://neofidu.ch/guide/vaudtax): How to fill in the Vaud tax return in VaudTax, section by section, with official 2026 Vaud deduction amounts and return codes
 - [VaudTax guide (EN)](https://neofidu.ch/en/guide/vaudtax): English version for expats, quoting the French VaudTax labels
 - Chapters: before you start, personal situation and children, salary, work expenses, insurance and pillar 3a, accounts/securities/crypto, wealth and debts, housing, family deductions, training/medical/donations, checking and filing, source tax/TOU/quasi-residents/French cross-border workers (https://neofidu.ch/guide/vaudtax/<chapter>)
@@ -51,11 +66,15 @@ Key information:
 
 ## Blog
 
-- [Blog](https://neofidu.ch/blog): Articles on Swiss taxation, company creation, accounting, and financial planning in French-speaking Switzerland
+- [Blog](https://neofidu.ch/blog): Articles on Swiss taxation, company creation, accounting, and financial planning in French-speaking Switzerland (EN: /en/blog)
+- [FAQ](https://neofidu.ch/faq): Frequently asked questions
+- [Expats](https://neofidu.ch/en/expats): Tax help for expats living in French-speaking Switzerland
+- [Swiss abroad](https://neofidu.ch/suisses-etranger): Tax help for Swiss citizens living abroad
+- [Free second opinion](https://neofidu.ch/second-avis): Free review of a quote from another fiduciary
 
-## English Pages
+## Full text
 
-- [Municipality pages (EN)](https://neofidu.ch/en/communes/): English version of municipality pages with tax rates and local data
+- [llms-full.txt](https://neofidu.ch/llms-full.txt): Full text of the tax return guides (FR and EN) and the tax barometer summary, in Markdown
 
 ## Optional
 

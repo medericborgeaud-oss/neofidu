@@ -81,3 +81,8 @@ export function rankEn(n: number): string {
   const v = n % 100;
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
+
+// Liste figee des communes 2026 (repli si Supabase est indisponible au build)
+export function getCommuneSlugs2026(): string[] {
+  return Object.keys(raw.communes);
+}
