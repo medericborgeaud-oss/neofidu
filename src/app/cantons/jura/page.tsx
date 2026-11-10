@@ -54,16 +54,16 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
   ];
   const deadlines = [
     {
-      date: isEnglish ? "March 31, 2027" : "31 mars 2027",
-      description: isEnglish ? "Regular filing deadline" : "Délai ordinaire de dépôt"
+      date: isEnglish ? "End of February 2027" : "Fin février 2027",
+      description: isEnglish ? "Regular filing deadline (28 February in 2026)" : "Délai ordinaire de dépôt (28 février en 2026)"
     },
     {
-      date: isEnglish ? "June 30, 2027" : "30 juin 2027",
-      description: isEnglish ? "Extension on request" : "Prolongation sur demande"
+      date: isEnglish ? "Any time" : "En tout temps",
+      description: isEnglish ? "Extension request via the Guichet virtuel" : "Demande de prolongation sur le Guichet virtuel"
     },
     {
       date: isEnglish ? "October 31, 2027" : "31 octobre 2027",
-      description: isEnglish ? "Ultimate deadline with justification" : "Délai ultime avec motif"
+      description: isEnglish ? "Longest extended deadline" : "Délai prolongé maximal"
     },
   ];
   const advantages = isEnglish ? [
@@ -84,7 +84,7 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Jura?",
-      answer: "The regular deadline for the 2026 tax return is March 31, 2027. An extension until June 30 is available upon request. In justified cases, a further extension until October 31 can be granted - Jura is one of the most flexible cantons for deadlines."
+      answer: "The regular deadline is the end of February (28 February in 2026, so end of February 2027 for the 2026 return). An extension can be requested at any time on the Guichet virtuel, up to 31 October at the latest."
     },
     {
       question: "How are farmers taxed in canton Jura?",
@@ -105,7 +105,7 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts dans le Jura ?",
-      answer: "Le délai ordinaire pour la déclaration 2026 est le 31 mars 2027. Une prolongation jusqu'au 30 juin est possible sur demande. Dans des cas justifiés, un délai supplémentaire jusqu'au 31 octobre peut être accordé - le Jura est l'un des cantons les plus souples pour les délais."
+      answer: "Le délai ordinaire est fin février (28 février en 2026, donc fin février 2027 pour la déclaration 2026). Une prolongation se demande en tout temps sur le Guichet virtuel, au plus tard jusqu'au 31 octobre."
     },
     {
       question: "Comment les agriculteurs sont-ils imposés dans le canton du Jura ?",
