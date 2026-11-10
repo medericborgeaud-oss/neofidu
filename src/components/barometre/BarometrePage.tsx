@@ -360,6 +360,59 @@ export function BarometrePage({ lang }: { lang: Lang }) {
               />
             </div>
 
+            <h2 id="limites" className="scroll-mt-24 text-2xl font-bold text-foreground mb-4">
+              {fr ? "Ce que le baromètre ne compare pas" : "What the barometer does not compare"}
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-3">
+              {fr
+                ? "Chaque montant applique le barème, les déductions et le système familial propres à chaque canton (quotient familial vaudois, splitting et rabais genevois, déductions valaisannes, taxe personnelle). Certains éléments diffèrent toutefois fortement d'un canton à l'autre et ne sont pas inclus :"
+                : "Each amount applies each canton's own tax scale, deductions and family system (Vaud family quotient, Geneva splitting and rebates, Valais deductions, personal tax). Some items still differ a lot between cantons and are not included:"}
+            </p>
+            <ul className="mb-4 space-y-2 text-muted-foreground leading-relaxed list-disc pl-5">
+              <li>
+                {fr
+                  ? "L'impôt ecclésiastique : inexistant dans le canton de Vaud (financé par le budget général), obligatoire pour les membres d'une Église reconnue dans les cantons de Fribourg, du Valais et du Jura, volontaire à Genève et à Neuchâtel."
+                  : "Church tax: none in Vaud (funded from the general budget), compulsory for members of a recognised church in Fribourg, Valais and Jura, voluntary in Geneva and Neuchâtel."}
+              </li>
+              <li>
+                {fr
+                  ? "L'impôt sur la fortune, dont les barèmes et les abattements varient beaucoup selon le canton."
+                  : "Wealth tax, whose scales and allowances vary widely between cantons."}
+              </li>
+              <li>
+                {fr
+                  ? "Les déductions réelles : frais de transport (plafonnés différemment selon le canton), frais de garde, intérêts hypothécaires, 3e pilier, rachats LPP."
+                  : "Actual deductions: commuting costs (capped differently by canton), childcare, mortgage interest, pillar 3a, pension buy-ins."}
+              </li>
+            </ul>
+            <p className="text-muted-foreground leading-relaxed mb-3">
+              {fr
+                ? "Ordre de grandeur de l'impôt ecclésiastique catholique pour une personne seule à CHF 100'000 de salaire brut, dans le chef-lieu (CHF par an) :"
+                : "Order of magnitude of Catholic church tax for a single person on a CHF 100,000 gross salary, in the cantonal capital (CHF per year):"}
+            </p>
+            <div className="overflow-x-auto rounded-lg border border-border mb-10">
+              <table className="w-full text-sm min-w-[480px]">
+                <tbody>
+                  {(
+                    [
+                      ["Lausanne", 0, fr ? "aucun" : "none"],
+                      ["Genève", 1249, fr ? "volontaire" : "voluntary"],
+                      ["Sion", 187, fr ? "selon la commune" : "depends on municipality"],
+                      ["Fribourg", 502, fr ? "obligatoire pour les membres" : "compulsory for members"],
+                      ["Neuchâtel", 953, fr ? "volontaire" : "voluntary"],
+                      ["Delémont", 531, fr ? "obligatoire pour les membres" : "compulsory for members"],
+                    ] as [string, number, string][]
+                  ).map(([v, m, k]) => (
+                    <tr key={v} className="border-t first:border-t-0 border-border">
+                      <td className="px-3 py-2 font-medium">{v}</td>
+                      <td className="px-3 py-2 text-right tabular-nums">{l(m)}</td>
+                      <td className="px-3 py-2 text-muted-foreground">{k}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
             <h2 id="methode" className="scroll-mt-24 text-2xl font-bold text-foreground mb-4">
               {fr ? "Méthode et sources" : "Method and sources"}
             </h2>
