@@ -54,16 +54,16 @@ export function NeuchatelContent({ forceEn = false }: { forceEn?: boolean }) {
   ];
   const deadlines = [
     {
-      date: isEnglish ? "March 31, 2027" : "31 mars 2027",
-      description: isEnglish ? "Regular filing deadline" : "Délai ordinaire de dépôt"
+      date: isEnglish ? "End of February 2027" : "Fin février 2027",
+      description: isEnglish ? "Regular deadline, printed on the return form (20 February in 2026)" : "Délai ordinaire, imprimé sur la formule (20 février en 2026)"
     },
     {
-      date: isEnglish ? "June 30, 2027" : "30 juin 2027",
-      description: isEnglish ? "Free extension" : "Prolongation gratuite"
+      date: isEnglish ? "April 30, 2027" : "30 avril 2027",
+      description: isEnglish ? "Extension without fee (on request)" : "Prolongation sans frais (sur demande)"
     },
     {
-      date: isEnglish ? "September 30, 2027" : "30 septembre 2027",
-      description: isEnglish ? "Paid extension" : "Prolongation payante"
+      date: isEnglish ? "October 31, 2027" : "31 octobre 2027",
+      description: isEnglish ? "Last possible extension (fee CHF 25 until 30 June, CHF 40 after)" : "Prolongation maximale (émolument CHF 25 jusqu'au 30 juin, CHF 40 au-delà)"
     },
   ];
   const advantages = isEnglish ? [
@@ -84,7 +84,7 @@ export function NeuchatelContent({ forceEn = false }: { forceEn?: boolean }) {
   const faqs = isEnglish ? [
     {
       question: "What is the deadline for filing a tax return in Neuchâtel?",
-      answer: "The regular deadline for the 2026 tax return is March 31, 2027. A free extension until June 30 is available. A paid extension until September 30 can also be requested."
+      answer: "The deadline is printed on the return form: 20 February in 2026, so expect the end of February 2027 for the 2026 return. An extension until 30 April is free. Later extensions cost CHF 25 (until 30 June) or CHF 40, and none is granted beyond 31 October."
     },
     {
       question: "How are watch industry bonuses taxed in Neuchâtel?",
@@ -105,7 +105,7 @@ export function NeuchatelContent({ forceEn = false }: { forceEn?: boolean }) {
   ] : [
     {
       question: "Quel est le délai pour la déclaration d'impôts à Neuchâtel ?",
-      answer: "Le délai ordinaire pour la déclaration 2026 est le 31 mars 2027. Une prolongation gratuite jusqu'au 30 juin est possible. Une prolongation payante jusqu'au 30 septembre peut également être demandée."
+      answer: "Le délai est imprimé sur la formule : 20 février en 2026, donc fin février 2027 pour la déclaration 2026. Une prolongation jusqu'au 30 avril est gratuite. Au-delà, elle coûte CHF 25 (jusqu'au 30 juin) ou CHF 40, et aucun délai n'est accordé après le 31 octobre."
     },
     {
       question: "Comment les bonus horlogers sont-ils imposés à Neuchâtel ?",
