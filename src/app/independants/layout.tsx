@@ -68,9 +68,9 @@ const independantsSchema = {
   ],
   "offers": {
     "@type": "Offer",
-    "price": "90",
+    "price": "189",
     "priceCurrency": "CHF",
-    "priceRange": "CHF 90 - CHF 500",
+    "priceRange": "CHF 189 - CHF 500",
     "url": "https://neofidu.ch/independants"
   },
   "hasOfferCatalog": {
@@ -98,7 +98,7 @@ const independantsSchema = {
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
-          "minPrice": "90",
+          "minPrice": "189",
           "priceCurrency": "CHF"
         }
       },

@@ -114,7 +114,7 @@ const taxServiceSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Déclaration d'impôts à la carte",
-          "description": "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +40, titres +30"
+          "description": "Déclaration fiscale à la carte pour particuliers en Suisse romande. Suppléments: couple +30, enfant +15, immobilier +60, indépendant +100, titres +30"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -136,7 +136,7 @@ const faqSchema = {
       "name": "Combien coûte une déclaration d'impôts chez Neofidu ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Les prix commencent dès CHF 89 pour une déclaration à la carte (personne seule, situation standard). Suppléments: couple +CHF 30, enfant +CHF 15, immobilier +CHF 60, indépendant +CHF 40, titres +CHF 30. Devis gratuit en 2 minutes."
+        "text": "Les prix commencent dès CHF 89 pour une déclaration à la carte (personne seule, situation standard). Suppléments: couple +CHF 30, enfant +CHF 15, immobilier +CHF 60, indépendant +CHF 100, titres +CHF 30. Devis gratuit en 2 minutes."
       }
     },
     {

@@ -57,7 +57,7 @@ const services = [
     titleEn: "Tax return",
     description: "Déclaration fiscale optimisée pour indépendants. On maximise vos déductions.",
     descriptionEn: "Optimized tax return for self-employed. We maximize your deductions.",
-    price: "129",
+    price: "189",
     unit: "",
     features: [
       "Annexe activité indépendante",
@@ -658,7 +658,7 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
             </h2>
             <p className="text-white/90 mb-8 max-w-2xl mx-auto">
               {isEnglish
-                ? "Join hundreds of self-employed and freelancers who trust Neofidu. Free quote, no commitment."
+                ? "Trust Neofidu with your accounting. Free quote, no commitment."
                 : "Faites confiance à Neofidu pour votre comptabilité. Devis gratuit, sans engagement."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
