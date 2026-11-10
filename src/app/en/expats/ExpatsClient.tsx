@@ -297,8 +297,8 @@ export default function ExpatsPage() {
             Ready to File Your Swiss Tax Return?
           </h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Join hundreds of expats who trust NeoFidu for their Swiss taxes.
-            Start in 5 minutes, get your return in 10 days.
+            Your Swiss tax return prepared by a certified specialist.
+            Start in 5 minutes, get your return within 14 business days.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="rounded-full text-lg px-8">

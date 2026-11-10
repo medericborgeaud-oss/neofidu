@@ -422,7 +422,7 @@ export default function SuissesEtrangerPage() {
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Building className="w-5 h-5 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium">{t("simulators.swissAbroadPage.supplementSelfEmployed")}</p>
-                    <p className="text-lg font-bold text-primary">+CHF 40.-</p>
+                    <p className="text-lg font-bold text-primary">+CHF 100.-</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-xl text-center">
                     <Home className="w-5 h-5 text-primary mx-auto mb-2" />

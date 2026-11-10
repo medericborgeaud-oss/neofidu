@@ -490,7 +490,7 @@ export default async function CommunePageEN({ params }: Props) {
                   name: `How to file a tax return in ${commune.nom}?`,
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: `Residents of ${commune.nom} (${commune.canton}) can use NeoFidu, an online fiduciary, for their tax return from CHF 149.`,
+                    text: `Residents of ${commune.nom} (${commune.canton}) can use NeoFidu, an online fiduciary, for their tax return from CHF 89.`,
                   },
                 },
               ],
@@ -527,7 +527,7 @@ export default async function CommunePageEN({ params }: Props) {
                 <h3 className="text-sm font-medium text-gray-800">How to file a tax return in {commune.nom}?</h3>
                 <p className="text-sm text-gray-600 mt-1">
                   Residents of {commune.nom} can entrust their tax return to{" "}
-                  <Link href="/en" className="text-blue-600 underline">NeoFidu</Link>, a Swiss online fiduciary, from CHF 149.
+                  <Link href="/en" className="text-blue-600 underline">NeoFidu</Link>, a Swiss online fiduciary, from CHF 89.
                 </p>
               </div>
             </div>

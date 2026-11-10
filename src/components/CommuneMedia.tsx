@@ -14,8 +14,8 @@ interface GeoResult {
 }
 
 const CANTON_FULL: Record<string, string> = {
-  VD: "Vaud", GE: "GenÃ¨ve", VS: "Valais", FR: "Fribourg", NE: "NeuchÃ¢tel", JU: "Jura",
-  BE: "Berne", ZH: "Zurich", LU: "Lucerne", BS: "BÃ¢le-Ville", BL: "BÃ¢le-Campagne",
+  VD: "Vaud", GE: "Genève", VS: "Valais", FR: "Fribourg", NE: "Neuchâtel", JU: "Jura",
+  BE: "Berne", ZH: "Zurich", LU: "Lucerne", BS: "Bâle-Ville", BL: "Bâle-Campagne",
   AG: "Argovie", SO: "Soleure", TI: "Tessin", SG: "Saint-Gall", GR: "Grisons",
   TG: "Thurgovie", ZG: "Zoug", SZ: "Schwyz", SH: "Schaffhouse",
 };

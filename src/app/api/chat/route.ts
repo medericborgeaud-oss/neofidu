@@ -7,13 +7,13 @@ TARIFS DÉCLARATION D'IMPÔTS (à la carte):
 - Couple / marié: +CHF 30
 - Par enfant: +CHF 15
 - Par bien immobilier: +CHF 60
-- Revenu indépendant: +CHF 40
+- Revenu indépendant: +CHF 100
 - Actions (≥3 positions): +CHF 30
 - Traitement prioritaire (7 jours): +CHF 120
 
 TARIFS ENTREPRISES:
 - Comptabilité indépendants/freelances: dès CHF 500/an
-- Comptabilité PME (Sàrl/SA): dès CHF 300/mois
+- Comptabilité PME (Sàrl/SA): dès CHF 200/mois
 - Création d'entreprise: RI dès CHF 290, Sàrl dès CHF 990, SA dès CHF 1'490
 
 CANTONS COUVERTS: Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura
