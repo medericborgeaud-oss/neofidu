@@ -61,7 +61,7 @@ export default function ParticuliersPage() {
     },
     {
       icon: Search,
-      title: "Analyse par nos experts",
+      title: "Analyse par un spécialiste diplômé",
       desc: "Un spécialiste diplômé analyse votre dossier et optimise chaque déduction à laquelle vous avez droit.",
     },
     {
@@ -203,7 +203,7 @@ export default function ParticuliersPage() {
               </h1>
 
               <p className="text-xl text-teal-100 max-w-3xl mx-auto mb-10 leading-relaxed">
-                {"Envoyez vos documents, nos spécialistes diplômés s'occupent de tout. Déductions optimisées, dépôt électronique, tranquillité d'esprit."}
+                {"Envoyez vos documents, un spécialiste diplômé s'occupe de tout. Déductions optimisées, dépôt électronique, tranquillité d'esprit."}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -360,7 +360,7 @@ export default function ParticuliersPage() {
                 {"Les déductions que nous optimisons pour vous"}
               </h2>
               <p className="text-lg text-teal-200 max-w-2xl mx-auto">
-                {"Nos experts connaissent chaque déduction disponible dans votre canton."}
+                {"Un spécialiste diplômé connaît chaque déduction disponible dans votre canton."}
               </p>
             </div>
 
@@ -492,7 +492,7 @@ export default function ParticuliersPage() {
               {"Prêt à simplifier vos impôts ?"}
             </h2>
             <p className="text-xl text-teal-200 mb-8 max-w-2xl mx-auto">
-              {"Rejoignez des milliers de clients satisfaits en Suisse romande. Votre déclaration dès CHF 89.-"}
+              {"Votre déclaration d'impôts préparée par un spécialiste diplômé, dès CHF 89.-"}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

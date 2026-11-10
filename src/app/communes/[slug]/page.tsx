@@ -26,6 +26,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CantonFlag } from "@/components/CantonFlag";
 import CommuneMedia from "@/components/CommuneMedia";
+import { CommuneTaxEstimates } from "@/components/CommuneTaxEstimates";
+import { getCommuneImpots, formatChf, rangFr } from "@/lib/commune-impots";
 import {
   getCommuneBySlug,
   getCommunesVoisines,
@@ -53,7 +55,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const commune = await getCommuneBySlug(params.slug);
-  if (!commune) return { title: "Commune non trouvee | NeoFidu" };
+  if (!commune) return { title: "Commune non trouvée | NeoFidu" };
 
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
   const popText = commune.population
@@ -65,10 +67,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parts = [popText, tauxText].filter(Boolean);
 
   const canonicalUrl = `https://neofidu.ch/communes/${params.slug}`;
+  const impots = getCommuneImpots(params.slug, commune.canton);
+  const impotText = impots
+    ? ` Impôt ${impots.annee} pour une personne seule à CHF 100'000 brut : CHF ${formatChf(impots.profils.seul100.total)}.`
+    : "";
 
   return {
     title: `Impôts à ${commune.nom} (${commune.canton}) : taux et coefficient`,
-    description: `Impôts à ${commune.nom}, canton de ${cantonName}. ${parts.join(", ")}. Comparez la fiscalité avec les communes voisines.`,
+    description: `Impôts à ${commune.nom}, canton de ${cantonName}. ${parts.join(", ")}.${impotText} Comparez avec les communes voisines.`,
     openGraph: {
       title: `Impôts à ${commune.nom} (${cantonName})`,
       description: `Fiscalité de ${commune.nom} : ${parts.join(", ")}. Comparez avec les communes voisines.`,
@@ -175,6 +181,7 @@ export default async function CommunePage({ params }: Props) {
 
   const voisines = await getCommunesVoisines(params.slug);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
+  const impots = getCommuneImpots(params.slug, commune.canton);
   // Utilise la valeur pre-calculee de la table communes ; ne retombe sur le
   // comptage live (couteux) que si la colonne est absente.
   const companyCount =
@@ -215,10 +222,10 @@ export default async function CommunePage({ params }: Props) {
     commune.taux_commune === null
       ? ""
       : tauxColor === "emerald"
-      ? `Par rapport aux autres communes ${cantonName.toLowerCase() === "valais" ? "valaisannes" : cantonName.toLowerCase() === "vaud" ? "vaudoises" : cantonName.toLowerCase() === "geneve" ? "genevoises" : cantonName.toLowerCase() === "fribourg" ? "fribourgeoises" : cantonName.toLowerCase() === "neuchatel" ? "neuchateloises" : "jurassiennes"}, ${commune.nom} beneficie d'un coefficient communal particulierement attractif.`
+      ? `Par rapport aux autres communes ${({ VS: "valaisannes", VD: "vaudoises", GE: "genevoises", FR: "fribourgeoises", NE: "neuchâteloises", JU: "jurassiennes" } as Record<string, string>)[commune.canton] ?? "du canton"}, ${commune.nom} bénéficie d'un coefficient communal particulièrement attractif.`
       : tauxColor === "amber"
       ? `Le coefficient communal de ${commune.nom} se situe dans la moyenne des communes du canton de ${cantonName}.`
-      : `Par rapport aux autres communes du canton de ${cantonName}, ${commune.nom} applique un coefficient communal relativement eleve.`;
+      : `Par rapport aux autres communes du canton de ${cantonName}, ${commune.nom} applique un coefficient communal relativement élevé.`;
 
   const ctaText = {
     text: `Vous habitez à ${commune.nom} ?`,
@@ -327,7 +334,7 @@ export default async function CommunePage({ params }: Props) {
                     <p className="text-xs text-gray-400 mt-3">Année fiscale : {commune.annee_fiscale}</p>
                   )}
                   {commune.taux_commune === null && (
-                    <p className="text-xs text-gray-400 mt-2 italic">Les taux d&apos;imposition seront ajoutes prochainement.</p>
+                    <p className="text-xs text-gray-400 mt-2 italic">Les taux d&apos;imposition seront ajoutés prochainement.</p>
                   )}
                 </div>
               </div>
@@ -346,7 +353,7 @@ export default async function CommunePage({ params }: Props) {
                       href={`/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
                       className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 mt-3"
                     >
-                      Voir les entreprises de {commune.nom} <ArrowRight className="w-3 h-3" />
+                      Statistiques économiques dans l&apos;Observatoire <ArrowRight className="w-3 h-3" />
                     </Link>
                   </div>
                 </div>
@@ -359,14 +366,14 @@ export default async function CommunePage({ params }: Props) {
                   <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
                     {commune.loyer_median_m2 && (
                       <div>
-                        <p className="text-xs text-gray-400 mb-1">Loyer median au m2</p>
+                        <p className="text-xs text-gray-400 mb-1">Loyer médian au m²</p>
                         <p className="text-lg font-semibold text-gray-900">CHF {commune.loyer_median_m2.toFixed(0)}/m2</p>
-                        <p className="text-xs text-gray-400">Prix mensuel moyen au metre carre pour un appartement</p>
+                        <p className="text-xs text-gray-400">Prix mensuel moyen au mètre carré pour un appartement</p>
                       </div>
                     )}
                     {commune.prix_achat_m2 && (
                       <div>
-                        <p className="text-xs text-gray-400 mb-1">Prix achat au m2</p>
+                        <p className="text-xs text-gray-400 mb-1">Prix d&apos;achat au m²</p>
                         <p className="text-lg font-semibold text-gray-900">CHF {commune.prix_achat_m2.toLocaleString("fr-CH")}/m2</p>
                       </div>
                     )}
@@ -410,32 +417,14 @@ export default async function CommunePage({ params }: Props) {
           </Card>
         </div>
 
-        {/* Section: Estimation fiscale (CORRECTED - no wrong calculation) */}
-        <section className="max-w-4xl mx-auto px-4 py-6">
-          <Card className="p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Calculator className="h-5 w-5 text-blue-600" />
-              <h2 className="text-lg font-semibold text-gray-900">Estimation fiscale à {commune.nom}</h2>
-            </div>
-            <p className="text-sm text-gray-600 mb-4">
-              En Suisse, l&apos;impôt est calculé en appliquant un coefficient communal et un taux cantonal sur un barème progressif.
-              Le montant exact dépend de votre revenu, de votre situation familiale et des déductions applicables.
-            </p>
-            <div className="bg-emerald-50 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-medium text-emerald-800">Calculez votre impôt exact</p>
-                <p className="text-xs text-emerald-600">Simulateur gratuit avec les taux de {commune.nom}</p>
-              </div>
-              <Link href={`/simulateur/impots?commune=${encodeURIComponent(commune.slug || "")}`}>
-                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Simuler mes impôts</Button>
-              </Link>
-            </div>
-            <p className="text-xs text-gray-400 mt-3">
-              En Suisse, l&apos;impôt est calculé en appliquant ces coefficients sur un barème progressif cantonal, pas directement sur le revenu.{" "}
-              <Link href="/simulateur/impots" className="text-blue-600 underline">En savoir plus</Link>
-            </p>
-          </Card>
-        </section>
+        {/* Section: Impots 2026 par profil (calculateur officiel AFC) */}
+        <CommuneTaxEstimates
+          lang="fr"
+          communeNom={commune.nom}
+          communeSlug={commune.slug || params.slug}
+          cantonName={cantonName}
+          impots={impots}
+        />
 
         {/* Section: Tissu economique */}
         <section className="max-w-4xl mx-auto px-4 py-6">
@@ -447,15 +436,15 @@ export default async function CommunePage({ params }: Props) {
             {companyCount > 0 ? (
               <div>
                 <p className="text-sm text-gray-600 mb-3">
-                  <span className="text-2xl font-bold text-gray-900">{companyCount}</span>{" "}
+                  <span className="text-2xl font-bold text-gray-900">{formatChf(companyCount)}</span>{" "}
                   entreprises actives sont enregistrées dans cette commune.
                 </p>
                 <Link href={`/observatoire?commune=${commune.nom}`} className="text-sm text-blue-600 underline">
-                  Voir les entreprises dans l&apos;Observatoire
+                  Consulter les statistiques de l&apos;Observatoire romand des entreprises
                 </Link>
               </div>
             ) : (
-              <p className="text-sm text-gray-500">Aucune entreprise enregistree dans notre base pour cette commune.</p>
+              <p className="text-sm text-gray-500">Aucune entreprise enregistrée dans notre base pour cette commune.</p>
             )}
             {commune.secteur_dominant && (
               <p className="text-sm text-gray-600 mt-3">Secteur dominant : <span className="font-medium">{commune.secteur_dominant}</span></p>
@@ -533,6 +522,18 @@ export default async function CommunePage({ params }: Props) {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
                 mainEntity: [
+                  ...(impots
+                    ? [
+                        {
+                          "@type": "Question",
+                          name: `Combien d'impôts paie-t-on à ${commune.nom} ?`,
+                          acceptedAnswer: {
+                            "@type": "Answer",
+                            text: `En ${impots.annee}, une personne seule avec un salaire brut de CHF 100'000 paie environ CHF ${formatChf(impots.profils.seul100.total)} d'impôt sur le revenu à ${commune.nom} (fédéral, cantonal et communal), ce qui la classe ${rangFr(impots.profils.seul100.rang)} sur ${impots.nbCommunesCanton} communes du canton de ${cantonName} (1 = la moins imposée). Un couple marié avec 2 enfants et CHF 150'000 de salaires bruts paie environ CHF ${formatChf(impots.profils.famille150.total)}. Source : calculateur fiscal de l'AFC.`,
+                          },
+                        },
+                      ]
+                    : []),
                   {
                     "@type": "Question",
                     name: `Quel est le taux d'imposition à ${commune.nom} ?`,
@@ -562,8 +563,19 @@ export default async function CommunePage({ params }: Props) {
             }}
           />
           <Card className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Questions frequentes</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Questions fréquentes</h2>
             <div className="space-y-4">
+              {impots && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-800">Combien d&apos;impôts paie-t-on à {commune.nom} ?</h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    En {impots.annee}, une personne seule avec un salaire brut de CHF 100&apos;000 paie environ CHF{" "}
+                    {formatChf(impots.profils.seul100.total)} d&apos;impôt sur le revenu à {commune.nom}. Un couple marié
+                    avec 2 enfants et CHF 150&apos;000 de salaires bruts paie environ CHF{" "}
+                    {formatChf(impots.profils.famille150.total)}.
+                  </p>
+                </div>
+              )}
               <div>
                 <h3 className="text-sm font-medium text-gray-800">Quel est le taux d&apos;imposition à {commune.nom} ?</h3>
                 <p className="text-sm text-gray-600 mt-1">

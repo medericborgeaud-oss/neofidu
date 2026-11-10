@@ -138,8 +138,8 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mb-8">
             {isEnglish
-              ? "Bilingual canton with generous family deductions. Our experts support you from Fribourg to Bulle with your tax return."
-              : "Canton bilingue aux déductions familiales généreuses. Nos experts vous accompagnent de Fribourg à Bulle pour votre déclaration d'impôts."}
+              ? "Bilingual canton with generous family deductions. A certified specialist supports you from Fribourg to Bulle with your tax return."
+              : "Canton bilingue aux déductions familiales généreuses. Un spécialiste diplômé vous accompagne de Fribourg à Bulle pour votre déclaration d'impôts."}
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/demande">
@@ -533,8 +533,8 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             {isEnglish
-              ? "Families, individuals or businesses, trust your declaration to our experts. Bilingual service, transparent pricing."
-              : "Familles, particuliers ou entreprises, confiez votre déclaration à nos experts. Service bilingue, tarifs transparents."}
+              ? "Families, individuals or businesses, trust your declaration to a certified specialist. Bilingual service, transparent pricing."
+              : "Familles, particuliers ou entreprises, confiez votre déclaration à un spécialiste diplômé. Service bilingue, tarifs transparents."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demande">

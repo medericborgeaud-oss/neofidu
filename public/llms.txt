@@ -7,8 +7,8 @@ Key information:
 - NeoFidu operates exclusively in French-speaking Switzerland (Suisse romande)
 - Tax returns start from CHF 89 for individuals, CHF 149 with optimization
 - Company creation services from CHF 490
-- All services are delivered online with certified Swiss fiduciary experts
-- The site is primarily in French, with English versions available for company and municipality pages
+- All services are delivered online by a certified Swiss fiduciary specialist
+- The site is primarily in French, with English versions of the tax return guides and municipality pages
 
 ## Services
 
@@ -22,8 +22,8 @@ Key information:
 
 - [Tax simulator](https://neofidu.ch/simulateur/impots): Calculate your taxes by canton and municipality with real municipal coefficients
 - [Salary simulator](https://neofidu.ch/simulateur/salaire-net): Gross-to-net salary calculator with Swiss social contributions (AVS, AI, APG, AC, LPP)
-- [Company Observatory](https://neofidu.ch/observatoire): Database of 200,000+ companies in French-speaking Switzerland with sector classification, legal form, and headquarters data
-- [Municipality database](https://neofidu.ch/communes): 670 municipalities across 6 cantons with tax coefficients, population, density, real estate prices, and neighboring municipality comparisons
+- [Company Observatory](https://neofidu.ch/observatoire): Statistics on the 185,000+ companies registered in French-speaking Switzerland (legal forms, sectors, cantons)
+- [Municipality database](https://neofidu.ch/communes): municipalities across 6 cantons with tax coefficients and 2026 income tax amounts for 4 typical household profiles (computed with the official Swiss Federal Tax Administration calculator), population and neighboring municipality comparisons
 
 ## Tax return guides (step by step)
 

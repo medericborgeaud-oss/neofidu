@@ -545,7 +545,7 @@ export function ValaisContent({ forceEn = false }: { forceEn?: boolean }) {
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             {isEnglish
               ? "Trust your tax return to our Valais experts. Fast service, transparent pricing, personalized tax optimization."
-              : "Confiez votre déclaration d'impôts à nos experts valaisans. Service rapide, tarifs transparents, optimisation fiscale personnalisée."}
+              : "Confiez votre déclaration d'impôts à un spécialiste diplômé. Service rapide, tarifs transparents, optimisation fiscale personnalisée."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demande">

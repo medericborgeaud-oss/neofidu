@@ -542,8 +542,8 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             {isEnglish
-              ? "Residents or cross-border workers, trust your declaration to our experts. Free quasi-resident analysis included."
-              : "Résidents ou frontaliers, confiez votre déclaration à nos experts. Analyse quasi-résident gratuite incluse."}
+              ? "Residents or cross-border workers, trust your declaration to a certified specialist. Free quasi-resident analysis included."
+              : "Résidents ou frontaliers, confiez votre déclaration à un spécialiste diplômé. Analyse quasi-résident gratuite incluse."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demande">

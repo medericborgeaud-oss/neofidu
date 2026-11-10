@@ -74,11 +74,6 @@ const fribourgSchema = {
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "60", "priceCurrency": "CHF" }
       }
     ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.7",
-    "reviewCount": "54"
   }
 };
 

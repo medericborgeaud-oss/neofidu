@@ -64,13 +64,6 @@ export default function SimulateurImpotsPage() {
       "name": "Neofidu",
       "url": "https://neofidu.ch"
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "312",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "featureList": [
       "Calcul instantané pour 26 cantons",
       "Optimisation 3ème pilier",
@@ -150,7 +143,7 @@ export default function SimulateurImpotsPage() {
             {
               "@type": "Question",
               "name": "Quid des impôts pour les expatriés en Suisse ?",
-              "acceptedAnswer": {"@type": "Answer", "text": "Les titulaires d’un permis B ou C sont imposés différemment selon leur statut. Notre simulateur et nos experts fiduciaires vous guident pour optimiser votre situation fiscale."}
+              "acceptedAnswer": {"@type": "Answer", "text": "Les titulaires d’un permis B ou C sont imposés différemment selon leur statut. Notre simulateur et un spécialiste fiduciaire diplômé vous guident pour optimiser votre situation fiscale."}
             }
           ]
         }) }}

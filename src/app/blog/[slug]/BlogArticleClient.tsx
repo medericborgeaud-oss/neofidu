@@ -18,7 +18,7 @@ import { useState } from "react";
 const categoryCTA: Record<string, { title: string; description: string; link: string; linkLabel: string; simulator: { href: string; label: string } }> = {
   fiscalite: {
     title: "Optimisez votre fiscalité avec NeoFidu",
-    description: "Nos spécialistes diplômés prennent en charge votre déclaration d’impôts de A à Z. Résultat garanti, dès CHF 89.-",
+    description: "Un spécialiste diplômé prend en charge votre déclaration d’impôts de A à Z. Dès CHF 89.-",
     link: "/demande",
     linkLabel: "Déposer ma déclaration",
     simulator: { href: "/simulateur/impots", label: "Simuler mes impôts gratuitement" },
