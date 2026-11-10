@@ -15,7 +15,7 @@ import { Footer } from "@/components/Footer";
 import { CantonFlag } from "@/components/CantonFlag";
 import CommuneMedia from "@/components/CommuneMedia";
 import { CommuneTaxEstimates } from "@/components/CommuneTaxEstimates";
-import { getCommuneImpots, formatChf, rankEn } from "@/lib/commune-impots";
+import { getCommuneImpots, formatChf, rankEn, getCommuneSlugs2026 } from "@/lib/commune-impots";
 import {
   getCommuneBySlug, getCommunesVoisines, CANTON_NAMES,
   CANTON_SLUG,
@@ -25,9 +25,14 @@ import {
 
 // ISR : pages pre-generees au build comme la version FR (le rendu a froid prenait 20 a 80 s).
 export const revalidate = 86400; // 24 h
+// Toutes les communes sont pre-generees au build : une commune inconnue renvoie un vrai 404
+// (sans cela, la page "non trouvee" etait servie avec un code 200 et mise en cache).
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const slugs = await getAllCommuneSlugs();
+  const fromDb = await getAllCommuneSlugs();
+  // dynamicParams = false : sans liste, toutes les fiches seraient en 404 -> repli sur la liste 2026
+  const slugs = fromDb.length > 0 ? fromDb : getCommuneSlugs2026();
   return slugs.map((slug) => ({ slug }));
 }
 
