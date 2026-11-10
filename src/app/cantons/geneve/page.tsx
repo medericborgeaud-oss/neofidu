@@ -314,8 +314,8 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Childcare costs" : "Frais de garde d'enfants"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Geneva is one of the most generous cantons: deduction up to CHF 25,000 per child per year for third-party childcare."
-                  : "Genève est l'un des cantons les plus généreux : déduction jusqu'à CHF 25'000 par enfant et par an pour la garde par des tiers."}
+                  ? "Geneva is one of the most generous cantons: deduction up to CHF 26,392 per child per year for third-party childcare (2026)."
+                  : "Genève est l'un des cantons les plus généreux : déduction jusqu'à CHF 26'392 par enfant et par an pour la garde par des tiers (2026)."}
               </p>
             </Card>
             <Card className="p-6">
@@ -338,8 +338,8 @@ export function GeneveContent({ forceEn = false }: { forceEn?: boolean }) {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Continuing education" : "Formation continue"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Deduction up to CHF 12,000 for professional development costs."
-                  : "Déduction jusqu'à CHF 12'000 pour les frais de perfectionnement professionnel."}
+                  ? "Deduction up to CHF 12,791 (cantonal tax, 2026) for professional training costs."
+                  : "Déduction jusqu'à CHF 12'791 (impôt cantonal, 2026) pour les frais de formation et de perfectionnement professionnels."}
               </p>
             </Card>
             <Card className="p-6 bg-primary/5 border-primary/20">

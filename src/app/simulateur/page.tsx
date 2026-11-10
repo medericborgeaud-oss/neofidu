@@ -666,7 +666,7 @@ export default function SimulateurPage() {
                             <ul className="space-y-1 text-blue-700">
                               <li>• Frais professionnels : 3% du revenu (min. 2'000, max. 4'000)</li>
                               <li>• Assurance maladie : forfait selon situation</li>
-                              <li>• Déduction enfants : CHF 6'600 par enfant</li>
+                              <li>• Déductions pour enfants selon le canton</li>
                               {formData.maritalStatus === "married" && (
                                 <li>• Splitting marié : division du revenu</li>
                               )}

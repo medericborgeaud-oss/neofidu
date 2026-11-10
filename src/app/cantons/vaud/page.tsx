@@ -93,7 +93,7 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "What are the main deductions specific to Vaud?",
-      answer: "Canton Vaud offers several specific deductions: a CHF 700 flat-rate bicycle deduction for commuting, generous transport cost caps, professional expense deductions, pillar 3a (up to CHF 7,258), 2nd pillar buybacks, and childcare costs."
+      answer: "Canton Vaud offers several specific deductions: a flat-rate bicycle deduction of up to CHF 700 for commuting, a commuting flat rate based on the public transport distance, professional expense deductions, pillar 3a (up to CHF 7,258), 2nd pillar buybacks, and childcare costs."
     },
     {
       question: "How do provisional installments work in Vaud?",
@@ -114,7 +114,7 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "Quelles sont les principales déductions spécifiques au canton de Vaud ?",
-      answer: "Le canton de Vaud offre plusieurs déductions spécifiques : un forfait vélo de CHF 700 pour les trajets domicile-travail, des plafonds généreux pour les frais de transport, les frais professionnels, le 3e pilier A (jusqu'à CHF 7'258), les rachats de 2e pilier et les frais de garde."
+      answer: "Le canton de Vaud offre plusieurs déductions spécifiques : un forfait vélo jusqu'à CHF 700 pour les trajets domicile-travail, un forfait de transport selon la distance en transports publics, les frais professionnels, le 3e pilier A (jusqu'à CHF 7'258), les rachats de 2e pilier et les frais de garde."
     },
     {
       question: "Comment fonctionnent les acomptes provisionnels dans le canton de Vaud ?",
@@ -263,16 +263,16 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Bicycle deduction" : "Forfait vélo"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Vaud is one of the few cantons offering a flat-rate deduction of CHF 700 for bicycle commuting - a unique benefit for eco-friendly taxpayers."
-                  : "Vaud est l'un des rares cantons offrant un forfait de CHF 700 pour les trajets à vélo - un avantage unique pour les contribuables éco-responsables."}
+                  ? "If you cycle to work, Vaud accepts a flat-rate deduction of up to CHF 700 a year (bicycle, slow e-bike or moped)."
+                  : "Si vous allez travailler à vélo, le canton de Vaud admet un forfait jusqu'à CHF 700 par an (vélo, vélo électrique lent ou cyclomoteur)."}
               </p>
             </Card>
             <Card className="p-6">
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Transport costs" : "Frais de transport"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Deduction of actual costs for public transport or private vehicle (with a cantonal cap of CHF 7,000 for car commuting)."
-                  : "Déduction des frais effectifs de transports publics ou de véhicule privé (avec un plafond cantonal de CHF 7'000 pour les trajets en voiture)."}
+                  ? "Flat-rate deduction based on the public transport distance, capped at the price of the general travelcard (CHF 4,080 in 2025). A car is accepted only if public transport cannot be used: CHF 0.75/km up to 15,000 km (2026)."
+                  : "Forfait selon la distance en transports publics, plafonné au prix de l'abonnement général (CHF 4'080 en 2025). La voiture n'est admise que si les transports publics ne sont pas utilisables : CHF 0.75/km jusqu'à 15'000 km (2026)."}
               </p>
             </Card>
             <Card className="p-6">

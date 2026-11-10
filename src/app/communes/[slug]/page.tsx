@@ -124,58 +124,60 @@ const CANTON_DEDUCTIONS: Record<string, {
   entretienImmo: string;
   troisPilier: string;
 }> = {
+  // Montants alignes sur les guides NeoFidu (VaudTax, GeTax, VSTax, FriTax) et le guide des deductions,
+  // eux-memes tires des instructions cantonales officielles (periode fiscale 2026, sauf mention).
   VD: {
-    fraisRepas: "CHF 15/jour",
-    transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
-    transportVoiture: "CHF 0.70/km (distance domicile-travail)",
-    transportVelo: "CHF 700/an",
-    transportPlafond: "Max CHF 7'000/an (tous modes confondus)",
-    entretienImmo: "20% (<10 ans) ou 30% (>10 ans) de la valeur locative",
+    fraisRepas: "CHF 3'200/an (CHF 1'600 avec cantine)",
+    transportTrain: "Forfait selon la distance en transports publics",
+    transportVoiture: "CHF 0.75/km jusqu'à 15'000 km, seulement si les transports publics ne sont pas utilisables",
+    transportVelo: "Jusqu'à CHF 700/an",
+    transportPlafond: "Prix de l'abonnement général (CHF 4'080 en 2025)",
+    entretienImmo: "Forfait 20 % (immeuble de 20 ans et moins) ou 30 % de la valeur locative, ou frais effectifs",
     troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   GE: {
-    fraisRepas: "CHF 15/jour",
-    transportTrain: "Frais effectifs (abonnement TPG, CFF)",
-    transportVoiture: "Frais effectifs justifiés uniquement (pas de forfait km)",
-    transportVelo: "Non déductible",
-    transportPlafond: "Pas de plafond fixe (frais effectifs)",
-    entretienImmo: "Forfait 10% ou frais effectifs",
+    fraisRepas: "Compris dans le forfait de 3 % (CHF 641 à 1'817) ; en frais effectifs, seulement si le trajet dépasse 2 h par jour",
+    transportTrain: "Compris dans le forfait de 3 %, ou frais effectifs",
+    transportVoiture: "Frais effectifs, compris dans le plafond ci-dessous",
+    transportVelo: "Compris dans le plafond ci-dessous",
+    transportPlafond: "CHF 536/an en frais effectifs (impôt cantonal) ; CHF 3'300 (impôt fédéral)",
+    entretienImmo: "Forfait 15 % (bâtiment de 10 ans et moins) ou 25 % de la valeur locative, ou frais effectifs",
     troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   VS: {
-    fraisRepas: "CHF 15/jour",
-    transportTrain: "AG, demi-tarif ou abonnement de parcours",
-    transportVoiture: "CHF 0.70/km",
-    transportVelo: "Forfait admis",
-    transportPlafond: "Pas de plafond cantonal spécifique",
-    entretienImmo: "10% de la valeur fiscale",
+    fraisRepas: "CHF 15/jour, max CHF 3'200/an (CHF 1'600 avec cantine)",
+    transportTrain: "Frais effectifs (abonnement)",
+    transportVoiture: "CHF 0.75/km jusqu'à 15'000 km, puis dégressif",
+    transportVelo: "Jusqu'à CHF 700/an",
+    transportPlafond: "Pas de plafond cantonal (impôt fédéral : CHF 3'300)",
+    entretienImmo: "Forfait 10 % (bâtiment de 10 ans et moins) ou 20 % de la valeur locative, ou frais effectifs",
     troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   FR: {
-    fraisRepas: "CHF 15/jour",
-    transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
-    transportVoiture: "CHF 0.70/km",
+    fraisRepas: "CHF 15/jour, max CHF 3'200/an (CHF 1'600 avec cantine)",
+    transportTrain: "Prix réel des transports publics",
+    transportVoiture: "CHF 0.70/km, seulement si les transports publics ne sont pas utilisables",
     transportVelo: "CHF 700/an",
-    transportPlafond: "Max CHF 6'600/an",
-    entretienImmo: "10% (<10 ans) ou 20% (>10 ans)",
+    transportPlafond: "CHF 12'000/an (impôt cantonal) ; CHF 3'300 (impôt fédéral)",
+    entretienImmo: "Forfait 10 % (immeuble construit après 2015) ou 20 % du rendement brut, ou frais effectifs",
     troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   NE: {
-    fraisRepas: "CHF 15/jour",
-    transportTrain: "Abonnement effectif (AG, demi-tarif, parcours)",
-    transportVoiture: "CHF 0.70/km",
+    fraisRepas: "CHF 15/jour, max CHF 3'200/an (CHF 1'600 avec cantine)",
+    transportTrain: "Prix de l'abonnement",
+    transportVoiture: "CHF 0.60/km jusqu'à 10'000 km, puis 0.40 (5'000 km suivants) et 0.30",
     transportVelo: "CHF 700/an",
-    transportPlafond: "Max CHF 6'000/an",
-    entretienImmo: "20% ou frais effectifs",
+    transportPlafond: "Pas de plafond cantonal (impôt fédéral : CHF 3'300)",
+    entretienImmo: "Forfait 10 à 20 % (max CHF 7'200 / 12'000) ou frais effectifs",
     troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
   JU: {
-    fraisRepas: "CHF 15/jour",
+    fraisRepas: "CHF 15/jour (moitié avec cantine)",
     transportTrain: "Frais effectifs (abonnement)",
-    transportVoiture: "CHF 0.70/km",
+    transportVoiture: "CHF 0.70/km jusqu'à 7'999 km, puis 0.65 et 0.60 (dès 15'000 km)",
     transportVelo: "Admis sur justificatif",
-    transportPlafond: "Pas de plafond fixe",
-    entretienImmo: "Forfait 10% ou frais effectifs",
+    transportPlafond: "Pas de plafond cantonal (impôt fédéral : CHF 3'300)",
+    entretienImmo: "Forfait 10 à 20 % ou frais effectifs",
     troisPilier: "CHF 7'258 (3a salarié) / CHF 36'288 (3a indépendant)",
   },
 };
@@ -511,7 +513,8 @@ export default async function CommunePage({ params }: Props) {
                 </table>
               </div>
               <p className="text-xs text-gray-400 mt-3">
-                Montants indicatifs pour l&apos;année fiscale en cours.{" "}
+                Impôt cantonal, période fiscale 2026 sauf mention. Détail et sources dans le{" "}
+                <Link href="/guide/deductions-fiscales" className="text-blue-600 underline">guide des déductions</Link>.{" "}
                 <Link href={`/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-blue-600 underline">Page canton {commune.canton}</Link>
               </p>
             </Card>

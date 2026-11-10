@@ -138,7 +138,7 @@ export default function SimulateurImpotsPage() {
             {
               "@type": "Question",
               "name": "Quelles déductions fiscales puis-je déduire en Suisse ?",
-              "acceptedAnswer": {"@type": "Answer", "text": "Les principales déductions sont : les frais professionnels, les intérêts d’emprunts, le 3ème pilier (jusqu’à CHF 7'056), les primes d’assurance-maladie et les frais de garde."}
+              "acceptedAnswer": {"@type": "Answer", "text": "Les principales déductions sont : les frais professionnels, les intérêts d’emprunts, le 3ème pilier (jusqu’à CHF 7'258), les primes d’assurance-maladie et les frais de garde."}
             },
             {
               "@type": "Question",

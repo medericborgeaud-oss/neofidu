@@ -102,58 +102,59 @@ const CANTON_DEDUCTIONS_EN: Record<string, {
   propertyMaint: string;
   pillar3a: string;
 }> = {
+  // Same sources as the French page (NeoFidu guides and official cantonal instructions, 2026 tax period unless stated).
   VD: {
-    mealExpenses: "CHF 15/day",
-    transportTrain: "Actual subscription (GA, half-fare, route pass)",
-    transportCar: "CHF 0.70/km (home-work distance)",
-    transportBike: "CHF 700/year",
-    transportCap: "Max CHF 7,000/year (all modes combined)",
-    propertyMaint: "20% (<10 yrs) or 30% (>10 yrs) of rental value",
+    mealExpenses: "CHF 3,200/year (CHF 1,600 with a canteen)",
+    transportTrain: "Flat rate based on the public transport distance",
+    transportCar: "CHF 0.75/km up to 15,000 km, only if public transport cannot be used",
+    transportBike: "Up to CHF 700/year",
+    transportCap: "Price of the general travelcard (CHF 4,080 in 2025)",
+    propertyMaint: "Flat 20% (building 20 years old or less) or 30% of rental value, or actual costs",
     pillar3a: "CHF 7,258 (employed) / CHF 36,288 (self-employed)",
   },
   GE: {
-    mealExpenses: "CHF 15/day",
-    transportTrain: "Actual costs (TPG, SBB subscription)",
-    transportCar: "Actual justified costs only (no per-km rate)",
-    transportBike: "Not deductible",
-    transportCap: "No fixed cap (actual costs)",
-    propertyMaint: "Flat 10% or actual costs",
+    mealExpenses: "Included in the 3% flat rate (CHF 641 to 1,817); as actual costs only if the commute exceeds 2 hours a day",
+    transportTrain: "Included in the 3% flat rate, or actual costs",
+    transportCar: "Actual costs, within the cap below",
+    transportBike: "Within the cap below",
+    transportCap: "CHF 536/year as actual costs (cantonal tax); CHF 3,300 (federal tax)",
+    propertyMaint: "Flat 15% (building 10 years old or less) or 25% of rental value, or actual costs",
     pillar3a: "CHF 7,258 (employed) / CHF 36,288 (self-employed)",
   },
   VS: {
-    mealExpenses: "CHF 15/day",
-    transportTrain: "GA, half-fare or route pass",
-    transportCar: "CHF 0.70/km",
-    transportBike: "Flat rate accepted",
-    transportCap: "No specific cantonal cap",
-    propertyMaint: "10% of fiscal value",
+    mealExpenses: "CHF 15/day, max CHF 3,200/year (CHF 1,600 with a canteen)",
+    transportTrain: "Actual costs (travelcard)",
+    transportCar: "CHF 0.75/km up to 15,000 km, then decreasing",
+    transportBike: "Up to CHF 700/year",
+    transportCap: "No cantonal cap (federal tax: CHF 3,300)",
+    propertyMaint: "Flat 10% (building 10 years old or less) or 20% of rental value, or actual costs",
     pillar3a: "CHF 7,258 (employed) / CHF 36,288 (self-employed)",
   },
   FR: {
-    mealExpenses: "CHF 15/day",
-    transportTrain: "Actual subscription (GA, half-fare, route pass)",
-    transportCar: "CHF 0.70/km",
+    mealExpenses: "CHF 15/day, max CHF 3,200/year (CHF 1,600 with a canteen)",
+    transportTrain: "Actual public transport cost",
+    transportCar: "CHF 0.70/km, only if public transport cannot be used",
     transportBike: "CHF 700/year",
-    transportCap: "Max CHF 6,600/year",
-    propertyMaint: "10% (<10 yrs) or 20% (>10 yrs)",
+    transportCap: "CHF 12,000/year (cantonal tax); CHF 3,300 (federal tax)",
+    propertyMaint: "Flat 10% (building built after 2015) or 20% of gross rental income, or actual costs",
     pillar3a: "CHF 7,258 (employed) / CHF 36,288 (self-employed)",
   },
   NE: {
-    mealExpenses: "CHF 15/day",
-    transportTrain: "Actual subscription (GA, half-fare, route pass)",
-    transportCar: "CHF 0.70/km",
+    mealExpenses: "CHF 15/day, max CHF 3,200/year (CHF 1,600 with a canteen)",
+    transportTrain: "Travelcard price",
+    transportCar: "CHF 0.60/km up to 10,000 km, then 0.40 (next 5,000 km) and 0.30",
     transportBike: "CHF 700/year",
-    transportCap: "Max CHF 6,000/year",
-    propertyMaint: "20% or actual costs",
+    transportCap: "No cantonal cap (federal tax: CHF 3,300)",
+    propertyMaint: "Flat 10 to 20% (max CHF 7,200 / 12,000) or actual costs",
     pillar3a: "CHF 7,258 (employed) / CHF 36,288 (self-employed)",
   },
   JU: {
-    mealExpenses: "CHF 15/day",
-    transportTrain: "Actual costs (subscription)",
-    transportCar: "CHF 0.70/km",
+    mealExpenses: "CHF 15/day (half with a canteen)",
+    transportTrain: "Actual costs (travelcard)",
+    transportCar: "CHF 0.70/km up to 7,999 km, then 0.65 and 0.60 (from 15,000 km)",
     transportBike: "Accepted with receipts",
-    transportCap: "No fixed cap",
-    propertyMaint: "Flat 10% or actual costs",
+    transportCap: "No cantonal cap (federal tax: CHF 3,300)",
+    propertyMaint: "Flat 10 to 20% or actual costs",
     pillar3a: "CHF 7,258 (employed) / CHF 36,288 (self-employed)",
   },
 };
@@ -441,7 +442,8 @@ export default async function CommunePageEN({ params }: Props) {
                 </table>
               </div>
               <p className="text-xs text-gray-400 mt-3">
-                Indicative amounts for the current fiscal year.{" "}
+                Cantonal tax, 2026 tax period unless stated. Details and sources in the{" "}
+                <Link href="/en/guide/deductions-fiscales" className="text-blue-600 underline">deductions guide</Link>.{" "}
                 <Link href={`/en/cantons/${CANTON_SLUG[commune.canton] ?? ""}`} className="text-blue-600 underline">Canton {commune.canton} page</Link>
               </p>
             </Card>
