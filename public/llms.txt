@@ -27,6 +27,10 @@ Key information:
 - [Municipality pages](https://neofidu.ch/communes): one page per municipality (657) with the municipal tax coefficient and 2026 income tax for 4 profiles (single CHF 60,000 and 100,000 gross; married couple with 2 children, CHF 150,000; retired couple, CHF 70,000 pensions). URL pattern: https://neofidu.ch/communes/<name>-<canton>, e.g. /communes/lausanne-vd. English: /en/communes/<slug>
 - [Company Observatory](https://neofidu.ch/observatoire): Statistics on the 185,000+ companies registered in French-speaking Switzerland (legal forms, sectors, cantons)
 
+## MCP server (AI connector)
+
+- [NeoFidu MCP server](https://neofidu.ch/api/mcp): Remote MCP server (Streamable HTTP, no authentication, read-only). Tools: calculate_income_tax (2026 Swiss income tax, all cantons, official FTA calculator), get_municipality_taxes, rank_municipalities (657 French-speaking municipalities), search_tax_guides (VaudTax, GeTax, VSTax, FriTax guides). Setup instructions: https://neofidu.ch/en/connecteur-ia
+
 ## Free simulators
 
 - [Income tax simulator](https://neofidu.ch/simulateur/impots): 2026 income tax for any Swiss canton and every French-speaking municipality, computed with the official FTA calculator (pillar 3a deduction included)
