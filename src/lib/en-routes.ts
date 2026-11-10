@@ -9,6 +9,7 @@ export const EN_TWIN_EXACT = new Set<string>([
   "/blog",
   "/cantons",
   "/communes",
+  "/connecteur-ia",
   "/conditions-generales",
   "/contact",
   "/creation-entreprise",
