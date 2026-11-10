@@ -147,8 +147,8 @@ export function NeuchatelContent({ forceEn = false }: { forceEn?: boolean }) {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl mb-8">
             {isEnglish
-              ? "In the heart of watchmaking country, our experts support you from Neuchâtel to La Chaux-de-Fonds with your tax return."
-              : "Au cœur du pays horloger, nos experts vous accompagnent de Neuchâtel à La Chaux-de-Fonds pour votre déclaration d'impôts."}
+              ? "In the heart of watchmaking country, a certified specialist supports you from Neuchâtel to La Chaux-de-Fonds with your tax return."
+              : "Au cœur du pays horloger, un spécialiste diplômé vous accompagne de Neuchâtel à La Chaux-de-Fonds pour votre déclaration d'impôts."}
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/demande">
@@ -554,8 +554,8 @@ export function NeuchatelContent({ forceEn = false }: { forceEn?: boolean }) {
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             {isEnglish
-              ? "Individuals or watchmaking professionals, trust your declaration to our experts. Fast service, transparent pricing."
-              : "Particuliers ou professionnels de l'horlogerie, confiez votre déclaration à nos experts. Service rapide, tarifs transparents."}
+              ? "Individuals or watchmaking professionals, trust your declaration to a certified specialist. Fast service, transparent pricing."
+              : "Particuliers ou professionnels de l'horlogerie, confiez votre déclaration à un spécialiste diplômé. Service rapide, tarifs transparents."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demande">

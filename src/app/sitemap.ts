@@ -8,6 +8,8 @@ import { getaxGuide } from "@/lib/guides/getax";
 import { vstaxGuide } from "@/lib/guides/vstax";
 import { fritaxGuide } from "@/lib/guides/fritax";
 import { createClient } from "@supabase/supabase-js";
+import { isCommuneFusionnee } from "@/lib/communes-fusionnees";
+
 
 const baseUrl = "https://neofidu.ch";
 
@@ -131,9 +133,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .select("slug, updated_at")
       .order("slug", { ascending: true });
 
-    communePages = (communes || []).map((c) => ({
+    // Derniere refonte du contenu des fiches (impots 2026 par profil)
+    const communesContentDate = new Date("2026-11-10");
+    communePages = (communes || [])
+      .filter((c) => !isCommuneFusionnee(c.slug))
+      .map((c) => ({
       url: `${baseUrl}/communes/${c.slug}`,
-      lastModified: new Date(c.updated_at),
+      lastModified: new Date(Math.max(new Date(c.updated_at).getTime(), communesContentDate.getTime())),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Neuchâtel 2026",
-  description: "Fiduciaire en ligne pour le canton de Neuchâtel. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes. Dès CHF 89.",
+  description: "Fiduciaire en ligne pour le canton de Neuchâtel. Déclaration d’impôts, comptabilité et conseils fiscaux par un spécialiste diplômé. Dès CHF 89.",
   keywords: [
     "déclaration impôts Neuchâtel",
     "impôts La Chaux-de-Fonds",

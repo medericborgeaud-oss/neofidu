@@ -225,8 +225,8 @@ export function CantonsContent({ forceEn = false }: { forceEn?: boolean }) {
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             {isEnglish
-              ? "Regardless of your canton, our team of experts supports you for an optimized declaration."
-              : "Quel que soit votre canton, notre équipe d'experts vous accompagne pour une déclaration optimisée."}
+              ? "Regardless of your canton, a certified specialist supports you for an optimized declaration."
+              : "Quel que soit votre canton, un spécialiste diplômé vous accompagne pour une déclaration optimisée."}
           </p>
           <Link href="/demande">
             <Button size="lg" variant="secondary" className="text-primary font-semibold">

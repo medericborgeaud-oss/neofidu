@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Déclaration d'impôts Jura 2026",
-  description: "Fiduciaire en ligne pour le canton du Jura. Déclaration d’impôts, comptabilité et conseils fiscaux par des spécialistes diplômés. Dès CHF 89.",
+  description: "Fiduciaire en ligne pour le canton du Jura. Déclaration d’impôts, comptabilité et conseils fiscaux par un spécialiste diplômé. Dès CHF 89.",
   keywords: [
     "déclaration impôts Jura",
     "impôts Delémont",

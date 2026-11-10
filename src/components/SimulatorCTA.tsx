@@ -9,8 +9,8 @@ export function SimulatorCTA() {
   const { isEnglish } = useLanguage();
 
   const bullets = isEnglish
-    ? ["From CHF 89", "100% digital", "Certified specialists"]
-    : ["Dès CHF 89", "100% digital", "Spécialistes diplômés"];
+    ? ["From CHF 89", "100% digital", "Certified specialist"]
+    : ["Dès CHF 89", "100% digital", "Spécialiste diplômé"];
 
   return (
     <section className="bg-gradient-to-br from-primary via-teal-600 to-emerald-700 text-white py-16 mt-8">
@@ -25,8 +25,8 @@ export function SimulatorCTA() {
         </h2>
         <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
           {isEnglish
-            ? "Our certified specialists manage your file from A to Z. Just send your documents - we take care of the rest."
-            : "Nos spécialistes diplômés gèrent votre dossier de A à Z. Vous envoyez vos documents, on s’occupe du reste."}
+            ? "A certified specialist manages your file from A to Z. Just send your documents - we take care of the rest."
+            : "Un spécialiste diplômé gère votre dossier de A à Z. Vous envoyez vos documents, on s’occupe du reste."}
         </p>
         <div className="flex justify-center gap-8 mb-10 flex-wrap">
           {bullets.map((b, i) => (

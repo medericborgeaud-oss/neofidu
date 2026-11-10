@@ -561,8 +561,8 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             {isEnglish
-              ? "Individuals, farmers or entrepreneurs, trust your declaration to our experts. Service adapted to the Jura rhythm."
-              : "Particuliers, agriculteurs ou entrepreneurs, confiez votre déclaration à nos experts. Service adapté au rythme jurassien."}
+              ? "Individuals, farmers or entrepreneurs, trust your declaration to a certified specialist. Service adapted to the Jura rhythm."
+              : "Particuliers, agriculteurs ou entrepreneurs, confiez votre déclaration à un spécialiste diplômé. Service adapté au rythme jurassien."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demande">

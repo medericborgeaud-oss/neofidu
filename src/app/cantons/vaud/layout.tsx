@@ -90,11 +90,6 @@ const vaudSchema = {
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "500", "priceCurrency": "CHF", "unitText": "an" }
       }
     ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "89"
   }
 };
 

@@ -497,8 +497,8 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             {isEnglish
-              ? "Trust our experts with your tax return. Fast service, transparent pricing, deadline compliance guaranteed."
-              : "Confiez votre déclaration d'impôts à nos experts. Service rapide, tarifs transparents, respect des délais garanti."}
+              ? "Trust a certified specialist with your tax return. Fast service, transparent pricing, deadline compliance guaranteed."
+              : "Confiez votre déclaration d'impôts à un spécialiste diplômé. Service rapide, tarifs transparents, respect des délais garanti."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demande">

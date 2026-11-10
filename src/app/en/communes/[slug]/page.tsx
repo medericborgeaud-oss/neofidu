@@ -14,6 +14,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CantonFlag } from "@/components/CantonFlag";
 import CommuneMedia from "@/components/CommuneMedia";
+import { CommuneTaxEstimates } from "@/components/CommuneTaxEstimates";
+import { getCommuneImpots, formatChf, rankEn } from "@/lib/commune-impots";
 import {
   getCommuneBySlug, getCommunesVoisines, CANTON_NAMES,
   CANTON_SLUG,
@@ -42,10 +44,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tauxText = commune.taux_commune ? `municipal coefficient ${commune.taux_commune}` : "";
   const parts = [popText, tauxText].filter(Boolean);
   const canonicalUrl = `https://neofidu.ch/en/communes/${params.slug}`;
+  const impots = getCommuneImpots(params.slug, commune.canton);
+  const impotText = impots
+    ? ` ${impots.annee} tax for a single person on CHF 100,000 gross: CHF ${formatChf(impots.profils.seul100.total, "en")}.`
+    : "";
 
   return {
     title: `Taxes in ${commune.nom} (${commune.canton}): rate and coefficient`,
-    description: `Taxes in ${commune.nom}, ${cantonName}. ${parts.join(", ")}. Compare taxation with neighbouring municipalities.`,
+    description: `Taxes in ${commune.nom}, ${cantonName}. ${parts.join(", ")}.${impotText} Compare with neighbouring municipalities.`,
     openGraph: {
       title: `Taxes in ${commune.nom} (${cantonName})`,
       description: `Taxation in ${commune.nom}: ${parts.join(", ")}. Compare with neighbouring municipalities.`,
@@ -153,6 +159,7 @@ export default async function CommunePageEN({ params }: Props) {
 
   const voisines = await getCommunesVoisines(params.slug);
   const cantonName = CANTON_NAMES[commune.canton] || commune.canton;
+  const impots = getCommuneImpots(params.slug, commune.canton);
   // Same as the FR page: use the precomputed column, live count only as a fallback
   // (the live ilike count was what made these pages take 20-80 s to render).
   const companyCount =
@@ -278,7 +285,7 @@ export default async function CommunePageEN({ params }: Props) {
                     </p>
                     <Link href={`/en/observatoire?q=${encodeURIComponent(commune.nom)}&canton=${commune.canton}`}
                       className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 mt-3">
-                      View companies in {commune.nom} <ArrowRight className="w-3 h-3" />
+                      Economic statistics in the Observatory <ArrowRight className="w-3 h-3" />
                     </Link>
                   </div>
                 </div>
@@ -342,32 +349,14 @@ export default async function CommunePageEN({ params }: Props) {
           </Card>
         </div>
 
-        {/* Tax estimation section */}
-        <section className="max-w-4xl mx-auto px-4 py-6">
-          <Card className="p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Calculator className="h-5 w-5 text-blue-600" />
-              <h2 className="text-lg font-semibold text-gray-900">Tax estimation in {commune.nom}</h2>
-            </div>
-            <p className="text-sm text-gray-600 mb-4">
-              In Switzerland, taxes are calculated by applying a municipal coefficient and a cantonal rate to a progressive tax scale.
-              The exact amount depends on your income, family situation and applicable deductions.
-            </p>
-            <div className="bg-emerald-50 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-medium text-emerald-800">Calculate your exact tax</p>
-                <p className="text-xs text-emerald-600">Free simulator with {commune.nom} rates</p>
-              </div>
-              <Link href={`/en/simulateur/impots?commune=${encodeURIComponent(commune.slug || "")}`}>
-                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">Simulate my taxes</Button>
-              </Link>
-            </div>
-            <p className="text-xs text-gray-400 mt-3">
-              In Switzerland, taxes are calculated by applying these coefficients to a progressive cantonal scale, not directly on income.{" "}
-              <Link href="/en/simulateur/impots" className="text-blue-600 underline">Learn more</Link>
-            </p>
-          </Card>
-        </section>
+        {/* 2026 tax by profile (official FTA calculator) */}
+        <CommuneTaxEstimates
+          lang="en"
+          communeNom={commune.nom}
+          communeSlug={commune.slug || params.slug}
+          cantonName={cantonName}
+          impots={impots}
+        />
 
         {/* Economic fabric */}
         <section className="max-w-4xl mx-auto px-4 py-6">
@@ -379,11 +368,11 @@ export default async function CommunePageEN({ params }: Props) {
             {companyCount > 0 ? (
               <div>
                 <p className="text-sm text-gray-600 mb-3">
-                  <span className="text-2xl font-bold text-gray-900">{companyCount}</span>{" "}
+                  <span className="text-2xl font-bold text-gray-900">{formatChf(companyCount, "en")}</span>{" "}
                   active companies are registered in this municipality.
                 </p>
                 <Link href={`/en/observatoire?commune=${commune.nom}`} className="text-sm text-blue-600 underline">
-                  View companies in the Observatory
+                  See the statistics of the French-speaking Switzerland business Observatory
                 </Link>
               </div>
             ) : (
@@ -461,6 +450,18 @@ export default async function CommunePageEN({ params }: Props) {
               "@context": "https://schema.org",
               "@type": "FAQPage",
               mainEntity: [
+                ...(impots
+                  ? [
+                      {
+                        "@type": "Question",
+                        name: `How much tax do you pay in ${commune.nom}?`,
+                        acceptedAnswer: {
+                          "@type": "Answer",
+                          text: `In ${impots.annee}, a single person earning a gross salary of CHF 100,000 pays about CHF ${formatChf(impots.profils.seul100.total, "en")} in income tax in ${commune.nom} (federal, cantonal and municipal), ranking ${rankEn(impots.profils.seul100.rang)} out of ${impots.nbCommunesCanton} municipalities in the canton of ${cantonName} (1st = lowest tax). A married couple with 2 children and CHF 150,000 gross salaries pays about CHF ${formatChf(impots.profils.famille150.total, "en")}. Source: Swiss Federal Tax Administration tax calculator.`,
+                        },
+                      },
+                    ]
+                  : []),
                 {
                   "@type": "Question",
                   name: `What is the tax rate in ${commune.nom}?`,
@@ -491,6 +492,17 @@ export default async function CommunePageEN({ params }: Props) {
           <Card className="p-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Frequently asked questions</h2>
             <div className="space-y-4">
+              {impots && (
+                <div>
+                  <h3 className="text-sm font-medium text-gray-800">How much tax do you pay in {commune.nom}?</h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    In {impots.annee}, a single person earning a gross salary of CHF 100,000 pays about CHF{" "}
+                    {formatChf(impots.profils.seul100.total, "en")} in income tax in {commune.nom}. A married couple with
+                    2 children and CHF 150,000 gross salaries pays about CHF{" "}
+                    {formatChf(impots.profils.famille150.total, "en")}.
+                  </p>
+                </div>
+              )}
               <div>
                 <h3 className="text-sm font-medium text-gray-800">What is the tax rate in {commune.nom}?</h3>
                 <p className="text-sm text-gray-600 mt-1">

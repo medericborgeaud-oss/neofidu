@@ -373,7 +373,7 @@ const sectionsEn = [
       <p><strong>By validating their order, the Client acknowledges and accepts that processing of their file may begin immediately upon receipt of payment.</strong></p>
 
       <h4>6.2 Cancellation Before Processing Begins</h4>
-      <p>The Client may cancel their order <strong>only if processing of their file has not yet begun</strong>. Processing begins as soon as the file is opened by our teams, generally within <strong>24 to 48 hours</strong> following payment.</p>
+      <p>The Client may cancel their order <strong>only if processing of their file has not yet begun</strong>. Processing begins as soon as the file is opened by NeoFidu, generally within <strong>24 to 48 hours</strong> following payment.</p>
       <p>To check if cancellation is still possible, the Client must contact NeoFidu by email at <a href="mailto:contact@neofidu.ch">contact@neofidu.ch</a> indicating their reference number.</p>
 
       <h4>6.3 Full Refund</h4>

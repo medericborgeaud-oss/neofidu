@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +21,7 @@ import {
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 import { createClient } from "@supabase/supabase-js";
+import { isCommuneFusionnee } from "@/lib/communes-fusionnees";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -64,71 +65,20 @@ const cantonTaxRates: Record<
   ticino: { name: "Tessin", rate: 0.115, communeAvg: 0.06, region: "Tessin", code: "TI" },
 };
 
-// Baremes IFD 2025 indexes (ESTV Form. 58c 2025)
-const federalTaxBrackets = [
-  { min: 0, max: 18500, rate: 0 },
-  { min: 18500, max: 33200, rate: 0.0077 },
-  { min: 33200, max: 43500, rate: 0.0088 },
-  { min: 43500, max: 58100, rate: 0.0264 },
-  { min: 58100, max: 76200, rate: 0.0297 },
-  { min: 76200, max: 82100, rate: 0.0594 },
-  { min: 82100, max: 108900, rate: 0.066 },
-  { min: 108900, max: 141600, rate: 0.088 },
-  { min: 141600, max: 185000, rate: 0.11 },
-  { min: 185000, max: 793400, rate: 0.132 },
-  { min: 793400, max: Infinity, rate: 0.115 },
-];
-
-const federalTaxBracketsMarried = [
-  { min: 0, max: 29700, rate: 0 },
-  { min: 29700, max: 53400, rate: 0.01 },
-  { min: 53400, max: 61300, rate: 0.02 },
-  { min: 61300, max: 79100, rate: 0.03 },
-  { min: 79100, max: 94900, rate: 0.04 },
-  { min: 94900, max: 108600, rate: 0.05 },
-  { min: 108600, max: 120500, rate: 0.06 },
-  { min: 120500, max: 130500, rate: 0.07 },
-  { min: 130500, max: 138300, rate: 0.08 },
-  { min: 138300, max: 144200, rate: 0.09 },
-  { min: 144200, max: 148200, rate: 0.10 },
-  { min: 148200, max: 150300, rate: 0.11 },
-  { min: 150300, max: 152300, rate: 0.12 },
-  { min: 152300, max: 940900, rate: 0.13 },
-  { min: 940900, max: Infinity, rate: 0.115 },
-];
-
-const DEDUCTIONS = {
-  professional: 0.03,
-  professionalMin: 2000,
-  professionalMax: 4000,
-  insurance: 2600,
-  insuranceMarried: 5200,
-  insuranceChild: 1300,
-  pillar3a: 7258, // Plafond 3a 2026
-  childDeduction: 6600,
-  marriedDeduction: 2600,
-};
-
+// Le calcul est fait cote serveur avec le calculateur officiel de l'AFC
+// (voir src/app/api/impots/simulation/route.ts).
 interface SimulationResult {
+  year: number;
+  location: { name: string; isCommune: boolean };
   grossIncome: number;
-  deductions: {
-    professional: number;
-    insurance: number;
-    pillar3a: number;
-    children: number;
-    married: number;
-    total: number;
-  };
-  taxableIncome: number;
-  taxes: {
-    federal: number;
-    cantonal: number;
-    communal: number;
-    total: number;
-  };
+  socialContributions: number;
   netIncome: number;
+  deductions: { pillar3a: number; totalCanton: number };
+  taxableIncome: { federal: number; canton: number };
+  taxes: { federal: number; cantonal: number; communal: number; total: number };
+  disposableIncome: number;
   effectiveRate: number;
-  communeName?: string;
+  marginalRate: number | null;
 }
 
 interface CommuneOption {
@@ -151,11 +101,23 @@ export function TaxSimulatorClient() {
     profession: "employee",
   });
   const [showResult, setShowResult] = useState(false);
+  const [result, setResult] = useState<SimulationResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [communes, setCommunes] = useState<CommuneOption[]>([]);
   const [loadingCommunes, setLoadingCommunes] = useState(false);
 
   const selectedCantonCode = cantonTaxRates[formData.canton]?.code || "";
   const isRomandie = ROMANDIE_CODES.includes(selectedCantonCode);
+
+  // Pre-selection depuis une fiche commune (/simulateur/impots?commune=leysin-vd)
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("commune");
+    if (!slug || isCommuneFusionnee(slug)) return;
+    const code = slug.split("-").pop()?.toUpperCase();
+    const key = Object.keys(cantonTaxRates).find((k) => cantonTaxRates[k].code === code);
+    if (key) setFormData((prev) => ({ ...prev, canton: key, commune: slug }));
+  }, []);
 
   // Fetch communes when canton changes
   useEffect(() => {
@@ -176,7 +138,7 @@ export function TaxSimulatorClient() {
           console.error("Error fetching communes:", error);
           setCommunes([]);
         } else {
-          setCommunes(data || []);
+          setCommunes((data || []).filter((c) => !isCommuneFusionnee(c.slug)));
         }
         setLoadingCommunes(false);
       });
@@ -191,91 +153,41 @@ export function TaxSimulatorClient() {
     }).format(amount);
   };
 
-  const calculateTaxes = useMemo((): SimulationResult | null => {
-    const income = parseFloat(formData.grossIncome) || 0;
-    if (income <= 0) return null;
-
-    const canton = cantonTaxRates[formData.canton];
-    const isMarried = formData.maritalStatus === "married";
-    const childrenCount = parseInt(formData.children) || 0;
-    const pillar3aContrib = Math.min(parseFloat(formData.pillar3a) || 0, DEDUCTIONS.pillar3a);
-
-    const professionalDeduction = Math.min(
-      Math.max(income * DEDUCTIONS.professional, DEDUCTIONS.professionalMin),
-      DEDUCTIONS.professionalMax
-    );
-
-    const insuranceDeduction = isMarried
-      ? DEDUCTIONS.insuranceMarried + childrenCount * DEDUCTIONS.insuranceChild
-      : DEDUCTIONS.insurance + childrenCount * DEDUCTIONS.insuranceChild;
-
-    const childrenDeduction = childrenCount * DEDUCTIONS.childDeduction;
-    const marriedDeduction = isMarried ? DEDUCTIONS.marriedDeduction : 0;
-
-    const totalDeductions =
-      professionalDeduction + insuranceDeduction + pillar3aContrib + childrenDeduction + marriedDeduction;
-
-    let taxableIncome = Math.max(income - totalDeductions, 0);
-
-    // Use dedicated married brackets instead of splitting method
-    const brackets = isMarried ? federalTaxBracketsMarried : federalTaxBrackets;
-
-    let federalTax = 0;
-    for (const bracket of brackets) {
-      if (taxableIncome > bracket.min) {
-        const taxableInBracket = Math.min(taxableIncome - bracket.min, bracket.max - bracket.min);
-        federalTax += taxableInBracket * bracket.rate;
-      }
-    }
-
-    const cantonalTax = taxableIncome * canton.rate;
-
-    // Use commune-specific coefficient if available, otherwise use canton average
-    const selectedCommune = communes.find((c) => c.slug === formData.commune);
-    let communalTax: number;
-    let communeName: string | undefined;
-
-    if (selectedCommune?.taux_commune) {
-      communalTax = cantonalTax * (selectedCommune.taux_commune / 100);
-      communeName = selectedCommune.nom;
-    } else {
-      communalTax = taxableIncome * canton.communeAvg;
-    }
-
-    const totalTax = federalTax + cantonalTax + communalTax;
-    const netIncome = income - totalTax;
-    const effectiveRate = income > 0 ? (totalTax / income) * 100 : 0;
-
-    return {
-      grossIncome: income,
-      deductions: {
-        professional: professionalDeduction,
-        insurance: insuranceDeduction,
-        pillar3a: pillar3aContrib,
-        children: childrenDeduction,
-        married: marriedDeduction,
-        total: totalDeductions,
-      },
-      taxableIncome,
-      taxes: {
-        federal: federalTax,
-        cantonal: cantonalTax,
-        communal: communalTax,
-        total: totalTax,
-      },
-      netIncome,
-      effectiveRate,
-      communeName,
-    };
-  }, [formData, communes]);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowResult(true);
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/impots/simulation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          grossIncome: parseFloat(formData.grossIncome) || 0,
+          canton: selectedCantonCode,
+          commune: isRomandie ? formData.commune : "",
+          maritalStatus: formData.maritalStatus,
+          children: parseInt(formData.children) || 0,
+          pillar3a: parseFloat(formData.pillar3a) || 0,
+          profession: formData.profession,
+        }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setResult(await res.json());
+      setShowResult(true);
+    } catch {
+      setError(
+        isEnglish
+          ? "The calculation service is temporarily unavailable. Please try again in a moment."
+          : "Le service de calcul est momentanément indisponible. Merci de réessayer dans un instant."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const resetSimulator = () => {
     setShowResult(false);
+    setResult(null);
     setStep(1);
   };
 
@@ -385,7 +297,7 @@ export function TaxSimulatorClient() {
                       onChange={(e) => setFormData({ ...formData, commune: e.target.value })}
                       className="w-full h-12 px-4 rounded-md border border-input bg-background text-base mt-2"
                     >
-                      <option value="">{isEnglish ? "- Cantonal average -" : "- Moyenne cantonale -"}</option>
+                      <option value="">{isEnglish ? "- Cantonal capital -" : "- Chef-lieu du canton -"}</option>
                       {communes.map((c) => (
                         <option key={c.slug} value={c.slug}>
                           {c.nom}{c.taux_commune ? ` (coeff. ${c.taux_commune})` : ""}
@@ -491,35 +403,6 @@ export function TaxSimulatorClient() {
                   </select>
                 </div>
 
-                <div>
-                  <Label className="text-base font-medium">{t("simulators.taxSimulator.areYouOwner")}</Label>
-                  <div className="grid grid-cols-2 gap-3 mt-2">
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, hasProperty: false })}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        !formData.hasProperty
-                          ? "border-primary bg-primary/5"
-                          : "border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      <span className="text-sm font-medium">{t("simulators.taxSimulator.tenant")}</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, hasProperty: true })}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        formData.hasProperty
-                          ? "border-primary bg-primary/5"
-                          : "border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      <Home className="w-5 h-5 mx-auto mb-1 text-primary" />
-                      <span className="text-sm font-medium">{t("simulators.taxSimulator.owner")}</span>
-                    </button>
-                  </div>
-                </div>
-
                 <div className="flex gap-3">
                   <Button type="button" variant="outline" onClick={() => setStep(1)} className="flex-1 h-12">
                     {t("simulators.common.back")}
@@ -539,14 +422,18 @@ export function TaxSimulatorClient() {
                     {t("simulators.taxSimulator.pillar3aContribution")}
                   </Label>
                   <p className="text-sm text-muted-foreground mb-2">
-                    {t("simulators.taxSimulator.pillar3aMax")}
+                    {formData.profession === "independent"
+                      ? isEnglish
+                        ? "Maximum 20% of net self-employed income, up to CHF 36,288 (2026)"
+                        : "Maximum 20 % du revenu net d'indépendant, jusqu'à CHF 36'288 (2026)"
+                      : t("simulators.taxSimulator.pillar3aMax")}
                   </p>
                   <div className="relative">
                     <Input
                       id="pillar3a"
                       type="number"
                       placeholder="7258"
-                      max={7258}
+                      max={formData.profession === "independent" ? 36288 : 7258}
                       value={formData.pillar3a}
                       onChange={(e) => setFormData({ ...formData, pillar3a: e.target.value })}
                       className="h-12 text-lg pl-12"
@@ -575,11 +462,16 @@ export function TaxSimulatorClient() {
                   <Button type="button" variant="outline" onClick={() => setStep(2)} className="flex-1 h-12">
                     {t("simulators.common.back")}
                   </Button>
-                  <Button type="submit" className="flex-1 h-12">
-                    {t("simulators.taxSimulator.calculateTaxes")}
+                  <Button type="submit" className="flex-1 h-12" disabled={loading}>
+                    {loading
+                      ? isEnglish
+                        ? "Calculating..."
+                        : "Calcul en cours..."
+                      : t("simulators.taxSimulator.calculateTaxes")}
                     <Calculator className="w-5 h-5 ml-2" />
                   </Button>
                 </div>
+                {error && <p className="text-sm text-red-600 text-center">{error}</p>}
               </div>
             )}
           </form>
@@ -588,7 +480,8 @@ export function TaxSimulatorClient() {
     );
   }
 
-  if (!calculateTaxes) return null;
+  if (!result) return null;
+  const calculateTaxes = result;
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -606,8 +499,13 @@ export function TaxSimulatorClient() {
               </p>
             </div>
             <div>
-              <p className="text-white/80 text-sm mb-1">{t("simulators.taxSimulator.netIncome")}</p>
-              <p className="text-3xl font-bold">{formatCurrency(calculateTaxes.netIncome)}</p>
+              <p className="text-white/80 text-sm mb-1">
+                {isEnglish ? "Disposable income" : "Revenu disponible"}
+              </p>
+              <p className="text-3xl font-bold">{formatCurrency(calculateTaxes.disposableIncome)}</p>
+              <p className="text-white/70 text-xs mt-1">
+                {isEnglish ? "after social contributions and taxes" : "après cotisations sociales et impôts"}
+              </p>
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-white/20 text-center">
@@ -631,28 +529,30 @@ export function TaxSimulatorClient() {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-muted-foreground">{t("simulators.taxSimulator.professionalExpensesLabel")}</span>
-              <span className="font-medium">{formatCurrency(calculateTaxes.deductions.professional)}</span>
+              <span className="text-muted-foreground">
+                {isEnglish ? "Social contributions (AHV, UI, pension)" : "Cotisations sociales (AVS, AC, LPP)"}
+              </span>
+              <span className="font-medium">{formatCurrency(calculateTaxes.socialContributions)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">{t("simulators.taxSimulator.healthInsuranceLabel")}</span>
-              <span className="font-medium">{formatCurrency(calculateTaxes.deductions.insurance)}</span>
+              <span className="text-muted-foreground">
+                {isEnglish ? "Tax deductions (cantonal)" : "Déductions fiscales (canton)"}
+              </span>
+              <span className="font-medium">{formatCurrency(calculateTaxes.deductions.totalCanton)}</span>
             </div>
             {calculateTaxes.deductions.pillar3a > 0 && (
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">{t("simulators.taxSimulator.pillar3aLabel")}</span>
-                <span className="font-medium">{formatCurrency(calculateTaxes.deductions.pillar3a)}</span>
-              </div>
-            )}
-            {calculateTaxes.deductions.children > 0 && (
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">{t("simulators.taxSimulator.childDeductionLabel")}</span>
-                <span className="font-medium">{formatCurrency(calculateTaxes.deductions.children)}</span>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground pl-3">{t("simulators.taxSimulator.pillar3aLabel")}</span>
+                <span>{formatCurrency(calculateTaxes.deductions.pillar3a)}</span>
               </div>
             )}
             <div className="pt-3 border-t flex justify-between font-bold">
-              <span>{t("simulators.taxSimulator.totalDeductions")}</span>
-              <span className="text-primary">{formatCurrency(calculateTaxes.deductions.total)}</span>
+              <span>{isEnglish ? "Taxable income (canton)" : "Revenu imposable (canton)"}</span>
+              <span className="text-primary">{formatCurrency(calculateTaxes.taxableIncome.canton)}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">{isEnglish ? "Taxable income (federal)" : "Revenu imposable (IFD)"}</span>
+              <span>{formatCurrency(calculateTaxes.taxableIncome.federal)}</span>
             </div>
           </CardContent>
         </Card>
@@ -677,12 +577,8 @@ export function TaxSimulatorClient() {
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">
-                {calculateTaxes.communeName
-                  ? t("simulators.taxSimulator.communalTax").replace(/\s*\(moy\.\)\s*|\s*\(avg\.\)\s*/g, " ").trim()
-                  : t("simulators.taxSimulator.communalTax")}
-                {calculateTaxes.communeName && (
-                  <span className="text-xs ml-1">({calculateTaxes.communeName})</span>
-                )}
+                {isEnglish ? "Municipal tax" : "Impôt communal"}
+                <span className="text-xs ml-1">({calculateTaxes.location.name})</span>
               </span>
               <span className="font-medium">{formatCurrency(calculateTaxes.taxes.communal)}</span>
             </div>
@@ -695,7 +591,9 @@ export function TaxSimulatorClient() {
       </div>
 
       <p className="text-xs text-center text-muted-foreground italic max-w-2xl mx-auto">
-        {isEnglish ? "* This simulation is an indicative estimate. Actual cantonal and communal taxes are calculated using progressive scales specific to each canton. For a precise calculation tailored to your situation, entrust your tax return to a professional." : "* Cette simulation est une estimation indicative. Les impôts cantonaux et communaux réels sont calculés selon des barèmes progressifs propres à chaque canton. Pour un calcul précis adapté à votre situation, confiez votre déclaration à un professionnel."}
+        {isEnglish
+          ? `* Calculation made with the official tax calculator of the Swiss Federal Tax Administration (FTA), ${calculateTaxes.year} tax period, ${calculateTaxes.location.isCommune ? "" : "cantonal capital, "}income tax only (no wealth or church tax), standard deductions. Indicative result: your actual tax depends on all your deductions.`
+          : `* Calcul effectué avec le calculateur fiscal officiel de l'Administration fédérale des contributions (AFC), période fiscale ${calculateTaxes.year}, ${calculateTaxes.location.isCommune ? "" : "chef-lieu du canton, "}impôt sur le revenu uniquement (sans impôt sur la fortune ni impôt ecclésiastique), déductions standard. Résultat indicatif : votre impôt réel dépend de l'ensemble de vos déductions.`}
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">

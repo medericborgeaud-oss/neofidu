@@ -2245,7 +2245,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">2</div>
                 <div>
                   <p className="font-medium text-gray-900">{isEnglish ? "Completing your tax return" : "Remplissage de votre déclaration"}</p>
-                  <p className="text-sm text-gray-600">{isEnglish ? "Our experts complete your tax return (turnaround: 14 business days)." : "Nos experts complètent votre déclaration fiscale (délai: 14 jours ouvrés)."}</p>
+                  <p className="text-sm text-gray-600">{isEnglish ? "A certified specialist completes your tax return (turnaround: 14 business days)." : "Un spécialiste diplômé complète votre déclaration fiscale (délai: 14 jours ouvrés)."}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">

@@ -601,8 +601,8 @@ export function DeductionsPageClient() {
                   </h2>
                   <p className="text-white/90 mb-6">
                     {isEnglish
-                      ? "Our experts know all the possible deductions in your canton. Trust us with your declaration for maximum optimization."
-                      : "Nos experts connaissent toutes les déductions possibles dans votre canton. Confiez-nous votre déclaration pour une optimisation maximale."}
+                      ? "A certified specialist knows all the possible deductions in your canton. Trust us with your declaration for maximum optimization."
+                      : "Un spécialiste diplômé connaît toutes les déductions possibles dans votre canton. Confiez-nous votre déclaration pour une optimisation maximale."}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link href={L("/demande")}>

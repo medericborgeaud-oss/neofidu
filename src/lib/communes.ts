@@ -2,6 +2,10 @@
 // Data layer pour l'annuaire des communes romandes
 
 import { createClient } from "@supabase/supabase-js";
+import { COMMUNES_FUSIONNEES, isCommuneFusionnee } from "./communes-fusionnees";
+
+// Filtre PostgREST excluant les communes fusionnees
+const SLUGS_FUSIONNES_FILTER = `(${Object.keys(COMMUNES_FUSIONNEES).join(",")})`;
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -92,6 +96,7 @@ export async function getCommunes(filters: CommuneFilters = {}) {
   let query = supabase
     .from("communes")
     .select("*", { count: "exact" })
+    .not("slug", "in", SLUGS_FUSIONNES_FILTER)
     .order("population", { ascending: false, nullsFirst: false });
 
   if (canton) query = query.eq("canton", canton);
@@ -113,10 +118,11 @@ export async function getAllCommuneSlugs(): Promise<string[]> {
     console.error("[communes] getAllCommuneSlugs error:", error);
     return [];
   }
-  return (data || []).map((c: { slug: string }) => c.slug);
+  return (data || []).map((c: { slug: string }) => c.slug).filter((s) => !isCommuneFusionnee(s));
 }
 
 export async function getCommuneBySlug(slug: string): Promise<Commune | null> {
+  if (isCommuneFusionnee(slug)) return null;
   const { data, error } = await supabase
     .from("communes")
     .select("*")
@@ -156,7 +162,7 @@ export async function getCommunesVoisines(slug: string): Promise<Commune[]> {
     return [];
   }
 
-  return (data as Commune[]) || [];
+  return ((data as Commune[]) || []).filter((c) => !isCommuneFusionnee(c.slug));
 }
 
 // ─── Helpers ───

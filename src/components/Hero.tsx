@@ -8,8 +8,8 @@ import { CantonFlag } from "@/components/CantonFlag";
 export function Hero() {
   const { t, isEnglish } = useLanguage();
   const features = isEnglish
-    ? ["From your smartphone", "Transparent pricing", "Certified specialists"]
-    : ["Depuis votre smartphone", "Tarifs affichés", "Spécialistes diplômés"];
+    ? ["From your smartphone", "Transparent pricing", "Certified specialist"]
+    : ["Depuis votre smartphone", "Tarifs affichés", "Spécialiste diplômé"];
   const tagline = isEnglish
     ? "New generation fiduciary in French-speaking Switzerland"
     : "Fiduciaire nouvelle génération en Romandie";

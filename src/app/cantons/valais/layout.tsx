@@ -83,11 +83,6 @@ const valaisSchema = {
         "priceSpecification": { "@type": "PriceSpecification", "minPrice": "90", "priceCurrency": "CHF" }
       }
     ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "64"
   }
 };
 
