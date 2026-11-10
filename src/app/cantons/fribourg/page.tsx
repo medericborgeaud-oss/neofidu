@@ -165,7 +165,7 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
                 {isEnglish ? "Tax advantage" : "Avantage fiscal"}
               </span>
               <h2 className="text-3xl font-bold mt-2 mb-6">
-                {isEnglish ? "The most generous canton for families" : "Le canton le plus généreux pour les familles"}
+                {isEnglish ? "Full splitting for couples and families" : "Splitting intégral pour les couples et les familles"}
               </h2>
               <p className="text-muted-foreground mb-6">
                 {isEnglish
@@ -399,7 +399,7 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
                 {isEnglish ? "Fribourg specificities" : "Spécificités fribourgeoises"}
               </h3>
               <ul className="space-y-3 text-muted-foreground">
-                <li>• <strong>{isEnglish ? "Families" : "Familles"}</strong> : {isEnglish ? "among the most generous deductions" : "déductions parmi les plus généreuses"}</li>
+                <li>• <strong>{isEnglish ? "Families" : "Familles"}</strong> : {isEnglish ? "full splitting and CHF 8,600 deduction per child" : "splitting intégral et déduction de CHF 8'600 par enfant"}</li>
                 <li>• <strong>FriTax</strong> : {isEnglish ? "free bilingual program, electronic filing without signature" : "programme gratuit bilingue, envoi électronique sans signature"}</li>
                 <li>• <strong>{isEnglish ? "Childcare costs" : "Frais de garde"}</strong> : {isEnglish ? "up to CHF 12,000/child" : "jusqu'à CHF 12'000 par enfant"}</li>
                 <li>• <strong>{isEnglish ? "Bilingual" : "Bilingue"}</strong> : {isEnglish ? "French and German" : "français et allemand"}</li>
