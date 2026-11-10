@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { MessageCircle, X, Send, Loader2, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ChatMarkdown } from "@/components/ChatMarkdown";
 
 interface Message {
   role: "user" | "assistant";
@@ -126,7 +127,7 @@ export function ChatBot() {
                       : "bg-gray-100 text-gray-800 rounded-bl-sm"
                   }`}
                 >
-                  {msg.content}
+                  {msg.role === "assistant" ? <ChatMarkdown text={msg.content} /> : msg.content}
                 </div>
               </div>
             ))}
