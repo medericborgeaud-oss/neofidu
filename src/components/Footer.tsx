@@ -43,6 +43,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/observatoire",
   "/cantons",
   "/communes",
+  "/barometre-fiscal",
 ]);
 
 function enHrefFooter(href: string): string {
@@ -104,6 +105,7 @@ export function Footer() {
       { label: isEnglish ? "Contact us" : "Contact", href: "/contact" },
       { label: isEnglish ? "Business observatory" : "Observatoire des entreprises", href: "/observatoire" },
       { label: isEnglish ? "Municipalities" : "Communes romandes", href: "/communes" },
+      { label: isEnglish ? "Tax barometer 2026" : "Baromètre fiscal 2026", href: "/barometre-fiscal" },
     ],
     cantons: [
       { label: isEnglish ? "Fiduciary Geneva" : "Fiduciaire Genève", href: "/cantons/geneve" },
