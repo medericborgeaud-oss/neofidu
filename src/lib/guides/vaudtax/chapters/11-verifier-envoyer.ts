@@ -117,7 +117,7 @@ export const verifierEnvoyer: GuideChapter = {
       {
         type: "callout",
         tone: "info",
-        text: "Une question sur une décision de taxation vaudoise ? NeoFidu propose un [second avis](/second-avis) sur votre déclaration ou votre taxation.",
+        text: "Une question sur une décision de taxation vaudoise ? NeoFidu peut relire votre déclaration ou votre taxation : [contactez-nous](/contact).",
       },
     ],
     faq: [

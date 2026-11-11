@@ -40,7 +40,7 @@ export function FribourgContent({ forceEn = false }: { forceEn?: boolean }) {
       description: isEnglish
         ? "Accounting and taxation for SMEs and self-employed established in Fribourg."
         : "Comptabilité et fiscalité pour PME et indépendants établis à Fribourg.",
-      price: isEnglish ? "On quote" : "Sur devis"
+      price: isEnglish ? "From CHF 500.-/year" : "Dès CHF 500.-/an"
     }
   ];
   const deadlines = [

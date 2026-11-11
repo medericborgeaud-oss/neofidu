@@ -21,12 +21,12 @@ export function Hero() {
     : "Envoyez votre déclaration d'impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l'étranger.";
   const stats = isEnglish
     ? [
-        { value: "24/7", label: "Online availability" },
+        { value: "24/7", label: "Online submission" },
         { value: "6", label: "Cantons served" },
         { value: "10+", label: "Years of experience" },
       ]
     : [
-        { value: "24/7", label: "Disponibilité en ligne" },
+        { value: "24h/24", label: "Dépôt en ligne" },
         { value: "6", label: "Cantons desservis" },
         { value: "10+", label: "Ans d'expérience" },
       ];

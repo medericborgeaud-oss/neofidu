@@ -16,32 +16,62 @@ import {
   Zap,
   BadgeCheck,
   Receipt,
+  Unlock,
+  Download,
+  Repeat,
 } from "lucide-react";
+import { AnnualCostExamples } from "@/components/EntreprisePricingDetails";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 
 const services = [
   {
+    icon: Receipt,
+    title: "Comptabilit\u00e9 ind\u00e9pendant",
+    titleEn: "Self-employed accounting",
+    description: "Pour raison individuelle et freelance. Tenue de la comptabilit\u00e9, TVA si assujetti et bouclement annuel.",
+    descriptionEn: "For sole proprietorships and freelancers. Bookkeeping, VAT if registered and annual closing.",
+    price: "D\u00e8s CHF 500.-",
+    priceEn: "From CHF 500.-",
+    unit: "/an",
+    unitEn: "/year",
+    features: [
+      "Jusqu'\u00e0 200 transactions par an",
+      "Comptabilit\u00e9 compl\u00e8te",
+      "D\u00e9clarations TVA (si assujetti)",
+      "Bouclement annuel",
+      "Rapprochement bancaire",
+    ],
+    featuresEn: [
+      "Up to 200 transactions per year",
+      "Complete accounting",
+      "VAT returns (if registered)",
+      "Annual closing",
+      "Bank reconciliation",
+    ],
+  },
+  {
     icon: Calculator,
     title: "Comptabilit\u00e9 PME",
     titleEn: "SME Accounting",
-    description: "Tenue de comptabilit\u00e9 compl\u00e8te pour votre S\u00e0rl ou SA. Bouclement annuel, d\u00e9clarations TVA, \u00e9tats financiers et rapprochement bancaire.",
-    descriptionEn: "Complete accounting for your LLC or AG. Annual closing, VAT returns, financial statements and bank reconciliation.",
-    price: "200",
+    description: "Tenue de comptabilit\u00e9 compl\u00e8te pour votre S\u00e0rl ou SA jusqu'\u00e0 10 employ\u00e9s. Salaires, TVA, \u00e9tats financiers et d\u00e9claration d'imp\u00f4t de la soci\u00e9t\u00e9.",
+    descriptionEn: "Complete accounting for your LLC or AG with up to 10 employees. Payroll, VAT, financial statements and company tax return.",
+    price: "D\u00e8s CHF 200.-",
+    priceEn: "From CHF 200.-",
     unit: "/mois",
     unitEn: "/month",
     features: [
-      "Comptabilit\u00e9 compl\u00e8te",
+      "Jusqu'\u00e0 600 transactions par an",
+      "Salaires : 2 salari\u00e9s inclus, puis CHF 25.-/fiche/mois",
       "D\u00e9clarations TVA & sociales",
       "\u00c9tats financiers annuels",
-      "Rapprochement bancaire",
       "Conseil strat\u00e9gique fiscal",
     ],
     featuresEn: [
-      "Complete accounting",
+      "Up to 600 transactions per year",
+      "Payroll: 2 employees included, then CHF 25.-/payslip/month",
       "VAT & social returns",
       "Annual financial statements",
-      "Bank reconciliation",
       "Strategic tax advice",
     ],
   },
@@ -49,11 +79,12 @@ const services = [
     icon: FileText,
     title: "D\u00e9claration fiscale PM",
     titleEn: "Corporate Tax Return",
-    description: "D\u00e9claration d\u2019imp\u00f4ts compl\u00e8te pour votre S\u00e0rl ou SA, dans le cadre de la formule PME. Imp\u00f4t sur le b\u00e9n\u00e9fice, imp\u00f4t sur le capital et annexes.",
-    descriptionEn: "Complete tax return for your LLC or AG, as part of the SME package. Profit tax, capital tax and appendices.",
-    price: "200",
-    unit: "/mois",
-    unitEn: "/month",
+    description: "D\u00e9claration d\u2019imp\u00f4ts compl\u00e8te pour votre S\u00e0rl ou SA : imp\u00f4t sur le b\u00e9n\u00e9fice, imp\u00f4t sur le capital et annexes.",
+    descriptionEn: "Complete tax return for your LLC or AG: profit tax, capital tax and appendices.",
+    price: "Incluse",
+    priceEn: "Included",
+    unit: " dans la formule PME",
+    unitEn: " in the SME package",
     features: [
       "Imp\u00f4t sur le b\u00e9n\u00e9fice",
       "Imp\u00f4t sur le capital",
@@ -68,7 +99,13 @@ const services = [
       "Tax optimization",
       "Follow-up with tax authority",
     ],
-  }
+  },
+];
+
+const guarantees = [
+  { icon: Unlock, title: "Sans dur\u00e9e minimale", titleEn: "No minimum term", description: "Mandat r\u00e9siliable par e-mail pour la fin du mois suivant.", descriptionEn: "Mandate can be cancelled by email for the end of the following month." },
+  { icon: Download, title: "Vos donn\u00e9es vous appartiennent", titleEn: "Your data belongs to you", description: "Export complet de votre comptabilit\u00e9 \u00e0 tout moment.", descriptionEn: "Full export of your accounts at any time." },
+  { icon: BadgeCheck, title: "Aucune surprise", titleEn: "No surprises", description: "Aucun suppl\u00e9ment factur\u00e9 sans votre accord pr\u00e9alable.", descriptionEn: "No extra charge without your prior agreement." },
 ];
 
 const advantages = [
@@ -173,7 +210,7 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
                   : "Que vous cr\u00e9iez votre entreprise ou g\u00e9riez vos op\u00e9rations quotidiennes, nous avons la solution adapt\u00e9e."}
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
@@ -197,11 +234,8 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
                       </div>
                     </div>
                     <div className="mb-4">
-                      <span className="text-sm text-muted-foreground">
-                        {isEnglish ? "From" : "D\u00e8s"}{" "}
-                      </span>
                       <span className="text-2xl font-bold text-primary">
-                        CHF {service.price}.-
+                        {isEnglish ? service.priceEn : service.price}
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {isEnglish ? service.unitEn : service.unit}
@@ -226,6 +260,48 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
                   </Card>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Exemples de cout annuel */}
+        <section className="py-20 bg-slate-50 border-t">
+          <div className="container mx-auto px-4">
+            <AnnualCostExamples isEnglish={isEnglish} />
+            <div className="text-center mt-8">
+              <Button asChild variant="outline" className="rounded-full px-6">
+                <Link href={L("/tarifs")}>
+                  {isEnglish ? "See what is included and excluded" : "Voir ce qui est inclus et exclu"}
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Changer de fiduciaire */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto rounded-2xl border border-amber-200 bg-amber-50 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="flex items-start gap-4">
+                <Repeat className="w-8 h-8 text-amber-600 shrink-0" />
+                <div>
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                    {isEnglish ? "Already have a fiduciary?" : "Vous avez d\u00e9j\u00e0 une fiduciaire\u00a0?"}
+                  </h2>
+                  <p className="text-muted-foreground">
+                    {isEnglish
+                      ? "Free second opinion on your invoice within 48h. If you switch, we prepare the transfer letter and take over your file."
+                      : "Second avis gratuit sur votre facture en 48 h. Si vous changez, on pr\u00e9pare la lettre de transfert et on reprend votre dossier."}
+                  </p>
+                </div>
+              </div>
+              <Button asChild className="rounded-full px-6 whitespace-nowrap">
+                <Link href={L("/changer-de-fiduciaire")}>
+                  {isEnglish ? "Switch fiduciary" : "Changer de fiduciaire"}
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
@@ -258,6 +334,26 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
                     {isEnglish ? adv.descriptionEn : adv.description}
                   </p>
                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Engagements */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-foreground mb-10 text-center">
+              {isEnglish ? "Our commitments" : "Nos engagements"}
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {guarantees.map((g) => (
+                <div key={g.title} className="text-center">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <g.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{isEnglish ? g.titleEn : g.title}</h3>
+                  <p className="text-sm text-muted-foreground">{isEnglish ? g.descriptionEn : g.description}</p>
+                </div>
               ))}
             </div>
           </div>
