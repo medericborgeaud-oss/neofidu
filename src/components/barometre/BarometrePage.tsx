@@ -266,6 +266,14 @@ export function BarometrePage({ lang }: { lang: Lang }) {
               </ul>
             </section>
 
+            <p className="-mt-6 mb-10 text-sm text-muted-foreground">
+              {fr ? "Indépendant ou Sàrl ? Consultez le " : "Self-employed or running an LLC? See the "}
+              <Link href={`${base}/barometre-fiscal/entreprises`} className="text-primary underline">
+                {fr ? "baromètre fiscal des entreprises" : "business tax barometer"}
+              </Link>
+              .
+            </p>
+
             <h2 id="cantons" className="scroll-mt-24 text-2xl font-bold text-foreground mb-4">
               {fr ? "Les écarts entre cantons" : "Differences between cantons"}
             </h2>

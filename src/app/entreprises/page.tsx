@@ -263,6 +263,33 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
           </div>
         </section>
 
+        {/* Barometre fiscal des entreprises */}
+        <section className="py-12 bg-white border-t">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div>
+                <p className="text-sm font-semibold text-primary mb-1">
+                  {isEnglish ? "2026 data \u00b7 657 municipalities" : "Donn\u00e9es 2026 \u00b7 657 communes"}
+                </p>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                  {isEnglish ? "Business tax barometer 2026" : "Barom\u00e8tre fiscal des entreprises 2026"}
+                </h2>
+                <p className="text-muted-foreground">
+                  {isEnglish
+                    ? "How much tax does a self-employed person or a small LLC pay in each French-speaking municipality? Official FTA figures, canton by canton."
+                    : "Combien d\u2019imp\u00f4ts paie un ind\u00e9pendant ou une petite S\u00e0rl dans chaque commune romande\u00a0? Chiffres officiels de l\u2019AFC, canton par canton."}
+                </p>
+              </div>
+              <Button asChild className="rounded-full px-6 whitespace-nowrap">
+                <Link href={L("/barometre-fiscal/entreprises")}>
+                  {isEnglish ? "See the barometer" : "Voir le barom\u00e8tre"}
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-20 bg-gradient-to-r from-primary to-primary/80">
           <div className="container mx-auto px-4 text-center">
@@ -284,8 +311,8 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-white text-emerald-600 hover:bg-gray-50">
-                <Link href={L("/contact")}>
-                  {isEnglish ? "Request a quote" : "Cr\u00e9emander un devis"}
+                <Link href={L("/demande")}>
+                  {isEnglish ? "Request a quote" : "Demander un devis"}
                 </Link>
               </Button>
             </div>

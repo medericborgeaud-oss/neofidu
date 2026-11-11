@@ -601,6 +601,12 @@ export function IndependantsContent({ forceEn = false }: { forceEn?: boolean }) 
                       </Link>
                     </li>
                     <li>
+                      <Link href={L("/barometre-fiscal/entreprises")} className="text-primary hover:underline flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4" />
+                        {isEnglish ? "Business tax barometer 2026" : "Baromètre fiscal des entreprises 2026"}
+                      </Link>
+                    </li>
+                    <li>
                       <Link href={L("/simulateur/3eme-pilier")} className="text-primary hover:underline flex items-center gap-2">
                         <PiggyBank className="w-4 h-4" />
                         {isEnglish ? "3rd pillar calculator" : "Calculateur 3ème pilier"}

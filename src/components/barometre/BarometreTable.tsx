@@ -17,6 +17,10 @@ interface Props {
   rows: Row[];
   profilLabels: string[];
   cantonNames: Record<string, string>;
+  /** Profil affiche au chargement (index dans profilLabels) */
+  defaultProfil?: number;
+  /** Debut de la legende accessible, ex. "impot sur le revenu 2026" */
+  captionSubject?: { fr: string; en: string };
 }
 
 const fmt = (n: number, lang: "fr" | "en") =>
@@ -28,9 +32,9 @@ const strip = (s: string) =>
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "");
 
-export function BarometreTable({ lang, rows, profilLabels, cantonNames }: Props) {
+export function BarometreTable({ lang, rows, profilLabels, cantonNames, defaultProfil = 1, captionSubject }: Props) {
   const fr = lang === "fr";
-  const [profil, setProfil] = useState(1);
+  const [profil, setProfil] = useState(defaultProfil);
   const [canton, setCanton] = useState("");
   const [q, setQ] = useState("");
 
@@ -104,8 +108,8 @@ export function BarometreTable({ lang, rows, profilLabels, cantonNames }: Props)
         <table className="w-full text-sm">
           <caption className="sr-only">
             {fr
-              ? `Classement des communes romandes, impôt sur le revenu 2026 : ${profilLabels[profil]}`
-              : `Ranking of French-speaking Swiss municipalities, 2026 income tax: ${profilLabels[profil]}`}
+              ? `Classement des communes romandes, ${captionSubject?.fr ?? "impôt sur le revenu 2026"} : ${profilLabels[profil]}`
+              : `Ranking of French-speaking Swiss municipalities, ${captionSubject?.en ?? "2026 income tax"}: ${profilLabels[profil]}`}
           </caption>
           <thead className="bg-muted/60 sticky top-0">
             <tr>

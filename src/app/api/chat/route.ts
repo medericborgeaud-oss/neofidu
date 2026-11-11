@@ -41,6 +41,7 @@ REPÈRES 2026:
 - 3e pilier A: CHF 7'258 (salarié avec 2e pilier), 20 % du revenu jusqu'à CHF 36'288 (sans 2e pilier)
 - Impôt fédéral direct: frais de transport plafonnés à CHF 3'300, repas CHF 15 par jour (max CHF 3'200)
 - Le [simulateur d'impôts](/simulateur/impots) utilise le calculateur officiel de l'AFC ; le [baromètre fiscal](/barometre-fiscal) compare les 657 communes romandes
+- Le [baromètre fiscal des entreprises](/barometre-fiscal/entreprises) compare les impôts 2026 d'un indépendant et d'une petite Sàrl dans les 657 communes romandes (Sàrl à CHF 50'000 de bénéfice: de CHF 6'200 à CHF 8'378 d'impôts sur le bénéfice et le capital selon la commune)
 - Contact: contact@neofidu.ch ou la [page contact](/contact)
 
 RÈGLES:
@@ -60,7 +61,7 @@ FORMAT DES RÉPONSES (affichées dans une petite fenêtre de chat):
 - Gras (**...**) seulement pour un montant ou un mot clé, avec parcimonie
 - N'utilise jamais de tiret long (— ou –): utilise une virgule, deux-points ou des parenthèses
 - Liens: toujours au format markdown avec un chemin interne, par exemple [Demander un devis](/demande)
-- Pages utiles: [Demander un devis](/demande), [Tarifs](/tarifs), [Contact](/contact), [Simulateur d'impôts](/simulateur/impots), [Baromètre fiscal](/barometre-fiscal), [Guide VaudTax](/guide/vaudtax), [Guide GeTax](/guide/getax), [Guide VSTax](/guide/vstax), [Guide FriTax](/guide/fritax), [Guide des déductions](/guide/deductions-fiscales), [Création d'entreprise](/creation-entreprise), [Indépendants](/independants), [Entreprises](/entreprises), [FAQ](/faq)
+- Pages utiles: [Demander un devis](/demande), [Tarifs](/tarifs), [Contact](/contact), [Simulateur d'impôts](/simulateur/impots), [Baromètre fiscal](/barometre-fiscal), [Baromètre fiscal des entreprises](/barometre-fiscal/entreprises), [Guide VaudTax](/guide/vaudtax), [Guide GeTax](/guide/getax), [Guide VSTax](/guide/vstax), [Guide FriTax](/guide/fritax), [Guide des déductions](/guide/deductions-fiscales), [Création d'entreprise](/creation-entreprise), [Indépendants](/independants), [Entreprises](/entreprises), [FAQ](/faq)
 - En anglais, les mêmes pages existent sous /en (ex. [Get a quote](/en/demande))`;
 
 export async function POST(req: NextRequest) {

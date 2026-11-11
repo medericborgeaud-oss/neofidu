@@ -8,6 +8,8 @@ import type { GuideBlock, GuideChapterContent, GuideDefinition, GuideLocale } fr
 import { barometreTexts } from "@/components/barometre/BarometrePage";
 import { cantonStats, romandieMedian, VILLES_PRINCIPALES, getBaroCommune, BARO_COMMUNES, BARO_YEAR } from "@/lib/barometre";
 import { PROFILS, PROFIL_LABELS, formatChf } from "@/lib/commune-impots";
+import { barometreEntreprisesTexts } from "@/components/barometre/BarometreEntreprisesPage";
+import { BARO_PRO_COMMUNES, BARO_PRO_YEAR, PROFILS_PRO, PROFIL_PRO_LABELS, romandieMedianPro } from "@/lib/barometre-entreprises";
 
 export const dynamic = "force-static";
 
@@ -68,6 +70,28 @@ function guide(g: GuideDefinition, loc: GuideLocale): string {
   return out.join("\n");
 }
 
+function barometreEntreprises(): string {
+  const { summary, stats } = barometreEntreprisesTexts("en");
+  const l = (n: number) => formatChf(n, "en");
+  const head = PROFILS_PRO.map((p) => PROFIL_PRO_LABELS[p].en);
+  return [
+    `## Business tax barometer ${BARO_PRO_YEAR} (self-employed and LLCs)`,
+    `URL: ${SITE}/en/barometre-fiscal/entreprises (French: ${SITE}/barometre-fiscal/entreprises). Data (CSV): ${SITE}/barometre-fiscal/entreprises/donnees.csv`,
+    "",
+    `${BARO_PRO_YEAR} taxes in the ${BARO_PRO_COMMUNES.length} municipalities of the six French-speaking cantons, computed with the official Swiss Federal Tax Administration calculator. Self-employed (sole proprietorship): income tax, federal + cantonal + municipal, no wealth or church tax. LLC (Sàrl): profit and capital taxes, federal + cantonal + municipal + corporate church tax where levied (FR, VS, JU); profit stated before taxes. Geneva municipal business tax (taxe professionnelle) not included.`,
+    "",
+    ...summary.map((s) => `- ${s}`),
+    "",
+    "### Median municipality tax by canton (CHF per year)",
+    "",
+    `| Canton | ${head.join(" | ")} |`,
+    `| --- | ${head.map(() => "---").join(" | ")} |`,
+    ...stats.map((s) => `| ${s.canton} | ${s.median.map(l).join(" | ")} |`),
+    `| All six cantons | ${PROFILS_PRO.map((p) => l(romandieMedianPro(p))).join(" | ")} |`,
+    "",
+  ].join("\n");
+}
+
 function barometre(): string {
   const { summary } = barometreTexts("en");
   const stats = cantonStats();
@@ -108,6 +132,7 @@ export function GET() {
     "All amounts come from official sources (cantonal tax administrations, Swiss Federal Tax Administration). Content is written by the NeoFidu team.",
     "",
     barometre(),
+    barometreEntreprises(),
     "# Tax return guides (English)",
     "",
     ...GUIDES.map((g) => guide(g, "en")),

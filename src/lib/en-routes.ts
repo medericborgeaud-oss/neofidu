@@ -6,6 +6,7 @@ export const EN_TWIN_EXACT = new Set<string>([
   "/",
   "/associations-fondations",
   "/barometre-fiscal",
+  "/barometre-fiscal/entreprises",
   "/blog",
   "/cantons",
   "/communes",
