@@ -229,8 +229,8 @@ export default async function CompanyPageEN({ params }: Props) {
     company.legal_form === "RI"
       ? { text: "Are you also self-employed?", offer: "Tax return from CHF 129.-", href: "/demande" }
       : company.legal_form === "Sarl"
-      ? { text: "Need an accountant for your LLC?", offer: "Accounting from CHF 500.-/year", href: "/demande" }
-      : { text: "Your corporation deserves professional support.", offer: "Accounting from CHF 500.-/year", href: "/demande" };
+      ? { text: "Need an accountant for your LLC?", offer: "Accounting from CHF 200.-/month", href: "/demande" }
+      : { text: "Your corporation deserves professional support.", offer: "Accounting from CHF 200.-/month", href: "/demande" };
 
   const jsonLd = {
     "@context": "https://schema.org",

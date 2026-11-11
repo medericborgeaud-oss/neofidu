@@ -22,7 +22,7 @@ TARIFS ENTREPRISES:
 - Comptabilité indépendants/freelances (raison individuelle): dès CHF 500/an
 - Comptabilité PME (Sàrl/SA jusqu'à 10 employés): dès CHF 200/mois
 - Création d'entreprise: raison individuelle dès CHF 290, Sàrl dès CHF 990, SA dès CHF 1'490
-- Déclaration d'impôt de société (personne morale): sur devis
+- Déclaration d'impôt de société (Sàrl, SA): dans la formule PME, dès CHF 200/mois
 
 CANTONS COUVERTS: Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura. NeoFidu ne fait pas de gérance immobilière ni d'administration de PPE.
 
