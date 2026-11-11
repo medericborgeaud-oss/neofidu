@@ -50,7 +50,7 @@ export function VaudContent({ forceEn = false }: { forceEn?: boolean }) {
       description: isEnglish
         ? "Complete accounting services for companies established in canton Vaud."
         : "Services comptables complets pour les entreprises établies dans le canton de Vaud.",
-      price: isEnglish ? "On quote" : "Sur devis"
+      price: isEnglish ? "From CHF 200.-/month" : "Dès CHF 200.-/mois"
     }
   ];
   const deadlines = [

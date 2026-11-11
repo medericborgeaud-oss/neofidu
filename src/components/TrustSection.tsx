@@ -28,12 +28,12 @@ export function TrustSection() {
     ? [
         { value: "10+", label: "Years of experience" },
         { value: "6", label: "Cantons served" },
-        { value: "24/7", label: "Online availability" },
+        { value: "24/7", label: "Online submission" },
       ]
     : [
         { value: "10+", label: "Ans d'expérience" },
         { value: "6", label: "Cantons desservis" },
-        { value: "24/7", label: "Disponibilité en ligne" },
+        { value: "24h/24", label: "Dépôt en ligne" },
       ];
 
   return (

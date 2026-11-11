@@ -49,7 +49,7 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
       description: isEnglish
         ? "Complete accounting services for SMEs and craftsmen in the canton."
         : "Services comptables complets pour PME et artisans du canton.",
-      price: isEnglish ? "On quote" : "Sur devis"
+      price: isEnglish ? "From CHF 500.-/year" : "Dès CHF 500.-/an"
     }
   ];
   const deadlines = [

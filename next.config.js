@@ -78,6 +78,8 @@ const nextConfig = {
   // Security and performance headers
   async redirects() {
     return [
+      { source: "/second-avis", destination: "/changer-de-fiduciaire", permanent: true },
+      { source: "/en/second-avis", destination: "/en/changer-de-fiduciaire", permanent: true },
       { source: "/simulateur-retraite", destination: "/simulateur/retraite", permanent: true },
       { source: "/blog/pilier-3a-guide-complet", destination: "/blog/pilier-3a-2026-plafonds-avantages", permanent: true },
        { source: "/services", destination: "/#services", permanent: true },

@@ -28,7 +28,7 @@ export const EN_TWIN_EXACT = new Set<string>([
   "/mentions-legales",
   "/observatoire",
   "/politique-confidentialite",
-  "/second-avis",
+  "/changer-de-fiduciaire",
   "/simulateur",
   "/simulateur/3eme-pilier",
   "/simulateur/baisse-loyer",

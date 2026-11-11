@@ -25,108 +25,8 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
+import { EntreprisePricingDetails } from "@/components/EntreprisePricingDetails";
 const pricingData = {
-  particuliers: [
-    {
-      name: "Basique",
-      nameen: "Basic",
-      description: "Dossiers sans complexité",
-      descriptionen: "Simple cases",
-      price: "89",
-      priceNote: "dès",
-      features: [
-        "Personne seule",
-        "Attestation(s) de revenus",
-        "Relevé(s) de compte",
-        "Abattements usuels",
-        "Traitement standard (14 jours ouvrés)",
-      ],
-      featuresen: [
-        "Single person",
-        "Income certificate(s)",
-        "Bank statement(s)",
-        "Standard deductions",
-        "Standard processing (14 business days)",
-      ],
-      popular: false,
-    },
-    {
-      name: "Confort",
-      nameen: "Comfort",
-      description: "Formule plébiscitée",
-      descriptionen: "Most popular",
-      price: "149",
-      priceNote: "dès",
-      features: [
-        "Inclut la formule Basique",
-        "Charge(s) de famille",
-        "Un logement en propriété",
-        "Dépenses professionnelles",
-        "Traitement standard (14 jours ouvrés)",
-        "Assistance dédiée",
-      ],
-      featuresen: [
-        "Includes Basic plan",
-        "Dependents",
-        "One owned property",
-        "Professional expenses",
-        "Standard processing (14 business days)",
-        "Dedicated support",
-      ],
-      popular: true,
-    },
-    {
-      name: "Intégral",
-      nameen: "Integral",
-      description: "Patrimoine diversifié",
-      descriptionen: "Diversified assets",
-      price: "249",
-      priceNote: "dès",
-      features: [
-        "Inclut la formule Confort",
-        "Patrimoine immobilier étendu",
-        "Titres et placements",
-        "Sources de revenus multiples",
-        "Traitement standard (14 jours ouvrés)",
-        "Accompagnement personnalisé",
-      ],
-      featuresen: [
-        "Includes Comfort plan",
-        "Extended real estate",
-        "Securities and investments",
-        "Multiple income sources",
-        "Standard processing (14 business days)",
-        "Personalized guidance",
-      ],
-      popular: false,
-    },
-    {
-      name: "Suisses de l'étranger",
-      nameen: "Swiss Abroad",
-      description: "Déclaration depuis l'étranger",
-      descriptionen: "Filing from abroad",
-      price: "149",
-      priceNote: "dès",
-      features: [
-        "Déclaration fiscale complète",
-        "Couple: +CHF 30.-",
-        "Indépendant: +CHF 100.-",
-        "Bien immobilier: +CHF 60.-/bien",
-        "Enfant: +CHF 15.-/enfant",
-
-        "Actions (≥3): +CHF 30.-",],
-      featuresen: [
-        "Complete tax return",
-        "Couple: +CHF 30.-",
-        "Self-employed: +CHF 100.-",
-        "Property: +CHF 60.-/property",
-        "Child: +CHF 15.-/child",
-
-        "Securities (≥3): +CHF 30.-",],
-      popular: false,
-      isSwissAbroad: true,
-    },
-  ],
   entreprises: [
     {
       name: "Indépendant",
@@ -137,6 +37,7 @@ const pricingData = {
       priceNote: "dès",
       unit: "/an",
       features: [
+        "Jusqu'à 200 transactions par an",
         "Tenue de comptabilité complète",
         "Déclarations TVA (si assujetti)",
         "Bouclement annuel",
@@ -144,6 +45,7 @@ const pricingData = {
         "Assistance par email",
       ],
       featuresen: [
+        "Up to 200 transactions per year",
         "Complete bookkeeping",
         "VAT declarations (if applicable)",
         "Annual closing",
@@ -161,18 +63,22 @@ const pricingData = {
       priceNote: "dès",
       unit: "/mois",
       features: [
+        "Jusqu'à 600 transactions par an",
         "Comptabilité complète",
-        "Gestion des salaires",
+        "Salaires : 2 salariés inclus, puis CHF 25.-/fiche/mois",
         "Déclarations TVA & sociales",
         "États financiers annuels",
+        "Déclaration d'impôt de la société",
         "Conseil stratégique fiscal",
         "Interlocuteur dédié",
       ],
       featuresen: [
+        "Up to 600 transactions per year",
         "Complete accounting",
-        "Payroll management",
+        "Payroll: 2 employees included, then CHF 25.-/payslip/month",
         "VAT & social declarations",
         "Annual financial statements",
+        "Company tax return",
         "Strategic tax advice",
         "Dedicated contact",
       ],
@@ -233,16 +139,16 @@ const comparisonData = [
   {
     feature: "Communication",
     featureen: "Communication",
-    neoFidu: "100% digital, 7j/7",
-    neoFiduen: "100% digital, 24/7",
+    neoFidu: "100% digital, demande en ligne 7j/7",
+    neoFiduen: "100% digital, online requests 7 days a week",
     traditional: "Heures de bureau",
     traditionalen: "Business hours",
   },
   {
     feature: "Transparence prix",
     featureen: "Price transparency",
-    neoFidu: "Prix fixes affichés",
-    neoFiduen: "Fixed displayed prices",
+    neoFidu: "Prix publics, seuils clairs",
+    neoFiduen: "Public prices, clear limits",
     traditional: "Tarif horaire variable",
     traditionalen: "Variable hourly rate",
   },
@@ -253,6 +159,27 @@ const comparisonData = [
     neoFiduen: "Online client portal",
     traditional: "Par téléphone/email",
     traditionalen: "By phone/email",
+  },
+];
+
+const guaranteeFaq = [
+  {
+    q: "Ce qui est inclus dans les forfaits entreprises est-il limité ?",
+    qen: "Are the business packages limited?",
+    a: "Oui, et c'est écrit noir sur blanc : jusqu'à 200 transactions par an pour la formule Indépendant, jusqu'à 600 transactions par an et 2 salariés pour la formule PME. Au-delà, nous vous envoyons un devis ajusté avant de facturer quoi que ce soit.",
+    aen: "Yes, and it is written in black and white: up to 200 transactions per year for the Self-employed plan, up to 600 transactions per year and 2 employees for the SME plan. Beyond that, we send you an adjusted quote before billing anything.",
+  },
+  {
+    q: "Puis-je résilier mon mandat de comptabilité ?",
+    qen: "Can I cancel my accounting mandate?",
+    a: "Oui, à tout moment. Aucune durée minimale : le mandat est résiliable par e-mail pour la fin du mois suivant.",
+    aen: "Yes, at any time. No minimum term: the mandate can be cancelled by email for the end of the following month.",
+  },
+  {
+    q: "Que deviennent mes données si je pars ?",
+    qen: "What happens to my data if I leave?",
+    a: "Vos données vous appartiennent. Vous pouvez demander à tout moment un export complet de votre comptabilité.",
+    aen: "Your data belongs to you. You can request a full export of your accounts at any time.",
   },
 ];
 
@@ -350,6 +277,11 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
+      ...guaranteeFaq.map((item) => ({
+        "@type": "Question",
+        "name": isEnglish ? item.qen : item.q,
+        "acceptedAnswer": { "@type": "Answer", "text": isEnglish ? item.aen : item.a },
+      })),
       {
         "@type": "Question",
         "name": (isEnglish ? "Are these prices final?" : "Ces prix sont-ils définitifs ?"),
@@ -464,14 +396,14 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
             </p>
             <p className="text-muted-foreground text-sm mb-8">
               {isEnglish
-                ? "Fixed prices for tax returns · Personalized quote for accounting & corporate tax. Payment in 3 installments available via Klarna. TWINT also accepted."
-                : "Prix fixes pour les déclarations d'impôts · Devis personnalisé pour la comptabilité & fiscalité entreprises. Paiement en 3 fois disponible via Klarna. TWINT également accepté."}
+                ? "Tax returns: displayed starting prices with à la carte add-ons · Businesses: packages with clear limits, free quote. Payment in 3 installments available via Klarna. TWINT also accepted."
+                : "Déclarations d'impôts : prix de départ affichés et suppléments à la carte · Entreprises : forfaits avec seuils clairs, devis gratuit. Paiement en 3 fois disponible via Klarna. TWINT également accepté."}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-primary" />
-                <span>{isEnglish ? "Fixed prices for tax returns" : "Tarifs fixes déclarations"}</span>
+                <span>{isEnglish ? "Prices displayed" : "Prix affichés"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
@@ -496,8 +428,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
           >
             <h2 className="text-xl md:text-2xl font-bold mb-2">
               {isEnglish
-                ? "Tax returns: fixed prices displayed - Accounting: free quote"
-                : "Déclarations : tarifs fixes affichés - Comptabilité : devis gratuit"}
+                ? "Tax returns: prices displayed · Accounting: clear packages, free quote"
+                : "Déclarations : prix affichés · Comptabilité : forfaits clairs, devis gratuit"}
             </h2>
             <p className="text-white/90 mb-4">
               {isEnglish
@@ -735,8 +667,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
             </div>
             <p className="text-muted-foreground text-sm mb-8 max-w-4xl mx-auto">
               {isEnglish
-                ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements - all handled digitally with a dedicated advisor."
-                : "Que vous soyez freelance, dirigeant d'une PME ou en train de créer votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilité aux déclarations TVA, en passant par la gestion des salaires et les états financiers annuels - le tout géré en ligne avec un conseiller dédié."}
+                ? "Whether you're a freelancer, running a small business, or creating a new company, our business plans provide comprehensive support. From bookkeeping and VAT declarations to payroll management and annual financial statements, all handled digitally with a dedicated advisor."
+                : "Que vous soyez freelance, dirigeant d'une PME ou en train de créer votre entreprise, nos formules entreprises offrent un accompagnement complet. De la tenue de comptabilité aux déclarations TVA, en passant par la gestion des salaires et les états financiers annuels, le tout géré en ligne avec un conseiller dédié."}
             </p>
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {pricingData.entreprises.map((plan, index) => (
@@ -801,6 +733,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 </Card>
               ))}
             </div>
+            <EntreprisePricingDetails isEnglish={isEnglish} />
           </motion.section>
           {/* Cantons Section - NEW SEO */}
           <motion.section
@@ -895,8 +828,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
             </div>
             <p className="text-center text-muted-foreground text-sm mt-6 max-w-2xl mx-auto">
               {isEnglish
-                ? "NeoFidu combines the expertise of a traditional fiduciary with the efficiency and transparency of a 100% digital platform. No appointment needed, no hidden costs - just professional tax services at fair prices."
-                : "NeoFidu combine l'expertise d'une fiduciaire traditionnelle avec l'efficacité et la transparence d'une plateforme 100% digitale. Pas de rendez-vous nécessaire, pas de coûts cachés - simplement des services fiscaux professionnels à des prix justes."}
+                ? "NeoFidu combines the expertise of a traditional fiduciary with the efficiency and transparency of a 100% digital platform. No appointment needed, no hidden costs: just professional tax services at fair prices."
+                : "NeoFidu combine l'expertise d'une fiduciaire traditionnelle avec l'efficacité et la transparence d'une plateforme 100% digitale. Pas de rendez-vous nécessaire, pas de coûts cachés : simplement des services fiscaux professionnels à des prix justes."}
             </p>
           </motion.section>
           {/* FAQ Section */}
@@ -1009,6 +942,12 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                     : "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable."}
                 </p>
               </Card>
+              {guaranteeFaq.map((item, i) => (
+                <Card key={`g${i}`} className="p-6">
+                  <h3 className="font-semibold mb-2">{isEnglish ? item.qen : item.q}</h3>
+                  <p className="text-muted-foreground text-sm">{isEnglish ? item.aen : item.a}</p>
+                </Card>
+              ))}
               <Card className="p-6">
                 <h3 className="font-semibold mb-2">
                   {isEnglish

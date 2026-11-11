@@ -19,7 +19,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 // FR base paths that have a dedicated /en twin route.
 const EN_TWIN_EXACT = new Set<string>([
   "/demande",
-  "/second-avis",
+  "/changer-de-fiduciaire",
   "/suivi",
   "/simulateur",
   "/expats",
@@ -86,7 +86,7 @@ export function Header() {
     { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },
     { href: "/creation-entreprise", label: isEnglish ? "Company Creation" : "Création d'entreprise", category: "Services" },
     { href: "/entreprises", label: isEnglish ? "SMEs & Corporations" : "PME & Sociétés", category: "Services" },
-              { href: "/second-avis", label: isEnglish ? "Free second opinion" : "Second avis gratuit", category: "Services" },
+              { href: "/changer-de-fiduciaire", label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", category: "Services" },
     { href: "/associations-fondations", label: isEnglish ? "Associations & Foundations" : "Associations & Fondations", category: "Services" },
     { href: "/expats", label: "Expats", category: "Services" },
     { href: "/tarifs", label: isEnglish ? "Pricing" : "Tarifs", category: "Informations" },
@@ -217,7 +217,7 @@ export function Header() {
       icon: Building2,
       description: isEnglish ? "Accounting, payroll & tax" : "Comptabilité, salaires & fiscalité",
     },
-              { href: "/second-avis", label: isEnglish ? "Free second opinion" : "Second avis gratuit", icon: Search, description: isEnglish ? "Free invoice comparison" : "Comparatif de facture gratuit" },
+              { href: "/changer-de-fiduciaire", label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", icon: Search, description: isEnglish ? "Free second opinion and takeover" : "Second avis gratuit et repriseure gratuit" },
     {
       href: "/observatoire",
       label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",

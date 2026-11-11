@@ -19,10 +19,14 @@ TARIFS DÉCLARATION D'IMPÔTS (à la carte, identiques dans tous les cantons rom
 - Paiement: Visa, Mastercard, PayPal, TWINT, Klarna (en 3 fois)
 
 TARIFS ENTREPRISES:
-- Comptabilité indépendants/freelances (raison individuelle): dès CHF 500/an
-- Comptabilité PME (Sàrl/SA jusqu'à 10 employés): dès CHF 200/mois
+- Comptabilité indépendants/freelances (raison individuelle): dès CHF 500/an, jusqu'à 200 transactions par an (comptabilité, TVA si assujetti, bouclement)
+- Comptabilité PME (Sàrl/SA jusqu'à 10 employés): dès CHF 200/mois, jusqu'à 600 transactions par an, 2 salariés inclus puis CHF 25 par fiche de salaire et par mois
+- Une transaction = une ligne de relevé bancaire ou une pièce comptable. Au-delà des seuils: devis ajusté, jamais de supplément sans accord
 - Création d'entreprise: raison individuelle dès CHF 290, Sàrl dès CHF 990, SA dès CHF 1'490
-- Déclaration d'impôt de société (Sàrl, SA): dans la formule PME, dès CHF 200/mois
+- Déclaration d'impôt de société (Sàrl, SA): incluse dans la formule PME
+- Exemples de coût annuel: indépendant avec TVA = CHF 500 + CHF 189 de déclaration privée; Sàrl avec TVA et 2 salariés = CHF 2'400/an tout compris
+- Mandats de comptabilité sans durée minimale, résiliables par e-mail pour la fin du mois suivant; export complet de la comptabilité à tout moment
+- Changer de fiduciaire: second avis gratuit sur la facture actuelle en 48 h, puis reprise du dossier (NeoFidu prépare la lettre de transfert). Page: https://neofidu.ch/changer-de-fiduciaire
 
 CANTONS COUVERTS: Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura. NeoFidu ne fait pas de gérance immobilière ni d'administration de PPE.
 

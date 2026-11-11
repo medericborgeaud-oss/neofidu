@@ -137,8 +137,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/en/mentions-legales", { lastModified: pageDate("/en/mentions-legales"), changeFrequency: "yearly", priority: 0.3 }),
     createEntry("/en/conditions-generales", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
     createEntry("/en/politique-confidentialite", { lastModified: "2026-02-01", changeFrequency: "yearly", priority: 0.3 }),
-    createEntry("/second-avis", { lastModified: pageDate("/second-avis"), changeFrequency: "monthly", priority: 0.6 }),
-    createEntry("/en/second-avis", { lastModified: pageDate("/en/second-avis"), changeFrequency: "monthly", priority: 0.6 }),
+    createEntry("/changer-de-fiduciaire", { lastModified: pageDate("/changer-de-fiduciaire"), changeFrequency: "monthly", priority: 0.7 }),
+    createEntry("/en/changer-de-fiduciaire", { lastModified: pageDate("/en/changer-de-fiduciaire"), changeFrequency: "monthly", priority: 0.7 }),
     createEntry("/en/suivi", { lastModified: pageDate("/en/suivi"), changeFrequency: "monthly", priority: 0.5 }),
   ];
 
