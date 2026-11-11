@@ -38,7 +38,7 @@ const faqSchema = {
       name: "How much does a tax return cost at NeoFidu?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "NeoFidu offers Swiss tax returns starting from CHF 89 (Basic for simple situations), CHF 149 (Comfort for property owners or families), and CHF 249 (Integral for complex portfolios). All prices include 8.1% VAT. The exact price is calculated instantly when you fill out our online form.",
+        text: "NeoFidu offers Swiss tax returns starting from CHF 89 for a single person, with à la carte add-ons: couple +CHF 30, child +CHF 15, property +CHF 60, self-employed income +CHF 100, securities (3 or more positions) +CHF 30. Example: married couple with 2 children and one property = CHF 209. All prices include 8.1% VAT. The exact price is calculated instantly when you fill out our online form.",
       },
     },
     {
@@ -62,7 +62,7 @@ const faqSchema = {
       name: "How long does it take to complete my tax return?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Standard processing takes 14 business days. Need it faster? Choose Priority (7 days, +CHF 30). Once completed, you'll receive your tax return by email, ready to submit to the tax authorities.",
+        text: "Standard processing takes 14 business days. Need it faster? Choose Priority (7 business days, +CHF 120). Once completed, you'll receive your tax return by email, ready to submit to the tax authorities.",
       },
     },
     {
@@ -94,7 +94,7 @@ const faqSchema = {
       name: "Is NeoFidu a licensed Swiss fiduciary?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, NeoFidu is a registered Swiss fiduciary company based in Leysin, Canton of Vaud. We are fully compliant with Swiss regulations and specialize in tax returns, accounting, and property management for French-speaking Switzerland.",
+        text: "Yes, NeoFidu is a registered Swiss fiduciary company based in Leysin, Canton of Vaud. We are fully compliant with Swiss regulations and specialize in tax returns, accounting and company formation for French-speaking Switzerland.",
       },
     },
     {

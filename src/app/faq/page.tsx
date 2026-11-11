@@ -33,7 +33,7 @@ const faqItemsFR: FAQItem[] = [
   {
     category: "Fiscalité",
     question: "Par quel canal transmettre mes pièces ?",
-    answer: "L'envoi numérique par courriel est recommandé (scans lisibles ou photos nettes). L'acheminement postal reste possible avec un léger surcoût pour couvrir les frais de traitement."
+    answer: "Déposez vos pièces directement dans le formulaire de demande en ligne, transmis de façon chiffrée (scans lisibles ou photos nettes). Un document oublié peut être envoyé ensuite par e-mail. L'envoi postal reste possible moyennant CHF 20.- de frais de traitement."
   },
   {
     category: "Fiscalité",
@@ -120,7 +120,7 @@ const faqItemsEN: FAQItem[] = [
   {
     category: "Taxation",
     question: "How can I send my documents?",
-    answer: "Digital submission by email is recommended (clear scans or photos). Postal mail is also possible with a small surcharge to cover processing costs."
+    answer: "Upload your documents directly in the online request form, transmitted encrypted (clear scans or photos). A forgotten document can be sent later by email. Postal mail is also possible for a CHF 20.- handling fee."
   },
   {
     category: "Taxation",

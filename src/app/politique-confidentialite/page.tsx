@@ -76,7 +76,7 @@ const sectionsFr = [
     content: `
       <p>Vos données personnelles sont collectées et traitées pour les finalités suivantes :</p>
       <ul>
-        <li><strong>Exécution des prestations</strong> : établissement de déclarations fiscales, tenue de comptabilité, gérance immobilière</li>
+        <li><strong>Exécution des prestations</strong> : établissement de déclarations fiscales, tenue de comptabilité, création d'entreprise</li>
         <li><strong>Gestion de la relation client</strong> : communication, suivi des demandes, facturation</li>
         <li><strong>Obligations légales</strong> : respect des exigences fiscales et comptables suisses</li>
         <li><strong>Amélioration des services</strong> : analyse statistique anonymisée pour optimiser nos prestations</li>
@@ -247,7 +247,7 @@ const sectionsEn = [
     content: `
       <p>Your personal data is collected and processed for the following purposes:</p>
       <ul>
-        <li><strong>Service execution</strong>: preparation of tax returns, accounting, property management</li>
+        <li><strong>Service execution</strong>: preparation of tax returns, accounting, company formation</li>
         <li><strong>Customer relationship management</strong>: communication, request follow-up, billing</li>
         <li><strong>Legal obligations</strong>: compliance with Swiss tax and accounting requirements</li>
         <li><strong>Service improvement</strong>: anonymized statistical analysis to optimize our services</li>
