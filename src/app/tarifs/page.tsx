@@ -155,8 +155,8 @@ const comparisonData = [
   {
     feature: "Suivi dossier",
     featureen: "File tracking",
-    neoFidu: "Espace client en ligne",
-    neoFiduen: "Online client portal",
+    neoFidu: "Suivi de dossier en ligne",
+    neoFiduen: "Online file tracking",
     traditional: "Par téléphone/email",
     traditionalen: "By phone/email",
   },
@@ -524,6 +524,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                             { label: "Per property owned", price: "+CHF 60.-" },
                             { label: "Self-employed income", price: "+CHF 100.-" },
                             { label: "Securities (≥3 positions)", price: "+CHF 30.-" },
+                            { label: "Living abroad (Swiss abroad)", price: "+CHF 60.-" },
                           ]
                         : [
                             { label: "Couple / marié", price: "+CHF 30.-" },
@@ -531,6 +532,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                             { label: "Par bien immobilier", price: "+CHF 60.-" },
                             { label: "Revenu indépendant", price: "+CHF 100.-" },
                             { label: "Actions (≥3 positions)", price: "+CHF 30.-" },
+                            { label: "Domicile à l'étranger (Suisses de l'étranger)", price: "+CHF 60.-" },
                           ]
                       ).map((item, i) => (
                         <div key={i} className="flex items-center justify-between border rounded-lg px-4 py-3 bg-white hover:border-primary/40 transition-colors">

@@ -174,7 +174,7 @@ export default function RootLayout({
     ],
     // Text format for Google
     openingHours: ["Mo-Fr 09:00-17:00"],
-    priceRange: "CHF 89 - CHF 1000",
+    priceRange: "CHF 89 - CHF 1490",
     currenciesAccepted: "CHF",
     paymentAccepted: ["Credit Card", "Visa", "Mastercard", "PayPal", "Klarna", "TWINT", "Bank Transfer"],
     // Area served - cantons
@@ -201,14 +201,13 @@ export default function RootLayout({
             serviceType: "Tax Preparation",
             areaServed: { "@type": "Country", name: "Switzerland" },
           },
-          price: "50",
+          price: "89",
           priceCurrency: "CHF",
           priceSpecification: {
             "@type": "PriceSpecification",
-            price: "50",
+            price: "89",
             priceCurrency: "CHF",
-            minPrice: "50",
-            maxPrice: "150",
+            minPrice: "89",
             valueAddedTaxIncluded: true,
           },
           availability: "https://schema.org/InStock",

@@ -154,7 +154,7 @@ export default function ParticuliersPage() {
     },
     {
       q: "Combien de temps cela prend-il ?",
-      a: "Une fois tous vos documents reçus, votre déclaration est généralement complétée en 14 jours ouvrés. En période de pointe (février-mars), cela peut prendre jusqu'à 15 jours.",
+      a: "Une fois tous vos documents reçus, votre déclaration est généralement complétée en 14 jours ouvrés.",
     },
     {
       q: "Quels cantons couvrez-vous ?",
@@ -272,7 +272,7 @@ export default function ParticuliersPage() {
                 {
                   icon: Banknote,
                   title: "Tarifs transparents",
-                  desc: "Prix fixes dès CHF 89.- Pas de surprise, pas de frais cachés.",
+                  desc: "Prix affichés dès CHF 89.- Pas de surprise, pas de frais cachés.",
                 },
                 {
                   icon: Clock,

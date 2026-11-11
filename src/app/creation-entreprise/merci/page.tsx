@@ -200,8 +200,8 @@ function ThankYouContent() {
                     </p>
                     <p className="text-sm text-amber-700">
                       {isEnglish
-                        ? "Monday to Friday, 9am to 6pm"
-                        : "Du lundi au vendredi, de 9h à 18h"}
+                        ? "Monday to Friday, 9am to 5pm"
+                        : "Du lundi au vendredi, de 9h à 17h"}
                     </p>
                   </div>
                 </div>

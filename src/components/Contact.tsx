@@ -79,7 +79,7 @@ export function Contact() {
     email: "Email",
     address: isEnglish ? "Address" : "Adresse",
     hours: isEnglish ? "Hours" : "Horaires",
-    hoursValue: isEnglish ? "Monday to Friday, 9am - 6pm" : "Du lundi au vendredi, 9h - 18h",
+    hoursValue: isEnglish ? "Monday to Friday, 9am - 5pm" : "Du lundi au vendredi, 9h - 17h",
     hoursNote: isEnglish ? "Fast response guaranteed" : "Retour rapide garanti",
     firstName: isEnglish ? "First name *" : "Prénom *",
     lastName: isEnglish ? "Last name *" : "Nom *",
