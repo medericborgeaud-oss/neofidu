@@ -20,7 +20,6 @@ const sectionsFr = [
       <ul>
         <li>L'établissement de déclarations d'impôt pour personnes physiques</li>
         <li>Les services de comptabilité pour indépendants et entreprises</li>
-        <li>La gérance immobilière (cantons de Vaud et Valais)</li>
         <li>Le conseil fiscal et administratif</li>
       </ul>
     `,
@@ -36,15 +35,11 @@ const sectionsFr = [
       <h4>2.2 Comptabilité</h4>
       <p>Les prestations comptables incluent la tenue des livres, l'établissement des bilans et comptes de résultat, et les déclarations TVA selon le forfait choisi par le Client.</p>
 
-      <h4>2.3 Gérance immobilière</h4>
-      <p>Ce service, disponible uniquement dans les cantons de Vaud et Valais, comprend la gestion locative complète : recherche de locataires, rédaction des baux, encaissement des loyers, suivi technique et comptabilité immobilière.</p>
-
-      <h4>2.4 Délais de traitement garantis</h4>
+      <h4>2.3 Délais de traitement garantis</h4>
       <p>Les délais de traitement sont les suivants :</p>
       <ul>
         <li><strong>Délai Standard :</strong> 14 jours ouvrés maximum après réception de tous les documents (inclus dans le tarif de base)</li>
         <li><strong>Délai Prioritaire :</strong> 7 jours ouvrables maximum après réception de tous les documents (+CHF 120)</li>
-        <li><strong>Délai Express :</strong> 48 heures ouvrables maximum après réception de tous les documents (+CHF 120)</li>
       </ul>
       <p>Ces délais peuvent être prolongés en cas de dossier particulièrement complexe ou de documents manquants. Le Client sera informé de tout retard prévisible.</p>
     `,
@@ -61,7 +56,7 @@ const sectionsFr = [
       <p>Le Client est responsable de la transmission en temps utile de l'ensemble des pièces justificatives nécessaires à l'exécution des prestations. Tout retard dans la remise des documents peut entraîner un report des délais de traitement.</p>
 
       <h4>3.3 Vérification</h4>
-      <p>Le Client s'engage à vérifier les documents établis par NeoFidu avant leur transmission aux autorités compétentes et à signaler toute erreur ou omission dans un délai de 5 jours ouvrables.</p>
+      <p>Le Client s'engage à vérifier les documents établis par NeoFidu avant leur transmission aux autorités compétentes et à signaler toute erreur ou omission au plus tard dans le délai de réclamation de 14 jours prévu à l'art. 6.6.</p>
 
       <h4>3.4 Confidentialité des accès</h4>
       <p>Le Client est responsable de la confidentialité de ses identifiants de connexion et s'engage à ne pas les communiquer à des tiers.</p>
@@ -98,10 +93,10 @@ const sectionsFr = [
       <p>Les tarifs applicables sont ceux affichés sur le site neofidu.ch au moment de la commande. Les prix sont indiqués en francs suisses (CHF), TVA incluse le cas échéant.</p>
 
       <h4>5.2 Modalités de paiement</h4>
-      <p>Le paiement s'effectue par carte bancaire (Visa, Mastercard), PayPal, Klarna ou TWINT. Pour certaines prestations, un acompte peut être demandé avant le début des travaux.</p>
+      <p>Le paiement s'effectue par virement bancaire, carte bancaire (Visa, Mastercard), PayPal, TWINT ou Klarna (pour les commandes réglées en ligne). Pour certaines prestations, un acompte peut être demandé avant le début des travaux.</p>
 
       <h4>5.3 Facturation</h4>
-      <p>Les prestations récurrentes (comptabilité, gérance) font l'objet d'une facturation selon la fréquence choisie par le Client (mensuelle ou annuelle).</p>
+      <p>Les prestations récurrentes (comptabilité) font l'objet d'une facturation selon la fréquence choisie par le Client (mensuelle ou annuelle).</p>
 
       <h4>5.4 Retard de paiement</h4>
       <p>En cas de retard de paiement, des intérêts moratoires de 5% l'an seront appliqués de plein droit, sans mise en demeure préalable. NeoFidu se réserve le droit de suspendre ses prestations jusqu'au règlement intégral des sommes dues.</p>
@@ -120,7 +115,7 @@ const sectionsFr = [
       <p><strong>En validant sa commande, le Client reconnaît et accepte que le traitement de son dossier puisse débuter immédiatement après réception du paiement.</strong></p>
 
       <h4>6.2 Annulation avant début du traitement</h4>
-      <p>Le Client peut annuler sa commande <strong>uniquement si le traitement de son dossier n'a pas encore débuté</strong>. Le début du traitement intervient dès l'ouverture du dossier par nos équipes, généralement dans les <strong>24 à 48 heures</strong> suivant le paiement.</p>
+      <p>Le Client peut annuler sa commande <strong>uniquement si le traitement de son dossier n'a pas encore débuté</strong>. Le début du traitement intervient dès l'ouverture du dossier par NeoFidu, généralement dans les <strong>24 à 48 heures</strong> suivant le paiement.</p>
       <p>Pour vérifier si une annulation est encore possible, le Client doit contacter NeoFidu par email à <a href="mailto:contact@neofidu.ch">contact@neofidu.ch</a> en indiquant son numéro de référence.</p>
 
       <h4>6.3 Remboursement intégral</h4>
@@ -203,7 +198,7 @@ const sectionsFr = [
       <p>Les prestations ponctuelles (déclaration d'impôt) prennent fin à la livraison du travail commandé et au paiement intégral du prix.</p>
 
       <h4>8.2 Prestations récurrentes</h4>
-      <p>Les contrats de comptabilité et de gérance sont conclus pour une durée indéterminée. Chaque partie peut résilier le contrat moyennant un préavis de 3 mois pour la fin d'un mois.</p>
+      <p>Les contrats de comptabilité sont conclus pour une durée indéterminée, sans durée minimale. Chaque partie peut résilier le contrat par écrit (e-mail suffisant) pour la fin du mois suivant. À la fin du contrat, le Client peut obtenir un export complet de sa comptabilité.</p>
 
       <h4>8.3 Résiliation pour justes motifs</h4>
       <p>Chaque partie peut résilier le contrat avec effet immédiat en cas de manquement grave de l'autre partie à ses obligations, notamment :</p>
@@ -257,7 +252,7 @@ const sectionsFr = [
       </p>
       <p>Tous les prix sont affichés en CHF (Francs suisses), TVA incluse le cas échéant.</p>
 
-      <p className="mt-4"><em>Dernière mise à jour : Février 2026</em></p>
+      <p className="mt-4"><em>Dernière mise à jour : Novembre 2026</em></p>
     `,
   },
 ];
@@ -273,7 +268,6 @@ const sectionsEn = [
       <ul>
         <li>Tax return preparation for individuals</li>
         <li>Accounting services for self-employed individuals and businesses</li>
-        <li>Property management (cantons of Vaud and Valais)</li>
         <li>Tax and administrative consulting</li>
       </ul>
     `,
@@ -289,15 +283,11 @@ const sectionsEn = [
       <h4>2.2 Accounting</h4>
       <p>Accounting services include bookkeeping, preparation of balance sheets and income statements, and VAT declarations according to the package chosen by the Client.</p>
 
-      <h4>2.3 Property Management</h4>
-      <p>This service, available only in the cantons of Vaud and Valais, includes complete rental management: tenant search, lease drafting, rent collection, technical monitoring, and property accounting.</p>
-
-      <h4>2.4 Guaranteed Processing Times</h4>
+      <h4>2.3 Guaranteed Processing Times</h4>
       <p>Processing times are as follows:</p>
       <ul>
         <li><strong>Standard Deadline:</strong> Maximum 14 business days after receipt of all documents (included in base rate)</li>
         <li><strong>Priority Deadline:</strong> Maximum 7 business days after receipt of all documents (+CHF 120)</li>
-        <li><strong>Express Deadline:</strong> Maximum 48 business hours after receipt of all documents (+CHF 120)</li>
       </ul>
       <p>These deadlines may be extended in case of particularly complex files or missing documents. The Client will be informed of any foreseeable delay.</p>
     `,
@@ -314,7 +304,7 @@ const sectionsEn = [
       <p>The Client is responsible for the timely transmission of all supporting documents necessary for the execution of services. Any delay in document submission may result in postponement of processing times.</p>
 
       <h4>3.3 Verification</h4>
-      <p>The Client undertakes to verify the documents prepared by NeoFidu before their transmission to the relevant authorities and to report any error or omission within 5 business days.</p>
+      <p>The Client undertakes to verify the documents prepared by NeoFidu before their transmission to the relevant authorities and to report any error or omission at the latest within the 14-day claim period set out in Art. 6.6.</p>
 
       <h4>3.4 Access Confidentiality</h4>
       <p>The Client is responsible for the confidentiality of their login credentials and undertakes not to share them with third parties.</p>
@@ -351,10 +341,10 @@ const sectionsEn = [
       <p>Applicable rates are those displayed on the neofidu.ch website at the time of order. Prices are indicated in Swiss francs (CHF), VAT included where applicable.</p>
 
       <h4>5.2 Payment Methods</h4>
-      <p>Payment is made by credit card (Visa, Mastercard), PayPal, Klarna or TWINT. For certain services, a deposit may be requested before work begins.</p>
+      <p>Payment is made by bank transfer, credit card (Visa, Mastercard), PayPal, TWINT or Klarna (for orders paid online). For certain services, a deposit may be requested before work begins.</p>
 
       <h4>5.3 Billing</h4>
-      <p>Recurring services (accounting, property management) are billed according to the frequency chosen by the Client (monthly or annual).</p>
+      <p>Recurring services (accounting) are billed according to the frequency chosen by the Client (monthly or annual).</p>
 
       <h4>5.4 Late Payment</h4>
       <p>In case of late payment, default interest of 5% per year will be applied automatically, without prior notice. NeoFidu reserves the right to suspend its services until full payment of amounts due.</p>
@@ -456,7 +446,7 @@ const sectionsEn = [
       <p>One-time services (tax return) end upon delivery of the ordered work and full payment of the price.</p>
 
       <h4>8.2 Recurring Services</h4>
-      <p>Accounting and property management contracts are concluded for an indefinite period. Either party may terminate the contract with 3 months' notice at the end of a month.</p>
+      <p>Accounting contracts are concluded for an indefinite period, with no minimum term. Either party may terminate the contract in writing (email is sufficient) for the end of the following month. At the end of the contract, the Client may obtain a full export of their accounts.</p>
 
       <h4>8.3 Termination for Just Cause</h4>
       <p>Either party may terminate the contract with immediate effect in case of serious breach of obligations by the other party, including:</p>
@@ -510,7 +500,7 @@ const sectionsEn = [
       </p>
       <p>All prices are displayed in CHF (Swiss Francs), VAT included where applicable.</p>
 
-      <p className="mt-4"><em>Last updated: February 2026</em></p>
+      <p className="mt-4"><em>Last updated: November 2026</em></p>
     `,
   },
 ];
@@ -529,8 +519,8 @@ export default function ConditionsGeneralesPage() {
     tableOfContents: isEnglish ? "Table of Contents" : "Table des matières",
     questionsTitle: isEnglish ? "Have questions?" : "Des questions ?",
     questionsText: isEnglish
-      ? "Our team is available for any questions regarding our terms and conditions."
-      : "Notre équipe est à votre disposition pour toute question concernant nos conditions générales.",
+      ? "We are available for any questions regarding our terms and conditions."
+      : "Nous sommes à votre disposition pour toute question concernant nos conditions générales.",
   };
 
   return (

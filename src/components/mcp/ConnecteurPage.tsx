@@ -17,13 +17,13 @@ export function ConnecteurPage({ lang }: { lang: "fr" | "en" }) {
         ["calculate_income_tax", "Calcule l'impôt sur le revenu 2026 (fédéral, cantonal, communal) pour les 26 cantons, avec le calculateur officiel de l'AFC. Commune précise pour la Suisse romande, 3e pilier, statut marié, enfants, indépendant.", "Combien d'impôts vais-je payer à Nyon avec CHF 120'000 de salaire, marié, 2 enfants ?"],
         ["get_municipality_taxes", "Impôts 2026 d'une des 657 communes romandes pour 4 profils types, avec son rang dans le canton.", "Combien d'impôts paie-t-on à Leysin ?"],
         ["rank_municipalities", "Classement des communes romandes les moins ou les plus imposées, par canton et par profil (baromètre fiscal).", "Quelles sont les 10 communes vaudoises les moins chères pour une famille ?"],
-        ["search_tax_guides", "Recherche dans les guides NeoFidu pour remplir sa déclaration (VaudTax, GeTax, VSTax, FriTax) : déductions, codes, montants officiels.", "Où déclarer mes frais de transport dans VaudTax ?"],
+        ["search_tax_guides", "Recherche dans les guides NeoFidu pour remplir sa déclaration (VaudTax, GeTax, VSTax, FriTax, JuraTax) : déductions, codes, montants officiels.", "Où déclarer mes frais de transport dans VaudTax ?"],
       ]
     : [
         ["calculate_income_tax", "Calculates 2026 income tax (federal, cantonal, municipal) for all 26 cantons with the official Swiss Federal Tax Administration calculator. Specific municipality in French-speaking Switzerland, pillar 3a, married status, children, self-employed.", "How much tax will I pay in Nyon on a CHF 120,000 salary, married with 2 children?"],
         ["get_municipality_taxes", "2026 income tax in any of the 657 French-speaking municipalities for 4 typical profiles, with its rank in the canton.", "How much tax do you pay in Leysin?"],
         ["rank_municipalities", "Ranking of the lowest- or highest-taxed French-speaking municipalities, by canton and profile (tax barometer).", "Which are the 10 cheapest municipalities in Vaud for a family?"],
-        ["search_tax_guides", "Searches NeoFidu's guides for filling in the tax return (VaudTax, GeTax, VSTax, FriTax): deductions, return codes, official amounts.", "Where do I declare commuting costs in VaudTax?"],
+        ["search_tax_guides", "Searches NeoFidu's guides for filling in the tax return (VaudTax, GeTax, VSTax, FriTax, JuraTax): deductions, return codes, official amounts.", "Where do I declare commuting costs in VaudTax?"],
       ];
 
   return (

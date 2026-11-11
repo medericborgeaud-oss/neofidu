@@ -155,8 +155,8 @@ const comparisonData = [
   {
     feature: "Suivi dossier",
     featureen: "File tracking",
-    neoFidu: "Espace client en ligne",
-    neoFiduen: "Online client portal",
+    neoFidu: "Suivi de dossier en ligne",
+    neoFiduen: "Online file tracking",
     traditional: "Par téléphone/email",
     traditionalen: "By phone/email",
   },
@@ -303,7 +303,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
         "name": (isEnglish ? "Which payment methods do you accept?" : "Quels moyens de paiement acceptez-vous ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": (isEnglish ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (interest-free payment in 3 instalments) and TWINT." : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT.")
+          "text": (isEnglish ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (interest-free payment in 3 instalments, for orders paid online) and TWINT." : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais, pour les commandes réglées en ligne) et TWINT.")
         }
       },
       {
@@ -335,7 +335,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
         "name": (isEnglish ? "Do you offer instalment payments?" : "Proposez-vous le paiement en plusieurs fois ?"),
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": (isEnglish ? "Yes, with Klarna you can pay in 3 interest-free instalments. This option is available for all individual and business packages." : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises.")
+          "text": (isEnglish ? "Yes, with Klarna you can pay in 3 interest-free instalments. This option is available for orders paid online (tax returns, company formation). Accounting is billed monthly or annually." : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour les commandes réglées en ligne (déclarations d'impôts, création d'entreprise). La comptabilité est facturée mensuellement ou annuellement.")
         }
       },
       {
@@ -524,6 +524,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                             { label: "Per property owned", price: "+CHF 60.-" },
                             { label: "Self-employed income", price: "+CHF 100.-" },
                             { label: "Securities (≥3 positions)", price: "+CHF 30.-" },
+                            { label: "Living abroad (Swiss abroad)", price: "+CHF 60.-" },
                           ]
                         : [
                             { label: "Couple / marié", price: "+CHF 30.-" },
@@ -531,6 +532,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                             { label: "Par bien immobilier", price: "+CHF 60.-" },
                             { label: "Revenu indépendant", price: "+CHF 100.-" },
                             { label: "Actions (≥3 positions)", price: "+CHF 30.-" },
+                            { label: "Domicile à l'étranger (Suisses de l'étranger)", price: "+CHF 60.-" },
                           ]
                       ).map((item, i) => (
                         <div key={i} className="flex items-center justify-between border rounded-lg px-4 py-3 bg-white hover:border-primary/40 transition-colors">
@@ -878,8 +880,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (pay in 3 installments, interest-free), and TWINT."
-                    : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais) et TWINT."}
+                    ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (pay in 3 installments, interest-free, for orders paid online), and TWINT."
+                    : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais, pour les commandes réglées en ligne) et TWINT."}
                 </p>
               </Card>
               <Card className="p-6">
@@ -890,8 +892,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? "Yes, with Klarna you can pay in 3 interest-free installments. This option is available for all individual and business plans."
-                    : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour toutes les formules particuliers et entreprises."}
+                    ? "Yes, with Klarna you can pay in 3 interest-free installments. This option is available for orders paid online (tax returns, company formation). Accounting is billed monthly or annually."
+                    : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour les commandes réglées en ligne (déclarations d'impôts, création d'entreprise). La comptabilité est facturée mensuellement ou annuellement."}
                 </p>
               </Card>
               <Card className="p-6">
@@ -956,8 +958,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   {isEnglish
-                    ? "Your satisfaction is our priority. Refund possible only before the start of processing."
-                    : "Votre satisfaction est notre priorité. Remboursement possible uniquement avant le début du traitement."}
+                    ? "Full refund if you cancel before processing starts. After that, a partial refund may be granted case by case (see our Terms, art. 6)."
+                    : "Remboursement intégral si vous annulez avant le début du traitement. Ensuite, un remboursement partiel peut être accordé au cas par cas (voir nos conditions générales, art. 6)."}
                 </p>
               </Card>
             </div>

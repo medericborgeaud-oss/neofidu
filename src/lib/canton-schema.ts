@@ -59,7 +59,7 @@ export function generateCantonSchema(data: CantonSchemaData) {
             name: "Déclaration d'impôts",
             description: `Déclaration fiscale pour le canton de ${data.cantonNameFr}`,
           },
-          price: "149",
+          price: "89",
           priceCurrency: "CHF",
         },
         {

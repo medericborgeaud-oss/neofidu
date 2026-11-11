@@ -16,7 +16,7 @@ TARIFS DÉCLARATION D'IMPÔTS (à la carte, identiques dans tous les cantons rom
 - Étudiants et rentiers AVS/AI: rabais de CHF 20
 - Traitement prioritaire (7 jours ouvrés): +CHF 120
 - Exemple: couple marié, 2 enfants, un bien immobilier = 89 + 30 + 30 + 60 = CHF 209
-- Paiement: Visa, Mastercard, PayPal, TWINT, Klarna (en 3 fois)
+- Paiement: virement bancaire, Visa, Mastercard, PayPal, TWINT, Klarna (en 3 fois, pour les commandes réglées en ligne)
 
 TARIFS ENTREPRISES:
 - Comptabilité indépendants/freelances (raison individuelle): dès CHF 500/an, jusqu'à 200 transactions par an (comptabilité, TVA si assujetti, bouclement)

@@ -161,8 +161,8 @@ function ThankYouContent() {
 
             <p className="text-lg text-muted-foreground max-w-xl mx-auto">
               {isEnglish
-                ? "Your request has been received. Our team will contact you to discuss your company creation project."
-                : "Votre demande a bien été reçue. Notre équipe vous contactera pour discuter de votre projet de création d'entreprise."}
+                ? "Your request has been received. We will contact you to discuss your company creation project."
+                : "Votre demande a bien été reçue. Nous vous contacterons pour discuter de votre projet de création d'entreprise."}
             </p>
           </motion.div>
 
@@ -200,8 +200,8 @@ function ThankYouContent() {
                     </p>
                     <p className="text-sm text-amber-700">
                       {isEnglish
-                        ? "Monday to Friday, 9am to 6pm"
-                        : "Du lundi au vendredi, de 9h à 18h"}
+                        ? "Monday to Friday, 9am to 5pm"
+                        : "Du lundi au vendredi, de 9h à 17h"}
                     </p>
                   </div>
                 </div>

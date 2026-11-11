@@ -110,7 +110,7 @@ export default function DemandePage() {
                   onClick={() => router.push("/contact")}
                 >
                   <Badge className="absolute top-4 right-4 bg-amber-100 text-amber-700">
-                    VD &amp; VS
+                    6 cantons
                   </Badge>
                   <div className="text-center">
                     <div className="w-20 h-20 rounded-3xl bg-amber-500/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-500/20 transition-colors">

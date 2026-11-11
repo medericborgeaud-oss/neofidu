@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Contact NeoFidu | English-Speaking Fiduciary in Switzerland",
-    description: "Contact our team. We speak English!",
+    description: "Contact us. We speak English!",
     type: "website",
     url: "https://neofidu.ch/en/contact",
     siteName: "NeoFidu",

@@ -114,7 +114,7 @@ export default function ParticuliersPage() {
     {
       name: "Essentiel",
       price: "89",
-      subtitle: "Dossier simple",
+      subtitle: "Personne seule, dossier simple",
       features: [
         "1 certificat de salaire",
         "Déductions standard optimisées",
@@ -125,7 +125,7 @@ export default function ParticuliersPage() {
     {
       name: "Confort",
       price: "149",
-      subtitle: "Dossier avec immobilier ou cas particulier",
+      subtitle: "Personne seule propriétaire (+CHF 60.- par bien)",
       features: [
         "Salaire + patrimoine immobilier",
         "Optimisation valeur locative & hypothèque",
@@ -135,9 +135,9 @@ export default function ParticuliersPage() {
       popular: true,
     },
     {
-      name: "Complet",
-      price: "169",
-      subtitle: "Déclaration commune & situations complexes",
+      name: "Famille",
+      price: "209",
+      subtitle: "Couple marié, 2 enfants, 1 bien immobilier",
       features: [
         "Plusieurs certificats de salaire",
         "Déclaration commune optimisée",
@@ -154,7 +154,7 @@ export default function ParticuliersPage() {
     },
     {
       q: "Combien de temps cela prend-il ?",
-      a: "Une fois tous vos documents reçus, votre déclaration est généralement complétée en 14 jours ouvrés. En période de pointe (février-mars), cela peut prendre jusqu'à 15 jours.",
+      a: "Une fois tous vos documents reçus, votre déclaration est généralement complétée en 14 jours ouvrés.",
     },
     {
       q: "Quels cantons couvrez-vous ?",
@@ -170,7 +170,7 @@ export default function ParticuliersPage() {
     },
     {
       q: "Mes données sont-elles en sécurité ?",
-      a: "Oui. Toutes les données sont chiffrées et stockées sur des serveurs suisses. Nous respectons la Loi fédérale sur la protection des données (LPD/nDSG). Vos documents sont supprimés après 10 ans conformément à la loi.",
+      a: "Oui. Toutes les données sont chiffrées et hébergées dans des centres de données sécurisés en Europe. Nous respectons la Loi fédérale sur la protection des données (LPD/nDSG). Vos documents sont supprimés après 10 ans conformément à la loi.",
     },
   ];
 
@@ -199,7 +199,7 @@ export default function ParticuliersPage() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                {"Votre déclaration d'impôts, gérée par des experts"}
+                {"Votre déclaration d'impôts, gérée par un spécialiste diplômé"}
               </h1>
 
               <p className="text-xl text-teal-100 max-w-3xl mx-auto mb-10 leading-relaxed">
@@ -272,7 +272,7 @@ export default function ParticuliersPage() {
                 {
                   icon: Banknote,
                   title: "Tarifs transparents",
-                  desc: "Prix fixes dès CHF 89.- Pas de surprise, pas de frais cachés.",
+                  desc: "Prix affichés dès CHF 89.- Pas de surprise, pas de frais cachés.",
                 },
                 {
                   icon: Clock,

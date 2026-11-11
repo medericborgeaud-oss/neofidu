@@ -33,7 +33,7 @@ const faqItemsFR: FAQItem[] = [
   {
     category: "Fiscalité",
     question: "Par quel canal transmettre mes pièces ?",
-    answer: "L'envoi numérique par courriel est recommandé (scans lisibles ou photos nettes). L'acheminement postal reste possible avec un léger surcoût pour couvrir les frais de traitement."
+    answer: "Déposez vos pièces directement dans le formulaire de demande en ligne, transmis de façon chiffrée (scans lisibles ou photos nettes). Un document oublié peut être envoyé ensuite par e-mail. L'envoi postal reste possible moyennant CHF 20.- de frais de traitement."
   },
   {
     category: "Fiscalité",
@@ -43,7 +43,7 @@ const faqItemsFR: FAQItem[] = [
   {
     category: "Fiscalité",
     question: "Est-il possible d'obtenir un report d'échéance ?",
-    answer: "Absolument. Une extension jusqu'à fin septembre peut être sollicitée avant la fin du mois de juin. Un délai de grâce jusqu'au 30 juin est généralement octroyé sans formalité particulière."
+    answer: "Oui. Les délais et les prolongations dépendent du canton et de l'année fiscale. Par exemple, dans le canton de Vaud, pour la déclaration 2026 : délai légal au 15 mars 2027, dépôt toléré jusqu'au 30 juin sans demande, prolongation gratuite en ligne jusqu'au 30 septembre. Les règles de chaque canton figurent sur nos pages cantonales, et nous pouvons faire la demande pour vous."
   },
   {
     category: "Fiscalité",
@@ -80,12 +80,12 @@ const faqItemsFR: FAQItem[] = [
   {
     category: "Honoraires",
     question: "Quelles options de règlement proposez-vous ?",
-    answer: "Les cartes Visa, Mastercard, PayPal, Klarna et TWINT sont acceptés. Le paiement intervient après acceptation du devis et avant le lancement des travaux."
+    answer: "Virement bancaire, cartes Visa et Mastercard, PayPal, TWINT et Klarna (paiement en 3 fois, pour les commandes réglées en ligne). Le paiement intervient après acceptation du devis et avant le lancement des travaux."
   },
   {
     category: "Honoraires",
     question: "Des échelonnements sont-ils envisageables ?",
-    answer: "Pour la comptabilité, une facturation mensuelle ou annuelle est prévue (avec remise de 10 % sur l'option annuelle). Les prestations fiscales ponctuelles se règlent en une seule fois."
+    answer: "Pour la comptabilité, une facturation mensuelle ou annuelle est prévue, au choix. Les prestations fiscales ponctuelles se règlent en une seule fois."
   },
   // Informations générales
   {
@@ -120,7 +120,7 @@ const faqItemsEN: FAQItem[] = [
   {
     category: "Taxation",
     question: "How can I send my documents?",
-    answer: "Digital submission by email is recommended (clear scans or photos). Postal mail is also possible with a small surcharge to cover processing costs."
+    answer: "Upload your documents directly in the online request form, transmitted encrypted (clear scans or photos). A forgotten document can be sent later by email. Postal mail is also possible for a CHF 20.- handling fee."
   },
   {
     category: "Taxation",
@@ -130,7 +130,7 @@ const faqItemsEN: FAQItem[] = [
   {
     category: "Taxation",
     question: "Is it possible to get a deadline extension?",
-    answer: "Absolutely. An extension until the end of September can be requested before the end of June. A grace period until June 30 is generally granted without special formalities."
+    answer: "Yes. Deadlines and extensions depend on the canton and the tax year. For example, in the canton of Vaud, for the 2026 return: legal deadline March 15, 2027, filing tolerated until June 30 without a request, free online extension until September 30. Each canton's rules are on our canton pages, and we can request the extension for you."
   },
   {
     category: "Taxation",
@@ -167,12 +167,12 @@ const faqItemsEN: FAQItem[] = [
   {
     category: "Pricing",
     question: "What payment options do you offer?",
-    answer: "Visa, Mastercard, PayPal, Klarna and TWINT are accepted. Payment is made after quote acceptance and before work begins."
+    answer: "Bank transfer, Visa and Mastercard, PayPal, TWINT and Klarna (3 instalments, for orders paid online). Payment is made after quote acceptance and before work begins."
   },
   {
     category: "Pricing",
     question: "Are installment payments possible?",
-    answer: "For accounting, monthly or annual billing is available (with a 10% discount on the annual option). One-time tax services are paid in a single payment."
+    answer: "For accounting, monthly or annual billing is available, as you prefer. One-time tax services are paid in a single payment."
   },
   // General Information
   {
@@ -225,8 +225,8 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
       : "Trouvez rapidement les réponses à vos questions sur nos services de déclarations d'impôts et de comptabilité.",
     notFound: isEnglish ? "Didn't find your answer?" : "Vous n'avez pas trouvé votre réponse ?",
     notFoundDesc: isEnglish
-      ? "Our team is here to help. Contact us and we'll respond shortly."
-      : "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons rapidement.",
+      ? "We are here to help. Contact us and we'll respond shortly."
+      : "Nous sommes là pour vous aider. Contactez-nous et nous vous répondrons rapidement.",
     contactUs: isEnglish ? "Contact us" : "Nous contacter",
     startRequest: isEnglish ? "Start a request" : "Démarrer une demande",
   };

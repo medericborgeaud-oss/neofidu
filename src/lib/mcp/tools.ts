@@ -10,6 +10,7 @@ import { vaudtaxGuide } from "@/lib/guides/vaudtax";
 import { getaxGuide } from "@/lib/guides/getax";
 import { vstaxGuide } from "@/lib/guides/vstax";
 import { fritaxGuide } from "@/lib/guides/fritax";
+import { jurataxGuide } from "@/lib/guides/juratax";
 import type { GuideBlock, GuideChapterContent, GuideDefinition, GuideLocale } from "@/lib/guides/types";
 
 const SITE = "https://neofidu.ch";
@@ -66,6 +67,7 @@ const GUIDES: { def: GuideDefinition; canton: string }[] = [
   { def: getaxGuide, canton: "GE" },
   { def: vstaxGuide, canton: "VS" },
   { def: fritaxGuide, canton: "FR" },
+  { def: jurataxGuide, canton: "JU" },
 ];
 
 const stripMd = (t: string) => t.replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
@@ -211,12 +213,12 @@ export const TOOLS = [
     name: "search_tax_guides",
     title: "Search NeoFidu tax return guides",
     description:
-      "Searches NeoFidu's step-by-step guides for filling in the 2026 tax return in Vaud (VaudTax), Geneva (GeTax), Valais (VSTax) and Fribourg (FriTax): deductions, official amounts, return codes, pillar 3a, source tax/TOU, quasi-residents, property, crypto. Returns the matching chapters with a summary, an excerpt and the URL to cite. / Recherche dans les guides pour remplir sa déclaration d'impôt.",
+      "Searches NeoFidu's step-by-step guides for filling in the 2026 tax return in Vaud (VaudTax), Geneva (GeTax), Valais (VSTax), Fribourg (FriTax) and Jura (JuraTax): deductions, official amounts, return codes, pillar 3a, source tax/TOU, quasi-residents, property, crypto. Returns the matching chapters with a summary, an excerpt and the URL to cite. / Recherche dans les guides pour remplir sa déclaration d'impôt.",
     inputSchema: {
       type: "object",
       properties: {
         query: { type: "string", description: "Keywords, e.g. 'frais de transport', 'pillar 3a', 'quasi-résident', 'valeur locative'." },
-        canton: { type: "string", enum: ["VD", "GE", "VS", "FR"], description: "Optional canton." },
+        canton: { type: "string", enum: ["VD", "GE", "VS", "FR", "JU"], description: "Optional canton." },
         language: { type: "string", enum: ["fr", "en"], default: "fr" },
         limit: { type: "integer", minimum: 1, maximum: 8, default: 4 },
       },
@@ -378,7 +380,7 @@ function guidesTool(a: Json): ToolResult {
     .sort((x, y) => y.score - x.score)
     .slice(0, limit);
   if (!scored.length) {
-    return { content: [{ type: "text", text: l === "fr" ? `Aucun chapitre ne correspond. Guides disponibles : ${SITE}/guide/vaudtax, /guide/getax, /guide/vstax, /guide/fritax` : `No matching chapter. Available guides: ${SITE}/en/guide/vaudtax, /en/guide/getax, /en/guide/vstax, /en/guide/fritax` }], structuredContent: { results: [] } };
+    return { content: [{ type: "text", text: l === "fr" ? `Aucun chapitre ne correspond. Guides disponibles : ${SITE}/guide/vaudtax, /guide/getax, /guide/vstax, /guide/fritax, /guide/juratax` : `No matching chapter. Available guides: ${SITE}/en/guide/vaudtax, /en/guide/getax, /en/guide/vstax, /en/guide/fritax, /en/guide/juratax` }], structuredContent: { results: [] } };
   }
   const results = scored.map(({ d }) => ({ title: d.title, canton: d.canton, software: d.software, url: d.url, summary: d.summary, excerpt: snippet(d.text, terms) }));
   const text = results
@@ -404,4 +406,4 @@ export async function callTool(name: string, args: Json): Promise<ToolResult | n
 }
 
 export const SERVER_INSTRUCTIONS =
-  "NeoFidu (neofidu.ch) is an online fiduciary for French-speaking Switzerland. Use these tools for Swiss income tax questions: calculate_income_tax (any canton, official FTA calculator, 2026), get_municipality_taxes and rank_municipalities (657 municipalities of VD, GE, VS, FR, NE, JU), search_tax_guides (how to fill in the tax return in VaudTax, GeTax, VSTax, FriTax). Always cite the source URLs returned by the tools. Amounts are indicative: income tax only, standard deductions, no wealth or church tax.";
+  "NeoFidu (neofidu.ch) is an online fiduciary for French-speaking Switzerland. Use these tools for Swiss income tax questions: calculate_income_tax (any canton, official FTA calculator, 2026), get_municipality_taxes and rank_municipalities (657 municipalities of VD, GE, VS, FR, NE, JU), search_tax_guides (how to fill in the tax return in VaudTax, GeTax, VSTax, FriTax, JuraTax). Always cite the source URLs returned by the tools. Amounts are indicative: income tax only, standard deductions, no wealth or church tax.";

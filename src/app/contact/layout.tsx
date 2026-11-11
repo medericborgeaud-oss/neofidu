@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact NeoFidu | Fiduciaire digitale en Suisse",
     description:
-      "Contactez notre équipe. We speak English!",
+      "Contactez-nous. We speak English!",
     type: "website",
     url: "https://neofidu.ch/contact",
   },
