@@ -58,6 +58,9 @@ Key information:
 - [FriTax guide (FR)](https://neofidu.ch/guide/fritax): How to fill in the Fribourg tax return in FriTax, section by section, with official 2026 Fribourg deduction amounts and return codes (1.110, 2.130, 4.110, 6.110, etc.)
 - [FriTax guide (EN)](https://neofidu.ch/en/guide/fritax): English version for expats, quoting the French FriTax labels with translations
 - Chapters: before you start (FriTax code, extensions), personal situation and children (boxes A/B/C), salary and pensions, work expenses (schedule 03), pension savings (pillar 3a, 3a catch-up, buy-ins, lump sums), accounts/securities/crypto (schedule 01, e-relevé), wealth and debts, property (schedule 04, upkeep, energy works), deductions, source tax/TOU/quasi-residents, checking and filing (72-hour correction window) (https://neofidu.ch/guide/fritax/<chapter>)
+- [JuraTax guide (FR)](https://neofidu.ch/guide/juratax): How to fill in the Jura tax return with JuraTax Online or the JuraTax desktop program, section by section, with official 2026 Jura deduction amounts and return codes (100, 500, 525, 620, etc.) and forms (4, 5A, 7, 8, 9, 11)
+- [JuraTax guide (EN)](https://neofidu.ch/en/guide/juratax): English version for expats, quoting the French JuraTax labels with translations
+- Chapters: before you start (Online or desktop, Code-DI, SwissID, end-of-February deadline, CHF 31 extension), personal situation and children (married scale, unmarried and separated parents), salary and pensions, work expenses (form 7, actual costs or 20% flat rate), pension savings (pillar 3a, 3a catch-up, buy-ins, lump sums), accounts/securities/crypto (form 5A, eRelevé), wealth and debts (form 8), property (form 4, 10%/20% flat rate, energy works), deductions, source tax/TOU/quasi-residents/French cross-border workers, checking and filing (upload, summary page, supporting documents) (https://neofidu.ch/guide/juratax/<chapter>)
 
 ## Canton Pages
 

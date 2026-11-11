@@ -96,11 +96,11 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "Is Jura interesting for cross-border workers?",
-      answer: "Yes, Jura borders France (Alsace and Franche-Comté). Cross-border workers are taxed at source in Switzerland. The proximity to France and lower living costs make Jura an interesting option for settling near the border."
+      answer: "Jura borders France and applies the Franco-Swiss agreement of 1983: a cross-border worker who lives in France and returns home every day is taxed in France, not at source in Jura, provided the employer receives the French certificate of tax residence. Jura residents without a C permit are taxed at source, with a subsequent ordinary assessment above CHF 120,000."
     },
     {
       question: "Can I declare my cryptocurrencies in Jura?",
-      answer: "Yes, cryptocurrencies must be declared as miscellaneous movable assets in your Jura tax return via JuraTax. Use the official AFC rate from ICTax or your exchange rate on December 31."
+      answer: "Yes, cryptocurrencies are declared in the JuraTax securities list (form 5A), one line per currency, at the official Federal Tax Administration rate (ICTax) on December 31, otherwise the platform's rate."
     }
   ] : [
     {
@@ -117,11 +117,11 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
     },
     {
       question: "Le Jura est-il intéressant pour les frontaliers ?",
-      answer: "Oui, le Jura est frontalier avec la France (Alsace et Franche-Comté). Les frontaliers sont imposés à la source en Suisse. La proximité avec la France et le coût de la vie plus bas font du Jura une option intéressante pour s'installer près de la frontière."
+      answer: "Le canton du Jura applique l'accord franco-suisse de 1983 : un frontalier qui habite en France et rentre chaque jour à son domicile est imposé en France, et non à la source dans le Jura, si son employeur reçoit l'attestation de résidence fiscale française. Les résidents jurassiens sans permis C sont imposés à la source, avec une taxation ordinaire ultérieure au-delà de CHF 120'000."
     },
     {
       question: "Peut-on déclarer ses cryptomonnaies dans le Jura ?",
-      answer: "Oui, les cryptomonnaies doivent être déclarées dans la fortune mobilière diverse de votre déclaration jurassienne via JuraTax. Utilisez le cours officiel de l'AFC sur ICTax ou le cours de votre exchange au 31 décembre."
+      answer: "Oui, les cryptomonnaies se déclarent dans l'état des titres de JuraTax (formule 5A), une ligne par monnaie, au cours officiel de l'AFC (ICTax) au 31 décembre, à défaut au cours de la plateforme."
     }
   ];
   return (
@@ -249,9 +249,13 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
           </div>
           <p className="mt-6 text-muted-foreground">
             <strong>{isEnglish ? "Good to know:" : "Bon à savoir :"}</strong> {isEnglish
-              ? "Canton Jura is one of the most flexible for extension requests. Don't hesitate to contact us."
-              : "Le canton du Jura est l'un des plus souples pour les demandes de prolongation. N'hésitez pas à nous consulter."}
+              ? "The extension costs CHF 31 and requires no tax arrears from previous years. A fiduciary can request it on your behalf."
+              : "La prolongation coûte CHF 31 et suppose l'absence d'arriéré d'impôt sur les années précédentes. Une fiduciaire peut la demander en votre nom."}
           </p>
+          <Link href={isEnglish ? "/en/guide/juratax" : "/guide/juratax"} className="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+            <ArrowRight className="w-4 h-4" />
+            {isEnglish ? "Fill in your return with JuraTax: the complete guide" : "Remplir sa déclaration avec JuraTax : le guide complet"}
+          </Link>
         </div>
       </section>
       {/* Taux d'imposition Section */}
@@ -341,26 +345,26 @@ export function JuraContent({ forceEn = false }: { forceEn?: boolean }) {
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Childcare costs" : "Frais de garde d'enfants"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Deduction for third-party childcare costs (daycare, nanny, after-school care) up to the cantonal limit per child."
-                  : "Déduction des frais de garde par des tiers (crèche, nounou, parascolaire) dans la limite du plafond cantonal par enfant."}
+                  ? "Up to CHF 10,600 per child under 14 for third-party childcare (daycare, childminder, after-school care), if both parents or the single parent work (code 555)."
+                  : "Jusqu'à CHF 10'600 par enfant de moins de 14 ans pour la garde par des tiers (crèche, maman de jour, accueil extrascolaire), si les deux parents ou le parent seul travaillent (code 555)."}
               </p>
             </Card>
             <Card className="p-6">
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Property maintenance" : "Frais d'entretien immobilier"}</h3>
               <p className="text-muted-foreground text-sm">
                 {isEnglish
-                  ? "Maintenance and renovation costs for your property are deductible. You can choose between actual costs or a flat rate of 10-20% of rental value."
-                  : "Les frais d'entretien et de rénovation de votre bien immobilier sont déductibles. Vous pouvez choisir entre les frais effectifs ou un forfait de 10-20% de la valeur locative."}
+                  ? "Each year and for each property, choose actual costs or a flat rate of 10% (building 10 years old or less) or 20% of gross rental income or imputed rent (form 4)."
+                  : "Chaque année et pour chaque immeuble, choisissez les frais effectifs ou un forfait de 10 % (bâtiment de 10 ans au plus) ou 20 % du rendement brut ou de la valeur locative (formule 4)."}
               </p>
             </Card>
             <Card className="p-6 bg-primary/5 border-primary/20">
               <h3 className="text-lg font-bold mb-2">{isEnglish ? "Complete guide" : "Guide complet"}</h3>
               <p className="text-muted-foreground text-sm mb-3">
                 {isEnglish
-                  ? "Discover all available deductions for the 2026 tax year."
-                  : "Découvrez toutes les déductions disponibles pour l'année fiscale 2026."}
+                  ? "Every code of the Jura return explained step by step in JuraTax, with the 2026 amounts."
+                  : "Chaque code de la déclaration jurassienne expliqué pas à pas dans JuraTax, avec les montants 2026."}
               </p>
-              <Link href="/guide/deductions-fiscales" className="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+              <Link href={isEnglish ? "/en/guide/juratax" : "/guide/juratax"} className="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
                 {isEnglish ? "View the guide" : "Voir le guide"}
                 <ArrowRight className="w-3 h-3" />
               </Link>

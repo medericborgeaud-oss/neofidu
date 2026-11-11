@@ -7,6 +7,7 @@ import { vaudtaxGuide } from "@/lib/guides/vaudtax";
 import { getaxGuide } from "@/lib/guides/getax";
 import { vstaxGuide } from "@/lib/guides/vstax";
 import { fritaxGuide } from "@/lib/guides/fritax";
+import { jurataxGuide } from "@/lib/guides/juratax";
 import { createClient } from "@supabase/supabase-js";
 import { isCommuneFusionnee } from "@/lib/communes-fusionnees";
 import PAGE_DATES from "@/data/page-dates.json";
@@ -103,6 +104,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...fritaxGuide.chapters.flatMap((c) => [
       createEntry(`/guide/fritax/${c.slug}`, { lastModified: fritaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.8 }),
       createEntry(`/en/guide/fritax/${c.slug}`, { lastModified: fritaxGuide.updatedAt, changeFrequency: "monthly", priority: 0.75 }),
+    ]),
+    createEntry("/guide/juratax", { lastModified: jurataxGuide.updatedAt, changeFrequency: "monthly", priority: 0.9 }),
+    createEntry("/en/guide/juratax", { lastModified: jurataxGuide.updatedAt, changeFrequency: "monthly", priority: 0.85 }),
+    ...jurataxGuide.chapters.flatMap((c) => [
+      createEntry(`/guide/juratax/${c.slug}`, { lastModified: jurataxGuide.updatedAt, changeFrequency: "monthly", priority: 0.8 }),
+      createEntry(`/en/guide/juratax/${c.slug}`, { lastModified: jurataxGuide.updatedAt, changeFrequency: "monthly", priority: 0.75 }),
     ]),
     createEntry("/cantons", { lastModified: pageDate("/cantons"), changeFrequency: "monthly", priority: 0.85 }),
     ...["vaud", "geneve", "valais", "fribourg", "neuchatel", "jura"].map((canton) =>
