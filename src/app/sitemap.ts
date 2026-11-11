@@ -125,6 +125,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/en/connecteur-ia", { lastModified: "2026-11-10", changeFrequency: "monthly", priority: 0.75 }),
     createEntry("/barometre-fiscal", { lastModified: "2026-11-10", changeFrequency: "yearly", priority: 0.95 }),
     createEntry("/en/barometre-fiscal", { lastModified: "2026-11-10", changeFrequency: "yearly", priority: 0.9 }),
+    createEntry("/barometre-fiscal/entreprises", { lastModified: "2026-11-11", changeFrequency: "yearly", priority: 0.95 }),
+    createEntry("/en/barometre-fiscal/entreprises", { lastModified: "2026-11-11", changeFrequency: "yearly", priority: 0.9 }),
     createEntry("/communes", { lastModified: pageDate("/communes"), changeFrequency: "weekly", priority: 0.9 }),
     createEntry("/en/communes", { lastModified: pageDate("/en/communes"), changeFrequency: "weekly", priority: 0.85 }),
     createEntry("/dette-suisse", { lastModified: pageDate("/dette-suisse"), changeFrequency: "daily", priority: 0.8 }),

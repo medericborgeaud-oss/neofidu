@@ -45,6 +45,7 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
   "/cantons",
   "/communes",
   "/barometre-fiscal",
+  "/barometre-fiscal/entreprises",
   "/connecteur-ia",
 ]);
 
@@ -109,6 +110,7 @@ export function Footer() {
       { label: isEnglish ? "Business observatory" : "Observatoire des entreprises", href: "/observatoire" },
       { label: isEnglish ? "Municipalities" : "Communes romandes", href: "/communes" },
       { label: isEnglish ? "Tax barometer 2026" : "Baromètre fiscal 2026", href: "/barometre-fiscal" },
+      { label: isEnglish ? "Business tax barometer" : "Baromètre fiscal entreprises", href: "/barometre-fiscal/entreprises" },
       { label: isEnglish ? "AI connector (Claude, ChatGPT)" : "Connecteur IA (Claude, ChatGPT)", href: "/connecteur-ia" },
     ],
     cantons: [
