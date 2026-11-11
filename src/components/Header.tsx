@@ -35,6 +35,7 @@ const EN_TWIN_EXACT = new Set<string>([
   "/guide/getax",
   "/guide/vstax",
   "/guide/fritax",
+  "/guide/juratax",
   "/contact",
   "/independants",
   "/tarifs",
@@ -52,7 +53,7 @@ const EN_TWIN_EXACT = new Set<string>([
 function enHref(href: string): string {
   if (href === "/") return "/en";
   if (EN_TWIN_EXACT.has(href)) return "/en" + href;
-  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/") || href.startsWith("/guide/vstax/") || href.startsWith("/guide/fritax/")) return "/en" + href;
+  if (href.startsWith("/blog/") || href.startsWith("/communes/") || href.startsWith("/cantons/") || href.startsWith("/guide/vaudtax/") || href.startsWith("/guide/getax/") || href.startsWith("/guide/vstax/") || href.startsWith("/guide/fritax/") || href.startsWith("/guide/juratax/")) return "/en" + href;
   return href;
 }
 
@@ -98,6 +99,7 @@ export function Header() {
     { href: "/guide/getax", label: isEnglish ? "GeTax guide (Geneva tax return)" : "Guide GeTax : remplir sa déclaration genevoise", category: "Informations" },
     { href: "/guide/vstax", label: isEnglish ? "VSTax guide (Valais tax return)" : "Guide VSTax : remplir sa déclaration valaisanne", category: "Informations" },
     { href: "/guide/fritax", label: isEnglish ? "FriTax guide (Fribourg tax return)" : "Guide FriTax : remplir sa déclaration fribourgeoise", category: "Informations" },
+    { href: "/guide/juratax", label: isEnglish ? "JuraTax guide (Jura tax return)" : "Guide JuraTax : remplir sa déclaration jurassienne", category: "Informations" },
     { href: isEnglish ? "/en/swiss-debt" : "/dette-suisse", label: isEnglish ? "Swiss Debt Clock" : "Compteur dette suisse", category: "Informations" },
     { href: "/suivi", label: isEnglish ? "File Tracking" : "Suivi de dossier", category: "Informations" },
     { href: "/#about", label: isEnglish ? "About" : "À propos", category: "Informations" },
@@ -175,6 +177,12 @@ export function Header() {
       label: isEnglish ? "FriTax guide" : "Guide FriTax",
       icon: BookOpen,
       description: isEnglish ? "Fill in your Fribourg tax return" : "Remplir sa déclaration fribourgeoise",
+    },
+    {
+      href: "/guide/juratax",
+      label: isEnglish ? "JuraTax guide" : "Guide JuraTax",
+      icon: BookOpen,
+      description: isEnglish ? "Fill in your Jura tax return" : "Remplir sa déclaration jurassienne",
     },
     {
       href: "/guide/deductions-fiscales",
