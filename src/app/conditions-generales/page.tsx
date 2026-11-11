@@ -56,7 +56,7 @@ const sectionsFr = [
       <p>Le Client est responsable de la transmission en temps utile de l'ensemble des pièces justificatives nécessaires à l'exécution des prestations. Tout retard dans la remise des documents peut entraîner un report des délais de traitement.</p>
 
       <h4>3.3 Vérification</h4>
-      <p>Le Client s'engage à vérifier les documents établis par NeoFidu avant leur transmission aux autorités compétentes et à signaler toute erreur ou omission dans un délai de 5 jours ouvrables.</p>
+      <p>Le Client s'engage à vérifier les documents établis par NeoFidu avant leur transmission aux autorités compétentes et à signaler toute erreur ou omission au plus tard dans le délai de réclamation de 14 jours prévu à l'art. 6.6.</p>
 
       <h4>3.4 Confidentialité des accès</h4>
       <p>Le Client est responsable de la confidentialité de ses identifiants de connexion et s'engage à ne pas les communiquer à des tiers.</p>
@@ -93,7 +93,7 @@ const sectionsFr = [
       <p>Les tarifs applicables sont ceux affichés sur le site neofidu.ch au moment de la commande. Les prix sont indiqués en francs suisses (CHF), TVA incluse le cas échéant.</p>
 
       <h4>5.2 Modalités de paiement</h4>
-      <p>Le paiement s'effectue par carte bancaire (Visa, Mastercard), PayPal, Klarna ou TWINT. Pour certaines prestations, un acompte peut être demandé avant le début des travaux.</p>
+      <p>Le paiement s'effectue par virement bancaire, carte bancaire (Visa, Mastercard), PayPal, TWINT ou Klarna (pour les commandes réglées en ligne). Pour certaines prestations, un acompte peut être demandé avant le début des travaux.</p>
 
       <h4>5.3 Facturation</h4>
       <p>Les prestations récurrentes (comptabilité) font l'objet d'une facturation selon la fréquence choisie par le Client (mensuelle ou annuelle).</p>
@@ -304,7 +304,7 @@ const sectionsEn = [
       <p>The Client is responsible for the timely transmission of all supporting documents necessary for the execution of services. Any delay in document submission may result in postponement of processing times.</p>
 
       <h4>3.3 Verification</h4>
-      <p>The Client undertakes to verify the documents prepared by NeoFidu before their transmission to the relevant authorities and to report any error or omission within 5 business days.</p>
+      <p>The Client undertakes to verify the documents prepared by NeoFidu before their transmission to the relevant authorities and to report any error or omission at the latest within the 14-day claim period set out in Art. 6.6.</p>
 
       <h4>3.4 Access Confidentiality</h4>
       <p>The Client is responsible for the confidentiality of their login credentials and undertakes not to share them with third parties.</p>
@@ -341,7 +341,7 @@ const sectionsEn = [
       <p>Applicable rates are those displayed on the neofidu.ch website at the time of order. Prices are indicated in Swiss francs (CHF), VAT included where applicable.</p>
 
       <h4>5.2 Payment Methods</h4>
-      <p>Payment is made by credit card (Visa, Mastercard), PayPal, Klarna or TWINT. For certain services, a deposit may be requested before work begins.</p>
+      <p>Payment is made by bank transfer, credit card (Visa, Mastercard), PayPal, TWINT or Klarna (for orders paid online). For certain services, a deposit may be requested before work begins.</p>
 
       <h4>5.3 Billing</h4>
       <p>Recurring services (accounting) are billed according to the frequency chosen by the Client (monthly or annual).</p>

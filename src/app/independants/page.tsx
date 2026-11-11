@@ -166,8 +166,8 @@ const benefits = [
     icon: Zap,
     title: "100% digital",
     titleEn: "100% digital",
-    description: "Envoyez vos documents par email ou via notre espace client.",
-    descriptionEn: "Send your documents by email or via our client portal.",
+    description: "Déposez vos documents dans notre formulaire en ligne sécurisé. Un oubli ? Envoyez-le simplement par email.",
+    descriptionEn: "Upload your documents in our secure online form. Forgot one? Just send it by email.",
   },
 ];
 
