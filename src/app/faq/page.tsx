@@ -225,8 +225,8 @@ export function FAQContent({ forceEn = false }: { forceEn?: boolean }) {
       : "Trouvez rapidement les réponses à vos questions sur nos services de déclarations d'impôts et de comptabilité.",
     notFound: isEnglish ? "Didn't find your answer?" : "Vous n'avez pas trouvé votre réponse ?",
     notFoundDesc: isEnglish
-      ? "Our team is here to help. Contact us and we'll respond shortly."
-      : "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons rapidement.",
+      ? "We are here to help. Contact us and we'll respond shortly."
+      : "Nous sommes là pour vous aider. Contactez-nous et nous vous répondrons rapidement.",
     contactUs: isEnglish ? "Contact us" : "Nous contacter",
     startRequest: isEnglish ? "Start a request" : "Démarrer une demande",
   };

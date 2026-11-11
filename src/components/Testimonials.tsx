@@ -25,13 +25,13 @@ export function Testimonials() {
           icon: FileCheck,
           title: "Complete verification",
           description:
-            "Each declaration is reviewed by our team to optimize your deductions and avoid errors.",
+            "Each declaration is reviewed by a certified specialist to optimize your deductions and avoid errors.",
         },
         {
           icon: HeadphonesIcon,
           title: "Responsive support",
           description:
-            "A question? Our team responds by email. No voicemail, no endless waiting.",
+            "A question? We answer by email. No voicemail, no endless waiting.",
         },
         {
           icon: Lock,
@@ -63,13 +63,13 @@ export function Testimonials() {
           icon: FileCheck,
           title: "Vérification complète",
           description:
-            "Chaque déclaration est revue par notre équipe pour optimiser vos déductions et éviter les erreurs.",
+            "Chaque déclaration est revue par un spécialiste diplômé pour optimiser vos déductions et éviter les erreurs.",
         },
         {
           icon: HeadphonesIcon,
           title: "Support réactif",
           description:
-            "Une question ? Notre équipe répond rapidement par email. Pas de répondeur, pas d'attente interminable.",
+            "Une question ? Nous répondons rapidement par email. Pas de répondeur, pas d'attente interminable.",
         },
         {
           icon: Lock,

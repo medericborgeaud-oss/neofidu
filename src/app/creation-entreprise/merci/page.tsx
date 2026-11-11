@@ -161,8 +161,8 @@ function ThankYouContent() {
 
             <p className="text-lg text-muted-foreground max-w-xl mx-auto">
               {isEnglish
-                ? "Your request has been received. Our team will contact you to discuss your company creation project."
-                : "Votre demande a bien été reçue. Notre équipe vous contactera pour discuter de votre projet de création d'entreprise."}
+                ? "Your request has been received. We will contact you to discuss your company creation project."
+                : "Votre demande a bien été reçue. Nous vous contacterons pour discuter de votre projet de création d'entreprise."}
             </p>
           </motion.div>
 

@@ -5449,7 +5449,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
                 {isEnglish ? "Comments or special instructions" : "Commentaires ou instructions particulières"}
               </label>
               <Textarea
-                placeholder={isEnglish ? "Additional information for our team..." : "Informations complémentaires pour notre équipe..."}
+                placeholder={isEnglish ? "Additional information for us..." : "Informations complémentaires à nous transmettre..."}
                 value={formData.comments}
                 onChange={(e) => updateForm("comments", e.target.value)}
                 className="rounded-xl min-h-[100px]"

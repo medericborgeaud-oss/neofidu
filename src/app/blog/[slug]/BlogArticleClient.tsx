@@ -53,7 +53,7 @@ const categoryCTA: Record<string, { title: string; description: string; link: st
   },
   actualites: {
     title: "Besoin d’accompagnement ?",
-    description: "Notre équipe est à votre disposition pour vous accompagner dans vos démarches fiscales et comptables.",
+    description: "Nous sommes à votre disposition pour vous accompagner dans vos démarches fiscales et comptables.",
     link: "/demande",
     linkLabel: "Déposer une demande",
     simulator: { href: "/simulateur/impots", label: "Simuler mes impôts" },

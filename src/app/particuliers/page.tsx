@@ -199,7 +199,7 @@ export default function ParticuliersPage() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                {"Votre déclaration d'impôts, gérée par des experts"}
+                {"Votre déclaration d'impôts, gérée par un spécialiste diplômé"}
               </h1>
 
               <p className="text-xl text-teal-100 max-w-3xl mx-auto mb-10 leading-relaxed">

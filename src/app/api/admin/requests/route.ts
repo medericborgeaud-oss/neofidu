@@ -901,12 +901,12 @@ export async function PATCH(request: NextRequest) {
         // Messages pour demandes fiscales
         pending: "Votre demande est en attente de paiement.",
         paid: "Votre paiement a été confirmé. Nous allons commencer le traitement de votre dossier.",
-        in_progress: "Notre équipe travaille actuellement sur votre déclaration d'impôts.",
-        completed: "Votre déclaration d'impôts a été finalisée et envoyée à l'administration fiscale. Nos experts l'ont préparée en veillant à prendre en compte toutes les déductions auxquelles vous avez droit, afin de réduire au maximum votre facture fiscale.",
+        in_progress: "Nous travaillons actuellement sur votre déclaration d'impôts.",
+        completed: "Votre déclaration d'impôts a été finalisée et envoyée à l'administration fiscale. Votre spécialiste l'a préparée en veillant à prendre en compte toutes les déductions auxquelles vous avez droit, afin de réduire au maximum votre facture fiscale.",
         delivered: "Votre déclaration d'impôts a été envoyée. Merci de votre confiance !",
-        // Messages pour demandes comptabilité / gérance
+        // Messages pour demandes comptabilité
         received: "Votre demande a bien été reçue. Un conseiller vous contactera rapidement.",
-        processing: "Notre équipe travaille actuellement sur votre dossier.",
+        processing: "Nous travaillons actuellement sur votre dossier.",
         done: "Votre dossier est terminé. Merci de votre confiance !",
       };
 

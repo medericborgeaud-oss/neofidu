@@ -28,7 +28,7 @@ export const translations = {
       tagline: "Fiduciaire digitale",
       title1: "Votre déclaration d'impôts",
       title2: "simplifiée",
-      description: "Confiez vos impôts et votre comptabilité à des experts. Service 100% en ligne pour 6 cantons romands.",
+      description: "Confiez vos impôts et votre comptabilité à un spécialiste diplômé. Service 100% en ligne pour 6 cantons romands.",
       cta1: "Déposer une demande",
       cta2: "Découvrir nos services",
       badge1: "100% en ligne",

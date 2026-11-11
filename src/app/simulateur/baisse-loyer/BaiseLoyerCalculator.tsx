@@ -205,7 +205,7 @@ export function BaiseLoyerCalculator() {
                       <Scale className="w-10 h-10 text-primary" />
                       <div>
                         <h4 className="font-semibold mb-1">{isEnglish ? "Need help?" : "Besoin d'aide ?"}</h4>
-                        <p className="text-sm text-muted-foreground mb-3">{isEnglish ? "Our team supports you through the process." : "Notre équipe vous accompagne dans vos démarches."}</p>
+                        <p className="text-sm text-muted-foreground mb-3">{isEnglish ? "We support you through the process." : "Nous vous accompagnons dans vos démarches."}</p>
                         <Button asChild size="sm" className="rounded-full"><Link href="/#contact">{isEnglish ? "Contact us" : "Nous contacter"} <ArrowRight className="w-4 h-4 ml-1" /></Link></Button>
                       </div>
                     </div>

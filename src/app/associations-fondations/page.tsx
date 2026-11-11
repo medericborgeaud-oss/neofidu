@@ -73,21 +73,21 @@ const services = [
   },
   {
     icon: ShieldCheck,
-    title: "Organe de révision",
-    titleEn: "Audit Body",
+    title: "Préparation pour la révision",
+    titleEn: "Audit preparation",
     description:
-      "Rapports pour l’organe de révision, contrôle restreint et préparation de l’assemblée générale.",
+      "Dossier de bouclement prêt pour votre organe de révision (réviseur externe) et préparation de l’assemblée générale.",
     descriptionEn:
-      "Reports for the audit body, limited audit and preparation of the general assembly.",
+      "Year-end file ready for your external auditor and preparation of the general assembly.",
     features: [
-      "Contrôle restreint",
-      "Rapports de révision",
+      "Dossier pour le réviseur externe",
+      "Annexe aux comptes",
       "Préparation AG",
       "Conseil en gouvernance",
     ],
     featuresEn: [
-      "Limited audit",
-      "Audit reports",
+      "File for the external auditor",
+      "Notes to the accounts",
       "GA preparation",
       "Governance advice",
     ],
@@ -218,7 +218,6 @@ export function AssociationsFondationsContent({ forceEn = false }: { forceEn?: b
     { key: "comptabilite", label: isEnglish ? "Accounting" : "Comptabilité" },
     { key: "fiscalite", label: isEnglish ? "Tax" : "Fiscalité" },
     { key: "tva", label: isEnglish ? "VAT" : "TVA" },
-    { key: "revision", label: isEnglish ? "Audit" : "Révision" },
     { key: "creation", label: isEnglish ? "Creation" : "Création" },
   ];
 

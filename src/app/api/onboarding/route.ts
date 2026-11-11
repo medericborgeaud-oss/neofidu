@@ -279,7 +279,7 @@ export async function POST(request: NextRequest) {
           </p>
           <p style="color: #666; line-height: 1.6;">
             Nous avons bien reçu votre formulaire d'onboarding pour <strong>${data.companyName}</strong>.
-            Notre équipe va analyser votre dossier et vous recontactera dans les plus brefs délais.
+            Nous allons analyser votre dossier et vous recontacter dans les plus brefs délais.
           </p>
 
           <div style="background: #f0fdfa; padding: 25px; border-radius: 12px; margin: 30px 0; text-align: center; border: 2px solid #0d9488;">
@@ -293,7 +293,7 @@ export async function POST(request: NextRequest) {
           <div style="background: #f9fafb; border-radius: 8px; padding: 20px;">
             <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
               <span style="background: #0d9488; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; flex-shrink: 0;">1</span>
-              <span style="color: #4b5563;">Notre équipe analyse votre dossier</span>
+              <span style="color: #4b5563;">Nous analysons votre dossier</span>
             </div>
             <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
               <span style="background: #0d9488; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; flex-shrink: 0;">2</span>

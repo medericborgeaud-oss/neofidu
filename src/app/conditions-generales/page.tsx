@@ -115,7 +115,7 @@ const sectionsFr = [
       <p><strong>En validant sa commande, le Client reconnaît et accepte que le traitement de son dossier puisse débuter immédiatement après réception du paiement.</strong></p>
 
       <h4>6.2 Annulation avant début du traitement</h4>
-      <p>Le Client peut annuler sa commande <strong>uniquement si le traitement de son dossier n'a pas encore débuté</strong>. Le début du traitement intervient dès l'ouverture du dossier par nos équipes, généralement dans les <strong>24 à 48 heures</strong> suivant le paiement.</p>
+      <p>Le Client peut annuler sa commande <strong>uniquement si le traitement de son dossier n'a pas encore débuté</strong>. Le début du traitement intervient dès l'ouverture du dossier par NeoFidu, généralement dans les <strong>24 à 48 heures</strong> suivant le paiement.</p>
       <p>Pour vérifier si une annulation est encore possible, le Client doit contacter NeoFidu par email à <a href="mailto:contact@neofidu.ch">contact@neofidu.ch</a> en indiquant son numéro de référence.</p>
 
       <h4>6.3 Remboursement intégral</h4>
@@ -519,8 +519,8 @@ export default function ConditionsGeneralesPage() {
     tableOfContents: isEnglish ? "Table of Contents" : "Table des matières",
     questionsTitle: isEnglish ? "Have questions?" : "Des questions ?",
     questionsText: isEnglish
-      ? "Our team is available for any questions regarding our terms and conditions."
-      : "Notre équipe est à votre disposition pour toute question concernant nos conditions générales.",
+      ? "We are available for any questions regarding our terms and conditions."
+      : "Nous sommes à votre disposition pour toute question concernant nos conditions générales.",
   };
 
   return (

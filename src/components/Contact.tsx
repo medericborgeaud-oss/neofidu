@@ -74,7 +74,7 @@ export function Contact() {
     title1: isEnglish ? "A question or" : "Une question ou",
     title2: isEnglish ? "a free quote?" : "un devis gratuit ?",
     description: isEnglish
-      ? "A quick question or a quote request? Complete this form and our team replies quickly. No obligation."
+      ? "A quick question or a quote request? Complete this form and we reply quickly. No obligation."
       : "Une simple question ou une demande de devis ? Complétez ce formulaire, nous vous répondons rapidement. Sans engagement.",
     email: "Email",
     address: isEnglish ? "Address" : "Adresse",

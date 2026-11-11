@@ -4,6 +4,7 @@ import { vaudtaxGuide } from "@/lib/guides/vaudtax";
 import { getaxGuide } from "@/lib/guides/getax";
 import { vstaxGuide } from "@/lib/guides/vstax";
 import { fritaxGuide } from "@/lib/guides/fritax";
+import { jurataxGuide } from "@/lib/guides/juratax";
 import type { GuideBlock, GuideChapterContent, GuideDefinition, GuideLocale } from "@/lib/guides/types";
 import { barometreTexts } from "@/components/barometre/BarometrePage";
 import { cantonStats, romandieMedian, VILLES_PRINCIPALES, getBaroCommune, BARO_COMMUNES, BARO_YEAR } from "@/lib/barometre";
@@ -14,7 +15,7 @@ import { BARO_PRO_COMMUNES, BARO_PRO_YEAR, PROFILS_PRO, PROFIL_PRO_LABELS, roman
 export const dynamic = "force-static";
 
 const SITE = "https://neofidu.ch";
-const GUIDES: GuideDefinition[] = [vaudtaxGuide, getaxGuide, vstaxGuide, fritaxGuide];
+const GUIDES: GuideDefinition[] = [vaudtaxGuide, getaxGuide, vstaxGuide, fritaxGuide, jurataxGuide];
 
 // Liens relatifs du mini-markdown -> liens absolus
 const abs = (t: string) => t.replace(/\]\((\/[^)]*)\)/g, (_, p) => `](${SITE}${p})`);
