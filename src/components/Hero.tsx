@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Calculator, Shield, CheckCircle2, Smartphone } from "lucide-react";
 import Link from "next/link";
@@ -18,19 +19,19 @@ export function Hero() {
   const subtitle = isEnglish
     ? "Submit your tax return directly from your smartphone or computer. We handle everything else. Individuals, freelancers, companies, and Swiss expats worldwide."
     : "Envoyez votre déclaration d'impôts directement depuis votre smartphone ou ordinateur. Nous nous occupons du reste. Particuliers, indépendants, sociétés et Suisses de l'étranger.";
-  const commitments = isEnglish
+  const stats = isEnglish
     ? [
-        "Price confirmed before we start",
-        "No extra charge without your approval",
-        "No minimum term for accounting",
+        { value: "24/7", label: "Online submission" },
+        { value: "6", label: "Cantons served" },
+        { value: "10+", label: "Years of experience" },
       ]
     : [
-        "Prix confirmé avant de commencer",
-        "Aucun supplément sans votre accord",
-        "Comptabilité sans durée minimale",
+        { value: "24h/24", label: "Dépôt en ligne" },
+        { value: "6", label: "Cantons desservis" },
+        { value: "10+", label: "Ans d'expérience" },
       ];
   return (
-    <section className="relative md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20 md:pt-8">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-8">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
@@ -38,7 +39,7 @@ export function Hero() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-400/5 rounded-full blur-3xl" />
       </div>
       {/* Floating icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-32 left-10 md:left-20 animate-float opacity-20">
           <FileText className="w-16 h-16 md:w-24 md:h-24 text-white" />
         </div>
@@ -50,17 +51,17 @@ export function Hero() {
         </div>
       </div>
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-8 pb-16 md:py-32">
+      <div className="relative z-10 container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center">
           {/* Tagline Badge */}
-          <div className="hidden sm:inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
             <span className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse" />
             <span className="text-white/90 text-base font-medium">
               {tagline}
             </span>
           </div>
           {/* Main heading */}
-          <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 md:mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             {title1}{" "}
             <span className="relative inline-block">
               {title2}
@@ -77,11 +78,11 @@ export function Hero() {
             {title3}
           </h1>
           {/* Subtitle */}
-          <p className="text-base md:text-xl text-white/80 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
             {subtitle}
           </p>
           {/* Features list */}
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 md:gap-6 mb-8 md:mb-10">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-10">
             {features.map((feature, index) => (
               <div
                 key={feature}
@@ -121,17 +122,24 @@ export function Hero() {
             </Button>
           </div>
           {/* Trust indicators */}
-          <div className="mt-10 md:mt-16 pt-8 border-t border-white/10 pb-12 md:pb-20">
-            <ul className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-x-8 gap-y-2 text-white/90 text-sm md:text-base">
-              {commitments.map((item) => (
-                <li key={item} className="flex items-center justify-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
-                  <span>{item}</span>
-                </li>
+          <div className="mt-16 pt-8 border-t border-white/10 pb-20">
+            <div className="flex justify-center gap-8 md:gap-12 items-center">
+              {stats.map((stat, index) => (
+                <React.Fragment key={stat.label}>
+                  <div className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-white">
+                      {stat.value}
+                    </div>
+                    <div className="text-white/80 text-sm md:text-base mt-1">{stat.label}</div>
+                  </div>
+                  {index < stats.length - 1 && (
+                    <div className="w-px h-12 bg-white/20" />
+                  )}
+                </React.Fragment>
               ))}
-            </ul>
+            </div>
             {/* Canton flags */}
-            <div className="flex justify-center gap-5 md:gap-12 mt-10 md:mt-12 flex-wrap">
+            <div className="flex justify-center gap-7 md:gap-12 mt-12 flex-wrap">
               {([
                 { code: "VD", name: "Vaud", slug: "vaud" },
                 { code: "GE", name: isEnglish ? "Geneva" : "Genève", slug: "geneve" },

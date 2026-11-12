@@ -51,7 +51,6 @@ const EN_TWIN_EXACT_FOOTER = new Set<string>([
 
 function enHrefFooter(href: string): string {
   if (href === "/") return "/en";
-  if (href.startsWith("/#")) return "/en" + href.slice(1);
   if (href === "/suisses-etranger") return "/en/expats";
   if (href.startsWith("/conditions-generales#")) return "/en" + href;
   if (EN_TWIN_EXACT_FOOTER.has(href)) return "/en" + href;
@@ -67,48 +66,62 @@ export function Footer() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  // Footer kept short for clients (~20 links). Data pages (observatoire, communes,
-  // baromètres, connecteur IA, dette...) are reachable via /ressources and the sitemap.
   const footerLinks = {
     services: [
-      { label: isEnglish ? "Tax declaration" : "Déclaration d'impôts", href: "/demande" },
-      { label: isEnglish ? "Self-employed & Freelances" : "Indépendants", href: "/independants" },
-      { label: isEnglish ? "SMEs & companies" : "PME et sociétés", href: "/entreprises" },
+      { label: isEnglish ? "Tax declaration" : "Déclaration d'impôt", href: "/demande" },
+      { label: isEnglish ? "Our pricing" : "Nos tarifs", href: "/tarifs" },
+      { label: isEnglish ? "Self-employed & Freelances" : "Indépendants & Freelances", href: "/independants" },
       { label: isEnglish ? "Company formation" : "Création d'entreprise", href: "/creation-entreprise" },
-      { label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", href: "/changer-de-fiduciaire" },
-      { label: isEnglish ? "Associations & Foundations" : "Associations et fondations", href: "/associations-fondations" },
+      { label: isEnglish ? "Business services" : "Services entreprises", href: "/entreprises" },
+    { label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", href: "/changer-de-fiduciaire" },
+      { label: isEnglish ? "Associations & Foundations" : "Associations & Fondations", href: "/associations-fondations" },
       { label: isEnglish ? "Expats in Switzerland" : "Expatriés en Suisse", href: "/expats" },
       { label: isEnglish ? "Swiss citizens abroad" : "Suisses de l'étranger", href: "/suisses-etranger" },
     ],
-    resources: [
-      { label: isEnglish ? "Free simulators" : "Simulateurs gratuits", href: "/simulateur" },
-      { label: isEnglish ? "Tax return guides" : "Guides de déclaration", href: "/ressources#guides" },
-      { label: isEnglish ? "Fiscal news" : "Blog fiscal", href: "/blog" },
-      { label: "FAQ", href: "/faq" },
-      { label: isEnglish ? "All resources" : "Toutes les ressources", href: "/ressources" },
+    tools: [
+      { label: isEnglish ? "Tax calculator" : "Simulateur d'impôts", href: "/simulateur/impots" },
+      { label: isEnglish ? "Swiss tax map" : "Carte des impôts", href: "/simulateur/carte-impots" },
+      { label: isEnglish ? "3rd pillar calculator" : "Simulateur 3ème pilier", href: "/simulateur/3eme-pilier" },
+      { label: isEnglish ? "Rent reduction calculator" : "Calculateur baisse loyer", href: "/simulateur/baisse-loyer" },
+      { label: isEnglish ? "Net salary calculator" : "Simulateur salaire net", href: "/simulateur/salaire-net" },
+      { label: isEnglish ? "Property tax simulator" : "Simulateur valeur locative", href: "/simulateur/valeur-locative" },
+      { label: isEnglish ? "Real estate gain tax" : "Gain immobilier", href: "/simulateur/gain-immobilier" },
+      { label: isEnglish ? "Retirement simulator" : "Simulateur retraite", href: "/simulateur/retraite" },
+      { label: isEnglish ? "Swiss debt clock" : "Compteur dette suisse", href: isEnglish ? "/en/swiss-debt" : "/dette-suisse" },
     ],
-    neofidu: [
-      { label: isEnglish ? "Pricing" : "Tarifs", href: "/tarifs" },
-      { label: isEnglish ? "About" : "À propos", href: "/#about" },
-      { label: "Contact", href: "/contact" },
-      { label: isEnglish ? "Client area" : "Espace client", href: "/suivi" },
+    guides: [
+      { label: isEnglish ? "VaudTax guide (Vaud tax return)" : "Guide VaudTax", href: "/guide/vaudtax" },
+      { label: isEnglish ? "GeTax guide (Geneva tax return)" : "Guide GeTax", href: "/guide/getax" },
+      { label: isEnglish ? "VSTax guide (Valais tax return)" : "Guide VSTax", href: "/guide/vstax" },
+      { label: isEnglish ? "FriTax guide (Fribourg tax return)" : "Guide FriTax", href: "/guide/fritax" },
+      { label: isEnglish ? "JuraTax guide (Jura tax return)" : "Guide JuraTax", href: "/guide/juratax" },
+      { label: isEnglish ? "Tax deductions guide" : "Guide déductions fiscales", href: "/guide/deductions-fiscales" },
+      { label: isEnglish ? "Withholding tax guide" : "Guide impôt à la source", href: "/blog/impot-source-suisse-guide-complet-2026" },
+      { label: isEnglish ? "Start a business" : "Créer son entreprise", href: "/blog/creer-entreprise-suisse-2026" },
+      { label: isEnglish ? "Rent reduction 2026" : "Baisse de loyer 2026", href: "/blog/baisse-loyer-suisse-2026-taux-reference-hypothecaire" },
+      { label: isEnglish ? "First tax return" : "Première déclaration", href: "/blog/declaration-impots-2025-guide-complet" },
+    ],
+    info: [
+      { label: isEnglish ? "About NeoFidu" : "Qui sommes-nous", href: "/#about" },
+      { label: isEnglish ? "Fiscal news" : "Actualités fiscales", href: "/blog" },
+      { label: isEnglish ? "Help center" : "FAQ", href: "/faq" },
+      { label: isEnglish ? "Track request" : "Suivre ma demande", href: "/suivi" },
+      { label: isEnglish ? "Contact us" : "Contact", href: "/contact" },
+      { label: isEnglish ? "Business observatory" : "Observatoire des entreprises", href: "/observatoire" },
+      { label: isEnglish ? "Municipalities" : "Communes romandes", href: "/communes" },
+      { label: isEnglish ? "Tax barometer 2026" : "Baromètre fiscal 2026", href: "/barometre-fiscal" },
+      { label: isEnglish ? "Business tax barometer" : "Baromètre fiscal entreprises", href: "/barometre-fiscal/entreprises" },
+      { label: isEnglish ? "AI connector (Claude, ChatGPT)" : "Connecteur IA (Claude, ChatGPT)", href: "/connecteur-ia" },
     ],
     cantons: [
-      { label: "Vaud", href: "/cantons/vaud" },
-      { label: isEnglish ? "Geneva" : "Genève", href: "/cantons/geneve" },
-      { label: "Valais", href: "/cantons/valais" },
-      { label: "Fribourg", href: "/cantons/fribourg" },
-      { label: "Neuchâtel", href: "/cantons/neuchatel" },
-      { label: "Jura", href: "/cantons/jura" },
+      { label: isEnglish ? "Fiduciary Geneva" : "Fiduciaire Genève", href: "/cantons/geneve" },
+      { label: isEnglish ? "Fiduciary Vaud" : "Fiduciaire Vaud", href: "/cantons/vaud" },
+      { label: isEnglish ? "Fiduciary Fribourg" : "Fiduciaire Fribourg", href: "/cantons/fribourg" },
+      { label: isEnglish ? "Fiduciary Valais" : "Fiduciaire Valais", href: "/cantons/valais" },
+      { label: isEnglish ? "Fiduciary Neuchâtel" : "Fiduciaire Neuchâtel", href: "/cantons/neuchatel" },
+      { label: isEnglish ? "Fiduciary Jura" : "Fiduciaire Jura", href: "/cantons/jura" },
     ],
   };
-
-  const columns = [
-    { title: isEnglish ? "Services" : "Services", links: footerLinks.services },
-    { title: isEnglish ? "Resources" : "Ressources", links: footerLinks.resources },
-    { title: "NeoFidu", links: footerLinks.neofidu },
-    { title: isEnglish ? "Cantons" : "Cantons", links: footerLinks.cantons },
-  ];
 
   const description = isEnglish
     ? "Fully digital fiduciary serving French-speaking Switzerland. Tax and accounting support for households, freelancers and professional structures. We speak English!"
@@ -171,24 +184,101 @@ export function Footer() {
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 py-16">
         {/* Links Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-8 mb-12">
-          {columns.map((col) => (
-            <div key={col.title}>
-              <p className="font-semibold text-lg mb-4">{col.title}</p>
-              <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={L(link.href)}
-                      className="text-slate-400 hover:text-primary transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-x-12 gap-y-8 mb-12">
+          {/* Services */}
+          <div>
+            <p className="font-semibold text-lg mb-4">
+              {isEnglish ? "Services" : "Nos services"}
+            </p>
+            <ul className="space-y-3">
+              {footerLinks.services.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={L(link.href)}
+                    className="text-slate-400 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Tools */}
+          <div>
+            <p className="font-semibold text-lg mb-4">
+              {isEnglish ? "Free tools" : "Outils gratuits"}
+            </p>
+            <ul className="space-y-3">
+              {footerLinks.tools.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={L(link.href)}
+                    className="text-slate-400 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Guides */}
+          <div>
+            <p className="font-semibold text-lg mb-4">
+              {isEnglish ? "Guides" : "Guides pratiques"}
+            </p>
+            <ul className="space-y-3">
+              {footerLinks.guides.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={L(link.href)}
+                    className="text-slate-400 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Info */}
+          <div>
+            <p className="font-semibold text-lg mb-4">
+              {isEnglish ? "Information" : "Informations"}
+            </p>
+            <ul className="space-y-3">
+              {footerLinks.info.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={L(link.href)}
+                    className="text-slate-400 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Cantons */}
+          <div>
+            <p className="font-semibold text-lg mb-4">
+              {isEnglish ? "Locations" : "Régions"}
+            </p>
+            <ul className="space-y-3">
+              {footerLinks.cantons.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={L(link.href)}
+                    className="text-slate-400 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Brand + Newsletter Row */}
