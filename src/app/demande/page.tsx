@@ -54,10 +54,33 @@ export default function DemandePage() {
       otherPrice: isEnglish ? "Free quote" : "Devis gratuit",
   };
 
+  // Once a form is open, show a minimal header and footer: fewer exits while filling in.
+  const inFunnel = serviceType === "tax" || serviceType === "accounting";
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-white">
-      <Header />
-      <div className="pt-28 pb-20">
+      {inFunnel ? (
+        <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+            <Link href={isEnglish ? "/en" : "/"} className="flex items-baseline" aria-label="NeoFidu">
+              <span className="text-2xl font-bold text-primary">neo</span>
+              <span className="text-2xl font-bold text-foreground">fidu</span>
+              <span className="text-sm font-medium ml-1 text-muted-foreground">.ch</span>
+            </Link>
+            <a
+              href="mailto:contact@neofidu.ch"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              {isEnglish ? "A question? " : "Une question ? "}
+              <span className="hidden sm:inline font-medium text-foreground">contact@neofidu.ch</span>
+              <span className="sm:hidden font-medium text-foreground">{isEnglish ? "Email us" : "Écrivez-nous"}</span>
+            </a>
+          </div>
+        </header>
+      ) : (
+        <Header />
+      )}
+      <div className={inFunnel ? "pt-24 pb-16" : "pt-28 pb-20"}>
         <div className="container mx-auto px-4">
           <BreadcrumbLight items={[{ label: "Déposer une demande" }]} className="mb-8" />
 
@@ -92,33 +115,33 @@ export default function DemandePage() {
                 </Card>
 
                 <Card
-                  className="p-8 cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-teal-500 group"
+                  className="p-8 cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary group"
                   onClick={() => setServiceType("accounting")}
                 >
                   <div className="text-center">
-                    <div className="w-20 h-20 rounded-3xl bg-teal-500/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-teal-500/20 transition-colors">
-                      <Calculator className="w-10 h-10 text-teal-600" />
+                    <div className="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+                      <Calculator className="w-10 h-10 text-primary" />
                     </div>
                     <h3 className="text-2xl font-bold mb-3">{t.accountingTitle}</h3>
                     <p className="text-muted-foreground mb-6">{t.accountingDesc}</p>
-                    <div className="text-teal-600 font-semibold">{t.accountingPrice}</div>
+                    <div className="text-primary font-semibold">{t.accountingPrice}</div>
                   </div>
                 </Card>
 
                 <Card
-                  className="p-8 cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-amber-500 group relative"
+                  className="p-8 cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary group relative"
                   onClick={() => router.push("/contact")}
                 >
-                  <Badge className="absolute top-4 right-4 bg-amber-100 text-amber-700">
+                  <Badge className="absolute top-4 right-4 bg-primary/10 text-primary">
                     6 cantons
                   </Badge>
                   <div className="text-center">
-                    <div className="w-20 h-20 rounded-3xl bg-amber-500/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-500/20 transition-colors">
-                      <MessageCircle className="w-10 h-10 text-amber-600" />
+                    <div className="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+                      <MessageCircle className="w-10 h-10 text-primary" />
                     </div>
                     <h3 className="text-2xl font-bold mb-3">{t.otherTitle}</h3>
                     <p className="text-muted-foreground mb-6">{t.otherDesc}</p>
-                    <div className="text-amber-600 font-semibold">{t.otherPrice}</div>
+                    <div className="text-primary font-semibold">{t.otherPrice}</div>
                   </div>
                 </Card>
               </div>
@@ -168,7 +191,26 @@ export default function DemandePage() {
           )}
         </div>
       </div>
-      <Footer />
+      {inFunnel ? (
+        <footer className="border-t border-border py-6">
+          <div className="container mx-auto px-4 lg:pr-40 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
+            <span>&copy; {new Date().getFullYear()} NeoFidu · Leysin</span>
+            <div className="flex gap-4">
+              <a href={isEnglish ? "/en/conditions-generales" : "/conditions-generales"} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+                {isEnglish ? "Terms" : "CGU"}
+              </a>
+              <a href={isEnglish ? "/en/politique-confidentialite" : "/politique-confidentialite"} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+                {isEnglish ? "Privacy" : "Vie privée"}
+              </a>
+              <a href={isEnglish ? "/en/mentions-legales" : "/mentions-legales"} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+                {isEnglish ? "Legal notice" : "Mentions légales"}
+              </a>
+            </div>
+          </div>
+        </footer>
+      ) : (
+        <Footer />
+      )}
     </main>
   );
 }

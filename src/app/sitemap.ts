@@ -63,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createEntry("/creation-entreprise", { lastModified: pageDate("/creation-entreprise"), changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/entreprises", { lastModified: pageDate("/entreprises"), changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/faq", { lastModified: pageDate("/faq"), changeFrequency: "monthly", priority: 0.7 }),
+    createEntry("/ressources", { lastModified: "2026-11-12", changeFrequency: "monthly", priority: 0.7 }),
     createEntry("/simulateur", { lastModified: pageDate("/simulateur"), changeFrequency: "monthly", priority: 0.9 }),
     createEntry("/simulateur/impots", { lastModified: pageDate("/simulateur/impots"), changeFrequency: "monthly", priority: 0.95 }),
     createEntry("/en/simulateur/impots", { lastModified: pageDate("/en/simulateur/impots"), changeFrequency: "monthly", priority: 0.9 }),

@@ -1,4 +1,4 @@
-import { Check, X, Info, Calculator } from "lucide-react";
+import { Check, X, Info, Calculator, ChevronDown } from "lucide-react";
 
 // Détail des forfaits entreprises (Tarifs) et exemples de coût annuel (Entreprises).
 // Source de vérité des seuils : la page Tarifs. Garder ces chiffres alignés.
@@ -53,7 +53,12 @@ const extras = {
 export function EntreprisePricingDetails({ isEnglish = false }: { isEnglish?: boolean }) {
   const l = isEnglish ? "en" : "fr";
   return (
-    <div className="max-w-4xl mx-auto mt-10 space-y-6">
+    <details className="group max-w-4xl mx-auto mt-10">
+      <summary className="cursor-pointer list-none flex items-center justify-center gap-2 rounded-xl border bg-white px-6 py-4 font-medium text-primary hover:border-primary/40 transition-colors [&::-webkit-details-marker]:hidden">
+        {isEnglish ? "See the details: included, not included, beyond the package" : "Voir le détail : inclus, non inclus, au-delà du forfait"}
+        <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="mt-6 space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="rounded-xl border bg-white p-6">
           <p className="font-semibold mb-4">{isEnglish ? "Included in the packages" : "Inclus dans les forfaits"}</p>
@@ -95,7 +100,8 @@ export function EntreprisePricingDetails({ isEnglish = false }: { isEnglish?: bo
             : "Une transaction correspond à une ligne de relevé bancaire ou à une pièce comptable (facture d'achat, facture de vente, note de frais). Aucun supplément n'est facturé sans votre accord préalable."}
         </p>
       </div>
-    </div>
+      </div>
+    </details>
   );
 }
 
