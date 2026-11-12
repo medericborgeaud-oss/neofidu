@@ -7,7 +7,7 @@ Key information:
 - NeoFidu operates exclusively in French-speaking Switzerland (Suisse romande)
 - Tax returns start from CHF 89 for a single person (supplements: couple +30, per child +15, per property +60, self-employed income +100, securities (3 or more positions) +30, living abroad +60; CHF 20 discount for students and AVS/AI pensioners); standard processing in 14 business days, priority in 7 days (+120)
 - Run by a certified Swiss fiduciary specialist with 10+ years of experience in French-speaking Swiss taxation
-- Company creation from CHF 290 (sole proprietorship), CHF 990 (Sàrl/GmbH), CHF 1,490 (SA/AG); accounting from CHF 500/year (self-employed, up to 200 transactions/year) or CHF 200/month (SMEs, up to 600 transactions/year, 2 employees included, then CHF 25 per payslip per month; company tax return included). Accounting mandates have no minimum term and can be cancelled for the end of the following month
+- Company creation from CHF 290 (sole proprietorship), CHF 990 (Sàrl/GmbH), CHF 1,490 (SA/AG); accounting from CHF 500/year (self-employed, up to 200 transactions/year) or CHF 200/month (SMEs, up to 600 transactions/year, 2 employees included, then CHF 25 per payslip per month; company tax return included). Accounting is kept in Banana Accounting, or directly in the client's own bexio (bexio subscription paid by the client). Accounting mandates have no minimum term and can be cancelled for the end of the following month
 - All services are delivered online by a certified Swiss fiduciary specialist
 - The site is in French, with an English version of most pages (services, pricing, FAQ, guides, municipality pages)
 

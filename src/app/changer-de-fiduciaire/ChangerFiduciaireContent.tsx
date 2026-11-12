@@ -57,7 +57,7 @@ const content = {
     takeover: [
       { icon: PenLine, title: "1. Vous signez", text: "La lettre de transfert que nous préparons pour vous, avec les coordonnées de votre fiduciaire actuelle." },
       { icon: FolderInput, title: "2. On récupère", text: "Nous demandons directement le grand livre, la balance, les décomptes TVA, les bouclements et les dossiers salaires." },
-      { icon: ClipboardCheck, title: "3. On contrôle", text: "Nous reprenons et vérifions les comptes. Vous recevez un état des lieux écrit de votre comptabilité." },
+      { icon: ClipboardCheck, title: "3. On contrôle", text: "Nous reprenons et vérifions les comptes, que vous veniez de bexio, de Banana ou d'un autre logiciel. Vous recevez un état des lieux écrit de votre comptabilité." },
       { icon: PlayCircle, title: "4. On démarre", text: "Le suivi continue sans interruption, avec un spécialiste diplômé et des échéances tenues." },
     ],
     timingTitle: "Quand changer ?",
@@ -80,6 +80,7 @@ const content = {
       { q: "Suis-je obligé de changer après le second avis ?", a: "Non, jamais. Le second avis est un comparatif, pas un engagement." },
       { q: "Dois-je prévenir moi-même mon ancienne fiduciaire ?", a: "Non. Vous signez la lettre de transfert que nous préparons, et nous prenons contact avec elle pour récupérer vos dossiers." },
       { q: "Combien de temps prend la reprise ?", a: "Une fois les documents reçus de votre fiduciaire actuelle, la reprise se fait en quelques jours. Le délai dépend surtout de sa réactivité et du préavis de votre contrat." },
+      { q: "Je suis sur bexio. Dois-je changer de logiciel ?", a: "Non. Nous travaillons directement dans votre bexio. Si vous n'avez pas de logiciel, nous tenons vos comptes sur Banana, inclus dans nos forfaits." },
       { q: "Peut-on changer en cours d'année ?", a: "Oui. La fin d'un exercice ou d'une période TVA est plus simple, mais nous reprenons des dossiers toute l'année." },
       { q: "Mes documents sont-ils confidentiels ?", a: "Absolument. Vos pièces ne servent qu'à établir votre comparatif, sont traitées de façon sécurisée et ne sont jamais partagées." },
       { q: "Et si je veux quitter NeoFidu plus tard ?", a: "Votre mandat est résiliable pour la fin du mois suivant, sans durée minimale, et vous récupérez l'intégralité de votre comptabilité." },
@@ -134,7 +135,7 @@ const content = {
     takeover: [
       { icon: PenLine, title: "1. You sign", text: "The transfer letter we prepare for you, with your current fiduciary's contact details." },
       { icon: FolderInput, title: "2. We retrieve", text: "We request the general ledger, trial balance, VAT returns, closings and payroll files directly." },
-      { icon: ClipboardCheck, title: "3. We check", text: "We take over and review the accounts. You receive a written status report on your bookkeeping." },
+      { icon: ClipboardCheck, title: "3. We check", text: "We take over and review the accounts, whether you come from bexio, Banana or another software. You receive a written status report on your bookkeeping." },
       { icon: PlayCircle, title: "4. We start", text: "Follow-up continues without interruption, with a qualified specialist and deadlines met." },
     ],
     timingTitle: "When to switch?",
@@ -157,6 +158,7 @@ const content = {
       { q: "Do I have to switch after the second opinion?", a: "No, never. The second opinion is a comparison, not a commitment." },
       { q: "Do I have to notify my former fiduciary myself?", a: "No. You sign the transfer letter we prepare, and we contact them to retrieve your files." },
       { q: "How long does the takeover take?", a: "Once we have received the documents from your current fiduciary, the takeover takes a few days. Timing mainly depends on their responsiveness and your contract's notice period." },
+      { q: "I use bexio. Do I have to change software?", a: "No. We work directly in your bexio. If you have no software, we keep your accounts in Banana, included in our packages." },
       { q: "Can I switch during the year?", a: "Yes. The end of a financial year or VAT period is simpler, but we take over files all year round." },
       { q: "Are my documents confidential?", a: "Absolutely. Your documents are only used to prepare your comparison, are handled securely and are never shared." },
       { q: "What if I want to leave NeoFidu later?", a: "Your mandate can be cancelled for the end of the following month, with no minimum term, and you get your complete accounts back." },
