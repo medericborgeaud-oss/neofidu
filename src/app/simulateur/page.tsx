@@ -265,7 +265,7 @@ export default function SimulateurPage() {
               <Link href="/simulateur/3eme-pilier">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center mb-3">
                       <PiggyBank className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
@@ -297,7 +297,7 @@ export default function SimulateurPage() {
               <Link href="/simulateur/gain-immobilier">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-red-500 flex items-center justify-center mb-3">
                       <TrendingDown className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
@@ -313,7 +313,7 @@ export default function SimulateurPage() {
               <Link href="/simulateur/baisse-loyer">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center mb-3">
                       <Percent className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
@@ -361,7 +361,7 @@ export default function SimulateurPage() {
               <Link href="/dette-suisse">
                 <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 group cursor-pointer">
                   <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-red-600 flex items-center justify-center mb-3">
                       <Building2 className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">

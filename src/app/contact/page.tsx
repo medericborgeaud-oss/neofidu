@@ -11,7 +11,6 @@ export default function ContactPage() {
       <Header />
       <main className="flex-1 pt-20">
         <BreadcrumbLight
-          className="container mx-auto px-4"
           items={[
             { label: "Contact" },
           ]}

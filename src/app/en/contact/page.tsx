@@ -38,7 +38,7 @@ export default function ContactEnPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 pt-20">
-        <BreadcrumbLight className="container mx-auto px-4" items={[{ label: "Contact" }]} />
+        <BreadcrumbLight items={[{ label: "Contact" }]} />
         <Contact />
       </main>
       <Footer />
