@@ -2556,7 +2556,7 @@ if (data.success && data.reference && data.reference !== "SPAM-BLOCKED") {      
           <span className="font-medium">{isEnglish ? stepsEn[currentStep - 1] : steps[currentStep - 1]}</span>
         </div>
         <div className="text-center text-xs mt-1.5">
-          {currentStep === 1 ? <span className="text-emerald-600 font-medium">🚀 {isEnglish ? "Let's go!" : "C'est parti !"}</span> : currentStep <= 3 ? <span className="text-emerald-600 font-medium">👍 {isEnglish ? "Good start!" : "Bon début !"}</span> : currentStep === 4 ? <span className="text-emerald-600 font-medium">🌗 {isEnglish ? "Almost halfway!" : "Presque la moitié !"}</span> : currentStep <= 6 ? <span className="text-blue-600 font-medium">💪 {isEnglish ? "More than halfway!" : "Plus de la moitié !"}</span> : currentStep <= 8 ? <span className="text-amber-600 font-medium">✨ {isEnglish ? "Almost done!" : "Presque fini !"}</span> : <span className="text-primary font-medium">🎉 {isEnglish ? "Final stretch!" : "Dernière ligne droite !"}</span>}
+          <span className="text-muted-foreground">{isEnglish ? "Every request is read personally by our specialist." : "Chaque demande est lue personnellement par notre spécialiste."}</span>
         </div>
       </div>
 

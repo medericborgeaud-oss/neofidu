@@ -24,20 +24,9 @@ export function TrustSection() {
     ? "We created NeoFidu to make quality fiduciary services accessible to everyone, without exorbitant fees."
     : "Nous avons créé NeoFidu pour rendre les services fiduciaires de qualité accessibles à tous, sans honoraires exorbitants.";
 
-  const stats = isEnglish
-    ? [
-        { value: "10+", label: "Years of experience" },
-        { value: "6", label: "Cantons served" },
-        { value: "24/7", label: "Online submission" },
-      ]
-    : [
-        { value: "10+", label: "Ans d'expérience" },
-        { value: "6", label: "Cantons desservis" },
-        { value: "24h/24", label: "Dépôt en ligne" },
-      ];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-secondary/30">
+    <section id="about" className="py-16 md:py-24 bg-gradient-to-b from-white to-secondary/30 scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
@@ -57,7 +46,7 @@ export function TrustSection() {
           </div>
 
           {/* Founder quote + pillars */}
-          <div className="grid md:grid-cols-2 gap-10 items-center mb-12">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
             {/* Left: Founder */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <div className="flex items-center gap-4 mb-4">
@@ -90,15 +79,6 @@ export function TrustSection() {
             </div>
           </div>
 
-          {/* Stats bar */}
-          <div className="flex justify-center gap-8 md:gap-16 pt-8 border-t border-border">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary">{stat.value}</div>
-                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

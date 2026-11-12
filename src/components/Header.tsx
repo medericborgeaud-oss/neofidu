@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, ChevronDown, FileText, Calculator, Rocket, Home, Users, ClipboardList, TrendingUp, MapPin, Search, Globe, Building2, BookOpen } from "lucide-react";
+import { Menu, ChevronDown, FileText, Calculator, Rocket, Users, ClipboardList, Search, Globe, Building2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
@@ -62,7 +62,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [particuliersOpen, setParticuliersOpen] = useState(false);
   const [entreprisesOpen, setEntreprisesOpen] = useState(false);
-  const [outilsOpen, setOutilsOpen] = useState(false);
+  const [ressourcesOpen, setRessourcesOpen] = useState(false);
   const { t, locale, isEnglish } = useLanguage();
   const pathname = usePathname();
   const L = (href: string) => (isEnglish ? enHref(href) : href);
@@ -80,7 +80,7 @@ export function Header() {
     { href: "/simulateur/valeur-locative", label: isEnglish ? "Rental Value Calculator" : "Calculateur valeur locative", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/carte-impots", label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/gain-immobilier", label: isEnglish ? "Capital Gains Tax" : "Impôt gain immobilier", category: isEnglish ? "Tools" : "Outils" },
-    { href: "/simulateur/simulateur-retraite", label: isEnglish ? "Retirement Simulator" : "Simulateur de retraite", category: isEnglish ? "Tools" : "Outils" },
+    { href: "/simulateur/retraite", label: isEnglish ? "Retirement Simulator" : "Simulateur de retraite", category: isEnglish ? "Tools" : "Outils" },
     { href: "/simulateur/baisse-loyer", label: isEnglish ? "Rent Reduction Calculator" : "Calculateur baisse de loyer", category: isEnglish ? "Tools" : "Outils" },
     { href: "/demande", label: isEnglish ? "Tax Return" : "Déclaration d'impôts", category: "Services" },
     { href: "/independants", label: isEnglish ? "Accounting" : "Comptabilité", category: "Services" },
@@ -91,6 +91,7 @@ export function Header() {
     { href: "/expats", label: "Expats", category: "Services" },
     { href: "/tarifs", label: isEnglish ? "Pricing" : "Tarifs", category: "Informations" },
     { href: "/blog", label: "Blog", category: "Informations" },
+    { href: "/ressources", label: isEnglish ? "All resources" : "Toutes les ressources", category: "Informations" },
     { href: "/contact", label: "Contact", category: "Informations" },
     { href: "/observatoire", label: isEnglish ? "Company Observatory" : "Observatoire des entreprises", category: "Informations" },
     { href: "/communes", label: isEnglish ? "Communes" : "Communes romandes", category: "Informations" },
@@ -146,49 +147,13 @@ export function Header() {
       href: "/demande",
       label: isEnglish ? "Tax Return" : "Déclaration d'impôts",
       icon: FileText,
-      description: isEnglish ? "Personal tax filing" : "Remplir votre déclaration",
+      description: isEnglish ? "Prepared and filed for you" : "Préparée et déposée pour vous",
     },
     {
       href: "/expats",
       label: isEnglish ? "Expats in Switzerland" : "Expatriés en Suisse",
       icon: Globe,
       description: isEnglish ? "Source tax & TOU" : "Impôt à la source & TOU",
-    },
-    {
-      href: "/guide/vaudtax",
-      label: isEnglish ? "VaudTax guide" : "Guide VaudTax",
-      icon: BookOpen,
-      description: isEnglish ? "Fill in your Vaud tax return" : "Remplir sa déclaration vaudoise",
-    },
-    {
-      href: "/guide/getax",
-      label: isEnglish ? "GeTax guide" : "Guide GeTax",
-      icon: BookOpen,
-      description: isEnglish ? "Fill in your Geneva tax return" : "Remplir sa déclaration genevoise",
-    },
-    {
-      href: "/guide/vstax",
-      label: isEnglish ? "VSTax guide" : "Guide VSTax",
-      icon: BookOpen,
-      description: isEnglish ? "Fill in your Valais tax return" : "Remplir sa déclaration valaisanne",
-    },
-    {
-      href: "/guide/fritax",
-      label: isEnglish ? "FriTax guide" : "Guide FriTax",
-      icon: BookOpen,
-      description: isEnglish ? "Fill in your Fribourg tax return" : "Remplir sa déclaration fribourgeoise",
-    },
-    {
-      href: "/guide/juratax",
-      label: isEnglish ? "JuraTax guide" : "Guide JuraTax",
-      icon: BookOpen,
-      description: isEnglish ? "Fill in your Jura tax return" : "Remplir sa déclaration jurassienne",
-    },
-    {
-      href: "/guide/deductions-fiscales",
-      label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales",
-      icon: BookOpen,
-      description: isEnglish ? "All deductions explained" : "Toutes les déductions expliquées",
     },
     {
       href: "/suisses-etranger",
@@ -217,13 +182,7 @@ export function Header() {
       icon: Building2,
       description: isEnglish ? "Accounting, payroll & tax" : "Comptabilité, salaires & fiscalité",
     },
-              { href: "/changer-de-fiduciaire", label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", icon: Search, description: isEnglish ? "Free second opinion and takeover" : "Second avis gratuit et repriseure gratuit" },
-    {
-      href: "/observatoire",
-      label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
-      icon: TrendingUp,
-      description: isEnglish ? "Market data & trends" : "Données et tendances du marché",
-    },
+              { href: "/changer-de-fiduciaire", label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", icon: Search, description: isEnglish ? "Free second opinion and takeover" : "Second avis gratuit et reprise du dossier" },
     {
       href: "/associations-fondations",
       label: isEnglish ? "Associations & Foundations" : "Associations & Fondations",
@@ -232,48 +191,28 @@ export function Header() {
     },
   ];
 
-  const outilsItems = [
+  // Ressources: free tools + DIY guides + blog (kept out of the service menus)
+  const ressourcesGroups = [
     {
-      href: "/simulateur/impots",
-      label: isEnglish ? "Tax Simulator" : "Simulateur d'impôts",
-      icon: Calculator,
-      description: isEnglish ? "Estimate your taxes" : "Estimez vos impôts",
+      title: isEnglish ? "Free simulators" : "Simulateurs gratuits",
+      items: [
+        { href: "/simulateur/impots", label: isEnglish ? "Tax simulator" : "Simulateur d'impôts" },
+        { href: "/simulateur/salaire-net", label: isEnglish ? "Net salary" : "Salaire net" },
+        { href: "/simulateur/3eme-pilier", label: isEnglish ? "3rd pillar" : "3e pilier" },
+        { href: "/simulateur/gain-immobilier", label: isEnglish ? "Property capital gains" : "Gain immobilier" },
+        { href: "/simulateur/retraite", label: isEnglish ? "Retirement income" : "Revenus à la retraite" },
+      ],
     },
     {
-      href: "/simulateur/salaire-net",
-      label: isEnglish ? "Net Salary Calculator" : "Calculateur salaire net",
-      icon: Calculator,
-      description: isEnglish ? "Gross to net" : "Du brut au net",
-    },
-    {
-      href: "/simulateur/3eme-pilier",
-      label: isEnglish ? "3rd Pillar Simulator" : "Simulateur 3ème pilier",
-      icon: TrendingUp,
-      description: isEnglish ? "Retirement savings" : "Épargne retraite",
-    },
-    {
-      href: "/simulateur/carte-impots",
-      label: isEnglish ? "Swiss Tax Map" : "Carte fiscale suisse",
-      icon: MapPin,
-      description: isEnglish ? "Compare by municipality" : "Comparez par commune",
-    },
-    {
-      href: "/simulateur/baisse-loyer",
-      label: isEnglish ? "Rent Reduction" : "Baisse de loyer",
-      icon: Home,
-      description: isEnglish ? "Calculate your reduction" : "Calculez votre baisse",
-    },
-    {
-      href: "/simulateur/gain-immobilier",
-      label: isEnglish ? "Capital Gains Tax" : "Impôt gain immobilier",
-      icon: Home,
-      description: isEnglish ? "Property capital gains" : "Plus-value immobilière",
-    },
-    {
-      href: "/communes",
-      label: isEnglish ? "Commune Directory" : "Répertoire des communes",
-      icon: MapPin,
-      description: isEnglish ? "All Swiss Romand communes" : "Toutes les communes romandes",
+      title: isEnglish ? "Do it yourself: guides" : "Faire soi-même : guides",
+      items: [
+        { href: "/guide/vaudtax", label: isEnglish ? "VaudTax guide" : "Guide VaudTax" },
+        { href: "/guide/getax", label: isEnglish ? "GeTax guide" : "Guide GeTax" },
+        { href: "/guide/vstax", label: isEnglish ? "VSTax guide" : "Guide VSTax" },
+        { href: "/guide/fritax", label: isEnglish ? "FriTax guide" : "Guide FriTax" },
+        { href: "/guide/juratax", label: isEnglish ? "JuraTax guide" : "Guide JuraTax" },
+        { href: "/guide/deductions-fiscales", label: isEnglish ? "Tax deductions" : "Déductions fiscales" },
+      ],
     },
   ];
 
@@ -317,7 +256,7 @@ export function Header() {
               {/* Particuliers Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                  <button className="flex items-center gap-1 px-2.5 xl:px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all text-foreground hover:text-primary hover:bg-primary/10">
                     {isEnglish ? "Individuals" : "Particuliers"}
                     <ChevronDown className="w-4 h-4" />
                   </button>
@@ -354,8 +293,8 @@ export function Header() {
               {/* Entreprises Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
-                    {isEnglish ? "Businesses" : "Entreprises"}
+                  <button className="flex items-center gap-1 px-2.5 xl:px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                    {isEnglish ? "Freelancers & SMEs" : "Indépendants et PME"}
                     <ChevronDown className="w-4 h-4" />
                   </button>
                 </DropdownMenuTrigger>
@@ -388,65 +327,68 @@ export function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {/* Outils gratuits Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10">
-                    {isEnglish ? "Free Tools" : "Outils gratuits"}
-                    <ChevronDown className="w-4 h-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-72 p-2">
-                  {outilsItems.map((item) => (
-                    <DropdownMenuItem key={item.href} asChild>
-                      <Link
-                        href={L(item.href)}
-                        className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <item.icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-foreground">{item.label}</p>
-                          <p className="text-xs text-muted-foreground">{item.description}</p>
-                        </div>
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href="/simulateur"
-                      className="flex items-center gap-2 p-3 text-sm text-primary hover:text-primary"
-                    >
-                      {isEnglish ? "View all tools →" : "Voir tous les outils →"}
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              {/* Direct links */}
-              <Link
-                href={L("/blog")}
-                className="px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
-              >
-                Blog
-              </Link>
               <Link
                 href={L("/tarifs")}
-                className="px-3 py-2 rounded-full text-sm font-medium transition-all text-foreground hover:text-primary hover:bg-primary/10"
+                className="px-2.5 xl:px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all text-foreground hover:text-primary hover:bg-primary/10"
               >
                 {t("header.pricing")}
               </Link>
 
-              {/* Suivi des demandes - small icon */}
+              {/* Ressources Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-1 px-2.5 xl:px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all text-foreground hover:text-primary hover:bg-primary/10">
+                    {isEnglish ? "Resources" : "Ressources"}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-[440px] p-3">
+                  <div className="grid grid-cols-2 gap-4">
+                    {ressourcesGroups.map((group) => (
+                      <div key={group.title}>
+                        <p className="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                          {group.title}
+                        </p>
+                        {group.items.map((item) => (
+                          <DropdownMenuItem key={item.href} asChild>
+                            <Link href={L(item.href)} className="block px-2 py-1.5 rounded-md text-sm text-foreground cursor-pointer">
+                              {item.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                  <DropdownMenuSeparator />
+                  <div className="flex items-center justify-between px-2 pt-1">
+                    <DropdownMenuItem asChild>
+                      <Link href={L("/blog")} className="text-sm text-foreground cursor-pointer">
+                        {isEnglish ? "Blog: tax news" : "Blog : actualités fiscales"}
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/ressources" className="text-sm text-primary cursor-pointer">
+                        {isEnglish ? "All resources →" : "Toutes les ressources →"}
+                      </Link>
+                    </DropdownMenuItem>
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <Link
+                href={L("/") + "#about"}
+                className="px-2.5 xl:px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all text-foreground hover:text-primary hover:bg-primary/10"
+              >
+                {isEnglish ? "About" : "À propos"}
+              </Link>
+
+              {/* Espace client - discreet text link */}
               <Link
                 href={L("/suivi")}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium border border-primary/30 text-primary hover:bg-primary/10 transition-all !ml-6"
-                title={isEnglish ? "Track your request" : "Suivi des demandes"}
+                className="hidden xl:inline px-2 py-2 text-xs font-medium whitespace-nowrap text-muted-foreground hover:text-primary transition-colors !ml-4"
+                title={isEnglish ? "Track your request" : "Suivi de vos demandes"}
               >
-                <ClipboardList className="w-3.5 h-3.5" />
-                {isEnglish ? "Tracking" : "Suivi"}
+                {isEnglish ? "Client area" : "Espace client"}
               </Link>
 
               {/* Search button */}
@@ -460,9 +402,9 @@ export function Header() {
 
               <Button
                 asChild
-                className="ml-2 rounded-full px-6 text-sm"
+                className="ml-2 rounded-full px-4 xl:px-6 text-sm"
               >
-                <Link href={L("/demande")}>{t("header.cta")}</Link>
+                <Link href={L("/demande")} className="whitespace-nowrap">{t("header.cta")}</Link>
               </Button>
             </nav>
 
@@ -525,7 +467,7 @@ export function Header() {
                         onClick={() => setEntreprisesOpen(!entreprisesOpen)}
                         className="flex items-center justify-between w-full text-lg font-medium text-foreground py-2"
                       >
-                        {isEnglish ? "Businesses" : "Entreprises"}
+                        {isEnglish ? "Freelancers & SMEs" : "Indépendants et PME"}
                         <ChevronDown className={`w-5 h-5 transition-transform ${entreprisesOpen ? "rotate-180" : ""}`} />
                       </button>
                       {entreprisesOpen && (
@@ -548,50 +490,6 @@ export function Header() {
                       )}
                     </div>
 
-                    {/* Mobile Outils gratuits Section */}
-                    <div className="border-b border-border pb-4">
-                      <button
-                        onClick={() => setOutilsOpen(!outilsOpen)}
-                        className="flex items-center justify-between w-full text-lg font-medium text-foreground py-2"
-                      >
-                        {isEnglish ? "Free Tools" : "Outils gratuits"}
-                        <ChevronDown className={`w-5 h-5 transition-transform ${outilsOpen ? "rotate-180" : ""}`} />
-                      </button>
-                      {outilsOpen && (
-                        <div className="mt-2 space-y-1 pl-2">
-                          {outilsItems.map((item) => (
-                            <Link
-                              key={item.href}
-                              href={L(item.href)}
-                              onClick={() => setIsOpen(false)}
-                              className="flex items-center gap-3 py-3 text-muted-foreground hover:text-primary transition-colors"
-                            >
-                              <item.icon className="w-5 h-5" />
-                              <div>
-                                <p className="font-medium text-foreground">{item.label}</p>
-                                <p className="text-xs">{item.description}</p>
-                              </div>
-                            </Link>
-                          ))}
-                          <Link
-                            href="/simulateur"
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 py-3 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-                          >
-                            {isEnglish ? "View all tools →" : "Voir tous les outils →"}
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Direct links */}
-                    <Link
-                      href={L("/blog")}
-                      onClick={() => setIsOpen(false)}
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
-                    >
-                      Blog
-                    </Link>
                     <Link
                       href={L("/tarifs")}
                       onClick={() => setIsOpen(false)}
@@ -599,8 +497,60 @@ export function Header() {
                     >
                       {t("header.pricing")}
                     </Link>
+
+                    {/* Mobile Ressources Section */}
+                    <div className="border-b border-border pb-4">
+                      <button
+                        onClick={() => setRessourcesOpen(!ressourcesOpen)}
+                        className="flex items-center justify-between w-full text-lg font-medium text-foreground py-2"
+                      >
+                        {isEnglish ? "Resources" : "Ressources"}
+                        <ChevronDown className={`w-5 h-5 transition-transform ${ressourcesOpen ? "rotate-180" : ""}`} />
+                      </button>
+                      {ressourcesOpen && (
+                        <div className="mt-2 space-y-4 pl-2">
+                          {ressourcesGroups.map((group) => (
+                            <div key={group.title}>
+                              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{group.title}</p>
+                              {group.items.map((item) => (
+                                <Link
+                                  key={item.href}
+                                  href={L(item.href)}
+                                  onClick={() => setIsOpen(false)}
+                                  className="block py-2 text-foreground hover:text-primary transition-colors"
+                                >
+                                  {item.label}
+                                </Link>
+                              ))}
+                            </div>
+                          ))}
+                          <Link
+                            href={L("/blog")}
+                            onClick={() => setIsOpen(false)}
+                            className="block py-2 text-foreground hover:text-primary transition-colors"
+                          >
+                            {isEnglish ? "Blog: tax news" : "Blog : actualités fiscales"}
+                          </Link>
+                          <Link
+                            href="/ressources"
+                            onClick={() => setIsOpen(false)}
+                            className="block py-2 text-primary text-sm font-medium"
+                          >
+                            {isEnglish ? "All resources →" : "Toutes les ressources →"}
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
                     <Link
-                      href="/contact"
+                      href={L("/") + "#about"}
+                      onClick={() => setIsOpen(false)}
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
+                    >
+                      {isEnglish ? "About" : "À propos"}
+                    </Link>
+                    <Link
+                      href={L("/contact")}
                       onClick={() => setIsOpen(false)}
                       className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border"
                     >
