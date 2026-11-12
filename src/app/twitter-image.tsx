@@ -20,7 +20,7 @@ export default async function TwitterImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0D9488 0%, #10B981 50%, #059669 100%)",
+          background: "linear-gradient(135deg, #0D9488 0%, #0D917B 50%, #059669 100%)",
         }}
       >
         {/* Decorative circles */}

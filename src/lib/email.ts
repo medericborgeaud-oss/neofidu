@@ -705,7 +705,7 @@ function getTaxSummaryHtml(data: TaxSummaryData): string {
                     </p>
                   </td>
                   <td style="text-align: right;">
-                    <a href="https://neofidu.ch/admin" style="color: #10b981; text-decoration: none; font-size: 14px;">
+                    <a href="https://neofidu.ch/admin" style="color: #0D917B; text-decoration: none; font-size: 14px;">
                       Accéder au dashboard →
                     </a>
                   </td>
@@ -799,7 +799,7 @@ function getPaymentConfirmationHtml(data: EmailData): string {
         <table role="presentation" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <!-- Header -->
           <tr>
-            <td style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); padding: 40px 40px 30px;">
+            <td style="background: linear-gradient(135deg, #0d9488 0%, #0D917B 100%); padding: 40px 40px 30px;">
               <table role="presentation" style="width: 100%;">
                 <tr>
                   <td>
@@ -994,7 +994,7 @@ function getRequestConfirmationHtml(data: EmailData): string {
         <table role="presentation" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <!-- Header -->
           <tr>
-            <td style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); padding: 40px 40px 30px;">
+            <td style="background: linear-gradient(135deg, #0d9488 0%, #0D917B 100%); padding: 40px 40px 30px;">
               <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">
                 neo<span style="font-weight: normal;">fidu</span><span style="font-size: 14px; opacity: 0.8;">.ch</span>
               </h1>
@@ -1235,7 +1235,7 @@ function getContactFormHtml(data: ContactFormData): string {
 <body style="margin: 0; padding: 20px; font-family: Arial, sans-serif; background-color: #f4f4f5;">
   <table style="max-width: 600px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden;">
     <tr>
-      <td style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); padding: 20px; color: white;">
+      <td style="background: linear-gradient(135deg, #0d9488 0%, #0D917B 100%); padding: 20px; color: white;">
         <h2 style="margin: 0;">📬 Nouveau message de contact</h2>
       </td>
     </tr>
@@ -1317,7 +1317,7 @@ function getNewRequestNotificationHtml(data: EmailData & { customerEmail?: strin
 <body style="margin: 0; padding: 20px; font-family: Arial, sans-serif; background-color: #f4f4f5;">
   <table style="max-width: 600px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden;">
     <tr>
-      <td style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); padding: 20px; color: white;">
+      <td style="background: linear-gradient(135deg, #0d9488 0%, #0D917B 100%); padding: 20px; color: white;">
         <h2 style="margin: 0;">🎯 Nouvelle demande reçue</h2>
       </td>
     </tr>

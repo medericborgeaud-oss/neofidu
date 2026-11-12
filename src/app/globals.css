@@ -10,7 +10,7 @@
     --card-foreground: 220 15% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 15%;
-    --primary: 168 80% 45%;
+    --primary: 170 84% 31%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 10% 96%;
     --secondary-foreground: 220 15% 25%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 0 0% 100%;
     --border: 220 10% 90%;
     --input: 220 10% 90%;
-    --ring: 168 80% 45%;
+    --ring: 170 84% 31%;
     --radius: 0.75rem;
   }
 
@@ -64,13 +64,13 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-teal-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-700;
   }
   .bg-gradient-primary {
-    @apply bg-gradient-to-br from-primary via-teal-500 to-emerald-500;
+    background: linear-gradient(135deg, #17cfa6 0%, #0d9488 50%, #047857 100%);
   }
   .bg-gradient-hero {
-    background: linear-gradient(135deg, hsl(168, 80%, 45%) 0%, hsl(180, 70%, 40%) 50%, hsl(160, 75%, 35%) 100%);
+    background: linear-gradient(135deg, #17cfa6 0%, #0d9488 50%, #047857 100%);
   }
 }
 

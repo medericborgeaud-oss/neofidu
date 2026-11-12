@@ -65,7 +65,7 @@ function getAccountingRequestAdminHtml(data: AccountingRequestData, reference: s
 <body style="margin: 0; padding: 20px; font-family: Arial, sans-serif; background-color: #f4f4f5;">
   <table style="max-width: 700px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
     <tr>
-      <td style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); padding: 24px; color: white;">
+      <td style="background: linear-gradient(135deg, #0d9488 0%, #0D917B 100%); padding: 24px; color: white;">
         <h1 style="margin: 0; font-size: 22px;">📊 Nouvelle demande de comptabilité</h1>
         <p style="margin: 8px 0 0; opacity: 0.9;">Référence: ${reference}</p>
       </td>

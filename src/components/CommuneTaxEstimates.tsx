@@ -40,7 +40,7 @@ export function CommuneTaxEstimates({ lang, communeNom, communeSlug, cantonName,
         </p>
       </div>
       <Link href={simHref}>
-        <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">
+        <Button className="bg-primary hover:bg-primary/90 text-white text-sm whitespace-nowrap">
           {fr ? "Simuler mes impôts" : "Simulate my taxes"}
         </Button>
       </Link>

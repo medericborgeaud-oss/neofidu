@@ -59,7 +59,7 @@ const cantons = [
     icon: Tractor,
     highlight: "Agriculture",
     highlightEn: "Agriculture",
-    color: "bg-teal-500",
+    color: "bg-primary",
   },
 ];
 

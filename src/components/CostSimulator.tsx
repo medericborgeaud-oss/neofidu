@@ -161,7 +161,7 @@ export default function CostSimulator({ companyName, legalForm, formLabel }: Cos
       <p className="text-[11px] text-gray-400 text-center mb-4">Estimation générique à titre indicatif, basée sur des hypothèses ajustables.</p>
 
       {/* CTA */}
-      <div className="bg-emerald-500 rounded-lg p-4 text-center">
+      <div className="bg-primary rounded-lg p-4 text-center">
         <p className="text-[15px] font-medium text-white mb-1">
           Pourquoi payer le prix du marché ?
         </p>

@@ -51,7 +51,7 @@ const SECTOR_COLORS: Record<string, string> = {
   restauration: "#EF4444",
   immobilier: "#8B5CF6",
   transport: "#EC4899",
-  education: "#14B8A6",
+  education: "#0D917B",
   finance: "#6366F1",
   industrie: "#78716C",
   agriculture: "#84CC16",
@@ -168,7 +168,7 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
             </select>
             <Button
               onClick={applyFilters}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white px-6"
+              className="bg-primary hover:bg-primary/90 text-white px-6"
             >
               Rechercher
             </Button>
@@ -365,7 +365,7 @@ export function ObservatoireDashboard({ companies, totalCompanies, stats, initia
             </Link>
           </p>
           <Link href="/demande">
-            <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
+            <Button className="bg-primary hover:bg-primary/90 text-white">
               Vous créez votre entreprise ? On s&apos;occupe de tout dès CHF 500.-
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

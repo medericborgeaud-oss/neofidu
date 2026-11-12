@@ -29,7 +29,7 @@ interface Category {
 
 const RECETTES_FR: Category[] = [
   { l: "TVA", a: 28.1e9, c: "#34d399" },
-  { l: "Impôt fédéral direct – personnes morales", a: 17.1e9, c: "#10b981" },
+  { l: "Impôt fédéral direct – personnes morales", a: 17.1e9, c: "#0D917B" },
   { l: "Impôt fédéral direct – personnes physiques", a: 15.9e9, c: "#059669" },
   { l: "Impôt anticipé", a: 6.7e9, c: "#6ee7b7" },
   { l: "Impôt sur les huiles minérales", a: 4.5e9, c: "#a7f3d0" },
@@ -38,13 +38,13 @@ const RECETTES_FR: Category[] = [
   { l: "Impôt complémentaire OCDE (nouveau)", a: 1.6e9, c: "#22d3ee" },
   { l: "Redevance poids lourds (RPLP)", a: 1.5e9, c: "#22c55e" },
   { l: "Taxe sur le CO₂", a: 1.1e9, c: "#2dd4bf" },
-  { l: "Droits de douane", a: 0.7e9, c: "#14b8a6" },
+  { l: "Droits de douane", a: 0.7e9, c: "#0D917B" },
   { l: "Autres recettes", a: 8.7e9, c: "#047857" },
 ];
 
 const RECETTES_EN: Category[] = [
   { l: "VAT", a: 28.1e9, c: "#34d399" },
-  { l: "Direct federal tax – corporations", a: 17.1e9, c: "#10b981" },
+  { l: "Direct federal tax – corporations", a: 17.1e9, c: "#0D917B" },
   { l: "Direct federal tax – individuals", a: 15.9e9, c: "#059669" },
   { l: "Withholding tax", a: 6.7e9, c: "#6ee7b7" },
   { l: "Mineral oil tax", a: 4.5e9, c: "#a7f3d0" },
@@ -53,7 +53,7 @@ const RECETTES_EN: Category[] = [
   { l: "OECD supplementary tax (new)", a: 1.6e9, c: "#22d3ee" },
   { l: "Heavy vehicle charge (LSVA)", a: 1.5e9, c: "#22c55e" },
   { l: "CO₂ levy", a: 1.1e9, c: "#2dd4bf" },
-  { l: "Customs duties", a: 0.7e9, c: "#14b8a6" },
+  { l: "Customs duties", a: 0.7e9, c: "#0D917B" },
   { l: "Other revenue", a: 8.7e9, c: "#047857" },
 ];
 
@@ -176,8 +176,8 @@ export default function SwissDebtClock({ forceEn = false }: { forceEn?: boolean 
       <div className="text-center mb-6">
         <div className="inline-flex items-center mb-2">
           <span className="relative inline-flex h-[9px] w-[9px] mr-2">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
-            <span className="relative inline-flex rounded-full h-[9px] w-[9px] bg-emerald-500" />
+            <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 animate-ping" />
+            <span className="relative inline-flex rounded-full h-[9px] w-[9px] bg-primary" />
           </span>
           <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
             {en ? "Live · Federal Budget 2026" : "En direct · Budget fédéral 2026"}
