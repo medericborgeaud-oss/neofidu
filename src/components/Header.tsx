@@ -155,6 +155,49 @@ export function Header() {
       description: isEnglish ? "Source tax & TOU" : "Impôt à la source & TOU",
     },
     {
+      href: "/suisses-etranger",
+      label: isEnglish ? "Swiss Abroad" : "Suisses de l'\u00e9tranger",
+      icon: Users,
+      description: isEnglish ? "Tax filing from abroad" : "D\u00e9claration depuis l'\u00e9tranger",
+    },
+  ];
+
+  const entreprisesItems = [
+    {
+      href: "/independants",
+      label: isEnglish ? "Freelancers" : "Indépendants & Freelances",
+      icon: Calculator,
+      description: isEnglish ? "Accounting & tax returns" : "Comptabilité & déclarations",
+    },
+    {
+      href: "/creation-entreprise",
+      label: isEnglish ? "Company Creation" : "Création d'entreprise",
+      icon: Rocket,
+      description: isEnglish ? "LLC, AG, Sole prop." : "Sàrl, SA, RI",
+    },
+    {
+      href: "/entreprises",
+      label: isEnglish ? "SMEs & Corporations" : "PME & Sociétés",
+      icon: Building2,
+      description: isEnglish ? "Accounting, payroll & tax" : "Comptabilité, salaires & fiscalité",
+    },
+              { href: "/changer-de-fiduciaire", label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", icon: Search, description: isEnglish ? "Free second opinion and takeover" : "Second avis gratuit et reprise" },
+    {
+      href: "/observatoire",
+      label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
+      icon: TrendingUp,
+      description: isEnglish ? "Market data & trends" : "Données et tendances du marché",
+    },
+    {
+      href: "/associations-fondations",
+      label: isEnglish ? "Associations & Foundations" : "Associations & Fondations",
+      icon: Users,
+      description: isEnglish ? "Accounting & tax for non-profits" : "Comptabilité & fiscalité associative",
+    },
+  ];
+
+  const guidesItems = [
+    {
       href: "/guide/vaudtax",
       label: isEnglish ? "VaudTax guide" : "Guide VaudTax",
       icon: BookOpen,
@@ -189,46 +232,6 @@ export function Header() {
       label: isEnglish ? "Tax Deductions Guide" : "Guide déductions fiscales",
       icon: BookOpen,
       description: isEnglish ? "All deductions explained" : "Toutes les déductions expliquées",
-    },
-    {
-      href: "/suisses-etranger",
-      label: isEnglish ? "Swiss Abroad" : "Suisses de l'\u00e9tranger",
-      icon: Users,
-      description: isEnglish ? "Tax filing from abroad" : "D\u00e9claration depuis l'\u00e9tranger",
-    },
-  ];
-
-  const entreprisesItems = [
-    {
-      href: "/independants",
-      label: isEnglish ? "Freelancers" : "Indépendants & Freelances",
-      icon: Calculator,
-      description: isEnglish ? "Accounting & tax returns" : "Comptabilité & déclarations",
-    },
-    {
-      href: "/creation-entreprise",
-      label: isEnglish ? "Company Creation" : "Création d'entreprise",
-      icon: Rocket,
-      description: isEnglish ? "LLC, AG, Sole prop." : "Sàrl, SA, RI",
-    },
-    {
-      href: "/entreprises",
-      label: isEnglish ? "SMEs & Corporations" : "PME & Sociétés",
-      icon: Building2,
-      description: isEnglish ? "Accounting, payroll & tax" : "Comptabilité, salaires & fiscalité",
-    },
-              { href: "/changer-de-fiduciaire", label: isEnglish ? "Switch fiduciary" : "Changer de fiduciaire", icon: Search, description: isEnglish ? "Free second opinion and takeover" : "Second avis gratuit et repriseure gratuit" },
-    {
-      href: "/observatoire",
-      label: isEnglish ? "Company Observatory" : "Observatoire des entreprises",
-      icon: TrendingUp,
-      description: isEnglish ? "Market data & trends" : "Données et tendances du marché",
-    },
-    {
-      href: "/associations-fondations",
-      label: isEnglish ? "Associations & Foundations" : "Associations & Fondations",
-      icon: Users,
-      description: isEnglish ? "Accounting & tax for non-profits" : "Comptabilité & fiscalité associative",
     },
   ];
 
@@ -396,23 +399,47 @@ export function Header() {
                     <ChevronDown className="w-4 h-4" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-72 p-2">
-                  {outilsItems.map((item) => (
-                    <DropdownMenuItem key={item.href} asChild>
-                      <Link
-                        href={L(item.href)}
-                        className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <item.icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-foreground">{item.label}</p>
-                          <p className="text-xs text-muted-foreground">{item.description}</p>
-                        </div>
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
+                <DropdownMenuContent align="start" className="w-[640px] p-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <p className="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{isEnglish ? "Simulators" : "Simulateurs"}</p>
+                      {outilsItems.map((item) => (
+                        <DropdownMenuItem key={item.href} asChild>
+                          <Link
+                            href={L(item.href)}
+                            className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
+                          >
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                              <item.icon className="w-5 h-5 text-primary" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-foreground">{item.label}</p>
+                              <p className="text-xs text-muted-foreground">{item.description}</p>
+                            </div>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </div>
+                    <div>
+                      <p className="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{isEnglish ? "Tax return guides" : "Guides de déclaration"}</p>
+                      {guidesItems.map((item) => (
+                        <DropdownMenuItem key={item.href} asChild>
+                          <Link
+                            href={L(item.href)}
+                            className="flex items-start gap-3 p-3 rounded-lg cursor-pointer"
+                          >
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                              <item.icon className="w-5 h-5 text-primary" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-foreground">{item.label}</p>
+                              <p className="text-xs text-muted-foreground">{item.description}</p>
+                            </div>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </div>
+                  </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link
@@ -559,7 +586,7 @@ export function Header() {
                       </button>
                       {outilsOpen && (
                         <div className="mt-2 space-y-1 pl-2">
-                          {outilsItems.map((item) => (
+                          {[...outilsItems, ...guidesItems].map((item) => (
                             <Link
                               key={item.href}
                               href={L(item.href)}
