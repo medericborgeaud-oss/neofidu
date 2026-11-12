@@ -22,6 +22,7 @@ import {
   HelpCircle,
   MapPin,
   CreditCard,
+  ChevronDown,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
@@ -119,14 +120,6 @@ const comparisonData = [
     neoFiduen: "From CHF 89.-",
     traditional: "CHF 150.- à 300.-",
     traditionalen: "CHF 150.- to 300.-",
-  },
-  {
-    feature: "Délai de traitement",
-    featureen: "Processing time",
-    neoFidu: "14 jours ouvrés",
-    neoFiduen: "14 business days",
-    traditional: "2-4 semaines",
-    traditionalen: "2-4 weeks",
   },
   {
     feature: "Devis",
@@ -419,6 +412,25 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
               </div>
             </div>
           </motion.div>
+          {/* Sommaire */}
+          <nav
+            aria-label={isEnglish ? "On this page" : "Sur cette page"}
+            className="flex flex-wrap justify-center gap-2 mb-10 -mt-8 max-w-4xl mx-auto text-sm"
+          >
+            {[
+              { href: "#particuliers", label: isEnglish ? "Tax returns" : "Déclarations d'impôts" },
+              { href: "#entreprises", label: isEnglish ? "Accounting & company formation" : "Comptabilité et création" },
+              { href: "#faq-tarifs", label: isEnglish ? "Pricing FAQ" : "Questions fréquentes" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-full border border-border bg-white px-4 py-2 text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
           {/* CTA Banner */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -448,10 +460,11 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
           </motion.div>
           {/* Particuliers Section */}
           <motion.section
+            id="particuliers"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-20"
+            className="mb-20 scroll-mt-28"
           >
             <div className="flex items-center gap-3 mb-4 max-w-4xl mx-auto">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -559,12 +572,12 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                   <div className="text-center">
                     <Link href={L("/demande")}>
                       <Button size="lg" className="px-8">
-                        {isEnglish ? "Get my quote" : "Obtenir mon devis"}
+                        {isEnglish ? "Start my tax return" : "Commencer ma déclaration"}
                         <ArrowRight className="w-5 h-5 ml-2" />
                       </Button>
                     </Link>
                     <p className="text-xs text-muted-foreground mt-3">
-                      {isEnglish ? "Free quote, no commitment" : "Devis gratuit, sans engagement"}
+                      {isEnglish ? "No commitment: price confirmed before we start" : "Sans engagement : prix confirmé avant de commencer"}
                     </p>
                   </div>
                 </div>
@@ -647,10 +660,11 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
           </motion.section>
           {/* Entreprises Section */}
           <motion.section
+            id="entreprises"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mb-20"
+            className="mb-20 scroll-mt-28"
           >
             <div className="flex items-center gap-3 mb-4 max-w-4xl mx-auto">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
@@ -839,7 +853,8 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mb-20 max-w-3xl mx-auto"
+            id="faq-tarifs"
+            className="mb-20 max-w-3xl mx-auto scroll-mt-28"
           >
             <div className="flex items-center justify-center gap-3 mb-8">
               <HelpCircle className="w-6 h-6 text-primary" />
@@ -847,121 +862,121 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                 {isEnglish ? "Pricing FAQ" : "Questions fréquentes sur nos tarifs"}
               </h2>
             </div>
-            <div className="space-y-4">
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+            <div className="space-y-3">
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "Are these prices final?"
                     : "Ces prix sont-ils définitifs ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? "The prices shown are starting prices. The final quote depends on the complexity of your situation. We always provide a detailed quote before starting."
                     : "Les prix affichés sont des prix de départ. Le devis final dépend de la complexité de votre situation. Nous fournissons toujours un devis détaillé avant de commencer."}
                 </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              </details>
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "How to get a personalized quote?"
                     : "Comment obtenir un devis personnalisé ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? "Fill out our online form in 2 minutes. You will receive a detailed quote by email, without any commitment."
                     : "Remplissez notre formulaire en ligne en 2 minutes. Vous recevrez un devis détaillé par email, sans aucun engagement."}
                 </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              </details>
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "What payment methods do you accept?"
                     : "Quels moyens de paiement acceptez-vous ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? "We accept bank transfers, credit cards (Visa, Mastercard), PayPal, Klarna (pay in 3 installments, interest-free, for orders paid online), and TWINT."
                     : "Nous acceptons les virements bancaires, les cartes de crédit (Visa, Mastercard), PayPal, Klarna (paiement en 3 fois sans frais, pour les commandes réglées en ligne) et TWINT."}
                 </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              </details>
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "Do you offer payment in installments?"
                     : "Proposez-vous le paiement en plusieurs fois ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? "Yes, with Klarna you can pay in 3 interest-free installments. This option is available for orders paid online (tax returns, company formation). Accounting is billed monthly or annually."
                     : "Oui, grâce à Klarna vous pouvez régler en 3 fois sans frais. Cette option est disponible pour les commandes réglées en ligne (déclarations d'impôts, création d'entreprise). La comptabilité est facturée mensuellement ou annuellement."}
                 </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              </details>
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "Do you offer discounts for students or pensioners?"
                     : "Proposez-vous un rabais pour les étudiants ou les rentiers AVS/AI ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? "Yes. Students and AVS/AI pension recipients get CHF 20 off their tax return. Just tick the box when ordering; a proof (student card or AVS/AI decision) may be requested."
                     : "Oui. Les étudiants et les rentiers AVS/AI bénéficient de CHF 20.- de rabais sur leur déclaration d'impôts. Il suffit de cocher la case lors de la commande ; un justificatif (carte d'étudiant ou décision AVS/AI) pourra être demandé."}
                 </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              </details>
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "Do prices vary by canton?"
                     : "Les tarifs varient-ils selon le canton ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? <>Our base prices are the same for all cantons in French-speaking Switzerland (<Link href={L("/cantons/geneve")} className="text-primary hover:underline">Geneva</Link>, <Link href={L("/cantons/vaud")} className="text-primary hover:underline">Vaud</Link>, <Link href={L("/cantons/valais")} className="text-primary hover:underline">Valais</Link>, <Link href={L("/cantons/fribourg")} className="text-primary hover:underline">Fribourg</Link>, <Link href={L("/cantons/neuchatel")} className="text-primary hover:underline">Neuchâtel</Link>, <Link href={L("/cantons/jura")} className="text-primary hover:underline">Jura</Link>). The final price depends solely on the complexity of your file, not your canton of residence.</>
                     : <>Nos tarifs de base sont identiques pour tous les cantons romands (<Link href={L("/cantons/geneve")} className="text-primary hover:underline">Genève</Link>, <Link href={L("/cantons/vaud")} className="text-primary hover:underline">Vaud</Link>, <Link href={L("/cantons/valais")} className="text-primary hover:underline">Valais</Link>, <Link href={L("/cantons/fribourg")} className="text-primary hover:underline">Fribourg</Link>, <Link href={L("/cantons/neuchatel")} className="text-primary hover:underline">Neuchâtel</Link>, <Link href={L("/cantons/jura")} className="text-primary hover:underline">Jura</Link>). Le prix final dépend uniquement de la complexité de votre dossier, pas de votre canton de résidence.</>}
                 </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              </details>
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "Does the price include cryptocurrency declaration?"
                     : "Le prix inclut-il les cryptomonnaies ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? <>Declaring cryptocurrencies (Bitcoin, Ethereum, etc.) may require a supplement depending on the number of transactions and platforms used. <Link href={L("/blog/declarer-cryptomonnaies-suisse-guide-2026")} className="text-primary hover:underline">Read our complete guide on crypto tax declaration in Switzerland</Link> and request a quote for an accurate estimate.</>
                     : <>La déclaration de cryptomonnaies (Bitcoin, Ethereum, etc.) peut nécessiter un supplément selon le nombre de transactions et de plateformes utilisées. <Link href={L("/blog/declarer-cryptomonnaies-suisse-guide-2026")} className="text-primary hover:underline">Consultez notre guide complet sur la déclaration crypto en Suisse</Link> et demandez un devis pour une estimation précise.</>}
                 </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              </details>
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "What if my file is more complex than expected?"
                     : "Que se passe-t-il si mon dossier est plus complexe que prévu ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? "If additional elements appear after the initial quote, we contact you for a revised quote before continuing. No supplement is charged without your prior agreement."
                     : "Si des éléments supplémentaires apparaissent après le devis initial, nous vous contactons pour un devis révisé avant de continuer. Aucun supplément n'est facturé sans votre accord préalable."}
                 </p>
-              </Card>
+              </details>
               {guaranteeFaq.map((item, i) => (
-                <Card key={`g${i}`} className="p-6">
-                  <h3 className="font-semibold mb-2">{isEnglish ? item.qen : item.q}</h3>
-                  <p className="text-muted-foreground text-sm">{isEnglish ? item.aen : item.a}</p>
-                </Card>
+                <details key={`g${i}`} className="group rounded-xl border bg-card p-5">
+                  <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>{isEnglish ? item.qen : item.q}</h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                  <p className="text-muted-foreground text-sm mt-3">{isEnglish ? item.aen : item.a}</p>
+                </details>
               ))}
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">
+              <details className="group rounded-xl border bg-card p-5">
+                <summary className="font-semibold cursor-pointer list-none flex items-start justify-between gap-4 [&::-webkit-details-marker]:hidden"><h3>
                   {isEnglish
                     ? "What if I'm not satisfied?"
                     : "Et si je ne suis pas satisfait ?"}
-                </h3>
-                <p className="text-muted-foreground text-sm">
+                </h3><ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" /></summary>
+                <p className="text-muted-foreground text-sm mt-3">
                   {isEnglish
                     ? "Full refund if you cancel before processing starts. After that, a partial refund may be granted case by case (see our Terms, art. 6)."
                     : "Remboursement intégral si vous annulez avant le début du traitement. Ensuite, un remboursement partiel peut être accordé au cas par cas (voir nos conditions générales, art. 6)."}
                 </p>
-              </Card>
+              </details>
             </div>
           </motion.section>
           {/* Final CTA */}
