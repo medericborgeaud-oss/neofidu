@@ -13,7 +13,7 @@ export function SimulatorCTA() {
     : ["Dès CHF 89", "100% digital", "Spécialiste diplômé"];
 
   return (
-    <section className="bg-gradient-to-br from-primary via-teal-600 to-emerald-700 text-white py-16 mt-8">
+    <section className="bg-gradient-hero text-white py-16 mt-8">
       <div className="container mx-auto px-4 text-center max-w-3xl">
         <p className="text-emerald-200 text-sm font-semibold uppercase tracking-widest mb-4">
           {isEnglish ? "From simulator to solution" : "Du simulateur à la solution"}

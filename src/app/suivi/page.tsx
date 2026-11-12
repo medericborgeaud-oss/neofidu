@@ -429,7 +429,7 @@ export default function SuiviPage() {
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="h-12 px-8 bg-teal-500 hover:bg-teal-600"
+                    className="h-12 px-8 bg-primary hover:bg-primary/90"
                   >
                     {loading ? (
                       <Loader2 className="w-5 h-5 animate-spin" />
@@ -481,7 +481,7 @@ export default function SuiviPage() {
                       </div>
                       <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-teal-500 rounded-full transition-all duration-500"
+                          className="h-full bg-primary rounded-full transition-all duration-500"
                           style={{ width: `${getStatusProgress(requestData.status, requestData.type)}%` }}
                         />
                       </div>
@@ -587,7 +587,7 @@ export default function SuiviPage() {
                         <Button
                           onClick={handleUpload}
                           disabled={uploading}
-                          className="w-full mt-4 bg-teal-500 hover:bg-teal-600"
+                          className="w-full mt-4 bg-primary hover:bg-primary/90"
                         >
                           {uploading ? (
                             <>
@@ -632,7 +632,7 @@ export default function SuiviPage() {
                         {requestData.statusHistory.slice().reverse().map((item, index) => (
                           <div key={index} className="flex gap-4">
                             <div className="flex flex-col items-center">
-                              <div className={`w-3 h-3 rounded-full ${index === 0 ? "bg-teal-500" : "bg-gray-300"}`} />
+                              <div className={`w-3 h-3 rounded-full ${index === 0 ? "bg-primary" : "bg-gray-300"}`} />
                               {index < requestData.statusHistory.length - 1 && (
                                 <div className="w-0.5 h-full bg-gray-200 my-1" />
                               )}

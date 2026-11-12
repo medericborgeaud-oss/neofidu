@@ -139,7 +139,7 @@ export function CommunesDashboard({
               href={buildUrl({ canton: canton === c ? "" : c, page: 1 })}
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 canton === c
-                  ? "bg-emerald-500 text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
               title={cs ? `${cs.count} communes` : c}
@@ -259,7 +259,7 @@ export function CommunesDashboard({
           <p className="text-xs text-emerald-600">{en ? "Tax return from CHF 89.- | Accounting from CHF 500.-/year" : "Declaration d'impots des CHF 89.- | Comptabilite des CHF 500.-/an"}</p>
         </div>
         <Link href={en ? "/en/demande" : "/demande"}>
-          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm whitespace-nowrap">{en ? "Submit my request" : "Faire ma demande"}</Button>
+          <Button className="bg-primary hover:bg-primary/90 text-white text-sm whitespace-nowrap">{en ? "Submit my request" : "Faire ma demande"}</Button>
         </Link>
       </div>
 

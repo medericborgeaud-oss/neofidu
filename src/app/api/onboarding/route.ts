@@ -151,7 +151,7 @@ export async function POST(request: NextRequest) {
     // Send notification email to admin
     const adminEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); padding: 30px; border-radius: 12px 12px 0 0;">
+        <div style="background: linear-gradient(135deg, #0d9488 0%, #0D917B 100%); padding: 30px; border-radius: 12px 12px 0 0;">
           <h1 style="color: white; margin: 0; font-size: 24px;">
             📋 Nouveau formulaire d'onboarding
           </h1>
@@ -264,7 +264,7 @@ export async function POST(request: NextRequest) {
     // Send confirmation email to client
     const clientEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); padding: 40px; border-radius: 12px 12px 0 0; text-align: center;">
+        <div style="background: linear-gradient(135deg, #0d9488 0%, #0D917B 100%); padding: 40px; border-radius: 12px 12px 0 0; text-align: center;">
           <h1 style="color: white; margin: 0; font-size: 28px; font-weight: bold;">
             neo<span style="font-weight: normal;">fidu</span><span style="font-size: 14px; opacity: 0.8;">.ch</span>
           </h1>

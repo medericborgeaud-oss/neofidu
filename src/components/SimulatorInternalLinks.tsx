@@ -35,7 +35,7 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
       icon: Wallet,
       title: isEnglish ? "Net Salary Calculator" : "Simulateur Salaire Net",
       description: isEnglish ? "Calculate your net salary by canton" : "Calculez votre salaire net par canton",
-      color: "bg-teal-500",
+      color: "bg-primary",
     },
     {
       id: "impots",
@@ -43,7 +43,7 @@ export function SimulatorInternalLinks({ currentPage }: SimulatorInternalLinksPr
       icon: Calculator,
       title: isEnglish ? "Tax Calculator" : "Calculateur d'impôts",
       description: isEnglish ? "Estimate your taxes for all 26 cantons" : "Estimez vos impôts pour les 26 cantons",
-      color: "bg-emerald-500",
+      color: "bg-primary",
     },
     {
       id: "3eme-pilier",

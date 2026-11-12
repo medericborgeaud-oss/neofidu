@@ -346,7 +346,7 @@ export default async function CommunePageEN({ params }: Props) {
                   <p className="text-sm text-emerald-600">Tax return from CHF 89.-</p>
                 </div>
                 <Link href="/en/demande">
-                  <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">Learn more</Button>
+                  <Button className="bg-primary hover:bg-primary/90 text-white whitespace-nowrap">Learn more</Button>
                 </Link>
               </div>
 

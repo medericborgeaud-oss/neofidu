@@ -291,7 +291,7 @@ export default function BlogPage() {
               {isEnglish ? "Frequently Asked Questions (FAQ)" : "Questions fréquentes (FAQ)"}
             </Link>
             <Link href="/#tarifs" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-              <span className="w-2 h-2 bg-teal-500 rounded-full"></span>
+              <span className="w-2 h-2 bg-primary rounded-full"></span>
               {isEnglish ? "View our pricing" : "Consulter nos tarifs"}
             </Link>
             <Link href="/suivi" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">

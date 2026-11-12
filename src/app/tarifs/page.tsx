@@ -683,7 +683,7 @@ export function TarifsContent({ forceEn = false }: { forceEn?: boolean }) {
                   }`}
                 >
                   {plan.popular && (
-                    <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-medium px-3 py-1 rounded-bl-lg">
+                    <div className="absolute top-0 right-0 bg-primary text-white text-xs font-medium px-3 py-1 rounded-bl-lg">
                       <Star className="w-3 h-3 inline mr-1" />
                       {isEnglish ? "Recommended" : "Recommandé"}
                     </div>

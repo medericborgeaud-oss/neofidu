@@ -42,7 +42,7 @@ export function Pricing() {
             </p>
             <p className="text-xs text-gray-400 mb-6">TTC • 3 formules disponibles</p>
             <Link href="/demande">
-              <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
+              <Button className="w-full bg-primary hover:bg-primary/90 text-white">
                 Déposer une demande
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -65,7 +65,7 @@ export function Pricing() {
             </p>
             <p className="text-xs text-gray-400 mb-6">HT/an • Indépendants &amp; PME</p>
             <Link href="/demande">
-              <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
+              <Button className="w-full bg-primary hover:bg-primary/90 text-white">
                 Déposer une demande
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>

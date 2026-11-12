@@ -934,9 +934,9 @@ export async function PATCH(request: NextRequest) {
               <style>
                 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
                 .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                .header { background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 30px; border-radius: 12px 12px 0 0; text-align: center; }
+                .header { background: linear-gradient(135deg, #0D917B 0%, #059669 100%); color: white; padding: 30px; border-radius: 12px 12px 0 0; text-align: center; }
                 .content { background: #f9fafb; padding: 30px; border-radius: 0 0 12px 12px; }
-                .status-badge { display: inline-block; background: #10B981; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; margin: 10px 0; }
+                .status-badge { display: inline-block; background: #0D917B; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; margin: 10px 0; }
                 .footer { text-align: center; margin-top: 30px; color: #6b7280; font-size: 14px; }
               </style>
             </head>
@@ -984,7 +984,7 @@ export async function PATCH(request: NextRequest) {
                     <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.5;">
                       Rendez-vous sur notre page de suivi et entrez votre référence <strong>${requestReference}</strong> pour voir l'avancement de votre dossier.
                     </p>
-                    <a href="https://neofidu.ch/suivi" style="display: inline-block; background: #10B981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                    <a href="https://neofidu.ch/suivi" style="display: inline-block; background: #0D917B; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
                       Suivre ma demande →
                     </a>
                   </div>

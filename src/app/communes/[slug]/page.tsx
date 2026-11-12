@@ -415,7 +415,7 @@ export default async function CommunePage({ params }: Props) {
                   <p className="text-sm text-emerald-600">{ctaText.offer}</p>
                 </div>
                 <Link href={ctaText.href}>
-                  <Button className="bg-emerald-500 hover:bg-emerald-600 text-white whitespace-nowrap">En savoir plus</Button>
+                  <Button className="bg-primary hover:bg-primary/90 text-white whitespace-nowrap">En savoir plus</Button>
                 </Link>
               </div>
 

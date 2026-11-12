@@ -61,10 +61,10 @@ export async function POST(request: NextRequest) {
               <style>
                 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
                 .container { max-width: 500px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-                .header { background: linear-gradient(135deg, #14b8a6, #0d9488); padding: 30px; text-align: center; }
+                .header { background: linear-gradient(135deg, #0D917B, #0d9488); padding: 30px; text-align: center; }
                 .header h1 { color: white; margin: 0; font-size: 24px; }
                 .content { padding: 30px; }
-                .code { background: #f0fdfa; border: 2px dashed #14b8a6; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0; }
+                .code { background: #f0fdfa; border: 2px dashed #0D917B; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0; }
                 .code-number { font-size: 36px; font-weight: bold; color: #0d9488; letter-spacing: 8px; font-family: monospace; }
                 .info { color: #666; font-size: 14px; margin-top: 20px; }
                 .footer { background: #f9fafb; padding: 20px; text-align: center; color: #999; font-size: 12px; }
