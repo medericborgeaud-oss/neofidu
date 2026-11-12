@@ -5,7 +5,7 @@ import { Check, X, Info, Calculator } from "lucide-react";
 
 const included = {
   fr: [
-    "Saisie et tenue de la comptabilité",
+    "Tenue de la comptabilité sur Banana, ou dans votre bexio",
     "Rapprochements bancaires",
     "Décomptes TVA (méthode effective ou TDFN)",
     "Bouclement annuel et états financiers",
@@ -14,7 +14,7 @@ const included = {
     "Réponses à vos questions par e-mail",
   ],
   en: [
-    "Bookkeeping",
+    "Bookkeeping in Banana, or in your bexio",
     "Bank reconciliations",
     "VAT returns (effective or net tax rate method)",
     "Annual closing and financial statements",

@@ -58,6 +58,11 @@ const faqItemsFR: FAQItem[] = [
   },
   {
     category: "Gestion comptable",
+    question: "Quel logiciel comptable utilisez-vous ?",
+    answer: "Si vous utilisez déjà bexio, nous travaillons directement dans votre bexio : vous gardez votre outil et votre accès. Sinon, nous tenons votre comptabilité sur Banana Comptabilité. Dans les deux cas, vous pouvez obtenir un export complet de vos données à tout moment. L'abonnement bexio reste à votre charge, Banana est inclus dans nos forfaits."
+  },
+  {
+    category: "Gestion comptable",
     question: "Comment s'organise la collaboration ?",
     answer: "Vous nous adressez vos justificatifs (factures, relevés) selon une cadence mensuelle ou annuelle. Nous enregistrons les opérations, produisons les déclarations requises et vous transmettons un état de situation régulier."
   },
@@ -145,8 +150,13 @@ const faqItemsEN: FAQItem[] = [
   },
   {
     category: "Accounting",
+    question: "Which accounting software do you use?",
+    answer: "If you already use bexio, we work directly in your bexio: you keep your tool and your access. Otherwise, we keep your accounts in Banana Accounting. Either way, you can get a full export of your data at any time. The bexio subscription remains at your expense; Banana is included in our packages."
+  },
+  {
+    category: "Accounting",
     question: "How is the collaboration organized?",
-    answer: "You send us your supporting documents (invoices, statements) on a monthly or quarterly basis. We record transactions, produce required declarations, and provide you with regular status reports."
+    answer: "You send us your supporting documents (invoices, statements) on a monthly or annual basis. We record transactions, produce required declarations, and provide you with regular status reports."
   },
   {
     category: "Accounting",

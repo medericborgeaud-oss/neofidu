@@ -25,6 +25,7 @@ TARIFS ENTREPRISES:
 - Création d'entreprise: raison individuelle dès CHF 290, Sàrl dès CHF 990, SA dès CHF 1'490
 - Déclaration d'impôt de société (Sàrl, SA): incluse dans la formule PME
 - Exemples de coût annuel: indépendant avec TVA = CHF 500 + CHF 189 de déclaration privée; Sàrl avec TVA et 2 salariés = CHF 2'400/an tout compris
+- Logiciels: comptabilité tenue sur Banana Comptabilité (inclus), ou directement dans le bexio du client (abonnement bexio à sa charge). NeoFidu n'est pas partenaire officiel bexio
 - Mandats de comptabilité sans durée minimale, résiliables par e-mail pour la fin du mois suivant; export complet de la comptabilité à tout moment
 - Changer de fiduciaire: second avis gratuit sur la facture actuelle en 48 h, puis reprise du dossier (NeoFidu prépare la lettre de transfert). Page: https://neofidu.ch/changer-de-fiduciaire
 

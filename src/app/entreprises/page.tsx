@@ -19,6 +19,7 @@ import {
   Unlock,
   Download,
   Repeat,
+  MonitorSmartphone,
 } from "lucide-react";
 import { AnnualCostExamples } from "@/components/EntreprisePricingDetails";
 import { useLanguage } from "@/lib/language-context";
@@ -260,6 +261,25 @@ export function EntreprisesContent({ forceEn = false }: { forceEn?: boolean }) {
                   </Card>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Outils */}
+        <section className="py-12 bg-white border-t">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto rounded-2xl border p-6 md:p-8 flex flex-col md:flex-row items-start gap-6">
+              <MonitorSmartphone className="w-10 h-10 text-primary shrink-0" />
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                  {isEnglish ? "Keep your tools: bexio or Banana" : "Gardez vos outils : bexio ou Banana"}
+                </h2>
+                <p className="text-muted-foreground">
+                  {isEnglish
+                    ? "Already on bexio? We work directly in your bexio, you keep your tool and your access (the bexio subscription remains at your expense). No software yet? We keep your accounts in Banana Accounting, included in our packages. Either way, your data belongs to you and can be exported at any time."
+                    : "Déjà sur bexio ? Nous travaillons directement dans votre bexio, vous gardez votre outil et votre accès (l\u2019abonnement bexio reste à votre charge). Pas encore de logiciel ? Nous tenons votre comptabilité sur Banana Comptabilité, inclus dans nos forfaits. Dans les deux cas, vos données vous appartiennent et sont exportables à tout moment."}
+                </p>
+              </div>
             </div>
           </div>
         </section>
